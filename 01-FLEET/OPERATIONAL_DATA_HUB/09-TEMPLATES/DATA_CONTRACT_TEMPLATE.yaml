@@ -1,0 +1,131 @@
+# Data Contract Template
+
+## Product Information
+product_id: "product_id_here"
+version: "X.Y.Z"
+status: "DRAFT | ACTIVE | DEPRECATED | ARCHIVED"
+owner: "Team Name"
+created_date: "YYYY-MM-DD"
+updated_date: "YYYY-MM-DD"
+
+## Description
+description: |
+  Brief description of the data product, including:
+  - Purpose and use cases
+  - Data sources
+  - Transformation logic
+  - Known limitations
+
+## Consumers
+consumers:
+  - "Consumer Team 1"
+  - "Consumer Team 2"
+  - "Consumer Application 3"
+
+## Service Level Agreement (SLA)
+
+### Refresh Frequency
+frequency: "real-time | hourly | daily | weekly | monthly"
+schedule: "HH:MM UTC (for batch)"
+max_latency: "X hours | X minutes | X seconds"
+
+### Availability
+target: "99.X%"
+downtime_window: "Planned maintenance window (if any)"
+
+### Data Quality
+completeness: "> XX%"
+accuracy: "Description of accuracy guarantees"
+timeliness: "Description of timeliness guarantees"
+
+## Schema
+
+### Format
+format: "parquet | avro | json | csv"
+compression: "snappy | gzip | lz4 | none"
+encoding: "UTF-8"
+
+### Location
+production: "s3://bucket/path/"
+staging: "s3://bucket-staging/path/"
+archive: "s3://bucket-archive/path/"
+
+### Partitioning
+partitioning_scheme: "dt=YYYY-MM-DD | dt=YYYY-MM-DD/HH | other"
+partition_retention: "X years | X months"
+
+### Fields
+fields:
+  - name: "field_name_1"
+    type: "string | int | double | timestamp | struct | array"
+    nullable: true | false
+    description: "Field description"
+    example: "Example value"
+    range: [min, max]  # For numeric fields
+    unit: "unit_here"  # For measurements
+    
+  - name: "field_name_2"
+    type: "data_type"
+    nullable: true | false
+    description: "Field description"
+
+## Compatibility
+backward_compatibility: "BACKWARD | FORWARD | FULL | NONE"
+compatibility_policy: "Description of compatibility guarantees"
+deprecation_notice_days: 90
+migration_support_days: 180
+
+## Quality Guarantees
+
+### Completeness
+- "Target: >XX% of expected records"
+- "Missing data handling: Description"
+- "Validation: Description of completeness checks"
+
+### Accuracy
+- "Target: Description of accuracy target"
+- "Validation: Description of accuracy checks"
+- "Cross-validation: Description (if applicable)"
+
+### Timeliness
+- "Target: Data available within XX hours/minutes"
+- "Monitoring: Description of latency tracking"
+- "Alerting: Alert conditions"
+
+## Usage Examples
+
+### Example 1: Language/Framework
+```language
+# Code example showing how to consume the data product
+# Include authentication, query, and processing
+```
+
+### Example 2: SQL (if applicable)
+```sql
+-- SQL query example
+SELECT * FROM data_product
+WHERE condition;
+```
+
+## Access Control
+classification: "PUBLIC | INTERNAL | CONFIDENTIAL | RESTRICTED"
+export_control: "NONE | EAR99 | ITAR"
+required_roles: ["role1", "role2"]
+mfa_required: true | false
+
+## Support and Contact
+owner_email: "team@example.com"
+on_call: "Slack: #channel-name or PagerDuty"
+documentation: "https://docs.example.com/data-product"
+issue_tracker: "JIRA project or GitHub issues URL"
+
+## Related Documents
+- Link to upstream data sources
+- Link to downstream consumers
+- Link to data quality reports
+
+## Change History
+| Version | Date       | Changes                                    | Author             |
+|---------|------------|--------------------------------------------|--------------------|
+| 1.0.0   | YYYY-MM-DD | Initial release                            | Team Name          |
+| 1.1.0   | YYYY-MM-DD | Description of changes                     | Team Name          |

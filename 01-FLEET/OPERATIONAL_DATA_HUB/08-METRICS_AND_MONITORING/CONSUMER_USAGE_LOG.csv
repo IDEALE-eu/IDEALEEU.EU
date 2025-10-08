@@ -1,0 +1,13 @@
+consumer_id,data_product,query_count,avg_latency_ms,error_count,last_access,sla_compliance
+fleet_operations_dashboard,usage_profiles,1523,245,2,2024-01-15T14:28:00Z,99.9
+ml_training_pipeline,usage_profiles,89,1820,0,2024-01-15T13:45:00Z,100.0
+predictive_maintenance_service,anomaly_feed,3421,45,5,2024-01-15T14:30:00Z,99.8
+performance_analysis_team,usage_profiles,234,380,1,2024-01-15T12:15:00Z,99.6
+digital_twin_service,h2_telemetry,5632,120,8,2024-01-15T14:29:00Z,99.7
+design_engineering,benchmarking_packs,12,2150,0,2024-01-14T16:30:00Z,100.0
+mro_analyst_team,reliability_datasets,156,560,0,2024-01-15T10:20:00Z,100.0
+federated_learning_orchestrator,training_datasets,45,3200,1,2024-01-15T08:00:00Z,99.5
+safety_analysis_team,anomaly_feed,234,95,0,2024-01-15T14:25:00Z,100.0
+external_analytics_tool,usage_profiles,567,420,3,2024-01-15T13:50:00Z,99.5
+regulatory_reporting_service,safety_events,23,1200,0,2024-01-15T09:00:00Z,100.0
+config_mgmt_system,baseline_telemetry,789,180,2,2024-01-15T14:20:00Z,99.8

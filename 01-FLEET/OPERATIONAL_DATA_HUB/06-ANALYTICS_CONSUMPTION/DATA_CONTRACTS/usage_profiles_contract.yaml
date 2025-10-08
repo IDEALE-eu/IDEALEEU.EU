@@ -1,0 +1,199 @@
+# Data Contract: Usage Profiles
+
+## Product Information
+product_id: usage_profiles
+version: 1.2.0
+status: ACTIVE
+owner: Data Engineering Team
+created_date: 2024-01-15
+updated_date: 2024-06-20
+
+## Description
+Daily aggregated flight/mission performance summaries for fleet monitoring and analysis.
+
+## Consumers
+- Fleet Operations Dashboard
+- ML Training Pipeline (efficiency models)
+- Performance Analysis Team
+- Design Engineering (requirements feedback)
+
+## Service Level Agreement (SLA)
+
+### Refresh Frequency
+frequency: daily
+schedule: "02:00 UTC"
+max_latency: 24 hours
+
+### Availability
+target: 99.5%
+downtime_window: "Sunday 00:00-06:00 UTC (maintenance)"
+
+### Data Quality
+completeness: "> 99%"
+accuracy: "sensor_calibration_certified"
+timeliness: "within_24h_of_flight_completion"
+
+## Schema
+
+### Format
+format: parquet
+compression: snappy
+encoding: UTF-8
+
+### Location
+production: "s3://ideale-curated/usage_profiles/"
+staging: "s3://ideale-staging/usage_profiles/"
+archive: "s3://ideale-archive/usage_profiles/"
+
+### Partitioning
+partitioning_scheme: "dt=YYYY-MM-DD"
+partition_retention: "5 years"
+
+### Fields
+
+fields:
+  - name: date
+    type: date
+    nullable: false
+    description: "Flight/mission date (UTC)"
+    
+  - name: platform_id
+    type: string
+    nullable: false
+    description: "Aircraft registration or spacecraft serial number"
+    example: "AC-H2-001"
+    
+  - name: flight_hours
+    type: double
+    nullable: false
+    range: [0, 24]
+    unit: hours
+    description: "Total flight/mission hours for the day"
+    
+  - name: fuel_consumed_kg
+    type: double
+    nullable: false
+    range: [0, 50000]
+    unit: kg
+    description: "Total fuel consumed (all types)"
+    
+  - name: h2_consumed_kg
+    type: double
+    nullable: true
+    range: [0, 5000]
+    unit: kg
+    description: "Hydrogen fuel consumed (aircraft only)"
+    
+  - name: avg_altitude_m
+    type: double
+    nullable: false
+    range: [0, 50000]
+    unit: m
+    description: "Average altitude (MSL)"
+    
+  - name: max_airspeed_ms
+    type: double
+    nullable: false
+    range: [0, 300]
+    unit: m/s
+    description: "Maximum airspeed achieved"
+    
+  - name: efficiency_score
+    type: double
+    nullable: false
+    range: [0, 100]
+    unit: dimensionless
+    description: "Normalized efficiency score (100 = optimal)"
+    
+  - name: anomaly_count
+    type: integer
+    nullable: false
+    range: [0, 1000]
+    description: "Number of anomalies detected during flight/mission"
+    
+  - name: data_quality_score
+    type: double
+    nullable: false
+    range: [0, 100]
+    unit: percent
+    description: "Data completeness and quality score"
+
+## Compatibility
+
+backward_compatibility: FULL
+compatibility_policy: "Minor version changes (1.x) are backward compatible. Major version changes (x.0) may break compatibility."
+
+deprecation_notice_days: 90
+migration_support_days: 180
+
+## Quality Guarantees
+
+### Completeness
+- Target: >99% of flights/missions have usage profiles
+- Missing data: Flagged in `data_quality_score` field
+- Validation: Daily completeness report
+
+### Accuracy
+- Sensor calibration: Annual calibration required
+- Cross-validation: Flight hours vs. engine run time (<1% deviation)
+- Outlier detection: Automated flagging of anomalous values
+
+### Timeliness
+- Target: Data available <24 hours after flight completion
+- Monitoring: Latency tracked per platform
+- Alerting: Alert if latency >24 hours
+
+## Usage Examples
+
+### Python (PySpark)
+```python
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("usage_analysis").getOrCreate()
+
+# Read usage profiles
+df = spark.read.parquet("s3://ideale-curated/usage_profiles/dt=2024-01-15/")
+
+# Filter and aggregate
+fleet_summary = df.groupBy("date").agg(
+    sum("flight_hours").alias("total_flight_hours"),
+    avg("efficiency_score").alias("avg_efficiency")
+)
+
+fleet_summary.show()
+```
+
+### SQL (Athena/Presto)
+```sql
+SELECT 
+  date,
+  COUNT(DISTINCT platform_id) AS active_platforms,
+  SUM(flight_hours) AS total_flight_hours,
+  AVG(efficiency_score) AS avg_efficiency
+FROM usage_profiles
+WHERE dt BETWEEN '2024-01-01' AND '2024-01-31'
+GROUP BY date
+ORDER BY date;
+```
+
+## Access Control
+
+classification: INTERNAL
+export_control: NONE
+required_roles: ["data_viewer", "data_analyst", "ml_engineer"]
+mfa_required: false
+
+## Support and Contact
+
+owner_email: data-engineering@ideale.eu
+on_call: "Slack: #data-engineering-oncall"
+documentation: "https://docs.ideale.eu/data-hub/usage-profiles"
+issue_tracker: "JIRA: DATA project"
+
+## Change History
+
+| Version | Date       | Changes                                    | Author             |
+|---------|------------|--------------------------------------------|--------------------|
+| 1.0.0   | 2024-01-15 | Initial release                            | Data Eng Team      |
+| 1.1.0   | 2024-03-10 | Add `h2_consumed_kg` field                 | Data Eng Team      |
+| 1.2.0   | 2024-06-20 | Add `data_quality_score` field             | Data Eng Team      |
