@@ -1,0 +1,211 @@
+# Engineering Change Request (ECR) Template
+
+# METADATA
+ecr_number: ECR-XXXX  # Assigned by Configuration Management
+date_submitted: YYYY-MM-DD
+status: Draft  # Draft | Submitted | Under Review | Approved | Rejected | Implemented
+
+# SUBMITTER INFORMATION
+submitter:
+  name: ""
+  organization: ""
+  email: ""
+  phone: ""
+  
+# CHANGE CLASSIFICATION
+classification: Class I  # Class I | Class II | Class III
+  # Class I: Affects form, fit, function, or certification (CCB approval required)
+  # Class II: Documentation or minor changes (delegated approval)
+  # Class III: Administrative changes (CM approval only)
+
+priority: Normal  # Critical | High | Normal | Low
+
+# AFFECTED ITEMS
+affected_items:
+  - part_number: ""
+    description: ""
+    current_revision: ""
+    proposed_revision: ""
+  # Add more items as needed
+
+# CHANGE DESCRIPTION
+change_description:
+  problem_statement: |
+    Describe the problem, issue, or opportunity that necessitates this change.
+    Be specific about what is wrong or what needs improvement.
+    
+  proposed_solution: |
+    Describe the proposed change in detail.
+    What will be changed?
+    How will it be changed?
+    
+  justification: |
+    Why is this change necessary?
+    What are the benefits?
+    What are the consequences of not making this change?
+    
+  alternatives_considered: |
+    What other solutions were considered?
+    Why was this solution selected?
+
+# IMPACT ASSESSMENT
+impact:
+  technical:
+    design: ""  # Impact on design (None | Minor | Major)
+    performance: ""  # Impact on performance
+    interfaces: []  # List affected interfaces
+    requirements: []  # List affected requirements
+    
+  schedule:
+    estimated_duration: ""  # Duration to implement (days/weeks)
+    critical_path_impact: ""  # Yes | No
+    milestone_impact: ""  # Any milestone delays?
+    
+  cost:
+    engineering_hours: 0
+    material_cost: 0
+    tooling_cost: 0
+    testing_cost: 0
+    total_estimated_cost: 0
+    currency: USD
+    
+  quality:
+    safety_impact: None  # None | Low | Medium | High
+    reliability_impact: ""
+    certification_impact: ""  # FAA | EASA | ESA | None
+    
+  manufacturing:
+    producibility: ""  # Improved | No Change | Degraded
+    special_tooling: ""  # Yes | No
+    supplier_impact: []  # List affected suppliers
+    effectivity: ""  # When does change take effect?
+    
+  test:
+    new_tests_required: ""  # Yes | No
+    test_procedures_affected: []
+    qualification_impact: ""
+    
+  documentation:
+    drawings: []  # List affected drawing numbers
+    specifications: []
+    procedures: []
+    manuals: []
+
+# VERIFICATION PLAN
+verification:
+  methods:  # Test | Analysis | Demonstration | Inspection
+    - method: ""
+      description: ""
+      success_criteria: ""
+      
+  test_requirements: |
+    Describe any testing required to verify the change.
+    
+  analysis_requirements: |
+    Describe any analysis required (structural, thermal, etc.)
+
+# IMPLEMENTATION PLAN
+implementation:
+  phases:
+    - phase: ""
+      description: ""
+      duration: ""
+      responsible: ""
+      
+  dependencies: []  # List any dependencies on other ECRs or activities
+  
+  risks:
+    - risk: ""
+      likelihood: ""  # Low | Medium | High
+      impact: ""  # Low | Medium | High
+      mitigation: ""
+
+# TRACEABILITY
+traceability:
+  requirements: []  # List requirement IDs affected
+  related_ecrs: []  # Related ECR numbers
+  related_ncrsl: []  # Related NCR numbers
+  baseline_affected: ""  # SRR | PDR | CDR | etc.
+
+# APPROVALS
+approvals:
+  # Filled in by CCB
+  engineering_review:
+    reviewer: ""
+    date: ""
+    recommendation: ""  # Approve | Reject | Modify
+    comments: ""
+    
+  systems_engineering:
+    reviewer: ""
+    date: ""
+    recommendation: ""
+    comments: ""
+    
+  quality:
+    reviewer: ""
+    date: ""
+    recommendation: ""
+    comments: ""
+    
+  safety:
+    reviewer: ""
+    date: ""
+    recommendation: ""
+    comments: ""
+    
+  manufacturing:
+    reviewer: ""
+    date: ""
+    recommendation: ""
+    comments: ""
+    
+  ccb_disposition:
+    meeting_date: ""
+    meeting_number: ""
+    decision: ""  # Approved | Approved with Conditions | Rejected | Deferred
+    conditions: ""
+    eco_number: ""  # If approved, becomes this ECO
+    ccb_chair: ""
+    configuration_manager: ""
+
+# NOTES
+notes: |
+  Additional information, comments, or clarifications.
+
+# ATTACHMENTS
+attachments:
+  - filename: ""
+    description: ""
+    location: ""
+  # Add more attachments as needed
+
+---
+# INSTRUCTIONS FOR USE
+
+# 1. Submit ECR
+#    - Fill out all required fields
+#    - Attach supporting documentation
+#    - Submit to Configuration Management
+#    - CM will assign ECR number
+
+# 2. Review Process
+#    - CM routes to technical reviewers
+#    - Reviewers assess impact and provide recommendations
+#    - CCB reviews at meeting
+#    - CCB dispositions: Approve | Approve with Conditions | Reject | Defer
+
+# 3. If Approved
+#    - ECR becomes ECO (Engineering Change Order)
+#    - ECO number assigned
+#    - Implementation proceeds per plan
+#    - Verification performed
+#    - ECO closed upon completion
+
+# 4. If Rejected
+#    - Rationale documented
+#    - Submitter may revise and resubmit
+
+# 5. Storage
+#    - Submitted ECRs: 06-CHANGES/ECR/
+#    - Approved ECOs: 06-CHANGES/ECO/

@@ -1,0 +1,2 @@
+change_id,baseline_gate,baseline_version,manifest_path,affected_items,verification_status
+ECR-2025-0001,PDR,v1.0,../04-BASELINES/PDR/MANIFEST.json,WING-SPAR-001,Pending

@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "document": "Software Traceability Matrix",
+    "version": "1.0",
+    "date": "2025-01-15",
+    "standard": "DO-178C"
+  },
+  "traceability": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "System shall provide autopilot functionality",
+      "source_files": [
+        "src/flight_control/autopilot.c",
+        "src/flight_control/autopilot.h"
+      ],
+      "test_cases": [
+        "TC-001",
+        "TC-002"
+      ],
+      "verification_method": "Test",
+      "coverage": "100%",
+      "eco_number": "ECO-2025-0007"
+    }
+  ]
+}

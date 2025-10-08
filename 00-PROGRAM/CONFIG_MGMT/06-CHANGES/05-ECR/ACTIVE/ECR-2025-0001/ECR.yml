@@ -1,0 +1,103 @@
+# Engineering Change Request (ECR) - Example
+
+# METADATA
+ecr_number: ECR-2025-0001
+date_submitted: 2025-01-15
+status: Under Review
+
+# SUBMITTER INFORMATION
+submitter:
+  name: "Jane Engineer"
+  organization: "Structures Engineering"
+  email: "j.engineer@example.com"
+  phone: "+1-555-0100"
+  
+# CHANGE CLASSIFICATION
+classification: Class I
+priority: High
+
+# AFFECTED ITEMS
+affected_items:
+  - part_number: "WING-SPAR-001"
+    description: "Main wing spar"
+    current_revision: "Rev A"
+    proposed_revision: "Rev B"
+
+# CHANGE DESCRIPTION
+change_description:
+  problem_statement: |
+    Current wing spar material (Al 7075-T6) shows marginal fatigue life
+    under expected operating conditions. Analysis indicates potential
+    for fatigue cracks at high-cycle loading.
+    
+  proposed_solution: |
+    Change wing spar material from Al 7075-T6 to Al 7050-T7451.
+    Al 7050-T7 offers superior fatigue resistance and improved
+    stress corrosion cracking resistance.
+    
+  justification: |
+    - Improved fatigue life (50% increase)
+    - Better stress corrosion resistance
+    - Similar machinability and cost
+    - Meets all structural requirements
+    
+  alternatives_considered: |
+    1. Keep Al 7075-T6, increase inspection frequency
+    2. Titanium alloy (rejected due to cost)
+    3. Al 7050-T7 (selected)
+
+# IMPACT ASSESSMENT
+impact:
+  technical:
+    design: "Minor"
+    performance: "No change"
+    interfaces: []
+    requirements: ["REQ-STR-042"]
+    
+  schedule:
+    estimated_duration: "12 weeks"
+    critical_path_impact: "No"
+    milestone_impact: "None"
+    
+  cost:
+    engineering_hours: 240
+    material_cost: 15000
+    tooling_cost: 0
+    testing_cost: 25000
+    total_estimated_cost: 40000
+    currency: USD
+    
+  quality:
+    safety_impact: Medium
+    reliability_impact: "Improved"
+    certification_impact: "FAA notification required"
+    
+  manufacturing:
+    producibility: "No Change"
+    special_tooling: "No"
+    supplier_impact: ["Acme Metals Inc."]
+    effectivity: "Serial Number 006 and subsequent"
+
+# TRACEABILITY
+traceability:
+  requirements: ["REQ-STR-042"]
+  related_ecrs: []
+  related_ncrs: []
+  baseline_affected: "PDR"
+
+# APPROVALS
+approvals:
+  engineering_review:
+    reviewer: "John Smith"
+    date: "2025-01-20"
+    recommendation: "Approve"
+    comments: "Material change is technically sound"
+    
+  ccb_disposition:
+    meeting_date: "2025-01-26"
+    meeting_number: "CCB-2025-004"
+    decision: "Approved"
+    conditions: ""
+    eco_number: "ECO-2025-0007"
+    ccb_chair: "Dr. Robert Johnson"
+    configuration_manager: "Mary Config"
