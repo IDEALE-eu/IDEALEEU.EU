@@ -1,0 +1,11 @@
+Risk_ID,Risk_Category,Risk_Description,Supplier,Part_Numbers,Probability,Impact,Risk_Score,Mitigation_Strategy,Owner,Status,Last_Review,Next_Review
+R001,Supplier,Financial instability concerns,Supplier A,PN123-456,Medium,High,6,Monitor financial health quarterly; Identify backup supplier,Procurement Manager,Active,2024-01-15,2024-04-15
+R002,Geographic,Single source in earthquake zone,Supplier B,PN789-012,Low,Critical,4,Qualify second source in different region; Strategic inventory,Supply Chain Director,Active,2024-01-10,2024-07-10
+R003,Material,Titanium alloy long lead time,Multiple,PN345-678,High,Medium,6,Forecast accuracy improvement; Early commitments; Strategic stock,Materials Manager,Active,2024-02-01,2024-05-01
+R004,Compliance,ITAR registration expiring,Supplier C,PN901-234,Low,High,4,Monitor registration status; Backup ITAR supplier identified,Compliance Officer,Monitoring,2024-01-20,2024-03-20
+R005,Capacity,Supplier capacity fully utilized,Supplier D,PN567-890,Medium,Medium,4,Long-term capacity agreement; Qualify alternative supplier,Procurement Manager,Active,2024-02-15,2024-05-15
+R006,Quality,Recent quality issues,Supplier E,PN112-334,Medium,High,6,Enhanced monitoring; Supplier development program; SCAR tracking,Quality Manager,Active,2024-02-20,2024-03-20
+R007,Geographic,Single source in geopolitical risk area,Supplier F,PN223-445,Medium,Medium,4,Evaluate alternative sources; Buffer inventory,Supply Chain Director,Active,2024-01-25,2024-07-25
+R008,Material,Rare earth element supply constraint,Supplier G,PN334-556,High,High,9,Alternative materials research; Strategic partnerships; Long-term contracts,Materials Manager,Critical,2024-02-10,2024-03-10
+R009,Supplier,New supplier - limited track record,Supplier H,PN445-667,Medium,Low,2,Enhanced monitoring first year; Quality audits; Performance tracking,Procurement Manager,Monitoring,2024-02-05,2024-05-05
+R010,Compliance,Conflict minerals sourcing concerns,Supplier I,PN556-778,Low,Medium,2,CMRT verification; Smelter validation; Alternative sourcing if needed,Compliance Officer,Monitoring,2024-01-30,2024-06-30

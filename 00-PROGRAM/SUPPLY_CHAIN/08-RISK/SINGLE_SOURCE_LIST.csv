@@ -1,0 +1,11 @@
+Part_Number,Description,Supplier,Supplier_Location,Annual_Volume,Annual_Spend_USD,Criticality,Alternative_Action,Target_Date,Status,Risk_Rating,Notes
+PN123-456,Titanium Bracket,Supplier A,"USA, CA",500,150000,High,Qualify Supplier X,2024-12-31,In Progress,Medium,Technical qualification underway
+PN789-012,Avionics Module,Supplier B,"France",120,850000,Critical,Evaluate Supplier Y and Z,2024-06-30,Planning,High,Proprietary design - complex to transfer
+PN345-678,Composite Panel,Supplier C,"UK",300,420000,High,Second tooling set at Supplier D,2024-09-30,Approved,Medium,Tooling ordered
+PN901-234,Flight Computer,Supplier E,"USA, MA",80,1200000,Critical,Accept single source; Strategic inventory,N/A,Accepted,High,Only qualified manufacturer; 6-month buffer stock
+PN567-890,Hydraulic Actuator,Supplier F,"Germany",200,380000,Medium,Qualify Supplier G,2025-03-31,Planned,Medium,Waiting for Supplier G capacity
+PN112-334,Sensor Assembly,Supplier H,"Japan",400,220000,High,Alternate design with different sensor,2024-08-31,In Progress,Medium,Engineering evaluation ongoing
+PN223-445,Control Valve,Supplier I,"Italy",150,195000,Medium,Evaluate multiple alternatives,2024-10-31,Planning,Low,Multiple potential suppliers identified
+PN334-556,Rare Earth Magnet,Supplier J,"China",1000,95000,High,Alternative materials research; Strategic stock,2025-06-30,Research,High,Limited global supply; Material substitution study
+PN445-667,Landing Gear Component,Supplier K,"USA, WA",50,670000,Critical,Qualify Supplier L,2024-12-31,In Progress,High,Long qualification cycle; Supplier L audit complete
+PN556-778,Cabling Harness,Supplier M,"Mexico",600,180000,Medium,Qualify nearshore alternative,2025-01-31,Planning,Low,Standard product; Multiple capable suppliers

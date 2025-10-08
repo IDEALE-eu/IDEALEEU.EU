@@ -1,0 +1,13 @@
+Part_Number,Description,ABC_Class,Average_Demand_Monthly,Demand_StdDev,Lead_Time_Days,Service_Level_Target,Z_Score,Safety_Stock_Qty,Reorder_Point,Current_Stock,Status
+PN123-456,Titanium Bracket,A,100,15,45,99%,2.33,51,201,250,OK
+PN789-012,Avionics Module,A,20,5,90,99%,2.33,27,87,95,OK
+PN345-678,Composite Panel,A,60,12,60,99%,2.33,42,162,180,OK
+PN901-234,Flight Computer,A,15,3,120,99%,2.33,22,82,100,OK
+PN567-890,Hydraulic Actuator,B,40,10,60,95%,1.65,30,110,120,OK
+PN112-334,Sensor Assembly,B,80,20,45,95%,1.65,45,165,200,OK
+PN223-445,Control Valve,B,30,8,60,95%,1.65,24,84,90,OK
+PN334-556,Rare Earth Magnet,A,200,40,30,99%,2.33,72,272,350,OK
+PN445-667,Landing Gear Component,A,10,2,90,99%,2.33,12,42,50,OK
+PN556-778,Cabling Harness,C,120,30,30,90%,1.28,35,155,170,OK
+PN667-889,Fastener Kit,C,500,100,14,90%,1.28,130,630,700,OK
+PN778-990,O-Ring Set,C,300,75,21,90%,1.28,92,392,420,OK

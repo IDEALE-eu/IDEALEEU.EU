@@ -1,0 +1,16 @@
+Part_Number,Description,Annual_Usage_Qty,Unit_Cost_USD,Annual_Spend_USD,Cumulative_Spend_Pct,ABC_Class,Criticality,Management_Approach
+PN901-234,Flight Computer,180,15000,2700000,18.5%,A,Critical,Strategic management; Close supplier relationship; Safety stock
+PN789-012,Avionics Module,240,8500,2040000,32.5%,A,Critical,Dual source; PPAP required; Quarterly reviews
+PN445-667,Landing Gear Component,120,12000,1440000,42.3%,A,Critical,Single source monitored; Strategic inventory; Annual audits
+PN334-556,Rare Earth Magnet,2400,425,1020000,49.3%,A,High,Material availability risk; Long-term contracts; Alternative materials research
+PN123-456,Titanium Bracket,1200,450,540000,53.0%,A,High,Dual source; Standard lead time; Cost reduction initiatives
+PN567-890,Hydraulic Actuator,480,950,456000,56.1%,A,High,Preferred supplier; Good performance; Annual negotiations
+PN345-678,Composite Panel,720,580,417600,58.9%,A,High,Tooling investment; Quality critical; PPAP required
+PN112-334,Sensor Assembly,960,330,316800,61.1%,B,Medium,Multiple sources available; Competitive bidding
+PN223-445,Control Valve,360,485,174600,62.3%,B,Medium,Standard component; Reliable supply; Annual review
+PN556-778,Cabling Harness,1440,145,208800,63.7%,B,Medium,Local supplier; Flexible; Good delivery
+PN667-889,Fastener Kit,6000,28,168000,64.9%,C,Low,Consignment stock; VMI; Minimal management
+PN778-990,O-Ring Set,3600,35,126000,65.7%,C,Low,Standard catalog item; Multiple sources; Annual contract
+PN889-001,Paint,2400,42,100800,66.4%,C,Low,Standard item; Local supplier; As needed ordering
+PN990-112,Labels,12000,7,84000,67.0%,C,Low,Consignment; Automatic replenishment
+PN001-223,Packaging Materials,8000,9,72000,67.5%,C,Low,Blanket PO; Local supplier; JIT delivery
