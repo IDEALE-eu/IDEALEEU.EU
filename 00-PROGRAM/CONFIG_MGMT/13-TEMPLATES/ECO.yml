@@ -1,0 +1,360 @@
+# Engineering Change Order (ECO) Template
+
+# METADATA
+eco_number: ECO-XXXX  # Assigned by Configuration Management
+ecr_number: ECR-XXXX  # Source ECR that was approved
+date_issued: YYYY-MM-DD
+status: Open  # Open | In Progress | Verification | Closed | Cancelled
+
+# AUTHORIZATION
+ccb_approval:
+  meeting_date: ""
+  meeting_number: ""
+  ccb_chair: ""
+  configuration_manager: ""
+
+# CHANGE SUMMARY
+change_summary:
+  title: ""
+  description: |
+    Brief summary of the approved change.
+    
+classification: Class I  # Class I | Class II | Class III
+priority: Normal  # Critical | High | Normal | Low
+
+# AFFECTED CONFIGURATION ITEMS
+affected_items:
+  - part_number: ""
+    description: ""
+    from_revision: ""
+    to_revision: ""
+    change_description: ""
+    # Add more items as needed
+
+# DETAILED CHANGE INSTRUCTIONS
+
+## Design Changes
+design_changes:
+  drawings:
+    - drawing_number: ""
+      from_revision: ""
+      to_revision: ""
+      changes: |
+        Describe specific changes to this drawing.
+        
+  specifications:
+    - spec_number: ""
+      from_revision: ""
+      to_revision: ""
+      changes: ""
+      
+  models:
+    - model_file: ""
+      location: ""
+      changes: ""
+
+## Manufacturing Changes
+manufacturing_changes:
+  processes:
+    - process_id: ""
+      description: ""
+      changes: ""
+      
+  tooling:
+    - tool_id: ""
+      description: ""
+      action: ""  # Modify | New | Retire
+      
+  work_instructions:
+    - instruction_id: ""
+      from_revision: ""
+      to_revision: ""
+      changes: ""
+
+## Inspection/Test Changes
+inspection_test_changes:
+  procedures:
+    - procedure_id: ""
+      from_revision: ""
+      to_revision: ""
+      changes: ""
+      
+  acceptance_criteria:
+    - item: ""
+      old_criteria: ""
+      new_criteria: ""
+
+## Documentation Changes
+documentation_changes:
+  - document_id: ""
+    document_type: ""  # Manual | Procedure | Specification | etc.
+    from_revision: ""
+    to_revision: ""
+    changes: ""
+
+# IMPLEMENTATION PLAN
+implementation:
+  implementation_team:
+    lead: ""
+    members:
+      - name: ""
+        role: ""
+        
+  schedule:
+    start_date: ""
+    target_completion: ""
+    milestones:
+      - milestone: ""
+        date: ""
+        responsible: ""
+        status: ""  # Not Started | In Progress | Complete
+        
+  phases:
+    - phase_number: 1
+      description: ""
+      activities:
+        - activity: ""
+          responsible: ""
+          duration: ""
+          dependencies: []
+          
+  effectivity:
+    type: ""  # Serial Number | Date | Mod Level
+    effective_point: ""
+    notes: ""
+
+# VERIFICATION AND VALIDATION
+verification:
+  verification_plan:
+    methods:
+      - method: ""  # Test | Analysis | Demonstration | Inspection
+        description: ""
+        success_criteria: ""
+        responsible: ""
+        
+  test_requirements:
+    - test_id: ""
+      test_description: ""
+      test_procedure: ""
+      acceptance_criteria: ""
+      status: ""  # Not Started | In Progress | Pass | Fail
+      
+  analysis_requirements:
+    - analysis_type: ""
+      description: ""
+      responsible: ""
+      completion_date: ""
+      status: ""
+      
+  inspection_requirements:
+    - inspection_item: ""
+      criteria: ""
+      responsible: ""
+      status: ""
+
+# IMPACTS AND RISKS
+impacts:
+  schedule:
+    impact: ""  # None | Minor | Moderate | Significant
+    details: ""
+    
+  cost:
+    labor_hours: 0
+    material_cost: 0
+    tooling_cost: 0
+    other_cost: 0
+    total_cost: 0
+    currency: USD
+    
+  performance:
+    impact: ""
+    details: ""
+    
+  interfaces:
+    affected_interfaces: []
+    coordination_required: []
+    
+  safety:
+    impact: None  # None | Low | Medium | High
+    safety_analysis_update: ""  # Yes | No | N/A
+    
+  certification:
+    impact: ""
+    authority_coordination: ""  # FAA | EASA | ESA | None
+
+risks:
+  - risk_id: ""
+    description: ""
+    likelihood: ""  # Low | Medium | High
+    impact: ""  # Low | Medium | High
+    mitigation: ""
+    owner: ""
+
+# CONFIGURATION MANAGEMENT
+configuration_management:
+  baseline_impact:
+    affected_baseline: ""  # SRR | PDR | CDR | etc.
+    baseline_update_required: ""  # Yes | No
+    
+  traceability:
+    requirements: []  # Affected requirement IDs
+    related_ecos: []  # Related ECO numbers
+    supersedes: []  # ECOs this supersedes
+    
+  item_master_updates:
+    - part_number: ""
+      field: ""
+      old_value: ""
+      new_value: ""
+      
+  document_control:
+    - document: ""
+      action: ""  # Update | Obsolete | Create
+      new_revision: ""
+
+# SUPPLIER/VENDOR COORDINATION
+supplier_coordination:
+  affected_suppliers:
+    - supplier_name: ""
+      supplier_code: ""
+      items_affected: []
+      notification_date: ""
+      acknowledgment_date: ""
+      implementation_date: ""
+      
+  procurement_actions:
+    - action: ""
+      responsible: ""
+      due_date: ""
+      status: ""
+
+# FIELD/FLEET IMPACT
+field_impact:
+  retrofit_required: ""  # Yes | No | Optional
+  retrofit_instructions: ""
+  service_bulletin_required: ""  # Yes | No
+  service_bulletin_number: ""
+  customer_notification: ""
+  field_effectivity: ""
+
+# EXECUTION TRACKING
+execution:
+  activities:
+    - activity_id: ""
+      description: ""
+      responsible: ""
+      planned_start: ""
+      planned_complete: ""
+      actual_start: ""
+      actual_complete: ""
+      status: ""  # Not Started | In Progress | Complete | Blocked
+      percent_complete: 0
+      issues: ""
+      
+  open_issues:
+    - issue_id: ""
+      description: ""
+      severity: ""  # Critical | Major | Minor
+      owner: ""
+      due_date: ""
+      status: ""
+
+# VERIFICATION RESULTS
+verification_results:
+  tests_completed:
+    - test_id: ""
+      date: ""
+      result: ""  # Pass | Fail
+      tester: ""
+      comments: ""
+      
+  analyses_completed:
+    - analysis_id: ""
+      date: ""
+      analyst: ""
+      conclusion: ""
+      
+  inspections_completed:
+    - inspection_id: ""
+      date: ""
+      inspector: ""
+      result: ""  # Accept | Reject
+      
+  overall_verification_status: ""  # Complete | Incomplete | Failed
+
+# CLOSURE
+closure:
+  completion_date: ""
+  verification_complete: ""  # Yes | No
+  all_items_updated: ""  # Yes | No
+  documentation_complete: ""  # Yes | No
+  lessons_learned: |
+    What went well?
+    What could be improved?
+    Recommendations for future changes.
+    
+  closed_by:
+    name: ""
+    role: ""
+    date: ""
+    
+  ccb_review:
+    review_date: ""
+    approved_for_closure: ""  # Yes | No
+    reviewer: ""
+
+# ATTACHMENTS
+attachments:
+  - filename: ""
+    description: ""
+    location: ""
+    date_added: ""
+
+# REVISION HISTORY
+revision_history:
+  - revision: ""
+    date: ""
+    author: ""
+    changes: ""
+
+# NOTES
+notes: |
+  Additional information, updates, or clarifications during implementation.
+
+---
+# INSTRUCTIONS FOR USE
+
+# 1. ECO Issuance
+#    - Configuration Manager issues ECO based on approved ECR
+#    - ECO number assigned
+#    - Implementation team notified
+#    - Resources allocated
+
+# 2. Implementation
+#    - Execute changes per implementation plan
+#    - Update schedule and status regularly
+#    - Track issues and risks
+#    - Coordinate with all affected parties
+
+# 3. Verification
+#    - Complete all verification activities
+#    - Document results
+#    - Address any failures or non-conformances
+#    - Obtain approval for any deviations
+
+# 4. Configuration Updates
+#    - Update all affected configuration items
+#    - Update item master database
+#    - Update drawings and specifications
+#    - Update traceability
+
+# 5. Closure
+#    - Verify all activities complete
+#    - Document lessons learned
+#    - CCB reviews and approves closure
+#    - ECO status changed to Closed
+#    - Archive all records
+
+# 6. Storage
+#    - Completed ECOs: 06-CHANGES/ECO/
+#    - Retain for life of program + 10 years

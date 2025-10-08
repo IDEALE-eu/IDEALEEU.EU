@@ -1,0 +1,3 @@
+RequirementID,RequirementDescription,Source,ItemPartNumber,ItemDescription,VerificationMethod,Status,Owner,Notes
+SYS-REQ-001,Aircraft shall have maximum takeoff weight not exceeding 50000 kg,System Requirements Spec,IDEALE-ACFT-00001,Aircraft Main Assembly,Analysis,Open,Chief Engineer,Weight budget tracking in progress
+SYS-REQ-002,Spacecraft shall survive launch loads,System Requirements Spec,IDEALE-SCFT-00001,Spacecraft Primary Structure,Test,Open,Chief Engineer,Structural analysis and qualification testing required
