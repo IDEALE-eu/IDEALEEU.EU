@@ -1,0 +1,5 @@
+Complaint_ID,Date_Received,Customer,Product,Severity,Category,Description,Status,Resolution_Date,Days_To_Resolve,CAPA_Number
+CMPL-2024-001,2024-02-15,Customer A,Aircraft Avionics,Major,Quality,Component failure in environmental test,Closed,2024-03-10,23,CAPA-2024-005
+CMPL-2024-002,2024-05-20,Customer B,Spacecraft Power,Minor,Documentation,Missing installation manual,Closed,2024-05-22,2,N/A
+CMPL-2024-003,2024-08-10,Customer C,Aircraft Structure,Major,Delivery,Late delivery - 2 weeks,Closed,2024-08-25,15,CAPA-2024-018
+CMPL-2024-004,2024-10-05,Customer A,Spacecraft GNC,Critical,Quality,Software bug in navigation algorithm,Open,TBD,TBD,CAPA-2024-025

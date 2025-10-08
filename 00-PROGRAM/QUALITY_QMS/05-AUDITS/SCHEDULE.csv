@@ -1,0 +1,21 @@
+Audit_ID,Audit_Date,Process_Area,Lead_Auditor,Auditor_2,Auditee,Standard,Status,Report_Number,Major_Findings,Minor_Findings,Observations,Report_Date,Follow_up_Date,Notes
+AUD-2025-001,2025-01-08,Document Control,John Smith,Fiona Garcia,Quality Manager,AS9100 7.5,Planned,TBD,0,0,0,TBD,TBD,Q1 planned audit
+AUD-2025-002,2025-01-15,Management Review Process,John Smith,Diana Martinez,Program Director,AS9100 9.3,Planned,TBD,0,0,0,TBD,TBD,Review 2024 management reviews
+AUD-2025-003,2025-01-22,Risk Management,John Smith,Fiona Garcia,Quality Manager,AS9100 6.1 / ARP4761,Planned,TBD,0,0,0,TBD,TBD,Risk register and FMEA/FTA
+AUD-2025-004,2025-02-05,Design & Development (Aircraft),John Smith,Fiona Garcia,Chief Engineer (Aircraft),ARP4754A,Planned,TBD,0,0,0,TBD,TBD,ARP4754A compliance
+AUD-2025-005,2025-02-12,Software QA,John Smith,Edward Lee,Software Manager,DO-178C,Planned,TBD,0,0,0,TBD,TBD,DO-178C compliance DAL A/B
+AUD-2025-006,2025-02-19,Supplier Quality,Diana Martinez,John Smith,Supply Chain Director,AS9100 8.4,Planned,TBD,0,0,0,TBD,TBD,Critical suppliers audit
+AUD-2025-007,2025-02-26,Special Processes (Weld/HT),Edward Lee,Fiona Garcia,Manufacturing Director,PRO-013 / Nadcap,Planned,TBD,0,0,0,TBD,TBD,Welding and heat treatment
+AUD-2025-008,2025-03-05,Calibration and Metrology,John Smith,Fiona Garcia,Quality Manager,ISO 17025 / AS9100,Planned,TBD,0,0,0,TBD,TBD,Cal program and MSA
+AUD-2025-009,2025-03-12,Training and Competence,Fiona Garcia,Diana Martinez,HR Manager,AS9100 7.2,Planned,TBD,0,0,0,TBD,TBD,Training records and effectiveness
+AUD-2025-010,2025-03-19,NCR and CAPA Process,John Smith,Fiona Garcia,Quality Manager,AS9100 10.2,Planned,TBD,0,0,0,TBD,TBD,NCR/CAPA effectiveness
+AUD-2025-011,2025-03-26,ESD and Cleanroom Control,Edward Lee,Fiona Garcia,Manufacturing Director,IEC 61340 / ISO 14644,Planned,TBD,0,0,0,TBD,TBD,ESD program and cleanroom certification
+AUD-2025-012,2025-04-02,Design & Development (Spacecraft),John Smith,Edward Lee,Chief Engineer (Spacecraft),ECSS,Planned,TBD,0,0,0,TBD,TBD,ECSS compliance
+AUD-2025-013,2025-04-09,APQP/PPAP and FAI,Diana Martinez,Fiona Garcia,Quality Manager,AS9102 / AS9145,Planned,TBD,0,0,0,TBD,TBD,APQP/PPAP/FAI processes
+AUD-2025-014,2025-04-16,Manufacturing Assembly,Edward Lee,John Smith,Manufacturing Director,AS9100 8.5,Planned,TBD,0,0,0,TBD,TBD,Production operations
+AUD-2025-015,2025-04-23,Supplier Quality (PPAP),Diana Martinez,Fiona Garcia,Supply Chain Director,AS9100 8.4,Planned,TBD,0,0,0,TBD,TBD,PPAP package review
+AUD-2025-016,2025-05-07,Software QA (DO-254),John Smith,Edward Lee,Hardware Manager,DO-254,Planned,TBD,0,0,0,TBD,TBD,Hardware design assurance
+AUD-2025-017,2025-05-14,Inspection and Test,Fiona Garcia,Edward Lee,Quality Manager,AS9100 8.6,Planned,TBD,0,0,0,TBD,TBD,Inspection procedures
+AUD-2025-018,2025-05-21,Special Processes (NDT/Coating),Edward Lee,Diana Martinez,Manufacturing Director,PRO-013 / NAS-410,Planned,TBD,0,0,0,TBD,TBD,NDT and coating processes
+AUD-2025-019,2025-05-28,Customer Feedback,Fiona Garcia,John Smith,Quality Manager,AS9100 9.1.2,Planned,TBD,0,0,0,TBD,TBD,Customer satisfaction process
+AUD-2025-020,2025-06-04,Internal Audit Process,John Smith,Fiona Garcia,Quality Manager,AS9100 9.2,Planned,TBD,0,0,0,TBD,TBD,Self-audit of audit process

@@ -1,0 +1,7 @@
+Month,Total_Units_Produced,Units_Pass_First_Time,First_Pass_Yield_Percent,Units_Scrapped,Scrap_Rate_Percent,Units_Reworked,Rework_Rate_Percent,Notes
+2024-01,250,235,94.0,5,2.0,10,4.0,Baseline data
+2024-02,275,260,94.5,6,2.2,9,3.3,Slight improvement
+2024-03,300,285,95.0,7,2.3,8,2.7,Target FPY achieved
+2024-04,280,265,94.6,5,1.8,10,3.6,Stable performance
+2024-05,310,295,95.2,8,2.6,7,2.3,Above target
+2024-06,290,275,94.8,6,2.1,9,3.1,On track

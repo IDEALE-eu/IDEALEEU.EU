@@ -1,0 +1,11 @@
+Hazard_ID,Program,Subsystem,Hazard_Description,Severity,Likelihood,Risk_Level,Mitigation,Status,Verification_Method,Notes
+HAZ-AC-001,Aircraft,Flight Controls,Loss of flight control authority,Catastrophic,Remote,High,Triple redundant system per ARP4754A,Open - Design,Analysis and testing,DAL A requirement
+HAZ-AC-002,Aircraft,Propulsion,Uncontained engine failure,Catastrophic,Extremely Remote,Medium,Protective barriers and zonal analysis,Open - Analysis,ZSA and testing,Zone protection design
+HAZ-AC-003,Aircraft,Fuel System,Fuel leak and fire risk,Hazardous,Remote,Medium,Leak detection, shutoff valves, fire suppression,Open - Design,FMEA and testing,Multiple safety layers
+HAZ-AC-004,Aircraft,Avionics,Loss of navigation capability,Major,Occasional,Medium,Dual redundant navigation systems,Open - Design,Analysis and testing,GPS + INS backup
+HAZ-AC-005,Aircraft,Electrical,Total electrical power loss,Hazardous,Remote,Medium,Dual generators + battery backup,Open - Design,Analysis and testing,Power system redundancy
+HAZ-SC-001,Spacecraft,Power,Battery thermal runaway,Critical,Unlikely,High,Thermal monitoring and cutoff systems,Open - Design,FMEA and testing,Lithium-ion battery risk
+HAZ-SC-002,Spacecraft,Propulsion,Propellant leak in pressurized module,Critical,Unlikely,High,Leak detection and isolation valves,Open - Design,Analysis and testing,Hypergolic propellant
+HAZ-SC-003,Spacecraft,GNC,Loss of attitude control,Critical,Unlikely,High,Redundant reaction wheels and thrusters,Open - Design,Simulation and testing,FDIR implementation
+HAZ-SC-004,Spacecraft,Thermal,Equipment overheating,Moderate,Possible,Medium,Active thermal control and monitoring,Open - Design,Thermal analysis,Thermal design margin
+HAZ-SC-005,Spacecraft,Communications,Loss of ground communication,Moderate,Possible,Medium,Dual redundant comm systems,Open - Design,Link budget analysis,S-band and X-band
