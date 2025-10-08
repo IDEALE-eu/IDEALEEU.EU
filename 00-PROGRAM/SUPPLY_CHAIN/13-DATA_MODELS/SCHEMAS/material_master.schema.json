@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://idealeeu.eu/schemas/material_master.schema.json",
+  "title": "Material Master",
+  "description": "Part/material master data record",
+  "type": "object",
+  "required": ["partNumber", "description", "uom"],
+  "properties": {
+    "partNumber": {
+      "type": "string",
+      "description": "Unique part number identifier",
+      "pattern": "^PN[0-9]{3}-[0-9]{3}$"
+    },
+    "revisionLevel": {
+      "type": "string",
+      "description": "Current engineering revision",
+      "pattern": "^[A-Z]{1,2}$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "longDescription": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "uom": {
+      "type": "string",
+      "enum": ["EA", "KG", "M", "M2", "M3", "L", "SET"],
+      "description": "Unit of measure"
+    },
+    "classification": {
+      "type": "object",
+      "properties": {
+        "commodityCode": {"type": "string"},
+        "htsCode": {"type": "string"},
+        "eccn": {"type": "string"},
+        "productCategory": {"type": "string", "enum": ["Raw Material", "Component", "Assembly", "Finished Good"]}
+      }
+    },
+    "specifications": {
+      "type": "object",
+      "properties": {
+        "dimensions": {"type": "string"},
+        "weight": {"type": "number", "description": "Weight in kg"},
+        "material": {"type": "string"},
+        "finish": {"type": "string"}
+      }
+    },
+    "planning": {
+      "type": "object",
+      "properties": {
+        "leadTimeDays": {"type": "integer", "minimum": 0},
+        "moq": {"type": "number", "description": "Minimum order quantity"},
+        "lotSize": {"type": "number"},
+        "safetyStock": {"type": "number"},
+        "abcClass": {"type": "string", "enum": ["A", "B", "C"]},
+        "makeOrBuy": {"type": "string", "enum": ["Make", "Buy", "MakeAndBuy"]}
+      }
+    },
+    "costing": {
+      "type": "object",
+      "properties": {
+        "standardCost": {"type": "number"},
+        "lastCost": {"type": "number"},
+        "currency": {"type": "string", "pattern": "^[A-Z]{3}$"}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "properties": {
+        "inspectionRequired": {"type": "boolean"},
+        "firstArticleRequired": {"type": "boolean"},
+        "ppapRequired": {"type": "boolean"},
+        "criticalToFlight": {"type": "boolean"}
+      }
+    },
+    "compliance": {
+      "type": "object",
+      "properties": {
+        "itarControlled": {"type": "boolean"},
+        "esdSensitive": {"type": "boolean"},
+        "hazmat": {"type": "boolean"},
+        "rohs": {"type": "boolean"},
+        "conflictMinerals": {"type": "boolean"},
+        "shelfLifeLimited": {"type": "boolean"},
+        "shelfLifeDays": {"type": "integer"}
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Active", "Obsolete", "PhasedOut", "UnderDevelopment"]
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "lastModifiedDate": {
+      "type": "string",
+      "format": "date"
+    }
+  }
+}

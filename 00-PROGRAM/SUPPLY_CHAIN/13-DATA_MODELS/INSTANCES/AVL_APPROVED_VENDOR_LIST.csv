@@ -1,0 +1,13 @@
+PartNumber,VendorCode,VendorName,VendorPartNumber,PreferenceRank,Status,ApprovalDate,LeadTimeDays,MOQ,UnitPrice,Currency,PPAPApproved,PPAPDate,Notes
+PN123-456,V000001,Supplier A Inc,SA-TI-BRKT-001,1,Approved,2022-06-01,45,50,241.28,USD,Yes,2022-05-20,Primary supplier - excellent quality
+PN123-456,V000010,Supplier X Inc,SX-TI-BRKT-100,2,Approved,2023-08-15,50,100,245.00,USD,Yes,2023-08-01,Secondary source - recently qualified
+PN789-012,V000002,Supplier B SAS,SB-AVI-MOD-456,1,Approved,2021-03-10,90,10,8500.00,EUR,Yes,2021-02-25,Sole source - proprietary design
+PN345-678,V000003,Supplier C Ltd,SC-COMP-PNL-789,1,Approved,2023-04-12,60,20,580.00,GBP,Yes,2023-04-01,Primary - tooling investment made
+PN345-678,V000004,Supplier D SpA,SD-COMP-PNL-012,2,Approved,2023-11-30,65,25,595.00,EUR,Yes,2023-11-15,Secondary - backup capacity
+PN901-234,V000005,Supplier E Corp,SE-FLT-COMP-234,1,Approved,2020-09-15,120,5,15000.00,USD,Yes,2020-08-30,Sole source - critical item; strategic inventory maintained
+PN567-890,V000006,Supplier F GmbH,SF-HYD-ACT-567,1,Approved,2021-08-20,60,10,950.00,EUR,Yes,2021-08-05,Excellent performance
+PN112-334,V000007,Supplier G KK,SG-SNS-ASY-890,1,Approved,2022-01-25,45,25,330.00,JPY,No,N/A,Reduced inspection - certified supplier
+PN223-445,V000009,Supplier I SRL,SI-CTL-VLV-445,1,Approved,2021-05-18,60,15,485.00,EUR,Yes,2021-05-01,Standard component
+PN334-556,V000001,Supplier A Inc,SA-MAGNET-556,1,Approved,2023-02-10,30,100,425.00,USD,No,N/A,Material availability risk - monitor closely
+PN445-667,V000008,Supplier H Inc,SH-LG-COMP-667,1,Approved,2022-12-05,90,5,12000.00,USD,Yes,2022-11-20,Critical component - single source
+PN556-778,V000010,Supplier J SA de CV,SJ-CABLE-778,1,Approved,2023-07-20,30,50,145.00,USD,No,N/A,USMCA qualifying; good delivery
