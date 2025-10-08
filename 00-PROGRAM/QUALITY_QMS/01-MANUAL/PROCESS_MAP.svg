@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <!-- Title -->
+  <text x="600" y="30" font-size="24" font-weight="bold" text-anchor="middle" font-family="Arial">
+    IDEALEEU.EU Quality Management System - Process Map
+  </text>
+  
+  <!-- Management Processes -->
+  <rect x="50" y="60" width="1100" height="80" fill="#e8f4f8" stroke="#333" stroke-width="2"/>
+  <text x="600" y="85" font-size="16" font-weight="bold" text-anchor="middle" font-family="Arial">
+    Management Processes
+  </text>
+  <text x="200" y="110" font-size="12" text-anchor="middle" font-family="Arial">Management Review</text>
+  <text x="400" y="110" font-size="12" text-anchor="middle" font-family="Arial">Risk Management</text>
+  <text x="600" y="110" font-size="12" text-anchor="middle" font-family="Arial">Change Control</text>
+  <text x="800" y="110" font-size="12" text-anchor="middle" font-family="Arial">Document Control</text>
+  <text x="1000" y="110" font-size="12" text-anchor="middle" font-family="Arial">Quality Objectives</text>
+
+  <!-- Customer Input -->
+  <rect x="20" y="250" width="150" height="100" fill="#ffe6cc" stroke="#333" stroke-width="2"/>
+  <text x="95" y="280" font-size="14" font-weight="bold" text-anchor="middle" font-family="Arial">Customer</text>
+  <text x="95" y="300" font-size="12" text-anchor="middle" font-family="Arial">Requirements</text>
+  <text x="95" y="320" font-size="12" text-anchor="middle" font-family="Arial">Specifications</text>
+  <text x="95" y="340" font-size="12" text-anchor="middle" font-family="Arial">Feedback</text>
+  
+  <!-- Core Processes -->
+  <g id="core-processes">
+    <!-- Design & Development -->
+    <rect x="200" y="200" width="180" height="200" fill="#d4e6f1" stroke="#333" stroke-width="2"/>
+    <text x="290" y="225" font-size="14" font-weight="bold" text-anchor="middle" font-family="Arial">Design &amp;</text>
+    <text x="290" y="245" font-size="14" font-weight="bold" text-anchor="middle" font-family="Arial">Development</text>
+    <text x="290" y="270" font-size="11" text-anchor="middle" font-family="Arial">• ARP4754A</text>
+    <text x="290" y="290" font-size="11" text-anchor="middle" font-family="Arial">• ECSS</text>
+    <text x="290" y="310" font-size="11" text-anchor="middle" font-family="Arial">• DO-178C/254</text>
+    <text x="290" y="330" font-size="11" text-anchor="middle" font-family="Arial">• V&amp;V Planning</text>
+    <text x="290" y="350" font-size="11" text-anchor="middle" font-family="Arial">• Safety Assessment</text>
+    <text x="290" y="370" font-size="11" text-anchor="middle" font-family="Arial">• Config Mgmt</text>
+    
+    <!-- Production -->
+    <rect x="410" y="200" width="180" height="200" fill="#d5f4e6" stroke="#333" stroke-width="2"/>
+    <text x="500" y="225" font-size="14" font-weight="bold" text-anchor="middle" font-family="Arial">Production</text>
+    <text x="500" y="245" font-size="14" font-weight="bold" text-anchor="middle" font-family="Arial">&amp; Assembly</text>
+    <text x="500" y="270" font-size="11" text-anchor="middle" font-family="Arial">• APQP/PPAP</text>
+    <text x="500" y="290" font-size="11" text-anchor="middle" font-family="Arial">• FAI (AS9102)</text>
+    <text x="500" y="310" font-size="11" text-anchor="middle" font-family="Arial">• Special Processes</text>
+    <text x="500" y="330" font-size="11" text-anchor="middle" font-family="Arial">• ESD/Cleanroom</text>
+    <text x="500" y="350" font-size="11" text-anchor="middle" font-family="Arial">• Work Instructions</text>
+    <text x="500" y="370" font-size="11" text-anchor="middle" font-family="Arial">• Traceability</text>
+    
+    <!-- Verification & Test -->
+    <rect x="620" y="200" width="180" height="200" fill="#fef5e7" stroke="#333" stroke-width="2"/>
+    <text x="710" y="225" font-size="14" font-weight="bold" text-anchor="middle" font-family="Arial">Verification</text>
+    <text x="710" y="245" font-size="14" font-weight="bold" text-anchor="middle" font-family="Arial">&amp; Test</text>
+    <text x="710" y="270" font-size="11" text-anchor="middle" font-family="Arial">• Inspection</text>
+    <text x="710" y="290" font-size="11" text-anchor="middle" font-family="Arial">• Testing</text>
+    <text x="710" y="310" font-size="11" text-anchor="middle" font-family="Arial">• Calibration</text>
+    <text x="710" y="330" font-size="11" text-anchor="middle" font-family="Arial">• MSA</text>
+    <text x="710" y="350" font-size="11" text-anchor="middle" font-family="Arial">• DO-160</text>
+    <text x="710" y="370" font-size="11" text-anchor="middle" font-family="Arial">• Conformity</text>
+    
+    <!-- Delivery -->
+    <rect x="830" y="200" width="180" height="200" fill="#e8daef" stroke="#333" stroke-width="2"/>
+    <text x="920" y="225" font-size="14" font-weight="bold" text-anchor="middle" font-family="Arial">Delivery &amp;</text>
+    <text x="920" y="245" font-size="14" font-weight="bold" text-anchor="middle" font-family="Arial">Support</text>
+    <text x="920" y="270" font-size="11" text-anchor="middle" font-family="Arial">• Packaging</text>
+    <text x="920" y="290" font-size="11" text-anchor="middle" font-family="Arial">• Shipping</text>
+    <text x="920" y="310" font-size="11" text-anchor="middle" font-family="Arial">• Installation</text>
+    <text x="920" y="330" font-size="11" text-anchor="middle" font-family="Arial">• Documentation</text>
+    <text x="920" y="350" font-size="11" text-anchor="middle" font-family="Arial">• Training</text>
+    <text x="920" y="370" font-size="11" text-anchor="middle" font-family="Arial">• Airworthiness</text>
+  </g>
+  
+  <!-- Customer Output -->
+  <rect x="1030" y="250" width="150" height="100" fill="#ffe6cc" stroke="#333" stroke-width="2"/>
+  <text x="1105" y="280" font-size="14" font-weight="bold" text-anchor="middle" font-family="Arial">Customer</text>
+  <text x="1105" y="300" font-size="12" text-anchor="middle" font-family="Arial">Satisfaction</text>
+  <text x="1105" y="320" font-size="12" text-anchor="middle" font-family="Arial">Product</text>
+  <text x="1105" y="340" font-size="12" text-anchor="middle" font-family="Arial">Service</text>
+  
+  <!-- Support Processes -->
+  <rect x="50" y="450" width="1100" height="150" fill="#f9e79f" stroke="#333" stroke-width="2"/>
+  <text x="600" y="475" font-size="16" font-weight="bold" text-anchor="middle" font-family="Arial">
+    Support Processes
+  </text>
+  
+  <g id="support-boxes">
+    <rect x="80" y="490" width="120" height="90" fill="#fdebd0" stroke="#333" stroke-width="1"/>
+    <text x="140" y="510" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">Supplier</text>
+    <text x="140" y="525" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">Quality</text>
+    <text x="140" y="545" font-size="10" text-anchor="middle" font-family="Arial">• ASL</text>
+    <text x="140" y="560" font-size="10" text-anchor="middle" font-family="Arial">• Audits</text>
+    <text x="140" y="575" font-size="10" text-anchor="middle" font-family="Arial">• Scorecards</text>
+    
+    <rect x="220" y="490" width="120" height="90" fill="#fdebd0" stroke="#333" stroke-width="1"/>
+    <text x="280" y="510" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">Training &amp;</text>
+    <text x="280" y="525" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">Competence</text>
+    <text x="280" y="545" font-size="10" text-anchor="middle" font-family="Arial">• Skills Matrix</text>
+    <text x="280" y="560" font-size="10" text-anchor="middle" font-family="Arial">• Training</text>
+    <text x="280" y="575" font-size="10" text-anchor="middle" font-family="Arial">• Certification</text>
+    
+    <rect x="360" y="490" width="120" height="90" fill="#fdebd0" stroke="#333" stroke-width="1"/>
+    <text x="420" y="510" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">Internal</text>
+    <text x="420" y="525" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">Audit</text>
+    <text x="420" y="545" font-size="10" text-anchor="middle" font-family="Arial">• Audit Plan</text>
+    <text x="420" y="560" font-size="10" text-anchor="middle" font-family="Arial">• Execution</text>
+    <text x="420" y="575" font-size="10" text-anchor="middle" font-family="Arial">• Findings</text>
+    
+    <rect x="500" y="490" width="120" height="90" fill="#fdebd0" stroke="#333" stroke-width="1"/>
+    <text x="560" y="510" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">NCR &amp;</text>
+    <text x="560" y="525" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">CAPA</text>
+    <text x="560" y="545" font-size="10" text-anchor="middle" font-family="Arial">• NCR Mgmt</text>
+    <text x="560" y="560" font-size="10" text-anchor="middle" font-family="Arial">• Root Cause</text>
+    <text x="560" y="575" font-size="10" text-anchor="middle" font-family="Arial">• MRB</text>
+    
+    <rect x="640" y="490" width="120" height="90" fill="#fdebd0" stroke="#333" stroke-width="1"/>
+    <text x="700" y="510" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">Calibration</text>
+    <text x="700" y="525" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">&amp; Metrology</text>
+    <text x="700" y="545" font-size="10" text-anchor="middle" font-family="Arial">• Equipment</text>
+    <text x="700" y="560" font-size="10" text-anchor="middle" font-family="Arial">• Schedule</text>
+    <text x="700" y="575" font-size="10" text-anchor="middle" font-family="Arial">• Certificates</text>
+    
+    <rect x="780" y="490" width="120" height="90" fill="#fdebd0" stroke="#333" stroke-width="1"/>
+    <text x="840" y="510" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">Digital</text>
+    <text x="840" y="525" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">Thread</text>
+    <text x="840" y="545" font-size="10" text-anchor="middle" font-family="Arial">• PLM/PDM</text>
+    <text x="840" y="560" font-size="10" text-anchor="middle" font-family="Arial">• Traceability</text>
+    <text x="840" y="575" font-size="10" text-anchor="middle" font-family="Arial">• APIs</text>
+    
+    <rect x="920" y="490" width="120" height="90" fill="#fdebd0" stroke="#333" stroke-width="1"/>
+    <text x="980" y="510" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">Compliance</text>
+    <text x="980" y="525" font-size="11" font-weight="bold" text-anchor="middle" font-family="Arial">&amp; Safety</text>
+    <text x="980" y="545" font-size="10" text-anchor="middle" font-family="Arial">• Standards</text>
+    <text x="980" y="560" font-size="10" text-anchor="middle" font-family="Arial">• Certificates</text>
+    <text x="980" y="575" font-size="10" text-anchor="middle" font-family="Arial">• Hazards</text>
+  </g>
+  
+  <!-- Measurement & Improvement -->
+  <rect x="50" y="650" width="1100" height="80" fill="#fadbd8" stroke="#333" stroke-width="2"/>
+  <text x="600" y="675" font-size="16" font-weight="bold" text-anchor="middle" font-family="Arial">
+    Measurement, Analysis &amp; Improvement
+  </text>
+  <text x="200" y="700" font-size="12" text-anchor="middle" font-family="Arial">KPIs &amp; Metrics</text>
+  <text x="400" y="700" font-size="12" text-anchor="middle" font-family="Arial">Data Analysis</text>
+  <text x="600" y="700" font-size="12" text-anchor="middle" font-family="Arial">Continuous Improvement</text>
+  <text x="800" y="700" font-size="12" text-anchor="middle" font-family="Arial">Customer Feedback</text>
+  <text x="1000" y="700" font-size="12" text-anchor="middle" font-family="Arial">Preventive Action</text>
+  
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#333"/>
+    </marker>
+  </defs>
+  
+  <!-- Customer to Design -->
+  <line x1="170" y1="300" x2="200" y2="300" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Process flow arrows -->
+  <line x1="380" y1="300" x2="410" y2="300" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="590" y1="300" x2="620" y2="300" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="800" y1="300" x2="830" y2="300" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="1010" y1="300" x2="1030" y2="300" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Feedback arrow -->
+  <path d="M 1105 350 L 1105 420 L 95 420 L 95 350" stroke="#f39c12" stroke-width="2" fill="none" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+  <text x="600" y="435" font-size="11" text-anchor="middle" fill="#f39c12" font-family="Arial">Customer Feedback &amp; Lessons Learned</text>
+  
+  <!-- Management to Core -->
+  <line x1="290" y1="140" x2="290" y2="200" stroke="#333" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrowhead)"/>
+  <line x1="500" y1="140" x2="500" y2="200" stroke="#333" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrowhead)"/>
+  <line x1="710" y1="140" x2="710" y2="200" stroke="#333" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrowhead)"/>
+  <line x1="920" y1="140" x2="920" y2="200" stroke="#333" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrowhead)"/>
+  
+  <!-- Support to Core -->
+  <line x1="140" y1="490" x2="290" y2="400" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="280" y1="490" x2="380" y2="400" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="420" y1="490" x2="500" y2="400" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="560" y1="490" x2="590" y2="400" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="700" y1="490" x2="710" y2="400" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="840" y1="490" x2="800" y2="400" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="980" y1="490" x2="920" y2="400" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  
+  <!-- Core to Measurement -->
+  <line x1="290" y1="400" x2="290" y2="650" stroke="#333" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrowhead)"/>
+  <line x1="500" y1="400" x2="500" y2="650" stroke="#333" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrowhead)"/>
+  <line x1="710" y1="400" x2="710" y2="650" stroke="#333" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrowhead)"/>
+  <line x1="920" y1="400" x2="920" y2="650" stroke="#333" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrowhead)"/>
+  
+  <!-- Legend -->
+  <text x="50" y="760" font-size="10" font-family="Arial">Legend:</text>
+  <line x1="110" y1="755" x2="150" y2="755" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="160" y="760" font-size="10" font-family="Arial">Process Flow</text>
+  <line x1="260" y1="755" x2="300" y2="755" stroke="#333" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="310" y="760" font-size="10" font-family="Arial">Support/Control</text>
+  <line x1="420" y1="755" x2="460" y2="755" stroke="#f39c12" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="470" y="760" font-size="10" font-family="Arial">Feedback</text>
+  
+  <text x="1050" y="760" font-size="10" font-family="Arial">Rev 1.0 | 2025-01-01</text>
+</svg>
