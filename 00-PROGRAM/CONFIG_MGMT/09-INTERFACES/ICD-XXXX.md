@@ -1,4 +1,4 @@
-# Interface Control Document (ICD) Template
+# Interface Control Document (ICD)
 
 **ICD Number:** ICD-XXXX  
 **Title:** [Interface Name]  
@@ -9,18 +9,18 @@
 ## Document Control
 
 | Field | Value |
-|-------|-------|
+|---|---|
 | Document Number | ICD-XXXX |
 | Version | X.X |
 | Status | [Status] |
 | Release Date | YYYY-MM-DD |
 | Next Review Date | YYYY-MM-DD |
-| Configuration Baseline | [SRR/PDR/CDR/etc.] |
+| Configuration Baseline | [SRR](../04-BASELINES/SRR/) · [PDR](../04-BASELINES/PDR/) · [CDR](../04-BASELINES/CDR/) · [TRR](../04-BASELINES/TRR/) · [PRR](../04-BASELINES/PRR/) · [ORR_EIS](../04-BASELINES/ORR_EIS/) · [FRR](../04-BASELINES/FRR/) |
 
 ## Approvals
 
 | Role | Name | Signature | Date |
-|------|------|-----------|------|
+|---|---|---|---|
 | Party A Representative | TBD | _______ | ____ |
 | Party B Representative | TBD | _______ | ____ |
 | Systems Engineer | TBD | _______ | ____ |
@@ -29,7 +29,7 @@
 ## Revision History
 
 | Version | Date | Author | Description of Changes |
-|---------|------|--------|------------------------|
+|---|---|---|---|
 | 0.1 | YYYY-MM-DD | [Name] | Initial draft |
 | | | | |
 
@@ -43,20 +43,23 @@
 
 ### 1.3 Interface Parties
 
-**Party A:** [System/Subsystem Name]
-- Organization: [Organization]
+**Party A:** [System/Subsystem Name]  
+- Organization: [Organization]  
 - Point of Contact: [Name, email, phone]
 
-**Party B:** [System/Subsystem Name]
-- Organization: [Organization]
+**Party B:** [System/Subsystem Name]  
+- Organization: [Organization]  
 - Point of Contact: [Name, email, phone]
 
 ### 1.4 Applicable Documents
 
 | Document Number | Title | Version |
-|-----------------|-------|---------|
-| [Doc ID] | [Title] | [Ver] |
-| | | |
+|---|---|---|
+| [Ref-1] | ARINC/IMA/Avionics refs | see **[STANDARDS/02-AIRCRAFT/AVIONICS_INTERFACES/](../../STANDARDS/02-AIRCRAFT/AVIONICS_INTERFACES/)** |
+| [Ref-2] | DO-160 environmental | **[STANDARDS/02-AIRCRAFT/ENVIRONMENTAL_TEST/](../../STANDARDS/02-AIRCRAFT/ENVIRONMENTAL_TEST/)** |
+| [Ref-3] | ECSS data links | **[STANDARDS/03-SPACECRAFT/COMM_LINKS/](../../STANDARDS/03-SPACECRAFT/COMM_LINKS/)** |
+| [Ref-4] | Program baselines | **[CONFIG_MGMT/04-BASELINES/](../04-BASELINES/)** |
+| [Ref-5] | Data dictionary | **[DIGITAL_THREAD/06-DATA_MANAGEMENT/DATA_DICTIONARY.csv](../../DIGITAL_THREAD/06-DATA_MANAGEMENT/DATA_DICTIONARY.csv)** |
 
 ## 2. Interface Overview
 
@@ -64,7 +67,6 @@
 [High-level description of the interface]
 
 ### 2.2 Interface Diagram
-[Include block diagram showing the interface]
 
 ```
 ┌─────────────────┐         ┌─────────────────┐
@@ -84,21 +86,21 @@
 ### 3.1 Functional Requirements
 
 | Req ID | Requirement | Source | Verification Method |
-|--------|-------------|--------|---------------------|
-| ICD-XXXX-FR-001 | [Functional requirement] | [Source] | [Test/Analysis/Demo/Inspection] |
+|---|---|---|---|
+| ICD-XXXX-FR-001 | [Functional requirement] | [Spec/Stakeholder/MBSE] | [Test/Analysis/Demo/Inspection] |
 | | | | |
 
 ### 3.2 Performance Requirements
 
 | Req ID | Parameter | Value | Tolerance | Units | Rationale |
-|--------|-----------|-------|-----------|-------|-----------|
+|---|---|---|---|---|---|
 | ICD-XXXX-PR-001 | [Parameter] | [Value] | ±[Tol] | [Units] | [Why] |
 | | | | | | |
 
 ### 3.3 Interface Constraints
 
 | Constraint | Description |
-|------------|-------------|
+|---|---|
 | [Constraint name] | [Description] |
 | | |
 
@@ -113,116 +115,116 @@
 - **Torque Requirements:** [Torque values]
 
 #### 4.1.2 Envelope and Clearances
-- **Dimensions:** [L x W x H]
+- **Dimensions:** [L × W × H]
 - **Keep-Out Zones:** [Description]
-- **Access Requirements:** [Access needed for installation/maintenance]
+- **Access Requirements:** [Installation/maintenance]
 
 #### 4.1.3 Materials and Finishes
-- **Materials:** [Materials used at interface]
-- **Surface Finish:** [Finish requirements]
-- **Corrosion Prevention:** [Protective measures]
+- **Materials:** [At interface]
+- **Surface Finish:** [Requirements]
+- **Corrosion Prevention:** [Measures]
 
 ### 4.2 Thermal Interface
 - **Heat Transfer:** [Heat flux, W/m²]
-- **Temperature Limits:** [Min/Max operating temperatures]
-- **Thermal Conductivity:** [Requirements]
-- **Cooling/Heating:** [Active thermal control]
+- **Temperature Limits:** [Min/Max]
+- **Thermal Conductivity:** [Reqs]
+- **Cooling/Heating:** [Active control]
 
 ### 4.3 Structural Interface
-- **Load Cases:** [Static and dynamic loads]
-- **Structural Modes:** [Natural frequencies]
-- **Stiffness Requirements:** [Stiffness values]
-- **Stress Limits:** [Allowable stresses]
+- **Load Cases:** [Static/dynamic]
+- **Structural Modes:** [Natural freq]
+- **Stiffness Requirements:** [Values]
+- **Stress Limits:** [Allowables]
 
 ## 5. Electrical Interface
 
 ### 5.1 Power Interface
 
 | Parameter | Specification | Min | Nom | Max | Units |
-|-----------|---------------|-----|-----|-----|-------|
-| Voltage | [Type: DC/AC] | [Min] | [Nom] | [Max] | V |
-| Current | [Load profile] | [Min] | [Nom] | [Max] | A |
-| Power | [Power budget] | [Min] | [Nom] | [Max] | W |
-| Frequency | [If AC] | [Min] | [Nom] | [Max] | Hz |
+|---|---|---|---|---|---|
+| Voltage | [DC/AC] | | | | V |
+| Current | [Load profile] | | | | A |
+| Power | [Budget] | | | | W |
+| Frequency | [If AC] | | | | Hz |
 
 ### 5.2 Signal Interface
 
 | Signal Name | Type | Direction | Voltage Levels | Frequency | Protocol |
-|-------------|------|-----------|----------------|-----------|----------|
+|---|---|---|---|---|---|
 | [Signal] | [Digital/Analog] | [A→B/B→A] | [Levels] | [Freq] | [Protocol] |
 | | | | | | |
 
 ### 5.3 Connector Specifications
 
 | Connector | Part Number | Pin Count | Mating Connector | Location |
-|-----------|-------------|-----------|------------------|----------|
+|---|---|---|---|---|
 | [Designator] | [P/N] | [Count] | [Mate P/N] | [Location] |
 | | | | | |
 
 ### 5.4 Cable/Harness Specifications
-- **Cable Type:** [Specification]
-- **Length:** [Length requirement]
-- **Routing:** [Routing requirements]
-- **Shielding:** [Shielding requirements]
+- **Cable Type:** [Spec]
+- **Length:** [Req]
+- **Routing:** [Req]
+- **Shielding:** [Req]
 
 ### 5.5 Grounding and EMI/EMC
-- **Grounding Scheme:** [Single point / Multi-point]
-- **EMI Requirements:** [EMI limits]
-- **Shielding Requirements:** [Shielding specs]
+- **Grounding Scheme:** [Single/Multi-point]
+- **EMI Requirements:** see **[STANDARDS/02-AIRCRAFT/ENVIRONMENTAL_TEST/](../../STANDARDS/02-AIRCRAFT/ENVIRONMENTAL_TEST/)** and **[STANDARDS/03-SPACECRAFT/ELECTRICAL_EMC/](../../STANDARDS/03-SPACECRAFT/ELECTRICAL_EMC/)**  
+- **Shielding Requirements:** [Specs]
 
 ## 6. Data Interface
 
 ### 6.1 Communication Protocol
-- **Protocol:** [e.g., RS-422, MIL-STD-1553, Ethernet, CAN]
-- **Data Rate:** [bps]
-- **Message Format:** [Format specification]
+- **Protocol:** [1553/429/Ethernet/CAN/etc.] — refs **[STANDARDS/02-AIRCRAFT/AVIONICS_INTERFACES/](../../STANDARDS/02-AIRCRAFT/AVIONICS_INTERFACES/)**  
+- **Data Rate:** [bps]  
+- **Message Format:** [Spec]
 
 ### 6.2 Data Items
 
 | Data Item | Description | Type | Rate | Units | Range |
-|-----------|-------------|------|------|-------|-------|
-| [Item] | [Description] | [Type] | [Hz] | [Units] | [Min-Max] |
+|---|---|---|---|---|---|
+| [Item] | [Description] | [Type] | [Hz] | [Units] | [Min–Max] |
 | | | | | | |
 
 ### 6.3 Command Interface
 
 | Command | Description | Parameters | Response |
-|---------|-------------|------------|----------|
+|---|---|---|---|
 | [Command] | [Description] | [Params] | [Response] |
 | | | | |
 
 ### 6.4 Timing Requirements
-- **Latency:** [Maximum latency]
-- **Update Rate:** [Required update rate]
-- **Synchronization:** [Timing synchronization requirements]
+- **Latency:** [Max]  
+- **Update Rate:** [Hz]  
+- **Synchronization:** [PTP/IRIG/1PPS] — see **[DIGITAL_THREAD/03-ARCHITECTURE/INTEGRATION_POINTS.md](../../DIGITAL_THREAD/03-ARCHITECTURE/INTEGRATION_POINTS.md)**
 
 ## 7. Fluid/Pneumatic Interface (if applicable)
 
 | Parameter | Specification | Min | Nom | Max | Units |
-|-----------|---------------|-----|-----|-----|-------|
+|---|---|---|---|---|---|
 | Fluid Type | [Fluid] | N/A | N/A | N/A | - |
-| Pressure | [Operating pressure] | [Min] | [Nom] | [Max] | PSI/bar |
-| Flow Rate | [Flow requirements] | [Min] | [Nom] | [Max] | L/min |
-| Temperature | [Operating temp] | [Min] | [Nom] | [Max] | °C |
-| Connection Type | [Fitting type] | N/A | N/A | N/A | - |
+| Pressure | [Operating] | | | | PSI/bar |
+| Flow Rate | [Flow] | | | | L/min |
+| Temperature | [Operating] | | | | °C |
+| Connection Type | [Fitting] | N/A | N/A | N/A | - |
 
 ## 8. Software Interface (if applicable)
 
 ### 8.1 Software Architecture
-[Describe software interface architecture]
+[Describe SW interface architecture]
 
 ### 8.2 APIs and Function Calls
 
 | Function | Description | Parameters | Return Value |
-|----------|-------------|------------|--------------|
+|---|---|---|---|
 | [Function()] | [Description] | [Params] | [Return] |
 | | | | |
 
 ### 8.3 Data Structures
 
-```
+```c
 struct InterfaceData {
-    // Define data structures
+  // Define data structures
 };
 ```
 
@@ -231,78 +233,76 @@ struct InterfaceData {
 
 ## 9. Environmental Conditions
 
-| Condition | Operating | Non-Operating | Test Margin |
-|-----------|-----------|---------------|-------------|
-| Temperature | [Range] °C | [Range] °C | [Margin] |
-| Humidity | [Range] % RH | [Range] % RH | [Margin] |
-| Pressure | [Range] kPa | [Range] kPa | [Margin] |
-| Vibration | [Spec] | [Spec] | [Margin] |
-| Shock | [Spec] | [Spec] | [Margin] |
+| Condition   | Operating    | Non-Operating | Test Margin |
+| ----------- | ------------ | ------------- | ----------- |
+| Temperature | [Range] °C   | [Range] °C    | [Margin]    |
+| Humidity    | [Range] % RH | [Range] % RH  | [Margin]    |
+| Pressure    | [Range] kPa  | [Range] kPa   | [Margin]    |
+| Vibration   | [Spec]       | [Spec]        | [Margin]    |
+| Shock       | [Spec]       | [Spec]        | [Margin]    |
 
 ## 10. Safety and Hazards
 
 ### 10.1 Hazard Analysis
 [Identify interface-related hazards]
 
-| Hazard ID | Description | Severity | Mitigation |
-|-----------|-------------|----------|------------|
-| [ID] | [Description] | [S/E/I/M] | [Mitigation] |
-| | | | |
+| Hazard ID | Description   | Severity  | Mitigation   |
+| --------- | ------------- | --------- | ------------ |
+| [ID]      | [Description] | [S/E/I/M] | [Mitigation] |
+|           |               |           |              |
 
 ### 10.2 Safety Requirements
-[Interface safety requirements]
+[Interface safety requirements] — link to **[QUALITY_QMS/13-RISK_SAFETY/](../../QUALITY_QMS/13-RISK_SAFETY/)**
 
 ## 11. Verification and Validation
 
 ### 11.1 Verification Methods
 
-| Requirement ID | Verification Method | Success Criteria | Responsible Party |
-|----------------|---------------------|------------------|-------------------|
-| [Req ID] | [Test/Analysis/Demo/Inspect] | [Criteria] | [Party] |
-| | | | |
+| Requirement ID | Verification Method          | Success Criteria | Responsible Party |
+| -------------- | ---------------------------- | ---------------- | ----------------- |
+| [Req ID]       | [Test/Analysis/Demo/Inspect] | [Criteria]       | [Party]           |
+|                |                              |                  |                   |
+
+Traceability to reqs and tests: **[CONFIG_MGMT/10-TRACEABILITY/](../10-TRACEABILITY/)**
 
 ### 11.2 Interface Testing
-[Describe interface testing approach]
+[Approach] — rigs/ATE refs: **[INDUSTRIALISATION/10-TEST_INSPECTION/](../../INDUSTRIALISATION/10-TEST_INSPECTION/)**
 
 ### 11.3 Integration Plan
-[Describe integration approach and sequence]
+[Approach and sequence]
 
 ## 12. Configuration Management
 
 ### 12.1 Change Control
-All changes to this ICD require:
-- Engineering Change Request (ECR)
-- Coordination between both interface parties
-- CCB approval
-- Update to ICD version
+Changes require **ECR** → **ECO** → **CCB** approval.  
+Links: **[ECR/](../06-CHANGES/ECR/)** · **[ECO/](../06-CHANGES/ECO/)** · **[CCB](../05-CCB/)**
 
 ### 12.2 Baseline
-This ICD is baselined at: [Baseline designation]
+This ICD is baselined at: **[04-BASELINES/](../04-BASELINES/)**
 
 ### 12.3 Related ECRs/ECOs
 
-| ECR/ECO Number | Description | Status | Date |
-|----------------|-------------|--------|------|
-| [Number] | [Description] | [Status] | [Date] |
-| | | | |
+| ECR/ECO Number | Description   | Status   | Date   |
+| -------------- | ------------- | -------- | ------ |
+| [Number]       | [Description] | [Status] | [Date] |
+|                |               |          |        |
 
 ## 13. Open Issues and TBDs
 
-| Item | Description | Action Required | Owner | Due Date |
-|------|-------------|-----------------|-------|----------|
-| TBD-001 | [Issue description] | [Action] | [Owner] | [Date] |
-| | | | | |
+| Item    | Description         | Action Required | Owner   | Due Date |
+| ------- | ------------------- | --------------- | ------- | -------- |
+| TBD-001 | [Issue description] | [Action]        | [Owner] | [Date]   |
+|         |                     |                 |         |          |
 
 ## 14. Notes and Assumptions
-
-- [List key assumptions]
-- [List limitations]
-- [List dependencies]
+- [Assumptions]
+- [Limitations]
+- [Dependencies]
 
 ## Appendices
 
 ### Appendix A: Interface Drawing
-[Include detailed interface drawings]
+[Attach drawings or link to PLM item in **[CONFIG_MGMT/08-ITEM_MASTER/](../08-ITEM_MASTER/)**]
 
 ### Appendix B: Pin Lists
 [Connector pin assignments]
@@ -311,9 +311,11 @@ This ICD is baselined at: [Baseline designation]
 [Timing diagrams]
 
 ### Appendix D: Test Procedures
-[Reference to interface test procedures]
+[Link to procedures in **[INDUSTRIALISATION/10-TEST_INSPECTION/](../../INDUSTRIALISATION/10-TEST_INSPECTION/)**]
 
 ---
 
-**Maintained By:** [Interface parties and Configuration Management]  
-**Review Frequency:** [Frequency, e.g., quarterly or as needed]
+**Maintained By:** Interface parties & **[Configuration Management](../)**  
+**Review Frequency:** [Quarterly or as needed]
+```
+
