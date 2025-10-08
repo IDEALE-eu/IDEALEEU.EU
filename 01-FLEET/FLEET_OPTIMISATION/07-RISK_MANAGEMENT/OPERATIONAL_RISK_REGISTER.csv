@@ -1,0 +1,11 @@
+Risk_ID,Risk_Category,Risk_Description,Likelihood,Impact,Risk_Score,Mitigation_Strategy,Owner,Status,Last_Review
+R001,Technical,Critical component failure leading to AOG,Medium,High,12,Maintain strategic spare inventory; predictive maintenance,Maintenance Manager,Active,2024-01-15
+R002,Operational,Severe weather disruption,High,Medium,12,Weather monitoring; flexible scheduling; contingency plans,Operations Director,Active,2024-01-15
+R003,Supply Chain,Long lead time parts unavailability,Medium,High,12,Multiple suppliers; advance orders; pooling agreements,Supply Chain Manager,Active,2024-01-10
+R004,Financial,Fuel price volatility,High,Medium,12,Hedging strategy; fuel efficiency programs,CFO,Active,2024-01-20
+R005,Safety,Crew fatigue incident,Low,Critical,12,Fatigue risk management; scheduling controls,Safety Director,Active,2024-01-18
+R006,Regulatory,Airworthiness directive compliance,Medium,High,12,AD tracking system; compliance monitoring,Engineering Manager,Active,2024-01-12
+R007,Technical,Aging aircraft structural issues,Medium,Medium,9,Inspection programs; structural monitoring,Engineering Manager,Active,2024-01-15
+R008,Supply Chain,Single source supplier failure,Low,High,9,Alternate source qualification; inventory buffer,Procurement Manager,Active,2024-01-08
+R009,Operational,Crew shortage during peak season,Medium,Medium,9,Crew hiring plan; reserve capacity,HR Director,Active,2024-01-10
+R010,Financial,Insurance premium increase,Medium,Low,6,Risk mitigation; competitive bidding,Risk Manager,Monitoring,2024-01-05
