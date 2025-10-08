@@ -2,6 +2,12 @@
 
 Production Readiness Review Baseline Approval Checklist
 
+**Related:** [PRR Gate](../../PRR/) | [Main Baselines](../../00-README.md) | [All Checklists](../)
+
+**Templates:** [MANIFEST.schema.json](../TEMPLATES/MANIFEST.schema.json) | [APPROVAL.md](../TEMPLATES/APPROVAL.md) | [LINKS.md](../TEMPLATES/LINKS.md)
+
+**Previous:** [TRR Checklist](./TRR_CHECKLIST.md) | **Next:** [ORR_EIS](./ORR_EIS_CHECKLIST.md) / [FRR](./FRR_CHECKLIST.md)
+
 ## Baseline Information
 - Baseline ID: _______________
 - Date: _______________

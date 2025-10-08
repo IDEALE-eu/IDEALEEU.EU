@@ -2,6 +2,12 @@
 
 Critical Design Review Baseline Approval Checklist
 
+**Related:** [CDR Gate](../../CDR/) | [Main Baselines](../../00-README.md) | [All Checklists](../)
+
+**Templates:** [MANIFEST.schema.json](../TEMPLATES/MANIFEST.schema.json) | [MANIFEST.example.json](../TEMPLATES/MANIFEST.example.json) | [APPROVAL.md](../TEMPLATES/APPROVAL.md) | [LINKS.md](../TEMPLATES/LINKS.md)
+
+**Previous:** [PDR Checklist](./PDR_CHECKLIST.md) | **Next:** [TRR Checklist](./TRR_CHECKLIST.md)
+
 ## Baseline Information
 - Baseline ID: _______________
 - Date: _______________

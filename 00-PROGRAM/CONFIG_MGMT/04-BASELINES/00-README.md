@@ -14,23 +14,23 @@ This directory maintains configuration baselines established at major program ga
 ## Structure
 
 Baselines are organized by gate:
-- **SRR/** - System Requirements Review
-- **MCR/** - Mission Concept Review
-- **PDR/** - Preliminary Design Review
-- **CDR/** - Critical Design Review
-- **TRR/** - Test Readiness Review
-- **PRR/** - Production Readiness Review
-- **ORR_EIS/** - Operational Readiness Review (Aircraft final pre-ops)
-- **FRR/** - Flight Readiness Review (Spacecraft flight readiness)
+- **[SRR/](./SRR/)** - System Requirements Review ([checklist](./COMMON/CHECKLISTS/SRR_CHECKLIST.md))
+- **[MCR/](./MCR/)** - Mission Concept Review
+- **[PDR/](./PDR/)** - Preliminary Design Review ([checklist](./COMMON/CHECKLISTS/PDR_CHECKLIST.md))
+- **[CDR/](./CDR/)** - Critical Design Review ([checklist](./COMMON/CHECKLISTS/CDR_CHECKLIST.md))
+- **[TRR/](./TRR/)** - Test Readiness Review ([checklist](./COMMON/CHECKLISTS/TRR_CHECKLIST.md))
+- **[PRR/](./PRR/)** - Production Readiness Review ([checklist](./COMMON/CHECKLISTS/PRR_CHECKLIST.md))
+- **[ORR_EIS/](./ORR_EIS/)** - Operational Readiness Review - Aircraft final pre-ops ([checklist](./COMMON/CHECKLISTS/ORR_EIS_CHECKLIST.md))
+- **[FRR/](./FRR/)** - Flight Readiness Review - Spacecraft flight readiness ([checklist](./COMMON/CHECKLISTS/FRR_CHECKLIST.md))
 
 ## Contents
 
-- **00-README.md** - This file
-- **INDEX.csv** - Master registry of all baselines
-- **COMMON/** - Shared checklists and templates
-  - **CHECKLISTS/** - Gate-specific approval checklists
-  - **TEMPLATES/** - Manifest schemas and document templates
-- **[GATE]/** - Individual gate baseline folders
+- **[00-README.md](./00-README.md)** - This file
+- **[INDEX.csv](./INDEX.csv)** - Master registry of all baselines
+- **[COMMON/](./COMMON/)** - Shared checklists and templates
+  - **[CHECKLISTS/](./COMMON/CHECKLISTS/)** - Gate-specific approval checklists
+  - **[TEMPLATES/](./COMMON/TEMPLATES/)** - Manifest schemas and document templates
+- **[GATE]/** - Individual gate baseline folders ([see Structure](#structure))
 
 ## Baseline Structure
 
@@ -90,3 +90,25 @@ Each gate folder contains domain-specific baselines:
 - **ECSS-M-ST-40C**: Space configuration management
 - **ARP4754A**: Aircraft systems development lifecycle
 - **ISO 10007**: Configuration management guidelines
+
+## Quick Navigation
+
+### Gates and Checklists
+| Gate | Directory | Checklist | Description |
+|------|-----------|-----------|-------------|
+| SRR | [SRR/](./SRR/) | [Checklist](./COMMON/CHECKLISTS/SRR_CHECKLIST.md) | System Requirements Review |
+| MCR | [MCR/](./MCR/) | - | Mission Concept Review |
+| PDR | [PDR/](./PDR/) | [Checklist](./COMMON/CHECKLISTS/PDR_CHECKLIST.md) | Preliminary Design Review |
+| CDR | [CDR/](./CDR/) | [Checklist](./COMMON/CHECKLISTS/CDR_CHECKLIST.md) | Critical Design Review |
+| TRR | [TRR/](./TRR/) | [Checklist](./COMMON/CHECKLISTS/TRR_CHECKLIST.md) | Test Readiness Review |
+| PRR | [PRR/](./PRR/) | [Checklist](./COMMON/CHECKLISTS/PRR_CHECKLIST.md) | Production Readiness Review |
+| ORR_EIS | [ORR_EIS/](./ORR_EIS/) | [Checklist](./COMMON/CHECKLISTS/ORR_EIS_CHECKLIST.md) | Operational Readiness (Aircraft) |
+| FRR | [FRR/](./FRR/) | [Checklist](./COMMON/CHECKLISTS/FRR_CHECKLIST.md) | Flight Readiness (Spacecraft) |
+
+### Templates and Tools
+- **[Common Resources](./COMMON/)** - Shared templates and checklists
+- **[Manifest Schema](./COMMON/TEMPLATES/MANIFEST.schema.json)** - JSON schema for baseline manifests
+- **[Example Manifest](./COMMON/TEMPLATES/MANIFEST.example.json)** - Sample baseline manifest
+- **[Approval Template](./COMMON/TEMPLATES/APPROVAL.md)** - CCB approval documentation
+- **[Links Template](./COMMON/TEMPLATES/LINKS.md)** - Cross-reference template
+- **[Baseline Index](./INDEX.csv)** - Master registry of all baselines

@@ -2,6 +2,12 @@
 
 Test Readiness Review Baseline Approval Checklist
 
+**Related:** [TRR Gate](../../TRR/) | [Main Baselines](../../00-README.md) | [All Checklists](../)
+
+**Templates:** [MANIFEST.schema.json](../TEMPLATES/MANIFEST.schema.json) | [APPROVAL.md](../TEMPLATES/APPROVAL.md) | [LINKS.md](../TEMPLATES/LINKS.md)
+
+**Previous:** [CDR Checklist](./CDR_CHECKLIST.md) | **Next:** [PRR Checklist](./PRR_CHECKLIST.md)
+
 ## Baseline Information
 - Baseline ID: _______________
 - Date: _______________

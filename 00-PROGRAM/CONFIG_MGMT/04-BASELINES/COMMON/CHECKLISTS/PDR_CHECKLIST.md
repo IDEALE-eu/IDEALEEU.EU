@@ -2,6 +2,12 @@
 
 Preliminary Design Review Baseline Approval Checklist
 
+**Related:** [PDR Gate](../../PDR/) | [Main Baselines](../../00-README.md) | [All Checklists](../)
+
+**Templates:** [MANIFEST.schema.json](../TEMPLATES/MANIFEST.schema.json) | [APPROVAL.md](../TEMPLATES/APPROVAL.md) | [LINKS.md](../TEMPLATES/LINKS.md)
+
+**Previous:** [SRR Checklist](./SRR_CHECKLIST.md) | **Next:** [CDR Checklist](./CDR_CHECKLIST.md)
+
 ## Baseline Information
 - Baseline ID: _______________
 - Date: _______________

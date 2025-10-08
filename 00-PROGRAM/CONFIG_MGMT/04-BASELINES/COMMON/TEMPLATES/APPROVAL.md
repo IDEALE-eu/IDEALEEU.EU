@@ -1,5 +1,9 @@
 # Baseline Approval
 
+> **Template Information:** This template should be used for each baseline approval. See [MANIFEST.schema.json](./MANIFEST.schema.json) for the corresponding manifest structure.
+> 
+> **Related:** [Main Baselines](../../00-README.md) | [INDEX.csv](../../INDEX.csv) | [Gate Checklists](../CHECKLISTS/)
+
 **Baseline ID:** BL-\<GATE\>-\<YYYY-MM-DD\>-\<DOMAIN\>
 
 **Gate:** \<GATE\>

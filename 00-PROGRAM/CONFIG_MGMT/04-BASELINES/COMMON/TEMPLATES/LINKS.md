@@ -1,5 +1,9 @@
 # Baseline Links and References
 
+> **Template Information:** Use this template to document all references and links for a specific baseline.
+> 
+> **Related:** [Main Baselines](../../00-README.md) | [MANIFEST.schema.json](./MANIFEST.schema.json) | [APPROVAL.md](./APPROVAL.md)
+
 This document provides links to frozen artifacts and related configuration management resources for this baseline.
 
 ## Configuration Management

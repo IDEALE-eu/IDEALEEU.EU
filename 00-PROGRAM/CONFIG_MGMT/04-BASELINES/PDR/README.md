@@ -40,6 +40,13 @@ PDR baseline is approved when:
 
 ## References
 
+- **Main Baselines:** [../00-README.md](../00-README.md)
 - **Checklist:** [../COMMON/CHECKLISTS/PDR_CHECKLIST.md](../COMMON/CHECKLISTS/PDR_CHECKLIST.md)
 - **Templates:** [../COMMON/TEMPLATES/](../COMMON/TEMPLATES/)
+  - [MANIFEST.schema.json](../COMMON/TEMPLATES/MANIFEST.schema.json)
+  - [MANIFEST.example.json](../COMMON/TEMPLATES/MANIFEST.example.json)
+  - [APPROVAL.md](../COMMON/TEMPLATES/APPROVAL.md)
+  - [LINKS.md](../COMMON/TEMPLATES/LINKS.md)
 - **Index:** [../INDEX.csv](../INDEX.csv)
+- **Previous Gate:** [MCR - Mission Concept Review](../MCR/)
+- **Next Gate:** [CDR - Critical Design Review](../CDR/)
