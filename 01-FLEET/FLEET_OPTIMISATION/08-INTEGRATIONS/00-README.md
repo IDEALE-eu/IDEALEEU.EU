@@ -9,10 +9,10 @@ This directory defines integration points between fleet optimization systems and
 ## Contents
 
 - **00-README.md** - This file
-- **DIGITAL_THREAD_HOOKS.md** - Integration with digital thread for traceability
-- **MRO_STRATEGY_LINK.md** - Connection to MRO strategy and execution systems
-- **OPERATIONAL_DATA_HUB_FEED.md** - Data flows from operational data hub
-- **CONFIG_MGMT_FEEDBACK.md** - Feedback loops to configuration management
+- **[DIGITAL_THREAD_HOOKS.md](DIGITAL_THREAD_HOOKS.md)** - Integration with digital thread for traceability
+- **[MRO_STRATEGY_LINK.md](MRO_STRATEGY_LINK.md)** - Connection to MRO strategy and execution systems
+- **[OPERATIONAL_DATA_HUB_FEED.md](OPERATIONAL_DATA_HUB_FEED.md)** - Data flows from operational data hub
+- **[CONFIG_MGMT_FEEDBACK.md](CONFIG_MGMT_FEEDBACK.md)** - Feedback loops to configuration management
 
 ## Key Functions
 

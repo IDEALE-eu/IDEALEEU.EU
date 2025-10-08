@@ -9,10 +9,10 @@ This directory contains systems and processes for optimizing the allocation and 
 ## Contents
 
 - **00-README.md** - This file
-- **CREW_SCHEDULING/** - Flight crew and mission operations crew scheduling and rostering
-- **GROUND_CREW_ROSTERING/** - Ground handling, maintenance, and support crew scheduling
-- **INFRASTRUCTURE_UTILISATION/** - Airport gates, hangars, ground stations, launch facilities optimization
-- **SPARES_INVENTORY_OPTIMISATION/** - Spare parts positioning, inventory levels, and logistics
+- **[CREW_SCHEDULING/](CREW_SCHEDULING/)** - Flight crew and mission operations crew scheduling and rostering
+- **[GROUND_CREW_ROSTERING/](GROUND_CREW_ROSTERING/)** - Ground handling, maintenance, and support crew scheduling
+- **[INFRASTRUCTURE_UTILISATION/](INFRASTRUCTURE_UTILISATION/)** - Airport gates, hangars, ground stations, launch facilities optimization
+- **[SPARES_INVENTORY_OPTIMISATION/](SPARES_INVENTORY_OPTIMISATION/)** - Spare parts positioning, inventory levels, and logistics
 
 ## Key Functions
 
@@ -66,10 +66,10 @@ This directory contains systems and processes for optimizing the allocation and 
 ## Integration
 
 ### Upstream Inputs
-- Operational schedules from **02-DEMAND_PLANNING/**
-- Fleet availability from **01-STRATEGY/** and **04-MAINTENANCE_PLANNING/**
-- Performance requirements from **05-OPERATIONAL_PERFORMANCE/**
-- Cost targets from **06-COST_OPTIMISATION/**
+- Operational schedules from **[02-DEMAND_PLANNING/](../02-DEMAND_PLANNING/)**
+- Fleet availability from **[01-STRATEGY/](../01-STRATEGY/)** and **[04-MAINTENANCE_PLANNING/](../04-MAINTENANCE_PLANNING/)**
+- Performance requirements from **[05-OPERATIONAL_PERFORMANCE/](../05-OPERATIONAL_PERFORMANCE/)**
+- Cost targets from **[06-COST_OPTIMISATION/](../06-COST_OPTIMISATION/)**
 
 ### Downstream Outputs
 - Crew assignments for flight and mission operations

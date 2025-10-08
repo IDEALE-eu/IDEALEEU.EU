@@ -221,14 +221,14 @@ Cost per Mission = Fixed Costs / Annual Missions
 ## Integration
 
 ### Upstream Inputs
-- Fleet mix strategy: **FLEET_MIX_STRATEGY.md**
-- Utilization policy: **UTILISATION_POLICY.md**
-- Operational data: **01-FLEET/OPERATIONAL_DATA_HUB/**
-- Maintenance programs: **04-MAINTENANCE_PLANNING/**
+- Fleet mix strategy: **[FLEET_MIX_STRATEGY.md](FLEET_MIX_STRATEGY.md)**
+- Utilization policy: **[UTILISATION_POLICY.md](UTILISATION_POLICY.md)**
+- Operational data: **[01-FLEET/OPERATIONAL_DATA_HUB/](../../OPERATIONAL_DATA_HUB/)**
+- Maintenance programs: **[04-MAINTENANCE_PLANNING/](../04-MAINTENANCE_PLANNING/)**
 
 ### Downstream Outputs
-- Cost targets: **06-COST_OPTIMISATION/**
-- Financial reporting: **10-REPORTING/**
+- Cost targets: **[06-COST_OPTIMISATION/](../06-COST_OPTIMISATION/)**
+- Financial reporting: **[10-REPORTING/](../10-REPORTING/)**
 - Business case support: Executive decision-making
 - Budgeting: Annual planning process
 
@@ -236,5 +236,5 @@ Cost per Mission = Fixed Costs / Annual Missions
 
 - Industry costing standards (ATA, IATA)
 - Accounting standards (GAAP, IFRS)
-- Should-cost models: **00-PROGRAM/SUPPLY_CHAIN/11-COSTING/SHOULD_COST_MODELS/**
+- Should-cost models: **[00-PROGRAM/SUPPLY_CHAIN/11-COSTING/SHOULD_COST_MODELS/](../../../00-PROGRAM/SUPPLY_CHAIN/11-COSTING/SHOULD_COST_MODELS/)**
 - Financial planning: **00-PROGRAM/FINANCE/**

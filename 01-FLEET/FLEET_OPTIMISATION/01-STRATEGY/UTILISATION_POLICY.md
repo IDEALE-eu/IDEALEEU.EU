@@ -160,17 +160,17 @@ This document defines policies, targets, and guidelines for optimizing fleet uti
 ## Integration with Other Functions
 
 ### Demand Planning
-- Coordinate with **02-DEMAND_PLANNING/** for mission forecasts
+- Coordinate with **[02-DEMAND_PLANNING/](../02-DEMAND_PLANNING/)** for mission forecasts
 - Align capacity with demand projections
 - Inform capacity planning decisions
 
 ### Maintenance Planning
-- Integrate with **04-MAINTENANCE_PLANNING/** for maintenance schedules
+- Integrate with **[04-MAINTENANCE_PLANNING/](../04-MAINTENANCE_PLANNING/)** for maintenance schedules
 - Balance utilization with maintenance windows
 - Optimize maintenance reserve requirements
 
 ### Cost Optimization
-- Support **06-COST_OPTIMISATION/** with efficiency data
+- Support **[06-COST_OPTIMISATION/](../06-COST_OPTIMISATION/)** with efficiency data
 - Target cost per unit utilization
 - Identify cost reduction opportunities
 
@@ -184,7 +184,7 @@ This document defines policies, targets, and guidelines for optimizing fleet uti
 
 ## References
 
-- Fleet mix strategy: **FLEET_MIX_STRATEGY.md**
-- Lifecycle cost model: **LIFECYCLE_COST_MODEL.md**
-- Demand planning: **02-DEMAND_PLANNING/**
-- Maintenance planning: **04-MAINTENANCE_PLANNING/**
+- Fleet mix strategy: **[FLEET_MIX_STRATEGY.md](FLEET_MIX_STRATEGY.md)**
+- Lifecycle cost model: **[LIFECYCLE_COST_MODEL.md](LIFECYCLE_COST_MODEL.md)**
+- Demand planning: **[02-DEMAND_PLANNING/](../02-DEMAND_PLANNING/)**
+- Maintenance planning: **[04-MAINTENANCE_PLANNING/](../04-MAINTENANCE_PLANNING/)**

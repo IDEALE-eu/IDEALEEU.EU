@@ -9,9 +9,9 @@ This directory contains demand planning and scheduling processes for both aircra
 ## Contents
 
 - **00-README.md** - This file
-- **AIRCRAFT_SCHEDULES/** - Flight schedules, route planning, and aircraft assignments
-- **SPACECRAFT_MISSION_PLAN/** - Mission schedules, orbit planning, and spacecraft assignments
-- **CAPACITY_FORECASTING.md** - Demand forecasting and capacity requirement analysis
+- **[AIRCRAFT_SCHEDULES/](AIRCRAFT_SCHEDULES/)** - Flight schedules, route planning, and aircraft assignments
+- **[SPACECRAFT_MISSION_PLAN/](SPACECRAFT_MISSION_PLAN/)** - Mission schedules, orbit planning, and spacecraft assignments
+- **[CAPACITY_FORECASTING.md](CAPACITY_FORECASTING.md)** - Demand forecasting and capacity requirement analysis
 
 ## Key Functions
 
@@ -46,10 +46,10 @@ This directory contains demand planning and scheduling processes for both aircra
 ## Integration
 
 ### Upstream Inputs
-- Fleet mix and availability from **01-STRATEGY/**
-- Resource availability from **03-RESOURCES_OPTIMISATION/**
-- Maintenance windows from **04-MAINTENANCE_PLANNING/**
-- Operational constraints from **05-OPERATIONAL_PERFORMANCE/**
+- Fleet mix and availability from **[01-STRATEGY/](../01-STRATEGY/)**
+- Resource availability from **[03-RESOURCES_OPTIMISATION/](../03-RESOURCES_OPTIMISATION/)**
+- Maintenance windows from **[04-MAINTENANCE_PLANNING/](../04-MAINTENANCE_PLANNING/)**
+- Operational constraints from **[05-OPERATIONAL_PERFORMANCE/](../05-OPERATIONAL_PERFORMANCE/)**
 
 ### Downstream Outputs
 - Operational schedules for execution

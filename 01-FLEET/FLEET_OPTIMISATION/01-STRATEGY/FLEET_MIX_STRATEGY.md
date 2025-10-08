@@ -142,7 +142,7 @@ The fleet mix strategy defines the optimal composition of the fleet across diffe
 
 ## References
 
-- Mission demand forecasts: **02-DEMAND_PLANNING/**
-- Lifecycle cost models: **LIFECYCLE_COST_MODEL.md**
-- Utilization policies: **UTILISATION_POLICY.md**
-- MRO strategy: **01-FLEET/MRO_STRATEGY/**
+- Mission demand forecasts: **[02-DEMAND_PLANNING/](../02-DEMAND_PLANNING/)**
+- Lifecycle cost models: **[LIFECYCLE_COST_MODEL.md](LIFECYCLE_COST_MODEL.md)**
+- Utilization policies: **[UTILISATION_POLICY.md](UTILISATION_POLICY.md)**
+- MRO strategy: **[01-FLEET/MRO_STRATEGY/](../../MRO_STRATEGY/)**

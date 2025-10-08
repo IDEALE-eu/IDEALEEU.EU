@@ -9,9 +9,9 @@ This directory contains systems for tracking, analyzing, and improving operation
 ## Contents
 
 - **00-README.md** - This file
-- **AVAILABILITY_METRICS.md** - Fleet availability, utilization, and reliability metrics
-- **DELAY_CANCELLATION_ANALYSIS/** - Root cause analysis and improvement programs for delays
-- **FUEL_ENERGY_EFFICIENCY/** - Fuel consumption optimization and energy efficiency programs
+- **[AVAILABILITY_METRICS.md](AVAILABILITY_METRICS.md)** - Fleet availability, utilization, and reliability metrics
+- **[DELAY_CANCELLATION_ANALYSIS/](DELAY_CANCELLATION_ANALYSIS/)** - Root cause analysis and improvement programs for delays
+- **[FUEL_ENERGY_EFFICIENCY/](FUEL_ENERGY_EFFICIENCY/)** - Fuel consumption optimization and energy efficiency programs
 
 ## Key Functions
 
@@ -37,15 +37,15 @@ This directory contains systems for tracking, analyzing, and improving operation
 ## Integration
 
 ### Upstream Inputs
-- Operational data: **01-FLEET/OPERATIONAL_DATA_HUB/**
-- Schedules: **02-DEMAND_PLANNING/**
-- Maintenance data: **04-MAINTENANCE_PLANNING/**
+- Operational data: **[01-FLEET/OPERATIONAL_DATA_HUB/](../../OPERATIONAL_DATA_HUB/)**
+- Schedules: **[02-DEMAND_PLANNING/](../02-DEMAND_PLANNING/)**
+- Maintenance data: **[04-MAINTENANCE_PLANNING/](../04-MAINTENANCE_PLANNING/)**
 
 ### Downstream Outputs
-- Performance reports: **10-REPORTING/**
+- Performance reports: **[10-REPORTING/](../10-REPORTING/)**
 - Improvement initiatives
 - Target setting for strategy
-- Cost impact analysis: **06-COST_OPTIMISATION/**
+- Cost impact analysis: **[06-COST_OPTIMISATION/](../06-COST_OPTIMISATION/)**
 
 ## Key Deliverables
 

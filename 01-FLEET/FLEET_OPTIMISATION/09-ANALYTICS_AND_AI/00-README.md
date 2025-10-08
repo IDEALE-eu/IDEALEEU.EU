@@ -9,9 +9,9 @@ This directory contains advanced analytics, artificial intelligence, and machine
 ## Contents
 
 - **00-README.md** - This file
-- **FLEET_WIDE_MODELS/** - Predictive and analytical models spanning the entire fleet
-- **OPTIMISATION_ALGORITHMS/** - Mathematical optimization and heuristic algorithms
-- **DASHBOARD_SPECS/** - Dashboard and visualization specifications
+- **[FLEET_WIDE_MODELS/](FLEET_WIDE_MODELS/)** - Predictive and analytical models spanning the entire fleet
+- **[OPTIMISATION_ALGORITHMS/](OPTIMISATION_ALGORITHMS/)** - Mathematical optimization and heuristic algorithms
+- **[DASHBOARD_SPECS/](DASHBOARD_SPECS/)** - Dashboard and visualization specifications
 
 ## Key Capabilities
 
@@ -62,10 +62,10 @@ This directory contains advanced analytics, artificial intelligence, and machine
 ## Integration
 
 ### Data Sources
-- Operational data: **OPERATIONAL_DATA_HUB_FEED.md**
-- Maintenance data: **04-MAINTENANCE_PLANNING/**
-- Performance data: **05-OPERATIONAL_PERFORMANCE/**
-- Cost data: **06-COST_OPTIMISATION/**
+- Operational data: **[OPERATIONAL_DATA_HUB_FEED.md](../08-INTEGRATIONS/OPERATIONAL_DATA_HUB_FEED.md)**
+- Maintenance data: **[04-MAINTENANCE_PLANNING/](../04-MAINTENANCE_PLANNING/)**
+- Performance data: **[05-OPERATIONAL_PERFORMANCE/](../05-OPERATIONAL_PERFORMANCE/)**
+- Cost data: **[06-COST_OPTIMISATION/](../06-COST_OPTIMISATION/)**
 
 ### Model Deployment
 - Real-time scoring APIs

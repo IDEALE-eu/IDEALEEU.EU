@@ -9,9 +9,9 @@ This directory contains reporting frameworks and templates for communicating fle
 ## Contents
 
 - **00-README.md** - This file
-- **MONTHLY_FLEET_REVIEW.md** - Monthly operational performance review
-- **ANNUAL_LIFECYCLE_REPORT.md** - Annual lifecycle and strategic review
-- **REGULATORY_REPORTS/** - Regulatory and compliance reporting
+- **[MONTHLY_FLEET_REVIEW.md](MONTHLY_FLEET_REVIEW.md)** - Monthly operational performance review
+- **[ANNUAL_LIFECYCLE_REPORT.md](ANNUAL_LIFECYCLE_REPORT.md)** - Annual lifecycle and strategic review
+- **[REGULATORY_REPORTS/](REGULATORY_REPORTS/)** - Regulatory and compliance reporting
 
 ## Report Types
 

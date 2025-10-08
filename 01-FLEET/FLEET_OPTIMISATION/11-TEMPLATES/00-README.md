@@ -9,10 +9,10 @@ This directory contains standardized templates and tools that support consistent
 ## Contents
 
 - **00-README.md** - This file
-- **FLEET_UTILISATION_TEMPLATE.xlsx** - Fleet utilization tracking and planning template
-- **RCM_ANALYSIS_WORKSHEET.md** - Reliability-centered maintenance analysis template
-- **SPARES_OPTIMISATION_INPUTS.csv** - Spare parts optimization input data template
-- **OPERATIONAL_RISK_ASSESSMENT.md** - Risk assessment and mitigation planning template
+- **[FLEET_UTILISATION_TEMPLATE.xlsx.md](FLEET_UTILISATION_TEMPLATE.xlsx.md)** - Fleet utilization tracking and planning template
+- **[RCM_ANALYSIS_WORKSHEET.md](RCM_ANALYSIS_WORKSHEET.md)** - Reliability-centered maintenance analysis template
+- **[SPARES_OPTIMISATION_INPUTS.csv](SPARES_OPTIMISATION_INPUTS.csv)** - Spare parts optimization input data template
+- **[OPERATIONAL_RISK_ASSESSMENT.md](OPERATIONAL_RISK_ASSESSMENT.md)** - Risk assessment and mitigation planning template
 
 ## Template Categories
 
@@ -63,10 +63,10 @@ This directory contains standardized templates and tools that support consistent
 ## Integration
 
 Templates integrate with:
-- Planning processes: **02-DEMAND_PLANNING/**
-- Analysis workflows: **09-ANALYTICS_AND_AI/**
-- Reporting systems: **10-REPORTING/**
-- Data systems: **08-INTEGRATIONS/**
+- Planning processes: **[02-DEMAND_PLANNING/](../02-DEMAND_PLANNING/)**
+- Analysis workflows: **[09-ANALYTICS_AND_AI/](../09-ANALYTICS_AND_AI/)**
+- Reporting systems: **[10-REPORTING/](../10-REPORTING/)**
+- Data systems: **[08-INTEGRATIONS/](../08-INTEGRATIONS/)**
 
 ## Key Deliverables
 

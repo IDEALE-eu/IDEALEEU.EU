@@ -9,9 +9,9 @@ This directory contains cost analysis and optimization programs focused on reduc
 ## Contents
 
 - **00-README.md** - This file
-- **MRO_COST_ANALYSIS.md** - Maintenance, repair, and overhaul cost tracking and analysis
-- **WARRANTY_CLAIM_TRACKING.md** - Warranty claim management and recovery
-- **VALUE_STREAM_COST_MAP.md** - Value stream mapping for cost reduction opportunities
+- **[MRO_COST_ANALYSIS.md](MRO_COST_ANALYSIS.md)** - Maintenance, repair, and overhaul cost tracking and analysis
+- **[WARRANTY_CLAIM_TRACKING.md](WARRANTY_CLAIM_TRACKING.md)** - Warranty claim management and recovery
+- **[VALUE_STREAM_COST_MAP.md](VALUE_STREAM_COST_MAP.md)** - Value stream mapping for cost reduction opportunities
 
 ## Key Functions
 
@@ -36,15 +36,15 @@ This directory contains cost analysis and optimization programs focused on reduc
 ## Integration
 
 ### Upstream Inputs
-- Maintenance costs: **04-MAINTENANCE_PLANNING/**
-- Operational costs: **01-FLEET/OPERATIONAL_DATA_HUB/**
-- Lifecycle cost models: **01-STRATEGY/LIFECYCLE_COST_MODEL.md**
+- Maintenance costs: **[04-MAINTENANCE_PLANNING/](../04-MAINTENANCE_PLANNING/)**
+- Operational costs: **[01-FLEET/OPERATIONAL_DATA_HUB/](../../OPERATIONAL_DATA_HUB/)**
+- Lifecycle cost models: **[01-STRATEGY/LIFECYCLE_COST_MODEL.md](../01-STRATEGY/LIFECYCLE_COST_MODEL.md)**
 
 ### Downstream Outputs
 - Cost reduction targets
 - Process improvements
-- Financial reporting: **10-REPORTING/**
-- Strategic inputs: **01-STRATEGY/**
+- Financial reporting: **[10-REPORTING/](../10-REPORTING/)**
+- Strategic inputs: **[01-STRATEGY/](../01-STRATEGY/)**
 
 ## Key Deliverables
 

@@ -9,9 +9,9 @@ This directory contains strategic planning documents that define the optimal com
 ## Contents
 
 - **00-README.md** - This file
-- **FLEET_MIX_STRATEGY.md** - Optimal fleet composition and vehicle type selection
-- **UTILISATION_POLICY.md** - Utilization targets, policies, and optimization guidelines
-- **LIFECYCLE_COST_MODEL.md** - Total cost of ownership and lifecycle economic analysis
+- **[FLEET_MIX_STRATEGY.md](FLEET_MIX_STRATEGY.md)** - Optimal fleet composition and vehicle type selection
+- **[UTILISATION_POLICY.md](UTILISATION_POLICY.md)** - Utilization targets, policies, and optimization guidelines
+- **[LIFECYCLE_COST_MODEL.md](LIFECYCLE_COST_MODEL.md)** - Total cost of ownership and lifecycle economic analysis
 
 ## Key Topics
 
@@ -42,10 +42,10 @@ This directory contains strategic planning documents that define the optimal com
 ## Integration
 
 ### Upstream Inputs
-- Mission requirements and forecasts from **02-DEMAND_PLANNING/**
-- Resource constraints from **03-RESOURCES_OPTIMISATION/**
-- Maintenance program economics from **04-MAINTENANCE_PLANNING/**
-- Performance data from **05-OPERATIONAL_PERFORMANCE/**
+- Mission requirements and forecasts from **[02-DEMAND_PLANNING/](../02-DEMAND_PLANNING/)**
+- Resource constraints from **[03-RESOURCES_OPTIMISATION/](../03-RESOURCES_OPTIMISATION/)**
+- Maintenance program economics from **[04-MAINTENANCE_PLANNING/](../04-MAINTENANCE_PLANNING/)**
+- Performance data from **[05-OPERATIONAL_PERFORMANCE/](../05-OPERATIONAL_PERFORMANCE/)**
 
 ### Downstream Outputs
 - Strategic guidance for fleet operations

@@ -9,17 +9,17 @@ FLEET_OPTIMISATION encompasses comprehensive strategies and systems for maximizi
 ## Contents
 
 - **00-README.md** - This file
-- **01-STRATEGY/** - Fleet mix strategy, utilization policy, lifecycle cost models
-- **02-DEMAND_PLANNING/** - Aircraft schedules, spacecraft mission planning, capacity forecasting
-- **03-RESOURCES_OPTIMISATION/** - Crew scheduling, ground crew rostering, infrastructure utilization, spares inventory
-- **04-MAINTENANCE_PLANNING/** - Maintenance programs, RCM, predictive maintenance models, technical logistics
-- **05-OPERATIONAL_PERFORMANCE/** - Availability metrics, delay/cancellation analysis, fuel/energy efficiency
-- **06-COST_OPTIMISATION/** - MRO cost analysis, warranty claim tracking, value stream cost mapping
-- **07-RISK_MANAGEMENT/** - Operational risk register, contingency plans, insurance strategy
-- **08-INTEGRATIONS/** - Digital thread hooks, MRO strategy links, operational data hub feed, configuration management feedback
-- **09-ANALYTICS_AND_AI/** - Fleet-wide models, optimization algorithms, dashboard specifications
-- **10-REPORTING/** - Monthly fleet reviews, annual lifecycle reports, regulatory reports
-- **11-TEMPLATES/** - Fleet utilization templates, RCM analysis worksheets, spares optimization inputs, operational risk assessments
+- **[01-STRATEGY/](01-STRATEGY/)** - Fleet mix strategy, utilization policy, lifecycle cost models
+- **[02-DEMAND_PLANNING/](02-DEMAND_PLANNING/)** - Aircraft schedules, spacecraft mission planning, capacity forecasting
+- **[03-RESOURCES_OPTIMISATION/](03-RESOURCES_OPTIMISATION/)** - Crew scheduling, ground crew rostering, infrastructure utilization, spares inventory
+- **[04-MAINTENANCE_PLANNING/](04-MAINTENANCE_PLANNING/)** - Maintenance programs, RCM, predictive maintenance models, technical logistics
+- **[05-OPERATIONAL_PERFORMANCE/](05-OPERATIONAL_PERFORMANCE/)** - Availability metrics, delay/cancellation analysis, fuel/energy efficiency
+- **[06-COST_OPTIMISATION/](06-COST_OPTIMISATION/)** - MRO cost analysis, warranty claim tracking, value stream cost mapping
+- **[07-RISK_MANAGEMENT/](07-RISK_MANAGEMENT/)** - Operational risk register, contingency plans, insurance strategy
+- **[08-INTEGRATIONS/](08-INTEGRATIONS/)** - Digital thread hooks, MRO strategy links, operational data hub feed, configuration management feedback
+- **[09-ANALYTICS_AND_AI/](09-ANALYTICS_AND_AI/)** - Fleet-wide models, optimization algorithms, dashboard specifications
+- **[10-REPORTING/](10-REPORTING/)** - Monthly fleet reviews, annual lifecycle reports, regulatory reports
+- **[11-TEMPLATES/](11-TEMPLATES/)** - Fleet utilization templates, RCM analysis worksheets, spares optimization inputs, operational risk assessments
 
 ## Key Functions
 

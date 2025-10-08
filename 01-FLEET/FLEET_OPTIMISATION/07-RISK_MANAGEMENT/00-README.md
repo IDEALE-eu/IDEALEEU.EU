@@ -9,9 +9,9 @@ This directory contains systematic risk management processes to identify, assess
 ## Contents
 
 - **00-README.md** - This file
-- **OPERATIONAL_RISK_REGISTER.csv** - Risk register tracking all identified risks
-- **CONTINGENCY_PLANS/** - Contingency and business continuity plans
-- **INSURANCE_STRATEGY.md** - Insurance coverage strategy and management
+- **[OPERATIONAL_RISK_REGISTER.csv](OPERATIONAL_RISK_REGISTER.csv)** - Risk register tracking all identified risks
+- **[CONTINGENCY_PLANS/](CONTINGENCY_PLANS/)** - Contingency and business continuity plans
+- **[INSURANCE_STRATEGY.md](INSURANCE_STRATEGY.md)** - Insurance coverage strategy and management
 
 ## Key Functions
 
@@ -68,15 +68,15 @@ This directory contains systematic risk management processes to identify, assess
 ## Integration
 
 ### Upstream Inputs
-- Operational data: **01-FLEET/OPERATIONAL_DATA_HUB/**
-- Performance data: **05-OPERATIONAL_PERFORMANCE/**
-- Cost data: **06-COST_OPTIMISATION/**
+- Operational data: **[01-FLEET/OPERATIONAL_DATA_HUB/](../../OPERATIONAL_DATA_HUB/)**
+- Performance data: **[05-OPERATIONAL_PERFORMANCE/](../05-OPERATIONAL_PERFORMANCE/)**
+- Cost data: **[06-COST_OPTIMISATION/](../06-COST_OPTIMISATION/)**
 
 ### Downstream Outputs
 - Risk mitigation plans
 - Contingency procedures
 - Insurance requirements
-- Risk reporting: **10-REPORTING/**
+- Risk reporting: **[10-REPORTING/](../10-REPORTING/)**
 
 ## Key Deliverables
 
