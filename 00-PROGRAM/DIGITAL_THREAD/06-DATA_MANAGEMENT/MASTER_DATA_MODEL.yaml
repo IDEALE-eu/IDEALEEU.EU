@@ -1,0 +1,315 @@
+# Master Data Model for Digital Thread
+# Unified schema with safety/certification metadata
+
+version: "1.0.0"
+namespace: "eu.idealeeu.digitalthread"
+
+entities:
+  Product:
+    description: "Top-level vehicle or system (Aircraft, Spacecraft)"
+    attributes:
+      uid:
+        type: string
+        required: true
+        pattern: "(ACFT|SC)-\\d{3}(-[A-Z0-9]+)?"
+        example: "ACFT-001-H2"
+      name:
+        type: string
+        required: true
+      type:
+        type: enum
+        values: [Aircraft, Spacecraft, Subsystem]
+        required: true
+      status:
+        type: enum
+        values: [Design, Manufacturing, Testing, Operational, Retired]
+        required: true
+      certification_class:
+        type: string
+        description: "DAL A/B/C/D for aircraft, ECSS class for spacecraft"
+      baseline_id:
+        type: string
+        description: "Link to configuration baseline"
+    relationships:
+      - target: Part
+        type: composed_of
+        cardinality: "1:N"
+      - target: Document
+        type: specified_by
+        cardinality: "1:N"
+
+  Part:
+    description: "Component, assembly, or material"
+    attributes:
+      uid:
+        type: string
+        required: true
+        pattern: "[A-Z0-9]{6,}-\\d{3}(-LOT[0-9]{4}-[0-9]{2})?"
+        example: "P123456-001-LOT2024-03"
+      part_number:
+        type: string
+        required: true
+      serial_number:
+        type: string
+        required: false
+        description: "Serial number for serialized parts"
+      lot_number:
+        type: string
+        required: false
+      name:
+        type: string
+        required: true
+      type:
+        type: enum
+        values: [Component, Assembly, Raw_Material, Software]
+        required: true
+      criticality:
+        type: enum
+        values: [Flight_Safety_Critical, Mission_Critical, Non_Critical]
+        required: true
+      status:
+        type: enum
+        values: [Designed, Qualified, Manufactured, Inspected, Installed, Failed, Retired]
+        required: true
+      mass_kg:
+        type: number
+        required: false
+      cost_usd:
+        type: number
+        required: false
+      supplier:
+        type: string
+        required: false
+    relationships:
+      - target: Product
+        type: part_of
+        cardinality: "N:1"
+      - target: Part
+        type: composed_of
+        cardinality: "1:N"
+        description: "Assembly to component relationship"
+      - target: Document
+        type: specified_by
+        cardinality: "N:N"
+      - target: Process
+        type: manufactured_by
+        cardinality: "N:1"
+
+  Document:
+    description: "Requirements, drawings, specifications, procedures"
+    attributes:
+      uid:
+        type: string
+        required: true
+        pattern: "[A-Z]{3,6}-\\d{3,6}-V\\d+\\.\\d+"
+        example: "SPEC-001234-V2.1"
+      document_type:
+        type: enum
+        values: [Requirement, Drawing, Specification, Procedure, Test_Report, Analysis, Manual]
+        required: true
+      title:
+        type: string
+        required: true
+      version:
+        type: string
+        required: true
+        pattern: "V\\d+\\.\\d+"
+      status:
+        type: enum
+        values: [Draft, In_Review, Approved, Superseded, Obsolete]
+        required: true
+      approval_date:
+        type: date
+        required: false
+      approver:
+        type: string
+        required: false
+      itar_controlled:
+        type: boolean
+        required: true
+        default: false
+    relationships:
+      - target: Product
+        type: specifies
+        cardinality: "N:N"
+      - target: Part
+        type: specifies
+        cardinality: "N:N"
+      - target: Document
+        type: derived_from
+        cardinality: "N:1"
+        description: "Parent-child document relationships"
+
+  Process:
+    description: "Design, manufacturing, test, maintenance process"
+    attributes:
+      uid:
+        type: string
+        required: true
+        pattern: "PROC-[A-Z0-9]{6,}-\\d{3}"
+        example: "PROC-MFG001-001"
+      process_type:
+        type: enum
+        values: [Design, Manufacturing, Test, Assembly, Inspection, Maintenance, Modification]
+        required: true
+      name:
+        type: string
+        required: true
+      status:
+        type: enum
+        values: [Planned, In_Progress, Completed, Failed, Cancelled]
+        required: true
+      start_time:
+        type: datetime
+        required: false
+      end_time:
+        type: datetime
+        required: false
+      responsible_person:
+        type: string
+        required: true
+    relationships:
+      - target: Part
+        type: produces
+        cardinality: "1:N"
+      - target: Document
+        type: governed_by
+        cardinality: "N:1"
+        description: "Process governed by procedure document"
+      - target: Event
+        type: records
+        cardinality: "1:N"
+
+  Event:
+    description: "Changes, tests, maintenance, anomalies"
+    attributes:
+      uid:
+        type: string
+        required: true
+        pattern: "[A-Z]{4,6}-\\d{8}T\\d{6}-\\d{3}"
+        example: "TEST-20250315T143000-001"
+      event_type:
+        type: enum
+        values: [Change, Test, Maintenance, Anomaly, Modification, Inspection, Failure]
+        required: true
+      timestamp:
+        type: datetime
+        required: true
+      description:
+        type: string
+        required: true
+      severity:
+        type: enum
+        values: [Informational, Minor, Major, Critical]
+        required: true
+      resolution_status:
+        type: enum
+        values: [Open, In_Progress, Resolved, Closed]
+        required: true
+      responsible_person:
+        type: string
+        required: true
+    relationships:
+      - target: Product
+        type: affects
+        cardinality: "N:N"
+      - target: Part
+        type: affects
+        cardinality: "N:N"
+      - target: Process
+        type: recorded_by
+        cardinality: "N:1"
+      - target: Document
+        type: documented_in
+        cardinality: "N:N"
+
+  Person_Organization:
+    description: "Stakeholders, suppliers, operators"
+    attributes:
+      uid:
+        type: string
+        required: true
+        pattern: "(ORG|PER)-[A-Z0-9]{6,}"
+        example: "ORG-SUPPLIER01"
+      entity_type:
+        type: enum
+        values: [Person, Organization, Supplier, Customer, Operator]
+        required: true
+      name:
+        type: string
+        required: true
+      role:
+        type: string
+        required: false
+      contact_info:
+        type: string
+        required: false
+      itar_approved:
+        type: boolean
+        required: true
+        default: false
+    relationships:
+      - target: Part
+        type: supplies
+        cardinality: "N:N"
+      - target: Process
+        type: responsible_for
+        cardinality: "N:N"
+      - target: Event
+        type: involved_in
+        cardinality: "N:N"
+
+safety_certification_metadata:
+  description: "Safety and certification-specific attributes"
+  attributes:
+    design_assurance_level:
+      description: "DO-178C/DO-254 DAL (A=highest, E=lowest)"
+      type: enum
+      values: [DAL_A, DAL_B, DAL_C, DAL_D, DAL_E]
+      applicable_to: [Part, Document]
+    ecss_criticality:
+      description: "ECSS criticality class"
+      type: enum
+      values: [Class_1, Class_2, Class_3]
+      applicable_to: [Part, Document]
+    failure_mode:
+      description: "FMEA failure mode classification"
+      type: enum
+      values: [Catastrophic, Hazardous, Major, Minor, No_Effect]
+      applicable_to: [Part]
+    verification_method:
+      description: "Requirements verification method"
+      type: enum
+      values: [Test, Analysis, Inspection, Demonstration]
+      applicable_to: [Document]
+    traceability_required:
+      description: "Part requires full lifecycle traceability"
+      type: boolean
+      default: false
+      applicable_to: [Part]
+
+standards_compliance:
+  - standard: "ISO 10303 STEP AP242"
+    description: "Product model data exchange"
+  - standard: "ISO 23247"
+    description: "Digital twin framework"
+  - standard: "AIA ALS-001"
+    description: "Aerospace logistics standard"
+  - standard: "ECSS-M-ST-40"
+    description: "Configuration and information management"
+  - standard: "AS9100"
+    description: "Quality management for aerospace"
+
+change_control:
+  version_increment_rules:
+    major:
+      description: "Breaking changes to schema structure"
+      example: "Adding/removing required fields"
+    minor:
+      description: "Non-breaking additions"
+      example: "Adding optional fields or enum values"
+    patch:
+      description: "Documentation or clarification changes"
+      example: "Updating descriptions"
+  approval_authority: "Digital Thread Steering Committee"
+  review_period_days: 30

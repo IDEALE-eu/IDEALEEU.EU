@@ -1,0 +1,297 @@
+openapi: 3.0.0
+info:
+  title: Spacecraft Digital Twin API
+  description: Standardized interface for spacecraft mission operations twin
+  version: 1.0.0
+  contact:
+    name: Digital Thread Team
+    email: digital-twin@idealeeu.eu
+
+servers:
+  - url: https://api.idealeeu.eu/twins/spacecraft/{serial}
+    description: Production API endpoint
+    variables:
+      serial:
+        default: SC-001
+        description: Spacecraft serial number
+
+paths:
+  /state:
+    get:
+      summary: Get current twin state
+      description: Returns current orbital state and spacecraft health
+      responses:
+        '200':
+          description: Twin state retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwinState'
+  
+  /telemetry:
+    post:
+      summary: Ingest telemetry data
+      description: Push real-time telemetry from ground station to twin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TelemetryData'
+      responses:
+        '202':
+          description: Telemetry accepted for processing
+  
+  /orbit:
+    get:
+      summary: Get orbital state
+      description: Current and predicted orbital parameters
+      responses:
+        '200':
+          description: Orbital state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrbitalState'
+  
+  /maneuver:
+    post:
+      summary: Simulate maneuver
+      description: Simulate orbital maneuver or attitude change
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManeuverRequest'
+      responses:
+        '200':
+          description: Maneuver simulation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManeuverResult'
+  
+  /configuration:
+    get:
+      summary: Get twin configuration
+      description: Retrieve current as-flown configuration
+      responses:
+        '200':
+          description: Configuration retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configuration'
+  
+  /health:
+    get:
+      summary: Get twin health status
+      description: Twin sync status and telemetry correlation accuracy
+      responses:
+        '200':
+          description: Health metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+  
+  /predictions/consumables:
+    get:
+      summary: Get consumables predictions
+      description: Remaining propellant, battery cycles, mission duration
+      responses:
+        '200':
+          description: Consumables predictions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumablesPredictions'
+  
+  /anomaly:
+    post:
+      summary: Report anomaly
+      description: Ingest anomaly report for twin correlation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnomalyReport'
+      responses:
+        '201':
+          description: Anomaly logged
+
+components:
+  schemas:
+    TwinState:
+      type: object
+      properties:
+        serialNumber:
+          type: string
+          example: SC-001
+        timestamp:
+          type: string
+          format: date-time
+        missionElapsedTime:
+          type: number
+          description: Days since launch
+        orbitalState:
+          $ref: '#/components/schemas/OrbitalState'
+        subsystemHealth:
+          type: object
+    
+    TelemetryData:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        missionPhase:
+          type: string
+          enum: [pre-launch, launch, early-ops, nominal-ops, end-of-life]
+        parameters:
+          type: object
+          additionalProperties:
+            type: number
+    
+    OrbitalState:
+      type: object
+      properties:
+        epoch:
+          type: string
+          format: date-time
+        position:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+            z:
+              type: number
+        velocity:
+          type: object
+          properties:
+            vx:
+              type: number
+            vy:
+              type: number
+            vz:
+              type: number
+        keplerian:
+          type: object
+          properties:
+            semiMajorAxis:
+              type: number
+            eccentricity:
+              type: number
+            inclination:
+              type: number
+            raan:
+              type: number
+            argumentOfPerigee:
+              type: number
+            trueAnomaly:
+              type: number
+    
+    ManeuverRequest:
+      type: object
+      properties:
+        maneuverType:
+          type: string
+          enum: [orbit-raise, orbit-lower, plane-change, attitude-change]
+        deltaV:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+            z:
+              type: number
+        executionTime:
+          type: string
+          format: date-time
+    
+    ManeuverResult:
+      type: object
+      properties:
+        maneuveId:
+          type: string
+        propellantUsed:
+          type: number
+        newOrbit:
+          $ref: '#/components/schemas/OrbitalState'
+        success:
+          type: boolean
+    
+    Configuration:
+      type: object
+      properties:
+        serialNumber:
+          type: string
+        asBuiltConfiguration:
+          type: object
+        onOrbitModifications:
+          type: array
+          items:
+            type: object
+        softwareVersion:
+          type: string
+    
+    HealthStatus:
+      type: object
+      properties:
+        syncStatus:
+          type: string
+          enum: [synced, delayed, contact-loss]
+        lastContactTime:
+          type: string
+          format: date-time
+        telemetryCorrelation:
+          type: number
+          description: Accuracy of predictions vs telemetry
+        dataQuality:
+          type: number
+    
+    ConsumablesPredictions:
+      type: object
+      properties:
+        propellantRemaining:
+          type: number
+          description: Kilograms
+        batteryCapacity:
+          type: number
+          description: Amp-hours
+        solarArrayDegradation:
+          type: number
+          description: Percentage
+        missionExtensionDays:
+          type: number
+    
+    AnomalyReport:
+      type: object
+      properties:
+        anomalyId:
+          type: string
+        detectionTime:
+          type: string
+          format: date-time
+        subsystem:
+          type: string
+        description:
+          type: string
+        severity:
+          type: string
+          enum: [minor, major, critical]
+
+security:
+  - BearerAuth: []
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

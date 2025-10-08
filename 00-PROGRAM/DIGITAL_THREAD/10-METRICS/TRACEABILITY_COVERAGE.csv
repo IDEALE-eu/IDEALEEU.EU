@@ -1,0 +1,23 @@
+Subsystem,Total_Requirements,Traced_to_Model,Traced_to_Test,Traced_to_Results,Fleet_Feedback_Linked,Coverage_Percentage,Status,Notes
+Avionics,245,240,235,230,28,93.9%,YELLOW,5 requirements missing model trace
+Propulsion,189,185,180,175,15,92.6%,YELLOW,4 requirements not tested yet
+Structures,312,310,305,300,5,96.2%,GREEN,Excellent coverage
+GNC,178,176,173,170,42,95.5%,GREEN,Strong fleet feedback
+Power_Thermal,156,154,151,148,8,94.9%,YELLOW,Just below target
+CABINS,98,96,94,92,2,93.9%,YELLOW,Low fleet feedback
+H2_Systems,134,132,129,126,18,94.0%,YELLOW,New subsystem ramping up
+FLIGHT_CONTROLS,167,165,162,159,31,95.2%,GREEN,Good coverage
+LANDING_GEAR,89,88,86,84,6,94.4%,YELLOW,Few minor gaps
+HYDRAULICS,76,75,74,73,4,96.1%,GREEN,Excellent
+INFO_COMM,203,199,195,191,22,94.1%,YELLOW,4 untested requirements
+SPACECRAFT_GNC,142,140,138,136,28,95.8%,GREEN,Strong coverage
+SPACECRAFT_POWER,98,97,96,95,12,96.9%,GREEN,Excellent
+SPACECRAFT_THERMAL,87,86,85,84,7,96.6%,GREEN,Excellent
+SPACECRAFT_PROPULSION,76,75,74,73,9,96.1%,GREEN,Good
+SPACECRAFT_COMMS,112,110,108,106,15,94.6%,YELLOW,2 requirements gaps
+SPACECRAFT_STRUCTURES,134,132,130,128,4,95.5%,GREEN,Good coverage
+SPACECRAFT_SOFTWARE,189,186,183,180,21,95.2%,GREEN,Good coverage
+SPACECRAFT_RADIATION,67,66,65,64,3,95.5%,GREEN,Good coverage
+CROSS_SYSTEM_INTERFACES,156,153,150,147,11,94.2%,YELLOW,Interface testing in progress
+SYSTEM_LEVEL,423,418,410,405,67,95.7%,GREEN,Strong system-level traceability
+TOTAL,3531,3458,3392,3330,358,95.6%,GREEN,Overall target met

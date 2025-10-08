@@ -1,0 +1,266 @@
+openapi: 3.0.0
+info:
+  title: Aircraft Digital Twin API
+  description: Standardized interface for aircraft operational twin
+  version: 1.0.0
+  contact:
+    name: Digital Thread Team
+    email: digital-twin@idealeeu.eu
+
+servers:
+  - url: https://api.idealeeu.eu/twins/aircraft/{serial}
+    description: Production API endpoint
+    variables:
+      serial:
+        default: ACFT-001
+        description: Aircraft serial number
+
+paths:
+  /state:
+    get:
+      summary: Get current twin state
+      description: Returns current state of the aircraft twin including key parameters and predictions
+      responses:
+        '200':
+          description: Twin state retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwinState'
+  
+  /telemetry:
+    post:
+      summary: Ingest telemetry data
+      description: Push real-time or batch telemetry data from aircraft to twin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TelemetryData'
+      responses:
+        '202':
+          description: Telemetry accepted for processing
+  
+  /simulate:
+    post:
+      summary: Run simulation or prediction
+      description: Execute twin simulation for what-if scenario or future prediction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimulationRequest'
+      responses:
+        '200':
+          description: Simulation completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulationResult'
+  
+  /configuration:
+    get:
+      summary: Get twin configuration
+      description: Retrieve current as-maintained configuration
+      responses:
+        '200':
+          description: Configuration retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Configuration'
+    
+    put:
+      summary: Update twin configuration
+      description: Update configuration after maintenance event or modification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Configuration'
+      responses:
+        '200':
+          description: Configuration updated successfully
+  
+  /health:
+    get:
+      summary: Get twin health status
+      description: Retrieve twin synchronization status and model accuracy metrics
+      responses:
+        '200':
+          description: Health metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+  
+  /predictions/maintenance:
+    get:
+      summary: Get predictive maintenance insights
+      description: Retrieve remaining useful life and maintenance recommendations
+      responses:
+        '200':
+          description: Maintenance predictions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenancePredictions'
+  
+  /history:
+    get:
+      summary: Get historical data
+      description: Query historical telemetry and events
+      parameters:
+        - name: startTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Historical data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalData'
+
+components:
+  schemas:
+    TwinState:
+      type: object
+      properties:
+        serialNumber:
+          type: string
+          example: ACFT-001
+        timestamp:
+          type: string
+          format: date-time
+        flightHours:
+          type: number
+        cycles:
+          type: integer
+        keyParameters:
+          type: object
+          additionalProperties:
+            type: number
+        predictions:
+          type: object
+    
+    TelemetryData:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        flightPhase:
+          type: string
+          enum: [ground, taxi, takeoff, climb, cruise, descent, landing]
+        parameters:
+          type: object
+          additionalProperties:
+            type: number
+    
+    SimulationRequest:
+      type: object
+      properties:
+        scenarioType:
+          type: string
+          enum: [what-if, prediction, optimization]
+        inputs:
+          type: object
+        horizonHours:
+          type: number
+    
+    SimulationResult:
+      type: object
+      properties:
+        scenarioId:
+          type: string
+        results:
+          type: object
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+    
+    Configuration:
+      type: object
+      properties:
+        serialNumber:
+          type: string
+        asBuiltDeviation:
+          type: array
+          items:
+            type: object
+        asMaintainedStatus:
+          type: object
+        modificationList:
+          type: array
+          items:
+            type: object
+    
+    HealthStatus:
+      type: object
+      properties:
+        syncStatus:
+          type: string
+          enum: [synced, delayed, offline]
+        lastUpdateTime:
+          type: string
+          format: date-time
+        modelAccuracy:
+          type: number
+          description: R² correlation with recent data
+        dataQuality:
+          type: number
+          description: Percentage of valid data points
+    
+    MaintenancePredictions:
+      type: object
+      properties:
+        components:
+          type: array
+          items:
+            type: object
+            properties:
+              componentId:
+                type: string
+              remainingUsefulLife:
+                type: number
+                description: Hours or cycles
+              confidence:
+                type: number
+              recommendedAction:
+                type: string
+    
+    HistoricalData:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        dataPoints:
+          type: array
+          items:
+            type: object
+
+security:
+  - BearerAuth: []
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

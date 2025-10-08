@@ -1,0 +1,34 @@
+Data_Element_Name,Definition,Data_Type,Valid_Values,Units,Source_System,Applicability,Standards_Reference,Notes
+Product_UID,Unique identifier for product,String,Pattern: (ACFT|SC)-\d{3}(-[A-Z0-9]+)?,N/A,MDM,Both,AIA ALS-001,Immutable identifier
+Product_Name,Human-readable product name,String,N/A,N/A,PLM,Both,ISO 10303,Max 255 characters
+Product_Type,Classification of product,Enum,Aircraft|Spacecraft|Subsystem,N/A,MDM,Both,ISO 10303,Required field
+Product_Status,Lifecycle status of product,Enum,Design|Manufacturing|Testing|Operational|Retired,N/A,PLM,Both,ECSS-M-ST-40,Updated at stage gates
+Part_Number,Manufacturer part number,String,N/A,N/A,PLM,Both,ISO 10303 AP242,Unique within organization
+Serial_Number,Unique serial number for part,String,N/A,N/A,MES,Both,AIA ALS-001,Required for serialized parts
+Lot_Number,Manufacturing lot identifier,String,Pattern: LOT\d{4}-\d{2},N/A,MES,Both,AS9100,Traceability to raw materials
+Mass,Part or product mass,Number,>0,Kilograms,CAD/PLM,Both,ISO 10303,Updated from CAD
+Cost,Unit cost,Number,>=0,USD,ERP,Both,N/A,For budget tracking
+Criticality,Safety criticality level,Enum,Flight_Safety_Critical|Mission_Critical|Non_Critical,N/A,MBSE,Both,ARP4761/ECSS-Q-ST-40,From safety analysis
+DAL,Design Assurance Level,Enum,DAL_A|DAL_B|DAL_C|DAL_D|DAL_E,N/A,MBSE,Aircraft,DO-178C/DO-254,For software/hardware
+ECSS_Class,ECSS criticality class,Enum,Class_1|Class_2|Class_3,N/A,MBSE,Spacecraft,ECSS-Q-ST-80,Spacecraft criticality
+Document_Type,Type of document,Enum,Requirement|Drawing|Specification|Procedure|Test_Report|Analysis|Manual,N/A,PLM,Both,ISO 10303,Document classification
+Document_Version,Document version number,String,Pattern: V\d+\.\d+,N/A,PLM,Both,ECSS-M-ST-40,Semantic versioning
+Approval_Date,Date document was approved,Date,ISO 8601,N/A,PLM,Both,AS9100,Required for controlled documents
+ITAR_Controlled,Indicates ITAR controlled data,Boolean,true|false,N/A,Security System,Both,ITAR,Default false
+EAR_Controlled,Indicates EAR controlled data,Boolean,true|false,N/A,Security System,Both,EAR,Default false
+Baseline_ID,Configuration baseline identifier,String,Pattern: BASELINE_[A-Z]{3}_\d{4}-\d{2}-\d{2},N/A,Config Mgmt,Both,ECSS-M-ST-40,Links to CONFIG_MGMT
+Requirement_ID,Unique requirement identifier,String,Pattern: [A-Z]{3,6}-REQ-\d{3,6},N/A,Requirements DB,Both,ReqIF,Must be unique
+Verification_Method,How requirement is verified,Enum,Test|Analysis|Inspection|Demonstration,N/A,Requirements DB,Both,ECSS-E-ST-10,Per requirement
+Test_Result,Outcome of verification test,Enum,Pass|Fail|Inconclusive|Not_Run,N/A,Test System,Both,AS9100,Test execution result
+Failure_Mode,FMEA failure classification,Enum,Catastrophic|Hazardous|Major|Minor|No_Effect,N/A,Safety Analysis,Both,ARP4761/ECSS-Q-ST-40,From FMEA
+Anomaly_Severity,Severity of anomaly or NCR,Enum,Informational|Minor|Major|Critical,N/A,Quality System,Both,AS9100,For NCR/anomaly reporting
+Resolution_Status,Status of issue resolution,Enum,Open|In_Progress|Resolved|Closed,N/A,Quality System,Both,AS9100,Issue tracking
+Flight_Hours,Accumulated flight time,Number,>=0,Hours,Fleet Data,Aircraft,N/A,Usage tracking
+Flight_Cycles,Number of flight cycles,Integer,>=0,Cycles,Fleet Data,Aircraft,N/A,Fatigue tracking
+Mission_Elapsed_Time,Days since spacecraft launch,Number,>=0,Days,Mission Ops,Spacecraft,N/A,Mission timeline
+Propellant_Remaining,Remaining propellant mass,Number,>=0,Kilograms,Fleet Data,Spacecraft,N/A,Consumables tracking
+Battery_Cycles,Number of battery charge cycles,Integer,>=0,Cycles,Fleet Data,Spacecraft,N/A,Battery health monitoring
+Telemetry_Parameter,Generic telemetry measurement,Number,N/A,Various,Fleet Data,Both,N/A,Operational data
+Timestamp,Date and time of event,DateTime,ISO 8601,N/A,All Systems,Both,ISO 8601,UTC timezone
+Responsible_Person,Person accountable for activity,String,N/A,N/A,All Systems,Both,AS9100,Accountability tracking
+Traceability_Link,Link to related entity,String,Pattern: [A-Z0-9]+-\d+,N/A,All Systems,Both,AS9100,Bi-directional traceability

@@ -1,0 +1,16 @@
+Requirement_ID,Requirement_Text,Verification_Method,SysML_Block,Allocation_Status,Priority,Traceability_Notes
+SYS-REQ-001,The system shall operate in ambient temperatures from -40°C to +55°C,Test,ENV_CONTROL_SYSTEM,Allocated,Critical,Verified at CDR
+SYS-REQ-002,The system shall have a maximum take-off weight of 25000 kg,Analysis,AIRFRAME_STRUCTURE,Allocated,Critical,Weight budget tracked
+SYS-REQ-003,The propulsion system shall provide 50 kN thrust,Test,PROPULSION_SYSTEM,Allocated,Critical,Engine test data available
+SYS-REQ-004,The avionics shall support dual-redundant flight control,Inspection,AVIONICS_FLIGHT_CONTROL,Allocated,Critical,Redundancy design verified
+SYS-REQ-005,The GNC system shall maintain attitude within ±0.1 degrees,Test,GNC_ATTITUDE_CONTROL,Allocated,High,Simulation results available
+SYS-REQ-006,The power system shall provide 10 kW continuous power,Analysis,POWER_GENERATION,Allocated,Critical,Power budget analysis complete
+SYS-REQ-007,The thermal system shall maintain equipment within 0°C to 50°C,Test,THERMAL_CONTROL,Allocated,High,Thermal analysis performed
+SYS-REQ-008,The communication system shall support 100 Mbps data rate,Test,COMM_SYSTEM,Allocated,Medium,Link budget analyzed
+SYS-REQ-009,The system shall comply with DO-178C Level A for critical software,Inspection,FLIGHT_SOFTWARE,Allocated,Critical,Certification plan in place
+SYS-REQ-010,The structure shall withstand limit load factor of 3.5g,Test,AIRFRAME_STRUCTURE,Allocated,Critical,FEM analysis complete
+SYS-REQ-011,The landing gear shall support 15000 kg static load,Test,LANDING_GEAR,Allocated,Critical,Design validated
+SYS-REQ-012,The fuel system shall store 5000 kg of hydrogen,Analysis,H2_FUEL_SYSTEM,Allocated,Critical,Tank design verified
+SYS-REQ-013,The cabin shall accommodate 100 passengers,Demonstration,CABIN_SYSTEM,Allocated,High,Mock-up reviewed
+SYS-REQ-014,The navigation system shall have GPS accuracy of ±5 meters,Test,NAV_SYSTEM,Allocated,High,GPS receiver selected
+SYS-REQ-015,The system shall have MTBF of 10000 hours,Analysis,ENTIRE_SYSTEM,Allocated,High,Reliability analysis ongoing
