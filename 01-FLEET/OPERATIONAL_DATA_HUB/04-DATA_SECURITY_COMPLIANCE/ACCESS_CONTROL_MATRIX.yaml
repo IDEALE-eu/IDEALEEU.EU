@@ -1,0 +1,310 @@
+# Access Control Matrix (RBAC/ABAC)
+# Role-Based and Attribute-Based Access Control Rules
+
+# ============================================
+# ROLE DEFINITIONS
+# ============================================
+
+roles:
+  data_viewer:
+    description: "Read-only access to non-confidential data"
+    permissions:
+      - read:public_data
+      - read:internal_data
+    max_classification: INTERNAL
+    mfa_required: false
+
+  data_analyst:
+    description: "Read confidential data, write to curated datasets"
+    permissions:
+      - read:public_data
+      - read:internal_data
+      - read:confidential_data
+      - write:curated_datasets
+    max_classification: CONFIDENTIAL
+    mfa_required: true
+
+  data_engineer:
+    description: "Full access to ingestion pipelines and raw vault"
+    permissions:
+      - read:all_data
+      - write:raw_vault
+      - write:curated_datasets
+      - manage:ingestion_pipelines
+      - manage:schema_registry
+    max_classification: CONFIDENTIAL
+    mfa_required: true
+
+  data_steward:
+    description: "Metadata management, schema approval"
+    permissions:
+      - read:all_data
+      - manage:metadata_registry
+      - approve:schema_changes
+      - manage:quality_rules
+    max_classification: RESTRICTED
+    mfa_required: true
+
+  security_admin:
+    description: "Access control management, audit review"
+    permissions:
+      - manage:access_control
+      - read:audit_logs
+      - manage:encryption_keys
+    max_classification: RESTRICTED
+    mfa_required: true
+
+  ml_engineer:
+    description: "ML model training and deployment"
+    permissions:
+      - read:confidential_data
+      - write:ml_models
+      - read:training_datasets
+      - write:federated_learning
+    max_classification: CONFIDENTIAL
+    mfa_required: true
+    purpose: ML_TRAINING
+
+  mro_analyst:
+    description: "Maintenance and reliability analysis"
+    permissions:
+      - read:anomaly_reports
+      - read:maintenance_events
+      - write:predictive_maintenance
+    max_classification: CONFIDENTIAL
+    mfa_required: true
+    purpose: MAINTENANCE_ANALYSIS
+
+# ============================================
+# ATTRIBUTE-BASED ACCESS CONTROL (ABAC)
+# ============================================
+
+abac_policies:
+  
+  # Policy 1: Classification-Based Access
+  classification_access:
+    description: "User clearance must match or exceed data classification"
+    condition: |
+      user.clearance_level >= resource.classification_level
+    action: ALLOW
+
+  # Policy 2: Export Control Access
+  export_control_access:
+    description: "Export-controlled data requires export clearance"
+    condition: |
+      (resource.export_control == "NONE") OR
+      (resource.export_control == "EAR99" AND user.clearance_level >= "INTERNAL") OR
+      (resource.export_control == "ITAR" AND user.export_clearance == "ITAR")
+    action: ALLOW
+
+  # Policy 3: MFA Requirement
+  mfa_required_for_confidential:
+    description: "MFA required for confidential and above"
+    condition: |
+      (resource.classification_level >= "CONFIDENTIAL") AND
+      (user.mfa_enabled == true)
+    action: ALLOW
+
+  # Policy 4: Purpose-Based Access
+  purpose_restriction:
+    description: "Access purpose must be justified and logged"
+    condition: |
+      (resource.requires_purpose == true) AND
+      (user.access_purpose IN resource.allowed_purposes)
+    action: ALLOW
+
+  # Policy 5: Time-Based Access (Business Hours for Restricted)
+  time_based_access:
+    description: "Restricted data only accessible during business hours"
+    condition: |
+      (resource.classification_level < "RESTRICTED") OR
+      (current_time BETWEEN "08:00" AND "18:00" AND current_day IN ["Mon", "Tue", "Wed", "Thu", "Fri"])
+    action: ALLOW
+
+  # Policy 6: Geo-Fencing
+  geo_restriction:
+    description: "ITAR data only accessible from approved locations"
+    condition: |
+      (resource.export_control != "ITAR") OR
+      (user.location IN ["US", "EU_APPROVED"])
+    action: ALLOW
+
+# ============================================
+# RESOURCE ACCESS RULES
+# ============================================
+
+resources:
+  
+  raw_vault:
+    path: "s3://ideale-raw-vault/"
+    classification: INTERNAL
+    export_control: NONE
+    allowed_roles:
+      - data_engineer
+      - data_steward
+      - security_admin
+    mfa_required: true
+
+  h2_system_data:
+    path: "s3://ideale-raw-vault/*/system=h2/"
+    classification: CONFIDENTIAL
+    export_control: EAR99
+    allowed_roles:
+      - data_engineer
+      - data_analyst
+      - ml_engineer
+      - data_steward
+    requires_purpose: true
+    allowed_purposes:
+      - PERFORMANCE_ANALYSIS
+      - ML_TRAINING
+      - MAINTENANCE_ANALYSIS
+
+  spacecraft_telemetry:
+    path: "s3://ideale-raw-vault/*/platform=SC-*/"
+    classification: CONFIDENTIAL
+    export_control: ITAR
+    allowed_roles:
+      - data_engineer
+      - data_steward
+    export_clearance_required: ITAR
+    geo_restriction: ["US", "UK", "FR"]
+
+  anomaly_reports:
+    path: "s3://ideale-curated/anomaly_reports/"
+    classification: CONFIDENTIAL
+    export_control: NONE
+    allowed_roles:
+      - data_analyst
+      - ml_engineer
+      - mro_analyst
+      - data_steward
+    mfa_required: true
+
+  public_dashboards:
+    path: "s3://ideale-curated/public_dashboards/"
+    classification: PUBLIC
+    export_control: NONE
+    allowed_roles:
+      - data_viewer
+      - data_analyst
+      - data_engineer
+      - ml_engineer
+      - mro_analyst
+    mfa_required: false
+
+  audit_logs:
+    path: "s3://ideale-audit-logs/"
+    classification: RESTRICTED
+    export_control: NONE
+    allowed_roles:
+      - security_admin
+      - data_steward
+    mfa_required: true
+    retention: 7_years
+
+# ============================================
+# ACCESS REQUEST WORKFLOW
+# ============================================
+
+access_request_workflow:
+  
+  # Step 1: Submit Request
+  request_submission:
+    required_fields:
+      - requester_name
+      - role_requested
+      - resources_needed
+      - business_justification
+      - access_duration
+      - manager_approval
+
+  # Step 2: Approval Workflow
+  approval_chain:
+    - level: manager
+      condition: "role.max_classification <= INTERNAL"
+      approval_required: true
+    
+    - level: data_steward
+      condition: "role.max_classification == CONFIDENTIAL"
+      approval_required: true
+    
+    - level: CCB
+      condition: "role.max_classification == RESTRICTED OR export_control == ITAR"
+      approval_required: true
+
+  # Step 3: Access Provisioning
+  provisioning:
+    actions:
+      - create_user_account
+      - assign_role
+      - enable_mfa
+      - grant_resource_access
+      - log_access_grant
+
+  # Step 4: Access Review
+  periodic_review:
+    frequency: QUARTERLY
+    actions:
+      - review_active_users
+      - verify_access_still_needed
+      - revoke_unused_access
+      - log_review_results
+
+# ============================================
+# ACCESS REVOCATION
+# ============================================
+
+access_revocation:
+  
+  triggers:
+    - user_termination
+    - role_change
+    - access_expiration
+    - security_violation
+    - manual_request
+
+  immediate_revocation:
+    actions:
+      - disable_account
+      - revoke_all_permissions
+      - invalidate_tokens
+      - log_revocation
+      - notify_security_team
+
+# ============================================
+# MONITORING AND ALERTING
+# ============================================
+
+monitoring:
+  
+  metrics:
+    - active_users_by_role
+    - access_requests_pending
+    - mfa_enrollment_rate
+    - access_violations
+    - privileged_access_usage
+
+  alerts:
+    - trigger: UNAUTHORIZED_ACCESS_ATTEMPT
+      threshold: 3
+      window: 5_minutes
+      action: NOTIFY_SECURITY_ADMIN
+
+    - trigger: RESTRICTED_DATA_ACCESS
+      condition: "resource.classification == RESTRICTED"
+      action: LOG_AND_NOTIFY
+
+    - trigger: EXPORT_CONTROLLED_DOWNLOAD
+      condition: "resource.export_control IN [ITAR, EAR]"
+      action: LOG_AND_REVIEW
+
+    - trigger: MFA_NOT_ENABLED
+      condition: "user.role.mfa_required AND NOT user.mfa_enabled"
+      action: BLOCK_ACCESS_AND_NOTIFY
+
+# ============================================
+# CHANGE HISTORY
+# ============================================
+
+# Version 1.0 - 2024-Q4 - Initial access control matrix - Security Team

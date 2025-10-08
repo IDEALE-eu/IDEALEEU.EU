@@ -1,0 +1,16 @@
+data_category,retention_period,storage_tier_hot,storage_tier_warm,storage_tier_cold,deletion_after,justification
+Safety Events,Permanent,90 days,N/A,90+ days,Never,Regulatory requirement and audit trail
+Flight Data (Raw),5 years,30 days,30-180 days,180+ days,5 years,Industry standard (FAA Part 121)
+Engine Performance,10 years,30 days,30-365 days,365+ days,10 years,Reliability analysis and warranty claims
+H2 System Telemetry,5 years,30 days,30-180 days,180+ days,5 years,New technology monitoring
+Cabin Environment,1 year,30 days,30-365 days,N/A,1 year,Operational data with low criticality
+Debug Logs,90 days,90 days,N/A,N/A,90 days,Troubleshooting only
+Spacecraft Telemetry,10 years,30 days,30-365 days,365+ days,10 years,Mission lifetime plus analysis
+Anomaly Reports,Permanent,90 days,N/A,90+ days,Never,Trend analysis and ML training
+Maintenance Events,10 years,30 days,30-365 days,365+ days,10 years,Regulatory and reliability requirements
+Performance Benchmarks,5 years,30 days,30-365 days,365+ days,5 years,Design feedback and optimization
+Configuration Baselines,Permanent,365 days,N/A,365+ days,Never,Configuration management and traceability
+Usage Profiles,5 years,30 days,30-180 days,180+ days,5 years,Fleet operations and analysis
+Reliability Datasets,10 years,30 days,30-365 days,365+ days,10 years,RUL estimation and warranty
+Training Datasets (ML),5 years,180 days,180-365 days,365+ days,5 years,Model retraining and validation
+Audit Logs,7 years,365 days,365-1825 days,1825+ days,7 years,Regulatory compliance (SOX GDPR)

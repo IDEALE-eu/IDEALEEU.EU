@@ -1,0 +1,84 @@
+{
+  "type": "record",
+  "name": "SignalNameHere",
+  "namespace": "ideale.fleet.telemetry.{system}",
+  "doc": "Brief description of the signal",
+  "fields": [
+    {
+      "name": "timestamp",
+      "type": "long",
+      "doc": "UTC timestamp (milliseconds since epoch)"
+    },
+    {
+      "name": "platform_id",
+      "type": "string",
+      "doc": "Aircraft registration or spacecraft serial number"
+    },
+    {
+      "name": "signal_name",
+      "type": "string",
+      "default": "signal_name_here",
+      "doc": "Signal identifier (matches EBOM reference)"
+    },
+    {
+      "name": "value",
+      "type": "double",
+      "doc": "Measured value"
+    },
+    {
+      "name": "unit",
+      "type": "string",
+      "default": "SI_unit_here",
+      "doc": "Unit of measurement (SI preferred, exceptions documented)"
+    },
+    {
+      "name": "quality",
+      "type": "int",
+      "default": 0,
+      "doc": "Quality indicator: 0=good, 1=suspect, 2=bad"
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "doc": "Data source identifier (sensor ID, system name)"
+    }
+  ],
+  "metadata": {
+    "schema_id": "signal_name_here",
+    "version": "1.0.0",
+    "status": "DRAFT",
+    "compatibility": "BACKWARD",
+    "ebom_ref": "ATA-XX-YY-ZZZ or ECSS-E-XX-YY",
+    "system": "system_code (e.g., h2, engine, power, thermal)",
+    "platform_type": "aircraft or spacecraft",
+    "sample_rate": "1 Hz (or appropriate rate)",
+    "range": [0, 1000],
+    "owner": "Team Name",
+    "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "updated_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "description": "Detailed description of the signal, including:\n- Physical meaning\n- Measurement method\n- Sensor location\n- Expected behavior\n- Known limitations",
+    "validation_rules": [
+      {
+        "type": "range",
+        "min": 0,
+        "max": 1000,
+        "action": "REJECT"
+      },
+      {
+        "type": "rate_of_change",
+        "max_delta": 100,
+        "time_window": 1,
+        "action": "WARNING"
+      }
+    ],
+    "related_signals": [
+      "related_signal_1",
+      "related_signal_2"
+    ],
+    "tags": [
+      "critical",
+      "safety",
+      "performance"
+    ]
+  }
+}

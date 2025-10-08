@@ -1,0 +1,232 @@
+# Data Contract: Anomaly Feed
+
+## Product Information
+product_id: anomaly_feed
+version: 2.1.0
+status: ACTIVE
+owner: Data Engineering Team
+created_date: 2024-01-10
+updated_date: 2024-09-15
+
+## Description
+Real-time stream of detected anomalies from operational telemetry for predictive maintenance and fault diagnosis.
+
+## Consumers
+- Predictive Maintenance System (../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/)
+- Fleet Operations Dashboard
+- ML Model Training Pipeline
+- Safety Analysis Team
+
+## Service Level Agreement (SLA)
+
+### Refresh Frequency
+frequency: real-time
+latency_target: "< 5 seconds from detection to availability"
+
+### Availability
+target: 99.9%
+recovery_time_objective: "< 15 minutes"
+
+### Data Quality
+false_positive_rate: "< 5%"
+false_negative_rate: "< 0.1% (for CRITICAL anomalies)"
+anomaly_detection_coverage: "> 95% of signals"
+
+## Schema
+
+### Format
+format: json (streaming)
+encoding: UTF-8
+
+### Delivery Mechanisms
+- **Kafka Topic**: `ideale.anomalies.v2`
+- **REST Webhook**: POST to consumer endpoint
+- **S3 Archive**: `s3://ideale-curated/anomaly_reports/`
+
+### Fields
+
+fields:
+  - name: timestamp
+    type: timestamp
+    nullable: false
+    description: "Timestamp of anomaly occurrence (UTC)"
+    format: "ISO 8601 (YYYY-MM-DDTHH:MM:SS.sssZ)"
+    
+  - name: anomaly_id
+    type: string
+    nullable: false
+    description: "Unique anomaly identifier (UUID)"
+    example: "550e8400-e29b-41d4-a716-446655440000"
+    
+  - name: platform_id
+    type: string
+    nullable: false
+    description: "Aircraft registration or spacecraft serial"
+    example: "AC-H2-001"
+    
+  - name: signal_name
+    type: string
+    nullable: false
+    description: "Signal that triggered anomaly"
+    example: "h2_tank_pressure_fwd"
+    
+  - name: signal_value
+    type: double
+    nullable: false
+    description: "Measured value that triggered anomaly"
+    
+  - name: anomaly_type
+    type: string
+    nullable: false
+    enum: ["out_of_range", "drift", "spike", "stuck_sensor", "rate_of_change", "pattern_deviation"]
+    description: "Type of anomaly detected"
+    
+  - name: severity
+    type: string
+    nullable: false
+    enum: ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+    description: "Anomaly severity level"
+    
+  - name: confidence
+    type: double
+    nullable: false
+    range: [0, 1]
+    description: "Detector confidence score"
+    
+  - name: detector_id
+    type: string
+    nullable: false
+    description: "Anomaly detector identifier"
+    example: "3_sigma_v1.0", "isolation_forest_v2.1"
+    
+  - name: expected_range
+    type: array[double]
+    nullable: true
+    description: "Expected value range [min, max]"
+    example: [0, 350]
+    
+  - name: context
+    type: struct
+    nullable: true
+    description: "Additional context about the anomaly"
+    fields:
+      - name: recent_trend
+        type: string
+        description: "Recent trend (increasing, decreasing, stable)"
+      - name: related_signals
+        type: array[string]
+        description: "Related signals also showing anomalies"
+      - name: flight_phase
+        type: string
+        description: "Flight phase when anomaly occurred"
+      - name: mission_elapsed_time
+        type: double
+        description: "Time since flight/mission start (seconds)"
+
+## Compatibility
+
+backward_compatibility: BACKWARD
+compatibility_policy: "Minor version changes (2.x) maintain backward compatibility. New fields added with defaults."
+
+deprecation_notice_days: 90
+migration_support_days: 180
+
+## Quality Guarantees
+
+### Accuracy
+- False positive rate: <5% (validated against labeled test set)
+- False negative rate: <0.1% for CRITICAL anomalies
+- Confidence calibration: Monthly recalibration
+
+### Timeliness
+- Detection latency: <5 seconds from telemetry receipt
+- Delivery latency: <2 seconds from detection to consumer
+- Total end-to-end: <10 seconds
+
+### Completeness
+- All CRITICAL and HIGH anomalies delivered (99.9% guarantee)
+- MEDIUM and LOW anomalies: best-effort delivery
+
+## Consumption Patterns
+
+### Kafka Streaming
+```python
+from kafka import KafkaConsumer
+import json
+
+consumer = KafkaConsumer(
+    'ideale.anomalies.v2',
+    bootstrap_servers=['kafka.ideale.eu:9092'],
+    value_deserializer=lambda m: json.loads(m.decode('utf-8'))
+)
+
+for message in consumer:
+    anomaly = message.value
+    if anomaly['severity'] == 'CRITICAL':
+        trigger_alert(anomaly)
+```
+
+### Webhook Subscription
+```bash
+# Subscribe to webhook notifications
+curl -X POST https://api.ideale.eu/v1/subscriptions \
+  -H "Authorization: Bearer $API_KEY" \
+  -d '{
+    "product_id": "anomaly_feed",
+    "webhook_url": "https://your-service.com/webhook",
+    "filters": {"severity": ["HIGH", "CRITICAL"]}
+  }'
+```
+
+### Batch Archive Query
+```sql
+-- Query archived anomalies
+SELECT 
+  platform_id,
+  signal_name,
+  COUNT(*) AS anomaly_count
+FROM anomaly_reports
+WHERE dt BETWEEN '2024-01-01' AND '2024-01-31'
+  AND severity IN ('HIGH', 'CRITICAL')
+GROUP BY platform_id, signal_name
+ORDER BY anomaly_count DESC;
+```
+
+## Alerting Rules
+
+### CRITICAL Anomalies
+- Action: Immediate notification to Fleet Operations
+- Escalation: If not acknowledged within 5 minutes
+- Channels: Slack, email, SMS
+
+### HIGH Anomalies
+- Action: Notification to on-call engineer
+- Escalation: If not acknowledged within 15 minutes
+- Channels: Slack, email
+
+### MEDIUM/LOW Anomalies
+- Action: Log and batch report (daily summary)
+- Escalation: None
+- Channels: Email digest
+
+## Access Control
+
+classification: CONFIDENTIAL
+export_control: NONE
+required_roles: ["data_analyst", "ml_engineer", "mro_analyst"]
+mfa_required: true
+
+## Support and Contact
+
+owner_email: data-engineering@ideale.eu
+on_call: "Slack: #data-engineering-oncall"
+documentation: "https://docs.ideale.eu/data-hub/anomaly-feed"
+issue_tracker: "JIRA: DATA project"
+
+## Change History
+
+| Version | Date       | Changes                                    | Author             |
+|---------|------------|--------------------------------------------|--------------------|
+| 1.0.0   | 2024-01-10 | Initial release                            | Data Eng Team      |
+| 2.0.0   | 2024-05-01 | Add `context` field (breaking change)      | Data Eng Team      |
+| 2.1.0   | 2024-09-15 | Add `detector_id` field                    | Data Eng Team      |

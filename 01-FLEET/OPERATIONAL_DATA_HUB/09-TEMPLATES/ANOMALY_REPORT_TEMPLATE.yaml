@@ -1,0 +1,85 @@
+# Anomaly Report Template
+
+## Anomaly Information
+anomaly_id: "UUID-GENERATED"
+timestamp: "YYYY-MM-DDTHH:MM:SS.sssZ"
+platform_id: "PLATFORM-ID-HERE"
+signal_name: "signal_name_here"
+
+## Signal Details
+signal_value: 0.0  # Measured value that triggered anomaly
+unit: "unit_here"
+expected_range: [min_value, max_value]
+deviation: 0.0  # Absolute deviation from expected
+
+## Anomaly Classification
+anomaly_type: "SELECT_ONE"  # out_of_range, drift, spike, stuck_sensor, rate_of_change, pattern_deviation
+severity: "SELECT_ONE"  # LOW, MEDIUM, HIGH, CRITICAL
+confidence: 0.95  # Confidence score (0-1)
+
+## Detection Details
+detector_id: "detector_name_vX.Y.Z"
+detector_type: "SELECT_ONE"  # statistical, ml_based, domain_specific
+detection_method: "3_sigma | isolation_forest | domain_rule"
+detection_time: "YYYY-MM-DDTHH:MM:SS.sssZ"
+
+## Context
+context:
+  recent_trend: "SELECT_ONE"  # increasing, decreasing, stable, oscillating
+  flight_phase: "ground | taxi | takeoff | climb | cruise | descent | approach | landing"
+  mission_phase: "pre_launch | launch | orbit | re_entry | landed"
+  mission_elapsed_time: 0  # seconds since flight/mission start
+  related_signals:
+    - signal_name: "related_signal_1"
+      status: "normal | anomalous"
+      value: 0.0
+    - signal_name: "related_signal_2"
+      status: "normal | anomalous"
+      value: 0.0
+
+## Impact Assessment
+impact:
+  safety_impact: "SELECT_ONE"  # none, low, medium, high, critical
+  operational_impact: "SELECT_ONE"  # none, minor, moderate, significant, severe
+  maintenance_required: true | false
+  immediate_action_required: true | false
+
+## Recommendations
+recommendations:
+  - "Recommended action 1 (e.g., Inspect sensor, Review maintenance logs)"
+  - "Recommended action 2 (e.g., Monitor for recurrence)"
+  - "Recommended action 3 (e.g., Schedule maintenance)"
+
+## Follow-up Actions
+actions_taken:
+  - action: "Action description"
+    timestamp: "YYYY-MM-DDTHH:MM:SSZ"
+    performed_by: "user_or_system_id"
+    result: "Action result/outcome"
+
+## Resolution
+resolution:
+  status: "SELECT_ONE"  # open, acknowledged, investigating, resolved, false_positive
+  resolution_time: "YYYY-MM-DDTHH:MM:SSZ"
+  root_cause: "Root cause description (if identified)"
+  corrective_action: "Corrective action taken"
+  preventive_action: "Preventive measures implemented"
+
+## Metadata
+metadata:
+  report_version: "1.0.0"
+  created_by: "system_or_user_id"
+  last_updated: "YYYY-MM-DDTHH:MM:SSZ"
+  tags:
+    - "tag1"
+    - "tag2"
+  linked_reports:
+    - "anomaly_id_1"
+    - "anomaly_id_2"
+  ncr_reference: "NCR-YYYY-XXXX (if NCR created)"
+
+## Comments
+comments:
+  - timestamp: "YYYY-MM-DDTHH:MM:SSZ"
+    author: "user_id"
+    comment: "Comment text here"

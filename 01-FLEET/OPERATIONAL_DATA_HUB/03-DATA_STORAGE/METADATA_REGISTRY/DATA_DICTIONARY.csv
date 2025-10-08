@@ -1,0 +1,23 @@
+signal_id,signal_name,description,unit,data_type,sample_rate,range_min,range_max,ebom_ref,system,platform_type,owner,status,created_date,updated_date
+h2_pressure_fwd,Forward H2 Tank Pressure,Hydrogen tank pressure sensor forward,bar,double,1 Hz,0,350,ATA-28-42-001,h2,aircraft,H2 Propulsion Team,ACTIVE,2024-01-15,2024-01-15
+h2_pressure_aft,Aft H2 Tank Pressure,Hydrogen tank pressure sensor aft,bar,double,1 Hz,0,350,ATA-28-42-002,h2,aircraft,H2 Propulsion Team,ACTIVE,2024-01-15,2024-01-15
+h2_flow_rate_eng1,H2 Flow Rate Engine 1,Hydrogen flow rate to engine 1,kg/s,double,10 Hz,0,5,ATA-71-12-003,h2,aircraft,H2 Propulsion Team,ACTIVE,2024-01-15,2024-01-15
+h2_temp_fuel_line,H2 Fuel Line Temperature,Hydrogen fuel line temperature,K,double,1 Hz,20,300,ATA-28-45-001,h2,aircraft,H2 Propulsion Team,ACTIVE,2024-01-15,2024-01-15
+eng_n1_speed_eng1,Engine N1 Speed Engine 1,Engine 1 N1 rotor speed,percent,double,10 Hz,0,105,ATA-71-21-001,engine,aircraft,Powerplant Team,ACTIVE,2024-01-10,2024-01-10
+eng_egt_eng1,Engine EGT Engine 1,Engine 1 exhaust gas temperature,K,double,10 Hz,200,1500,ATA-71-22-001,engine,aircraft,Powerplant Team,ACTIVE,2024-01-10,2024-01-10
+eng_oil_pressure_eng1,Engine Oil Pressure Engine 1,Engine 1 oil pressure,bar,double,1 Hz,0,10,ATA-79-11-001,engine,aircraft,Powerplant Team,ACTIVE,2024-01-10,2024-01-10
+airspeed_indicated,Indicated Airspeed,Indicated airspeed from pitot-static,kt,double,10 Hz,0,350,ATA-34-12-001,avionics,aircraft,Avionics Team,ACTIVE,2024-01-08,2024-01-08
+altitude_msl,Altitude MSL,Mean sea level altitude,ft,double,10 Hz,-1000,50000,ATA-34-14-001,avionics,aircraft,Avionics Team,ACTIVE,2024-01-08,2024-01-08
+attitude_pitch,Pitch Attitude,Aircraft pitch angle,deg,double,20 Hz,-90,90,ATA-34-20-001,avionics,aircraft,Avionics Team,ACTIVE,2024-01-08,2024-01-08
+attitude_roll,Roll Attitude,Aircraft roll angle,deg,double,20 Hz,-180,180,ATA-34-20-002,avionics,aircraft,Avionics Team,ACTIVE,2024-01-08,2024-01-08
+cabin_temp,Cabin Temperature,Cabin air temperature,C,double,0.1 Hz,-40,50,ATA-21-31-001,cabin,aircraft,Environmental Team,ACTIVE,2024-01-12,2024-01-12
+cabin_pressure,Cabin Pressure,Cabin air pressure,bar,double,0.1 Hz,0.5,1.2,ATA-21-32-001,cabin,aircraft,Environmental Team,ACTIVE,2024-01-12,2024-01-12
+sc_battery_voltage_bus1,Spacecraft Battery Voltage Bus 1,Main bus 1 battery voltage,V,double,1 Hz,28,32,ECSS-E-20-10,power,spacecraft,Power Systems Team,ACTIVE,2024-01-20,2024-01-20
+sc_solar_current_panel1,Spacecraft Solar Current Panel 1,Solar panel 1 output current,A,double,1 Hz,0,15,ECSS-E-20-20,power,spacecraft,Power Systems Team,ACTIVE,2024-01-20,2024-01-20
+sc_radiator_temp,Spacecraft Radiator Temperature,Radiator surface temperature,K,double,0.1 Hz,200,350,ECSS-E-30-10,thermal,spacecraft,Thermal Team,ACTIVE,2024-01-20,2024-01-20
+sc_thrust_thruster1,Spacecraft Thruster 1 Thrust,Thruster 1 output thrust,N,double,10 Hz,0,100,ECSS-E-50-10,propulsion,spacecraft,Propulsion Team,ACTIVE,2024-01-20,2024-01-20
+sc_fuel_mass,Spacecraft Fuel Mass Remaining,Propellant mass remaining,kg,double,0.01 Hz,0,500,ECSS-E-50-20,propulsion,spacecraft,Propulsion Team,ACTIVE,2024-01-20,2024-01-20
+sc_attitude_q0,Spacecraft Attitude Quaternion q0,Attitude quaternion component q0,dimensionless,double,10 Hz,-1,1,ECSS-E-40-10,gnc,spacecraft,GNC Team,ACTIVE,2024-01-20,2024-01-20
+sc_attitude_q1,Spacecraft Attitude Quaternion q1,Attitude quaternion component q1,dimensionless,double,10 Hz,-1,1,ECSS-E-40-11,gnc,spacecraft,GNC Team,ACTIVE,2024-01-20,2024-01-20
+sc_attitude_q2,Spacecraft Attitude Quaternion q2,Attitude quaternion component q2,dimensionless,double,10 Hz,-1,1,ECSS-E-40-12,gnc,spacecraft,GNC Team,ACTIVE,2024-01-20,2024-01-20
+sc_attitude_q3,Spacecraft Attitude Quaternion q3,Attitude quaternion component q3,dimensionless,double,10 Hz,-1,1,ECSS-E-40-13,gnc,spacecraft,GNC Team,ACTIVE,2024-01-20,2024-01-20
