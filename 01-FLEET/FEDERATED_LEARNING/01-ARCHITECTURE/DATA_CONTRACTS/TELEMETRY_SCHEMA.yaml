@@ -1,0 +1,333 @@
+# TELEMETRY_SCHEMA
+
+Standardized telemetry signal definitions for federated learning.
+
+## Schema Version
+
+**Version**: 1.0.0  
+**Last Updated**: 2024-Q4  
+**Status**: Draft  
+**Owner**: AI/ML Team - Data Engineering
+
+## Signal Categories
+
+### Flight Dynamics
+
+```yaml
+signals:
+  - name: airspeed_indicated
+    unit: knots
+    sample_rate: 10 Hz
+    range: [0, 350]
+    type: float32
+    ebom_ref: ATA-34-12-001
+    description: Indicated airspeed from pitot-static system
+    privacy_level: low
+    
+  - name: airspeed_true
+    unit: knots
+    sample_rate: 10 Hz
+    range: [0, 400]
+    type: float32
+    ebom_ref: ATA-34-12-002
+    description: True airspeed corrected for altitude and temperature
+    privacy_level: low
+    
+  - name: altitude_pressure
+    unit: feet
+    sample_rate: 10 Hz
+    range: [0, 50000]
+    type: float32
+    ebom_ref: ATA-34-11-001
+    description: Pressure altitude from static port
+    privacy_level: low
+    
+  - name: altitude_gps
+    unit: feet
+    sample_rate: 1 Hz
+    range: [0, 60000]
+    type: float32
+    ebom_ref: ATA-34-41-001
+    description: GPS altitude (WGS-84 ellipsoid)
+    privacy_level: low
+    
+  - name: vertical_speed
+    unit: feet/min
+    sample_rate: 10 Hz
+    range: [-6000, 6000]
+    type: float32
+    ebom_ref: ATA-34-13-001
+    description: Rate of climb or descent
+    privacy_level: low
+    
+  - name: heading_magnetic
+    unit: degrees
+    sample_rate: 10 Hz
+    range: [0, 360]
+    type: float32
+    ebom_ref: ATA-34-21-001
+    description: Magnetic heading from compass
+    privacy_level: low
+    
+  - name: pitch_angle
+    unit: degrees
+    sample_rate: 100 Hz
+    range: [-90, 90]
+    type: float32
+    ebom_ref: ATA-34-32-001
+    description: Pitch attitude from AHRS
+    privacy_level: low
+    
+  - name: roll_angle
+    unit: degrees
+    sample_rate: 100 Hz
+    range: [-180, 180]
+    type: float32
+    ebom_ref: ATA-34-32-002
+    description: Roll attitude from AHRS
+    privacy_level: low
+```
+
+### Propulsion (Engine Parameters)
+
+```yaml
+signals:
+  - name: engine_1_n1
+    unit: percent
+    sample_rate: 10 Hz
+    range: [0, 110]
+    type: float32
+    ebom_ref: ATA-77-11-001
+    description: Engine 1 fan speed (N1) as percentage of max RPM
+    privacy_level: low
+    
+  - name: engine_1_n2
+    unit: percent
+    sample_rate: 10 Hz
+    range: [0, 110]
+    type: float32
+    ebom_ref: ATA-77-11-002
+    description: Engine 1 core speed (N2) as percentage of max RPM
+    privacy_level: low
+    
+  - name: engine_1_egt
+    unit: celsius
+    sample_rate: 10 Hz
+    range: [0, 1200]
+    type: float32
+    ebom_ref: ATA-77-11-003
+    description: Engine 1 exhaust gas temperature
+    privacy_level: low
+    
+  - name: engine_1_fuel_flow
+    unit: kg/hour
+    sample_rate: 1 Hz
+    range: [0, 5000]
+    type: float32
+    ebom_ref: ATA-77-11-004
+    description: Engine 1 fuel consumption rate
+    privacy_level: low
+    
+  - name: engine_1_oil_pressure
+    unit: psi
+    sample_rate: 1 Hz
+    range: [0, 150]
+    type: float32
+    ebom_ref: ATA-79-11-001
+    description: Engine 1 oil pressure
+    privacy_level: low
+    
+  - name: engine_1_oil_temperature
+    unit: celsius
+    sample_rate: 1 Hz
+    range: [-40, 150]
+    type: float32
+    ebom_ref: ATA-79-11-002
+    description: Engine 1 oil temperature
+    privacy_level: low
+    
+  - name: engine_1_vibration
+    unit: mils
+    sample_rate: 100 Hz
+    range: [0, 10]
+    type: float32
+    ebom_ref: ATA-77-11-005
+    description: Engine 1 vibration (fan bearing)
+    privacy_level: low
+```
+
+### Environmental
+
+```yaml
+signals:
+  - name: outside_air_temperature
+    unit: celsius
+    sample_rate: 1 Hz
+    range: [-70, 60]
+    type: float32
+    ebom_ref: ATA-34-51-001
+    description: Outside air temperature (OAT)
+    privacy_level: low
+    
+  - name: static_pressure
+    unit: hPa
+    sample_rate: 10 Hz
+    range: [100, 1100]
+    type: float32
+    ebom_ref: ATA-34-11-002
+    description: Static air pressure
+    privacy_level: low
+    
+  - name: turbulence_index
+    unit: g-force
+    sample_rate: 100 Hz
+    range: [-2, 2]
+    type: float32
+    ebom_ref: ATA-34-33-001
+    description: Turbulence intensity (vertical acceleration)
+    privacy_level: low
+```
+
+### Fuel System
+
+```yaml
+signals:
+  - name: fuel_quantity_total
+    unit: kg
+    sample_rate: 1 Hz
+    range: [0, 50000]
+    type: float32
+    ebom_ref: ATA-28-11-001
+    description: Total fuel remaining
+    privacy_level: low
+    
+  - name: fuel_quantity_left_tank
+    unit: kg
+    sample_rate: 1 Hz
+    range: [0, 25000]
+    type: float32
+    ebom_ref: ATA-28-11-002
+    description: Fuel quantity in left wing tank
+    privacy_level: low
+    
+  - name: fuel_quantity_right_tank
+    unit: kg
+    sample_rate: 1 Hz
+    range: [0, 25000]
+    type: float32
+    ebom_ref: ATA-28-11-003
+    description: Fuel quantity in right wing tank
+    privacy_level: low
+```
+
+### System Health (Onboard Diagnostics)
+
+```yaml
+signals:
+  - name: cpu_usage
+    unit: percent
+    sample_rate: 0.1 Hz
+    range: [0, 100]
+    type: float32
+    ebom_ref: ATA-45-62-001
+    description: FL client CPU utilization
+    privacy_level: low
+    
+  - name: memory_usage
+    unit: percent
+    sample_rate: 0.1 Hz
+    range: [0, 100]
+    type: float32
+    ebom_ref: ATA-45-62-002
+    description: FL client memory utilization
+    privacy_level: low
+    
+  - name: disk_usage
+    unit: percent
+    sample_rate: 0.01 Hz
+    range: [0, 100]
+    type: float32
+    ebom_ref: ATA-45-62-003
+    description: FL client storage utilization
+    privacy_level: low
+    
+  - name: network_latency
+    unit: milliseconds
+    sample_rate: 0.1 Hz
+    range: [0, 10000]
+    type: float32
+    ebom_ref: ATA-45-62-004
+    description: Round-trip time to aggregation server
+    privacy_level: low
+```
+
+## Data Types
+
+| Type    | Description           | Precision | Range                  |
+|---------|-----------------------|-----------|------------------------|
+| float32 | 32-bit floating point | ~7 digits | ±3.4e38                |
+| float64 | 64-bit floating point | ~15 digits| ±1.7e308               |
+| int16   | 16-bit signed integer | exact     | -32,768 to 32,767      |
+| int32   | 32-bit signed integer | exact     | -2.1e9 to 2.1e9        |
+| uint8   | 8-bit unsigned integer| exact     | 0 to 255               |
+
+## Privacy Levels
+
+| Level  | Description                              | Restrictions                  |
+|--------|------------------------------------------|-------------------------------|
+| low    | Non-sensitive operational data           | No special handling           |
+| medium | Aggregate performance data               | Differential privacy (ε=1.0)  |
+| high   | Flight-specific or location data         | Aggregation only, no raw data |
+
+## Metadata Fields
+
+All signals include the following metadata:
+
+- **name**: Unique signal identifier (snake_case)
+- **unit**: Physical unit (SI or aviation standard)
+- **sample_rate**: Nominal sampling frequency (Hz)
+- **range**: Valid value range [min, max]
+- **type**: Data type (float32, int32, etc.)
+- **ebom_ref**: Reference to Engineering Bill of Materials (ATA chapter)
+- **description**: Human-readable description
+- **privacy_level**: Privacy classification (low, medium, high)
+
+## Validation Rules
+
+### Range Checks
+- Values outside `range` are flagged as outliers
+- 3-sigma rule: Values > 3 standard deviations flagged for review
+
+### Missing Data Handling
+- Missing values encoded as `NaN` (for float) or `NULL` (for int)
+- Maximum 5% missing values per signal per flight
+- Gaps < 10 seconds: Linear interpolation
+- Gaps ≥ 10 seconds: Marked as missing (no imputation)
+
+### Sampling Rate Tolerance
+- Actual sample rate must be within ±10% of nominal rate
+- Out-of-tolerance signals logged to 12-METRICS/
+
+## Schema Evolution
+
+### Versioning
+- **Major version**: Breaking changes (signal removed, range redefined)
+- **Minor version**: Backward-compatible changes (signal added)
+- **Patch version**: Documentation updates, clarifications
+
+### Backward Compatibility
+- Clients must support N-1 schema version (rolling compatibility)
+- Deprecation period: 6 months minimum before removal
+
+## Related Documents
+
+- **LABELS_EVENTS_SCHEMA.yaml** - Event and fault code definitions
+- **CLIENT_TYPES.md** - Client-specific signal access
+- **03-CLIENTS/AIRCRAFT_EDGE/RUNTIME_CONSTRAINTS.md** - Edge device limitations
+- **06-MODELS/DATASETS_INDEX.md** - Dataset provenance
+
+## Change History
+
+| Version | Date    | Changes                          | Author          |
+|---------|---------|----------------------------------|-----------------|
+| 1.0.0   | 2024-Q4 | Initial telemetry schema         | AI/ML Data Team |

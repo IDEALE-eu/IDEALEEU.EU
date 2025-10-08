@@ -1,0 +1,26 @@
+# DATA_CONTRACT_TEMPLATE
+
+Data contract template for FL telemetry signals.
+
+signals:
+  - name: {signal_name}
+    unit: {unit}
+    sample_rate: {Hz}
+    range: [min, max]
+    type: {float32|int32|...}
+    ebom_ref: {ATA-XX-XX-XXX}
+    description: "{Human-readable description}"
+    privacy_level: {low|medium|high}
+    
+  # Add more signals as needed
+
+events:
+  - name: {event_name}
+    code: {CODE-XXX}
+    severity: {info|caution|warning|critical}
+    ata_chapter: {ATA-XX}
+    ncr_link: {NCR-YYYY-XXX or null}
+    description: "{Human-readable description}"
+    action_required: "{Recommended action}"
+    
+  # Add more events as needed
