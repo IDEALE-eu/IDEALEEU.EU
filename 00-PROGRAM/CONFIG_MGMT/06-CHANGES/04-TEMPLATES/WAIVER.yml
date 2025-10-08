@@ -1,0 +1,118 @@
+# Waiver Request Template
+
+# METADATA
+waiv_number: WAIV-XXXX  # Assigned by Configuration Management
+date_submitted: YYYY-MM-DD
+status: Draft  # Draft | Submitted | Under Review | Approved | Rejected
+
+# SUBMITTER INFORMATION
+submitter:
+  name: ""
+  organization: ""
+  email: ""
+  phone: ""
+
+# WAIVER DETAILS
+waiver:
+  requirement_waived: ""  # Requirement or specification being waived
+  affected_items:
+    - part_number: ""
+      description: ""
+      configurations: []  # All or specific configurations
+  
+  scope: All  # All | Production | Specific configurations
+  
+  justification: |
+    Strong engineering justification for permanent waiver.
+    Why is permanent acceptance appropriate?
+    What analysis supports this waiver?
+  
+  description: |
+    Describe the non-conformance.
+    What is the actual condition vs. required condition?
+  
+  engineering_analysis: |
+    Detailed technical analysis supporting waiver.
+    Show that requirement can be relaxed without unacceptable impact.
+
+# IMPACT ASSESSMENT
+impact:
+  safety:
+    impact_level: None  # Must be None or Low for waiver approval
+    description: ""
+    analysis_reference: ""
+  
+  performance:
+    affected_parameters: []
+    impact_description: ""
+    acceptable: true  # Must be true
+  
+  certification:
+    authority: ""  # FAA | EASA | ESA | None
+    coordination_required: false  # true | false
+    authority_approval_required: false  # true | false
+    impact_description: ""
+  
+  customer:
+    customer_impact: ""
+    customer_approval_required: false  # true | false
+
+# VERIFICATION
+verification:
+  modified_requirement: ""  # If requirement is modified rather than eliminated
+  verification_approach: ""  # How will modified requirement be verified
+
+# APPROVALS
+approvals:
+  engineering_review:
+    reviewer: ""
+    date: ""
+    recommendation: ""  # Approve | Reject
+    comments: ""
+  
+  systems_engineering_review:
+    reviewer: ""
+    date: ""
+    recommendation: ""
+    comments: ""
+  
+  quality_review:
+    reviewer: ""
+    date: ""
+    recommendation: ""
+    comments: ""
+  
+  safety_review:
+    reviewer: ""
+    date: ""
+    recommendation: ""
+    comments: ""
+  
+  ccb_disposition:
+    meeting_date: ""
+    decision: ""  # Approved | Rejected
+    conditions: ""
+    ccb_chair: ""
+  
+  customer_approval:
+    required: false  # true | false
+    customer_representative: ""
+    approval_date: ""
+    comments: ""
+
+# BASELINE UPDATE
+baseline_update:
+  baseline_affected: ""  # SRR | PDR | CDR | etc.
+  baseline_updated: false  # true | false
+  requirements_database_updated: false  # true | false
+  specifications_updated: false  # true | false
+
+# NOTES
+notes: |
+  Additional information or comments.
+
+# ATTACHMENTS
+attachments:
+  - filename: ""
+    description: ""
+    location: ""

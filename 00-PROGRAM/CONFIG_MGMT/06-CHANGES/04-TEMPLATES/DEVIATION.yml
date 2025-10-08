@@ -1,0 +1,110 @@
+# Deviation Request Template
+
+# METADATA
+dev_number: DEV-XXXX  # Assigned by Configuration Management
+date_submitted: YYYY-MM-DD
+status: Draft  # Draft | Submitted | Under Review | Approved | Rejected | Closed
+
+# SUBMITTER INFORMATION
+submitter:
+  name: ""
+  organization: ""
+  email: ""
+  phone: ""
+
+# DEVIATION DETAILS
+deviation:
+  requirement_deviated: ""  # Requirement or specification being deviated
+  affected_items:
+    - part_number: ""
+      description: ""
+      serial_numbers: []  # List specific serial numbers
+      lot_numbers: []  # Or lot numbers
+      quantity: 0
+  
+  scope: ""  # Prototype | Test Article | Production | Other
+  
+  justification: |
+    Why is this deviation necessary?
+    What prevents meeting the full requirement?
+  
+  description: |
+    Describe the non-conformance.
+    What is the actual condition vs. required condition?
+
+# IMPACT ASSESSMENT
+impact:
+  safety:
+    impact_level: None  # None | Low | Medium | High
+    description: ""
+    mitigation: ""
+  
+  performance:
+    affected_parameters: []
+    impact_description: ""
+  
+  interfaces:
+    affected_interfaces: []
+    compatibility_maintained: true  # true | false
+  
+  certification:
+    authority: ""  # FAA | EASA | ESA | None
+    notification_required: false  # true | false
+    impact_description: ""
+
+# EFFECTIVITY
+effectivity:
+  serial_numbers: []  # List specific SNs
+  lot_numbers: []  # Or lot numbers
+  quantity: 0
+  duration: ""  # One-time | Until ECO-YYYY-#### | Other
+  expiration_date: ""  # If time-limited
+
+# FUTURE DISPOSITION
+future_disposition:
+  permanent_fix_planned: false  # true | false
+  ecr_to_be_generated: false  # true | false
+  production_acceptance: false  # true | false
+
+# APPROVALS
+approvals:
+  engineering_review:
+    reviewer: ""
+    date: ""
+    recommendation: ""  # Approve | Reject
+    comments: ""
+  
+  quality_review:
+    reviewer: ""
+    date: ""
+    recommendation: ""
+    comments: ""
+  
+  safety_review:
+    reviewer: ""
+    date: ""
+    recommendation: ""
+    comments: ""
+  
+  ccb_disposition:
+    meeting_date: ""
+    decision: ""  # Approved | Rejected
+    conditions: ""
+    ccb_chair: ""
+
+# TRACKING
+tracking:
+  as_built_updated: false  # true | false
+  configuration_records_updated: false  # true | false
+  closure_date: ""
+  closure_notes: ""
+
+# NOTES
+notes: |
+  Additional information or comments.
+
+# ATTACHMENTS
+attachments:
+  - filename: ""
+    description: ""
+    location: ""

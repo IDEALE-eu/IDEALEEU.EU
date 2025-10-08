@@ -1,0 +1,94 @@
+# Engineering Change Order (ECO) - Example
+
+# METADATA
+eco_number: ECO-2025-0007
+ecr_number: ECR-2025-0001
+date_issued: 2025-01-26
+status: In Progress
+
+# AUTHORIZATION
+ccb_approval:
+  meeting_date: "2025-01-26"
+  meeting_number: "CCB-2025-004"
+  ccb_chair: "Dr. Robert Johnson"
+  configuration_manager: "Mary Config"
+
+# CHANGE SUMMARY
+change_summary:
+  title: "Wing Spar Material Change - Al 7075 to Al 7050"
+  description: |
+    Change main wing spar material from Al 7075-T6 to Al 7050-T7451
+    to improve fatigue resistance and stress corrosion cracking resistance.
+    
+classification: Class I
+priority: High
+
+# AFFECTED CONFIGURATION ITEMS
+affected_items:
+  - part_number: "WING-SPAR-001"
+    description: "Main wing spar"
+    from_revision: "Rev A"
+    to_revision: "Rev B"
+    change_description: "Material change: Al 7075-T6 → Al 7050-T7451"
+
+# IMPLEMENTATION PLAN
+implementation:
+  implementation_team:
+    lead: "Jane Engineer"
+    members:
+      - name: "Bob Structures"
+        role: "Structural Analysis"
+      - name: "Carol Quality"
+        role: "Quality Assurance"
+        
+  schedule:
+    start_date: "2025-02-01"
+    target_completion: "2025-04-15"
+    milestones:
+      - milestone: "Drawing update complete"
+        date: "2025-02-15"
+        responsible: "Jane Engineer"
+        status: "Not Started"
+      - milestone: "Material procurement"
+        date: "2025-03-01"
+        responsible: "Supply Chain"
+        status: "Not Started"
+      - milestone: "Verification testing complete"
+        date: "2025-04-10"
+        responsible: "Test Engineering"
+        status: "Not Started"
+        
+  effectivity:
+    type: "Serial Number"
+    effective_point: "SN 006 and subsequent"
+    notes: "Retrofit not required for existing aircraft"
+
+# VERIFICATION AND VALIDATION
+verification:
+  verification_plan:
+    methods:
+      - method: "Test"
+        description: "Fatigue testing per ASTM E466"
+        success_criteria: "≥50,000 cycles to failure"
+        responsible: "Test Engineering"
+      - method: "Analysis"
+        description: "Structural analysis update"
+        success_criteria: "Safety margin ≥1.5"
+        responsible: "Structural Analysis"
+
+# CONFIGURATION MANAGEMENT
+configuration_management:
+  baseline_impact:
+    affected_baseline: "PDR"
+    baseline_update_required: "Yes"
+    
+  traceability:
+    requirements: ["REQ-STR-042"]
+    related_ecos: []
+    supersedes: []
+
+# NOTES
+notes: |
+  Material change improves fatigue life by 50%.
+  No geometry changes required.
+  Manufacturing process remains the same.
