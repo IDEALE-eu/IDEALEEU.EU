@@ -8,7 +8,7 @@ Maintain tamper-proof audit logs for FL system events to meet regulatory require
 
 ## Contents
 
-- **00-README.md** - This file
+- [**00-README.md**](00-README.md) - This file
 - (Audit logs generated automatically, stored in secure location)
 
 ## Audit Log Events
@@ -74,5 +74,5 @@ Maintain tamper-proof audit logs for FL system events to meet regulatory require
 
 ## Related Documents
 
-- **../../11-COMPLIANCE/** - Compliance frameworks (DO-178C, GDPR)
-- **../../10-GOVERNANCE/ETHICS_REVIEW.md** - EU AI Act compliance
+- [**../../11-COMPLIANCE/**](../../11-COMPLIANCE/) -  Compliance frameworks (DO-178C, GDPR)
+- [**../../10-GOVERNANCE/ETHICS_REVIEW.md**](../../10-GOVERNANCE/ETHICS_REVIEW.md) - EU AI Act compliance

@@ -26,5 +26,5 @@ Experiment tracking with MLflow, Weights & Biases (W&B), or custom tools.
 
 ## Related Documents
 
-- **AB_TESTS/** - A/B test experiment designs
-- **../12-METRICS/KPI_DEFINITIONS.md** - Metric definitions
+- [**AB_TESTS/**](AB_TESTS/) -  A/B test experiment designs
+- [**../12-METRICS/KPI_DEFINITIONS.md**](../12-METRICS/KPI_DEFINITIONS.md) - Metric definitions

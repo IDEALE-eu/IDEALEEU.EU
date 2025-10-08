@@ -28,7 +28,7 @@ Update & Enablement approval workflow policy.
 
 **Reviewer**: Safety Engineering  
 **Criteria**:
-- [ ] Safety gates passed (see ../../08-VALIDATION_VVP/SAFETY_GATES.md)
+- [ ] Safety gates passed (see [../../08-VALIDATION_VVP/SAFETY_GATES.md](../../08-VALIDATION_VVP/SAFETY_GATES.md))
 - [ ] No flight-critical interference
 - [ ] Rollback tested
 
@@ -48,5 +48,5 @@ Update & Enablement approval workflow policy.
 
 ## Related Documents
 
-- **../CCB_HANDOFF.md** - CCB integration
-- **../../09-DEPLOYMENT/** - Deployment procedures
+- [**../CCB_HANDOFF.md**](../CCB_HANDOFF.md) - CCB integration
+- [**../../09-DEPLOYMENT/**](../../09-DEPLOYMENT/) -  Deployment procedures

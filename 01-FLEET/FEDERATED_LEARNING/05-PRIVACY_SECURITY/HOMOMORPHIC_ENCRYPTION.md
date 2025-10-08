@@ -22,4 +22,4 @@ Homomorphic encryption allows computation on encrypted data without decryption.
 
 ## Related Documents
 
-- **SECURE_AGGREGATION.md** - More practical alternative
+- [**SECURE_AGGREGATION.md**](SECURE_AGGREGATION.md) - More practical alternative

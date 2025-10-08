@@ -33,5 +33,5 @@ Secure aggregation ensures server cannot see individual client updates, only agg
 
 ## Related Documents
 
-- **DP_SGD.md** - Combine with differential privacy
-- **THREAT_MODEL.md** - Threat scenarios
+- [**DP_SGD.md**](DP_SGD.md) - Combine with differential privacy
+- [**THREAT_MODEL.md**](THREAT_MODEL.md) - Threat scenarios

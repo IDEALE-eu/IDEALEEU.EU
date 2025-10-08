@@ -67,6 +67,6 @@ Security sandboxing and isolation for aircraft edge FL clients.
 
 ## Related Documents
 
-- **../../05-PRIVACY_SECURITY/THREAT_MODEL.md** - Threat analysis
-- **RUNTIME_CONSTRAINTS.md** - Resource limits
-- **../../11-COMPLIANCE/AVIATION.md** - DO-178C compliance
+- [**../../05-PRIVACY_SECURITY/THREAT_MODEL.md**](../../05-PRIVACY_SECURITY/THREAT_MODEL.md) - Threat analysis
+- [**RUNTIME_CONSTRAINTS.md**](RUNTIME_CONSTRAINTS.md) - Resource limits
+- [**../../11-COMPLIANCE/AVIATION.md**](../../11-COMPLIANCE/AVIATION.md) - DO-178C compliance

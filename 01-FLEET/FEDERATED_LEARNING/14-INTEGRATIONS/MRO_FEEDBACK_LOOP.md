@@ -49,6 +49,6 @@ ECR (if design issue) → FL Model Retrain → Deployment → Fleet Operations
 
 ## Related Documents
 
-- **../../04-ALGORITHMS/DRIFT_DETECTION.md** - Anomaly detection
-- **../../../01-FLEET/MRO_STRATEGY/** - MRO strategy and NCR workflow
-- **../../../00-PROGRAM/CONFIG_MGMT/06-CHANGES/ECR/** - ECR process
+- [**../../04-ALGORITHMS/DRIFT_DETECTION.md**](../../04-ALGORITHMS/DRIFT_DETECTION.md) - Anomaly detection
+- [**../../../01-FLEET/MRO_STRATEGY/**](../../../01-FLEET/MRO_STRATEGY/) -  MRO strategy and NCR workflow
+- [**../../../00-PROGRAM/CONFIG_MGMT/06-CHANGES/ECR/**](../../../00-PROGRAM/CONFIG_MGMT/06-CHANGES/ECR/) -  ECR process

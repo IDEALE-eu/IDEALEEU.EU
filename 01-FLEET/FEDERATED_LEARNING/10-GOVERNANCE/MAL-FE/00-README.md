@@ -8,8 +8,8 @@ Define approval process for FL experiments, A/B tests, and shadow deployments th
 
 ## Contents
 
-- **00-README.md** - This file
-- **POLICY.md** - MAL-FE policy and approval workflow
+- [**00-README.md**](00-README.md) - This file
+- [**POLICY.md**](POLICY.md) - MAL-FE policy and approval workflow
 
 ## Scope
 
@@ -27,5 +27,5 @@ MAL-FE applies to:
 
 ## Related Documents
 
-- **POLICY.md** - Detailed approval workflow
-- **../../07-EXPERIMENTS/** - Experiment tracking and A/B tests
+- [**POLICY.md**](POLICY.md) - Detailed approval workflow
+- [**../../07-EXPERIMENTS/**](../../07-EXPERIMENTS/) -  Experiment tracking and A/B tests

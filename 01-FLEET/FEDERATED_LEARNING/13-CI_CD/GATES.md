@@ -51,12 +51,12 @@ CI/CD quality gates for FL model pipelines.
 
 **Checks:**
 - [ ] ECR submitted and approved
-- [ ] Safety gates passed (see ../../08-VALIDATION_VVP/SAFETY_GATES.md)
+- [ ] Safety gates passed (see [../../08-VALIDATION_VVP/SAFETY_GATES.md](../../08-VALIDATION_VVP/SAFETY_GATES.md))
 - [ ] Traceability complete
 
 **Enforcement**: Blocking (manual approval)
 
 ## Related Documents
 
-- **../../08-VALIDATION_VVP/** - Validation procedures
-- **../../10-GOVERNANCE/CCB_HANDOFF.md** - CCB approval process
+- [**../../08-VALIDATION_VVP/**](../../08-VALIDATION_VVP/) -  Validation procedures
+- [**../../10-GOVERNANCE/CCB_HANDOFF.md**](../../10-GOVERNANCE/CCB_HANDOFF.md) - CCB approval process

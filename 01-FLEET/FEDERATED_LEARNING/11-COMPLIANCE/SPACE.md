@@ -31,5 +31,5 @@ If FL deployed on spacecraft or satellite systems:
 
 ## Related Documents
 
-- **../../08-VALIDATION_VVP/** - Verification and validation
-- **../../../00-PROGRAM/CONFIG_MGMT/** - Configuration management
+- [**../../08-VALIDATION_VVP/**](../../08-VALIDATION_VVP/) -  Verification and validation
+- [**../../../00-PROGRAM/CONFIG_MGMT/**](../../../00-PROGRAM/CONFIG_MGMT/) -  Configuration management

@@ -82,7 +82,7 @@ Client selection determines which aircraft, ground stations, and simulation rigs
 **Aggregation Weights:**
 - Clients with higher data quality or quantity receive higher weights
 - FedAvg: Weight = `num_local_samples / total_samples`
-- FedProx: Weight adjusted for system heterogeneity (see 04-ALGORITHMS/FEDPROX.md)
+- FedProx: Weight adjusted for system heterogeneity (see [04-ALGORITHMS/FEDPROX.md](04-ALGORITHMS/FEDPROX.md))
 
 **Resource Normalization:**
 - Aircraft (limited compute): Weight × 1.0
@@ -193,7 +193,7 @@ where α=0.4, β=0.3, γ=0.3
 
 **During Upload:**
 - If client upload fails (timeout or network error):
-  - Retry with exponential backoff (see SCHEDULER.md)
+  - Retry with exponential backoff (see [SCHEDULER.md](SCHEDULER.md))
   - If all retries fail, exclude from current round
   - Client queued for next round
 
@@ -207,7 +207,7 @@ where α=0.4, β=0.3, γ=0.3
 
 **Criteria:**
 - Client repeatedly sends malicious or corrupted updates
-- Client fails Byzantine detection (see 04-ALGORITHMS/ROBUST_AGGREGATION.md)
+- Client fails Byzantine detection (see [04-ALGORITHMS/ROBUST_AGGREGATION.md](04-ALGORITHMS/ROBUST_AGGREGATION.md))
 - Client violates security policies (unauthorized access attempts)
 
 **Process:**
@@ -242,15 +242,15 @@ where α=0.4, β=0.3, γ=0.3
 
 **Tracking:**
 - Logged to 12-METRICS/TRAINING_METRICS.csv
-- Dashboard: Grafana (see 12-METRICS/KPI_DEFINITIONS.md)
+- Dashboard: Grafana (see [12-METRICS/KPI_DEFINITIONS.md](12-METRICS/KPI_DEFINITIONS.md))
 
 ## Related Documents
 
-- **SCHEDULER.md** - Training round schedules and timing
-- **CONNECTIVITY_PROFILES.md** - Network availability for clients
-- **01-ARCHITECTURE/CLIENT_TYPES.md** - Client capabilities and constraints
-- **04-ALGORITHMS/ROBUST_AGGREGATION.md** - Byzantine-resilient aggregation
-- **12-METRICS/KPI_DEFINITIONS.md** - Selection performance metrics
+- [**SCHEDULER.md**](SCHEDULER.md) - Training round schedules and timing
+- [**CONNECTIVITY_PROFILES.md**](CONNECTIVITY_PROFILES.md) - Network availability for clients
+- [**01-ARCHITECTURE/CLIENT_TYPES.md**](01-ARCHITECTURE/CLIENT_TYPES.md) - Client capabilities and constraints
+- [**04-ALGORITHMS/ROBUST_AGGREGATION.md**](04-ALGORITHMS/ROBUST_AGGREGATION.md) - Byzantine-resilient aggregation
+- [**12-METRICS/KPI_DEFINITIONS.md**](12-METRICS/KPI_DEFINITIONS.md) - Selection performance metrics
 
 ## Change History
 

@@ -53,6 +53,6 @@ GDPR compliance: Art. 5, retention, DPO consultation.
 
 ## Related Documents
 
-- **../../05-PRIVACY_SECURITY/PSEUDONYMISATION.md** - Pseudonymisation policy
-- **../../05-PRIVACY_SECURITY/DP_SGD.md** - Differential privacy
-- **../../06-MODELS/DATASETS_INDEX.md** - Dataset provenance
+- [**../../05-PRIVACY_SECURITY/PSEUDONYMISATION.md**](../../05-PRIVACY_SECURITY/PSEUDONYMISATION.md) - Pseudonymisation policy
+- [**../../05-PRIVACY_SECURITY/DP_SGD.md**](../../05-PRIVACY_SECURITY/DP_SGD.md) - Differential privacy
+- [**../../06-MODELS/DATASETS_INDEX.md**](../../06-MODELS/DATASETS_INDEX.md) - Dataset provenance

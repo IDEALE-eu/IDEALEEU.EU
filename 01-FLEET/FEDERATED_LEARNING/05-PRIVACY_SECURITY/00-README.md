@@ -8,12 +8,12 @@ This directory defines privacy-preserving mechanisms (differential privacy, secu
 
 ## Contents
 
-- **00-README.md** - This file
-- **DP_SGD.md** - Differential Privacy via DP-SGD ((ε, δ) budgets, accountant logs)
-- **SECURE_AGGREGATION.md** - Threshold Paillier, MPC
-- **HOMOMORPHIC_ENCRYPTION.md** - Optional for high-sensitivity models
-- **PSEUDONYMISATION.md** - GDPR-compliant client IDs (no tail numbers in clear)
-- **THREAT_MODEL.md** - STRIDE analysis, attack surface map
+- [**00-README.md**](00-README.md) - This file
+- [**DP_SGD.md**](DP_SGD.md) - Differential Privacy via DP-SGD ((ε, δ) budgets, accountant logs)
+- [**SECURE_AGGREGATION.md**](SECURE_AGGREGATION.md) - Threshold Paillier, MPC
+- [**HOMOMORPHIC_ENCRYPTION.md**](HOMOMORPHIC_ENCRYPTION.md) - Optional for high-sensitivity models
+- [**PSEUDONYMISATION.md**](PSEUDONYMISATION.md) - GDPR-compliant client IDs (no tail numbers in clear)
+- [**THREAT_MODEL.md**](THREAT_MODEL.md) - STRIDE analysis, attack surface map
 
 ## Privacy-Security Trade-offs
 
@@ -23,6 +23,6 @@ This directory defines privacy-preserving mechanisms (differential privacy, secu
 
 ## Related Documents
 
-- **../04-ALGORITHMS/** - Integration with FL algorithms
-- **../11-COMPLIANCE/PRIVACY.md** - GDPR compliance
-- **../16-INCIDENT_RESPONSE/** - Security incident handling
+- [**../04-ALGORITHMS/**](../04-ALGORITHMS/) -  Integration with FL algorithms
+- [**../11-COMPLIANCE/PRIVACY.md**](../11-COMPLIANCE/PRIVACY.md) - GDPR compliance
+- [**../16-INCIDENT_RESPONSE/**](../16-INCIDENT_RESPONSE/) -  Security incident handling

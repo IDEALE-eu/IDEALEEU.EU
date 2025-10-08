@@ -8,8 +8,8 @@ Define key performance indicators (KPIs) for FL system health, training performa
 
 ## Contents
 
-- **00-README.md** - This file
-- **KPI_DEFINITIONS.md** - KPI definitions (participation, round time, ε-budget)
+- [**00-README.md**](00-README.md) - This file
+- [**KPI_DEFINITIONS.md**](KPI_DEFINITIONS.md) - KPI definitions (participation, round time, ε-budget)
 - **TRAINING_METRICS.csv** - Aggregated training metrics (privacy-preserving)
 - **INFERENCE_METRICS.csv** - Inference metrics (AUC, RMSE, CPU%, memory)
 - **DRIFT_ALERTS.csv** - Drift alerts from ../../04-ALGORITHMS/DRIFT_DETECTION.md
@@ -43,9 +43,9 @@ Define key performance indicators (KPIs) for FL system health, training performa
 ## Dashboards
 
 - **Grafana**: Real-time FL metrics
-- **MLflow**: Experiment tracking (see ../../07-EXPERIMENTS/TRACKING.md)
+- **MLflow**: Experiment tracking (see [../../07-EXPERIMENTS/TRACKING.md](../../07-EXPERIMENTS/TRACKING.md))
 
 ## Related Documents
 
-- **KPI_DEFINITIONS.md** - Detailed metric definitions
-- **../../04-ALGORITHMS/DRIFT_DETECTION.md** - Drift detection methods
+- [**KPI_DEFINITIONS.md**](KPI_DEFINITIONS.md) - Detailed metric definitions
+- [**../../04-ALGORITHMS/DRIFT_DETECTION.md**](../../04-ALGORITHMS/DRIFT_DETECTION.md) - Drift detection methods

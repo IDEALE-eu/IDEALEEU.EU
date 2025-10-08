@@ -8,11 +8,11 @@ This directory defines how FL training rounds are coordinated across distributed
 
 ## Contents
 
-- **00-README.md** - This file
-- **SCHEDULER.md** - Training round schedules (e.g., weekly during SATCOM windows)
-- **CLIENT_SELECTION.md** - Fairness, eligibility criteria, and selection algorithms
-- **CONNECTIVITY_PROFILES.md** - Bandwidth caps, blackout recovery (LEO vs. GEO)
-- **JOB_SPECS/** - FL job specifications and templates
+- [**00-README.md**](00-README.md) - This file
+- [**SCHEDULER.md**](SCHEDULER.md) - Training round schedules (e.g., weekly during SATCOM windows)
+- [**CLIENT_SELECTION.md**](CLIENT_SELECTION.md) - Fairness, eligibility criteria, and selection algorithms
+- [**CONNECTIVITY_PROFILES.md**](CONNECTIVITY_PROFILES.md) - Bandwidth caps, blackout recovery (LEO vs. GEO)
+- [**JOB_SPECS/**](JOB_SPECS/) -  FL job specifications and templates
 
 ## Orchestration Architecture
 
@@ -75,20 +75,20 @@ Scheduler  Client  Connectivity
 ## Integration Points
 
 ### Upstream Dependencies
-- **01-ARCHITECTURE/FL_TOPOLOGY.md** - Network topology and communication patterns
-- **01-ARCHITECTURE/CLIENT_TYPES.md** - Client capabilities and constraints
-- **06-MODELS/REGISTRY.md** - Model versioning and storage
+- [**01-ARCHITECTURE/FL_TOPOLOGY.md**](01-ARCHITECTURE/FL_TOPOLOGY.md) - Network topology and communication patterns
+- [**01-ARCHITECTURE/CLIENT_TYPES.md**](01-ARCHITECTURE/CLIENT_TYPES.md) - Client capabilities and constraints
+- [**06-MODELS/REGISTRY.md**](06-MODELS/REGISTRY.md) - Model versioning and storage
 
 ### Downstream Consumers
-- **03-CLIENTS/** - Receives job specifications and training schedules
-- **04-ALGORITHMS/** - Executes aggregation algorithms
-- **12-METRICS/** - Reports orchestration metrics (participation rate, round time)
+- [**03-CLIENTS/**](03-CLIENTS/) -  Receives job specifications and training schedules
+- [**04-ALGORITHMS/**](04-ALGORITHMS/) -  Executes aggregation algorithms
+- [**12-METRICS/**](12-METRICS/) -  Reports orchestration metrics (participation rate, round time)
 
 ## Related Documents
 
-- **03-CLIENTS/AIRCRAFT_EDGE/RUNTIME_CONSTRAINTS.md** - Client-side resource limits
-- **09-DEPLOYMENT/ROLLOUT_STRATEGY.md** - Model deployment procedures
-- **10-GOVERNANCE/MAL-FE/POLICY.md** - Fleet experiments approval workflow
+- [**03-CLIENTS/AIRCRAFT_EDGE/RUNTIME_CONSTRAINTS.md**](03-CLIENTS/AIRCRAFT_EDGE/RUNTIME_CONSTRAINTS.md) - Client-side resource limits
+- [**09-DEPLOYMENT/ROLLOUT_STRATEGY.md**](09-DEPLOYMENT/ROLLOUT_STRATEGY.md) - Model deployment procedures
+- [**10-GOVERNANCE/MAL-FE/POLICY.md**](10-GOVERNANCE/MAL-FE/POLICY.md) - Fleet experiments approval workflow
 
 ## Status
 

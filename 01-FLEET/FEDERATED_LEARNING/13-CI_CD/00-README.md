@@ -8,9 +8,9 @@ Define continuous integration and continuous deployment (CI/CD) pipelines for FL
 
 ## Contents
 
-- **00-README.md** - This file
-- **GATES.md** - Quality gates (reproducibility, DP check, SBOM scan)
-- **PIPELINES/** - GitLab/Jenkins pipelines (air-gapped compatible)
+- [**00-README.md**](00-README.md) - This file
+- [**GATES.md**](GATES.md) - Quality gates (reproducibility, DP check, SBOM scan)
+- [**PIPELINES/**](PIPELINES/) -  GitLab/Jenkins pipelines (air-gapped compatible)
 
 ## CI/CD Stages
 
@@ -36,7 +36,7 @@ Define continuous integration and continuous deployment (CI/CD) pipelines for FL
 
 - **Trigger**: Security stage passed + CCB approval
 - **Actions**: Deploy to canary clients (5 aircraft)
-- **Gates**: Canary KPIs passed (see ../../09-DEPLOYMENT/CANARY_ROLLOUTS.md)
+- **Gates**: Canary KPIs passed (see [../../09-DEPLOYMENT/CANARY_ROLLOUTS.md](../../09-DEPLOYMENT/CANARY_ROLLOUTS.md))
 
 ### Stage 5: Deploy (Full)
 
@@ -46,6 +46,6 @@ Define continuous integration and continuous deployment (CI/CD) pipelines for FL
 
 ## Related Documents
 
-- **GATES.md** - Quality gate definitions
-- **PIPELINES/** - Pipeline configurations
-- **../../09-DEPLOYMENT/** - Deployment procedures
+- [**GATES.md**](GATES.md) - Quality gate definitions
+- [**PIPELINES/**](PIPELINES/) -  Pipeline configurations
+- [**../../09-DEPLOYMENT/**](../../09-DEPLOYMENT/) -  Deployment procedures

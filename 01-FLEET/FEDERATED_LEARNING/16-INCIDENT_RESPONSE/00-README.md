@@ -8,10 +8,10 @@ Define incident detection, containment, communication, and rollback procedures f
 
 ## Contents
 
-- **00-README.md** - This file
-- **RUNBOOK.md** - Incident response runbook (Detection → Containment → Comms → Rollback)
-- **POSTMORTEMS/** - Blameless postmortems (action-oriented)
-- **AUDIT_LOGS/** - Immutable, signed logs for regulators
+- [**00-README.md**](00-README.md) - This file
+- [**RUNBOOK.md**](RUNBOOK.md) - Incident response runbook (Detection → Containment → Comms → Rollback)
+- [**POSTMORTEMS/**](POSTMORTEMS/) -  Blameless postmortems (action-oriented)
+- [**AUDIT_LOGS/**](AUDIT_LOGS/) -  Immutable, signed logs for regulators
 
 ## Incident Types
 
@@ -44,6 +44,6 @@ Define incident detection, containment, communication, and rollback procedures f
 
 ## Related Documents
 
-- **RUNBOOK.md** - Incident response procedures
-- **POSTMORTEMS/** - Postmortem reports
-- **AUDIT_LOGS/** - Audit trail for compliance
+- [**RUNBOOK.md**](RUNBOOK.md) - Incident response procedures
+- [**POSTMORTEMS/**](POSTMORTEMS/) -  Postmortem reports
+- [**AUDIT_LOGS/**](AUDIT_LOGS/) -  Audit trail for compliance

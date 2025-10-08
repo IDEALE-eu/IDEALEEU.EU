@@ -70,10 +70,10 @@ FEDERATED_LEARNING/
 
 ## Related Documents
 
-- **00-PROGRAM/DIGITAL_THREAD/** - Digital thread integration points
-- **00-PROGRAM/CONFIG_MGMT/** - Configuration and baseline management
-- **01-FLEET/MRO_STRATEGY/** - Maintenance feedback loop
-- **01-FLEET/OPERATIONAL_DATA_HUB/** - Fleet telemetry data sources
+- [**00-PROGRAM/DIGITAL_THREAD/**](00-PROGRAM/DIGITAL_THREAD/) -  Digital thread integration points
+- [**00-PROGRAM/CONFIG_MGMT/**](00-PROGRAM/CONFIG_MGMT/) -  Configuration and baseline management
+- [**01-FLEET/MRO_STRATEGY/**](01-FLEET/MRO_STRATEGY/) -  Maintenance feedback loop
+- [**01-FLEET/OPERATIONAL_DATA_HUB/**](01-FLEET/OPERATIONAL_DATA_HUB/) -  Fleet telemetry data sources
 
 ## Status
 

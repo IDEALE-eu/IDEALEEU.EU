@@ -8,13 +8,13 @@ This directory contains specifications for FL algorithms, compression techniques
 
 ## Contents
 
-- **00-README.md** - This file
-- **FEDAVG.md** - Federated Averaging algorithm
-- **FEDPROX.md** - FedProx (proximal term for heterogeneous clients)
-- **FEDOPT.md** - FedOpt (adaptive optimizers: FedAdam, FedYogi)
-- **COMPRESSION.md** - Quantization (FP16→INT8), sparsification
-- **DRIFT_DETECTION.md** - PSI, KS test, concept drift alerts
-- **ROBUST_AGGREGATION.md** - Krum, TrimmedMean (Byzantine resilience)
+- [**00-README.md**](00-README.md) - This file
+- [**FEDAVG.md**](FEDAVG.md) - Federated Averaging algorithm
+- [**FEDPROX.md**](FEDPROX.md) - FedProx (proximal term for heterogeneous clients)
+- [**FEDOPT.md**](FEDOPT.md) - FedOpt (adaptive optimizers: FedAdam, FedYogi)
+- [**COMPRESSION.md**](COMPRESSION.md) - Quantization (FP16→INT8), sparsification
+- [**DRIFT_DETECTION.md**](DRIFT_DETECTION.md) - PSI, KS test, concept drift alerts
+- [**ROBUST_AGGREGATION.md**](ROBUST_AGGREGATION.md) - Krum, TrimmedMean (Byzantine resilience)
 
 ## Algorithm Selection
 
@@ -25,6 +25,6 @@ This directory contains specifications for FL algorithms, compression techniques
 
 ## Related Documents
 
-- **../02-ORCHESTRATION/JOB_SPECS/** - Algorithm configuration in jobs
-- **../05-PRIVACY_SECURITY/** - Privacy-preserving techniques
-- **../12-METRICS/KPI_DEFINITIONS.md** - Algorithm performance metrics
+- [**../02-ORCHESTRATION/JOB_SPECS/**](../02-ORCHESTRATION/JOB_SPECS/) -  Algorithm configuration in jobs
+- [**../05-PRIVACY_SECURITY/**](../05-PRIVACY_SECURITY/) -  Privacy-preserving techniques
+- [**../12-METRICS/KPI_DEFINITIONS.md**](../12-METRICS/KPI_DEFINITIONS.md) - Algorithm performance metrics

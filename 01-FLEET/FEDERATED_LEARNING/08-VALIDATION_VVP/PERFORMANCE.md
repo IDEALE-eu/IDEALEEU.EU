@@ -30,5 +30,5 @@ FL model performance metrics (latency, accuracy, resource usage).
 
 ## Related Documents
 
-- **../03-CLIENTS/AIRCRAFT_EDGE/RUNTIME_CONSTRAINTS.md** - Resource limits
+- [**../03-CLIENTS/AIRCRAFT_EDGE/RUNTIME_CONSTRAINTS.md**](../03-CLIENTS/AIRCRAFT_EDGE/RUNTIME_CONSTRAINTS.md) - Resource limits
 - **../12-METRICS/INFERENCE_METRICS.csv** - Performance logs

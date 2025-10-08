@@ -8,7 +8,7 @@ This directory defines standardized data contracts for telemetry signals, event 
 
 ## Contents
 
-- **00-README.md** - This file
+- [**00-README.md**](00-README.md) - This file
 - **TELEMETRY_SCHEMA.yaml** - Signal names, units, sample rates, ranges
 - **LABELS_EVENTS_SCHEMA.yaml** - Fault codes, maintenance tags, event definitions
 
@@ -91,14 +91,14 @@ events:
 ## Integration Points
 
 ### Upstream Sources
-- **02-AIRCRAFT/DOMAIN_INTEGRATION/INFO_COMM_AVIONICS/** - Avionics data buses
-- **01-FLEET/OPERATIONAL_DATA_HUB/** - Fleet telemetry aggregation
-- **00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/** - EBOM references
+- [**02-AIRCRAFT/DOMAIN_INTEGRATION/INFO_COMM_AVIONICS/**](02-AIRCRAFT/DOMAIN_INTEGRATION/INFO_COMM_AVIONICS/) -  Avionics data buses
+- [**01-FLEET/OPERATIONAL_DATA_HUB/**](01-FLEET/OPERATIONAL_DATA_HUB/) -  Fleet telemetry aggregation
+- [**00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/**](00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/) -  EBOM references
 
 ### Downstream Consumers
-- **03-CLIENTS/** - Client-side data ingestion and preprocessing
-- **04-ALGORITHMS/** - Feature engineering and model training
-- **06-MODELS/DATASETS_INDEX.md** - Dataset provenance tracking
+- [**03-CLIENTS/**](03-CLIENTS/) -  Client-side data ingestion and preprocessing
+- [**04-ALGORITHMS/**](04-ALGORITHMS/) -  Feature engineering and model training
+- [**06-MODELS/DATASETS_INDEX.md**](06-MODELS/DATASETS_INDEX.md) - Dataset provenance tracking
 
 ## Validation and Testing
 
@@ -114,10 +114,10 @@ events:
 
 ## Related Documents
 
-- **FL_TOPOLOGY.md** - Communication patterns for data transmission
-- **CLIENT_TYPES.md** - Client-specific data access permissions
-- **06-MODELS/DATASETS_INDEX.md** - Dataset provenance and lineage
-- **11-COMPLIANCE/PRIVACY.md** - GDPR compliance for telemetry data
+- [**FL_TOPOLOGY.md**](FL_TOPOLOGY.md) - Communication patterns for data transmission
+- [**CLIENT_TYPES.md**](CLIENT_TYPES.md) - Client-specific data access permissions
+- [**06-MODELS/DATASETS_INDEX.md**](06-MODELS/DATASETS_INDEX.md) - Dataset provenance and lineage
+- [**11-COMPLIANCE/PRIVACY.md**](11-COMPLIANCE/PRIVACY.md) - GDPR compliance for telemetry data
 
 ## Change History
 

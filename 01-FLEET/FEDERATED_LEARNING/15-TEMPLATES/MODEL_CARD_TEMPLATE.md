@@ -33,7 +33,7 @@ Model card template for FL models (based on Google's Model Card framework).
 
 ## Training Data
 
-- **Dataset**: {Dataset ID, see ../../06-MODELS/DATASETS_INDEX.md}
+- **Dataset**: {Dataset ID, see [../../06-MODELS/DATASETS_INDEX.md](../../06-MODELS/DATASETS_INDEX.md)}
 - **Size**: {Number of samples}
 - **Date Range**: {YYYY-MM to YYYY-MM}
 - **Provenance**: {Source: aircraft fleet, sim rigs, etc.}
@@ -69,7 +69,7 @@ Model card template for FL models (based on Google's Model Card framework).
 
 ## Ethical Considerations
 
-- **Fairness**: Model performance disaggregated by aircraft type, age, region (see ../../08-VALIDATION_VVP/BIAS_FAIRNESS.md)
+- **Fairness**: Model performance disaggregated by aircraft type, age, region (see [../../08-VALIDATION_VVP/BIAS_FAIRNESS.md](../../08-VALIDATION_VVP/BIAS_FAIRNESS.md))
 - **Privacy**: Differential privacy (ε=1.0), pseudonymisation applied
 - **Transparency**: Model card published, training data provenance documented
 
@@ -82,6 +82,6 @@ Model card template for FL models (based on Google's Model Card framework).
 
 ## Related Documents
 
-- **../../06-MODELS/REGISTRY.md** - Model versioning
-- **../../08-VALIDATION_VVP/** - Validation results
-- **../../11-COMPLIANCE/** - Compliance frameworks
+- [**../../06-MODELS/REGISTRY.md**](../../06-MODELS/REGISTRY.md) - Model versioning
+- [**../../08-VALIDATION_VVP/**](../../08-VALIDATION_VVP/) -  Validation results
+- [**../../11-COMPLIANCE/**](../../11-COMPLIANCE/) -  Compliance frameworks

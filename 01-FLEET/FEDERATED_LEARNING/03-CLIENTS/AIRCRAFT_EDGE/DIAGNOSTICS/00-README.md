@@ -25,7 +25,7 @@ Automated diagnostics to ensure FL client health and detect anomalies before the
 ### Model Health
 
 - **Inference latency**: p50, p95, p99 percentiles
-- **Prediction drift**: PSI, KS test (see 04-ALGORITHMS/DRIFT_DETECTION.md)
+- **Prediction drift**: PSI, KS test (see [04-ALGORITHMS/DRIFT_DETECTION.md](04-ALGORITHMS/DRIFT_DETECTION.md))
 - **Accuracy**: On validation set (if available)
 
 ## Diagnostic Schedule
@@ -43,5 +43,5 @@ Automated diagnostics to ensure FL client health and detect anomalies before the
 
 ## Related Documents
 
-- **../RUNTIME_CONSTRAINTS.md** - Resource limits
-- **../../12-METRICS/KPI_DEFINITIONS.md** - Metric definitions
+- [**../RUNTIME_CONSTRAINTS.md**](../RUNTIME_CONSTRAINTS.md) - Resource limits
+- [**../../12-METRICS/KPI_DEFINITIONS.md**](../../12-METRICS/KPI_DEFINITIONS.md) - Metric definitions

@@ -8,10 +8,10 @@ FL client implementation for aircraft edge compute platforms, designed for resou
 
 ## Contents
 
-- **00-README.md** - This file
-- **RUNTIME_CONSTRAINTS.md** - CPU%, power budget, thermal limits
-- **SANDBOXING.md** - ARINC 653/IMA partitioning, cross-domain isolation
-- **DIAGNOSTICS/** - Local health checks (disk, memory, model drift)
+- [**00-README.md**](00-README.md) - This file
+- [**RUNTIME_CONSTRAINTS.md**](RUNTIME_CONSTRAINTS.md) - CPU%, power budget, thermal limits
+- [**SANDBOXING.md**](SANDBOXING.md) - ARINC 653/IMA partitioning, cross-domain isolation
+- [**DIAGNOSTICS/**](DIAGNOSTICS/) -  Local health checks (disk, memory, model drift)
 
 ## Key Characteristics
 
@@ -22,6 +22,6 @@ FL client implementation for aircraft edge compute platforms, designed for resou
 
 ## Related Documents
 
-- **../../../01-ARCHITECTURE/CLIENT_TYPES.md** - Aircraft client specifications
-- **RUNTIME_CONSTRAINTS.md** - Detailed resource limits
-- **SANDBOXING.md** - Security isolation policies
+- [**../../../01-ARCHITECTURE/CLIENT_TYPES.md**](../../../01-ARCHITECTURE/CLIENT_TYPES.md) - Aircraft client specifications
+- [**RUNTIME_CONSTRAINTS.md**](RUNTIME_CONSTRAINTS.md) - Detailed resource limits
+- [**SANDBOXING.md**](SANDBOXING.md) - Security isolation policies

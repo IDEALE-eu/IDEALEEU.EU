@@ -27,8 +27,8 @@ All production FL model deployments require ECR/ECO:
 FL models linked in traceability matrix:
 
 - **Requirements**: Linked in `00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/REQ_ITEM.csv`
-- **Tests**: Linked in ../../08-VALIDATION_VVP/TEST_PLANS.md
-- **Certification**: Linked in ../../08-VALIDATION_VVP/CERT_EVIDENCE_LINKS.md
+- **Tests**: Linked in [../../08-VALIDATION_VVP/TEST_PLANS.md](../../08-VALIDATION_VVP/TEST_PLANS.md)
+- **Certification**: Linked in [../../08-VALIDATION_VVP/CERT_EVIDENCE_LINKS.md](../../08-VALIDATION_VVP/CERT_EVIDENCE_LINKS.md)
 
 ## CCB Meeting Cadence
 
@@ -38,6 +38,6 @@ FL models linked in traceability matrix:
 
 ## Related Documents
 
-- **MAL-CB/POLICY.md** - Baseline control policy
-- **../../../00-PROGRAM/CONFIG_MGMT/** - CONFIG_MGMT framework
-- **../../../00-PROGRAM/CONFIG_MGMT/05-CCB/** - CCB charter and procedures
+- [**MAL-CB/POLICY.md**](MAL-CB/POLICY.md) - Baseline control policy
+- [**../../../00-PROGRAM/CONFIG_MGMT/**](../../../00-PROGRAM/CONFIG_MGMT/) -  CONFIG_MGMT framework
+- [**../../../00-PROGRAM/CONFIG_MGMT/05-CCB/**](../../../00-PROGRAM/CONFIG_MGMT/05-CCB/) -  CCB charter and procedures

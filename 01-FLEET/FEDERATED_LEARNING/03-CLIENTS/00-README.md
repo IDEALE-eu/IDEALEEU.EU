@@ -8,10 +8,10 @@ This directory contains client-side FL implementations, runtime constraints, san
 
 ## Contents
 
-- **00-README.md** - This file
-- **AIRCRAFT_EDGE/** - Aircraft edge device FL clients
-- **GROUND_STATIONS/** - Ground station FL clients
-- **SIM_RIGS/** - Simulation rig FL clients
+- [**00-README.md**](00-README.md) - This file
+- [**AIRCRAFT_EDGE/**](AIRCRAFT_EDGE/) -  Aircraft edge device FL clients
+- [**GROUND_STATIONS/**](GROUND_STATIONS/) -  Ground station FL clients
+- [**SIM_RIGS/**](SIM_RIGS/) -  Simulation rig FL clients
 
 ## Client Architecture
 
@@ -33,18 +33,18 @@ All FL clients implement:
 ## Integration Points
 
 ### Upstream Dependencies
-- **01-ARCHITECTURE/CLIENT_TYPES.md** - Client type specifications
-- **02-ORCHESTRATION/** - Training schedules and job specifications
+- [**01-ARCHITECTURE/CLIENT_TYPES.md**](01-ARCHITECTURE/CLIENT_TYPES.md) - Client type specifications
+- [**02-ORCHESTRATION/**](02-ORCHESTRATION/) -  Training schedules and job specifications
 
 ### Downstream Consumers
-- **04-ALGORITHMS/** - FL algorithms executed by clients
-- **12-METRICS/** - Client health and performance metrics
+- [**04-ALGORITHMS/**](04-ALGORITHMS/) -  FL algorithms executed by clients
+- [**12-METRICS/**](12-METRICS/) -  Client health and performance metrics
 
 ## Related Documents
 
-- **01-ARCHITECTURE/CLIENT_TYPES.md** - Client capabilities matrix
-- **02-ORCHESTRATION/SCHEDULER.md** - Training schedules
-- **05-PRIVACY_SECURITY/SANDBOXING.md** - Client isolation policies
+- [**01-ARCHITECTURE/CLIENT_TYPES.md**](01-ARCHITECTURE/CLIENT_TYPES.md) - Client capabilities matrix
+- [**02-ORCHESTRATION/SCHEDULER.md**](02-ORCHESTRATION/SCHEDULER.md) - Training schedules
+- [**05-PRIVACY_SECURITY/SANDBOXING.md**](05-PRIVACY_SECURITY/SANDBOXING.md) - Client isolation policies
 
 ## Status
 

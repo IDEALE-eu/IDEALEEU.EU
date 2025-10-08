@@ -8,10 +8,10 @@ Track FL experiments, conduct A/B tests, and validate models in shadow mode (inf
 
 ## Contents
 
-- **00-README.md** - This file
-- **TRACKING.md** - MLflow/W&B integration notes
-- **AB_TESTS/** - A/B test specifications
-- **SHADOW_DEPLOYMENTS/** - Parallel inference without actuation
+- [**00-README.md**](00-README.md) - This file
+- [**TRACKING.md**](TRACKING.md) - MLflow/W&B integration notes
+- [**AB_TESTS/**](AB_TESTS/) -  A/B test specifications
+- [**SHADOW_DEPLOYMENTS/**](SHADOW_DEPLOYMENTS/) -  Parallel inference without actuation
 
 ## Experiment Lifecycle
 
@@ -23,5 +23,5 @@ Track FL experiments, conduct A/B tests, and validate models in shadow mode (inf
 
 ## Related Documents
 
-- **../10-GOVERNANCE/MAL-FE/POLICY.md** - Experiment approval process
-- **TRACKING.md** - Experiment tracking tools
+- [**../10-GOVERNANCE/MAL-FE/POLICY.md**](../10-GOVERNANCE/MAL-FE/POLICY.md) - Experiment approval process
+- [**TRACKING.md**](TRACKING.md) - Experiment tracking tools

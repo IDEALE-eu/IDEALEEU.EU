@@ -8,7 +8,7 @@ Define pipeline configurations for GitLab CI, Jenkins, or other CI/CD tools (air
 
 ## Contents
 
-- **00-README.md** - This file
+- [**00-README.md**](00-README.md) - This file
 - (Pipeline YAML files added as needed, e.g., `.gitlab-ci.yml`, `Jenkinsfile`)
 
 ## Example Pipeline Structure
@@ -54,5 +54,5 @@ deploy_full:
 
 ## Related Documents
 
-- **../GATES.md** - Quality gate definitions
-- **../../09-DEPLOYMENT/** - Deployment procedures
+- [**../GATES.md**](../GATES.md) - Quality gate definitions
+- [**../../09-DEPLOYMENT/**](../../09-DEPLOYMENT/) -  Deployment procedures

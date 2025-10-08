@@ -8,10 +8,10 @@ This directory defines the architectural design of the federated learning infras
 
 ## Contents
 
-- **00-README.md** - This file
-- **FL_TOPOLOGY.md** - Network topology (star vs. hierarchical), cross-silo communication
-- **CLIENT_TYPES.md** - Aircraft edge devices, ground stations, simulation rigs with certification status
-- **DATA_CONTRACTS/** - Telemetry schemas, label definitions, and data formats
+- [**00-README.md**](00-README.md) - This file
+- [**FL_TOPOLOGY.md**](FL_TOPOLOGY.md) - Network topology (star vs. hierarchical), cross-silo communication
+- [**CLIENT_TYPES.md**](CLIENT_TYPES.md) - Aircraft edge devices, ground stations, simulation rigs with certification status
+- [**DATA_CONTRACTS/**](DATA_CONTRACTS/) -  Telemetry schemas, label definitions, and data formats
 
 ## Architecture Principles
 
@@ -31,14 +31,14 @@ This directory defines the architectural design of the federated learning infras
 ## Integration Points
 
 ### Upstream Dependencies
-- **00-PROGRAM/DIGITAL_THREAD/** - UTCS anchors, graph IDs for traceability
-- **01-FLEET/OPERATIONAL_DATA_HUB/** - Fleet telemetry data sources
-- **02-AIRCRAFT/DOMAIN_INTEGRATION/INFO_COMM_AVIONICS/** - Avionics data interfaces
+- [**00-PROGRAM/DIGITAL_THREAD/**](00-PROGRAM/DIGITAL_THREAD/) -  UTCS anchors, graph IDs for traceability
+- [**01-FLEET/OPERATIONAL_DATA_HUB/**](01-FLEET/OPERATIONAL_DATA_HUB/) -  Fleet telemetry data sources
+- [**02-AIRCRAFT/DOMAIN_INTEGRATION/INFO_COMM_AVIONICS/**](02-AIRCRAFT/DOMAIN_INTEGRATION/INFO_COMM_AVIONICS/) -  Avionics data interfaces
 
 ### Downstream Consumers
-- **02-ORCHESTRATION/** - Uses topology for client selection and scheduling
-- **03-CLIENTS/** - Implements client-side architecture patterns
-- **05-PRIVACY_SECURITY/** - Applies security controls to communication channels
+- [**02-ORCHESTRATION/**](02-ORCHESTRATION/) -  Uses topology for client selection and scheduling
+- [**03-CLIENTS/**](03-CLIENTS/) -  Implements client-side architecture patterns
+- [**05-PRIVACY_SECURITY/**](05-PRIVACY_SECURITY/) -  Applies security controls to communication channels
 
 ## Architecture Review Process
 
@@ -50,10 +50,10 @@ This directory defines the architectural design of the federated learning infras
 
 ## Related Documents
 
-- **00-PROGRAM/DIGITAL_THREAD/03-ARCHITECTURE/** - Overall digital thread architecture
-- **02-ORCHESTRATION/CONNECTIVITY_PROFILES.md** - Network connectivity specifications
-- **03-CLIENTS/** - Client-side implementation details
-- **11-COMPLIANCE/AVIATION.md** - Architecture compliance requirements
+- [**00-PROGRAM/DIGITAL_THREAD/03-ARCHITECTURE/**](../../../00-PROGRAM/DIGITAL_THREAD/03-ARCHITECTURE/) - Overall digital thread architecture
+- [**02-ORCHESTRATION/CONNECTIVITY_PROFILES.md**](../02-ORCHESTRATION/CONNECTIVITY_PROFILES.md) - Network connectivity specifications
+- [**03-CLIENTS/**](../03-CLIENTS/) - Client-side implementation details
+- [**11-COMPLIANCE/AVIATION.md**](../11-COMPLIANCE/AVIATION.md) - Architecture compliance requirements
 
 ## Status
 

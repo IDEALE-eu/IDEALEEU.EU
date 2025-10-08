@@ -143,7 +143,7 @@ The IDEALE FL system employs a **star topology** for initial deployment, with sc
 - **Client dropout**: Aggregation proceeds with available clients (minimum 10)
 - **Network partition**: Store-and-forward queue for delayed updates
 - **Server failure**: Redundant aggregators with active-passive failover
-- **Byzantine clients**: Krum or TrimmedMean aggregation (see 04-ALGORITHMS/ROBUST_AGGREGATION.md)
+- **Byzantine clients**: Krum or TrimmedMean aggregation (see [04-ALGORITHMS/ROBUST_AGGREGATION.md](04-ALGORITHMS/ROBUST_AGGREGATION.md))
 
 ## Topology Configuration
 
@@ -198,10 +198,10 @@ topology:
 
 ## Related Documents
 
-- **CLIENT_TYPES.md** - Client implementation details
-- **DATA_CONTRACTS/** - Data schemas for model updates
-- **02-ORCHESTRATION/CONNECTIVITY_PROFILES.md** - Network specifications
-- **05-PRIVACY_SECURITY/SECURE_AGGREGATION.md** - Cryptographic protocols
+- [**CLIENT_TYPES.md**](CLIENT_TYPES.md) - Client implementation details
+- [**DATA_CONTRACTS/**](DATA_CONTRACTS/) - Data schemas for model updates
+- [**02-ORCHESTRATION/CONNECTIVITY_PROFILES.md**](../02-ORCHESTRATION/CONNECTIVITY_PROFILES.md) - Network specifications
+- [**05-PRIVACY_SECURITY/SECURE_AGGREGATION.md**](../05-PRIVACY_SECURITY/SECURE_AGGREGATION.md) - Cryptographic protocols
 
 ## Change History
 

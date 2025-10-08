@@ -8,7 +8,7 @@ This directory contains FL job specifications that define training rounds, model
 
 ## Contents
 
-- **00-README.md** - This file
+- [**00-README.md**](00-README.md) - This file
 - **EXAMPLE_JOB.yaml** - Example FL job specification (also available in 15-TEMPLATES/)
 
 ## Job Specification Structure
@@ -71,7 +71,7 @@ compliance_config:
 ### 1. Job Definition
 
 **Created By**: AI/ML Team  
-**Approval**: MAL-FE (Fleet Experiments) Policy (see 10-GOVERNANCE/MAL-FE/POLICY.md)
+**Approval**: MAL-FE (Fleet Experiments) Policy (see [10-GOVERNANCE/MAL-FE/POLICY.md](10-GOVERNANCE/MAL-FE/POLICY.md))
 
 ### 2. Job Submission
 
@@ -97,8 +97,8 @@ compliance_config:
 - Validation results (logged to 08-VALIDATION_VVP/)
 
 **Approval for Deployment**:
-- CCB approval required (see 10-GOVERNANCE/CCB_HANDOFF.md)
-- Safety gate checks (see 08-VALIDATION_VVP/SAFETY_GATES.md)
+- CCB approval required (see [10-GOVERNANCE/CCB_HANDOFF.md](10-GOVERNANCE/CCB_HANDOFF.md))
+- Safety gate checks (see [08-VALIDATION_VVP/SAFETY_GATES.md](08-VALIDATION_VVP/SAFETY_GATES.md))
 
 ## Job Templates
 
@@ -188,7 +188,7 @@ privacy_config:
 - [ ] **Schema validation**: YAML syntax correct, all required fields present
 - [ ] **Data contract verification**: Input/output schemas exist and are valid
 - [ ] **Hyperparameter sanity**: Learning rate, batch size within reasonable ranges
-- [ ] **Privacy budget check**: ε and δ within approved limits (see 05-PRIVACY_SECURITY/DP_SGD.md)
+- [ ] **Privacy budget check**: ε and δ within approved limits (see [05-PRIVACY_SECURITY/DP_SGD.md](05-PRIVACY_SECURITY/DP_SGD.md))
 - [ ] **Resource estimation**: Model size, memory, CPU fit client constraints
 
 ### Post-Submission Checks
@@ -214,7 +214,7 @@ privacy_config:
 - **Privacy budget consumed**: Cumulative ε and δ
 - **Drift detection**: Model performance degradation over time
 
-**Dashboards**: Grafana (see 12-METRICS/KPI_DEFINITIONS.md)
+**Dashboards**: Grafana (see [12-METRICS/KPI_DEFINITIONS.md](12-METRICS/KPI_DEFINITIONS.md))
 
 ## Job Archiving
 
@@ -233,10 +233,10 @@ privacy_config:
 
 ## Related Documents
 
-- **SCHEDULER.md** - Training round scheduling
-- **CLIENT_SELECTION.md** - Client eligibility and fairness
+- [**SCHEDULER.md**](SCHEDULER.md) - Training round scheduling
+- [**CLIENT_SELECTION.md**](CLIENT_SELECTION.md) - Client eligibility and fairness
 - **15-TEMPLATES/JOB_SPEC.yaml** - Full job specification template
-- **10-GOVERNANCE/MAL-FE/POLICY.md** - Fleet experiments approval process
+- [**10-GOVERNANCE/MAL-FE/POLICY.md**](10-GOVERNANCE/MAL-FE/POLICY.md) - Fleet experiments approval process
 
 ## Change History
 

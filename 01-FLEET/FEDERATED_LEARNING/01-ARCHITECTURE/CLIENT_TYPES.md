@@ -61,7 +61,7 @@ The IDEALE FL system supports three client types, each with distinct computation
 
 **DO-326A (Cybersecurity):**
 - Security risk assessment
-- Threat modeling (see 05-PRIVACY_SECURITY/THREAT_MODEL.md)
+- Threat modeling (see [05-PRIVACY_SECURITY/THREAT_MODEL.md](05-PRIVACY_SECURITY/THREAT_MODEL.md))
 - Penetration testing (quarterly)
 
 **Safety Boundaries:**
@@ -214,10 +214,10 @@ The IDEALE FL system supports three client types, each with distinct computation
 
 ## Related Documents
 
-- **FL_TOPOLOGY.md** - Network topology and communication patterns
-- **02-ORCHESTRATION/CLIENT_SELECTION.md** - Client selection algorithms
-- **03-CLIENTS/** - Detailed client implementation specifications
-- **08-VALIDATION_VVP/TEST_PLANS.md** - Client validation procedures
+- [**FL_TOPOLOGY.md**](FL_TOPOLOGY.md) - Network topology and communication patterns
+- [**02-ORCHESTRATION/CLIENT_SELECTION.md**](../02-ORCHESTRATION/CLIENT_SELECTION.md) - Client selection algorithms
+- [**03-CLIENTS/**](../03-CLIENTS/) - Detailed client implementation specifications
+- [**08-VALIDATION_VVP/TEST_PLANS.md**](../08-VALIDATION_VVP/TEST_PLANS.md) - Client validation procedures
 
 ## Change History
 

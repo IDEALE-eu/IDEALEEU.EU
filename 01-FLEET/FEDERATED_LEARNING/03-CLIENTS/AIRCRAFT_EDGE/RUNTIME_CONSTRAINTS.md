@@ -46,5 +46,5 @@ Runtime resource constraints for aircraft edge FL clients.
 
 ## Related Documents
 
-- **../../02-ORCHESTRATION/SCHEDULER.md** - Training schedules
-- **SANDBOXING.md** - Resource isolation policies
+- [**../../02-ORCHESTRATION/SCHEDULER.md**](../../02-ORCHESTRATION/SCHEDULER.md) - Training schedules
+- [**SANDBOXING.md**](SANDBOXING.md) - Resource isolation policies

@@ -43,5 +43,5 @@ Server:
 
 ## Related Documents
 
-- **FEDAVG.md** - Baseline algorithm
-- **../02-ORCHESTRATION/CONNECTIVITY_PROFILES.md** - Communication costs
+- [**FEDAVG.md**](FEDAVG.md) - Baseline algorithm
+- [**../02-ORCHESTRATION/CONNECTIVITY_PROFILES.md**](../02-ORCHESTRATION/CONNECTIVITY_PROFILES.md) - Communication costs

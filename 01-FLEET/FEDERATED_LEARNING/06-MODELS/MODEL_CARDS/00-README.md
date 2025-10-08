@@ -12,10 +12,10 @@ See **../../15-TEMPLATES/MODEL_CARD_TEMPLATE.md** for standard template.
 
 ## Contents
 
-- **00-README.md** - This file
+- [**00-README.md**](00-README.md) - This file
 - (Individual model cards added as models are deployed)
 
 ## Related Documents
 
-- **../REGISTRY.md** - Model versioning
-- **../../08-VALIDATION_VVP/** - Model validation results
+- [**../REGISTRY.md**](../REGISTRY.md) - Model versioning
+- [**../../08-VALIDATION_VVP/**](../../08-VALIDATION_VVP/) -  Model validation results

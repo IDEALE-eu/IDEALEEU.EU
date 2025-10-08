@@ -8,10 +8,10 @@ Define integration points between FL system and broader program infrastructure (
 
 ## Contents
 
-- **00-README.md** - This file
-- **DIGITAL_THREAD_LINKS.md** - UTCS anchors, graph IDs
-- **CONFIG_MGMT_BASELINES.md** - How FL models join system baseline
-- **MRO_FEEDBACK_LOOP.md** - Anomaly → ECR → SCAR → retrain
+- [**00-README.md**](00-README.md) - This file
+- [**DIGITAL_THREAD_LINKS.md**](DIGITAL_THREAD_LINKS.md) - UTCS anchors, graph IDs
+- [**CONFIG_MGMT_BASELINES.md**](CONFIG_MGMT_BASELINES.md) - How FL models join system baseline
+- [**MRO_FEEDBACK_LOOP.md**](MRO_FEEDBACK_LOOP.md) - Anomaly → ECR → SCAR → retrain
 
 ## Integration Architecture
 
@@ -27,6 +27,6 @@ FL System ←→ Digital Thread ←→ CONFIG_MGMT ←→ MRO
 
 ## Related Documents
 
-- **DIGITAL_THREAD_LINKS.md** - Digital thread integration
-- **CONFIG_MGMT_BASELINES.md** - Baseline integration
-- **MRO_FEEDBACK_LOOP.md** - Maintenance feedback
+- [**DIGITAL_THREAD_LINKS.md**](DIGITAL_THREAD_LINKS.md) - Digital thread integration
+- [**CONFIG_MGMT_BASELINES.md**](CONFIG_MGMT_BASELINES.md) - Baseline integration
+- [**MRO_FEEDBACK_LOOP.md**](MRO_FEEDBACK_LOOP.md) - Maintenance feedback

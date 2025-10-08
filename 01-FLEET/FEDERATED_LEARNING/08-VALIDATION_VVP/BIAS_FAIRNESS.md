@@ -19,11 +19,11 @@ Evaluate model performance across:
 
 ## Mitigation Strategies
 
-- **Stratified sampling**: Ensure diverse client participation (see ../02-ORCHESTRATION/CLIENT_SELECTION.md)
+- **Stratified sampling**: Ensure diverse client participation (see [../02-ORCHESTRATION/CLIENT_SELECTION.md](../02-ORCHESTRATION/CLIENT_SELECTION.md))
 - **Fairness-aware aggregation**: Weight clients to balance performance
 - **Data augmentation**: Synthetic data for underrepresented groups
 
 ## Related Documents
 
-- **../02-ORCHESTRATION/CLIENT_SELECTION.md** - Fairness policies
-- **../04-ALGORITHMS/FEDAVG.md** - Aggregation weights
+- [**../02-ORCHESTRATION/CLIENT_SELECTION.md**](../02-ORCHESTRATION/CLIENT_SELECTION.md) - Fairness policies
+- [**../04-ALGORITHMS/FEDAVG.md**](../04-ALGORITHMS/FEDAVG.md) - Aggregation weights

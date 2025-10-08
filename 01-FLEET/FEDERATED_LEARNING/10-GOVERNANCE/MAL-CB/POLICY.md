@@ -44,5 +44,5 @@ Change & Baseline control policy for FL model integration with CONFIG_MGMT.
 
 ## Related Documents
 
-- **../../../00-PROGRAM/CONFIG_MGMT/** - CONFIG_MGMT framework
-- **../../06-MODELS/REGISTRY.md** - Model versioning
+- [**../../../00-PROGRAM/CONFIG_MGMT/**](../../../00-PROGRAM/CONFIG_MGMT/) -  CONFIG_MGMT framework
+- [**../../06-MODELS/REGISTRY.md**](../../06-MODELS/REGISTRY.md) - Model versioning

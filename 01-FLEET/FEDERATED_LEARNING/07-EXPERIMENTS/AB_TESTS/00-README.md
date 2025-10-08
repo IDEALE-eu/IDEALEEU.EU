@@ -16,5 +16,5 @@ Rigorously evaluate FL algorithms, hyperparameters, and model architectures thro
 
 ## Related Documents
 
-- **../../10-GOVERNANCE/MAL-FE/POLICY.md** - Experiment approval
-- **../../04-ALGORITHMS/** - Algorithm specifications
+- [**../../10-GOVERNANCE/MAL-FE/POLICY.md**](../../10-GOVERNANCE/MAL-FE/POLICY.md) - Experiment approval
+- [**../../04-ALGORITHMS/**](../../04-ALGORITHMS/) -  Algorithm specifications

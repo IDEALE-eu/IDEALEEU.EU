@@ -20,5 +20,5 @@ Run new FL models in parallel with production models, comparing predictions with
 
 ## Related Documents
 
-- **../../09-DEPLOYMENT/ROLLOUT_STRATEGY.md** - Deployment procedures
-- **../../08-VALIDATION_VVP/TEST_PLANS.md** - Validation plans
+- [**../../09-DEPLOYMENT/ROLLOUT_STRATEGY.md**](../../09-DEPLOYMENT/ROLLOUT_STRATEGY.md) - Deployment procedures
+- [**../../08-VALIDATION_VVP/TEST_PLANS.md**](../../08-VALIDATION_VVP/TEST_PLANS.md) - Validation plans

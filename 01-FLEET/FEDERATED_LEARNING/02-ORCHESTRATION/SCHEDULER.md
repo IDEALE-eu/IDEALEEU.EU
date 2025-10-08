@@ -142,7 +142,7 @@ Sunday 00:00 UTC  : Global model v1.1 distributed
 ### Adaptive Intervals
 
 **Triggers for Shorter Intervals:**
-- High model drift detected (PSI > 0.2, see 04-ALGORITHMS/DRIFT_DETECTION.md)
+- High model drift detected (PSI > 0.2, see [04-ALGORITHMS/DRIFT_DETECTION.md](04-ALGORITHMS/DRIFT_DETECTION.md))
 - New aircraft type added to fleet (faster convergence needed)
 - Incident response (see 16-INCIDENT_RESPONSE/)
 
@@ -223,10 +223,10 @@ scheduler:
 
 ## Related Documents
 
-- **CLIENT_SELECTION.md** - How clients are selected for each round
-- **CONNECTIVITY_PROFILES.md** - Network bandwidth and latency specifications
-- **01-ARCHITECTURE/FL_TOPOLOGY.md** - Communication patterns
-- **12-METRICS/KPI_DEFINITIONS.md** - Scheduler performance metrics
+- [**CLIENT_SELECTION.md**](CLIENT_SELECTION.md) - How clients are selected for each round
+- [**CONNECTIVITY_PROFILES.md**](CONNECTIVITY_PROFILES.md) - Network bandwidth and latency specifications
+- [**01-ARCHITECTURE/FL_TOPOLOGY.md**](01-ARCHITECTURE/FL_TOPOLOGY.md) - Communication patterns
+- [**12-METRICS/KPI_DEFINITIONS.md**](12-METRICS/KPI_DEFINITIONS.md) - Scheduler performance metrics
 
 ## Change History
 

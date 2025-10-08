@@ -43,5 +43,5 @@ STRIDE threat model and attack surface analysis for FL.
 
 ## Related Documents
 
-- **../11-COMPLIANCE/AVIATION.md** - DO-326A cybersecurity
-- **../16-INCIDENT_RESPONSE/RUNBOOK.md** - Incident response procedures
+- [**../11-COMPLIANCE/AVIATION.md**](../11-COMPLIANCE/AVIATION.md) - DO-326A cybersecurity
+- [**../16-INCIDENT_RESPONSE/RUNBOOK.md**](../16-INCIDENT_RESPONSE/RUNBOOK.md) - Incident response procedures

@@ -29,5 +29,5 @@ FL model test plans from lab to rig to flight (DO-160, ECSS-E-ST-10).
 
 ## Related Documents
 
-- **SAFETY_GATES.md** - Pass/fail criteria
-- **../07-EXPERIMENTS/SHADOW_DEPLOYMENTS/** - Shadow mode testing
+- [**SAFETY_GATES.md**](SAFETY_GATES.md) - Pass/fail criteria
+- [**../07-EXPERIMENTS/SHADOW_DEPLOYMENTS/**](../07-EXPERIMENTS/SHADOW_DEPLOYMENTS/) -  Shadow mode testing

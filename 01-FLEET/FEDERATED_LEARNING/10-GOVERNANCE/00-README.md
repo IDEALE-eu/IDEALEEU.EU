@@ -8,12 +8,12 @@ Define approval workflows, change control, and ethical review processes for FL e
 
 ## Contents
 
-- **00-README.md** - This file
-- **MAL-FE/** - MAL-FE (Fleet Experiments) approval workflow
-- **MAL-UE/** - MAL-UE (Update & Enablement) rules
-- **MAL-CB/** - MAL-CB (Change & Baseline) → CONFIG_MGMT integration
-- **CCB_HANDOFF.md** - Configuration Control Board integration
-- **ETHICS_REVIEW.md** - EU AI Act high-risk assessment
+- [**00-README.md**](00-README.md) - This file
+- [**MAL-FE/**](MAL-FE/) -  MAL-FE (Fleet Experiments) approval workflow
+- [**MAL-UE/**](MAL-UE/) -  MAL-UE (Update & Enablement) rules
+- [**MAL-CB/**](MAL-CB/) -  MAL-CB (Change & Baseline) → CONFIG_MGMT integration
+- [**CCB_HANDOFF.md**](CCB_HANDOFF.md) - Configuration Control Board integration
+- [**ETHICS_REVIEW.md**](ETHICS_REVIEW.md) - EU AI Act high-risk assessment
 
 ## Governance Framework
 
@@ -31,6 +31,6 @@ Define approval workflows, change control, and ethical review processes for FL e
 
 ## Related Documents
 
-- **CCB_HANDOFF.md** - CCB approval process
-- **../09-DEPLOYMENT/** - Deployment procedures
-- **../../00-PROGRAM/CONFIG_MGMT/** - Configuration management
+- [**CCB_HANDOFF.md**](CCB_HANDOFF.md) - CCB approval process
+- [**../09-DEPLOYMENT/**](../09-DEPLOYMENT/) -  Deployment procedures
+- [**../../00-PROGRAM/CONFIG_MGMT/**](../../00-PROGRAM/CONFIG_MGMT/) -  Configuration management

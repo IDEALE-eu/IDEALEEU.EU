@@ -33,4 +33,4 @@ flight_id_hash = SHA256(flight_number + date + salt)
 
 ## Related Documents
 
-- **../11-COMPLIANCE/PRIVACY.md** - GDPR compliance framework
+- [**../11-COMPLIANCE/PRIVACY.md**](../11-COMPLIANCE/PRIVACY.md) - GDPR compliance framework

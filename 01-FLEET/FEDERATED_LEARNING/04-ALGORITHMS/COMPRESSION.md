@@ -43,5 +43,5 @@ Gradient and model compression techniques for bandwidth reduction.
 
 ## Related Documents
 
-- **../02-ORCHESTRATION/CONNECTIVITY_PROFILES.md** - Bandwidth constraints
-- **FEDAVG.md** - Base algorithm
+- [**../02-ORCHESTRATION/CONNECTIVITY_PROFILES.md**](../02-ORCHESTRATION/CONNECTIVITY_PROFILES.md) - Bandwidth constraints
+- [**FEDAVG.md**](FEDAVG.md) - Base algorithm

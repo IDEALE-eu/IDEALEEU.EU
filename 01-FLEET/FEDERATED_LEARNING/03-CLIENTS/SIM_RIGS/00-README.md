@@ -15,7 +15,7 @@ FL client implementation for hardware-in-loop (HIL) and software-in-loop (SIL) s
 
 ## Contents
 
-- **00-README.md** - This file
+- [**00-README.md**](00-README.md) - This file
 
 ## Use Cases
 
@@ -25,5 +25,5 @@ FL client implementation for hardware-in-loop (HIL) and software-in-loop (SIL) s
 
 ## Related Documents
 
-- **../../01-ARCHITECTURE/CLIENT_TYPES.md** - Simulation rig specifications
-- **../../08-VALIDATION_VVP/TEST_PLANS.md** - Validation procedures
+- [**../../01-ARCHITECTURE/CLIENT_TYPES.md**](../../01-ARCHITECTURE/CLIENT_TYPES.md) - Simulation rig specifications
+- [**../../08-VALIDATION_VVP/TEST_PLANS.md**](../../08-VALIDATION_VVP/TEST_PLANS.md) - Validation procedures

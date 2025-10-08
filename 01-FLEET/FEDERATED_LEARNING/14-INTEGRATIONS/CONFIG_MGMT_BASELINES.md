@@ -19,7 +19,7 @@ FL models are software CIs managed by CONFIG_MGMT:
 
 ### Step 2: ECR/ECO
 
-- ECR submitted to CCB (see ../../10-GOVERNANCE/CCB_HANDOFF.md)
+- ECR submitted to CCB (see [../../10-GOVERNANCE/CCB_HANDOFF.md](../../10-GOVERNANCE/CCB_HANDOFF.md))
 - Impact assessment on system baseline
 - ECO issued if approved
 
@@ -39,5 +39,5 @@ FL models are software CIs managed by CONFIG_MGMT:
 
 ## Related Documents
 
-- **../../10-GOVERNANCE/MAL-CB/POLICY.md** - Baseline control policy
-- **../../../00-PROGRAM/CONFIG_MGMT/** - CONFIG_MGMT framework
+- [**../../10-GOVERNANCE/MAL-CB/POLICY.md**](../../10-GOVERNANCE/MAL-CB/POLICY.md) - Baseline control policy
+- [**../../../00-PROGRAM/CONFIG_MGMT/**](../../../00-PROGRAM/CONFIG_MGMT/) -  CONFIG_MGMT framework

@@ -34,5 +34,5 @@ FL model deployment changelog (semantic versioning: v1.2.0-fl).
 
 ## Related Documents
 
-- **../06-MODELS/REGISTRY.md** - Model registry
-- **ROLLOUT_STRATEGY.md** - Deployment procedures
+- [**../06-MODELS/REGISTRY.md**](../06-MODELS/REGISTRY.md) - Model registry
+- [**ROLLOUT_STRATEGY.md**](ROLLOUT_STRATEGY.md) - Deployment procedures

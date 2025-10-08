@@ -15,7 +15,7 @@ FL client implementation for ground-based compute infrastructure with continuous
 
 ## Contents
 
-- **00-README.md** - This file
+- [**00-README.md**](00-README.md) - This file
 
 ## Capabilities
 
@@ -26,5 +26,5 @@ FL client implementation for ground-based compute infrastructure with continuous
 
 ## Related Documents
 
-- **../../01-ARCHITECTURE/CLIENT_TYPES.md** - Ground station specifications
-- **../../02-ORCHESTRATION/CLIENT_SELECTION.md** - Selection criteria
+- [**../../01-ARCHITECTURE/CLIENT_TYPES.md**](../../01-ARCHITECTURE/CLIENT_TYPES.md) - Ground station specifications
+- [**../../02-ORCHESTRATION/CLIENT_SELECTION.md**](../../02-ORCHESTRATION/CLIENT_SELECTION.md) - Selection criteria

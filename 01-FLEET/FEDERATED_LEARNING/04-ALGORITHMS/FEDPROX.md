@@ -36,5 +36,5 @@ Client k:
 
 ## Related Documents
 
-- **FEDAVG.md** - Baseline algorithm
-- **../02-ORCHESTRATION/CLIENT_SELECTION.md** - Client heterogeneity
+- [**FEDAVG.md**](FEDAVG.md) - Baseline algorithm
+- [**../02-ORCHESTRATION/CLIENT_SELECTION.md**](../02-ORCHESTRATION/CLIENT_SELECTION.md) - Client heterogeneity

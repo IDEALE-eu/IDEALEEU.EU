@@ -51,10 +51,10 @@ Client k (local training):
 
 - Assumes IID data (not always true in practice)
 - Sensitive to client heterogeneity (varying compute, data distributions)
-- No explicit privacy (use DP-SGD for privacy, see ../05-PRIVACY_SECURITY/DP_SGD.md)
+- No explicit privacy (use DP-SGD for privacy, see [../05-PRIVACY_SECURITY/DP_SGD.md](../05-PRIVACY_SECURITY/DP_SGD.md))
 
 ## Related Documents
 
-- **FEDPROX.md** - Extension for heterogeneous clients
-- **COMPRESSION.md** - Reduce communication costs
-- **../05-PRIVACY_SECURITY/DP_SGD.md** - Add differential privacy
+- [**FEDPROX.md**](FEDPROX.md) - Extension for heterogeneous clients
+- [**COMPRESSION.md**](COMPRESSION.md) - Reduce communication costs
+- [**../05-PRIVACY_SECURITY/DP_SGD.md**](../05-PRIVACY_SECURITY/DP_SGD.md) - Add differential privacy

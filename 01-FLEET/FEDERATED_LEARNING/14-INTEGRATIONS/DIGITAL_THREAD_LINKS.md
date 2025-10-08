@@ -46,5 +46,5 @@ FL-MODEL-PM-ENGINE-1.0.0 → TELEMETRY-2024Q4 (Training dataset)
 
 ## Related Documents
 
-- **../../06-MODELS/REGISTRY.md** - Model versioning
-- **../../../00-PROGRAM/DIGITAL_THREAD/** - Digital thread framework
+- [**../../06-MODELS/REGISTRY.md**](../../06-MODELS/REGISTRY.md) - Model versioning
+- [**../../../00-PROGRAM/DIGITAL_THREAD/**](../../../00-PROGRAM/DIGITAL_THREAD/) -  Digital thread framework

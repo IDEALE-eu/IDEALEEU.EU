@@ -252,10 +252,10 @@ This document defines the network connectivity characteristics, bandwidth caps, 
 
 ## Related Documents
 
-- **SCHEDULER.md** - Training round schedules aligned with connectivity
-- **CLIENT_SELECTION.md** - Eligibility based on network health
-- **04-ALGORITHMS/COMPRESSION.md** - Bandwidth reduction techniques
-- **12-METRICS/KPI_DEFINITIONS.md** - Connectivity metrics tracking
+- [**SCHEDULER.md**](SCHEDULER.md) - Training round schedules aligned with connectivity
+- [**CLIENT_SELECTION.md**](CLIENT_SELECTION.md) - Eligibility based on network health
+- [**04-ALGORITHMS/COMPRESSION.md**](04-ALGORITHMS/COMPRESSION.md) - Bandwidth reduction techniques
+- [**12-METRICS/KPI_DEFINITIONS.md**](12-METRICS/KPI_DEFINITIONS.md) - Connectivity metrics tracking
 
 ## Change History
 

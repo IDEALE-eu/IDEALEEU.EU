@@ -28,5 +28,5 @@ Federated learning model registry with versioning and metadata.
 
 ## Related Documents
 
-- **MODEL_CARDS/** - Model documentation
-- **DATASETS_INDEX.md** - Training data provenance
+- [**MODEL_CARDS/**](MODEL_CARDS/) -  Model documentation
+- [**DATASETS_INDEX.md**](DATASETS_INDEX.md) - Training data provenance

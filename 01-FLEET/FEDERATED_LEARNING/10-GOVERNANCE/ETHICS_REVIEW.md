@@ -18,20 +18,20 @@ EU AI Act high-risk assessment and ethical review for FL systems.
 ### Transparency Requirements (Art. 13)
 
 - Model cards published (see ../../06-MODELS/MODEL_CARDS/)
-- Training data provenance documented (see ../../06-MODELS/DATASETS_INDEX.md)
-- Performance metrics disclosed (see ../../08-VALIDATION_VVP/PERFORMANCE.md)
+- Training data provenance documented (see [../../06-MODELS/DATASETS_INDEX.md](../../06-MODELS/DATASETS_INDEX.md))
+- Performance metrics disclosed (see [../../08-VALIDATION_VVP/PERFORMANCE.md](../../08-VALIDATION_VVP/PERFORMANCE.md))
 
 ### Human Oversight (Art. 14)
 
 - All model deployments require CCB approval
-- Safety gates enforced (see ../../08-VALIDATION_VVP/SAFETY_GATES.md)
+- Safety gates enforced (see [../../08-VALIDATION_VVP/SAFETY_GATES.md](../../08-VALIDATION_VVP/SAFETY_GATES.md))
 - Rollback authority: Safety Engineering, CCB
 
 ## Ethical Principles
 
 ### Fairness
 
-- Disaggregated performance monitoring (see ../../08-VALIDATION_VVP/BIAS_FAIRNESS.md)
+- Disaggregated performance monitoring (see [../../08-VALIDATION_VVP/BIAS_FAIRNESS.md](../../08-VALIDATION_VVP/BIAS_FAIRNESS.md))
 - No discrimination by aircraft type, age, or operator
 
 ### Privacy
@@ -54,6 +54,6 @@ EU AI Act high-risk assessment and ethical review for FL systems.
 
 ## Related Documents
 
-- **../../11-COMPLIANCE/PRIVACY.md** - GDPR compliance
-- **../../08-VALIDATION_VVP/BIAS_FAIRNESS.md** - Fairness assessment
-- **../../16-INCIDENT_RESPONSE/** - Accountability and audit
+- [**../../11-COMPLIANCE/PRIVACY.md**](../../11-COMPLIANCE/PRIVACY.md) - GDPR compliance
+- [**../../08-VALIDATION_VVP/BIAS_FAIRNESS.md**](../../08-VALIDATION_VVP/BIAS_FAIRNESS.md) - Fairness assessment
+- [**../../16-INCIDENT_RESPONSE/**](../../16-INCIDENT_RESPONSE/) -  Accountability and audit

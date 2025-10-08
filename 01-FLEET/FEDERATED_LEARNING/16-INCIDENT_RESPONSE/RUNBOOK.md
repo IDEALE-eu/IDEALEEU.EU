@@ -6,7 +6,7 @@ Incident response runbook: Detection → Containment → Communication → Rollb
 
 ### Automated Detection
 
-- **Drift alerts**: PSI > 0.3 (see ../../04-ALGORITHMS/DRIFT_DETECTION.md)
+- **Drift alerts**: PSI > 0.3 (see [../../04-ALGORITHMS/DRIFT_DETECTION.md](../../04-ALGORITHMS/DRIFT_DETECTION.md))
 - **Performance degradation**: Accuracy drop > 10%
 - **Resource violations**: CPU, memory, disk exceed limits
 - **Security alerts**: IDS/IPS, anomalous traffic
@@ -27,7 +27,7 @@ Incident response runbook: Detection → Containment → Communication → Rollb
 
 ### Step 2: Isolate Affected Systems
 
-- **Blacklist clients**: Remove malicious clients from training (see ../../02-ORCHESTRATION/CLIENT_SELECTION.md)
+- **Blacklist clients**: Remove malicious clients from training (see [../../02-ORCHESTRATION/CLIENT_SELECTION.md](../../02-ORCHESTRATION/CLIENT_SELECTION.md))
 - **Disable model**: Suspend FL client inference on affected aircraft
 - **Quarantine data**: Isolate corrupted gradients or telemetry
 
@@ -122,6 +122,6 @@ See **../../09-DEPLOYMENT/ROLLBACK_PROCEDURE.md** for detailed rollback steps.
 
 ## Related Documents
 
-- **../../09-DEPLOYMENT/ROLLBACK_PROCEDURE.md** - Rollback procedures
-- **../../15-TEMPLATES/INCIDENT_REPORT_TEMPLATE.md** - Incident report template
-- **POSTMORTEMS/** - Postmortem reports
+- [**../../09-DEPLOYMENT/ROLLBACK_PROCEDURE.md**](../../09-DEPLOYMENT/ROLLBACK_PROCEDURE.md) - Rollback procedures
+- [**../../15-TEMPLATES/INCIDENT_REPORT_TEMPLATE.md**](../../15-TEMPLATES/INCIDENT_REPORT_TEMPLATE.md) - Incident report template
+- [**POSTMORTEMS/**](POSTMORTEMS/) -  Postmortem reports

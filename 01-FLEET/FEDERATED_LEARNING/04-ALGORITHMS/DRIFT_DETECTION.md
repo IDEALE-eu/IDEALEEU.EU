@@ -43,9 +43,9 @@ where:
 
 - **Minor drift**: Log to 12-METRICS/DRIFT_ALERTS.csv
 - **Significant drift**: Slack alert, email to AI/ML Team
-- **Critical drift**: Auto-rollback to previous model (see ../09-DEPLOYMENT/ROLLBACK_PROCEDURE.md)
+- **Critical drift**: Auto-rollback to previous model (see [../09-DEPLOYMENT/ROLLBACK_PROCEDURE.md](../09-DEPLOYMENT/ROLLBACK_PROCEDURE.md))
 
 ## Related Documents
 
-- **../09-DEPLOYMENT/ROLLBACK_PROCEDURE.md** - Auto-rollback on drift
+- [**../09-DEPLOYMENT/ROLLBACK_PROCEDURE.md**](../09-DEPLOYMENT/ROLLBACK_PROCEDURE.md) - Auto-rollback on drift
 - **../12-METRICS/DRIFT_ALERTS.csv** - Drift event logs

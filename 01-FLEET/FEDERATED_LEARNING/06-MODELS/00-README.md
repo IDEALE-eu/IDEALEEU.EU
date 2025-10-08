@@ -8,11 +8,11 @@ Centralized registry for FL models with versioning, provenance, model cards, and
 
 ## Contents
 
-- **00-README.md** - This file
-- **REGISTRY.md** - Model versioning (model_id, hash, FL round, owner)
-- **MODEL_CARDS/** - Model cards (intended use, limits, safety disclaimers)
-- **DATASETS_INDEX.md** - Dataset provenance, retention, consent
-- **SBOM/** - Software Bill of Materials (CycloneDX for ML dependencies)
+- [**00-README.md**](00-README.md) - This file
+- [**REGISTRY.md**](REGISTRY.md) - Model versioning (model_id, hash, FL round, owner)
+- [**MODEL_CARDS/**](MODEL_CARDS/) -  Model cards (intended use, limits, safety disclaimers)
+- [**DATASETS_INDEX.md**](DATASETS_INDEX.md) - Dataset provenance, retention, consent
+- [**SBOM/**](SBOM/) -  Software Bill of Materials (CycloneDX for ML dependencies)
 
 ## Model Lifecycle
 
@@ -25,6 +25,6 @@ Centralized registry for FL models with versioning, provenance, model cards, and
 
 ## Related Documents
 
-- **REGISTRY.md** - Model versioning and metadata
-- **MODEL_CARDS/** - Model documentation
-- **../09-DEPLOYMENT/** - Deployment procedures
+- [**REGISTRY.md**](REGISTRY.md) - Model versioning and metadata
+- [**MODEL_CARDS/**](MODEL_CARDS/) -  Model documentation
+- [**../09-DEPLOYMENT/**](../09-DEPLOYMENT/) -  Deployment procedures

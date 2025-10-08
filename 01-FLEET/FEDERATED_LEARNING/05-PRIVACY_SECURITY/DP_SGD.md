@@ -43,5 +43,5 @@ def dp_sgd_step(gradients, C, σ):
 
 ## Related Documents
 
-- **SECURE_AGGREGATION.md** - Combine with secure aggregation for stronger privacy
-- **../11-COMPLIANCE/PRIVACY.md** - GDPR compliance
+- [**SECURE_AGGREGATION.md**](SECURE_AGGREGATION.md) - Combine with secure aggregation for stronger privacy
+- [**../11-COMPLIANCE/PRIVACY.md**](../11-COMPLIANCE/PRIVACY.md) - GDPR compliance

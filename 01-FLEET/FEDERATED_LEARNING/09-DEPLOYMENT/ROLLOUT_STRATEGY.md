@@ -38,5 +38,5 @@ Ring/canary deployment strategy for FL models by tail number or orbit plane.
 
 ## Related Documents
 
-- **CANARY_ROLLOUTS.md** - Canary phase details
-- **ROLLBACK_PROCEDURE.md** - Rollback procedures
+- [**CANARY_ROLLOUTS.md**](CANARY_ROLLOUTS.md) - Canary phase details
+- [**ROLLBACK_PROCEDURE.md**](ROLLBACK_PROCEDURE.md) - Rollback procedures

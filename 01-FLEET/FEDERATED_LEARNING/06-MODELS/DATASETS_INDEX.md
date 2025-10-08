@@ -25,5 +25,5 @@ Dataset provenance, retention policies, and consent tracking for FL.
 
 ## Related Documents
 
-- **../01-ARCHITECTURE/DATA_CONTRACTS/** - Data schemas
-- **../11-COMPLIANCE/PRIVACY.md** - GDPR framework
+- [**../01-ARCHITECTURE/DATA_CONTRACTS/**](../01-ARCHITECTURE/DATA_CONTRACTS/) -  Data schemas
+- [**../11-COMPLIANCE/PRIVACY.md**](../11-COMPLIANCE/PRIVACY.md) - GDPR framework

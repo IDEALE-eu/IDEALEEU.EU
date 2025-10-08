@@ -8,8 +8,8 @@ Define approval process for deploying FL models to production fleet.
 
 ## Contents
 
-- **00-README.md** - This file
-- **POLICY.md** - MAL-UE policy and approval workflow
+- [**00-README.md**](00-README.md) - This file
+- [**POLICY.md**](POLICY.md) - MAL-UE policy and approval workflow
 
 ## Scope
 
@@ -26,5 +26,5 @@ MAL-UE applies to:
 
 ## Related Documents
 
-- **POLICY.md** - Detailed approval workflow
-- **../CCB_HANDOFF.md** - CCB integration
+- [**POLICY.md**](POLICY.md) - Detailed approval workflow
+- [**../CCB_HANDOFF.md**](../CCB_HANDOFF.md) - CCB integration

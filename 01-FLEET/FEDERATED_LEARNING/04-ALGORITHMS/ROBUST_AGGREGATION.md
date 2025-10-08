@@ -34,5 +34,5 @@ Protect against malicious or compromised clients sending corrupted model updates
 
 ## Related Documents
 
-- **../05-PRIVACY_SECURITY/THREAT_MODEL.md** - Threat analysis
-- **../02-ORCHESTRATION/CLIENT_SELECTION.md** - Blacklist policy
+- [**../05-PRIVACY_SECURITY/THREAT_MODEL.md**](../05-PRIVACY_SECURITY/THREAT_MODEL.md) - Threat analysis
+- [**../02-ORCHESTRATION/CLIENT_SELECTION.md**](../02-ORCHESTRATION/CLIENT_SELECTION.md) - Blacklist policy

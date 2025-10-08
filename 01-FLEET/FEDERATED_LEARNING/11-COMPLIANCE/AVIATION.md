@@ -35,7 +35,7 @@ FL client software on aircraft edge devices:
 ### Security Controls
 
 - Mutual TLS authentication
-- ARINC 653 sandboxing (see ../../03-CLIENTS/AIRCRAFT_EDGE/SANDBOXING.md)
+- ARINC 653 sandboxing (see [../../03-CLIENTS/AIRCRAFT_EDGE/SANDBOXING.md](../../03-CLIENTS/AIRCRAFT_EDGE/SANDBOXING.md))
 - Intrusion detection, audit logs
 
 ## DO-355/356A Connectivity Security
@@ -45,6 +45,6 @@ FL client software on aircraft edge devices:
 
 ## Related Documents
 
-- **../../08-VALIDATION_VVP/CERT_EVIDENCE_LINKS.md** - Certification evidence
-- **../../05-PRIVACY_SECURITY/THREAT_MODEL.md** - Cybersecurity threat model
-- **../../03-CLIENTS/AIRCRAFT_EDGE/SANDBOXING.md** - ARINC 653 partitioning
+- [**../../08-VALIDATION_VVP/CERT_EVIDENCE_LINKS.md**](../../08-VALIDATION_VVP/CERT_EVIDENCE_LINKS.md) - Certification evidence
+- [**../../05-PRIVACY_SECURITY/THREAT_MODEL.md**](../../05-PRIVACY_SECURITY/THREAT_MODEL.md) - Cybersecurity threat model
+- [**../../03-CLIENTS/AIRCRAFT_EDGE/SANDBOXING.md**](../../03-CLIENTS/AIRCRAFT_EDGE/SANDBOXING.md) - ARINC 653 partitioning

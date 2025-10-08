@@ -41,5 +41,5 @@ Auto-rollback procedures triggered by drift detection or safety alerts.
 
 ## Related Documents
 
-- **../04-ALGORITHMS/DRIFT_DETECTION.md** - Drift detection methods
-- **../16-INCIDENT_RESPONSE/RUNBOOK.md** - Incident response runbook
+- [**../04-ALGORITHMS/DRIFT_DETECTION.md**](../04-ALGORITHMS/DRIFT_DETECTION.md) - Drift detection methods
+- [**../16-INCIDENT_RESPONSE/RUNBOOK.md**](../16-INCIDENT_RESPONSE/RUNBOOK.md) - Incident response runbook

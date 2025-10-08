@@ -43,5 +43,5 @@ ITAR/EAR export control screening for FL model weights and algorithms.
 
 ## Related Documents
 
-- **../../01-ARCHITECTURE/FL_TOPOLOGY.md** - Geographic distribution
-- **../../02-ORCHESTRATION/CLIENT_SELECTION.md** - Jurisdiction filtering
+- [**../../01-ARCHITECTURE/FL_TOPOLOGY.md**](../../01-ARCHITECTURE/FL_TOPOLOGY.md) - Geographic distribution
+- [**../../02-ORCHESTRATION/CLIENT_SELECTION.md**](../../02-ORCHESTRATION/CLIENT_SELECTION.md) - Jurisdiction filtering

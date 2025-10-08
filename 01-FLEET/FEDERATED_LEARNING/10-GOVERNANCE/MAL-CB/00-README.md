@@ -8,8 +8,8 @@ Define how FL model baselines are integrated with overall system configuration m
 
 ## Contents
 
-- **00-README.md** - This file
-- **POLICY.md** - MAL-CB policy and CONFIG_MGMT integration
+- [**00-README.md**](00-README.md) - This file
+- [**POLICY.md**](POLICY.md) - MAL-CB policy and CONFIG_MGMT integration
 
 ## Scope
 
@@ -24,5 +24,5 @@ FL model baselines tracked in: `00-PROGRAM/CONFIG_MGMT/07-RELEASES/AIRCRAFT/`
 
 ## Related Documents
 
-- **POLICY.md** - Detailed baseline control policy
-- **../../../00-PROGRAM/CONFIG_MGMT/** - Configuration management framework
+- [**POLICY.md**](POLICY.md) - Detailed baseline control policy
+- [**../../../00-PROGRAM/CONFIG_MGMT/**](../../../00-PROGRAM/CONFIG_MGMT/) -  Configuration management framework

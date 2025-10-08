@@ -17,10 +17,10 @@ Evidence stored in: `00-PROGRAM/CONFIG_MGMT/07-RELEASES/AIRCRAFT/`
 ## Traceability
 
 - **Requirements**: Linked in `00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/REQ_ITEM.csv`
-- **Test results**: Linked in `TEST_PLANS.md`
-- **Audit records**: Linked in `../16-INCIDENT_RESPONSE/AUDIT_LOGS/`
+- **Test results**: Linked in [TEST_PLANS.md](TEST_PLANS.md)
+- **Audit records**: Linked in [../16-INCIDENT_RESPONSE/AUDIT_LOGS/](../16-INCIDENT_RESPONSE/AUDIT_LOGS/)
 
 ## Related Documents
 
-- **../11-COMPLIANCE/AVIATION.md** - DO-178C compliance framework
-- **TEST_PLANS.md** - Test procedures and results
+- [**../11-COMPLIANCE/AVIATION.md**](../11-COMPLIANCE/AVIATION.md) - DO-178C compliance framework
+- [**TEST_PLANS.md**](TEST_PLANS.md) - Test procedures and results
