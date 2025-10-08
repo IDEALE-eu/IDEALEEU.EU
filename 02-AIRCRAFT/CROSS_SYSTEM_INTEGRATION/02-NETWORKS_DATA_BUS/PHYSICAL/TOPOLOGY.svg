@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <!-- Network Topology Diagram -->
+  <title>Aircraft Network Topology</title>
+  
+  <!-- AFDX Switches -->
+  <rect x="400" y="100" width="120" height="60" fill="#4A90E2" stroke="#000" stroke-width="2"/>
+  <text x="460" y="135" text-anchor="middle" font-family="Arial" font-size="14" fill="#fff">AFDX-SW-1</text>
+  
+  <rect x="680" y="100" width="120" height="60" fill="#4A90E2" stroke="#000" stroke-width="2"/>
+  <text x="740" y="135" text-anchor="middle" font-family="Arial" font-size="14" fill="#fff">AFDX-SW-2</text>
+  
+  <!-- Redundancy Link -->
+  <line x1="520" y1="130" x2="680" y2="130" stroke="#E74C3C" stroke-width="3" stroke-dasharray="5,5"/>
+  <text x="600" y="120" text-anchor="middle" font-family="Arial" font-size="12" fill="#E74C3C">Redundant</text>
+  
+  <!-- LRUs -->
+  <rect x="100" y="300" width="100" height="50" fill="#7FB3D5" stroke="#000" stroke-width="1"/>
+  <text x="150" y="330" text-anchor="middle" font-family="Arial" font-size="12">FCC-1</text>
+  
+  <rect x="250" y="300" width="100" height="50" fill="#7FB3D5" stroke="#000" stroke-width="1"/>
+  <text x="300" y="330" text-anchor="middle" font-family="Arial" font-size="12">FMS-1</text>
+  
+  <rect x="400" y="300" width="100" height="50" fill="#7FB3D5" stroke="#000" stroke-width="1"/>
+  <text x="450" y="330" text-anchor="middle" font-family="Arial" font-size="12">AVIONICS-1</text>
+  
+  <rect x="550" y="300" width="100" height="50" fill="#7FB3D5" stroke="#000" stroke-width="1"/>
+  <text x="600" y="330" text-anchor="middle" font-family="Arial" font-size="12">GPS-1</text>
+  
+  <rect x="700" y="300" width="100" height="50" fill="#7FB3D5" stroke="#000" stroke-width="1"/>
+  <text x="750" y="330" text-anchor="middle" font-family="Arial" font-size="12">IRS-1</text>
+  
+  <rect x="850" y="300" width="100" height="50" fill="#7FB3D5" stroke="#000" stroke-width="1"/>
+  <text x="900" y="330" text-anchor="middle" font-family="Arial" font-size="12">FADEC-1</text>
+  
+  <rect x="1000" y="300" width="100" height="50" fill="#7FB3D5" stroke="#000" stroke-width="1"/>
+  <text x="1050" y="330" text-anchor="middle" font-family="Arial" font-size="12">DISPLAY-1</text>
+  
+  <!-- Connections to Switch 1 -->
+  <line x1="150" y1="300" x2="430" y2="160" stroke="#000" stroke-width="2"/>
+  <line x1="300" y1="300" x2="445" y2="160" stroke="#000" stroke-width="2"/>
+  <line x1="450" y1="300" x2="460" y2="160" stroke="#000" stroke-width="2"/>
+  
+  <!-- Connections to Switch 2 -->
+  <line x1="600" y1="300" x2="710" y2="160" stroke="#000" stroke-width="2"/>
+  <line x1="750" y1="300" x2="725" y2="160" stroke="#000" stroke-width="2"/>
+  <line x1="900" y1="300" x2="740" y2="160" stroke="#000" stroke-width="2"/>
+  <line x1="1050" y1="300" x2="770" y2="160" stroke="#000" stroke-width="2"/>
+  
+  <!-- Legend -->
+  <text x="50" y="500" font-family="Arial" font-size="16" font-weight="bold">Legend:</text>
+  <rect x="50" y="520" width="30" height="20" fill="#4A90E2" stroke="#000"/>
+  <text x="90" y="535" font-family="Arial" font-size="12">AFDX Switch</text>
+  
+  <rect x="50" y="550" width="30" height="20" fill="#7FB3D5" stroke="#000"/>
+  <text x="90" y="565" font-family="Arial" font-size="12">LRU (Line Replaceable Unit)</text>
+  
+  <line x1="50" y1="590" x2="80" y2="590" stroke="#E74C3C" stroke-width="3" stroke-dasharray="5,5"/>
+  <text x="90" y="595" font-family="Arial" font-size="12">Redundant Link</text>
+  
+  <text x="50" y="630" font-family="Arial" font-size="10" fill="#666">Note: Dual-redundant AFDX network for critical functions</text>
+  <text x="50" y="650" font-family="Arial" font-size="10" fill="#666">Network operates at 100 Mbps full-duplex per port</text>
+</svg>

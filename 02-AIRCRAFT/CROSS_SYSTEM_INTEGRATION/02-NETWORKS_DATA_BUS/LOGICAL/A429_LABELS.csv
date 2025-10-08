@@ -1,0 +1,24 @@
+label,label_hex,sdi,ssm,source_lru,dest_lru,data_type,update_rate_hz,functional_chain,description
+001,0x001,00,NCD,ADC-1,FCC-1,Air Speed,10,FC-012,Indicated Air Speed
+002,0x002,00,NCD,ADC-1,FCC-1,Altitude,10,FC-012,Pressure Altitude
+003,0x003,00,NCD,ADC-1,FCC-1,Mach Number,10,FC-012,Mach Number
+004,0x004,00,NCD,ADC-1,FMS-1,Air Speed,5,FC-002,True Air Speed
+010,0x00A,01,NCD,IRS-1,FMS-1,Latitude,10,FC-002,Aircraft Latitude
+011,0x00B,01,NCD,IRS-1,FMS-1,Longitude,10,FC-002,Aircraft Longitude
+012,0x00C,01,NCD,IRS-1,FCC-1,Pitch Angle,50,FC-001,Pitch Attitude
+013,0x00D,01,NCD,IRS-1,FCC-1,Roll Angle,50,FC-001,Roll Attitude
+014,0x00E,01,NCD,IRS-1,FCC-1,Heading,50,FC-001,True Heading
+020,0x014,00,NCD,GPS-1,FMS-1,GPS Latitude,1,FC-002,GPS Position
+021,0x015,00,NCD,GPS-1,FMS-1,GPS Longitude,1,FC-002,GPS Position
+022,0x016,00,NCD,GPS-1,FMS-1,GPS Altitude,1,FC-002,GPS Altitude
+030,0x01E,00,SSM,FADEC-1,DISPLAY-1,N1 Speed,5,FC-003,Engine N1 RPM
+031,0x01F,00,SSM,FADEC-1,DISPLAY-1,N2 Speed,5,FC-003,Engine N2 RPM
+032,0x020,00,SSM,FADEC-1,DISPLAY-1,EGT,5,FC-003,Exhaust Gas Temp
+040,0x028,00,SSM,HYD-SENSOR-1,HYD-CTRL-1,Pressure,5,FC-004,Hydraulic Pressure
+050,0x032,00,NCD,FMS-1,DISPLAY-1,Distance to Waypoint,1,FC-002,Navigation Data
+051,0x033,00,NCD,FMS-1,DISPLAY-1,ETA,1,FC-002,Estimated Time of Arrival
+060,0x03C,00,SSM,FUEL-MGMT-1,DISPLAY-1,Fuel Quantity,2,FC-011,Total Fuel Remaining
+070,0x046,00,NCD,THROTTLE-1,FADEC-1,Throttle Position,20,FC-003,Thrust Lever Angle
+100,0x064,00,SSM,FCC-1,DISPLAY-1,Flight Mode,10,FC-013,Autopilot/FD Mode
+150,0x096,00,SSM,FIRE-DET-1,DISPLAY-1,Fire Warning,20,FC-008,Fire Detection Status
+200,0x0C8,00,NCD,WX-RADAR-1,DISPLAY-1,Weather Alert,2,FC-014,Weather Alert Level

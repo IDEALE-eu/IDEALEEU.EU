@@ -1,0 +1,132 @@
+# Functional Chains Definition
+# Format: YAML
+# Purpose: Define end-to-end functional chains across aircraft systems
+# Each chain represents a critical function that spans multiple LRUs/systems
+
+chains:
+  - chain_id: FC-001
+    name: "Primary Flight Control - Pitch"
+    description: "Pitch control from pilot input to elevator actuation"
+    dal: A
+    path:
+      - lru: "FCDC-1"
+        function: "Pilot input acquisition"
+        latency_ms: 2
+      - lru: "FCC-1"
+        function: "Control law computation"
+        latency_ms: 10
+      - lru: "AFDX-Switch"
+        function: "Command distribution"
+        latency_ms: 1
+      - lru: "ACE-1"
+        function: "Actuator control"
+        latency_ms: 5
+      - lru: "ELEV-ACT-1"
+        function: "Elevator actuation"
+        latency_ms: 12
+    total_latency_budget_ms: 40
+    update_rate_hz: 100
+    interfaces:
+      - icd_id: "ICD-0003"
+        from: "FCDC-1"
+        to: "FCC-1"
+      - icd_id: "ICD-0015"
+        from: "FCC-1"
+        to: "ACE-1"
+    hazards:
+      - hazard_id: "HZD-001"
+        description: "Loss of pitch control"
+        mitigation: "Dual-redundant control path"
+    
+  - chain_id: FC-002
+    name: "Navigation Solution"
+    description: "Position determination from sensors to display"
+    dal: B
+    path:
+      - lru: "GPS-1"
+        function: "GNSS reception"
+        latency_ms: 50
+      - lru: "IRS-1"
+        function: "Inertial measurement"
+        latency_ms: 5
+      - lru: "FMS-1"
+        function: "Navigation fusion"
+        latency_ms: 20
+      - lru: "DISPLAY-1"
+        function: "Position display"
+        latency_ms: 25
+    total_latency_budget_ms: 150
+    update_rate_hz: 10
+    interfaces:
+      - icd_id: "ICD-0021"
+        from: "GPS-1"
+        to: "FMS-1"
+      - icd_id: "ICD-0022"
+        from: "IRS-1"
+        to: "FMS-1"
+    hazards:
+      - hazard_id: "HZD-012"
+        description: "Misleading navigation information"
+        mitigation: "Multi-sensor fusion with integrity monitoring"
+    
+  - chain_id: FC-003
+    name: "Engine Thrust Control"
+    description: "Thrust lever to engine fuel metering"
+    dal: A
+    path:
+      - lru: "THROTTLE-1"
+        function: "Thrust lever position"
+        latency_ms: 3
+      - lru: "FADEC-1"
+        function: "Thrust computation"
+        latency_ms: 8
+      - lru: "ENG-ECU-1"
+        function: "Fuel metering command"
+        latency_ms: 10
+      - lru: "FUEL-METER-1"
+        function: "Fuel flow actuation"
+        latency_ms: 15
+    total_latency_budget_ms: 50
+    update_rate_hz: 50
+    interfaces:
+      - icd_id: "ICD-0031"
+        from: "THROTTLE-1"
+        to: "FADEC-1"
+      - icd_id: "ICD-0032"
+        from: "FADEC-1"
+        to: "ENG-ECU-1"
+    hazards:
+      - hazard_id: "HZD-025"
+        description: "Uncommanded thrust change"
+        mitigation: "Dual-channel FADEC with cross-monitoring"
+    
+  - chain_id: FC-004
+    name: "Hydraulic Power Distribution"
+    description: "Hydraulic pressure monitoring and distribution"
+    dal: C
+    path:
+      - lru: "HYD-PUMP-1"
+        function: "Pressure generation"
+        latency_ms: 0
+      - lru: "HYD-SENSOR-1"
+        function: "Pressure sensing"
+        latency_ms: 5
+      - lru: "HYD-CTRL-1"
+        function: "Distribution control"
+        latency_ms: 10
+      - lru: "DISPLAY-1"
+        function: "Crew alerting"
+        latency_ms: 35
+    total_latency_budget_ms: 100
+    update_rate_hz: 5
+    interfaces:
+      - icd_id: "ICD-0041"
+        from: "HYD-SENSOR-1"
+        to: "HYD-CTRL-1"
+    hazards:
+      - hazard_id: "HZD-033"
+        description: "Loss of hydraulic pressure indication"
+        mitigation: "Redundant pressure sensors"
+
+# Schema validation: see 13-DATA/SCHEMAS/chain.schema.json
+# Traceability: see 07-INTEGRATION_TEST/TRACEABILITY.csv

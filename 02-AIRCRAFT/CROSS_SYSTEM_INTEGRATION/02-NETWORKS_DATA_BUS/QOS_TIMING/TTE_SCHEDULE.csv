@@ -1,0 +1,15 @@
+time_slot_id,start_us,duration_us,vl_id,source_lru,dest_lru,priority,functional_chain,notes
+TS-001,0,100,VL-009,FCC-1,FCC-2,Critical,FC-001,Flight control inter-channel sync
+TS-002,100,100,VL-001,FCC-1,ACE-1,High,FC-001,Primary pitch control command
+TS-003,200,100,VL-002,FCC-2,ACE-2,High,FC-001,Backup pitch control command
+TS-004,300,100,VL-012,ADC-1,FCC-1,High,FC-012,Air data to flight control
+TS-005,400,200,VL-006,FADEC-1,ENG-ECU-1,High,FC-003,Engine control channel 1
+TS-006,600,200,VL-007,FADEC-2,ENG-ECU-2,High,FC-003,Engine control channel 2
+TS-007,800,100,VL-011,FIRE-DET-1,FIRE-SUPP-1,Critical,FC-008,Fire detection and suppression
+TS-008,900,100,VL-016,BRAKE-CTRL-1,BRAKE-ACT-1,Critical,FC-016,Brake control command
+TS-009,1000,200,VL-020,AP-CTRL-1,FCC-1,High,FC-013,Autopilot to flight control
+TS-010,1200,200,VL-004,GPS-1,FMS-1,Medium,FC-002,GPS position update
+TS-011,1400,200,VL-005,IRS-1,FMS-1,Medium,FC-002,Inertial reference update
+TS-012,1600,100,VL-017,FLAP-CTRL-1,FLAP-ACT-1,High,FC-017,Flap/slat positioning
+TS-013,1700,300,VL-008,AVIONICS-1,DISPLAY-1,Medium,Multiple,Avionics to display data
+TS-014,2000,300,VL-003,FMS-1,DISPLAY-1,Medium,FC-002,Navigation display update

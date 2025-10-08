@@ -1,0 +1,21 @@
+chain_id,chain_name,total_budget_ms,lru_count,avg_compute_ms,avg_network_ms,avg_io_ms,margin_percent,status
+FC-001,Primary Flight Control - Pitch,40,5,17,2,11,25,GREEN
+FC-002,Navigation Solution,150,4,75,5,20,40,GREEN
+FC-003,Engine Thrust Control,50,4,18,3,13,20,YELLOW
+FC-004,Hydraulic Power Distribution,100,4,15,5,30,50,GREEN
+FC-005,Electrical Power Distribution,80,6,25,4,21,30,GREEN
+FC-006,Landing Gear Extension,200,5,45,6,99,25,GREEN
+FC-007,Anti-Ice System,300,3,80,8,112,33,GREEN
+FC-008,Fire Detection & Suppression,100,4,28,4,38,30,GREEN
+FC-009,Cabin Pressurization,150,4,42,5,53,33,GREEN
+FC-010,Oxygen Supply,120,3,35,4,41,33,GREEN
+FC-011,Fuel Quantity Indication,500,5,150,10,240,20,GREEN
+FC-012,Air Data System,50,4,15,3,17,30,GREEN
+FC-013,Autopilot Engage/Disengage,100,5,30,5,35,30,GREEN
+FC-014,Weather Radar,1000,3,400,20,380,20,GREEN
+FC-015,Communications Voice,200,4,60,15,85,20,GREEN
+FC-016,Brake System Control,60,5,20,3,22,25,GREEN
+FC-017,Flap/Slat Extension,250,5,65,8,102,30,GREEN
+FC-018,Engine Fire Detection,80,3,22,4,29,31,GREEN
+FC-019,Flight Data Recording,5000,2,1500,50,2450,20,GREEN
+FC-020,Passenger Address System,1000,3,300,25,475,20,GREEN

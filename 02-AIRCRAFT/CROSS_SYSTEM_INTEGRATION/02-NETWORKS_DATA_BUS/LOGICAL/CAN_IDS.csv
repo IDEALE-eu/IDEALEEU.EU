@@ -1,0 +1,11 @@
+can_id,can_id_hex,pgn,priority,source_lru,dest_lru,data_type,update_rate_hz,dlc,functional_chain,description
+0x0CF00400,0x0CF00400,61444,3,ENG-ECU-1,FADEC-1,Electronic Engine Controller 1,10,8,FC-003,Engine Speed and Torque
+0x0CF00300,0x0CF00300,61443,3,ENG-ECU-1,FADEC-1,Engine Temperature,5,8,FC-003,Engine Coolant Temperature
+0x18FEF100,0x18FEF100,65265,6,FADEC-1,ENG-ECU-1,Cruise Control/Vehicle Speed,10,8,FC-003,Engine Speed Control
+0x18FEEE00,0x18FEEE00,65262,6,ENG-ECU-1,FADEC-1,Engine Hours/Revolutions,1,8,FC-003,Engine Runtime
+0x18FEF200,0x18FEF200,65266,6,FUEL-METER-1,FADEC-1,Fuel Economy,2,8,FC-003,Fuel Flow Rate
+0x0CF00200,0x0CF00200,61442,3,ENG-ECU-1,DISPLAY-1,Engine Fault Codes,1,8,FC-003,Diagnostic Trouble Codes
+0x18FECA00,0x18FECA00,65226,6,ENG-ECU-1,FADEC-1,Vehicle Distance,1,8,FC-003,Total Engine Distance
+0x18FEF500,0x18FEF500,65269,6,ENG-ECU-1,FADEC-1,Ambient Conditions,2,8,FC-003,Ambient Temperature
+0x0CF00100,0x0CF00100,61441,3,ENG-ECU-1,FADEC-1,Electronic Engine Controller 2,10,8,FC-003,Engine Parameters
+0x18FEBF00,0x18FEBF00,65215,6,ENG-ECU-1,FADEC-1,Engine Configuration,1,8,FC-003,Engine Type and Config
