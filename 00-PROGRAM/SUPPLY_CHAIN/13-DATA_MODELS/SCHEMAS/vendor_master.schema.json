@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://idealeeu.eu/schemas/vendor_master.schema.json",
+  "title": "Vendor Master",
+  "description": "Supplier/vendor master data record",
+  "type": "object",
+  "required": ["vendorCode", "vendorName", "country"],
+  "properties": {
+    "vendorCode": {
+      "type": "string",
+      "description": "Unique vendor identifier",
+      "pattern": "^V[0-9]{6}$"
+    },
+    "vendorName": {
+      "type": "string",
+      "description": "Legal company name",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "dbaName": {
+      "type": "string",
+      "description": "Doing business as name (if different)",
+      "maxLength": 100
+    },
+    "address": {
+      "type": "object",
+      "required": ["line1", "city", "country"],
+      "properties": {
+        "line1": {"type": "string", "maxLength": 100},
+        "line2": {"type": "string", "maxLength": 100},
+        "city": {"type": "string", "maxLength": 50},
+        "stateProvince": {"type": "string", "maxLength": 50},
+        "postalCode": {"type": "string", "maxLength": 20},
+        "country": {"type": "string", "pattern": "^[A-Z]{2}$"}
+      }
+    },
+    "contacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "name", "email"],
+        "properties": {
+          "type": {"type": "string", "enum": ["Commercial", "Technical", "Quality", "Finance"]},
+          "name": {"type": "string"},
+          "title": {"type": "string"},
+          "email": {"type": "string", "format": "email"},
+          "phone": {"type": "string"}
+        }
+      }
+    },
+    "taxId": {
+      "type": "string",
+      "description": "Tax identification number"
+    },
+    "dunsNumber": {
+      "type": "string",
+      "description": "D&B DUNS number",
+      "pattern": "^[0-9]{9}$"
+    },
+    "cageCode": {
+      "type": "string",
+      "description": "Commercial and Government Entity code",
+      "pattern": "^[A-Z0-9]{5}$"
+    },
+    "paymentTerms": {
+      "type": "string",
+      "enum": ["Net30", "Net60", "Net90", "2/10Net30"]
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "ISO 4217 currency code"
+    },
+    "certifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {"type": "string", "enum": ["ISO9001", "AS9100", "AS9003", "NADCAP", "ISO14001", "ISO45001"]},
+          "certificateNumber": {"type": "string"},
+          "issuingBody": {"type": "string"},
+          "issueDate": {"type": "string", "format": "date"},
+          "expiryDate": {"type": "string", "format": "date"}
+        }
+      }
+    },
+    "itarRegistered": {
+      "type": "boolean",
+      "description": "ITAR registered with DDTC"
+    },
+    "itarRegistrationNumber": {
+      "type": "string",
+      "description": "DDTC registration number"
+    },
+    "supplierClass": {
+      "type": "string",
+      "enum": ["Strategic", "Preferred", "Transactional", "Probationary"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Active", "Inactive", "Blocked", "OnHold"]
+    },
+    "onboardingDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "lastAuditDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "performanceRating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    }
+  }
+}

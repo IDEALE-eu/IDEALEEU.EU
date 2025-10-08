@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://idealeeu.eu/schemas/aml.schema.json",
+  "title": "Approved Manufacturer List",
+  "description": "Approved manufacturers for COTS and standard parts",
+  "type": "object",
+  "required": ["partNumber", "manufacturerName", "manufacturerPartNumber"],
+  "properties": {
+    "partNumber": {
+      "type": "string",
+      "description": "Company internal part number",
+      "pattern": "^PN[0-9]{3}-[0-9]{3}$"
+    },
+    "manufacturerName": {
+      "type": "string",
+      "description": "Manufacturer company name"
+    },
+    "manufacturerCode": {
+      "type": "string",
+      "description": "CAGE code or unique manufacturer identifier"
+    },
+    "manufacturerPartNumber": {
+      "type": "string",
+      "description": "Manufacturer's part number"
+    },
+    "alternatePartNumbers": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Alternate or superseded MPNs"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Approved", "Preferred", "Acceptable", "NotRecommended", "Obsolete"]
+    },
+    "approvalDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "qualificationLevel": {
+      "type": "string",
+      "enum": ["Space", "Military", "Industrial", "Commercial"]
+    },
+    "datasheet": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to manufacturer's datasheet"
+    },
+    "qualificationData": {
+      "type": "object",
+      "properties": {
+        "radiationTested": {"type": "boolean"},
+        "totalDose": {"type": "number", "description": "TID in krad"},
+        "seuThreshold": {"type": "number", "description": "SEU LET threshold"},
+        "temperature": {"type": "object", "properties": {"min": {"type": "number"}, "max": {"type": "number"}}}
+      }
+    },
+    "leadTimeWeeks": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "eolStatus": {
+      "type": "string",
+      "enum": ["Active", "NotRecommendedForNewDesign", "EOL", "Obsolete"]
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

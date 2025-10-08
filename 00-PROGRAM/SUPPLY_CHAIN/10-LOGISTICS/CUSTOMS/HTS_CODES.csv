@@ -1,0 +1,11 @@
+Part_Number,Description,HTS_Code,HTS_Description,Duty_Rate_MFN,Duty_Rate_USMCA,Country_of_Origin,Notes
+PN123-456,Titanium Bracket,7616.99.5190,Other articles of aluminum,2.5%,Free,USA,
+PN789-012,Avionics Module,8526.91.0040,Radio navigational aid apparatus,Free,Free,France,
+PN345-678,Composite Panel,6815.10.0000,Non-electrical articles of graphite or other carbon,Free,Free,UK,Carbon fiber composite
+PN901-234,Flight Computer,8471.50.01,Digital processing units,Free,Free,USA,
+PN567-890,Hydraulic Actuator,8412.21.0080,Hydraulic linear acting cylinders,Free,Free,Germany,
+PN112-334,Sensor Assembly,9014.20.4000,Instruments for aeronautical navigation,Free,Free,Japan,
+PN223-445,Control Valve,8481.80.9090,Other taps cocks valves,Free,Free,Italy,
+PN334-556,Rare Earth Magnet,8505.11.0000,Permanent magnets of metal,Free,Free,China,Neodymium magnet
+PN445-667,Landing Gear Component,8803.30.00,Other parts of airplanes or helicopters,Free,Free,USA,
+PN556-778,Cabling Harness,8544.30.0000,Ignition wiring sets for vehicles aircraft,2.6%,Free,Mexico,Qualifies for USMCA

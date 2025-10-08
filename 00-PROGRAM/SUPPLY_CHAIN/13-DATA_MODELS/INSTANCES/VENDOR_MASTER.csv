@@ -1,0 +1,11 @@
+VendorCode,VendorName,Country,City,Commercial Contact,Email,Phone,Certifications,ITARRegistered,SupplierClass,Status,PerformanceRating
+V000001,Supplier A Inc,US,Los Angeles CA,John Smith,john.smith@suppliera.com,+1-555-0001,"ISO9001, AS9100",Yes,Strategic,Active,92
+V000002,Supplier B SAS,FR,Paris,Marie Dubois,marie.dubois@supplierb.fr,+33-1-5500-0002,"ISO9001, AS9100",No,Preferred,Active,88
+V000003,Supplier C Ltd,GB,London,James Wilson,james.wilson@supplierc.co.uk,+44-20-5500-0003,"ISO9001, AS9100, NADCAP",No,Strategic,Active,95
+V000004,Supplier D SpA,IT,Milan,Giuseppe Rossi,giuseppe.rossi@supplierd.it,+39-02-5500-0004,ISO9001,No,Preferred,Active,85
+V000005,Supplier E Corp,US,Boston MA,Emily Johnson,emily.johnson@suppliere.com,+1-555-0005,"ISO9001, AS9100",Yes,Strategic,Active,90
+V000006,Supplier F GmbH,DE,Munich,Hans Mueller,hans.mueller@supplierf.de,+49-89-5500-0006,"ISO9001, AS9100",No,Preferred,Active,87
+V000007,Supplier G KK,JP,Tokyo,Yuki Tanaka,yuki.tanaka@supplierg.jp,+81-3-5500-0007,"ISO9001, AS9003",No,Transactional,Active,82
+V000008,Supplier H Inc,US,Seattle WA,Michael Chen,michael.chen@supplierh.com,+1-555-0008,"ISO9001, AS9100, ISO14001",Yes,Strategic,Active,93
+V000009,Supplier I SRL,IT,Turin,Marco Ferrari,marco.ferrari@supplieri.it,+39-011-5500-0009,ISO9001,No,Preferred,Active,84
+V000010,Supplier J SA de CV,MX,Monterrey,Carlos Hernandez,carlos.hernandez@supplierj.mx,+52-81-5500-0010,ISO9001,No,Transactional,Active,80

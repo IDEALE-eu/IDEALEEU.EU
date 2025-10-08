@@ -1,0 +1,11 @@
+PartNumber,ManufacturerName,ManufacturerCode,ManufacturerPartNumber,Status,QualificationLevel,ApprovalDate,DatasheetURL,RadiationTested,LeadTimeWeeks,EOLStatus
+PN789-012,Honeywell Aerospace,07217,HAV-12345-001,Preferred,Space,2022-03-15,https://aerospace.honeywell.com/ds/HAV-12345-001,Yes,16,Active
+PN112-334,TE Connectivity,01637,MS5607-01BA03,Approved,Military,2021-09-22,https://te.com/ds/MS5607-01BA03,No,12,Active
+PN334-556,Bomatec AG,S4338,BOM-NdFeB-N52,Approved,Industrial,2023-01-10,,No,6,Active
+PN334-556,Arnold Magnetic Technologies,0KCT4,RECOMA-35EH,Approved,Industrial,2023-01-10,,No,8,Active
+PN667-889,Alcoa Fastening Systems,06481,BACB30LT3-8CN,Approved,Aerospace,2020-05-18,https://arconic.com/ds/BACB30LT3-8CN,No,4,Active
+PN778-990,Parker Hannifin,30327,2-210-N674-70,Approved,Aerospace,2021-11-05,https://parker.com/ds/2-210-N674-70,No,6,Active
+PN778-990,Trelleborg Sealing Solutions,K4505,V0880-80,Acceptable,Industrial,2021-11-05,,No,8,Active
+PN901-234,BAE Systems,01383,RAD750-001,Preferred,Space,2020-08-30,https://baesystems.com/ds/RAD750-001,Yes,20,NotRecommendedForNewDesign
+PN567-890,Moog Inc,94697,MA1234-100,Approved,Aerospace,2021-07-12,https://moog.com/ds/MA1234-100,No,14,Active
+PN445-667,Safran Landing Systems,F6481,LGC-7890-A,Approved,Aerospace,2022-11-20,https://safran-landing-systems.com/ds/LGC-7890-A,No,18,Active

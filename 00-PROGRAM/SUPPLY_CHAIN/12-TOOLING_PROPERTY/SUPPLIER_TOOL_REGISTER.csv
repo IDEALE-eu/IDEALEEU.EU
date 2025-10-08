@@ -1,0 +1,13 @@
+Asset_ID,Asset_Type,Description,Part_Numbers,Supplier_Name,Supplier_Location,Acquisition_Date,Acquisition_Cost_USD,Current_Value_USD,Ownership,Condition,Last_Inspection,Next_Inspection,Status,Notes
+AST-001,Mold,Injection mold for bracket,PN123-456,Supplier A,"USA, CA",2022-05-15,125000,100000,Company,Good,2024-01-20,2024-07-20,Active,Preventive maintenance per schedule
+AST-002,Test Fixture,Functional test fixture avionics,PN789-012,Supplier B,France,2021-11-30,85000,60000,Company,Fair,2024-02-10,2024-08-10,Active,Minor wear; repair scheduled Q2 2024
+AST-003,Forming Die,Composite panel forming tool,PN345-678,Supplier C,UK,2023-03-22,210000,190000,Company,Excellent,2024-02-25,2024-08-25,Active,New tooling; excellent condition
+AST-004,Gage,CMM inspection fixture,PN901-234,Supplier E,"USA, MA",2020-08-10,42000,25000,Company,Good,2024-01-15,2024-07-15,Active,Calibrated and certified
+AST-005,Jig,Assembly jig for actuator,PN567-890,Supplier F,Germany,2019-06-05,68000,40000,Company,Fair,2023-12-12,2024-06-12,Active,Refurbishment planned 2024
+AST-006,Test Equipment,Sensor calibration system,PN112-334,Supplier H,Japan,2022-09-18,155000,130000,Company,Excellent,2024-02-28,2024-08-28,Active,Annual calibration completed
+AST-007,Mold,Obsolete bracket mold,PN-OLD-001,Former Supplier,N/A,2018-03-10,95000,10000,Company,Poor,2022-06-15,N/A,Inactive,Part discontinued; tool scrapped 2023
+AST-008,Software License,CAM software for machining,Multiple,Supplier K,"USA, WA",2023-01-05,25000,22000,Company (license),Good,2024-01-05,2025-01-05,Active,Annual license renewal
+AST-009,Fixture,Leak test fixture for valve,PN223-445,Supplier I,Italy,2021-04-20,38000,28000,Company,Good,2024-01-30,2024-07-30,Active,Working well; no issues
+AST-010,Mold,Plastic overmold tool,PN556-778,Supplier M,Mexico,2023-07-12,72000,68000,Company,Excellent,2024-02-05,2024-08-05,Active,USMCA qualifying tool; duty-free
+AST-011,Test Rig,Vibration test fixture,Multiple,Supplier K,"USA, WA",2022-11-03,180000,155000,Company,Good,2024-02-15,2024-08-15,Active,Multi-program use
+AST-012,Calibration Standard,Pressure standard,Multiple,Supplier F,Germany,2020-02-28,12000,9000,Company,Good,2024-01-10,2024-07-10,Active,Calibration current; NIST traceable

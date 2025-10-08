@@ -1,0 +1,14 @@
+Project_ID,Project_Name,Category,Part_Numbers,Supplier,Initiated_Date,Target_Date,Status,Annual_Savings_Target_USD,Savings_Achieved_USD,Completion_Pct,Owner,Notes
+CS001,Material Substitution - Bracket,Material,PN123-456,Supplier A,2024-01-15,2024-06-30,In Progress,45000,0,60%,Materials Eng,"Aluminum to steel, testing underway"
+CS002,Dual Source Avionics Module,Sourcing,PN789-012,Supplier X (new),2023-11-01,2024-09-30,Planning,120000,0,25%,Procurement,"Second source qualification, PPAP pending"
+CS003,Volume Consolidation - Fasteners,Volume Leverage,"PN667-889, others",Supplier M,2024-02-01,2024-04-30,Implementing,18000,15000,85%,Procurement,Consolidating to single supplier for better pricing
+CS004,Process Improvement - Composites,Process,PN345-678,Supplier C,2023-10-15,2024-05-31,In Progress,62000,0,70%,Quality,"Yield improvement project, cost sharing with supplier"
+CS005,Design Simplification - Actuator,Design Change,PN567-890,Supplier F,2024-01-20,2024-12-31,Planning,38000,0,15%,Engineering,Reduce part count and machining
+CS006,Renegotiation - Sensors,Negotiation,PN112-334,Supplier H,2024-03-01,2024-05-15,In Progress,22000,0,40%,Procurement,Volume commitment for lower unit price
+CS007,Insourcing Simple Parts,Make vs Buy,"PN556-778, others",Internal,2024-02-10,2025-01-31,Planning,95000,0,20%,Operations,Evaluate insourcing high-volume low-complexity items
+CS008,Alternate Material - Magnets,Material,PN334-556,Supplier J,2023-09-01,2024-06-30,In Progress,75000,0,55%,Engineering,"Explore alternative rare earth sources, technical challenges"
+CS009,Tooling Optimization - Landing Gear,Tooling,PN445-667,Supplier K,2024-01-05,2024-08-31,In Progress,52000,0,50%,Engineering & Procurement,Tool design improvements to reduce cycle time
+CS010,LTA with Cable Supplier,Long-term Agreement,PN556-778,Supplier M,2023-12-01,2024-03-31,Closed,25000,28000,100%,Procurement,3-year LTA with annual cost reduction commitments
+CS011,Value Engineering - Valve,Design Change,PN223-445,Supplier I,2024-02-20,2024-10-31,Planning,31000,0,10%,Engineering,Simplify design while maintaining function
+CS012,Freight Optimization,Logistics,Multiple,Multiple,2024-01-10,2024-06-30,In Progress,42000,18000,65%,Logistics,Ocean vs air freight optimization; consolidation
+Total,,,,,,,,,605000,61000,,,

@@ -1,0 +1,13 @@
+PartNumber,Rev,Description,UOM,HTS_Code,LeadTimeDays,MOQ,StandardCost,Currency,ABCClass,MakeOrBuy,InspectionRequired,PPAPRequired,ITARControlled,Status
+PN123-456,B,Titanium Bracket,EA,7616.99.5190,45,50,241.28,USD,A,Buy,Yes,Yes,No,Active
+PN789-012,C,Avionics Module,EA,8526.91.0040,90,10,8500.00,EUR,A,Buy,Yes,Yes,Yes,Active
+PN345-678,A,Composite Panel,EA,6815.10.0000,60,20,580.00,GBP,A,Buy,Yes,Yes,No,Active
+PN901-234,D,Flight Computer,EA,8471.50.01,120,5,15000.00,USD,A,Buy,Yes,Yes,Yes,Active
+PN567-890,B,Hydraulic Actuator,EA,8412.21.0080,60,10,950.00,EUR,A,Buy,Yes,Yes,No,Active
+PN112-334,A,Sensor Assembly,EA,9014.20.4000,45,25,330.00,JPY,B,Buy,Yes,No,No,Active
+PN223-445,B,Control Valve,EA,8481.80.9090,60,15,485.00,EUR,B,Buy,Yes,No,No,Active
+PN334-556,A,Rare Earth Magnet,EA,8505.11.0000,30,100,425.00,USD,A,Buy,Yes,No,No,Active
+PN445-667,C,Landing Gear Component,EA,8803.30.00,90,5,12000.00,USD,A,Buy,Yes,Yes,Yes,Active
+PN556-778,B,Cabling Harness,EA,8544.30.0000,30,50,145.00,USD,C,Buy,No,No,No,Active
+PN667-889,A,Fastener Kit,SET,7318.15.0000,14,500,28.00,USD,C,Buy,No,No,No,Active
+PN778-990,A,O-Ring Set,SET,4016.93.0000,21,200,35.00,USD,C,Buy,No,No,No,Active

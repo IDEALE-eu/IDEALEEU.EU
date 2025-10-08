@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://idealeeu.eu/schemas/avl.schema.json",
+  "title": "Approved Vendor List",
+  "description": "Approved vendors for specific part numbers",
+  "type": "object",
+  "required": ["partNumber", "vendorCode", "status"],
+  "properties": {
+    "partNumber": {
+      "type": "string",
+      "pattern": "^PN[0-9]{3}-[0-9]{3}$"
+    },
+    "vendorCode": {
+      "type": "string",
+      "pattern": "^V[0-9]{6}$"
+    },
+    "vendorPartNumber": {
+      "type": "string",
+      "description": "Supplier's part number (if different)"
+    },
+    "preferenceRank": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "1=Primary, 2=Secondary, etc."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Approved", "Conditional", "Probationary", "Suspended"]
+    },
+    "approvalDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "leadTimeDays": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "moq": {
+      "type": "number",
+      "description": "Minimum order quantity"
+    },
+    "unitPrice": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "priceValidUntil": {
+      "type": "string",
+      "format": "date"
+    },
+    "qualifications": {
+      "type": "object",
+      "properties": {
+        "ppapApproved": {"type": "boolean"},
+        "ppapDate": {"type": "string", "format": "date"},
+        "faiApproved": {"type": "boolean"},
+        "faiDate": {"type": "string", "format": "date"}
+      }
+    },
+    "restrictions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

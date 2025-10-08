@@ -1,0 +1,11 @@
+Supplier_Code,Supplier_Name,Period,Quality_Score,Quality_Weight,Delivery_Score,Delivery_Weight,Cost_Score,Cost_Weight,Service_Score,Service_Weight,Overall_Score,Rating
+V000001,Supplier A Inc,2024-01,90,45%,95,30%,88,15%,92,10%,91.05,Excellent
+V000002,Supplier B SAS,2024-01,85,45%,90,30%,85,15%,88,10%,86.85,Good
+V000003,Supplier C Ltd,2024-01,95,45%,98,30%,90,15%,94,10%,94.65,Excellent
+V000004,Supplier D SpA,2024-01,82,45%,88,30%,86,15%,85,10%,84.95,Good
+V000005,Supplier E Corp,2024-01,92,45%,93,30%,89,15%,91,10%,91.60,Excellent
+V000006,Supplier F GmbH,2024-01,88,45%,91,30%,87,15%,86,10%,88.35,Good
+V000007,Supplier G KK,2024-01,80,45%,85,30%,83,15%,82,10%,82.10,Good
+V000008,Supplier H Inc,2024-01,94,45%,96,30%,91,15%,93,10%,93.85,Excellent
+V000009,Supplier I SRL,2024-01,84,45%,89,30%,84,15%,86,10%,85.45,Good
+V000010,Supplier J SA de CV,2024-01,78,45%,82,30%,80,15%,81,10%,79.95,Acceptable
