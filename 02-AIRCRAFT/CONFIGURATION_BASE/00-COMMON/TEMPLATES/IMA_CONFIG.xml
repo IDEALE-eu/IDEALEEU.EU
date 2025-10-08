@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ARINC 653 IMA Configuration Template -->
+<A653_Configuration xmlns="http://www.arinc.com/653" version="2.0">
+  <System_Configuration>
+    <System_Name>IDEALE_IMA_System</System_Name>
+    <System_Version>1.0</System_Version>
+    <Description>Integrated Modular Avionics Configuration</Description>
+  </System_Configuration>
+  
+  <Module_Configuration module_id="IMA-MOD-01">
+    <Module_Name>Primary_IMA_Module</Module_Name>
+    <Processor_Cores>4</Processor_Cores>
+    <Memory_Size unit="MB">2048</Memory_Size>
+    <Operating_System>ARINC653_OS_V2.1</Operating_System>
+    
+    <Partition partition_id="PART-001">
+      <Partition_Name>Flight_Control_Partition</Partition_Name>
+      <Memory_Size unit="MB">128</Memory_Size>
+      <Period unit="ms">10</Period>
+      <Duration unit="ms">2.5</Duration>
+      <Criticality_Level>DAL-A</Criticality_Level>
+      <Entry_Point>FCC_Main</Entry_Point>
+    </Partition>
+    
+    <Partition partition_id="PART-002">
+      <Partition_Name>Display_Partition</Partition_Name>
+      <Memory_Size unit="MB">256</Memory_Size>
+      <Period unit="ms">20</Period>
+      <Duration unit="ms">6.0</Duration>
+      <Criticality_Level>DAL-B</Criticality_Level>
+      <Entry_Point>Display_Main</Entry_Point>
+    </Partition>
+  </Module_Configuration>
+  
+  <Inter_Partition_Communication>
+    <Channel channel_id="CH-001">
+      <Source_Partition>PART-001</Source_Partition>
+      <Destination_Partition>PART-002</Destination_Partition>
+      <Message_Size unit="bytes">256</Message_Size>
+      <Refresh_Period unit="ms">10</Refresh_Period>
+    </Channel>
+  </Inter_Partition_Communication>
+</A653_Configuration>
