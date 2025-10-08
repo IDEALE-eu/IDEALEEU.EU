@@ -1,240 +1,124 @@
 # Configuration Control Board (CCB) Charter
 
-## 1. Purpose
+> Location: `CONFIG_MGMT/05-CCB/CCB_CHARTER.md`  
+> Governance: see **[../GOVERNANCE.md](../GOVERNANCE.md)**
 
-The Configuration Control Board (CCB) is established to provide governance and decision-making authority for all changes to baselined configuration items in the IDEALE EU aerospace program.
+## 1. Purpose
+Provide governance and decision authority for all changes to **baselined configuration items**.
 
 ## 2. Authority
-
-The CCB operates under the authority of the Program Manager and is responsible for:
-- Reviewing and dispositioning all Engineering Change Requests (ECRs)
-- Approving or rejecting Engineering Change Orders (ECOs)
-- Authorizing deviations and waivers
-- Establishing and maintaining program baselines
-- Ensuring change impact is properly assessed
-- Maintaining configuration integrity
+Under Program Manager authority. Responsibilities:
+- Review and disposition all **ECRs** (**[../06-CHANGES/ECR/](../06-CHANGES/ECR/)**)
+- Approve or reject **ECOs** (**[../06-CHANGES/ECO/](../06-CHANGES/ECO/)**)
+- Authorize **deviations** (**[../06-CHANGES/DEVIATIONS/](../06-CHANGES/DEVIATIONS/)**) and **waivers** (**[../06-CHANGES/WAIVERS/](../06-CHANGES/WAIVERS/)**)
+- Establish and maintain program **baselines** (**[../04-BASELINES/](../04-BASELINES/)**)
+- Ensure change impact assessment and configuration integrity
 
 ## 3. Scope
-
-The CCB has authority over:
-- Aircraft design and production
-- Spacecraft design and production
-- Ground support equipment
-- Software and firmware
-- Documentation and specifications
-- Test procedures and equipment
-- Manufacturing processes affecting form, fit, or function
+Aircraft, spacecraft, GSE, software/firmware, documentation/specs, test procedures/equipment, manufacturing processes affecting FFF.
 
 ## 4. CCB Membership
 
 ### 4.1 Voting Members
-
 | Role | Responsibility |
-|------|----------------|
-| **CCB Chair** | Program Manager or designee - Final decision authority |
-| **Chief Engineer** | Technical assessment and approval |
-| **Systems Engineer** | System-level impact assessment |
-| **Quality Manager** | Quality and compliance review |
-| **Manufacturing Manager** | Producibility and cost impact |
-| **Test Manager** | Test impact assessment |
-| **Safety Manager** | Safety and risk assessment |
-| **Certification Manager** | Regulatory compliance impact |
+|---|---|
+| **CCB Chair** | Final decision authority |
+| **Chief Engineer** | Technical assessment |
+| **Systems Engineer** | System impact |
+| **Quality Manager** | Quality/compliance |
+| **Manufacturing Manager** | Producibility/cost |
+| **Test Manager** | Test impact |
+| **Safety Manager** | Safety/risk |
+| **Certification Manager** | Regulatory impact |
 
-### 4.2 Non-Voting Members
-
+### 4.2 Non-Voting
 | Role | Responsibility |
-|------|----------------|
-| **Configuration Manager** | CCB secretary, maintains records |
-| **Procurement** | Supply chain impact (advisory) |
-| **Finance** | Cost analysis (advisory) |
-| **Customer Representative** | Customer interests (as applicable) |
+|---|---|
+| **Configuration Manager** | Secretary, records |
+| **Procurement** | Supply chain impact |
+| **Finance** | Cost analysis |
+| **Customer Rep** | Customer interests |
 
-### 4.3 Ad-Hoc Attendees
+Members list: **[./01-MEMBERS.md](./01-MEMBERS.md)**
 
-Subject matter experts may be invited as needed for specific changes.
+### 4.3 Ad-Hoc
+SMEs invited as needed.
 
 ## 5. CCB Meetings
+- **Regular:** Weekly (dev), bi-weekly (prod). ≤2h. In-person/virtual.
+- **Emergency:** Called by Chair. ≥24h notice when possible.
+- **Agenda:** Minutes review → Actions → New ECRs → Pending ECOs → Deviations/Waivers → Baseline status → Metrics.
 
-### 5.1 Regular Meetings
-- **Frequency:** Weekly during development, bi-weekly during production
-- **Duration:** 2 hours maximum
-- **Location:** Conference room or virtual (Teams/Zoom)
+Minutes stored in **[./02-MINUTES/](./02-MINUTES/)**.
 
-### 5.2 Emergency Meetings
-- Called by CCB Chair for critical/urgent changes
-- Minimum 24-hour notice (when possible)
-- May be conducted virtually
-
-### 5.3 Meeting Agenda
-1. Review previous meeting minutes
-2. Action item status
-3. New ECR presentations
-4. Pending ECO dispositions
-5. Deviation/waiver requests
-6. Baseline status review
-7. Metrics and trends
-
-## 6. Decision-Making Process
-
-### 6.1 Quorum
-- Minimum 5 voting members required
-- Must include CCB Chair (or delegate) and Chief Engineer
-
-### 6.2 Voting
-- Consensus preferred
-- Majority vote (>50%) required for approval
-- CCB Chair has veto authority
-- Abstentions not counted in vote total
-
-### 6.3 Dispositions
-- **Approved** - Change authorized for implementation
-- **Approved with Conditions** - Change authorized with specified modifications
-- **Rejected** - Change not authorized
-- **Deferred** - More information required, postpone decision
-- **Returned for Rework** - Submitter to revise and resubmit
+## 6. Decision Process
+**Quorum:** ≥5 voting, incl. Chair (or delegate) and Chief Engineer.  
+**Voting:** Consensus preferred; majority >50%; Chair veto allowed; abstentions excluded.  
+**Dispositions:** Approved · Approved w/ conditions · Rejected · Deferred · Returned for rework.
 
 ## 7. Change Classification
-
-### 7.1 Class I Changes
-- Affect form, fit, or function
-- Impact safety or certification
-- Affect interchangeability
-- Require customer approval
-- **Authority:** Full CCB approval required
-
-### 7.2 Class II Changes
-- Documentation updates
-- Minor process changes
-- Non-critical design improvements
-- **Authority:** Delegated to CCB Chair and Chief Engineer
-
-### 7.3 Class III Changes
-- Administrative changes
-- Typographical corrections
-- Non-technical updates
-- **Authority:** Configuration Manager approval
+- **Class I:** FFF, safety/certification, interchangeability, customer approval → **Full CCB approval**
+- **Class II:** Minor/doc/process → **Chair + Chief Engineer**
+- **Class III:** Administrative/typos → **Configuration Manager**
 
 ## 8. ECR/ECO Process
 
 ### 8.1 ECR Submission
-1. Originator completes ECR form (template: 13-TEMPLATES/ECR.yml)
-2. Submit to Configuration Manager
-3. CM assigns ECR number and routes to CCB
-4. Technical assessment conducted
-5. CCB reviews and dispositions
+1. Originator completes **ECR** (**[../13-TEMPLATES/ECR.yml](../13-TEMPLATES/ECR.yml)**).  
+2. Submit to CM.  
+3. CM assigns ECR ID and routes.  
+4. Technical assessment.  
+5. CCB disposition.
 
 ### 8.2 ECO Implementation
-1. Approved ECR becomes ECO
-2. CM issues ECO number
-3. Implementation planned and executed
-4. Verification performed
-5. ECO closed upon completion
+1. Approved ECR becomes ECO.  
+2. CM assigns ECO ID.  
+3. Plan and execute implementation.  
+4. QA verification.  
+5. Close ECO.
 
 ### 8.3 Tracking
-All ECRs and ECOs tracked in **06-CHANGES/ECR/** and **06-CHANGES/ECO/**
+All records in **[../06-CHANGES/ECR/](../06-CHANGES/ECR/)** and **[../06-CHANGES/ECO/](../06-CHANGES/ECO/)**.
 
-## 9. Deviation and Waiver Process
-
-### 9.1 Deviation Request
-- One-time departure from requirements
-- Must demonstrate no safety impact
-- Requires CCB approval
-- Tracked in **06-CHANGES/DEVIATIONS/**
-
-### 9.2 Waiver Request
-- Permanent acceptance of non-conformance
-- Requires engineering justification
-- May require customer approval
-- Requires CCB approval
-- Tracked in **06-CHANGES/WAIVERS/**
+## 9. Deviation and Waiver
+- **Deviation:** One-time departure. No safety impact. **CCB approval**. Track **[../06-CHANGES/DEVIATIONS/](../06-CHANGES/DEVIATIONS/)**.  
+- **Waiver:** Permanent acceptance. Engineering justification; may need customer approval. **CCB approval**. Track **[../06-CHANGES/WAIVERS/](../06-CHANGES/WAIVERS/)**.
 
 ## 10. Baseline Management
+**Establishment:** SRR, PDR, CDR, TRR, PRR, ORR/EIS, FRR.  
+**Control:** All changes to baselined items require CCB approval (Class I).  
+Baselines archived in **[../04-BASELINES/](../04-BASELINES/)**. Status accounting per **[../10-TRACEABILITY/CHANGE_BASELINE.csv](../10-TRACEABILITY/CHANGE_BASELINE.csv)**.
 
-### 10.1 Baseline Establishment
-CCB authorizes baselines at stage gates:
-- SRR, PDR, CDR, TRR, PRR, ORR/EIS, FRR
+## 11. Roles
 
-### 10.2 Baseline Control
-- All changes to baselined items require CCB approval (Class I)
-- Baselines archived in **04-BASELINES/[GATE]/**
-- Configuration status accounting maintained
-
-## 11. Roles and Responsibilities
-
-### 11.1 CCB Chair
-- Lead CCB meetings
-- Make final decisions on changes
-- Ensure CCB effectiveness
-- Report CCB metrics to program management
-
-### 11.2 Configuration Manager (Secretary)
-- Prepare meeting agendas
-- Distribute materials 48 hours before meeting
-- Record meeting minutes
-- Track action items
-- Maintain CCB records
-- Publish meeting minutes within 24 hours
-
-### 11.3 Voting Members
-- Review ECRs before meetings
-- Assess impact to their discipline
-- Participate in discussions
-- Vote on changes
-- Complete assigned actions
+**CCB Chair:** Lead meetings, final decisions, report metrics.  
+**Configuration Manager:** Agenda, materials (48h prior), minutes (publish <24h), actions, records.  
+**Voting Members:** Pre-read, impact assessment, vote, execute actions.
 
 ## 12. Documentation
-
-### 12.1 Meeting Minutes
-Document:
-- Attendees (voting and non-voting)
-- ECRs reviewed
-- Dispositions and vote tallies
-- Action items assigned
-- Baseline status
-
-Stored in **05-CCB/02-MINUTES/**
-
-### 12.2 CCB Records Retention
-- Meeting minutes: Permanent
-- ECR/ECO records: Life of program + 10 years
-- Deviation/waiver records: Life of program + 10 years
+**Minutes content:** attendees, ECRs, dispositions/votes, actions, baseline status.  
+Retention: Minutes — permanent; ECR/ECO/Deviation/Waiver — program life +10 years.
 
 ## 13. Metrics
-
-CCB tracks and reports:
-- ECRs submitted per month
-- ECR approval rate
-- Average ECR cycle time (submission to disposition)
-- ECO implementation cycle time
-- Open ECR/ECO backlog
-- Change categories and trends
+ECRs/month, approval rate, ECR cycle time, ECO implementation time, open backlog, category trends. Report via **[../11-AUDITS/](../11-AUDITS/)** and PM dashboard.
 
 ## 14. Continuous Improvement
-
-- Annual review of CCB charter and processes
-- Regular training for CCB members
-- Lessons learned incorporated
-- Process refinements as needed
+Annual charter review, member training, lessons learned, process updates.
 
 ## 15. Conflict Resolution
-
-If consensus cannot be reached:
-1. Issue elevated to Program Manager
-2. Program Manager makes final decision
-3. Decision documented with rationale
+Escalate to Program Manager → final decision → record rationale in minutes.
 
 ## 16. Signatures
-
-This charter is approved by:
-
 | Role | Name | Signature | Date |
-|------|------|-----------|------|
-| Program Manager | TBD | _________ | ____ |
-| Chief Engineer | TBD | _________ | ____ |
-| Configuration Manager | TBD | _________ | ____ |
+|---|---|---|---|
+| Program Manager | TBD | ______ | ____ |
+| Chief Engineer | TBD | ______ | ____ |
+| Configuration Manager | TBD | ______ | ____ |
 
 ---
 
 **Effective Date:** TBD  
-**Next Review Date:** TBD + 1 year  
-**Document Owner:** Configuration Manager
+**Next Review:** TBD + 1 year  
+**Owner:** Configuration Manager
+```
+
