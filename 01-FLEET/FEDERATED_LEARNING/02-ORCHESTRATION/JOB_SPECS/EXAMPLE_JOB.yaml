@@ -1,0 +1,332 @@
+# EXAMPLE_JOB.yaml
+
+Example federated learning job specification for predictive maintenance.
+
+## Job Metadata
+
+```yaml
+job_metadata:
+  job_id: "fl-pm-engine-oil-2024q4"
+  name: "Predictive Maintenance - Engine Oil Pressure Anomaly"
+  description: |
+    Binary classification model to predict engine oil pressure anomalies 
+    50-100 flight hours in advance. Uses LSTM on engine vibration, oil 
+    temperature, and oil pressure time-series data.
+  owner: "AI/ML Team - Predictive Maintenance"
+  contact: "ml-team@ideale.eu"
+  created_at: "2024-11-15T10:30:00Z"
+  updated_at: "2024-11-15T10:30:00Z"
+  status: "draft"  # draft | approved | active | completed | failed
+  priority: "high"  # low | medium | high | critical
+```
+
+## Model Configuration
+
+```yaml
+model_config:
+  architecture: "LSTM"
+  framework: "PyTorch"
+  version: "1.0.0"
+  
+  input_schema:
+    reference: "01-ARCHITECTURE/DATA_CONTRACTS/TELEMETRY_SCHEMA.yaml"
+    signals:
+      - engine_1_vibration
+      - engine_1_oil_temperature
+      - engine_1_oil_pressure
+      - engine_1_n1
+      - engine_1_n2
+    window_size: 600  # 10 minutes at 1 Hz
+    sampling_rate: 1  # Hz
+    
+  output_schema:
+    type: "binary_classification"
+    labels:
+      - 0  # Normal (no anomaly)
+      - 1  # Anomaly (oil pressure issue imminent)
+    threshold: 0.5  # Prediction confidence threshold
+    
+  model_hyperparameters:
+    input_dim: 5  # Number of input signals
+    hidden_dim: 64
+    num_layers: 2
+    dropout: 0.2
+    sequence_length: 600
+```
+
+## Training Configuration
+
+```yaml
+training_config:
+  algorithm: "FedAvg"  # FedAvg | FedProx | FedOpt
+  
+  hyperparameters:
+    learning_rate: 0.001
+    optimizer: "Adam"
+    optimizer_kwargs:
+      beta1: 0.9
+      beta2: 0.999
+      weight_decay: 1e-5
+    loss_function: "BCEWithLogitsLoss"  # Binary cross-entropy
+    
+  local_training:
+    local_epochs: 5
+    batch_size: 32
+    shuffle: true
+    
+  global_training:
+    num_rounds: 50  # Total FL rounds
+    early_stopping:
+      enabled: true
+      patience: 5  # Stop if no improvement for 5 rounds
+      metric: "val_auc"
+      threshold: 0.95  # Target AUC
+```
+
+## Orchestration Configuration
+
+```yaml
+orchestration_config:
+  schedule:
+    type: "weekly"  # weekly | bi_weekly | on_demand
+    launch_day: "Sunday"
+    launch_time: "00:00 UTC"
+    
+  client_selection:
+    algorithm: "random"  # random | importance_sampling | active_learning
+    min_clients: 10
+    max_clients: 50
+    target_clients: 30
+    
+    eligibility_criteria:
+      min_flight_hours_since_last_round: 50
+      no_open_ncrs: true
+      data_quality_threshold: 0.95
+      hardware_health_check: true
+      
+    fairness_policy:
+      stratify_by:
+        - aircraft_type
+        - flight_phase_distribution
+      min_participation_per_quarter: 3
+      
+  aggregation:
+    weights: "num_samples"  # num_samples | uniform | custom
+    timeout: 30  # minutes
+    min_quorum: 10
+    staleness_threshold: 2  # Discard updates > 2 rounds old
+```
+
+## Privacy & Security Configuration
+
+```yaml
+privacy_config:
+  differential_privacy:
+    enabled: true
+    mechanism: "DP-SGD"  # DP-SGD | DP-FedAvg
+    epsilon: 1.0  # Privacy budget
+    delta: 1e-5
+    noise_multiplier: 1.1
+    max_grad_norm: 1.0  # Gradient clipping
+    
+  secure_aggregation:
+    enabled: false  # Enable for high-sensitivity models
+    protocol: "threshold_paillier"  # threshold_paillier | MPC
+    threshold: 5  # Minimum clients for decryption
+    
+  pseudonymisation:
+    aircraft_id: "sha256_hash"
+    flight_id: "sha256_hash"
+    no_pii: true
+```
+
+## Deployment Configuration
+
+```yaml
+deployment_config:
+  rollout_strategy: "canary"  # canary | blue_green | progressive
+  
+  canary_phase:
+    duration: "24 hours"
+    canary_clients:
+      - "aircraft-hash-001"
+      - "aircraft-hash-002"
+      - "aircraft-hash-003"
+      - "aircraft-hash-004"
+      - "aircraft-hash-005"
+    success_criteria:
+      - metric: "auc"
+        threshold: 0.90
+      - metric: "false_positive_rate"
+        threshold: 0.05
+      - metric: "latency_p95"
+        threshold: 500  # ms
+        
+  progressive_rollout:
+    enabled: true
+    phases:
+      - percentage: 10
+        duration: "24 hours"
+      - percentage: 25
+        duration: "48 hours"
+      - percentage: 50
+        duration: "72 hours"
+      - percentage: 100
+        duration: "indefinite"
+        
+  rollback_trigger:
+    auto_rollback: true
+    conditions:
+      - metric: "auc"
+        threshold: 0.80
+        comparison: "less_than"
+      - metric: "drift_psi"
+        threshold: 0.3
+        comparison: "greater_than"
+```
+
+## Validation Configuration
+
+```yaml
+validation_config:
+  holdout_dataset:
+    source: "01-FLEET/OPERATIONAL_DATA_HUB/holdout_2024q3"
+    size: 1000  # Number of samples
+    stratified: true
+    
+  metrics:
+    - name: "auc"
+      full_name: "Area Under ROC Curve"
+      target: 0.90
+    - name: "precision"
+      target: 0.85
+    - name: "recall"
+      target: 0.90
+    - name: "f1_score"
+      target: 0.87
+    - name: "false_positive_rate"
+      target: 0.05
+      
+  bias_fairness:
+    enabled: true
+    disaggregate_by:
+      - aircraft_type
+      - aircraft_age
+      - flight_phase
+    fairness_threshold: 0.10  # Max performance gap between groups
+    
+  drift_detection:
+    enabled: true
+    method: "PSI"  # PSI | KS | concept_drift
+    alert_threshold: 0.2
+```
+
+## Compliance Configuration
+
+```yaml
+compliance_config:
+  certification:
+    level: "DO-178C Level C"
+    scope: "Advisory system only (no flight-critical actuation)"
+    
+  audit_trail:
+    enabled: true
+    immutable_logs: true
+    retention_period: "5 years"
+    
+  export_control:
+    classification: "EAR"  # ITAR | EAR | none
+    approval_required: true
+    approved_jurisdictions:
+      - "EU"
+      - "US"
+      - "UK"
+      
+  data_protection:
+    gdpr_compliant: true
+    data_minimization: true
+    consent_basis: "legitimate_interest"  # Art. 6(1)(f)
+    dpo_review: true
+```
+
+## Monitoring & Alerting
+
+```yaml
+monitoring_config:
+  dashboards:
+    - "Grafana: FL Training Metrics"
+    - "Grafana: Model Performance"
+    - "Grafana: Privacy Budget Consumption"
+    
+  alerts:
+    - name: "Low Client Participation"
+      condition: "participation_rate < 0.5"
+      severity: "warning"
+      channels: ["slack", "email"]
+      
+    - name: "Model Drift Detected"
+      condition: "drift_psi > 0.3"
+      severity: "critical"
+      channels: ["pagerduty", "slack", "email"]
+      
+    - name: "Privacy Budget Exceeded"
+      condition: "epsilon_consumed > epsilon_budget"
+      severity: "critical"
+      channels: ["pagerduty", "email"]
+      
+  reporting:
+    frequency: "weekly"
+    recipients:
+      - "ml-team@ideale.eu"
+      - "fleet-ops@ideale.eu"
+    format: "pdf"
+```
+
+## Resource Estimation
+
+```yaml
+resource_estimation:
+  model_size:
+    parameters: 500000  # 500K parameters
+    storage: "2 MB"
+    
+  client_compute:
+    cpu_usage: "20%"
+    memory_usage: "500 MB"
+    training_time: "30 minutes"
+    
+  network:
+    model_download: "2 MB"
+    gradient_upload: "500 KB"  # With compression
+    bandwidth_per_client: "10 Mbps"
+    
+  server_compute:
+    aggregation_time: "5 minutes"
+    storage_per_round: "100 MB"
+```
+
+## Related Documents
+
+```yaml
+related_docs:
+  - path: "01-ARCHITECTURE/DATA_CONTRACTS/TELEMETRY_SCHEMA.yaml"
+    description: "Input signal definitions"
+  - path: "01-ARCHITECTURE/DATA_CONTRACTS/LABELS_EVENTS_SCHEMA.yaml"
+    description: "Event labels (oil pressure warnings)"
+  - path: "04-ALGORITHMS/FEDAVG.md"
+    description: "FedAvg algorithm specification"
+  - path: "05-PRIVACY_SECURITY/DP_SGD.md"
+    description: "Differential privacy implementation"
+  - path: "09-DEPLOYMENT/ROLLOUT_STRATEGY.md"
+    description: "Canary deployment procedure"
+```
+
+## Change History
+
+```yaml
+change_history:
+  - version: "1.0.0"
+    date: "2024-11-15"
+    author: "AI/ML Team"
+    changes: "Initial job specification for engine oil pressure prediction"
+```
