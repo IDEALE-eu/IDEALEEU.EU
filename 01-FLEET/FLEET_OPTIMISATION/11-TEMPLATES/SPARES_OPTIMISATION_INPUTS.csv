@@ -1,0 +1,16 @@
+Part_Number,Description,Unit_Cost,Annual_Demand,Lead_Time_Days,Current_Stock,Reorder_Point,Order_Quantity,Safety_Stock,Category,Criticality,Supplier
+P001,Hydraulic Pump Assembly,15000,12,90,3,2,2,1,Rotable,Critical,Supplier_A
+P002,Engine Oil Filter,45,480,14,200,150,500,50,Expendable,Standard,Supplier_B
+P003,Landing Gear Actuator,25000,8,120,2,1,1,1,Rotable,Critical,Supplier_C
+P004,Avionics Display Unit,8500,15,60,4,3,2,1,Rotable,High,Supplier_A
+P005,Hydraulic Fluid (gal),120,2400,7,500,300,1000,100,Consumable,Standard,Supplier_D
+P006,Main Fuel Pump,18000,10,150,2,1,2,1,Rotable,Critical,Supplier_A
+P007,Oxygen Generator,12000,6,180,1,1,1,0,Rotable,Critical,Supplier_E
+P008,Tire Assembly,3500,96,30,50,30,50,10,Expendable,Standard,Supplier_F
+P009,APU Starter,22000,5,90,1,1,1,0,Rotable,High,Supplier_C
+P010,Navigation Computer,45000,4,120,1,1,1,0,Rotable,Critical,Supplier_G
+P011,Brake Assembly,8500,48,45,20,15,25,5,Rotable,High,Supplier_F
+P012,Fire Extinguisher,850,24,21,15,10,20,5,Expendable,Critical,Supplier_H
+P013,Battery Pack,6500,18,60,5,4,5,2,Rotable,High,Supplier_B
+P014,Windshield Wiper Motor,450,36,30,20,15,30,5,Expendable,Standard,Supplier_I
+P015,Cabin Lighting Unit,280,120,14,80,60,100,20,Expendable,Low,Supplier_J
