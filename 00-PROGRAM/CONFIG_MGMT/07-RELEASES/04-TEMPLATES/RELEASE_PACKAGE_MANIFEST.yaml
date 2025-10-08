@@ -1,0 +1,207 @@
+# Release Package Manifest
+
+```yaml
+manifest_version: "1.0"
+
+release:
+  id: "REL-ACFT-1.0.0"  # or REL-SC-1.0.0 for spacecraft
+  version: "1.0.0"
+  type: "Production"  # Engineering, Certification, Production, Operational, Emergency
+  date: "2025-01-15"
+  description: "Initial production release"
+
+baseline:
+  gate: "ORR"  # SRR, PDR, CDR, TRR, PRR, FRR, ORR, EIS
+  baseline_id: "BL-ORR-001"
+  baseline_path: "../../04-BASELINES/ORR/"
+  reference_type: "symlink"  # or "documented"
+
+approvals:
+  ccb:
+    date: "2025-01-10"
+    decision: "Approved"
+    members_present: 
+      - "Configuration Manager"
+      - "Engineering Manager"
+      - "Quality Manager"
+      - "Safety Manager"
+  engineering:
+    approver: "Chief Engineer"
+    date: "2025-01-08"
+  quality:
+    approver: "Quality Manager"
+    date: "2025-01-09"
+  safety:
+    approver: "Safety Manager"
+    date: "2025-01-09"
+  security:
+    approver: "Security Officer"
+    date: "2025-01-09"
+  certification:
+    authority: "EASA"  # or FAA, ESA, etc.
+    certificate_number: "TC-12345"
+    date: "2025-01-05"
+
+contents:
+  directories:
+    - name: "RELEASE_NOTES.md"
+      sha256: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    - name: "MANIFEST.yaml"
+      sha256: "this_file"
+    - name: "EFFECTIVITY.csv"
+      sha256: "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2"
+    - name: "EBOM/"
+      file_count: 50
+      total_size_mb: 25.3
+    - name: "MBOM/"
+      file_count: 75
+      total_size_mb: 42.1
+    - name: "SBOM/"
+      file_count: 3
+      files:
+        - name: "sbom.json"
+          format: "CycloneDX 1.4"
+          sha256: "b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3"
+        - name: "sbom.json.sig"
+          sha256: "c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4"
+        - name: "vulnerabilities.txt"
+          sha256: "d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5"
+    - name: "COMPLIANCE/"
+      file_count: 250
+      total_size_mb: 150.7
+      standards:
+        - "DO-178C"
+        - "DO-254"
+        - "DO-160"
+        - "AS9100"
+        - "ARP4754A"
+    - name: "INTERFACES/ICDs/"
+      file_count: 12
+      icds:
+        - id: "ICD-001"
+          version: "2.1"
+          title: "Avionics Interface"
+        - id: "ICD-002"
+          version: "1.5"
+          title: "Power Interface"
+    - name: "SIGNOFF/"
+      files:
+        - "CCB_APPROVAL.pdf"
+        - "SIGNATURES.json"
+        - "HASH_LIST.txt"
+    - name: "DISTRIBUTION/"
+      files:
+        - name: "REL-ACFT-1.0.0.zip"
+          sha256: "e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6"
+          size_mb: 543.8
+        - name: "SHA256SUMS.txt"
+          sha256: "f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6k7"
+        - name: "SHA256SUMS.txt.sig"
+          sha256: "g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6k7l8"
+    - name: "ROLLBACK_KIT/"
+      files:
+        - "rollback_procedure.md"
+        - "scripts/"
+    - name: "BASELINE_REF/"
+      type: "symlink"
+      target: "../../04-BASELINES/ORR/"
+    - name: "PROVENANCE/"
+      files:
+        - name: "build.intoto.jsonl"
+          sha256: "h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6k7l8m9"
+        - name: "materials.intoto.jsonl"
+          sha256: "i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6k7l8m9n0"
+        - name: "review.intoto.jsonl"
+          sha256: "j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6a7b8c9d0e1f2g3h4i5j6k7l8m9n0o1"
+
+effectivity:
+  applicable_to: "All"  # or specific serial numbers
+  serial_numbers:
+    embodied: ["ACFT-001", "ACFT-002"]
+    mandatory: ["ACFT-003", "ACFT-004"]
+    optional: []
+  effective_date: "2025-02-01"
+  mandatory_compliance_date: "2025-03-15"
+
+dependencies:
+  requires:
+    - release_id: "REL-ACFT-0.9.0"
+      relationship: "supersedes"
+  related:
+    - release_id: "REL-ACFT-GSE-1.0.0"
+      relationship: "requires"
+      description: "Ground support equipment"
+
+distribution:
+  classification: "Internal"  # Internal, Controlled, Export-Restricted
+  export_control:
+    eccn: "9A991"  # Export Control Classification Number
+    usml: "N/A"    # US Munitions List
+    dual_use: false
+  authorized_recipients:
+    - type: "Manufacturing"
+      sites: ["Factory A", "Factory B"]
+    - type: "Operations"
+      organizations: ["Airline X", "Airline Y"]
+
+metadata:
+  created_by: "Release Manager"
+  created_date: "2025-01-15"
+  tools:
+    sbom_generator: "CycloneDX CLI 0.24.0"
+    provenance_generator: "in-toto 1.2.0"
+    hash_tool: "sha256sum"
+  source_control:
+    repository: "https://github.com/example/project"
+    branch: "release/1.0"
+    commit: "a3f4c2d5e8b1f7c9a4e6d2b8f1c5a9e7d3b6f4c8"
+    tag: "REL-ACFT-1.0.0"
+
+notes: |
+  This is the initial production release following successful ORR gate completion.
+  All certification requirements have been met and type certificate obtained.
+  
+  Known limitations:
+  - Feature X available in next minor release
+  - Limitation Y documented in release notes
+  
+  Contact: release-manager@example.com
+
+verification:
+  conformity_checklist: "Complete"
+  compliance_evidence: "100% coverage"
+  test_coverage: "98.5%"
+  regression_tests: "Passed"
+  hash_verification: "Verified"
+  sbom_signed: true
+  provenance_complete: true
+```
+
+## Usage Instructions
+
+1. Copy this template to your release directory
+2. Update all fields marked with example data
+3. Generate SHA256 hashes for all files: `find . -type f -exec sha256sum {} \; > SHA256SUMS.txt`
+4. Sign the manifest after completion
+5. Verify all required sections are complete per conformity checklist
+
+## Validation
+
+Required fields (must not be "TBD" or empty):
+- release.id
+- release.version
+- release.type
+- release.date
+- baseline.gate
+- baseline.baseline_id
+- approvals.ccb.date
+- approvals.ccb.decision
+- contents (all directories and key files)
+- distribution.classification
+- verification.conformity_checklist
+
+## Related Documents
+
+- [CONFORMITY_CHECKLIST.md](./CONFORMITY_CHECKLIST.md)
+- [RELEASE_NOTES_TEMPLATE.md](./RELEASE_NOTES_TEMPLATE.md)
+- [01-POLICY/RELEASE_POLICY.md](../01-POLICY/RELEASE_POLICY.md)
