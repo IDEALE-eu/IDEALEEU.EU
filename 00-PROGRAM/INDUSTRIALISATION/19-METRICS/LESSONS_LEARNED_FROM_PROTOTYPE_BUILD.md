@@ -2,8 +2,8 @@
 
 **Program:** [Program Name]  
 **Phase:** Prototype Build  
-**Date:** [Date of Review]  
-**Participants:** [Names and roles]
+**Date:** [Date]  
+**Participants:** [Participants]
 
 ## Overview
 
