@@ -1,0 +1,146 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Baseline Manifest",
+  "description": "Schema for configuration baseline manifests at program gates",
+  "type": "object",
+  "required": [
+    "baseline_id",
+    "gate",
+    "domain",
+    "frozen_at",
+    "items",
+    "interfaces",
+    "changes_included",
+    "signoffs"
+  ],
+  "properties": {
+    "baseline_id": {
+      "type": "string",
+      "description": "Unique baseline identifier",
+      "pattern": "^BL-[A-Z_]+-[0-9]{4}-[0-9]{2}-[0-9]{2}-[A-Z]+$",
+      "examples": ["BL-CDR-2026-03-10-ACFT", "BL-PDR-2025-11-15-SCFT"]
+    },
+    "gate": {
+      "type": "string",
+      "enum": ["SRR", "MCR", "PDR", "CDR", "TRR", "PRR", "ORR_EIS", "FRR"],
+      "description": "Stage gate for this baseline"
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["AIRCRAFT", "SPACECRAFT", "SHARED"],
+      "description": "Domain scope of the baseline"
+    },
+    "frozen_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when baseline was frozen (YYYY-MM-DD)"
+    },
+    "git_tag": {
+      "type": "string",
+      "description": "Git tag for this baseline",
+      "pattern": "^baseline/[A-Z_]+/[0-9]{4}-[0-9]{2}-[0-9]{2}/[a-z]+$",
+      "examples": ["baseline/CDR/2026-03-10/acft"]
+    },
+    "items": {
+      "type": "array",
+      "description": "Configuration items included in this baseline",
+      "items": {
+        "type": "object",
+        "required": ["pn", "rev", "ci_type", "path", "sha256"],
+        "properties": {
+          "pn": {
+            "type": "string",
+            "description": "Part number",
+            "examples": ["IDEALE-ACFT-00001", "ICD-0003", "SW-FC-APP"]
+          },
+          "rev": {
+            "type": "string",
+            "description": "Revision identifier",
+            "examples": ["A", "C", "1.0", "v2.4.1"]
+          },
+          "ci_type": {
+            "type": "string",
+            "enum": ["EBOM", "MBOM", "SW", "ICD", "PROC", "DOC", "MODEL"],
+            "description": "Configuration item type"
+          },
+          "effectivity": {
+            "type": "string",
+            "description": "Effectivity or applicability",
+            "examples": ["S/N ≥ 0005", "All units", "Test articles only"]
+          },
+          "path": {
+            "type": "string",
+            "description": "Relative path to artifact or reference"
+          },
+          "sha256": {
+            "type": "string",
+            "description": "SHA-256 hash of the artifact",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "interfaces": {
+      "type": "array",
+      "description": "Interface Control Documents included in baseline",
+      "items": {
+        "type": "string",
+        "pattern": "^ICD-[0-9]{4}@[0-9]+\\.[0-9]+$",
+        "examples": ["ICD-0001@1.2", "ICD-0003@1.0"]
+      }
+    },
+    "changes_included": {
+      "type": "array",
+      "description": "ECOs incorporated since last baseline",
+      "items": {
+        "type": "string",
+        "pattern": "^ECO-[0-9]{4}-[0-9]{4}$",
+        "examples": ["ECO-2026-0041", "ECO-2026-0048"]
+      }
+    },
+    "deviations_waivers": {
+      "type": "array",
+      "description": "Active deviations and waivers",
+      "items": {
+        "type": "string",
+        "pattern": "^(DEV|WVR)-[0-9]{4}-[0-9]{4}$",
+        "examples": ["DEV-2026-0007", "WVR-2026-0002"]
+      }
+    },
+    "compliance": {
+      "type": "array",
+      "description": "Standards and compliance references",
+      "items": {
+        "type": "string",
+        "examples": [
+          "../../STANDARDS/02-AIRCRAFT/DO-160/",
+          "../../STANDARDS/02-AIRCRAFT/ARP4754A/"
+        ]
+      }
+    },
+    "signoffs": {
+      "type": "array",
+      "description": "Approval signatures",
+      "items": {
+        "type": "object",
+        "required": ["role", "name", "date"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "description": "Approver role",
+            "examples": ["CCB Chair", "Chief Engineer", "Configuration Manager"]
+          },
+          "name": {
+            "type": "string",
+            "description": "Approver name"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Approval date (YYYY-MM-DD)"
+          }
+        }
+      }
+    }
+  }
+}
