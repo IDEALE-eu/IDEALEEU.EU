@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "vl.schema.json",
+  "title": "AFDX Virtual Link",
+  "description": "Schema for AFDX Virtual Link definition",
+  "type": "object",
+  "required": ["vl_id", "source_lru", "dest_lru", "bag_ms", "bandwidth_kbps"],
+  "properties": {
+    "vl_id": {
+      "type": "string",
+      "pattern": "^VL-[0-9]{3}$",
+      "description": "Virtual Link identifier (e.g., VL-001)"
+    },
+    "source_lru": {
+      "type": "string",
+      "description": "Source LRU transmitting on this VL"
+    },
+    "dest_lru": {
+      "type": "string",
+      "description": "Destination LRU(s) receiving from this VL"
+    },
+    "bag_ms": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 128,
+      "description": "Bandwidth Allocation Gap in milliseconds"
+    },
+    "jitter_us": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Maximum jitter in microseconds"
+    },
+    "bandwidth_kbps": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 100000,
+      "description": "Allocated bandwidth in kilobits per second"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["Critical", "High", "Medium", "Low"],
+      "description": "QoS priority level"
+    },
+    "redundancy": {
+      "type": "string",
+      "enum": ["Single", "Dual"],
+      "description": "Redundancy configuration"
+    },
+    "functional_chain": {
+      "type": "string",
+      "pattern": "^FC-[0-9]{3}$",
+      "description": "Associated functional chain"
+    }
+  }
+}

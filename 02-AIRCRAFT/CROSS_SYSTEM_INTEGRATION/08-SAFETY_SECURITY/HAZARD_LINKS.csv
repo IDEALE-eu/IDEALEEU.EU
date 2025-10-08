@@ -1,0 +1,11 @@
+hazard_id,hazard_description,functional_chain,severity,mitigation,verification_test,status
+HZD-001,Loss of pitch control,FC-001,Catastrophic,Dual-redundant FCC with dissimilar hardware,TC-100,Verified
+HZD-012,Misleading navigation information,FC-002,Hazardous,Multi-sensor fusion with integrity monitoring,TC-110,Verified
+HZD-025,Uncommanded thrust change,FC-003,Catastrophic,Dual-channel FADEC with cross-monitoring,TC-120,Verified
+HZD-033,Loss of hydraulic pressure indication,FC-004,Major,Redundant pressure sensors,TC-130,Verified
+HZD-045,Total electrical failure,Multiple,Catastrophic,Battery backup + RAT deployment,TC-200,Verified
+HZD-056,Undetected fire,FC-008,Catastrophic,Dual-loop fire detection with cross-check,TC-150,Verified
+HZD-067,Loss of braking,FC-016,Catastrophic,Redundant brake control with emergency backup,TC-160,Verified
+HZD-078,Cabin depressurization,FC-009,Hazardous,Automatic descent and oxygen deployment,TC-170,Verified
+HZD-089,HIRF-induced upset,Multiple,Major,HIRF protection per CS-25.1317,TC-300,Verified
+HZD-095,Cyber intrusion,Multiple,Hazardous,Zone isolation and intrusion detection,TC-400,Verified

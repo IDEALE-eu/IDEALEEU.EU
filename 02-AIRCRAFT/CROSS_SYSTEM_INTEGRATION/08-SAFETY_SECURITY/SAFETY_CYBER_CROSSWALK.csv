@@ -1,0 +1,6 @@
+hazard_id,threat_id,hazard_description,threat_description,dual_mitigation,safety_control,security_control,status
+HZD-095,THR-001,System upset from unauthorized access,Passenger WiFi intrusion,Zone isolation + monitoring,Partitioned architecture,Network firewall + IDS,Mitigated
+HZD-012,THR-002,Misleading navigation,GNSS spoofing,Multi-sensor fusion,Cross-check with IRS,Signal authentication,Mitigated
+HZD-089,THR-003,HIRF-induced upset,External EMI,HIRF protection,Redundant systems,Shielding + filtering,Mitigated
+HZD-XXX,THR-004,Malicious config change,Insider threat,Access control + audit,Safety monitors detect anomaly,Crypto signing + MFA,Mitigated
+HZD-YYY,THR-005,Compromised component,Supply chain attack,Hardware root of trust,FDIR detects anomaly,Secure boot + TPM,Mitigated

@@ -1,0 +1,42 @@
+# Integration Baseline IBL-2025-Q3
+
+baseline_id: IBL-2025-Q3
+date_created: 2024-09-25
+status: Released
+approver: Chief Engineer
+
+## Included ATA Baselines
+
+- ATA-24-ELECTRICAL_POWER: BASELINE-2024-09-20
+- ATA-27-FLIGHT_CONTROLS: BASELINE-2024-09-15
+- ATA-28-FUEL: BASELINE-2024-09-10
+- ATA-31-DISPLAYS: BASELINE-2024-09-05
+- ATA-34-NAVIGATION: BASELINE-2024-09-10
+- ATA-42-IMA: BASELINE-2024-10-01
+- ATA-72-ENGINE: BASELINE-2024-09-20
+
+## Software Versions
+
+- IMA OS Core: v5.2.0
+- FCC Primary: v2.5.1
+- FADEC: v4.1.2
+- FMS: v3.2.0
+
+## Verification Status
+
+- Integration tests: PASS (100% coverage)
+- HIL tests: PASS
+- Safety assessment: Complete
+- Compliance review: Approved
+
+## Artifacts
+
+- MANIFEST.yaml: Baseline manifest with hashes
+- SIGNATURES.asc: Cryptographic signatures
+- TEST_RESULTS/: Integration test evidence
+- COMPLIANCE/: DO-178C/DO-254 artifacts
+
+## References
+
+- [00-PROGRAM/CONFIG_MGMT/04-BASELINES/](../../../../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/)
+- [00-PROGRAM/CONFIG_MGMT/07-RELEASES/](../../../../../../00-PROGRAM/CONFIG_MGMT/07-RELEASES/)
