@@ -1,0 +1,200 @@
+# Data Quality Rulesets
+# Automated validation rules for operational telemetry
+
+# Aircraft - Hydrogen Propulsion System
+h2_tank_pressure_fwd:
+  completeness:
+    max_missing_rate: 0.05  # 5% maximum missing values
+    window: 3600  # 1 hour window (seconds)
+    action: ALERT
+  accuracy:
+    range: [0, 350]  # bar
+    action_below: REJECT
+    action_above: ALERT
+    cross_validation:
+      signal: h2_tank_temp_fwd
+      relationship: positive_correlation
+      threshold: 0.7
+  timeliness:
+    max_latency: 5  # seconds
+    timestamp_sync: GPS
+    action: WARNING
+  consistency:
+    rate_of_change_max: 50  # bar/second
+    action: ALERT
+
+h2_flow_rate_eng1:
+  completeness:
+    max_missing_rate: 0.03
+    window: 3600
+    action: ALERT
+  accuracy:
+    range: [0, 5]  # kg/s
+    action_outside: REJECT
+  timeliness:
+    max_latency: 1  # seconds (high-frequency signal)
+    action: WARNING
+
+# Aircraft - Engine
+eng_n1_speed_eng1:
+  completeness:
+    max_missing_rate: 0.02
+    window: 3600
+    action: ALERT
+  accuracy:
+    range: [0, 105]  # percent
+    action_outside: REJECT
+  consistency:
+    rate_of_change_max: 10  # percent/second
+    action: ALERT
+
+eng_egt_eng1:
+  completeness:
+    max_missing_rate: 0.02
+    window: 3600
+    action: ALERT
+  accuracy:
+    range: [200, 1500]  # Kelvin
+    action_outside: ALERT
+  consistency:
+    rate_of_change_max: 20  # K/second
+    action: ALERT
+
+# Aircraft - Avionics
+airspeed_indicated:
+  completeness:
+    max_missing_rate: 0.01  # Critical parameter
+    window: 3600
+    action: ALERT
+  accuracy:
+    range: [0, 350]  # knots
+    action_outside: WARNING
+  consistency:
+    cross_check:
+      signal: altitude_msl
+      rule: "airspeed > 0 if altitude > 100"
+
+altitude_msl:
+  completeness:
+    max_missing_rate: 0.01
+    window: 3600
+    action: ALERT
+  accuracy:
+    range: [-1000, 50000]  # feet
+    action_outside: WARNING
+  consistency:
+    rate_of_change_max: 6000  # ft/min (100 ft/s)
+    action: WARNING
+
+# Aircraft - Cabin Environment
+cabin_temp:
+  completeness:
+    max_missing_rate: 0.1  # Lower criticality
+    window: 3600
+    action: WARNING
+  accuracy:
+    range: [-40, 50]  # Celsius
+    action_outside: WARNING
+
+cabin_pressure:
+  completeness:
+    max_missing_rate: 0.05
+    window: 3600
+    action: ALERT
+  accuracy:
+    range: [0.5, 1.2]  # bar
+    action_outside: ALERT
+
+# Spacecraft - Power System
+sc_battery_voltage_bus1:
+  completeness:
+    max_missing_rate: 0.01
+    window: 3600
+    action: ALERT
+  accuracy:
+    range: [28, 32]  # volts
+    action_below: ALERT
+    action_above: ALERT
+  consistency:
+    cross_check:
+      signal: sc_solar_current_panel1
+      rule: "voltage stable during sunlight"
+
+sc_solar_current_panel1:
+  completeness:
+    max_missing_rate: 0.02
+    window: 3600
+    action: WARNING
+  accuracy:
+    range: [0, 15]  # amperes
+    action_outside: WARNING
+
+# Spacecraft - Thermal
+sc_radiator_temp:
+  completeness:
+    max_missing_rate: 0.05
+    window: 3600
+    action: WARNING
+  accuracy:
+    range: [200, 350]  # Kelvin
+    action_outside: ALERT
+  consistency:
+    rate_of_change_max: 5  # K/second
+    action: WARNING
+
+# Spacecraft - Propulsion
+sc_thrust_thruster1:
+  completeness:
+    max_missing_rate: 0.02
+    window: 3600
+    action: WARNING
+  accuracy:
+    range: [0, 100]  # Newtons
+    action_negative: REJECT
+    action_above: ALERT
+
+sc_fuel_mass:
+  completeness:
+    max_missing_rate: 0.1
+    window: 3600
+    action: WARNING
+  accuracy:
+    range: [0, 500]  # kg
+    action_outside: REJECT
+  validity:
+    monotonic_decreasing: true  # Fuel mass should only decrease
+    action: ALERT
+
+# Spacecraft - Attitude Control
+sc_attitude_q0:
+  completeness:
+    max_missing_rate: 0.01
+    window: 3600
+    action: ALERT
+  accuracy:
+    range: [-1, 1]
+    action_outside: REJECT
+  consistency:
+    quaternion_norm_check:
+      signals: [sc_attitude_q0, sc_attitude_q1, sc_attitude_q2, sc_attitude_q3]
+      expected_norm: 1.0
+      tolerance: 0.01
+      action: WARNING
+
+# Cross-System Rules
+flight_phase_consistency:
+  signals: [altitude_msl, airspeed_indicated, eng_n1_speed_eng1]
+  rule: |
+    if flight_phase == "ground":
+      altitude_msl < 100 AND airspeed_indicated < 50 AND eng_n1_speed_eng1 < 30
+    elif flight_phase == "cruise":
+      altitude_msl > 10000 AND airspeed_indicated > 100
+  action: WARNING
+
+h2_system_energy_balance:
+  signals: [h2_flow_rate_eng1, eng_n1_speed_eng1, h2_tank_pressure_fwd]
+  rule: |
+    # Energy balance check (simplified)
+    flow_rate_expected = f(n1_speed, pressure)
+    abs(h2_flow_rate_eng1 - flow_rate_expected) < 0.5
+  action: WARNING
