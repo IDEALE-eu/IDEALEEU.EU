@@ -1,5 +1,7 @@
 # ANALYTICS_CONSUMPTION
 
+**📍 [IDEALE-EU](../../../) > [01-FLEET](../../) > [OPERATIONAL_DATA_HUB](../) > ANALYTICS_CONSUMPTION**
+
 Data consumption layer with contracts, APIs, and integration specifications.
 
 ## Purpose
@@ -17,7 +19,7 @@ Defines how downstream consumers access and use operational data:
 - [**DATA_CONTRACTS/**](DATA_CONTRACTS/) - Per-product data contracts
   - **usage_profiles_contract.yaml**
   - **anomaly_feed_contract.yaml**
-- [**FEDERATED_LEARNING_INPUTS/**](FEDERATED_LEARNING_INPUTS/) - → ../FEDERATED_LEARNING/
+- [**FEDERATED_LEARNING_INPUTS/**](FEDERATED_LEARNING_INPUTS/) - → [../FEDERATED_LEARNING/](../../FEDERATED_LEARNING/)
 - [**DIGITAL_TWIN_RETRAINING/**](DIGITAL_TWIN_RETRAINING/) - Digital twin model updates
 - [**MRO_PREDICTION_FEED/**](MRO_PREDICTION_FEED/) - Maintenance prediction data
 - [**DESIGN_FEEDBACK_PACKS/**](DESIGN_FEEDBACK_PACKS/) - Design engineering insights
@@ -114,7 +116,7 @@ Operational Data Hub
   → FL Training Pipeline
 ```
 
-**Contract**: See `../FEDERATED_LEARNING/01-ARCHITECTURE/DATA_CONTRACTS/`
+**Contract**: See [../FEDERATED_LEARNING/01-ARCHITECTURE/DATA_CONTRACTS/](../../FEDERATED_LEARNING/01-ARCHITECTURE/DATA_CONTRACTS/)
 
 ---
 
@@ -132,7 +134,7 @@ Operational Data Hub
   → Updated Digital Twin Models
 ```
 
-**Integration**: `../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/`
+**Integration**: [../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/](../../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/)
 
 ---
 
@@ -150,7 +152,7 @@ Operational Data Hub
   → Maintenance Recommendations
 ```
 
-**Integration**: `../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/`
+**Integration**: [../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/](../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/)
 
 ---
 
@@ -168,7 +170,7 @@ Operational Data Hub
   → Updated Requirements / FMEA
 ```
 
-**Integration**: `../../00-PROGRAM/REQUIREMENTS/` and `../../02-AIRCRAFT/`
+**Integration**: [../../00-PROGRAM/REQUIREMENTS/](../../../00-PROGRAM/REQUIREMENTS/) and [../../02-AIRCRAFT/](../../../02-AIRCRAFT/)
 
 ## Data Access APIs
 
@@ -263,10 +265,10 @@ for anomaly in client.stream("anomaly_reports"):
 
 ## Related Documents
 
-- **../05-DATA_PRODUCTS/** - Data product catalog
-- **../07-INTEGRATIONS/** - Integration specifications
-- **../../FEDERATED_LEARNING/** - FL integration
-- **../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/** - Maintenance integration
+- [**../05-DATA_PRODUCTS/**](../05-DATA_PRODUCTS/00-README.md) - Data product catalog
+- [**../07-INTEGRATIONS/**](../07-INTEGRATIONS/00-README.md) - Integration specifications
+- [**../../FEDERATED_LEARNING/**](../../FEDERATED_LEARNING/) - FL integration
+- [**../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/**](../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/) - Maintenance integration
 
 ## Change History
 

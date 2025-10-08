@@ -1,5 +1,7 @@
 # CONFIG_MGMT_LINKS
 
+**📍 [IDEALE-EU](../../../../) > [01-FLEET](../../../) > [OPERATIONAL_DATA_HUB](../../) > [INTEGRATIONS](../) > CONFIG_MGMT_LINKS**
+
 Integration between Operational Data Hub and Configuration Management system.
 
 ## Purpose
@@ -10,7 +12,7 @@ Ensures operational telemetry is linked to configuration baselines and schema ch
 
 ### Configuration Baseline Linkage
 
-**Reference**: `../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/`
+**Reference**: [../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/](../../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/)
 
 All telemetry data tagged with applicable configuration baselines:
 
@@ -76,7 +78,7 @@ Step 8: Deprecate Old Schema
 Step 9: Archive Old Schema (after 1 year)
 ```
 
-**Reference**: `../../00-PROGRAM/CONFIG_MGMT/06-CHANGE_CONTROL/`
+**Reference**: [../../../00-PROGRAM/CONFIG_MGMT/06-CHANGE_CONTROL/](../../../../00-PROGRAM/CONFIG_MGMT/06-CHANGE_CONTROL/)
 
 ### ECR Template for Schema Changes
 
@@ -169,7 +171,7 @@ Configuration Management System
   → ODH (Telemetry Tagging)
 ```
 
-**Reference**: `../../00-PROGRAM/DIGITAL_THREAD/03-ARCHITECTURE/INTEGRATION_POINTS.md`
+**Reference**: [../../../00-PROGRAM/DIGITAL_THREAD/03-ARCHITECTURE/INTEGRATION_POINTS.md](../../../../00-PROGRAM/DIGITAL_THREAD/03-ARCHITECTURE/INTEGRATION_POINTS.md)
 
 ## Telemetry-to-Baseline Mapping
 
@@ -253,10 +255,10 @@ Data Engineering Team: data-engineering@ideale.eu
 
 ## Related Documents
 
-- **../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/** - Configuration baselines
-- **../../00-PROGRAM/CONFIG_MGMT/06-CHANGE_CONTROL/** - ECR/ECO process
-- **../02-DATA_INGESTION/SCHEMA_REGISTRY/** - Schema registry
-- **../../09-TEMPLATES/SCHEMA_CHANGE_RFC.md** - Schema change request template
+- [**../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/**](../../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/) - Configuration baselines
+- [**../../00-PROGRAM/CONFIG_MGMT/06-CHANGE_CONTROL/**](../../../../00-PROGRAM/CONFIG_MGMT/06-CHANGE_CONTROL/) - ECR/ECO process
+- [**../02-DATA_INGESTION/SCHEMA_REGISTRY/**](../../02-DATA_INGESTION/SCHEMA_REGISTRY/00-README.md) - Schema registry
+- [**../../09-TEMPLATES/SCHEMA_CHANGE_RFC.md**](../../09-TEMPLATES/SCHEMA_CHANGE_RFC.md) - Schema change request template
 
 ## Change History
 

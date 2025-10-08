@@ -1,5 +1,7 @@
 # TEMPLATES
 
+**📍 [IDEALE-EU](../../../) > [01-FLEET](../../) > [OPERATIONAL_DATA_HUB](../) > TEMPLATES**
+
 Standardized templates for schemas, contracts, reports, and processes.
 
 ## Purpose
@@ -34,7 +36,7 @@ Provides reusable templates to ensure consistency across:
 3. Validate schema with `avro-tools`
 4. Submit PR to Schema Registry
 
-**Reference**: `../02-DATA_INGESTION/SCHEMA_REGISTRY/`
+**Reference**: [../02-DATA_INGESTION/SCHEMA_REGISTRY/](../02-DATA_INGESTION/SCHEMA_REGISTRY/00-README.md)
 
 ---
 
@@ -48,7 +50,7 @@ Provides reusable templates to ensure consistency across:
 3. Document anomaly types and severity levels
 4. Register format in data catalog
 
-**Reference**: `../05-DATA_PRODUCTS/ANOMALY_REPORTS/`
+**Reference**: [../05-DATA_PRODUCTS/ANOMALY_REPORTS/](../05-DATA_PRODUCTS/00-README.md)
 
 ---
 
@@ -62,7 +64,7 @@ Provides reusable templates to ensure consistency across:
 3. Review with legal and security teams
 4. Obtain signatures and store in repository
 
-**Reference**: `../04-DATA_SECURITY_COMPLIANCE/`
+**Reference**: [../04-DATA_SECURITY_COMPLIANCE/](../04-DATA_SECURITY_COMPLIANCE/00-README.md)
 
 ---
 
@@ -76,7 +78,7 @@ Provides reusable templates to ensure consistency across:
 3. Justify retention decisions
 4. Submit for data steward approval
 
-**Reference**: `../03-DATA_STORAGE/RETENTION_POLICY.md`
+**Reference**: [../03-DATA_STORAGE/RETENTION_POLICY.md](../03-DATA_STORAGE/RETENTION_POLICY.md)
 
 ---
 
@@ -91,7 +93,7 @@ Provides reusable templates to ensure consistency across:
 4. Review with data steward and consumers
 5. Publish contract in `../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/`
 
-**Reference**: `../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/`
+**Reference**: [../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/](../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/)
 
 ---
 
@@ -106,7 +108,7 @@ Provides reusable templates to ensure consistency across:
 4. Submit ECR (Engineering Change Request)
 5. Obtain CCB approval
 
-**Reference**: `../07-INTEGRATIONS/CONFIG_MGMT_LINKS.md`
+**Reference**: [../07-INTEGRATIONS/CONFIG_MGMT_LINKS.md](../07-INTEGRATIONS/CONFIG_MGMT_LINKS.md)
 
 ## Template Governance
 
@@ -155,9 +157,9 @@ git push
 
 ## Related Documents
 
-- **../02-DATA_INGESTION/SCHEMA_REGISTRY/** - Schema registration
-- **../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/** - Data contracts
-- **../07-INTEGRATIONS/CONFIG_MGMT_LINKS.md** - Schema change process
+- [**../02-DATA_INGESTION/SCHEMA_REGISTRY/**](../02-DATA_INGESTION/SCHEMA_REGISTRY/00-README.md) - Schema registration
+- [**../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/**](../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/) - Data contracts
+- [**../07-INTEGRATIONS/CONFIG_MGMT_LINKS.md**](../07-INTEGRATIONS/CONFIG_MGMT_LINKS.md) - Schema change process
 
 ## Change History
 

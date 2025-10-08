@@ -1,5 +1,7 @@
 # DATA_STORAGE
 
+**📍 [IDEALE-EU](../../../) > [01-FLEET](../../) > [OPERATIONAL_DATA_HUB](../) > DATA_STORAGE**
+
 Storage architecture for raw data, curated datasets, and metadata management.
 
 ## Purpose
@@ -208,14 +210,14 @@ See [**RETENTION_POLICY.md**](RETENTION_POLICY.md) for complete specification.
 - ABAC: Attribute-based (data classification, clearance level)
 - Audit logging: All access logged
 
-See [**04-DATA_SECURITY_COMPLIANCE/**](../04-DATA_SECURITY_COMPLIANCE/) for details.
+See [**04-DATA_SECURITY_COMPLIANCE/**](../04-DATA_SECURITY_COMPLIANCE/00-README.md) for details.
 
 ## Related Documents
 
-- **../../02-DATA_INGESTION/** - Data ingestion pipelines
-- **../../04-DATA_SECURITY_COMPLIANCE/** - Security and compliance
-- **../../05-DATA_PRODUCTS/** - Data product definitions
-- **../../09-TEMPLATES/RETENTION_SCHEDULE_TEMPLATE.csv** - Retention schedule template
+- [**../../02-DATA_INGESTION/**](../02-DATA_INGESTION/00-README.md) - Data ingestion pipelines
+- [**../../04-DATA_SECURITY_COMPLIANCE/**](../04-DATA_SECURITY_COMPLIANCE/00-README.md) - Security and compliance
+- [**../../05-DATA_PRODUCTS/**](../05-DATA_PRODUCTS/00-README.md) - Data product definitions
+- [**../../09-TEMPLATES/RETENTION_SCHEDULE_TEMPLATE.csv**](../09-TEMPLATES/RETENTION_SCHEDULE_TEMPLATE.csv) - Retention schedule template
 
 ## Change History
 

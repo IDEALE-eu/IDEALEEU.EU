@@ -1,5 +1,7 @@
 # DATA_SOURCES
 
+**📍 [IDEALE-EU](../../../) > [01-FLEET](../../) > [OPERATIONAL_DATA_HUB](../) > DATA_SOURCES**
+
 Definitions and specifications for operational data sources from aircraft and spacecraft fleets.
 
 ## Purpose
@@ -42,12 +44,12 @@ This directory documents all telemetry sources feeding into the Operational Data
 - Reliability/redundancy
 
 ### 4. Register in Schema Registry
-- Submit schema to `../../02-DATA_INGESTION/SCHEMA_REGISTRY/`
+- Submit schema to [../../02-DATA_INGESTION/SCHEMA_REGISTRY/](../02-DATA_INGESTION/SCHEMA_REGISTRY/00-README.md)
 - Assign semantic version (v1.0.0)
 - Define compatibility policy (BACKWARD, FORWARD, FULL)
 
 ### 5. Implement Ingestion Pipeline
-- Configure pipeline in `../../02-DATA_INGESTION/INGESTION_PIPELINES/`
+- Configure pipeline in [../../02-DATA_INGESTION/INGESTION_PIPELINES/](../02-DATA_INGESTION/INGESTION_PIPELINES/)
 - Apply data validation rules
 - Enable anomaly detection
 
@@ -103,10 +105,10 @@ signal:
 
 ## Related Documents
 
-- **../../02-DATA_INGESTION/SCHEMA_REGISTRY/** - Schema registration and versioning
-- **../../03-DATA_STORAGE/METADATA_REGISTRY/DATA_DICTIONARY.csv** - Complete signal catalog
-- **../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/** - System configuration baselines
-- **../../01-FLEET/FEDERATED_LEARNING/01-ARCHITECTURE/DATA_CONTRACTS/** - ML data contracts
+- [**../../02-DATA_INGESTION/SCHEMA_REGISTRY/**](../02-DATA_INGESTION/SCHEMA_REGISTRY/00-README.md) - Schema registration and versioning
+- [**../../03-DATA_STORAGE/METADATA_REGISTRY/DATA_DICTIONARY.csv**](../03-DATA_STORAGE/METADATA_REGISTRY/DATA_DICTIONARY.csv) - Complete signal catalog
+- [**../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/**](../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/) - System configuration baselines
+- [**../../01-FLEET/FEDERATED_LEARNING/01-ARCHITECTURE/DATA_CONTRACTS/**](../../FEDERATED_LEARNING/01-ARCHITECTURE/DATA_CONTRACTS/) - ML data contracts
 
 ## Change History
 

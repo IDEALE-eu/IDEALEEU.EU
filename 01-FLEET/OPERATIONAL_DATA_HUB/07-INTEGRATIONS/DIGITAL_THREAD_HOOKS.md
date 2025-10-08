@@ -1,5 +1,7 @@
 # DIGITAL_THREAD_HOOKS
 
+**📍 [IDEALE-EU](../../../../) > [01-FLEET](../../../) > [OPERATIONAL_DATA_HUB](../../) > [INTEGRATIONS](../) > DIGITAL_THREAD_HOOKS**
+
 Integration between Operational Data Hub and Digital Thread.
 
 ## Purpose
@@ -28,7 +30,7 @@ Telemetry Sources
 - Quality metrics (completeness, accuracy)
 - EBOM references (traceability to design)
 
-**Reference**: `../../00-PROGRAM/DIGITAL_THREAD/07-INTEGRATIONS/FLEET_DATA_INGEST/`
+**Reference**: [../../../00-PROGRAM/DIGITAL_THREAD/07-INTEGRATIONS/FLEET_DATA_INGEST/](../../../../00-PROGRAM/DIGITAL_THREAD/07-INTEGRATIONS/FLEET_DATA_INGEST/)
 
 ### 2. Digital Twin Feedback → ODH
 
@@ -49,7 +51,7 @@ delta: +0.3 kg (9.4% error)
 action: Recalibrate digital twin model
 ```
 
-**Reference**: `../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/`
+**Reference**: [../../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/](../../../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/)
 
 ### 3. Requirements Verification
 
@@ -76,7 +78,7 @@ evidence: "Max observed: 335 bar (99.5% of flights)"
 confidence: 99.9%
 ```
 
-**Reference**: `../../00-PROGRAM/REQUIREMENTS/` and `../../00-PROGRAM/DIGITAL_THREAD/04-MBSE/`
+**Reference**: [../../../00-PROGRAM/REQUIREMENTS/](../../../../00-PROGRAM/REQUIREMENTS/) and [../../../00-PROGRAM/DIGITAL_THREAD/04-MBSE/](../../../../00-PROGRAM/DIGITAL_THREAD/04-MBSE/)
 
 ### 4. Lineage Export (OpenLineage)
 
@@ -122,7 +124,7 @@ ODH Metadata Registry
 }
 ```
 
-**Reference**: `../03-DATA_STORAGE/METADATA_REGISTRY/OPENLINEAGE_EXPORT.md`
+**Reference**: [../../03-DATA_STORAGE/METADATA_REGISTRY/OPENLINEAGE_EXPORT.md](../../03-DATA_STORAGE/METADATA_REGISTRY/OPENLINEAGE_EXPORT.md)
 
 ## Configuration Baseline Linkage
 
@@ -143,7 +145,7 @@ telemetry_record:
 - Compare performance across baselines
 - Support configuration change impact analysis
 
-**Reference**: `../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/`
+**Reference**: [../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/](../../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/)
 
 ## API Integration
 
@@ -215,10 +217,10 @@ webhook_subscriptions:
 
 ## Related Documents
 
-- **../../00-PROGRAM/DIGITAL_THREAD/** - Digital Thread overview
-- **../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/** - Digital twin integration
-- **../../00-PROGRAM/DIGITAL_THREAD/07-INTEGRATIONS/FLEET_DATA_INGEST/** - Fleet data ingest API
-- **../03-DATA_STORAGE/METADATA_REGISTRY/OPENLINEAGE_EXPORT.md** - OpenLineage export
+- [**../../00-PROGRAM/DIGITAL_THREAD/**](../../../../00-PROGRAM/DIGITAL_THREAD/) - Digital Thread overview
+- [**../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/**](../../../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/) - Digital twin integration
+- [**../../00-PROGRAM/DIGITAL_THREAD/07-INTEGRATIONS/FLEET_DATA_INGEST/**](../../../../00-PROGRAM/DIGITAL_THREAD/07-INTEGRATIONS/FLEET_DATA_INGEST/) - Fleet data ingest API
+- [**../03-DATA_STORAGE/METADATA_REGISTRY/OPENLINEAGE_EXPORT.md**](../../03-DATA_STORAGE/METADATA_REGISTRY/OPENLINEAGE_EXPORT.md) - OpenLineage export
 
 ## Change History
 

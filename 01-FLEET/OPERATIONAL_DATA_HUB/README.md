@@ -1,5 +1,7 @@
 # OPERATIONAL_DATA_HUB
 
+**📍 [IDEALE-EU](../../) > [01-FLEET](../) > OPERATIONAL_DATA_HUB**
+
 Centralized hub for collecting, storing, processing, and distributing operational data from aircraft and spacecraft fleets.
 
 ## Purpose
@@ -22,16 +24,16 @@ Telemetry Sources → Ingestion Pipelines → Raw Data Vault → Curated Dataset
 
 ## Directory Structure
 
-- [**00-README.md**](00-README.md) - This file
-- [**01-DATA_SOURCES/**](01-DATA_SOURCES/) - Aircraft and spacecraft telemetry sources
-- [**02-DATA_INGESTION/**](02-DATA_INGESTION/) - Real-time streams, batch uploads, validation
-- [**03-DATA_STORAGE/**](03-DATA_STORAGE/) - Raw vault, curated datasets, metadata
-- [**04-DATA_SECURITY_COMPLIANCE/**](04-DATA_SECURITY_COMPLIANCE/) - Access control, encryption, GDPR, ITAR/EAR
-- [**05-DATA_PRODUCTS/**](05-DATA_PRODUCTS/) - Usage profiles, anomaly reports, reliability datasets
-- [**06-ANALYTICS_CONSUMPTION/**](06-ANALYTICS_CONSUMPTION/) - Data contracts for downstream consumers
-- [**07-INTEGRATIONS/**](07-INTEGRATIONS/) - API gateway, Digital Thread hooks, QMS feeds
-- [**08-METRICS_AND_MONITORING/**](08-METRICS_AND_MONITORING/) - Data quality dashboards, pipeline health
-- [**09-TEMPLATES/**](09-TEMPLATES/) - Standardized templates for schemas, contracts, reports
+- [**README.md**](README.md) - This file
+- [**01-DATA_SOURCES/**](01-DATA_SOURCES/00-README.md) - Aircraft and spacecraft telemetry sources
+- [**02-DATA_INGESTION/**](02-DATA_INGESTION/00-README.md) - Real-time streams, batch uploads, validation
+- [**03-DATA_STORAGE/**](03-DATA_STORAGE/00-README.md) - Raw vault, curated datasets, metadata
+- [**04-DATA_SECURITY_COMPLIANCE/**](04-DATA_SECURITY_COMPLIANCE/00-README.md) - Access control, encryption, GDPR, ITAR/EAR
+- [**05-DATA_PRODUCTS/**](05-DATA_PRODUCTS/00-README.md) - Usage profiles, anomaly reports, reliability datasets
+- [**06-ANALYTICS_CONSUMPTION/**](06-ANALYTICS_CONSUMPTION/00-README.md) - Data contracts for downstream consumers
+- [**07-INTEGRATIONS/**](07-INTEGRATIONS/00-README.md) - API gateway, Digital Thread hooks, QMS feeds
+- [**08-METRICS_AND_MONITORING/**](08-METRICS_AND_MONITORING/00-README.md) - Data quality dashboards, pipeline health
+- [**09-TEMPLATES/**](09-TEMPLATES/00-README.md) - Standardized templates for schemas, contracts, reports
 
 ## Key Design Principles
 
@@ -69,11 +71,11 @@ Telemetry Sources → Ingestion Pipelines → Raw Data Vault → Curated Dataset
 - **Ground Systems**: Maintenance events, flight planning, weather data
 
 ### Downstream Consumers
-- **Predictive Maintenance** → `../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/`
-- **Federated Learning** → `../FEDERATED_LEARNING/`
-- **Digital Twin** → `../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/`
-- **Configuration Management** → `../../00-PROGRAM/CONFIG_MGMT/`
-- **Quality Management** → `../../00-PROGRAM/QUALITY_QMS/`
+- **Predictive Maintenance** → [../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/](../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/)
+- **Federated Learning** → [../FEDERATED_LEARNING/](../FEDERATED_LEARNING/)
+- **Digital Twin** → [../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/](../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/)
+- **Configuration Management** → [../../00-PROGRAM/CONFIG_MGMT/](../../00-PROGRAM/CONFIG_MGMT/)
+- **Quality Management** → [../../00-PROGRAM/QUALITY_QMS/](../../00-PROGRAM/QUALITY_QMS/)
 
 ## Data Flow
 
@@ -110,10 +112,10 @@ Telemetry Sources → Ingestion Pipelines → Raw Data Vault → Curated Dataset
 
 ## Related Documents
 
-- **00-PROGRAM/DIGITAL_THREAD/07-INTEGRATIONS/FLEET_DATA_INGEST/** - API specifications
-- **00-PROGRAM/CONFIG_MGMT/04-BASELINES/** - Configuration baselines
-- **01-FLEET/FEDERATED_LEARNING/01-ARCHITECTURE/DATA_CONTRACTS/** - ML data contracts
-- **01-FLEET/MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/** - Predictive maintenance integration
+- [**00-PROGRAM/DIGITAL_THREAD/07-INTEGRATIONS/FLEET_DATA_INGEST/**](../../00-PROGRAM/DIGITAL_THREAD/07-INTEGRATIONS/FLEET_DATA_INGEST/) - API specifications
+- [**00-PROGRAM/CONFIG_MGMT/04-BASELINES/**](../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/) - Configuration baselines
+- [**01-FLEET/FEDERATED_LEARNING/01-ARCHITECTURE/DATA_CONTRACTS/**](../FEDERATED_LEARNING/01-ARCHITECTURE/DATA_CONTRACTS/) - ML data contracts
+- [**01-FLEET/MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/**](../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/) - Predictive maintenance integration
 
 ## Quick Start
 
@@ -124,10 +126,10 @@ Telemetry Sources → Ingestion Pipelines → Raw Data Vault → Curated Dataset
 4. Test ingestion with sample data
 
 ### For Data Consumers
-1. Browse available data products in `05-DATA_PRODUCTS/`
+1. Browse available data products in [05-DATA_PRODUCTS/](05-DATA_PRODUCTS/00-README.md)
 2. Review data contract for your use case
-3. Request access via RBAC matrix
-4. Integrate using API gateway specs in `07-INTEGRATIONS/`
+3. Request access via [RBAC matrix](04-DATA_SECURITY_COMPLIANCE/ACCESS_CONTROL_MATRIX.yaml)
+4. Integrate using API gateway specs in [07-INTEGRATIONS/](07-INTEGRATIONS/00-README.md)
 
 ## Change History
 

@@ -1,5 +1,7 @@
 # METRICS_AND_MONITORING
 
+**📍 [IDEALE-EU](../../../) > [01-FLEET](../../) > [OPERATIONAL_DATA_HUB](../) > METRICS_AND_MONITORING**
+
 Monitoring dashboards, metrics, and operational health tracking for the Operational Data Hub.
 
 ## Purpose
@@ -220,10 +222,10 @@ Target: >99.9% uptime
 
 ## Related Documents
 
-- **../02-DATA_INGESTION/** - Ingestion pipeline configuration
-- **../03-DATA_STORAGE/** - Storage metrics
-- **../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/** - SLA definitions
-- **../07-INTEGRATIONS/** - Integration monitoring
+- [**../02-DATA_INGESTION/**](../02-DATA_INGESTION/00-README.md) - Ingestion pipeline configuration
+- [**../03-DATA_STORAGE/**](../03-DATA_STORAGE/00-README.md) - Storage metrics
+- [**../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/**](../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/) - SLA definitions
+- [**../07-INTEGRATIONS/**](../07-INTEGRATIONS/00-README.md) - Integration monitoring
 
 ## Change History
 

@@ -1,5 +1,7 @@
 # DATA_SECURITY_COMPLIANCE
 
+**📍 [IDEALE-EU](../../../) > [01-FLEET](../../) > [OPERATIONAL_DATA_HUB](../) > DATA_SECURITY_COMPLIANCE**
+
 Security, access control, encryption, and regulatory compliance for operational data.
 
 ## Purpose
@@ -215,10 +217,10 @@ See [**ITAR_EAR_CLASSIFICATION.md**](ITAR_EAR_CLASSIFICATION.md)
 
 ## Related Documents
 
-- **../../00-PROGRAM/QUALITY_QMS/06-NCR_CAPA/** - Quality management
-- **../../00-PROGRAM/CONFIG_MGMT/** - Configuration control
-- **../03-DATA_STORAGE/RETENTION_POLICY.md** - Data retention
-- **../08-METRICS_AND_MONITORING/** - Security metrics
+- [**../../00-PROGRAM/QUALITY_QMS/06-NCR_CAPA/**](../../../00-PROGRAM/QUALITY_QMS/06-NCR_CAPA/) - Quality management
+- [**../../00-PROGRAM/CONFIG_MGMT/**](../../../00-PROGRAM/CONFIG_MGMT/) - Configuration control
+- [**../03-DATA_STORAGE/RETENTION_POLICY.md**](../03-DATA_STORAGE/RETENTION_POLICY.md) - Data retention
+- [**../08-METRICS_AND_MONITORING/**](../08-METRICS_AND_MONITORING/00-README.md) - Security metrics
 
 ## Change History
 

@@ -1,5 +1,7 @@
 # DATA_PRODUCTS
 
+**📍 [IDEALE-EU](../../../) > [01-FLEET](../../) > [OPERATIONAL_DATA_HUB](../) > DATA_PRODUCTS**
+
 Curated data products derived from operational telemetry for analytics and ML consumption.
 
 ## Purpose
@@ -14,7 +16,7 @@ Provides value-added datasets ready for downstream consumers:
 
 - [**00-README.md**](00-README.md) - This file
 - [**USAGE_PROFILES/**](USAGE_PROFILES/) - Aggregated performance summaries
-- [**ANOMALY_REPORTS/**](ANOMALY_REPORTS/) - Anomaly detection outputs → ../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/
+- [**ANOMALY_REPORTS/**](ANOMALY_REPORTS/) - Anomaly detection outputs → [../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/](../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/)
 - [**RELIABILITY_DATASETS/**](RELIABILITY_DATASETS/) - Reliability metrics and trends
 - [**BENCHMARKING_PACKS/**](BENCHMARKING_PACKS/) - Fleet-wide performance comparisons
 
@@ -221,11 +223,11 @@ deprecation_notice: 90 days minimum
 ## Integration with Downstream Systems
 
 ### Predictive Maintenance
-- Anomaly reports forwarded to `../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/`
+- Anomaly reports forwarded to [../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/](../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/)
 - RUL models trained on reliability datasets
 
 ### Federated Learning
-- Training datasets exported to `../FEDERATED_LEARNING/`
+- Training datasets exported to [../FEDERATED_LEARNING/](../../FEDERATED_LEARNING/)
 - Privacy-preserving aggregation
 
 ### Digital Twin
@@ -251,10 +253,10 @@ deprecation_notice: 90 days minimum
 
 ## Related Documents
 
-- **../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/** - Per-product data contracts
-- **../03-DATA_STORAGE/CURATED_DATASETS/** - Storage layer
-- **../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/** - Maintenance integration
-- **../../FEDERATED_LEARNING/** - ML integration
+- [**../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/**](../06-ANALYTICS_CONSUMPTION/DATA_CONTRACTS/) - Per-product data contracts
+- [**../03-DATA_STORAGE/CURATED_DATASETS/**](../03-DATA_STORAGE/00-README.md) - Storage layer
+- [**../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/**](../../MRO_STRATEGY/04-PREDICTIVE_MAINTENANCE/) - Maintenance integration
+- [**../../FEDERATED_LEARNING/**](../../FEDERATED_LEARNING/) - ML integration
 
 ## Change History
 

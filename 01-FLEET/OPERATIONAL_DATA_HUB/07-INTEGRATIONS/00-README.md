@@ -1,5 +1,7 @@
 # INTEGRATIONS
 
+**📍 [IDEALE-EU](../../../) > [01-FLEET](../../) > [OPERATIONAL_DATA_HUB](../) > INTEGRATIONS**
+
 Integration specifications for API gateway, Digital Thread, configuration management, and regulatory reporting.
 
 ## Purpose
@@ -17,7 +19,7 @@ Defines integration points between the Operational Data Hub and external systems
 - [**API_GATEWAY_SPECS/**](API_GATEWAY_SPECS/) - REST API specifications
 - [**DIGITAL_THREAD_HOOKS.md**](DIGITAL_THREAD_HOOKS.md) - Digital Thread integration
 - [**CONFIG_MGMT_LINKS.md**](CONFIG_MGMT_LINKS.md) - CM/DT integration, baseline refs, schema change workflow
-- [**QUALITY_QMS_FEED.md**](QUALITY_QMS_FEED.md) - → ../../00-PROGRAM/QUALITY_QMS/06-NCR_CAPA/
+- [**QUALITY_QMS_FEED.md**](QUALITY_QMS_FEED.md) - → [../../00-PROGRAM/QUALITY_QMS/06-NCR_CAPA/](../../../00-PROGRAM/QUALITY_QMS/06-NCR_CAPA/)
 - [**REGULATORY_REPORTING_ADAPTERS/**](REGULATORY_REPORTING_ADAPTERS/) - Regulatory reporting adapters
 
 ## Integration Architecture
@@ -125,7 +127,7 @@ Anomaly Detection (ODH)
   → Resolution → ODH Update
 ```
 
-**References**: `../../00-PROGRAM/QUALITY_QMS/06-NCR_CAPA/`
+**References**: [../../00-PROGRAM/QUALITY_QMS/06-NCR_CAPA/](../../../00-PROGRAM/QUALITY_QMS/06-NCR_CAPA/)
 
 ## Regulatory Reporting
 
@@ -193,10 +195,10 @@ kafka_topics:
 
 ## Related Documents
 
-- **../../00-PROGRAM/DIGITAL_THREAD/** - Digital Thread overview
-- **../../00-PROGRAM/CONFIG_MGMT/** - Configuration management
-- **../../00-PROGRAM/QUALITY_QMS/06-NCR_CAPA/** - Quality management
-- **../06-ANALYTICS_CONSUMPTION/** - Data consumption layer
+- [**../../00-PROGRAM/DIGITAL_THREAD/**](../../../00-PROGRAM/DIGITAL_THREAD/) - Digital Thread overview
+- [**../../00-PROGRAM/CONFIG_MGMT/**](../../../00-PROGRAM/CONFIG_MGMT/) - Configuration management
+- [**../../00-PROGRAM/QUALITY_QMS/06-NCR_CAPA/**](../../../00-PROGRAM/QUALITY_QMS/06-NCR_CAPA/) - Quality management
+- [**../06-ANALYTICS_CONSUMPTION/**](../06-ANALYTICS_CONSUMPTION/00-README.md) - Data consumption layer
 
 ## Change History
 

@@ -1,5 +1,7 @@
 # DATA_INGESTION
 
+**📍 [IDEALE-EU](../../../) > [01-FLEET](../../) > [OPERATIONAL_DATA_HUB](../) > DATA_INGESTION**
+
 Data ingestion pipelines, validation rules, and schema management for operational telemetry.
 
 ## Purpose
@@ -150,13 +152,13 @@ v1.1.0 (ARCHIVED)     - Archive after deprecation period
 ## Integration Points
 
 ### Upstream
-- **01-DATA_SOURCES/** - Telemetry source definitions
-- **00-PROGRAM/CONFIG_MGMT/04-BASELINES/** - System configuration baselines
+- [**01-DATA_SOURCES/**](../01-DATA_SOURCES/00-README.md) - Telemetry source definitions
+- [**00-PROGRAM/CONFIG_MGMT/04-BASELINES/**](../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/) - System configuration baselines
 
 ### Downstream
-- **03-DATA_STORAGE/RAW_DATA_VAULT/** - Ingested data storage
-- **03-DATA_STORAGE/METADATA_REGISTRY/** - Data catalog and lineage
-- **08-METRICS_AND_MONITORING/PIPELINE_HEALTH.csv** - Pipeline monitoring
+- [**03-DATA_STORAGE/RAW_DATA_VAULT/**](../03-DATA_STORAGE/00-README.md) - Ingested data storage
+- [**03-DATA_STORAGE/METADATA_REGISTRY/**](../03-DATA_STORAGE/METADATA_REGISTRY/00-README.md) - Data catalog and lineage
+- [**08-METRICS_AND_MONITORING/PIPELINE_HEALTH.csv**](../08-METRICS_AND_MONITORING/PIPELINE_HEALTH.csv) - Pipeline monitoring
 
 ## Monitoring and Alerting
 
@@ -175,9 +177,9 @@ v1.1.0 (ARCHIVED)     - Archive after deprecation period
 
 ## Related Documents
 
-- **../../00-PROGRAM/DIGITAL_THREAD/07-INTEGRATIONS/FLEET_DATA_INGEST/** - API specifications
-- **../../01-FLEET/FEDERATED_LEARNING/01-ARCHITECTURE/DATA_CONTRACTS/** - ML data contracts
-- **../../09-TEMPLATES/TELEMETRY_SCHEMA_TEMPLATE.json** - Schema template
+- [**../../00-PROGRAM/DIGITAL_THREAD/07-INTEGRATIONS/FLEET_DATA_INGEST/**](../../../00-PROGRAM/DIGITAL_THREAD/07-INTEGRATIONS/FLEET_DATA_INGEST/) - API specifications
+- [**../../01-FLEET/FEDERATED_LEARNING/01-ARCHITECTURE/DATA_CONTRACTS/**](../../FEDERATED_LEARNING/01-ARCHITECTURE/DATA_CONTRACTS/) - ML data contracts
+- [**../../09-TEMPLATES/TELEMETRY_SCHEMA_TEMPLATE.json**](../09-TEMPLATES/TELEMETRY_SCHEMA_TEMPLATE.json) - Schema template
 
 ## Change History
 
