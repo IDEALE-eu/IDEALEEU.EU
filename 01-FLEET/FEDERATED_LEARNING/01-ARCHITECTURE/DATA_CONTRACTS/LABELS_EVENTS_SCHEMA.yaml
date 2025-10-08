@@ -1,0 +1,320 @@
+# LABELS_EVENTS_SCHEMA
+
+Event labels, fault codes, and maintenance tags for federated learning.
+
+## Schema Version
+
+**Version**: 1.0.0  
+**Last Updated**: 2024-Q4  
+**Status**: Draft  
+**Owner**: AI/ML Team - Data Engineering
+
+## Event Categories
+
+### Engine Faults
+
+```yaml
+events:
+  - name: engine_oil_pressure_low
+    code: ENG-001
+    severity: warning
+    ata_chapter: ATA-79
+    ncr_link: NCR-2024-123
+    description: Engine oil pressure below 25 psi during cruise
+    action_required: Monitor and land if pressure < 15 psi
+    
+  - name: engine_oil_temperature_high
+    code: ENG-002
+    severity: warning
+    ata_chapter: ATA-79
+    ncr_link: NCR-2024-124
+    description: Engine oil temperature above 120°C
+    action_required: Reduce power and monitor
+    
+  - name: engine_vibration_high
+    code: ENG-003
+    severity: caution
+    ata_chapter: ATA-77
+    ncr_link: NCR-2024-125
+    description: Engine vibration exceeds 5 mils
+    action_required: Inspect engine mounts and bearings
+    
+  - name: engine_egt_overtemp
+    code: ENG-004
+    severity: warning
+    ata_chapter: ATA-77
+    ncr_link: NCR-2024-126
+    description: Exhaust gas temperature above 950°C
+    action_required: Reduce power immediately
+    
+  - name: engine_fuel_flow_anomaly
+    code: ENG-005
+    severity: caution
+    ata_chapter: ATA-77
+    ncr_link: NCR-2024-127
+    description: Fuel flow deviates > 10% from expected
+    action_required: Check fuel system and filters
+```
+
+### Avionics Faults
+
+```yaml
+events:
+  - name: avionics_bus_error
+    code: AVI-001
+    severity: warning
+    ata_chapter: ATA-45
+    ncr_link: NCR-2024-201
+    description: ARINC 429 bus communication error
+    action_required: Reset avionics and verify data integrity
+    
+  - name: gps_signal_loss
+    code: AVI-002
+    severity: caution
+    ata_chapter: ATA-34
+    ncr_link: NCR-2024-202
+    description: GPS signal unavailable for > 60 seconds
+    action_required: Revert to INS navigation
+    
+  - name: ahrs_drift
+    code: AVI-003
+    severity: caution
+    ata_chapter: ATA-34
+    ncr_link: NCR-2024-203
+    description: AHRS attitude drift > 5 degrees
+    action_required: Recalibrate AHRS on ground
+```
+
+### Fuel System Faults
+
+```yaml
+events:
+  - name: fuel_imbalance
+    code: FUEL-001
+    severity: caution
+    ata_chapter: ATA-28
+    ncr_link: NCR-2024-301
+    description: Fuel imbalance between tanks > 500 kg
+    action_required: Balance fuel tanks via crossfeed
+    
+  - name: fuel_pump_failure
+    code: FUEL-002
+    severity: warning
+    ata_chapter: ATA-28
+    ncr_link: NCR-2024-302
+    description: Primary fuel pump failure detected
+    action_required: Switch to backup pump
+```
+
+### Environmental Warnings
+
+```yaml
+events:
+  - name: turbulence_severe
+    code: ENV-001
+    severity: caution
+    ata_chapter: ATA-34
+    ncr_link: null
+    description: Vertical acceleration exceeds ±1.5g
+    action_required: Engage autopilot and reduce speed
+    
+  - name: icing_conditions
+    code: ENV-002
+    severity: caution
+    ata_chapter: ATA-30
+    ncr_link: null
+    description: Icing conditions detected (temp, humidity)
+    action_required: Activate anti-ice systems
+```
+
+### System Health Events
+
+```yaml
+events:
+  - name: fl_client_cpu_overload
+    code: SYS-001
+    severity: caution
+    ata_chapter: ATA-45
+    ncr_link: null
+    description: FL client CPU usage > 80% for > 60 seconds
+    action_required: Suspend FL training, investigate resource leak
+    
+  - name: fl_client_memory_warning
+    code: SYS-002
+    severity: caution
+    ata_chapter: ATA-45
+    ncr_link: null
+    description: FL client memory usage > 90%
+    action_required: Restart FL client gracefully
+    
+  - name: fl_client_disk_full
+    code: SYS-003
+    severity: warning
+    ata_chapter: ATA-45
+    ncr_link: null
+    description: FL client disk usage > 95%
+    action_required: Purge old logs and temporary files
+    
+  - name: fl_model_drift_detected
+    code: SYS-004
+    severity: warning
+    ata_chapter: ATA-45
+    ncr_link: null
+    description: FL model performance degraded > 15%
+    action_required: Rollback to previous model version
+```
+
+## Maintenance Tags
+
+### Scheduled Maintenance
+
+```yaml
+maintenance:
+  - name: oil_change_due
+    code: MX-001
+    type: scheduled
+    interval: 100 flight hours
+    ata_chapter: ATA-79
+    description: Engine oil change required
+    
+  - name: engine_inspection_due
+    code: MX-002
+    type: scheduled
+    interval: 1000 flight hours
+    ata_chapter: ATA-77
+    description: Borescope inspection of engine
+    
+  - name: landing_gear_inspection
+    code: MX-003
+    type: scheduled
+    interval: 500 flight hours
+    ata_chapter: ATA-32
+    description: Landing gear visual inspection
+```
+
+### Unscheduled Maintenance
+
+```yaml
+maintenance:
+  - name: ncr_open
+    code: MX-101
+    type: unscheduled
+    ata_chapter: null
+    description: Non-Conformance Report (NCR) opened for aircraft
+    
+  - name: aog_status
+    code: MX-102
+    type: unscheduled
+    ata_chapter: null
+    description: Aircraft On Ground (AOG) - not airworthy
+    
+  - name: repair_completed
+    code: MX-103
+    type: unscheduled
+    ata_chapter: null
+    description: Maintenance action completed and signed off
+```
+
+## Severity Levels
+
+| Severity | Description                              | Example                     |
+|----------|------------------------------------------|-----------------------------|
+| info     | Informational, no action required        | Maintenance reminder        |
+| caution  | Non-urgent issue, monitor                | Minor sensor drift          |
+| warning  | Urgent issue, action required soon       | Low oil pressure            |
+| critical | Safety-critical, immediate action        | Engine fire                 |
+
+## Metadata Fields
+
+All events include the following metadata:
+
+- **name**: Unique event identifier (snake_case)
+- **code**: Fault code (e.g., ENG-001)
+- **severity**: Severity level (info, caution, warning, critical)
+- **ata_chapter**: ATA specification chapter reference
+- **ncr_link**: Link to Non-Conformance Report (if applicable)
+- **description**: Human-readable description
+- **action_required**: Recommended corrective action
+
+## Event Lifecycle
+
+### Detection
+- Events detected by onboard HUMS (Health and Usage Monitoring System)
+- Threshold-based or ML-based anomaly detection
+
+### Logging
+- Events logged to aircraft system log (ARINC 717)
+- Transmitted to ground via ACARS or SATCOM
+
+### Labeling for FL
+- Events labeled in FL training data for supervised learning
+- Time-series windows around events extracted (e.g., 60 seconds before/after)
+
+### Resolution
+- Maintenance action recorded with MX-103 (repair_completed)
+- Event closed in fleet management system
+
+## Use Cases for FL
+
+### Predictive Maintenance
+- **Input**: Telemetry signals (engine vibration, oil pressure, etc.)
+- **Labels**: Maintenance events (oil_change_due, engine_inspection_due)
+- **Model**: Predict time-to-failure or remaining useful life (RUL)
+
+### Anomaly Detection
+- **Input**: Telemetry signals (all signals)
+- **Labels**: Fault events (ENG-001, AVI-002, etc.)
+- **Model**: Binary classifier (normal vs. anomalous)
+
+### Fault Diagnosis
+- **Input**: Telemetry signals during fault window
+- **Labels**: Specific fault code (ENG-001, FUEL-002, etc.)
+- **Model**: Multi-class classifier (fault type)
+
+## Privacy and Security
+
+### Pseudonymisation
+- Aircraft ID pseudonymised (no tail numbers in labels)
+- Flight crew data not included
+
+### Consent
+- GDPR Art. 6(1)(f) - Legitimate interest (safety and maintenance)
+- Right to erasure: Maintenance records retained per regulatory requirements (5 years)
+
+## Schema Evolution
+
+### Versioning
+- **Major version**: Breaking changes (event code redefined, severity changed)
+- **Minor version**: Backward-compatible changes (event added)
+- **Patch version**: Documentation updates
+
+### Backward Compatibility
+- New events are additive (no existing codes removed)
+- Deprecated events marked with `deprecated: true` and removal date
+
+## Validation Rules
+
+### Event Code Uniqueness
+- All event codes must be unique within category
+- Format: `{CATEGORY}-{NUMBER}` (e.g., ENG-001)
+
+### NCR Linkage
+- If `ncr_link` provided, must reference valid NCR in CONFIG_MGMT system
+- NCRs tracked in `00-PROGRAM/CONFIG_MGMT/06-CHANGES/`
+
+### Severity Consistency
+- Critical events must have `action_required` field
+- Info events should not trigger alerts
+
+## Related Documents
+
+- **TELEMETRY_SCHEMA.yaml** - Telemetry signal definitions
+- **01-FLEET/MRO_STRATEGY/** - Maintenance strategy and NCR workflow
+- **00-PROGRAM/CONFIG_MGMT/** - NCR tracking and change management
+- **04-ALGORITHMS/DRIFT_DETECTION.md** - Model drift detection using events
+
+## Change History
+
+| Version | Date    | Changes                          | Author          |
+|---------|---------|----------------------------------|-----------------|
+| 1.0.0   | 2024-Q4 | Initial event schema             | AI/ML Data Team |
