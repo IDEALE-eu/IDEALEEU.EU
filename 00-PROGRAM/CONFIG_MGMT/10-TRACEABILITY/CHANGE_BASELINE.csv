@@ -1,0 +1,3 @@
+ChangeID,ChangeType,Description,AffectedBaseline,ItemsChanged,DateImplemented,VerificationStatus,Owner,Notes
+ECR-001,Design Change,Update wing spar material,PDR,IDEALE-ACFT-00001-1,2024-02-15,Verified,J. Smith,Material changed from Al 7075 to Al 7050 for improved fatigue resistance
+ECO-001,Process Change,Update manufacturing process for composite layup,CDR,IDEALE-ACFT-00100,2024-03-01,In Progress,M. Johnson,New autoclave cycle parameters

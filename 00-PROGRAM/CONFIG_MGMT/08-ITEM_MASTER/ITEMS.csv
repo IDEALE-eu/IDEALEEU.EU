@@ -1,0 +1,3 @@
+PartNumber,Description,Category,Revision,Status,Interchangeability,Owner,DateCreated,SupersededBy,Notes
+IDEALE-ACFT-00001,Aircraft Main Assembly,AIRF,A,PRELIM,N/A,Chief Engineer,2024-01-15,,Preliminary design phase
+IDEALE-SCFT-00001,Spacecraft Primary Structure,STRC,PRELIM,PRELIM,N/A,Chief Engineer,2024-01-15,,Preliminary design phase

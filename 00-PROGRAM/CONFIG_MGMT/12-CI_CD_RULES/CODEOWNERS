@@ -1,0 +1,69 @@
+# Code Owners
+
+# This file defines code ownership for the IDEALE EU repository
+# Owners are automatically requested for review when files in their area are changed
+
+# Global owners (fallback for any unspecified area)
+* @ideale-eu/program-management @ideale-eu/configuration-management
+
+# Program-level governance
+/00-PROGRAM/ @ideale-eu/program-management
+/00-PROGRAM/CONFIG_MGMT/ @ideale-eu/configuration-management
+/00-PROGRAM/QUALITY_QMS/ @ideale-eu/quality-assurance
+/00-PROGRAM/STANDARDS/ @ideale-eu/systems-engineering
+/00-PROGRAM/SUPPLY_CHAIN/ @ideale-eu/procurement
+/00-PROGRAM/DIGITAL_THREAD/ @ideale-eu/digital-engineering
+/00-PROGRAM/INDUSTRIALISATION/ @ideale-eu/manufacturing-engineering
+
+# Configuration Management specific files
+/00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md @ideale-eu/configuration-manager
+/00-PROGRAM/CONFIG_MGMT/02-PART_NUMBERING.md @ideale-eu/configuration-manager
+/00-PROGRAM/CONFIG_MGMT/03-SERIALIZATION.md @ideale-eu/configuration-manager @ideale-eu/manufacturing-engineering
+/00-PROGRAM/CONFIG_MGMT/05-CCB/ @ideale-eu/ccb-chair @ideale-eu/configuration-manager
+/00-PROGRAM/CONFIG_MGMT/06-CHANGES/ @ideale-eu/ccb-members @ideale-eu/configuration-manager
+/00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/ @ideale-eu/configuration-manager
+/00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ @ideale-eu/systems-engineering @ideale-eu/configuration-manager
+/00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/ @ideale-eu/systems-engineering @ideale-eu/configuration-manager
+/00-PROGRAM/CONFIG_MGMT/12-CI_CD_RULES/ @ideale-eu/devops @ideale-eu/configuration-manager
+
+# Fleet operations
+/01-FLEET/ @ideale-eu/fleet-operations
+
+# Aircraft
+/02-AIRCRAFT/ @ideale-eu/aircraft-chief-engineer
+/02-AIRCRAFT/CONFIGURATION_BASE/ @ideale-eu/aircraft-chief-engineer @ideale-eu/configuration-manager
+/02-AIRCRAFT/DOMAIN_INTEGRATION/AIRFRAMES/ @ideale-eu/structures-engineering
+/02-AIRCRAFT/DOMAIN_INTEGRATION/MECHANICAL_CONTROL_SYSTEMS/ @ideale-eu/mechanical-systems
+/02-AIRCRAFT/DOMAIN_INTEGRATION/CABINS_CARGO_PAX/ @ideale-eu/cabin-engineering
+/02-AIRCRAFT/DOMAIN_INTEGRATION/INFO_COMM_AVIONICS/ @ideale-eu/avionics-engineering
+/02-AIRCRAFT/DOMAIN_INTEGRATION/CIRCULAR_SYSTEMS_MATERIALS/ @ideale-eu/materials-engineering
+/02-AIRCRAFT/DOMAIN_INTEGRATION/INFRASTRUCTURES/ @ideale-eu/ground-support
+/02-AIRCRAFT/DOMAIN_INTEGRATION/H2_THERMAL/ @ideale-eu/thermal-engineering
+/02-AIRCRAFT/DOMAIN_INTEGRATION/GENERATION_PROPULSION_ENERGY/ @ideale-eu/propulsion-engineering
+
+# Spacecraft
+/03-SPACECRAFT/ @ideale-eu/spacecraft-chief-engineer
+/03-SPACECRAFT/CONFIGURATION_BASE/ @ideale-eu/spacecraft-chief-engineer @ideale-eu/configuration-manager
+/03-SPACECRAFT/MISSION_DEFINITION/ @ideale-eu/mission-engineering
+/03-SPACECRAFT/SYSTEMS_ENGINEERING/ @ideale-eu/spacecraft-systems-engineering
+/03-SPACECRAFT/GNC/ @ideale-eu/gnc-engineering
+/03-SPACECRAFT/POWER_THERMAL/ @ideale-eu/power-thermal-engineering
+/03-SPACECRAFT/PROPULSION/ @ideale-eu/propulsion-engineering
+/03-SPACECRAFT/AVIONICS_COMMS/ @ideale-eu/spacecraft-avionics
+/03-SPACECRAFT/STRUCTURES/ @ideale-eu/spacecraft-structures
+/03-SPACECRAFT/SOFTWARE/ @ideale-eu/flight-software
+/03-SPACECRAFT/RADIATION/ @ideale-eu/radiation-engineering
+/03-SPACECRAFT/CERTIFICATION_AND_SAFETY/ @ideale-eu/safety-engineering
+
+# Business
+/04-BUSINESS/ @ideale-eu/business-management
+
+# Special files requiring broad review
+README.md @ideale-eu/program-management @ideale-eu/technical-leadership
+.github/ @ideale-eu/devops @ideale-eu/configuration-manager
+.gitignore @ideale-eu/devops
+
+# Critical configuration files requiring extra scrutiny
+**/*BASELINE* @ideale-eu/ccb-chair @ideale-eu/configuration-manager
+**/*baseline* @ideale-eu/ccb-chair @ideale-eu/configuration-manager
+**/CODEOWNERS @ideale-eu/program-management @ideale-eu/configuration-manager

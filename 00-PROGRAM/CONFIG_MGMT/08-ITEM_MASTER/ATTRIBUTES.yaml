@@ -1,0 +1,184 @@
+# Item Master Attributes Schema
+
+## Overview
+This file defines the attributes and metadata schema for configuration items in the item master database.
+
+## Standard Attributes
+
+### Identification
+- **PartNumber**: Unique part number (format per 02-PART_NUMBERING.md)
+- **Description**: Clear, concise description of the item
+- **Category**: Item category code (see 02-PART_NUMBERING.md section 3.3)
+- **Revision**: Current design and process revision (format: [Letter][Number])
+- **AlternatePartNumbers**: List of alternate or legacy part numbers
+- **Synonyms**: Other names or designations
+
+### Status
+- **Status**: Current lifecycle status
+  - PRELIM: Preliminary design
+  - PROTO: Prototype
+  - ALPHA: Alpha test
+  - BETA: Beta test  
+  - ACTIVE: Released and active
+  - OBSOLETE: No longer in production
+  - SUPERSEDED: Replaced by another part
+- **EffectiveDate**: Date item became effective
+- **ObsoleteDate**: Date item was obsoleted (if applicable)
+- **SupersededBy**: Part number that supersedes this item
+
+### Classification
+- **ItemType**: Type of configuration item
+  - ASSEMBLY: Assembly or subassembly
+  - COMPONENT: Individual component
+  - DRAWING: Engineering drawing
+  - SPECIFICATION: Technical specification
+  - SOFTWARE: Software or firmware
+  - DOCUMENT: Documentation
+  - PROCESS: Manufacturing process
+  - TOOL: Tooling or fixture
+- **CriticalityLevel**: Flight criticality
+  - CRITICAL: Flight-critical, safety of flight
+  - ESSENTIAL: Essential for mission success
+  - IMPORTANT: Important but not critical
+  - STANDARD: Standard item
+- **Serialized**: Whether item requires serialization (true/false)
+
+### Interchangeability
+- **Interchangeability**: Interchangeability code
+  - I: Fully interchangeable (form, fit, function)
+  - F: Fit interchangeable only
+  - N: Not interchangeable
+- **InterchangeableWith**: List of interchangeable part numbers
+- **SourceControl**: Source control type
+  - OPEN: Multiple sources allowed
+  - CONTROLLED: Approved sources only
+  - RESTRICTED: Single source only
+
+### Organizational
+- **Owner**: Responsible engineer or organization
+- **Designer**: Design engineer name
+- **Cognizant**: Cognizant engineering organization
+- **DateCreated**: Date part number was created
+- **DateModified**: Date item master record was last modified
+- **ModifiedBy**: Person who last modified record
+
+### Technical Specifications
+- **Material**: Primary material(s)
+- **Finish**: Surface finish or coating
+- **Weight**: Item weight (with units)
+- **Dimensions**: Envelope dimensions (L x W x H)
+- **LeadTime**: Manufacturing lead time (days)
+- **ShelfLife**: Shelf life (if applicable)
+- **StorageConditions**: Required storage conditions
+
+### Procurement
+- **MakeOrBuy**: Make (manufactured in-house) or Buy (procured)
+- **PreferredSupplier**: Preferred supplier name/code
+- **ApprovedSuppliers**: List of approved suppliers
+- **UnitCost**: Estimated or actual unit cost
+- **Currency**: Currency for cost
+- **MinimumOrderQuantity**: Minimum order quantity
+
+### Quality & Compliance
+- **QualificationStatus**: Qualification status
+  - NOT_QUALIFIED: Not yet qualified
+  - IN_QUALIFICATION: Qualification in progress
+  - QUALIFIED: Fully qualified
+  - CONDITIONAL: Conditionally qualified
+- **CertificationRequired**: Certification requirements
+- **InspectionLevel**: Inspection level (standard, enhanced, special)
+- **TestRequirements**: Special test requirements
+- **MaterialCertRequired**: Whether material certification is required
+
+### Traceability
+- **ParentAssembly**: Parent assembly part number (if component)
+- **UsedOn**: List of assemblies that use this item
+- **RequirementIDs**: Requirements this item satisfies
+- **ECRHistory**: List of ECRs that affected this item
+- **ECOHistory**: List of ECOs that modified this item
+
+### Lifecycle Data
+- **FirstProductionDate**: Date of first production unit
+- **LastProductionDate**: Date of last production unit
+- **TotalProduced**: Total quantity produced
+- **TotalInService**: Quantity currently in service
+- **ReliabilityData**: MTBF, failure rate, etc.
+
+### References
+- **DrawingNumber**: Engineering drawing number(s)
+- **SpecificationNumber**: Governing specification(s)
+- **StandardReference**: Industry standards (MS, NAS, AS, etc.)
+- **DataSheetURL**: Link to datasheet or technical data
+- **CADFileLocation**: CAD file location in PLM system
+
+### Program-Specific
+- **Program**: Program(s) this item applies to
+  - IDEALE: Common to both
+  - AIRCRAFT: Aircraft only
+  - SPACECRAFT: Spacecraft only
+- **Vehicle**: Specific vehicle designation
+- **Subsystem**: Subsystem or domain
+- **WBS**: Work Breakdown Structure code
+
+### Export Control
+- **ExportControlClassification**: ECCN or USML category
+- **ITAR**: Whether item is ITAR controlled (true/false)
+- **ExportRestrictions**: Description of export restrictions
+
+### Configuration Management
+- **BaselineVersion**: Baseline version when item was released
+- **ConfigurationStatus**: Configuration audit status
+- **DeviationsWaivers**: Active deviations or waivers
+- **OpenActions**: Open ECRs or actions
+
+### Notes
+- **Notes**: Free-form notes and comments
+- **DesignNotes**: Design considerations and notes
+- **ManufacturingNotes**: Manufacturing notes
+- **InspectionNotes**: Inspection and test notes
+
+## Example Item (YAML format)
+
+```yaml
+PartNumber: IDEALE-ACFT-10234
+Description: Main Wing Assembly
+Category: AIRF
+Revision: A
+Status: ACTIVE
+ItemType: ASSEMBLY
+CriticalityLevel: CRITICAL
+Serialized: true
+Interchangeability: N
+SourceControl: CONTROLLED
+Owner: J. Smith
+Designer: A. Johnson
+Cognizant: Structures Engineering
+DateCreated: 2024-01-15
+Material: Al 7075-T6, Carbon Fiber Composite
+Weight: 1250 kg
+MakeOrBuy: Make
+QualificationStatus: QUALIFIED
+CertificationRequired: FAA/EASA Type Certification
+DrawingNumber: IDEALE-ACFT-10234-DWG
+Program: AIRCRAFT
+Subsystem: AIRFRAMES
+ExportControlClassification: ECCN 9A991
+ITAR: false
+Notes: Critical flight structure, requires full traceability
+```
+
+## Data Validation Rules
+
+- **PartNumber**: Must match format in 02-PART_NUMBERING.md
+- **Status**: Must be one of defined status values
+- **Serialized**: Must be true for items with CriticalityLevel = CRITICAL
+- **Owner**: Must be a valid person or organization
+- **Interchangeability**: Must be I, F, or N
+- **DateCreated**: Must be valid date in ISO 8601 format
+
+## Maintenance
+
+- Item master maintained by Configuration Management
+- Updates require CM approval
+- Quarterly audits for data quality
+- Annual review of attribute schema
