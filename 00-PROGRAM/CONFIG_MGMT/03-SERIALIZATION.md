@@ -1,347 +1,135 @@
 # Serialization Guidelines
 
-## 1. Overview
+> Scope: aircraft, spacecraft, GSE, software/firmware.  
+> References: **[02-PART_NUMBERING.md](./02-PART_NUMBERING.md)** · **[08-ITEM_MASTER/ITEMS.csv](./08-ITEM_MASTER/ITEMS.csv)** · **[QUALITY_QMS/08-CALIBRATION_METROLOGY/](../QUALITY_QMS/08-CALIBRATION_METROLOGY/)** · **[SUPPLY_CHAIN/13-DATA_MODELS/](../SUPPLY_CHAIN/13-DATA_MODELS/)**
 
-This document defines the serialization system for trackable items in the IDEALE EU aerospace program. Serialization provides unique identification for individual units of a configuration item, enabling traceability throughout manufacturing, testing, and operational life.
+## 1. Overview
+Serialization gives each physical unit a unique identity for full-lifecycle traceability.
 
 ## 2. Purpose
+Tracking, materials/process/test traceability, fleet maintenance history, incident RCA, warranty/reliability, regulatory compliance (EASA/FAA/ESA).
 
-Serialization enables:
-- Individual item tracking from manufacturing through disposal
-- Traceability of materials, processes, and test results
-- Fleet management and maintenance history
-- Incident investigation and root cause analysis
-- Warranty and reliability tracking
-- Regulatory compliance (FAA, EASA, ESA)
+## 3. Requirements
 
-## 3. Serialization Requirements
+### 3.1 Items requiring serialization
+**Critical Flight Items:** major aircraft/spacecraft assemblies and subsystems, propulsion, flight controls, life-critical structures, avionics/computing.  
+**Controlled Items:** test articles, qual hardware, certification specimens, FTVs, critical ground test equipment, calibrated instruments (**[QMS calibration](../QUALITY_QMS/08-CALIBRATION_METROLOGY/)**).  
+**High-Value:** unit cost > \$50k, long-lead, limited production.
 
-### 3.1 Items Requiring Serialization
-
-All of the following require unique serial numbers:
-
-#### Critical Flight Items
-- Aircraft assemblies and major components
-- Spacecraft assemblies and subsystems
-- Propulsion systems
-- Flight control systems
-- Life-critical structures
-- Avionics and computing systems
-
-#### Controlled Items
-- Test articles and prototypes
-- Qualification hardware
-- Certification test specimens
-- Flight test vehicles
-- Ground test equipment (critical)
-- Calibrated measurement equipment
-
-#### High-Value Items
-- Items >$50,000 unit cost
-- Long-lead items
-- Limited production items
-
-### 3.2 Items NOT Requiring Serialization
-
-- Standard hardware (bolts, nuts, fasteners)
-- Bulk materials
-- Consumables
-- Low-cost COTS items (<$1,000)
-- Documentation
+### 3.2 Items not serialized
+Standard hardware, bulk materials, consumables, low-cost COTS (< \$1k), documentation.
 
 ## 4. Serial Number Format
 
-### 4.1 Standard Format
+### 4.1 Standard
+**`[PartNumber]/S/N [Sequential]-[LotCode]`**  
+Example (PN per **02-PART_NUMBERING.md**): `ACFT-AIRF-00100/S/N 0015-L2024Q1`
 
-**[Part Number]/S/N [Sequential Number]-[Lot Code]**
+- **PartNumber:** as defined in **[02-PART_NUMBERING.md](./02-PART_NUMBERING.md)** (e.g., `ACFT-AIRF-00100`)  
+- **Sequential:** 4 digits `0001–9999` (extend to 5+ after 9999)  
+- **LotCode (optional):** run/material batch
 
-**Example:** `IDEALE-ACFT-10234/S/N 0001-L2024A`
+### 4.2 Rules
+Start at `0001` per PN. Increment without gaps. Never reuse.
 
-Where:
-- **Part Number** - Full part number (see 02-PART_NUMBERING.md)
-- **S/N** - Serial number designator
-- **Sequential Number** - 4-digit sequential (0001-9999)
-- **Lot Code** - Manufacturing lot identifier (optional)
+### 4.3 Lot codes
+`L[YEAR][Q/M][BATCH]` → `L2024A`, `L2024Q1`, `L202401A`.
 
-### 4.2 Sequential Numbering
+## 5. Application
 
-- Start at 0001 for each part number
-- Increment sequentially
-- Zero-padded to 4 digits
-- Never skip or reuse numbers
-- After 9999, use 5-digit format (10000, 10001, ...)
+### 5.1 Marking methods
+**Permanent (preferred):** laser, dot-peen, chem etch, stamping (non-critical areas).  
+**Semi-permanent:** anodized engraving, ink + protective coat, nameplates.  
+**Temporary (in-process only):** labels, paint markers.
 
-### 4.3 Lot Codes
+### 5.2 Location
+Visible without disassembly, non-critical zones, protected from wear/environment, defined on drawing.
 
-Format: **L[YEAR][QUARTER/MONTH][BATCH]**
+### 5.3 Requirements
+Min height 2 mm, depth 0.05–0.15 mm (per drawing), sans-serif OCR font, high contrast.
 
-Examples:
-- `L2024A` - Year 2024, Batch A
-- `L2024Q1` - Year 2024, Quarter 1
-- `L202401A` - Year 2024, January, Batch A
-
-Used for:
-- Grouping items from same manufacturing run
-- Material lot traceability
-- Quality investigation
-
-## 5. Serialization Application
-
-### 5.1 Physical Marking Methods
-
-#### Permanent Marking (Preferred)
-- **Laser engraving** - Metal and composite parts
-- **Dot peen** - Metal parts
-- **Chemical etching** - Metal parts
-- **Stamping** - Non-critical areas only
-
-#### Semi-Permanent Marking
-- **Anodized engraving** - Aluminum parts
-- **Ink stamping** - With protective coating
-- **Engraved nameplates** - Bolted or riveted
-
-#### Temporary Marking (Not Acceptable for Final)
-- Adhesive labels - For in-process tracking only
-- Paint markers - For in-process tracking only
-
-### 5.2 Marking Location
-
-- Visible and accessible without disassembly (preferred)
-- Non-critical area (away from stress concentrations)
-- Protected from wear and environmental exposure
-- Documented in engineering drawings
-
-### 5.3 Marking Requirements
-
-- Character height: Minimum 2mm (larger if readable from distance required)
-- Depth: 0.05mm - 0.15mm (laser/etch), per drawing
-- Font: Sans-serif, OCR-readable
-- Contrast: High contrast for machine vision/scanning
-
-### 5.4 Multiple Marking
-
-For critical items, provide redundant marking:
-- Primary marking: Permanent, external
-- Secondary marking: Internal or alternate location
-- Data matrix code: 2D barcode with S/N encoded
+### 5.4 Redundancy
+Primary external mark + secondary internal/alt location. Include 2D code for scan.
 
 ## 6. Data Matrix Codes
+ECC200 containing PN, S/N, lot, DOM.
 
-### 6.1 Format
-
-2D barcode (Data Matrix ECC200) containing:
-- Part number
-- Serial number
-- Lot code (if applicable)
-- Date of manufacture
-
-**Example Encoded Data:**
-```
-[P]IDEALE-ACFT-10234[S]0001[L]L2024A[D]20240315
+Encoded example:
 ```
 
-### 6.2 Placement
+[P]ACFT-AIRF-00100[S]0015[L]L2024Q1[D]20240315
 
-- Adjacent to human-readable serial number
-- Minimum 5mm x 5mm size
-- Scannable with handheld readers
-- Protected from damage
+```
+Placement: adjacent to HRI, ≥5×5 mm, scannable, protected.
 
-## 7. Serialization Process
+## 7. Process
 
-### 7.1 Serial Number Assignment
+### 7.1 Assignment
+Manufacturing requests → CM assigns next S/N → record in tracking system (linked to **[ITEMS.csv](./08-ITEM_MASTER/ITEMS.csv)**) → notify requester.
 
-1. **Request** - Manufacturing requests S/N from CM
-2. **Assignment** - CM assigns next sequential S/N
-3. **Registration** - S/N recorded in tracking system
-4. **Communication** - CM provides S/N to manufacturing
+### 7.2 Physical marking
+Prep surface → mark per spec → inspect → record completion in traveler/WI (**[INDUSTRIALISATION/06-WORK_INSTRUCTIONS/](../INDUSTRIALISATION/06-WORK_INSTRUCTIONS/)**).
 
-### 7.2 Physical Marking
+### 7.3 Data capture (at serialization)
+DOM, lot, operator ID, site, inspection status.
 
-1. **Preparation** - Clean and prepare marking surface
-2. **Marking** - Apply marking per specification
-3. **Inspection** - Verify marking quality and correctness
-4. **Documentation** - Record marking completion in traveler
+## 8. Lifecycle Tracking
+Manufacturing → Testing → Integration → Delivery → Operations → Maintenance → Retirement.  
+Records per S/N: material certs/lots, process history, inspections/tests, mods/repairs, usage (hours/cycles/missions), maintenance, failures/incidents, disposition.
 
-### 7.3 Data Capture
-
-At serialization:
-- Date of manufacture
-- Manufacturing lot
-- Operator ID
-- Manufacturing location
-- Inspection status
-
-## 8. Serial Number Tracking
-
-### 8.1 Lifecycle Tracking
-
-Track serialized items through:
-1. **Manufacturing** - Fabrication, assembly, inspection
-2. **Testing** - Component, system, qualification, acceptance
-3. **Integration** - Assembly into higher-level systems
-4. **Delivery** - Shipment to customer or integration site
-5. **Operations** - In-service use
-6. **Maintenance** - Repairs, overhauls, modifications
-7. **Retirement** - End of life, disposal, archival
-
-### 8.2 Traceability Records
-
-Maintain for each S/N:
-- Material certifications and lot numbers
-- Manufacturing process records
-- Inspection and test results
-- Modifications and repairs
-- Usage history (hours, cycles, missions)
-- Maintenance history
-- Failure/incident reports
-- Final disposition
-
-### 8.3 Database System
-
-Serial number database maintained in item master system with:
-- Part number and S/N
-- Current status and location
-- Manufacturing data
-- Test history
-- Configuration (as-built vs. design)
-- Current effectivity
-- Parent assembly (if installed)
+Database: item master / PLM, with PN, S/N, status/location, mfg/test history, as-built configuration, effectivity, parent assembly.
 
 ## 9. Special Cases
+**Prototypes:** `[PN]/PROTO-[###]` → `ACFT-AIRF-00100/PROTO-001`  
+**Test articles:** `[PN]/TEST-[###]` → `ACFT-AIRF-00100/TEST-001`  
+**Flight Test Vehicles:** `FTV-[###]` → `FTV-001`  
+**Qualification units:** `QU-[PN]-[###]` → `QU-SCFT-STRC-00050-001`  
+**Engineering models:** `EM-[PN]-[###]` → `EM-ACFT-PROP-00075-002`
 
-### 9.1 Prototypes
-
-Format: **[Part Number]/PROTO-[Number]**
-
-Example: `IDEALE-ACFT-10234/PROTO-001`
-
-### 9.2 Test Articles
-
-Format: **[Part Number]/TEST-[Number]**
-
-Example: `IDEALE-ACFT-10234/TEST-001`
-
-### 9.3 Flight Test Vehicles
-
-Format: **FTV-[Number]**
-
-Example: `FTV-001` (Flight Test Vehicle 1)
-
-### 9.4 Qualification Units
-
-Format: **QU-[Part Number]-[Number]**
-
-Example: `QU-IDEALE-ACFT-10234-001`
-
-### 9.5 Engineering Models
-
-Format: **EM-[Part Number]-[Number]**
-
-Example: `EM-IDEALE-SCFT-00100-001`
-
-## 10. Serialization for Software/Firmware
-
-### 10.1 Software Build Numbers
-
-Format: **[Major].[Minor].[Patch]-[Build]**
-
-Example: `1.2.3-20240315`
-
-### 10.2 Firmware Serial/Version
-
-Embedded firmware includes:
-- Software version
-- Compilation date/time
-- Hardware S/N (when loaded)
+## 10. Software/Firmware
+Build numbers: `Major.Minor.Patch-Build` → `1.2.3-20240315`.  
+Firmware embeds SW version, build date/time, host hardware S/N when loaded.
 
 ## 11. Documentation
 
-### 11.1 Serialization Drawing Notes
+### 11.1 Drawing notes
+“THIS PART REQUIRES SERIALIZATION”, mark location, method, size/depth, Data-Matrix requirement.
 
-Engineering drawings include:
-- "THIS PART REQUIRES SERIALIZATION"
-- Marking location (with detail view)
-- Marking method
-- Character size and depth
-- Data matrix code requirement
-
-### 11.2 Traveler Requirements
-
-Manufacturing traveler includes:
-- Serial number assignment step
-- Marking operation
-- Marking inspection
-- S/N registration in database
+### 11.2 Traveler
+Steps for S/N assignment, marking operation, inspection, DB registration.
 
 ## 12. Quality Control
-
-### 12.1 Marking Inspection
-
-Verify:
-- Correct part number
-- Correct serial number
-- Legibility
-- Location per drawing
-- Depth/quality acceptable
-- Data matrix scannable
-
-### 12.2 Nonconformance
-
-If marking is incorrect:
-- Do NOT obliterate or alter
-- Note discrepancy in traveler
-- Request disposition from engineering
-- May require scrapping and remanufacturing
+Verify PN/SN correctness, legibility, location, depth/quality, barcode scan.  
+Nonconformance: do not obliterate; record NCR; seek disposition (**[QUALITY_QMS/02-PROCEDURES/PRO-004_NONCONFORMANCE.md](../QUALITY_QMS/02-PROCEDURES/PRO-004_NONCONFORMANCE.md)**).
 
 ## 13. Rework and Repair
-
-### 13.1 Serial Number Retention
-
-- Serial numbers are NEVER changed or reused
-- Reworked items retain original S/N
-- Repaired items retain original S/N
-- Record all rework/repairs in S/N history
-
-### 13.2 Replacement Units
-
-If item is replaced:
-- Original S/N marked as REMOVED
-- Replacement item receives new S/N
-- Both S/N histories updated with replacement event
+S/N never changes or reuses. Rework/repair retains S/N; record all actions.  
+Replacements: mark original S/N “REMOVED”; new unit has new S/N; cross-reference both histories.
 
 ## 14. Examples
 
-### 14.1 Aircraft Examples
-
+### 14.1 Aircraft
 | Item | Serial Number |
-|------|---------------|
-| Aircraft (tail number) | IDEALE-ACFT-00001/S/N 0001 |
-| Main wing assembly | IDEALE-ACFT-00100/S/N 0015-L2024Q1 |
-| Propulsion module | IDEALE-PROP-00050/S/N 0003-L202401A |
-| Flight computer | IDEALE-AVNX-00200/S/N 0042 |
+|---|---|
+| Wing assembly | `ACFT-AIRF-00100/S/N 0015-L2024Q1` |
+| Propulsion module | `ACFT-PROP-00050/S/N 0003-L202401A` |
+| Flight computer | `ACFT-AVNX-00200/S/N 0042` |
 
-### 14.2 Spacecraft Examples
-
+### 14.2 Spacecraft
 | Item | Serial Number |
-|------|---------------|
-| Spacecraft | IDEALE-SCFT-00001/S/N 0001 |
-| Primary structure | IDEALE-STRC-00010/S/N 0001-L2024A |
-| Solar array | IDEALE-PWER-00025/S/N 0002-L2024B |
-| Reaction wheel | IDEALE-GNCE-00100/S/N 0008 |
+|---|---|
+| Primary structure | `SCFT-STRC-00010/S/N 0001-L2024A` |
+| Solar array | `SCFT-PWER-00025/S/N 0002-L2024B` |
+| Reaction wheel | `SCFT-GNCE-00100/S/N 0008` |
 
-### 14.3 Test Article Examples
-
+### 14.3 Test/Qual
 | Item | Serial Number |
-|------|---------------|
-| Flight test vehicle | FTV-001 |
-| Static test article | IDEALE-ACFT-00100/TEST-001 |
-| Qualification unit | QU-IDEALE-SCFT-00050-001 |
-| Engineering model | EM-IDEALE-PROP-00075-002 |
+|---|---|
+| Flight Test Vehicle | `FTV-001` |
+| Static test article | `ACFT-AIRF-00100/TEST-001` |
+| Qualification unit | `QU-SCFT-STRC-00050-001` |
+| Engineering model | `EM-ACFT-PROP-00075-002` |
 
 ## 15. Governance
-
-- Serialization authority: Configuration Manager
-- Serial number assignment: Manufacturing Engineering with CM approval
-- Database maintenance: Configuration Management
-- Process audits: Quality Assurance (quarterly)
+Authority: Configuration Manager. Assignment: Manufacturing Eng with CM approval. DB maintenance: CM. Quarterly audits: Quality. AML/AVL and supplier links: **[SUPPLY_CHAIN/13-DATA_MODELS/AML_APPROVED_MFR_LIST.csv](../SUPPLY_CHAIN/13-DATA_MODELS/AML_APPROVED_MFR_LIST.csv)** · **[.../AVL_APPROVED_VENDOR_LIST.csv](../SUPPLY_CHAIN/13-DATA_MODELS/AVL_APPROVED_VENDOR_LIST.csv)**.
+```
