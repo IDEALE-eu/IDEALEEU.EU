@@ -1,0 +1,5 @@
+Parameter_Name,Unit,Nominal_Value,Min_Limit,Max_Limit,Tolerance,Safety_Critical,Description,Source_Requirement,Last_Updated,Status
+CRYO_STORAGE_TEMP,degC,-253.0,-258.0,-248.0,±2.0,Yes,Cryogenic storage temperature for liquid H2,REQ-FUEL-010,2024-01-15,Active
+CRYO_MAX_TEMP,degC,-240.0,N/A,-240.0,±0.0,Yes,Maximum allowable cryogenic temperature,REQ-FUEL-011,2024-01-15,Active
+CRYO_MIN_TEMP,degC,-260.0,-260.0,N/A,±0.0,Yes,Minimum operational cryogenic temperature,REQ-FUEL-012,2024-01-15,Active
+INSULATION_TEMP_OUTER,degC,20.0,-40.0,85.0,±5.0,No,Outer insulation layer temperature,REQ-FUEL-013,2024-01-15,Active

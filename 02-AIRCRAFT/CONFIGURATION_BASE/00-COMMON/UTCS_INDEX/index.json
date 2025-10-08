@@ -1,0 +1,37 @@
+{
+  "utcs_index_version": "1.0",
+  "description": "Unified Type Certificate Specification Index",
+  "aircraft_type": "IDEALE Advanced Aircraft",
+  "type_certificate": "TBD",
+  "last_updated": "2024-01-15",
+  "entries": [
+    {
+      "utcs_id": "UTCS-001",
+      "title": "ATA Chapter Structure Definition",
+      "category": "Configuration",
+      "status": "Active",
+      "schema_ref": "utcs-schemas/ata-structure.schema.json"
+    },
+    {
+      "utcs_id": "UTCS-002",
+      "title": "Parameter Definition Schema",
+      "category": "Parameters",
+      "status": "Active",
+      "schema_ref": "utcs-schemas/parameter.schema.json"
+    },
+    {
+      "utcs_id": "UTCS-003",
+      "title": "Baseline Definition Schema",
+      "category": "Baseline",
+      "status": "Active",
+      "schema_ref": "utcs-schemas/baseline.schema.json"
+    },
+    {
+      "utcs_id": "UTCS-004",
+      "title": "ICD Schema",
+      "category": "Interface",
+      "status": "Active",
+      "schema_ref": "utcs-schemas/icd.schema.json"
+    }
+  ]
+}

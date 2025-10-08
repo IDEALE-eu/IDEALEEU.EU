@@ -1,0 +1,6 @@
+# Global Change Log
+
+This is the master change log aggregating all configuration changes across all ATA chapters.
+
+Chapter,ECR_Number,ECO_Number,Date,Description,Affected_Items,Status,Approver,Verification_Status
+00-COMMON,ECR-2024-001,ECO-2024-001,2024-01-15,Initial structure creation,All ATA chapters,Approved,CM Team,Complete

@@ -1,0 +1,5 @@
+Parameter_Name,Unit,Nominal_Value,Min_Limit,Max_Limit,Tolerance,Safety_Critical,Description,Source_Requirement,Last_Updated,Status
+H2_TANK_PRESSURE,bar,5.0,3.5,8.5,±0.2,Yes,Hydrogen tank operating pressure,REQ-FUEL-001,2024-01-15,Active
+H2_MAX_PRESSURE,bar,10.0,N/A,10.0,±0.0,Yes,Maximum allowable hydrogen pressure,REQ-FUEL-002,2024-01-15,Active
+H2_MIN_PRESSURE,bar,3.0,3.0,N/A,±0.0,Yes,Minimum operational hydrogen pressure,REQ-FUEL-003,2024-01-15,Active
+PRESSURE_RELIEF_SETPOINT,bar,9.5,9.3,9.7,±0.1,Yes,Pressure relief valve activation pressure,REQ-FUEL-004,2024-01-15,Active

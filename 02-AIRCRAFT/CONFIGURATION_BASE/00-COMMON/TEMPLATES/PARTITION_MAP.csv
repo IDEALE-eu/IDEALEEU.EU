@@ -1,0 +1,4 @@
+Partition_ID,Partition_Name,Module_ID,Core_Assignment,Memory_MB,CPU_Percent,Period_ms,Safety_Level,Hosted_Application,Status
+PART-001,Flight Control Partition,IMA-MOD-01,Core-0,128,25,10,DAL-A,FCC_APP_V1.2,Active
+PART-002,Display Partition,IMA-MOD-01,Core-1,256,30,20,DAL-B,DISPLAY_APP_V2.0,Active
+PART-003,Communications Partition,IMA-MOD-02,Core-0,64,15,50,DAL-C,COMM_APP_V1.5,Active

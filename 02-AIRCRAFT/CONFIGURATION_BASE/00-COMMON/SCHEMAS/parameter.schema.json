@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ideale.eu/schemas/parameter.schema.json",
+  "title": "Parameter Definition Schema",
+  "description": "Schema for aircraft system parameter definitions",
+  "type": "object",
+  "required": ["parameter_name", "unit", "nominal_value", "status"],
+  "properties": {
+    "parameter_name": {
+      "type": "string",
+      "description": "Unique parameter identifier"
+    },
+    "unit": {
+      "type": "string",
+      "description": "Unit of measurement"
+    },
+    "nominal_value": {
+      "type": "number",
+      "description": "Nominal operating value"
+    },
+    "min_limit": {
+      "type": "number",
+      "description": "Minimum allowable value"
+    },
+    "max_limit": {
+      "type": "number",
+      "description": "Maximum allowable value"
+    },
+    "tolerance": {
+      "type": "string",
+      "description": "Tolerance specification"
+    },
+    "safety_critical": {
+      "type": "boolean",
+      "description": "Whether parameter is safety-critical"
+    },
+    "description": {
+      "type": "string",
+      "description": "Parameter description"
+    },
+    "source_requirement": {
+      "type": "string",
+      "description": "Source requirement ID"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Last update date"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Active", "Draft", "Obsolete", "Superseded"],
+      "description": "Parameter status"
+    }
+  }
+}
