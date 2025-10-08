@@ -1,0 +1,5 @@
+id,standard_id,clause,type,justification,safety_impact,cert_authority_notified,approval_ref,expiry_date
+DEV-001,STD-003,Section 6.3.4,DEVIATION,Legacy code from certified baseline being reused with reduced verification,LOW,YES,CCB-2024-003,2025-12-31
+WAV-001,STD-005,DO-160G Section 16,WAIVER,Equipment installed in environmentally controlled bay - full temperature range not applicable,NONE,YES,EASA-WAV-2024-001,
+DEV-002,STD-004,Section 5.2,DEVIATION,FPGA design tools not yet qualified per DO-330 - qualification in progress,MEDIUM,YES,CCB-2024-012,2024-12-31
+TAIL-001,STD-012,Clause 4.5.3,TAILORING,Project using agile sprints instead of traditional waterfall - ESA agreement obtained,NONE,YES,ESA-TAIL-2024-005,
