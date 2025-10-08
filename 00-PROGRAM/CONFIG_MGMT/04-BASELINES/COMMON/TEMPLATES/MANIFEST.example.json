@@ -1,0 +1,59 @@
+{
+  "baseline_id": "BL-CDR-2026-03-10-ACFT",
+  "gate": "CDR",
+  "domain": "AIRCRAFT",
+  "frozen_at": "2026-03-10",
+  "git_tag": "baseline/CDR/2026-03-10/acft",
+  "items": [
+    {
+      "pn": "IDEALE-ACFT-00001",
+      "rev": "C",
+      "ci_type": "EBOM",
+      "effectivity": "S/N ≥ 0005",
+      "path": "../08-ITEM_MASTER/ITEMS.csv#IDEALE-ACFT-00001",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "pn": "ICD-0003",
+      "rev": "1.0",
+      "ci_type": "ICD",
+      "path": "../09-INTERFACES/ICD-0003.md",
+      "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "pn": "SW-FC-APP",
+      "rev": "v2.4.1",
+      "ci_type": "SW",
+      "path": "../07-RELEASES/AIRCRAFT/REL-ACFT-2.4.1/manifest.yaml",
+      "sha256": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce"
+    }
+  ],
+  "interfaces": [
+    "ICD-0001@1.2",
+    "ICD-0003@1.0"
+  ],
+  "changes_included": [
+    "ECO-2026-0041",
+    "ECO-2026-0048"
+  ],
+  "deviations_waivers": [
+    "DEV-2026-0007",
+    "WVR-2026-0002"
+  ],
+  "compliance": [
+    "../../STANDARDS/02-AIRCRAFT/DO-160/",
+    "../../STANDARDS/02-AIRCRAFT/ARP4754A/"
+  ],
+  "signoffs": [
+    {
+      "role": "CCB Chair",
+      "name": "TBD",
+      "date": "2026-03-10"
+    },
+    {
+      "role": "Chief Engineer",
+      "name": "TBD",
+      "date": "2026-03-10"
+    }
+  ]
+}
