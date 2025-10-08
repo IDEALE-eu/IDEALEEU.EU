@@ -76,7 +76,7 @@ The maintenance program defines all required maintenance activities, intervals, 
 ## Maintenance Planning
 
 ### Task Development
-- Identify maintenance tasks from RCM analysis: **RELIABILITY_CENTRED_MAINTENANCE/**
+- Identify maintenance tasks from RCM analysis: **[RELIABILITY_CENTRED_MAINTENANCE/](RELIABILITY_CENTRED_MAINTENANCE)**
 - Define task intervals and thresholds
 - Specify task procedures and standards
 - Determine resource requirements (time, labor, parts, tools)
@@ -113,7 +113,7 @@ The maintenance program defines all required maintenance activities, intervals, 
 - Engine condition monitoring (vibration, oil analysis, performance)
 - Structural health monitoring (strain, fatigue, corrosion)
 - Systems health (avionics, hydraulics, electrical)
-- Predictive models: **PREDICTIVE_MAINTENANCE_MODELS/**
+- Predictive models: **[PREDICTIVE_MAINTENANCE_MODELS/](PREDICTIVE_MAINTENANCE_MODELS)**
 
 ### Data-Driven Maintenance
 - Analyze operational data from **OPERATIONAL_DATA_HUB/**
@@ -177,19 +177,26 @@ The maintenance program defines all required maintenance activities, intervals, 
 - Emergency and unscheduled maintenance response
 
 ### Resource Integration
-- Spares planning: **SPARES_INVENTORY_OPTIMISATION/**
-- Technician scheduling: **GROUND_CREW_ROSTERING/**
-- Facility and infrastructure: **INFRASTRUCTURE_UTILISATION/**
+- Spares planning: **[SPARES_INVENTORY_OPTIMISATION/](../03-RESOURCES_OPTIMISATION/SPARES_INVENTORY_OPTIMISATION)**
+- Technician scheduling: **[GROUND_CREW_ROSTERING/](../03-RESOURCES_OPTIMISATION/GROUND_CREW_ROSTERING)**
+- Facility and infrastructure: **[INFRASTRUCTURE_UTILISATION/](../03-RESOURCES_OPTIMISATION/INFRASTRUCTURE_UTILISATION)**
 
 ### Data Integration
 - Maintenance management systems (MMS)
 - Operational data from **OPERATIONAL_DATA_HUB/**
 - Configuration management: **00-PROGRAM/CONFIG_MGMT/**
 
+
+## See Also
+
+- [RCM Analysis](RELIABILITY_CENTRED_MAINTENANCE/00-README.md)
+- [Predictive Maintenance](PREDICTIVE_MAINTENANCE_MODELS/00-README.md)
+- [Spares Inventory](../03-RESOURCES_OPTIMISATION/SPARES_INVENTORY_OPTIMISATION/00-README.md)
+
 ## References
 
 - MRO Strategy: **01-FLEET/MRO_STRATEGY/**
-- RCM analysis: **RELIABILITY_CENTRED_MAINTENANCE/**
-- Predictive maintenance: **PREDICTIVE_MAINTENANCE_MODELS/**
+- RCM analysis: **[RELIABILITY_CENTRED_MAINTENANCE/](RELIABILITY_CENTRED_MAINTENANCE)**
+- Predictive maintenance: **[PREDICTIVE_MAINTENANCE_MODELS/](PREDICTIVE_MAINTENANCE_MODELS)**
 - Technical support: **TECHNICAL_LOGISTICS_SUPPORT/**
 - Template: **11-TEMPLATES/RCM_ANALYSIS_WORKSHEET.md**

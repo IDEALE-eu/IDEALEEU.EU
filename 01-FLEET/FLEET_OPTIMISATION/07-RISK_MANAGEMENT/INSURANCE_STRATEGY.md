@@ -79,7 +79,7 @@ Insurance strategy defines the approach to managing insurable risks through appr
 
 ## Integration
 
-- Risk register: **OPERATIONAL_RISK_REGISTER.csv**
+- Risk register: **[OPERATIONAL_RISK_REGISTER.csv](OPERATIONAL_RISK_REGISTER.csv)**
 - Financial planning: **01-STRATEGY/LIFECYCLE_COST_MODEL.md**
 - Safety management: Safety and quality systems
 

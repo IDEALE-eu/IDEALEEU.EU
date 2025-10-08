@@ -1,5 +1,8 @@
 # AIRCRAFT_SCHEDULES
 
+
+[← Back to 02-DEMAND_PLANNING](../00-README.md)
+
 Flight schedules, route planning, and aircraft assignment optimization.
 
 ## Overview
@@ -170,7 +173,7 @@ Aircraft scheduling encompasses the development, optimization, and management of
 
 ## References
 
-- Capacity forecasting: **CAPACITY_FORECASTING.md**
+- Capacity forecasting: **[CAPACITY_FORECASTING.md](../CAPACITY_FORECASTING.md)**
 - Utilization policy: **01-STRATEGY/UTILISATION_POLICY.md**
 - Crew scheduling: **03-RESOURCES_OPTIMISATION/CREW_SCHEDULING/**
 - Operational performance: **05-OPERATIONAL_PERFORMANCE/**

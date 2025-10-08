@@ -80,12 +80,12 @@ Configuration management feedback loops ensure that operational experience, main
 - Traceability: **00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/**
 
 ### Operational Systems
-- Operational data: **OPERATIONAL_DATA_HUB_FEED.md**
-- Maintenance findings: **MRO_STRATEGY_LINK.md**
+- Operational data: **[OPERATIONAL_DATA_HUB_FEED.md](OPERATIONAL_DATA_HUB_FEED.md)**
+- Maintenance findings: **[MRO_STRATEGY_LINK.md](MRO_STRATEGY_LINK.md)**
 - Performance data: **05-OPERATIONAL_PERFORMANCE/**
 
 ## References
 
 - Configuration management: **00-PROGRAM/CONFIG_MGMT/**
-- Digital thread: **DIGITAL_THREAD_HOOKS.md**
+- Digital thread: **[DIGITAL_THREAD_HOOKS.md](DIGITAL_THREAD_HOOKS.md)**
 - Continuous improvement: **06-COST_OPTIMISATION/**

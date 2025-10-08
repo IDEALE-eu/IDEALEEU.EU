@@ -70,9 +70,9 @@ Systematic tracking and management of warranty claims to maximize recovery of co
 ## Integration
 
 - Maintenance records: **04-MAINTENANCE_PLANNING/**
-- Component tracking: **SPARES_INVENTORY_OPTIMISATION/**
+- Component tracking: **[SPARES_INVENTORY_OPTIMISATION/](../03-RESOURCES_OPTIMISATION/SPARES_INVENTORY_OPTIMISATION)**
 - Supplier management: **00-PROGRAM/SUPPLY_CHAIN/03-SUPPLIER_LIFECYCLE/**
-- Cost recovery: **MRO_COST_ANALYSIS.md**
+- Cost recovery: **[MRO_COST_ANALYSIS.md](MRO_COST_ANALYSIS.md)**
 
 ## References
 

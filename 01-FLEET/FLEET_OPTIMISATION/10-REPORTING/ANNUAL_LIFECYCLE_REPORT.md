@@ -127,4 +127,4 @@ The annual lifecycle report provides a comprehensive strategic assessment of fle
 
 - Fleet mix strategy: **01-STRATEGY/FLEET_MIX_STRATEGY.md**
 - Lifecycle cost model: **01-STRATEGY/LIFECYCLE_COST_MODEL.md**
-- Monthly reviews: **MONTHLY_FLEET_REVIEW.md**
+- Monthly reviews: **[MONTHLY_FLEET_REVIEW.md](MONTHLY_FLEET_REVIEW.md)**

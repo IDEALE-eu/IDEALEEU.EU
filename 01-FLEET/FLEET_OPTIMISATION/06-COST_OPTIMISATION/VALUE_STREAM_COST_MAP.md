@@ -112,9 +112,9 @@ Calculate:
 
 ## Integration
 
-- MRO cost analysis: **MRO_COST_ANALYSIS.md**
+- MRO cost analysis: **[MRO_COST_ANALYSIS.md](MRO_COST_ANALYSIS.md)**
 - Maintenance processes: **04-MAINTENANCE_PLANNING/**
-- Spares logistics: **SPARES_INVENTORY_OPTIMISATION/**
+- Spares logistics: **[SPARES_INVENTORY_OPTIMISATION/](../03-RESOURCES_OPTIMISATION/SPARES_INVENTORY_OPTIMISATION)**
 - Process planning: **00-PROGRAM/INDUSTRIALISATION/03-PROCESS_PLANNING/**
 
 ## References

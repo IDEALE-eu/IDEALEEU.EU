@@ -1,5 +1,8 @@
 # CREW_SCHEDULING
 
+
+[← Back to 03-RESOURCES_OPTIMISATION](../00-README.md)
+
 Flight crew and mission operations crew scheduling, pairing, and rostering optimization.
 
 ## Overview
@@ -209,7 +212,7 @@ Crew scheduling encompasses the complex optimization of assigning qualified pers
 
 ## References
 
-- Operational schedules: **02-DEMAND_PLANNING/AIRCRAFT_SCHEDULES/**, **SPACECRAFT_MISSION_PLAN/**
+- Operational schedules: **02-DEMAND_PLANNING/AIRCRAFT_SCHEDULES/**, **[SPACECRAFT_MISSION_PLAN/](../../02-DEMAND_PLANNING/SPACECRAFT_MISSION_PLAN)**
 - Utilization policy: **01-STRATEGY/UTILISATION_POLICY.md**
 - Operational performance: **05-OPERATIONAL_PERFORMANCE/**
 - Regulations: FAA Part 117, EASA FTL, company policies

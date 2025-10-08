@@ -1,5 +1,8 @@
 # DELAY_CANCELLATION_ANALYSIS
 
+
+[← Back to 05-OPERATIONAL_PERFORMANCE](../00-README.md)
+
 Analysis and management of operational delays and cancellations.
 
 ## Overview
@@ -24,5 +27,5 @@ Systematic tracking and analysis of delays and cancellations to identify root ca
 6. Effectiveness monitoring
 
 ## References
-- Performance tracking: **AVAILABILITY_METRICS.md**
+- Performance tracking: **[AVAILABILITY_METRICS.md](../AVAILABILITY_METRICS.md)**
 - Operational data: **01-FLEET/OPERATIONAL_DATA_HUB/**

@@ -1,5 +1,8 @@
 # SPACECRAFT_MISSION_PLAN
 
+
+[← Back to 02-DEMAND_PLANNING](../00-README.md)
+
 Mission planning, orbit scheduling, and spacecraft assignment for space operations.
 
 ## Overview
@@ -226,7 +229,7 @@ Spacecraft mission planning encompasses the development, optimization, and execu
 
 ## References
 
-- Capacity forecasting: **CAPACITY_FORECASTING.md**
+- Capacity forecasting: **[CAPACITY_FORECASTING.md](../CAPACITY_FORECASTING.md)**
 - Spacecraft utilization policy: **01-STRATEGY/UTILISATION_POLICY.md**
 - Mission operations: **03-RESOURCES_OPTIMISATION/CREW_SCHEDULING/**
 - Risk management: **07-RISK_MANAGEMENT/**

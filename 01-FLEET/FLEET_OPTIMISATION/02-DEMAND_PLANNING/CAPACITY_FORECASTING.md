@@ -175,7 +175,7 @@ Capacity forecasting analyzes demand trends and patterns to project future capac
 - Fleet deployment and rebalancing
 
 ### Operational Planning
-- Schedule development: **AIRCRAFT_SCHEDULES/**, **SPACECRAFT_MISSION_PLAN/**
+- Schedule development: **[AIRCRAFT_SCHEDULES/](AIRCRAFT_SCHEDULES)**, **[SPACECRAFT_MISSION_PLAN/](SPACECRAFT_MISSION_PLAN)**
 - Resource requirements: **03-RESOURCES_OPTIMISATION/**
 - Infrastructure planning: Airports, ground stations, facilities
 
@@ -242,6 +242,13 @@ Capacity forecasting analyzes demand trends and patterns to project future capac
 - Explain key assumptions and changes
 - Provide confidence intervals and scenarios
 - Support decision-making with insights
+
+
+## See Also
+
+- [Fleet Mix Strategy](../01-STRATEGY/FLEET_MIX_STRATEGY.md)
+- [Aircraft Schedules](AIRCRAFT_SCHEDULES/00-README.md)
+- [Spacecraft Mission Planning](SPACECRAFT_MISSION_PLAN/00-README.md)
 
 ## References
 

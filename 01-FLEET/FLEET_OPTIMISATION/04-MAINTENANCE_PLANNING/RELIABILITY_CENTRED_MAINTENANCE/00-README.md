@@ -1,5 +1,8 @@
 # RELIABILITY_CENTRED_MAINTENANCE
 
+
+[← Back to 04-MAINTENANCE_PLANNING](../00-README.md)
+
 Reliability-centered maintenance (RCM) analysis and maintenance task development.
 
 ## Overview
@@ -18,5 +21,5 @@ RCM is a systematic approach to determining the most effective maintenance strat
 For detailed methodology, see **11-TEMPLATES/RCM_ANALYSIS_WORKSHEET.md**
 
 ## References
-- Maintenance program: **MAINTENANCE_PROGRAM.md**
+- Maintenance program: **[MAINTENANCE_PROGRAM.md](../MAINTENANCE_PROGRAM.md)**
 - Operational data: **01-FLEET/OPERATIONAL_DATA_HUB/**

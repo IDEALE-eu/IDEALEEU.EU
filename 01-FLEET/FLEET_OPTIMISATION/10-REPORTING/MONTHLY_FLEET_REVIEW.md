@@ -104,4 +104,4 @@ The monthly fleet review provides a comprehensive assessment of fleet operationa
 
 - Availability metrics: **05-OPERATIONAL_PERFORMANCE/AVAILABILITY_METRICS.md**
 - Cost analysis: **06-COST_OPTIMISATION/MRO_COST_ANALYSIS.md**
-- Annual report: **ANNUAL_LIFECYCLE_REPORT.md**
+- Annual report: **[ANNUAL_LIFECYCLE_REPORT.md](ANNUAL_LIFECYCLE_REPORT.md)**

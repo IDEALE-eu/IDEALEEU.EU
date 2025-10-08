@@ -91,8 +91,15 @@ Comprehensive analysis and management of maintenance, repair, and overhaul costs
 - Lifecycle cost model: **01-STRATEGY/LIFECYCLE_COST_MODEL.md**
 - Procurement: **00-PROGRAM/SUPPLY_CHAIN/04-PROCUREMENT/**
 
+
+## See Also
+
+- [Lifecycle Cost Model](../01-STRATEGY/LIFECYCLE_COST_MODEL.md)
+- [Maintenance Program](../04-MAINTENANCE_PLANNING/MAINTENANCE_PROGRAM.md)
+- [Value Stream Mapping](VALUE_STREAM_COST_MAP.md)
+
 ## References
 
 - Should-cost models: **00-PROGRAM/SUPPLY_CHAIN/11-COSTING/SHOULD_COST_MODELS/**
-- Value stream mapping: **VALUE_STREAM_COST_MAP.md**
+- Value stream mapping: **[VALUE_STREAM_COST_MAP.md](VALUE_STREAM_COST_MAP.md)**
 - Reporting: **10-REPORTING/**

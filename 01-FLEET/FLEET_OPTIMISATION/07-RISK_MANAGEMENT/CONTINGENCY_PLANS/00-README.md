@@ -1,5 +1,8 @@
 # CONTINGENCY_PLANS
 
+
+[← Back to 07-RISK_MANAGEMENT](../00-README.md)
+
 Business continuity and contingency plans for major operational disruptions.
 
 ## Overview
@@ -36,5 +39,5 @@ Contingency plans define procedures and resources to respond to and recover from
 - Stand-down criteria
 
 ## References
-- Risk register: **OPERATIONAL_RISK_REGISTER.csv**
+- Risk register: **[OPERATIONAL_RISK_REGISTER.csv](../OPERATIONAL_RISK_REGISTER.csv)**
 - Emergency response: Safety management system

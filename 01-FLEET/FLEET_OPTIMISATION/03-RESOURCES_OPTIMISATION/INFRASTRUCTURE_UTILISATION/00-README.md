@@ -1,5 +1,8 @@
 # INFRASTRUCTURE_UTILISATION
 
+
+[← Back to 03-RESOURCES_OPTIMISATION](../00-README.md)
+
 Optimization of airports, gates, hangars, ground stations, launch facilities, and other infrastructure assets.
 
 ## Overview
@@ -217,7 +220,7 @@ Infrastructure utilization encompasses the planning, allocation, and optimizatio
 - Operational schedules: **02-DEMAND_PLANNING/**
 - Fleet requirements: **01-STRATEGY/**
 - Maintenance schedules: **04-MAINTENANCE_PLANNING/**
-- Crew resources: **CREW_SCHEDULING/**, **GROUND_CREW_ROSTERING/**
+- Crew resources: **[CREW_SCHEDULING/](../CREW_SCHEDULING)**, **[GROUND_CREW_ROSTERING/](../GROUND_CREW_ROSTERING)**
 
 ### Downstream Outputs
 - Infrastructure availability for scheduling
@@ -278,7 +281,7 @@ Infrastructure utilization encompasses the planning, allocation, and optimizatio
 ## References
 
 - Capacity forecasting: **02-DEMAND_PLANNING/CAPACITY_FORECASTING.md**
-- Operational schedules: **AIRCRAFT_SCHEDULES/**, **SPACECRAFT_MISSION_PLAN/**
+- Operational schedules: **[AIRCRAFT_SCHEDULES/](../../02-DEMAND_PLANNING/AIRCRAFT_SCHEDULES)**, **[SPACECRAFT_MISSION_PLAN/](../../02-DEMAND_PLANNING/SPACECRAFT_MISSION_PLAN)**
 - Maintenance planning: **04-MAINTENANCE_PLANNING/**
 - Cost optimization: **06-COST_OPTIMISATION/**
 - Digital twin standards: **00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DIGITAL_TWIN/**
