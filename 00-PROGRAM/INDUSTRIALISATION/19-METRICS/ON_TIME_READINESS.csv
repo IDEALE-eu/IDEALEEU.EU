@@ -1,0 +1,5 @@
+Date,Units Scheduled,Units Delivered On-Time,On-Time Delivery (%),Units Late,Average Days Late,Schedule Adherence (%),Comments
+2024-01-01,10,8,80.0,2,5.0,80.0,Prototype build delays
+2024-02-01,15,13,86.7,2,3.0,86.7,Improving
+2024-03-01,20,19,95.0,1,2.0,95.0,Target achieved
+2024-04-01,20,20,100.0,0,0.0,100.0,Excellent performance

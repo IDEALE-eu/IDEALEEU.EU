@@ -1,0 +1,33 @@
+# PFMEA TEMPLATE (YAML Format)
+
+process_name: "[Process or Operation Name]"
+part_number: "[Part Number]"
+responsible_engineer: "[Name]"
+date: "[Date]"
+revision: "[Rev Level]"
+
+failure_modes:
+  - process_step: "[Operation 10: Description]"
+    potential_failure_mode: "[How the process could fail]"
+    potential_effects: "[Impact on customer/next operation]"
+    severity: 0  # 1-10 scale
+    potential_causes: "[Root causes of failure]"
+    occurrence: 0  # 1-10 scale
+    current_process_controls:
+      prevention: "[What prevents the failure]"
+      detection: "[How failure is detected]"
+    detection: 0  # 1-10 scale
+    rpn: 0  # Severity × Occurrence × Detection
+    recommended_actions: "[Risk mitigation activities]"
+    responsibility: "[Owner]"
+    target_completion: "[Date]"
+    actions_taken: "[Completed actions]"
+    new_severity: 0
+    new_occurrence: 0
+    new_detection: 0
+    new_rpn: 0
+
+  - process_step: "[Operation 20: Description]"
+    # Repeat structure for each potential failure mode
+
+# Add additional failure modes as needed

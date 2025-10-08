@@ -1,0 +1,5 @@
+Date,Units Started,Units Passed First Time,First Pass Yield (%),Units Scrapped,Scrap Rate (%),Units Reworked,Rework Rate (%),Comments
+2024-01-01,10,8,80.0,1,10.0,1,10.0,Prototype build
+2024-02-01,15,12,80.0,2,13.3,1,6.7,LRIP Phase 1 start
+2024-03-01,20,17,85.0,1,5.0,2,10.0,Process improvements
+2024-04-01,20,18,90.0,0,0.0,2,10.0,Operator training effective
