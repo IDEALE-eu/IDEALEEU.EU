@@ -1,0 +1,23 @@
+Document_Number,Title,Type,Revision,Issue_Date,Owner,Approver,Status,Review_Due_Date,Location,Distribution,Notes
+QMS-MAN-001,Quality Manual,Manual,1.0,2025-01-01,Quality Manager,Program Director,Active,2026-01-01,01-MANUAL/QUALITY_MANUAL.md,All Personnel,Core QMS document
+QMS-MAN-002,Scope of Certifications,Manual,1.0,2025-01-01,Quality Manager,Program Director,Active,2026-01-01,01-MANUAL/SCOPE_CERTIFICATIONS.md,All Personnel,Certification scope
+PRO-001,Document and Data Control,Procedure,1.0,2025-01-01,Quality Manager,Quality Manager,Active,2026-01-01,02-PROCEDURES/PRO-001_DOC_CONTROL.md,All Personnel,Document control
+PRO-002,Risk and Opportunity Management,Procedure,1.0,2025-01-01,Quality Manager,Quality Manager,Active,2026-01-01,02-PROCEDURES/PRO-002_RISK_OPPORTUNITY.md,All Personnel,Risk management
+PRO-003,Change Control,Procedure,1.0,2025-01-01,Configuration Manager,Configuration Manager,Active,2026-01-01,02-PROCEDURES/PRO-003_CHANGE_CONTROL.md,All Personnel,Change management
+PRO-004,Nonconformance Management,Procedure,1.0,2025-01-01,Quality Manager,Quality Manager,Active,2026-01-01,02-PROCEDURES/PRO-004_NONCONFORMANCE.md,All Personnel,NCR process
+PRO-005,Corrective and Preventive Action,Procedure,1.0,2025-01-01,Quality Manager,Quality Manager,Active,2026-01-01,02-PROCEDURES/PRO-005_CAPA.md,All Personnel,CAPA process
+PRO-006,Internal Audit Program,Procedure,1.0,2025-01-01,Quality Manager,Quality Manager,Active,2026-01-01,02-PROCEDURES/PRO-006_INTERNAL_AUDIT.md,Quality/Auditors,Audit process
+PRO-007,Management Review,Procedure,1.0,2025-01-01,Program Director,Program Director,Active,2026-01-01,02-PROCEDURES/PRO-007_MANAGEMENT_REVIEW.md,Management,Management review
+PRO-008,Supplier Quality Assurance,Procedure,1.0,2025-01-01,Supply Chain Director,Supply Chain Director,Active,2026-01-01,02-PROCEDURES/PRO-008_SUPPLIER_QA.md,Supply Chain/Quality,Supplier management
+PRO-009,APQP and PPAP,Procedure,1.0,2025-01-01,Quality Manager,Quality Manager,Active,2026-01-01,02-PROCEDURES/PRO-009_APQP_PPAP.md,Engineering/Quality,APQP/PPAP process
+PRO-010,First Article Inspection,Procedure,1.0,2025-01-01,Quality Manager,Quality Manager,Active,2026-01-01,02-PROCEDURES/PRO-010_FAI_AS9102.md,Quality/Engineering,FAI per AS9102
+PRO-011,Calibration and MSA,Procedure,1.0,2025-01-01,Quality Manager,Quality Manager,Active,2026-01-01,02-PROCEDURES/PRO-011_CALIBRATION_MSA.md,Quality/Metrology,Calibration management
+PRO-012,Software Quality Assurance,Procedure,1.0,2025-01-01,Chief Engineer (Aircraft),Chief Engineer (Aircraft),Active,2026-01-01,02-PROCEDURES/PRO-012_SOFTWARE_QA.md,Software Engineering,DO-178C compliance
+PRO-013,Special Process Control,Procedure,1.0,2025-01-01,Manufacturing Director,Manufacturing Director,Active,2026-01-01,02-PROCEDURES/PRO-013_SPECIAL_PROCESSES.md,Manufacturing/Quality,Special processes
+PRO-014,ESD and Cleanroom Control,Procedure,1.0,2025-01-01,Manufacturing Director,Manufacturing Director,Active,2026-01-01,02-PROCEDURES/PRO-014_ESD_CLEANROOM.md,Manufacturing,ESD/Cleanroom
+PRO-015,Customer Feedback,Procedure,1.0,2025-01-01,Quality Manager,Quality Manager,Active,2026-01-01,02-PROCEDURES/PRO-015_CUSTOMER_FEEDBACK.md,Quality/Sales,Customer satisfaction
+PRO-016,Training and Competence,Procedure,1.0,2025-01-01,HR Manager,HR Manager,Active,2026-01-01,02-PROCEDURES/PRO-016_TRAINING_COMPETENCE.md,HR/All Managers,Training management
+FORM-NCR-001,Non-Conformance Report,Form,1.0,2025-01-01,Quality Manager,Quality Manager,Active,2026-01-01,04-FORMS_TEMPLATES/FORM_NCR.md,Quality,NCR form
+FORM-CAPA-001,Corrective and Preventive Action,Form,1.0,2025-01-01,Quality Manager,Quality Manager,Active,2026-01-01,04-FORMS_TEMPLATES/FORM_CAPA.md,Quality,CAPA form
+FORM-AUDIT-001,Internal Audit Checklist,Form,1.0,2025-01-01,Quality Manager,Quality Manager,Active,2026-01-01,04-FORMS_TEMPLATES/FORM_AUDIT_CHECKLIST.md,Quality/Auditors,Audit checklist
+FORM-SUPPLIER-001,Supplier Assessment,Form,1.0,2025-01-01,Supply Chain Director,Supply Chain Director,Active,2026-01-01,04-FORMS_TEMPLATES/FORM_SUPPLIER_ASSESSMENT.md,Supply Chain/Quality,Supplier assessment

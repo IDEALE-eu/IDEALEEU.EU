@@ -1,0 +1,21 @@
+Employee_ID,Employee_Name,Department,Training_Course,Course_Number,Training_Date,Duration_Hours,Trainer,Assessment_Result,Score_Percentage,Certification_Number,Expiration_Date,Status,Notes
+EMP001,John Smith,Quality,AS9100 Awareness,TRN-QMS-001,2024-12-15,4.0,Quality Manager,Pass,95,N/A,N/A,Current,Annual refresher due 2025-12
+EMP001,John Smith,Quality,Internal Auditor Training,TRN-QMS-002,2024-11-20,16.0,External Trainer,Pass,88,IA-2024-001,2025-11-20,Current,Lead Auditor qualified
+EMP002,Jane Doe,Manufacturing,Welding Certification AWS D17.1,TRN-WELD-001,2024-10-10,40.0,External Trainer,Pass,92,AWS-2024-123,2025-10-10,Current,TIG welding qualified
+EMP002,Jane Doe,Manufacturing,Welding Refresher,TRN-WELD-002,2024-12-05,8.0,Shop Supervisor,Pass,90,AWS-2024-123,2025-10-10,Current,Annual refresher
+EMP003,Bob Johnson,Quality,NDT Level II PT/MT,TRN-NDT-001,2024-09-15,80.0,External Trainer,Pass,87,NDT-L2-2024-045,2025-09-15,Current,NAS-410 Level II
+EMP003,Bob Johnson,Quality,NDT Annual Vision Test,TRN-NDT-VIS,2024-12-20,0.5,Optometrist,Pass,N/A,VIS-2024-045,2025-12-20,Current,Vision test passed
+EMP004,Alice Williams,Engineering,DO-178C Software Training,TRN-SW-001,2024-11-05,24.0,External Trainer,Pass,91,N/A,N/A,Current,DO-178C qualified
+EMP004,Alice Williams,Engineering,Requirements Management,TRN-SW-002,2024-12-01,8.0,Chief Engineer,Pass,94,N/A,N/A,Current,Requirements tools training
+EMP005,Charlie Brown,Manufacturing,ESD Control Training,TRN-ESD-001,2024-12-10,2.0,Quality Engineer,Pass,100,N/A,2025-12-10,Current,Annual refresher due
+EMP005,Charlie Brown,Manufacturing,Cleanroom Procedures,TRN-CLEAN-001,2024-12-10,2.0,Quality Engineer,Pass,95,N/A,2025-12-10,Current,ISO 14644 awareness
+EMP006,Diana Martinez,Supply Chain,Supplier Quality Management,TRN-SCM-001,2024-11-15,8.0,Supply Chain Director,Pass,89,N/A,N/A,Current,Supplier auditing
+EMP006,Diana Martinez,Supply Chain,APQP and PPAP,TRN-SCM-002,2024-12-18,16.0,External Trainer,Pass,93,N/A,N/A,Current,AS9145 training
+EMP007,Edward Lee,Manufacturing,Heat Treatment Pyrometry,TRN-HT-001,2024-10-20,16.0,External Trainer,Pass,85,PYRO-2024-010,2025-10-20,Current,AMS 2750 qualified
+EMP007,Edward Lee,Manufacturing,Pyrometry Refresher,TRN-HT-002,2024-12-08,4.0,Process Engineer,Pass,90,PYRO-2024-010,2025-10-20,Current,Quarterly review
+EMP008,Fiona Garcia,Quality,Root Cause Analysis,TRN-QMS-003,2024-11-28,8.0,Quality Manager,Pass,92,N/A,N/A,Current,5 Whys, Fishbone, FTA
+EMP008,Fiona Garcia,Quality,FMEA Training,TRN-QMS-004,2024-12-12,16.0,External Trainer,Pass,88,N/A,N/A,Current,DFMEA and PFMEA
+EMP009,George Wilson,Manufacturing,Soldering IPC-A-610,TRN-SOLDER-001,2024-09-25,24.0,External Trainer,Pass,94,IPC-610-2024-099,2026-09-25,Current,IPC J-STD-001 certified
+EMP009,George Wilson,Manufacturing,IPC Recertification,TRN-SOLDER-002,2024-12-15,8.0,External Trainer,Pass,96,IPC-610-2024-099,2026-09-25,Current,Biennial recert
+EMP010,Helen Taylor,Engineering,ECSS Standards Overview,TRN-SPACE-001,2024-11-10,16.0,Chief Engineer (Spacecraft),Pass,90,N/A,N/A,Current,ECSS-E and ECSS-Q
+EMP010,Helen Taylor,Engineering,AIT Procedures,TRN-SPACE-002,2024-12-05,8.0,Systems Engineer,Pass,93,N/A,N/A,Current,Assembly, Integration, Test

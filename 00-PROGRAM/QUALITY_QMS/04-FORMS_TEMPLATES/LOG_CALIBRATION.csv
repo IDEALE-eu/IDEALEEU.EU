@@ -1,0 +1,21 @@
+Equipment_ID,Description,Manufacturer,Serial_Number,Location,Calibration_Frequency_Months,Last_Calibration_Date,Next_Calibration_Due,Calibration_Standard,Calibration_Lab,Status,Notes
+CAL-001,Digital Micrometer 0-25mm,Mitutoyo,12345678,Inspection Lab,12,2024-11-15,2025-11-15,NIST Traceable Blocks,Internal,Current,Primary inspection tool
+CAL-002,Digital Caliper 0-150mm,Mitutoyo,23456789,Inspection Lab,12,2024-12-01,2025-12-01,NIST Traceable Blocks,Internal,Current,Daily use
+CAL-003,CMM Coordinate Measuring Machine,Zeiss,CMM-2023-001,Metrology Room,12,2024-10-20,2025-10-20,Certified Reference Spheres,External ISO 17025,Current,Annual certification
+CAL-004,Torque Wrench 0-50 Nm,Snap-on,TW-001,Assembly Floor,12,2024-12-10,2025-12-10,Torque Calibrator,Internal,Current,Critical assembly tool
+CAL-005,Torque Wrench 0-200 Nm,Snap-on,TW-002,Assembly Floor,12,2024-12-10,2025-12-10,Torque Calibrator,Internal,Current,High torque applications
+CAL-006,Environmental Chamber,Cincinnati Sub-Zero,EC-2022-001,Test Lab,12,2024-09-15,2025-09-15,NIST Traceable T/H Sensors,External ISO 17025,Current,DO-160 testing
+CAL-007,Oscilloscope 100MHz,Tektronix,TEK-001,Electronics Lab,12,2024-11-28,2025-11-28,Calibration Generator,External ISO 17025,Current,Electronics testing
+CAL-008,Multimeter Digital,Fluke,FLUKE-001,Electronics Lab,12,2024-12-05,2025-12-05,Calibration Source,Internal,Current,General purpose
+CAL-009,Pressure Gauge 0-100 psi,Ashcroft,PG-001,Test Stand,12,2024-10-30,2025-10-30,Deadweight Tester,External ISO 17025,Current,Pneumatic testing
+CAL-010,Thermocouple Type K,Omega,TC-001,Furnace 1,6,2024-12-15,2025-06-15,NIST Traceable Reference,Internal,Current,Heat treat monitoring
+CAL-011,Thermocouple Type K,Omega,TC-002,Furnace 1,6,2024-12-15,2025-06-15,NIST Traceable Reference,Internal,Current,Heat treat monitoring backup
+CAL-012,Pyrometer Infrared,Raytek,PYR-001,Heat Treat,12,2024-11-20,2025-11-20,Blackbody Calibrator,External ISO 17025,Current,AMS 2750 compliance
+CAL-013,Height Gauge Digital,Mitutoyo,HG-001,Inspection Lab,12,2024-12-08,2025-12-08,NIST Traceable Blocks,Internal,Current,Height measurements
+CAL-014,Pin Gauges Set,Vermont Gage,PIN-SET-001,Inspection Lab,24,2024-06-10,2026-06-10,Master Set,External ISO 17025,Current,Hole inspection
+CAL-015,Surface Roughness Tester,Mitutoyo,SRT-001,Inspection Lab,12,2024-11-05,2025-11-05,Certified Standards,External ISO 17025,Current,Surface finish verification
+CAL-016,Ultrasonic Thickness Gauge,GE Inspection,UTG-001,NDT Lab,12,2024-12-01,2025-12-01,Certified Blocks,Internal,Current,NDT thickness measurement
+CAL-017,Coating Thickness Gauge,Elcometer,CTG-001,Coating Lab,12,2024-10-25,2025-10-25,Certified Shims,Internal,Current,Paint thickness
+CAL-018,Hardness Tester Rockwell,Wilson,HT-001,Materials Lab,12,2024-11-18,2025-11-18,Certified Test Blocks,External ISO 17025,Current,Material hardness
+CAL-019,Balance Precision 0.001g,Mettler Toledo,BAL-001,Materials Lab,12,2024-12-12,2025-12-12,Certified Weights,External ISO 17025,Current,Precise weighing
+CAL-020,ESD Wrist Strap Tester,Desco,ESD-001,Production Floor,12,2024-12-18,2025-12-18,Calibrated Resistor Set,Internal,Current,Daily ESD checks

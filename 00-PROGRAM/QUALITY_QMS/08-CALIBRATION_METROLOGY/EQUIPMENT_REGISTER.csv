@@ -1,0 +1,6 @@
+Equipment_ID,Description,Manufacturer,Serial_Number,Location,Calibration_Frequency_Months,Last_Calibration_Date,Next_Calibration_Due,Status
+CAL-001,Digital Micrometer 0-25mm,Mitutoyo,12345678,Inspection Lab,12,2024-11-15,2025-11-15,Current
+CAL-002,Digital Caliper 0-150mm,Mitutoyo,23456789,Inspection Lab,12,2024-12-01,2025-12-01,Current
+CAL-003,CMM Coordinate Measuring Machine,Zeiss,CMM-2023-001,Metrology Room,12,2024-10-20,2025-10-20,Current
+CAL-004,Torque Wrench 0-50 Nm,Snap-on,TW-001,Assembly Floor,12,2024-12-10,2025-12-10,Current
+CAL-005,Environmental Chamber,Cincinnati Sub-Zero,EC-2022-001,Test Lab,12,2024-09-15,2025-09-15,Current

@@ -1,0 +1,7 @@
+Action_ID,Meeting_Date,Action_Description,Owner,Due_Date,Priority,Status,Completion_Date,Outcome,Notes
+MRA-2024-Q1-001,2024-03-15,Hire additional quality engineer,Quality Manager,2024-06-30,High,Completed,2024-06-15,Quality engineer hired and onboarded,Position filled ahead of schedule
+MRA-2024-Q1-002,2024-03-15,Implement automated inspection system pilot,Manufacturing Director,2024-09-30,Medium,In Progress,TBD,Pilot in planning phase,Vendor selection underway
+MRA-2024-Q2-001,2024-06-20,Achieve AS9100 certification,Quality Manager,2024-12-31,High,In Progress,TBD,Certification audit scheduled Q4,Pre-audit completed successfully
+MRA-2024-Q2-002,2024-06-20,Qualify second source for critical composite supplier,Supply Chain Director,2024-12-31,High,In Progress,TBD,Evaluation in progress,Two candidates identified
+MRA-2024-Q3-001,2024-09-18,Update software development procedures for DO-178C,Chief Engineer (Aircraft),2024-11-30,High,Completed,2024-11-15,Procedures updated and released,Training scheduled for Q4
+MRA-2024-Q3-002,2024-09-18,Reduce NCR rate by 20%,Quality Manager,2025-03-31,High,Open,TBD,Improvement plan developed,Focus on top 3 NCR categories
