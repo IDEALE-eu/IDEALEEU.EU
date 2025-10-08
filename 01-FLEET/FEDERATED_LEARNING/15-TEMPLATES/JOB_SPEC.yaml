@@ -1,0 +1,29 @@
+# JOB_SPEC.yaml Template
+
+# Copy from ../../02-ORCHESTRATION/JOB_SPECS/EXAMPLE_JOB.yaml
+# See that file for complete template with all fields and examples.
+
+job_metadata:
+  job_id: "fl-{use_case}-{date}"
+  name: "{Human-readable name}"
+  description: "{Purpose and goals}"
+  owner: "AI/ML Team"
+  
+model_config:
+  architecture: "{LSTM|CNN|Transformer}"
+  version: "1.0.0"
+  
+training_config:
+  algorithm: "{FedAvg|FedProx|FedOpt}"
+  local_epochs: 5
+  batch_size: 32
+  
+orchestration_config:
+  schedule: "{weekly|bi_weekly|on_demand}"
+  client_selection: "{random|importance_sampling}"
+  min_clients: 10
+  
+privacy_config:
+  differential_privacy: true
+  epsilon: 1.0
+  delta: 1e-5
