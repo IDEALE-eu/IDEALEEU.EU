@@ -1,0 +1,4 @@
+Control Number,Process Step,Characteristic,Specification,Measurement Method,Sample Size,Sample Frequency,Control Type,Reaction Plan,Responsible
+1.1,Operation 10,[Characteristic description],[Spec/tolerance],[How measured],[Sample size],[Frequency],Prevention/Detection,[Response to out-of-spec],[Owner]
+1.2,Operation 10,[Characteristic 2],,,,,,,
+2.1,Operation 20,[Characteristic],,,,,,,
