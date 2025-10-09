@@ -7,9 +7,7 @@ Index of Interface Control Documents (ICDs) for Q100 version systems. ICDs speci
 ## ICD Location
 
 All ICDs are maintained centrally in:
-```
-00-PROGRAM/CONFIG_MGMT/09-INTERFACES/
-```
+[00-PROGRAM/CONFIG_MGMT/09-INTERFACES](../../../../../../../00-PROGRAM/CONFIG_MGMT/09-INTERFACES/)
 
 **Relative path from Q100:**
 ```
@@ -23,7 +21,7 @@ Each system maintains an `INTERFACE_MATRIX/` directory with CSV files listing in
 ### AAA — Airframes, Aerodynamics, Airworthiness
 
 #### ATA 06 — Dimensions & Stations
-**Matrix:** `AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/SYSTEMS/06-DIMENSIONS-STATIONS/INTERFACE_MATRIX/`  
+**Matrix:** [INTERFACE_MATRIX](../../AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/SYSTEMS/06-DIMENSIONS-STATIONS/INTERFACE_MATRIX/)  
 **Key Interfaces:**
 - ICD-Q100-06-24: Dimensions ↔ Electrical Power (coordinate reference)
 - ICD-Q100-06-25: Dimensions ↔ Equipment/Furnishings (cabin layout)
@@ -32,7 +30,7 @@ Each system maintains an `INTERFACE_MATRIX/` directory with CSV files listing in
 - ICD-Q100-06-92: Dimensions ↔ Aircraft General (overall dimensions)
 
 #### ATA 51 — Structures General
-**Matrix:** `AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/SYSTEMS/51-STRUCTURES-GENERAL/INTERFACE_MATRIX/`  
+**Matrix:** [INTERFACE_MATRIX](../../AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/SYSTEMS/51-STRUCTURES-GENERAL/INTERFACE_MATRIX/)  
 **Key Interfaces:**
 - ICD-Q100-51-52: Structures ↔ Doors (door frame interfaces)
 - ICD-Q100-51-53: Structures ↔ Fuselage (primary structure)
@@ -42,7 +40,7 @@ Each system maintains an `INTERFACE_MATRIX/` directory with CSV files listing in
 - ICD-Q100-51-92: Structures ↔ Aircraft General (structural criteria)
 
 #### ATA 52 — Doors
-**Matrix:** `AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/SYSTEMS/52-DOORS/INTERFACE_MATRIX/`  
+**Matrix:** [INTERFACE_MATRIX](../../AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/SYSTEMS/52-DOORS/INTERFACE_MATRIX/)  
 **Key Interfaces:**
 - ICD-Q100-52-53: Doors ↔ Fuselage (door opening, sealing)
 - ICD-Q100-52-24: Doors ↔ Electrical (door control, lighting)
@@ -54,7 +52,7 @@ Each system maintains an `INTERFACE_MATRIX/` directory with CSV files listing in
 ### EEE — Electrical, Endotransponders, Circulation
 
 #### ATA 24 — Electrical Power
-**Matrix:** `EEE-ELECTRICAL-ENDOTRANSPONDERS-CIRCULATION/SYSTEMS/24-ELECTRICAL-POWER/INTERFACE_MATRIX/`  
+**Matrix:** [INTERFACE_MATRIX](../../EEE-ELECTRICAL-ENDOTRANSPONDERS-CIRCULATION/SYSTEMS/24-ELECTRICAL-POWER/INTERFACE_MATRIX/)  
 **Key Interfaces:**
 - ICD-Q100-24-28: Electrical ↔ Fuel (fuel cell power generation)
 - ICD-Q100-24-29: Electrical ↔ Hydraulic (electric hydraulic pumps)
@@ -69,7 +67,7 @@ Each system maintains an `INTERFACE_MATRIX/` directory with CSV files listing in
 ### EDI — Electronics, Digital, Instruments
 
 #### ATA 34 — Navigation & Avionics
-**Matrix:** `EDI-ELECTRONICS-DIGITAL-INSTRUMENTS/SYSTEMS/34-NAVIGATION-AVIONICS/INTERFACE_MATRIX/`  
+**Matrix:** [INTERFACE_MATRIX](../../EDI-ELECTRONICS-DIGITAL-INSTRUMENTS/SYSTEMS/34-NAVIGATION-AVIONICS/INTERFACE_MATRIX/)  
 **Key Interfaces:**
 - ICD-Q100-34-22: Navigation ↔ Auto Flight (flight director)
 - ICD-Q100-34-24: Navigation ↔ Electrical (avionics power)
@@ -81,7 +79,7 @@ Each system maintains an `INTERFACE_MATRIX/` directory with CSV files listing in
 ### MEC — Mechanical Systems & Modules
 
 #### ATA 32 — Landing Gear Systems
-**Matrix:** `MEC-MECHANICAL-SYSTEMS-MODULES/SYSTEMS/32-LANDING-GEAR-SYSTEMS/INTERFACE_MATRIX/`  
+**Matrix:** [INTERFACE_MATRIX](../../MEC-MECHANICAL-SYSTEMS-MODULES/SYSTEMS/32-LANDING-GEAR-SYSTEMS/INTERFACE_MATRIX/)  
 **Key Interfaces:**
 - ICD-Q100-32-27: Landing Gear ↔ Flight Controls (steering, braking)
 - ICD-Q100-32-29: Landing Gear ↔ Hydraulic (gear actuation, brakes)
@@ -91,7 +89,7 @@ Each system maintains an `INTERFACE_MATRIX/` directory with CSV files listing in
 ### PPP — Propulsion & Fuel Systems
 
 #### ATA 71 — Power Plant
-**Matrix:** `PPP-PROPULSION-FUEL-SYSTEMS/SYSTEMS/71-POWER-PLANT/INTERFACE_MATRIX/`  
+**Matrix:** [INTERFACE_MATRIX](../../PPP-PROPULSION-FUEL-SYSTEMS/SYSTEMS/71-POWER-PLANT/INTERFACE_MATRIX/)  
 **Key Interfaces:**
 - ICD-Q100-71-24: Power Plant ↔ Electrical (motor power, control)
 - ICD-Q100-71-28: Power Plant ↔ Fuel (H₂ fuel supply to fuel cells)
@@ -103,7 +101,7 @@ Each system maintains an `INTERFACE_MATRIX/` directory with CSV files listing in
 ### CCC — Cockpit, Cabin, Cargo
 
 #### ATA 25 — Equipment & Furnishings
-**Matrix:** `CCC-COCKPIT-CABIN-CARGO/SYSTEMS/25-EQUIPMENT-FURNISHINGS/INTERFACE_MATRIX/`  
+**Matrix:** [INTERFACE_MATRIX](../../CCC-COCKPIT-CABIN-CARGO/SYSTEMS/25-EQUIPMENT-FURNISHINGS/INTERFACE_MATRIX/)  
 **Key Interfaces:**
 - ICD-Q100-25-21: Equipment ↔ Environmental Control (cabin comfort)
 - ICD-Q100-25-38: Equipment ↔ Water/Waste (galley, lavatory)
@@ -175,9 +173,9 @@ ICD changes require:
 
 ## References
 
-- **ICD Repository:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/09-INTERFACES/`
-- **Interface Process:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md#interface-control`
-- **Change Process:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/06-CHANGES/`
+- **ICD Repository:** [09-INTERFACES](../../../../../../../00-PROGRAM/CONFIG_MGMT/09-INTERFACES/)
+- **Interface Process:** [01-CM_PLAN.md#interface-control](../../../../../../../00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md#interface-control)
+- **Change Process:** [06-CHANGES](../../../../../../../00-PROGRAM/CONFIG_MGMT/06-CHANGES/)
 
 ## Document Control
 
@@ -189,4 +187,4 @@ ICD changes require:
 ---
 
 For detailed interface specifications, navigate to:
-`../../../../../../../00-PROGRAM/CONFIG_MGMT/09-INTERFACES/`
+[09-INTERFACES](../../../../../../../00-PROGRAM/CONFIG_MGMT/09-INTERFACES/)

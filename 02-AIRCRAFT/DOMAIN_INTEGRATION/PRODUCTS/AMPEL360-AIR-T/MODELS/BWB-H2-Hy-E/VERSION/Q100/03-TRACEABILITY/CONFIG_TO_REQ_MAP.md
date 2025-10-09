@@ -21,7 +21,7 @@ This document establishes traceability between Q100 configuration items and thei
   - SYS-REQ-024-010: Primary power generation
   - SYS-REQ-024-020: Battery backup minimum 150 kWh
   - CERT-REQ-024-005: CS-25.1351 (Electrical system requirements)
-- **Verification:** See `00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/`
+- **Verification:** See [10-TRACEABILITY](../../../../../../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/)
 
 #### ATA 28 — Fuel (H₂)
 - **Config Item:** LH₂ tank system (4500-5500 kg)
@@ -30,7 +30,7 @@ This document establishes traceability between Q100 configuration items and thei
   - SYS-REQ-028-025: Boil-off management
   - CERT-REQ-028-010: CS-25.863 (Fuel system safety)
   - CERT-REQ-028-020: ISO 19880-8 (H₂ fuel system)
-- **Verification:** See `00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/`
+- **Verification:** See [10-TRACEABILITY](../../../../../../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/)
 
 #### ATA 32 — Landing Gear
 - **Config Item:** Dual-wheel bogie configuration
@@ -38,7 +38,7 @@ This document establishes traceability between Q100 configuration items and thei
   - SYS-REQ-032-010: Main gear load capacity
   - SYS-REQ-032-030: MTOW support (72-76t)
   - CERT-REQ-032-005: CS-25.721 (Landing gear structural)
-- **Verification:** See `00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/`
+- **Verification:** See [10-TRACEABILITY](../../../../../../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/)
 
 #### ATA 34 — Navigation
 - **Config Item:** Dual AHRS/IRS with GNSS
@@ -46,7 +46,7 @@ This document establishes traceability between Q100 configuration items and thei
   - SYS-REQ-034-015: Navigation accuracy (RNP ≤ 0.3)
   - SYS-REQ-034-025: Redundant navigation systems
   - CERT-REQ-034-010: CS-25.1301 (Navigation equipment)
-- **Verification:** See `00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/`
+- **Verification:** See [10-TRACEABILITY](../../../../../../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/)
 
 #### ATA 51-57 — Structures
 - **Config Item:** BWB composite primary structure
@@ -55,7 +55,7 @@ This document establishes traceability between Q100 configuration items and thei
   - SYS-REQ-051-025: Pressurization (8.6 psi differential)
   - CERT-REQ-051-005: CS-25.305 (Strength and deformation)
   - CERT-REQ-051-015: CS-25.613 (Material strength)
-- **Verification:** See `00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/`
+- **Verification:** See [10-TRACEABILITY](../../../../../../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/)
 
 #### ATA 71 — Power Plant
 - **Config Item:** Fuel cell + electric motor propulsion
@@ -63,7 +63,7 @@ This document establishes traceability between Q100 configuration items and thei
   - SYS-REQ-071-010: Propulsion power (1.2-1.5 MW total)
   - SYS-REQ-071-020: Electric motor configuration (2×600-750 kW)
   - CERT-REQ-071-005: CS-E (Electric propulsion special condition)
-- **Verification:** See `00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/`
+- **Verification:** See [10-TRACEABILITY](../../../../../../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/)
 
 ## Modification Traceability
 
@@ -135,9 +135,9 @@ All requirement changes must:
 
 ## References
 
-- **Requirements Database:** `00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/`
-- **Verification Matrix:** `00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/VERIFICATION_MATRIX.md`
-- **Certification Basis:** `00-PROGRAM/CONFIG_MGMT/07-RELEASES/01-POLICY/CERTIFICATION.md`
+- **Requirements Database:** [10-TRACEABILITY](../../../../../../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/)
+- **Verification Matrix:** [VERIFICATION_MATRIX.md](../../../../../../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/VERIFICATION_MATRIX.md)
+- **Certification Basis:** [CERTIFICATION.md](../../../../../../../00-PROGRAM/CONFIG_MGMT/07-RELEASES/01-POLICY/CERTIFICATION.md)
 
 ## Document Control
 
@@ -149,4 +149,4 @@ All requirement changes must:
 ---
 
 For detailed requirements, see the Configuration Management traceability database at:
-`00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/`
+[10-TRACEABILITY](../../../../../../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/)

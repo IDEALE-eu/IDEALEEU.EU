@@ -7,7 +7,7 @@ This document provides relative path links to the central Configuration Manageme
 ## Configuration Management Structure
 
 The Configuration Management files are located at:
-`00-PROGRAM/CONFIG_MGMT/`
+[00-PROGRAM/CONFIG_MGMT](../../../../../../../00-PROGRAM/CONFIG_MGMT/)
 
 ## Relative Paths from Q100 Version
 
@@ -24,80 +24,80 @@ To Configuration Management (relative path):
 ## Key CM References
 
 ### 1. Configuration Management Plan
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md`  
+**Path:** [01-CM_PLAN.md](../../../../../../../00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md)  
 **Purpose:** Overall CM strategy and processes
 
 ### 2. Part Numbering
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/02-PART_NUMBERING.md`  
+**Path:** [02-PART_NUMBERING.md](../../../../../../../00-PROGRAM/CONFIG_MGMT/02-PART_NUMBERING.md)  
 **Purpose:** Part numbering scheme and allocation
 
 ### 3. Serialization
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/03-SERIALIZATION.md`  
+**Path:** [03-SERIALIZATION.md](../../../../../../../00-PROGRAM/CONFIG_MGMT/03-SERIALIZATION.md)  
 **Purpose:** Serial number allocation and tracking
 
 ### 4. Baselines
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/`  
+**Path:** [04-BASELINES](../../../../../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/)  
 **Purpose:** Configuration baselines and releases
 - Integration Baselines (IBL-*)
 - Product Baselines (PBL-*)
 - Functional Baselines (FBL-*)
 
 ### 5. Configuration Control Board (CCB)
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/05-CCB/`  
+**Path:** [05-CCB](../../../../../../../00-PROGRAM/CONFIG_MGMT/05-CCB/)  
 **Purpose:** Change control and decision records
 - CCB Charter
 - Meeting minutes
 - Decision logs
 
 ### 6. Change Management
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/06-CHANGES/`  
+**Path:** [06-CHANGES](../../../../../../../00-PROGRAM/CONFIG_MGMT/06-CHANGES/)  
 **Purpose:** Engineering change process
 - Engineering Change Notices (ECN)
 - Change Requests (CR)
 - Deviation/Waiver process
 
 ### 7. Releases
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/07-RELEASES/`  
+**Path:** [07-RELEASES](../../../../../../../00-PROGRAM/CONFIG_MGMT/07-RELEASES/)  
 **Purpose:** Release management and versioning
 - Release policy
 - Version scheme (SemVer + Build metadata)
 - Release notes
 
 ### 8. Item Master
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/`  
+**Path:** [08-ITEM_MASTER](../../../../../../../00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/)  
 **Purpose:** Master data for configuration items
 - Bills of Material (BOM)
 - Part specifications
 - Supplier information
 
 ### 9. Interface Control Documents (ICDs)
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/09-INTERFACES/`  
+**Path:** [09-INTERFACES](../../../../../../../00-PROGRAM/CONFIG_MGMT/09-INTERFACES/)  
 **Purpose:** Interface specifications between systems
-- See also: `../04-ICD_LINKS/ICD_INDEX.md` (this version)
+- See also: [ICD_INDEX.md](../04-ICD_LINKS/ICD_INDEX.md) (this version)
 
 ### 10. Traceability
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/`  
+**Path:** [10-TRACEABILITY](../../../../../../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/)  
 **Purpose:** Requirements to design to verification traceability
 - Requirements database
 - Verification matrix
 - Validation evidence
 
 ### 11. Audits
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/11-AUDITS/`  
+**Path:** [11-AUDITS](../../../../../../../00-PROGRAM/CONFIG_MGMT/11-AUDITS/)  
 **Purpose:** Configuration audits
 - Physical Configuration Audit (PCA)
 - Functional Configuration Audit (FCA)
 - Audit reports
 
 ### 12. CI/CD Rules
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/12-CI_CD_RULES/`  
+**Path:** [12-CI_CD_RULES](../../../../../../../00-PROGRAM/CONFIG_MGMT/12-CI_CD_RULES/)  
 **Purpose:** Continuous integration and deployment
 - Build automation
 - Test automation
 - Deployment processes
 
 ### 13. Templates
-**Path:** `../../../../../../../00-PROGRAM/CONFIG_MGMT/13-TEMPLATES/`  
+**Path:** [13-TEMPLATES](../../../../../../../00-PROGRAM/CONFIG_MGMT/13-TEMPLATES/)  
 **Purpose:** Standard templates for CM documents
 - ECN template
 - CCB decision template
@@ -106,33 +106,33 @@ To Configuration Management (relative path):
 ## Version-Specific CM Files
 
 ### Configuration (This Version)
-**Path:** `./00-CONFIG/`  
+**Path:** [00-CONFIG](../00-CONFIG/)  
 **Contents:**
 - Configuration rules (RULES.md)
 - Configuration schemas (SCHEMAS/)
 - Configuration sets (CONFIG_SETS/)
 
 ### Effectivity (This Version)
-**Path:** `./01-EFFECTIVITY/`  
+**Path:** [01-EFFECTIVITY](../01-EFFECTIVITY/)  
 **Contents:**
 - MSN effectivity mapping (MSN_EFFECTIVITY.csv)
 - Serial blocks (BLOCKS/)
 - Modifications (MODS/)
 
 ### Release Tags (This Version)
-**Path:** `./02-RELEASE_TAGS/`  
+**Path:** [02-RELEASE_TAGS](../02-RELEASE_TAGS/)  
 **Contents:**
 - Integration Baseline tags
 - Release documentation
 
 ### Traceability (This Version)
-**Path:** `./03-TRACEABILITY/`  
+**Path:** [03-TRACEABILITY](../03-TRACEABILITY/)  
 **Contents:**
 - Configuration to requirements mapping
 - This document (links to central CM)
 
 ### ICD Links (This Version)
-**Path:** `./04-ICD_LINKS/`  
+**Path:** [04-ICD_LINKS](../04-ICD_LINKS/)  
 **Contents:**
 - ICD index for this version
 - Links to interface specifications
