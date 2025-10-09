@@ -4,7 +4,7 @@ set -euo pipefail
 # Validation script for domain integration structure
 # Validates compliance with domain integration rules defined in Q100/README.md
 
-ROOT="02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/MODELS/BWB-H2-Hy-E/VERSION/Q100"
+ROOT="02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/MODELS/BWB-H2-Hy-E/VERSION/Q100/DOMAINS"
 ERRORS=0
 WARNINGS=0
 

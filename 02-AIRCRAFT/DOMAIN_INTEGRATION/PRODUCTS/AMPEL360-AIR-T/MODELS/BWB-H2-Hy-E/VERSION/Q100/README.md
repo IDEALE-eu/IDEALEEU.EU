@@ -8,10 +8,43 @@ Estandarizar los 15 dominios con **único nivel `/SYSTEMS/`**, **sub-sistemas ex
 
 ## Convenciones clave
 
-* **Rutas**: `…/<DOMINIO>/SYSTEMS/<ATA-XX_NOMBRE>/SUBSYSTEMS/<ATA-XX-YY_NOMBRE>/…`
+* **Rutas**: `…/DOMAINS/<DOMINIO>/SYSTEMS/<ATA-XX_NOMBRE>/SUBSYSTEMS/<ATA-XX-YY_NOMBRE>/…`
 * **PLM solo en SUBSYSTEMS** (artefactos reales). A nivel dominio: **políticas/plantillas**, no CAD/CAE reales.
 * **SW con su LRU** (capítulos ATA del host). **EWIS solo ATA-92**.
 * **Interfaces**: cada *SYSTEM* incluye `INTERFACE_MATRIX/` y `INTEGRATION_VIEW.md`.
+
+---
+
+## Estructura Q100
+
+Los 15 dominios se organizan bajo la carpeta `DOMAINS/`:
+
+```
+Q100/
+├─ DOMAINS/                        # Carpeta contenedora de los 15 dominios
+│  ├─ AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/
+│  ├─ PPP-PROPULSION-FUEL-SYSTEMS/
+│  ├─ MEC-MECHANICAL-SYSTEMS-MODULES/
+│  ├─ LCC-LINKAGES-CONTROL-COMMUNICATIONS/
+│  ├─ EDI-ELECTRONICS-DIGITAL-INSTRUMENTS/
+│  ├─ EEE-ELECTRICAL-ENDOTRANSPONDERS-CIRCULATION/
+│  ├─ EER-ENVIRONMENTAL-EMISSIONS-REMEDIATION/
+│  ├─ DDD-DRAINAGE-DEHUMIDIFICATION-DRYING/
+│  ├─ CCC-COCKPIT-CABIN-CARGO/
+│  ├─ IIS-INFORMATION-INTELLIGENCE-SYSTEMS/
+│  ├─ LIB-LOGISTICS-INVENTORY-BLOCKCHAIN/
+│  ├─ AAP-AIRPORT-ADAPTABLE-PLATFORMS/
+│  ├─ CQH-CRYOGENICS-QUANTUM-H2/
+│  ├─ IIF-INDUSTRIAL-INFRASTRUCTURE-FACILITIES/
+│  └─ OOO-OS-ONTOLOGIES-OFFICE/
+├─ 00-CONFIG/
+├─ 01-EFFECTIVITY/
+├─ 02-RELEASE_TAGS/
+├─ 03-TRACEABILITY/
+├─ 04-ICD_LINKS/
+├─ ATA_MAPPING.csv
+└─ README.md
+```
 
 ---
 
