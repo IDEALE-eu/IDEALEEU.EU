@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "product": "SPACE-TELESCOPE",
+  "model": "BASELINE",
+  "version": "V001",
+  "subsystem": "70-20_SECONDARY_MIRROR"
+}
