@@ -1,0 +1,58 @@
+block_id: "BLK-2026A"
+description: "First production block for Q100 aircraft (Q1-Q2 2026)"
+production_period:
+  start_date: "2026-02-01"
+  end_date: "2026-06-30"
+  quarter: "Q1-Q2 2026"
+
+manufacturing:
+  location: "Final Assembly Line 1, Hamburg, Germany"
+  rate: "2 aircraft per month"
+  serial_range:
+    start: "ACFT-Q100-001"
+    end: "ACFT-Q100-006"
+
+characteristics:
+  - "Initial production configuration"
+  - "Type Certificate validation phase"
+  - "Standard equipment fit per BASELINE-Q100"
+  - "Early production learning curve"
+
+certification:
+  status: "Type Certificate (TC) application phase"
+  basis: "CS-25 Amendment 27 / FAR Part 25 Amendment 150"
+  special_conditions:
+    - "H2 fuel system safety (CS-25.863 special condition)"
+    - "BWB structure substantiation (CS-25.305 special condition)"
+    - "Electric propulsion certification (CS-E special condition)"
+
+standard_equipment:
+  - "Baseline avionics suite (ATA 34)"
+  - "Standard cabin interior (ATA 25)"
+  - "Fuel cell propulsion v1.0 (ATA 71)"
+  - "Dual electrical distribution (ATA 24)"
+
+quality_gates:
+  - "First Article Inspection (FAI) - MSN 001"
+  - "Production Readiness Review (PRR)"
+  - "Initial conformity inspection"
+  - "Systems integration testing"
+
+known_issues:
+  - "Minor cabin fit tolerance adjustments (resolved by MSN 003)"
+  - "Avionics software v1.0 → v1.1 update (incorporated from MSN 004)"
+
+modifications_embodied:
+  - "MOD-BASE only"
+
+notes: |
+  First production block representing the initial manufacturing phase.
+  Incorporates lessons learned from prototype and certification test aircraft.
+  Serial numbers 001-006 produced at reduced rate (2/month) to allow for
+  production system maturation and quality validation.
+
+traceability:
+  baseline_ref: "../00-CONFIG/CONFIG_SETS/BASELINE-Q100.yaml"
+  change_records:
+    - "ECN-2025-001: Initial production release"
+    - "ECN-2025-042: Software version update (MSN 004+)"
