@@ -1,0 +1,16 @@
+from_system,from_item,to_system,to_item,signal_or_media,interface_type,doc_ref,criticality,notes
+52-30_PASSENGER_CREW_DOORS,door_locked_sw,31-INDICATING_RECORDING,EICAS,discrete,Electrical,ICD-xxxx,Safety-Egress,
+52-20_SEALS_PRESSURIZATION,seal_leak_rate,21-AIR_CONDITIONING,press_ctrl,parameter,Functional,ICD-xxxx,Perf,
+52-10_MECHANISMS_LATCHES_LOCKS,actuator_cmd,42-IMA,IO_module,ARINC-429/Discrete,Data,ICD-xxxx,Safety,
+52-80_SENSORS_INDICATION_SWITCHES,harness,92-EWIS,zone_XX,harness,Physical,ICD-xxxx,Standard,
+52-30_PASSENGER_CREW_DOORS,door_position,31-INDICATING_RECORDING,cockpit_display,discrete,Electrical,ICD-xxxx,Safety,
+52-60_EMERGENCY_EXITS_SLIDES_IF,slide_deploy_cmd,25-CABIN,slide_system,discrete,Electrical,ICD-xxxx,Safety-Critical,Emergency evacuation interface
+52-10_MECHANISMS_LATCHES_LOCKS,hinge_loads,53-FUSELAGE,door_frame,structural,Mechanical,ICD-xxxx,Design,Load path verification
+52-20_SEALS_PRESSURIZATION,seal_interface,53-FUSELAGE,door_surround,mechanical,Mechanical,ICD-xxxx,Perf,Pressurization boundary
+52-30_PASSENGER_CREW_DOORS,power_supply,24-ELECTRICAL,door_pwr_bus,28VDC,Electrical,ICD-xxxx,Standard,
+52-60_EMERGENCY_EXITS_SLIDES_IF,emergency_lighting,33-LIGHTING,exit_lights,28VDC,Electrical,ICD-xxxx,Safety,
+52-10_MECHANISMS_LATCHES_LOCKS,hydraulic_supply,29-HYDRAULIC,sys_a,hydraulic_fluid,Fluid,ICD-xxxx,Standard,3000psi nominal
+52-40_SERVICE_ACCESS_HATCHES,panel_mounting,57-WINGS,wing_structure,mechanical,Mechanical,ICD-xxxx,Design,Wing access panels
+52-80_SENSORS_INDICATION_SWITCHES,proximity_sensor,42-IMA,sensor_input,discrete,Data,ICD-xxxx,Standard,Door position sensing
+52-70_LG_DOORS_IF,door_sequence,32-LANDING_GEAR,gear_extension,discrete,Data,ICD-xxxx,Safety,Owned by ATA-32 (MEC domain)
+52-90_COMPLIANCE_EVIDENCE,test_results,00-PROGRAM,certification,document,Admin,DOC-xxxx,Regulatory,Airworthiness evidence
