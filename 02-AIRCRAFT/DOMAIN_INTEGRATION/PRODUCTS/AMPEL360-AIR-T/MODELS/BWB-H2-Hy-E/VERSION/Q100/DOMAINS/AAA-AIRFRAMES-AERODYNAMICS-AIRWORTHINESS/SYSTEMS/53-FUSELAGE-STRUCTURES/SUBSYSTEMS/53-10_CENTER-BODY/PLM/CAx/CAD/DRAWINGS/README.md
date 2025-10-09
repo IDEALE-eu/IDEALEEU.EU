@@ -1,4 +1,4 @@
-# DRAWINGS — 2D Engineering Drawings
+# DRAWINGS — 2D Engineering Drawings 
 
 ## Purpose
 
@@ -24,7 +24,9 @@ This directory contains 2D engineering drawings derived from CAD models for the 
 
 Use the following naming pattern:
 ```
-<subsystem>_DWG_<component>_<drawing-number>_<sheet>.<ext>
+
+<subsystem>*DWG*<component>*<drawing-number>*<sheet>.<ext>
+
 ```
 
 Examples:
@@ -185,3 +187,5 @@ Before releasing drawings:
 - Supply neutral formats (DXF for 2D, STEP for 3D)
 - Coordinate with manufacturing engineering
 - Support supplier questions and RFIs
+```
+
