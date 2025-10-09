@@ -1,0 +1,264 @@
+name: q100_center_body_optimization
+description: Multi-objective structural optimization for Q100 Center Body (53-10)
+version: 1.0.0
+problem_id: q100_cb
+
+# Parameter Space Definition
+parameter_file: ../../../CAD/MODELS/MASTER/SKELETON/params.json
+
+design_variables:
+  - name: cb_length
+    type: continuous
+    bounds: [6500.0, 9500.0]
+    unit: mm
+    
+  - name: cb_width
+    type: continuous
+    bounds: [10000.0, 14000.0]
+    unit: mm
+    
+  - name: cb_height
+    type: continuous
+    bounds: [2800.0, 3600.0]
+    unit: mm
+    
+  - name: skin_thickness
+    type: continuous
+    bounds: [2.0, 5.0]
+    unit: mm
+    
+  - name: frame_spacing
+    type: continuous
+    bounds: [400.0, 600.0]
+    unit: mm
+    
+  - name: frame_web_thickness
+    type: continuous
+    bounds: [2.0, 4.0]
+    unit: mm
+    
+  - name: frame_cap_area
+    type: continuous
+    bounds: [100.0, 250.0]
+    unit: mm2
+    
+  - name: stringer_spacing
+    type: continuous
+    bounds: [120.0, 200.0]
+    unit: mm
+    
+  - name: stringer_area
+    type: continuous
+    bounds: [50.0, 120.0]
+    unit: mm2
+    
+  - name: bulkhead_thickness
+    type: continuous
+    bounds: [3.0, 6.0]
+    unit: mm
+    
+  - name: cabin_pressure
+    type: continuous
+    bounds: [0.055, 0.070]
+    unit: MPa
+    
+  - name: design_load_factor
+    type: continuous
+    bounds: [2.25, 3.0]
+    unit: dimensionless
+    
+  - name: floor_beam_height
+    type: continuous
+    bounds: [150.0, 300.0]
+    unit: mm
+    
+  - name: floor_beam_web_thickness
+    type: continuous
+    bounds: [1.5, 3.0]
+    unit: mm
+    
+  - name: keel_beam_height
+    type: continuous
+    bounds: [250.0, 400.0]
+    unit: mm
+    
+  - name: keel_beam_thickness
+    type: continuous
+    bounds: [2.5, 5.0]
+    unit: mm
+    
+  - name: window_frame_reinforcement
+    type: continuous
+    bounds: [1.2, 2.5]
+    unit: dimensionless
+    
+  - name: door_cutout_reinforcement
+    type: continuous
+    bounds: [1.5, 2.5]
+    unit: dimensionless
+
+# Objectives
+objectives:
+  - name: structural_mass
+    type: minimize
+    weight: 0.6
+    target: 3500.0
+    unit: kg
+    evaluator: cae_mass
+    
+  - name: max_deflection
+    type: minimize
+    weight: 0.4
+    unit: mm
+    evaluator: cae_deflection
+
+# Constraints
+constraints:
+  - name: max_stress
+    type: inequality
+    limit: material_yield_divided_by_1.5
+    unit: MPa
+    evaluator: cae_stress
+    
+  - name: buckling_reserve_factor
+    type: inequality
+    bound: lower
+    limit: 1.1
+    unit: dimensionless
+    evaluator: cae_buckling
+    
+  - name: max_deflection_ratio
+    type: inequality
+    limit: cb_length_divided_by_500
+    unit: mm
+    evaluator: cae_deflection
+
+# CAE Configuration
+cae_settings:
+  solver: generic_fea
+  mesh_size: 50.0  # mm
+  refinement_size: 25.0  # mm at stress concentrations
+  element_type: shell_quad
+  target_element_count: 50000
+  
+  load_cases:
+    - id: LC1
+      name: cabin_pressurization
+      type: pressure
+      value: 0.062
+      unit: MPa
+      
+    - id: LC2
+      name: symmetric_pullup
+      type: acceleration
+      value: 2.5
+      unit: g
+      direction: [0, 0, 1]
+      
+    - id: LC3
+      name: combined_pressure_maneuver
+      type: combined
+      pressure: 0.062
+      acceleration: 2.0
+      unit_pressure: MPa
+      unit_accel: g
+  
+  materials:
+    AL_2024_T3:
+      youngs_modulus: 73000.0  # MPa
+      poissons_ratio: 0.33
+      yield_strength: 345.0  # MPa
+      density: 2.78e-6  # kg/mm³
+      
+    AL_7075_T6:
+      youngs_modulus: 72000.0  # MPa
+      poissons_ratio: 0.33
+      yield_strength: 503.0  # MPa
+      density: 2.81e-6  # kg/mm³
+
+# Optimization Strategy
+optimization:
+  method: NSGA-II
+  
+  sampling:
+    method: sobol
+    n_samples: 64
+    seed: 42
+  
+  algorithm_params:
+    population_size: 32
+    n_generations: 20
+    crossover_prob: 0.9
+    crossover_eta: 15
+    mutation_prob: 0.1
+    mutation_eta: 20
+    tournament_size: 2
+  
+  termination:
+    max_evaluations: 500
+    max_generations: 20
+    tolerance: 1.0e-6
+  
+  parallelization:
+    enabled: false
+    n_workers: 1
+    
+  caching:
+    enabled: true
+    cache_file: RUNS/study_001/eval_cache.pkl
+
+# Output Configuration
+outputs:
+  results_dir: RESULTS/PARETO/
+  run_dir: RUNS/study_001/
+  
+  files:
+    pareto_front: q100_cb_pareto.csv
+    candidates: candidates.csv
+    convergence: convergence.csv
+    logs: logs.txt
+    config_copy: config.yaml
+    
+  exports:
+    n_designs: 5
+    export_dir: ../../../CAD/EXPORTS/STEP/ASSEMBLIES/TOP_LEVEL/
+    prefix: Q100_CB_OPT
+    format: step
+    
+  plots:
+    pareto_scatter: true
+    convergence_plot: true
+    parameter_sensitivity: true
+    constraint_violations: true
+
+# Traceability
+traceability:
+  requirements:
+    - id: REQ-53-10-001
+      description: Structural integrity
+      mapped_to: [max_stress, buckling_reserve_factor]
+      
+    - id: REQ-53-10-002
+      description: Mass target < 3500 kg
+      mapped_to: [structural_mass]
+      
+    - id: REQ-53-10-003
+      description: Pressure vessel capability
+      mapped_to: [cabin_pressurization]
+      
+    - id: REQ-53-10-004
+      description: Access provisions
+      mapped_to: [geometric_constraints]
+  
+  trace_file: ../../../TRACE/REQ2TEST.csv
+
+# Metadata
+metadata:
+  created: 2025-10-09
+  author: Design Automation System
+  project: BWB-H2-Hy-E
+  aircraft_model: Q100
+  subsystem: 53-10_CENTER-BODY
+  ata_chapter: 53
+  phase: generative_design
+  status: active

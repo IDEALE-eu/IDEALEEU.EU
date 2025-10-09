@@ -1,0 +1,32 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Optimization caches and temporary files
+RUNS/*/eval_cache.pkl
+RUNS/*/temp_*
+RUNS/*/*.log
+
+# Large result files (consider Git LFS)
+*.pkl
+*.h5
+*.hdf5
+
+# CAE temporary files
+temp_geometry.*
+temp_mesh.*
+*.bdf.tmp
+*.op2.tmp
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db

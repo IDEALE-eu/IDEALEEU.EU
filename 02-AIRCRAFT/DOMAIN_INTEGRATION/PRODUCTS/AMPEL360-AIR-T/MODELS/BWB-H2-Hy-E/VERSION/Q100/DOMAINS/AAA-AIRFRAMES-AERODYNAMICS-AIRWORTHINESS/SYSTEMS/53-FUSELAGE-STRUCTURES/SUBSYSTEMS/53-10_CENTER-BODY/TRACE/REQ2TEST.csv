@@ -1,0 +1,10 @@
+Requirement_ID,Description,Constraint,Objective,Test_ID,Status,Notes
+REQ-53-10-001,Structural integrity - strength,max_stress,,TEST-53-10-001,Active,Von Mises stress limit with SF=1.5
+REQ-53-10-001,Structural integrity - buckling,buckling_reserve_factor,,TEST-53-10-003,Active,Linear buckling RF ≥ 1.1
+REQ-53-10-002,Mass target < 3500 kg,,structural_mass,TEST-53-10-002,Active,Primary objective in optimization
+REQ-53-10-003,Pressure vessel capability,max_stress,,TEST-53-10-004,Active,0.062 MPa cabin pressure load case
+REQ-53-10-004,Access provisions,geometric_constraints,,TEST-53-10-006,Active,Clearance envelopes maintained
+REQ-53-10-005,Structural stiffness,max_deflection_ratio,max_deflection,TEST-53-10-005,Active,L/500 deflection limit
+REQ-53-10-006,Fatigue life ≥ 60000 cycles,fatigue_analysis,,TEST-53-10-007,Future,Not evaluated in generative phase
+REQ-53-10-007,Load factor capability 2.5g,max_stress,,TEST-53-10-008,Active,Ultimate load verification
+REQ-53-10-008,Geometry envelope compliance,geometric_constraints,,TEST-53-10-009,Active,Overall dimensions within limits
