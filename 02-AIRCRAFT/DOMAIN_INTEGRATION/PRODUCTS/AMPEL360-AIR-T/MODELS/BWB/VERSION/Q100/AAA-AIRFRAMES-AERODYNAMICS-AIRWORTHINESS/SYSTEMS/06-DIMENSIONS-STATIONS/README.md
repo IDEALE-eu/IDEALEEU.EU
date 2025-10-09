@@ -3,7 +3,7 @@
 ![Validation Status](https://img.shields.io/badge/structure-valid-success)
 
 ## Overview
-Sistema ATA-06 DIMENSIONS-STATIONS define la geometría de referencia, sistemas de coordenadas, estaciones de medición y puntos de control dimensional para el aircraft AMPEL360-AIR-T modelo BWB Q100.
+Sistema ATA-06 DIMENSIONS-STATIONS define la geometría de referencia, sistemas de coordenadas, estaciones de medición y puntos de control dimensional para el aircraft AMPEL360-AIR-T modelo BWB-H2-Hy-E Q100.
 
 ## Directory Structure
 

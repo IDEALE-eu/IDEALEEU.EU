@@ -1,7 +1,7 @@
 # 06-DIMENSIONS-STATIONS — Integration View
 
 ## System Overview
-El sistema ATA-06 DIMENSIONS-STATIONS define la geometría de referencia, sistemas de coordenadas, estaciones de medición y puntos de control dimensional para todo el aircraft AMPEL360-AIR-T modelo BWB Q100.
+El sistema ATA-06 DIMENSIONS-STATIONS define la geometría de referencia, sistemas de coordenadas, estaciones de medición y puntos de control dimensional para todo el aircraft AMPEL360-AIR-T modelo BWB-H2-Hy-E Q100.
 
 ## Functional Scope
 - Establecimiento de marcos de referencia geométricos
