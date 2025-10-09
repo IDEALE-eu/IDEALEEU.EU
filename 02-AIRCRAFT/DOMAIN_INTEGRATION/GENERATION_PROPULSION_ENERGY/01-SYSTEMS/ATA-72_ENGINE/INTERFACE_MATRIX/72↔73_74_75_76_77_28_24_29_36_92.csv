@@ -1,0 +1,11 @@
+Interface ID,Source System,Destination System,Interface Type,Signal/Data,Notes
+IF-72-73-001,ATA-72,ATA-73,Data,N1/N2 Speed,Engine speed to FADEC
+IF-72-74-001,ATA-72,ATA-74,Physical,Igniter Plugs,Ignition interface
+IF-72-75-001,ATA-72,ATA-75,Pneumatic,Bleed Air,High/Low pressure bleed
+IF-72-76-001,ATA-72,ATA-76,Mechanical,Actuation,Fuel metering valve
+IF-72-77-001,ATA-72,ATA-77,Data,Sensor Outputs,Temperature/pressure sensors
+IF-72-28-001,ATA-28,ATA-72,Fluid,Fuel Supply,Main fuel feed
+IF-72-24-001,ATA-24,ATA-72,Power,Electrical,Starter power
+IF-72-29-001,ATA-72,ATA-29,Mechanical,Hydraulic Pump,Engine-driven pump
+IF-72-36-001,ATA-72,ATA-36,Pneumatic,Starter Air,Pneumatic starter interface
+IF-72-92-001,ATA-72,ATA-92,Physical,Wiring,All engine wiring per EWIS

@@ -1,0 +1,7 @@
+Interface ID,Source System,Destination System,Interface Type,Signal/Data,Notes
+IF-73-28-001,ATA-28,ATA-73,Fluid,Fuel Supply,Main fuel feed to FADEC
+IF-73-24-001,ATA-24,ATA-73,Power,Electrical,FADEC power supply
+IF-73-76-001,ATA-76,ATA-73,Data,Thrust Command,Thrust lever position
+IF-73-77-001,ATA-73,ATA-77,Data,Fuel Flow,Fuel flow indication
+IF-73-42-001,ATA-73,ATA-42,Data,ARINC 664,FADEC data bus
+IF-73-92-001,ATA-73,ATA-92,Physical,Wiring,All FADEC wiring per EWIS

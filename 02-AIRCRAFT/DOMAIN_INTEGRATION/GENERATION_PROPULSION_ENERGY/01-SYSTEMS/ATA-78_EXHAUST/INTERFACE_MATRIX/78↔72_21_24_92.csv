@@ -1,0 +1,5 @@
+Interface ID,Source System,Destination System,Interface Type,Signal/Data,Notes
+IF-78-72-001,ATA-72,ATA-78,Physical,Exhaust,Engine exhaust interface
+IF-78-21-001,ATA-78,ATA-21,Thermal,Heat Transfer,Exhaust thermal management
+IF-78-24-001,ATA-24,ATA-78,Power,Electrical,Thrust reverser power
+IF-78-92-001,ATA-78,ATA-92,Physical,Wiring,All exhaust system wiring per EWIS

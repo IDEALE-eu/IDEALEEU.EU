@@ -1,0 +1,5 @@
+Interface ID,Source System,Destination System,Interface Type,Signal/Data,Notes
+IF-74-24-001,ATA-24,ATA-74,Power,Electrical,Ignition power supply
+IF-74-72-001,ATA-74,ATA-72,Physical,Igniter Plugs,Ignition interface
+IF-74-76-001,ATA-76,ATA-74,Control,Ignition Command,Start ignition signal
+IF-74-92-001,ATA-74,ATA-92,Physical,Wiring,All ignition wiring per EWIS

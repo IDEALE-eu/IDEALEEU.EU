@@ -1,0 +1,8 @@
+Interface ID,Source System,Destination System,Interface Type,Signal/Data,Notes
+IF-76-24-001,ATA-24,ATA-76,Power,Electrical,Control system power
+IF-76-42-001,ATA-76,ATA-42,Data,ARINC 664,Control data bus
+IF-76-72-001,ATA-76,ATA-72,Mechanical,Actuation,Engine control actuation
+IF-76-73-001,ATA-76,ATA-73,Data,Thrust Command,FADEC interface
+IF-76-74-001,ATA-76,ATA-74,Control,Ignition Command,Ignition control
+IF-76-77-001,ATA-77,ATA-76,Data,Engine Parameters,Parameter feedback
+IF-76-92-001,ATA-76,ATA-92,Physical,Wiring,All control wiring per EWIS

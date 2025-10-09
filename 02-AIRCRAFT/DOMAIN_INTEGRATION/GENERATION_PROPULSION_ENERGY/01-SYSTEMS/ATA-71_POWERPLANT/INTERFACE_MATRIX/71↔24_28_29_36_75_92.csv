@@ -1,0 +1,7 @@
+Interface ID,Source System,Destination System,Interface Type,Signal/Data,Notes
+IF-71-24-001,ATA-24,ATA-71,Power,Electrical,Power routing through nacelle
+IF-71-28-001,ATA-28,ATA-71,Fluid,Fuel Lines,Fuel system plumbing
+IF-71-29-001,ATA-71,ATA-29,Mechanical,Pump Mount,Hydraulic pump installation
+IF-71-36-001,ATA-71,ATA-36,Pneumatic,Ducting,Pneumatic system routing
+IF-71-75-001,ATA-75,ATA-71,Pneumatic,Bleed Ducting,Bleed air manifolds
+IF-71-92-001,ATA-71,ATA-92,Physical,Wiring,All powerplant wiring per EWIS

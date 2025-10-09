@@ -1,0 +1,8 @@
+Interface ID,Source System,Destination System,Interface Type,Signal/Data,Notes
+IF-77-24-001,ATA-24,ATA-77,Power,Electrical,Sensor power supply
+IF-77-31-001,ATA-77,ATA-31,Data,ARINC 664,EICAS display data
+IF-77-42-001,ATA-77,ATA-42,Data,ARINC 664,Avionics data bus
+IF-77-72-001,ATA-72,ATA-77,Data,Sensor Outputs,Engine parameter sensors
+IF-77-73-001,ATA-73,ATA-77,Data,FADEC Data,Fuel system parameters
+IF-77-76-001,ATA-77,ATA-76,Data,Parameter Feedback,Control system feedback
+IF-77-92-001,ATA-77,ATA-92,Physical,Wiring,All indication wiring per EWIS

@@ -1,0 +1,6 @@
+Interface ID,Source System,Destination System,Interface Type,Signal/Data,Notes
+IF-79-24-001,ATA-24,ATA-79,Power,Electrical,Oil pump power and monitoring
+IF-79-72-001,ATA-79,ATA-72,Fluid,Oil Supply,Engine lubrication
+IF-79-29-001,ATA-79,ATA-29,Thermal,Oil Cooling,Oil cooler interfaces
+IF-79-36-001,ATA-36,ATA-79,Pneumatic,Pressurization,Oil tank pressurization
+IF-79-92-001,ATA-79,ATA-92,Physical,Wiring,All oil system wiring per EWIS

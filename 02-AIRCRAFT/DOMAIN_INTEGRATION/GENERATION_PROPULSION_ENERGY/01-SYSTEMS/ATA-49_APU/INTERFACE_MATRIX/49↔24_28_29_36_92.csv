@@ -1,0 +1,12 @@
+Interface ID,Source System,Source LRU,Destination System,Destination LRU,Interface Type,Signal/Data,Protocol,Voltage,Current,Frequency,Connector Type,Wire Gauge,Notes
+IF-49-24-001,ATA-49,APU Generator,ATA-24,AC Essential Bus,Power,AC Power,N/A,115V AC,90A,400Hz,MS3116F-20-41P,6 AWG,APU generator output
+IF-49-24-002,ATA-24,Battery Bus,ATA-49,APU Starter,Power,DC Power,N/A,28V DC,400A,DC,MS3116F-24-61S,2 AWG,APU starting power
+IF-49-24-003,ATA-49,APU ECU,ATA-24,EMS,Data,APU Status,ARINC 429,N/A,N/A,100kbps,D-38999/26,22 AWG,APU operational status
+IF-49-28-001,ATA-28,APU Fuel Valve,ATA-49,Fuel Inlet,Fluid,Fuel Flow,N/A,N/A,N/A,N/A,AN-6,N/A,Fuel supply to APU
+IF-49-28-002,ATA-49,APU ECU,ATA-28,Fuel Valve,Control,Valve Command,Discrete,28V DC,2A,DC,D-38999/20,20 AWG,Fuel valve control
+IF-49-29-001,ATA-49,APU Bleed,ATA-29,Pneumatic System,Pneumatic,Bleed Air,N/A,N/A,N/A,N/A,V-Band 4in,N/A,Pneumatic bleed output
+IF-49-29-002,ATA-49,APU ECU,ATA-29,Bleed Valve,Control,Valve Command,Discrete,28V DC,2A,DC,D-38999/20,20 AWG,Bleed valve control
+IF-49-36-001,ATA-49,EGT Sensor,ATA-36,EICAS,Data,Temperature,Analog,0-5V DC,N/A,N/A,D-38999/20,22 AWG,Exhaust gas temperature
+IF-49-36-002,ATA-49,N1 Sensor,ATA-36,EICAS,Data,Speed,ARINC 429,N/A,N/A,100kbps,D-38999/26,22 AWG,APU rotor speed
+IF-49-36-003,ATA-49,Oil Press Sensor,ATA-36,EICAS,Data,Pressure,Analog,0-5V DC,N/A,N/A,D-38999/20,22 AWG,APU oil pressure
+IF-49-92-001,ATA-49,All Components,ATA-92,Wiring Harnesses,Physical,Wiring,N/A,Various,Various,Various,Various,Various,All APU wiring per EWIS

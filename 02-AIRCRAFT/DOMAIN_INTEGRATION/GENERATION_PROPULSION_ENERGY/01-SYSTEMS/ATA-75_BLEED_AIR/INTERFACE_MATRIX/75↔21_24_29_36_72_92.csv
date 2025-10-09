@@ -1,0 +1,7 @@
+Interface ID,Source System,Destination System,Interface Type,Signal/Data,Notes
+IF-75-21-001,ATA-75,ATA-21,Pneumatic,Bleed Air,ECS air supply
+IF-75-24-001,ATA-24,ATA-75,Power,Electrical,Valve power and control
+IF-75-29-001,ATA-75,ATA-29,Pneumatic,Pressurization,Hydraulic reservoir pressure
+IF-75-36-001,ATA-75,ATA-36,Pneumatic,Pneumatic Supply,General pneumatic system
+IF-75-72-001,ATA-72,ATA-75,Pneumatic,Bleed Ports,Engine bleed extraction
+IF-75-92-001,ATA-75,ATA-92,Physical,Wiring,All bleed air wiring per EWIS

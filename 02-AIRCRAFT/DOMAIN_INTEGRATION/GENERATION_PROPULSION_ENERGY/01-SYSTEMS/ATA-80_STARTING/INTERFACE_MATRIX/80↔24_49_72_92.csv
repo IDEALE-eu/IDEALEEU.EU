@@ -1,0 +1,5 @@
+Interface ID,Source System,Destination System,Interface Type,Signal/Data,Notes
+IF-80-24-001,ATA-24,ATA-80,Power,Electrical,Starter power supply
+IF-80-49-001,ATA-49,ATA-80,Pneumatic,Start Air,APU pneumatic start
+IF-80-72-001,ATA-80,ATA-72,Mechanical,Starter Drive,Engine starter interface
+IF-80-92-001,ATA-80,ATA-92,Physical,Wiring,All starting system wiring per EWIS
