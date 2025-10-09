@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/MODELS/BWB/VERSION/Q100"
+ROOT="02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/MODELS/BWB-H2-Hy-E/VERSION/Q100"
 DOMAINS=(
   "AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS"
   "PPP-PROPULSION-FUEL-SYSTEMS"
@@ -36,7 +36,7 @@ mk_domain() {
 EOF
 
   [[ -f "$ROOT/$d/META.json" ]] || cat > "$ROOT/$d/META.json" <<EOF
-{ "scope": "domain", "product": "AMPEL360-AIR-T", "model": "BWB", "version": "Q100" }
+{ "scope": "domain", "product": "AMPEL360-AIR-T", "model": "BWB-H2-Hy-E", "version": "Q100" }
 EOF
 
   [[ -f "$ROOT/$d/domain-config.yaml" ]] || cat > "$ROOT/$d/domain-config.yaml" <<'EOF'
