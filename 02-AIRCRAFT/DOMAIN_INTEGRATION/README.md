@@ -30,8 +30,8 @@ To generate the complete domain integration structure with all 15 domains and sa
 
 This creates:
 - 15 engineering domains (AAA, PPP, MEC, LCC, EDI, EEE, EER, DDD, CCC, IIS, LIB, AAP, CQH, IIF, OOO)
-- Sample systems with subsystems and PLM/CAx structure
-- All required metadata files
+- **Representative systems with subsystems** (one per domain demonstrating the pattern)
+- Complete PLM/CAx structure in each subsystem
 
 ### Validating Structure
 

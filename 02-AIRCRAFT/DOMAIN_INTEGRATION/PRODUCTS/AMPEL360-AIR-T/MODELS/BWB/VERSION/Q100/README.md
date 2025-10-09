@@ -194,40 +194,19 @@ Los siguientes capítulos están reservados para uso futuro, templates de plataf
 
 ---
 
-## Ejemplos mínimos (con SUBSYSTEMS + PLM)
+## Ejemplos representativos (con SUBSYSTEMS + PLM) — Todos los dominios
 
-### AAA — 53 FUSELAGE STRUCTURES (ejemplo)
+Los siguientes sistemas demuestran la estructura para los 15 dominios:
+
+### AAA — 53 FUSELAGE STRUCTURES
 
 ```
 AAA-.../SYSTEMS/53-FUSELAGE-STRUCTURES/
 ├─ INTEGRATION_VIEW.md
-├─ INTERFACE_MATRIX/53↔57_25_24_92.csv
+├─ INTERFACE_MATRIX/53↔OTROS.csv
 └─ SUBSYSTEMS/
    └─ 53-10_CENTER-BODY/
       └─ PLM/CAx/(CAD|CAE|CAM|…)
-```
-
-### MEC — 32 LANDING GEAR
-
-```
-MEC-.../SYSTEMS/32-LANDING-GEAR-SYSTEMS/
-├─ INTEGRATION_VIEW.md
-├─ INTERFACE_MATRIX/32↔27_29_24_92.csv
-└─ SUBSYSTEMS/
-   └─ 32-10_MAIN_GEAR/
-      └─ PLM/CAx/…
-```
-
-### EEE — 24 ELECTRICAL POWER
-
-```
-EEE-.../SYSTEMS/24-ELECTRICAL-POWER/
-├─ INTEGRATION_VIEW.md                 # generación↔almacenamiento↔distribución
-├─ INTERFACE_MATRIX/24↔28_29_36_42_45_46_92_33.csv
-└─ SUBSYSTEMS/
-   ├─ 24-20_BATTERIES/
-   └─ 24-40_DISTRIBUTION/
-      └─ PLM/CAx/…
 ```
 
 ### PPP — 71 POWER PLANT
@@ -235,20 +214,75 @@ EEE-.../SYSTEMS/24-ELECTRICAL-POWER/
 ```
 PPP-.../SYSTEMS/71-POWER-PLANT/
 ├─ INTEGRATION_VIEW.md
-├─ INTERFACE_MATRIX/71↔24_28_29_36_75_92.csv
+├─ INTERFACE_MATRIX/71↔OTROS.csv
 └─ SUBSYSTEMS/
    └─ 71-00_GENERAL/
       └─ PLM/CAx/…
 ```
 
-### EDI — 34 NAVIGATION
+### MEC — 32 LANDING GEAR
+
+```
+MEC-.../SYSTEMS/32-LANDING-GEAR-SYSTEMS/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/32↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 32-10_MAIN-GEAR/
+      └─ PLM/CAx/…
+```
+
+### LCC — 22 AUTO FLIGHT
+
+```
+LCC-.../SYSTEMS/22-AUTO-FLIGHT/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/22↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 22-10_AUTOPILOT/
+      └─ PLM/CAx/…
+```
+
+### EDI — 34 NAVIGATION AVIONICS
 
 ```
 EDI-.../SYSTEMS/34-NAVIGATION-AVIONICS/
 ├─ INTEGRATION_VIEW.md
-├─ INTERFACE_MATRIX/34↔22_24_31_42_45_92.csv
+├─ INTERFACE_MATRIX/34↔OTROS.csv
 └─ SUBSYSTEMS/
    └─ 34-20_AHRS_IRS_GNSS/
+      └─ PLM/CAx/…
+```
+
+### EEE — 24 ELECTRICAL POWER
+
+```
+EEE-.../SYSTEMS/24-ELECTRICAL-POWER/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/24↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 24-40_DISTRIBUTION/
+      └─ PLM/CAx/…
+```
+
+### EER — 26 FIRE PROTECTION
+
+```
+EER-.../SYSTEMS/26-FIRE-PROTECTION/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/26↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 26-10_DETECTION/
+      └─ PLM/CAx/…
+```
+
+### DDD — 21 AIR CONDITIONING
+
+```
+DDD-.../SYSTEMS/21-AIR-CONDITIONING/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/21↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 21-10_SYSTEM/
       └─ PLM/CAx/…
 ```
 
@@ -257,9 +291,75 @@ EDI-.../SYSTEMS/34-NAVIGATION-AVIONICS/
 ```
 CCC-.../SYSTEMS/25-EQUIPMENT-FURNISHINGS/
 ├─ INTEGRATION_VIEW.md
-├─ INTERFACE_MATRIX/25↔21_38_24_33_50_92.csv
+├─ INTERFACE_MATRIX/25↔OTROS.csv
 └─ SUBSYSTEMS/
    └─ 25-50_CABIN_INTERIORS/
+      └─ PLM/CAx/…
+```
+
+### IIS — 46 INFORMATION SYSTEMS
+
+```
+IIS-.../SYSTEMS/46-INFORMATION-SYSTEMS/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/46↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 46-10_NETWORK/
+      └─ PLM/CAx/…
+```
+
+### LIB — 05 TIME LIMITS
+
+```
+LIB-.../SYSTEMS/05-TIME-LIMITS/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/05↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 05-00_GENERAL/
+      └─ PLM/CAx/…
+```
+
+### AAP — 10 PARKING & MOORING
+
+```
+AAP-.../SYSTEMS/10-PARKING-MOORING/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/10↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 10-00_GENERAL/
+      └─ PLM/CAx/…
+```
+
+### CQH — 47 INERT GAS/CRYO
+
+```
+CQH-.../SYSTEMS/47-INERT-GAS-CRYO/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/47↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 47-10_NGS/
+      └─ PLM/CAx/…
+```
+
+### IIF — 07 LIFTING & SHORING
+
+```
+IIF-.../SYSTEMS/07-LIFTING-SHORING/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/07↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 07-00_GENERAL/
+      └─ PLM/CAx/…
+```
+
+### OOO — 13 GENERAL HARDWARE
+
+```
+OOO-.../SYSTEMS/13-GENERAL-HARDWARE/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/13↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 13-00_STANDARDS/
       └─ PLM/CAx/…
 ```
 
@@ -296,8 +396,8 @@ Para generar la estructura inicial de dominios, utilice el script:
 
 Este script creará:
 - Los 15 dominios con sus carpetas obligatorias
-- 6 sistemas de ejemplo con subsistemas
-- Toda la estructura PLM/CAx necesaria
+- **15 sistemas representativos** (uno por dominio) con subsistemas
+- Toda la estructura PLM/CAx necesaria en cada subsistema
 
 ## Validación
 
