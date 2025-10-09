@@ -71,23 +71,126 @@ Estandarizar los 15 dominios con **único nivel `/SYSTEMS/`**, **sub-sistemas ex
 
 ---
 
-## Mapeo de dominios ↔ ATA (primarios)
+## Mapeo completo de dominios ↔ ATA
 
-* **AAA — Airframes, Aerodynamics, Airworthiness** → 06, 50, **51**, **52**, **53**, **54**(comp.), **55**, **56**, **57**
-* **PPP — Propulsión, Combustible** → **28**, **49**, **54**(comp.), 60–61, 70–73, **75**, 78, 81–82
-* **MEC — Mecánicos** → **27**, **29**, **32**, **36**–37, 63, 67, 79, 83
-* **LCC — Enlaces/Control/Comms** → 08, **22**, 23, 44, 45, 76, 93
-* **EDI — Electrónica/Aviónica/Indicadores** → **31**, **34**, **42**, **77**, 84, 94
-* **EEE — Eléctricos/Luces/Arranque** → **24**, **33**, 39, 74, 80, 97
-* **EER — Entorno/Emisiones** → 15, **26**, **38**, 85
-* **DDD — Drenaje/Deshielo** → 09, **21**, **30**, 41
-* **CCC — Cabina/Carga/Tripulación** → 11, **25**, **35**, 43, **50**
-* **IIS — Información/IT** → 16, **46**, 91
-* **LIB — Logística/Límites** → 01, 04, **05**, **12**
-* **AAP — Operación en tierra** → **10**
-* **CQH — Criogénicos/H2/NGS** → **47**
-* **IIF — Infraestructura industrial** → **07**
-* **OOO — OS/Ontologías/Reservas** → 13, 20 y capítulos reservados (plantillas)
+Esta tabla muestra la distribución completa de los capítulos ATA (01-100) entre los 15 dominios de ingeniería. El dominio primario tiene responsabilidad principal; los secundarios son interfaces/coordinación.
+
+> **Referencia completa**: Ver [ATA_MAPPING.csv](./ATA_MAPPING.csv) para la tabla completa en formato CSV procesable.
+
+### Tabla de distribución ATA por dominio
+
+| ATA | Nombre | Primario | Secundarios | Notas |
+|-----|--------|----------|-------------|-------|
+| 01 | Introduction | LIB | | Program/admin records |
+| 04 | Airworthiness Limitations | LIB | | Limits & compliance records |
+| 05 | Time Limits | LIB | | Servicing/intervals |
+| 06 | Dimensions/Stations | AAA | | Geometry refs |
+| 07 | Lifting/Shoring | IIF | | Industrial infra & facilities |
+| 08 | Leveling/Weighing | LCC | | Ground control/measure |
+| 09 | Surface Protection | DDD | | Drainage/anti-corrosion |
+| 10 | Parking/Mooring | AAP | | Airport ops |
+| 11 | Placards/Markings | CCC | | Cabin/cockpit labeling |
+| 12 | Servicing | LIB | | Ground servicing policies |
+| 14 | Hardware (Fasteners) | AAA | | Structural hardware |
+| 15 | Noise/Vibration | EER | | Env conditions |
+| 16 | Ground Support Equipment | IIS | | EGSE/MGSE specs |
+| 21 | Air Conditioning | DDD | CCC, EER | Environmental control |
+| 22 | Auto Flight | LCC | EDI | Autopilot/AFCS |
+| 23 | Communications | LCC | EDI | Internal/external comms |
+| 24 | Electrical Power | EEE | LCC, EDI, MEC | Gen/storage/distribution |
+| 25 | Equipment & Furnishings | CCC | DDD, EEE | Cabin & monuments |
+| 26 | Fire Protection | EER | EEE, LCC | Sensing/suppression/interlocks |
+| 27 | Flight Controls | MEC | LCC | Mechanical primary |
+| 28 | Fuel (incl. H₂) | PPP | EEE, DDD, EER | H₂ under 28 per rules |
+| 29 | Hydraulic Power | MEC | EEE | Pumps/actuation |
+| 30 | Ice & Rain Protection | DDD | EEE, CCC | Anti-ice/de-ice |
+| 31 | Indicating/Recording | EDI | LCC, EEE | Displays/recorders |
+| 32 | Landing Gear Systems | MEC | EEE, LCC, EER | LG + braking |
+| 33 | Lights | EEE | CCC | External/internal lights |
+| 34 | Navigation (Avionics) | EDI | LCC, EEE | Nav sensors & processing |
+| 35 | Oxygen | CCC | EER, EEE | ECLSS oxygen |
+| 36 | Pneumatic | MEC | DDD, EEE | Bleed/pneumatic |
+| 37 | Vacuum | MEC | | If applicable |
+| 38 | Water & Waste | EER | CCC, EEE | Circular systems (water loop) |
+| 39 | Electrical Panels | EEE | | Distribution panels |
+| 41 | Water Ballast | DDD | | If applicable |
+| 42 | Integrated Modular Avionics | EDI | LCC, EEE | ARINC 653/IMA platform |
+| 43 | Cabin Systems | CCC | LCC, EEE | IFE, seats control |
+| 44 | Cabin Control | LCC | CCC | Control layer |
+| 45 | Central Maintenance | LCC | EDI, EEE | CMS/ACMS/health |
+| 46 | Information Systems | IIS | EDI, EEE | IT/ground links |
+| 47 | Inert Gas/Cryo (NGS/H₂ aux) | CQH | PPP, EEE | NGS & cryo adjuncts |
+| 49 | APU | PPP | EEE, MEC, DDD | Aux power |
+| 50 | Cargo & Load Systems | CCC | AAA | Freighter/combi hardware |
+| 51 | Structures—General | AAA | | Std practices—structures |
+| 52 | Doors | AAA | MEC, EEE | All doors/hatches |
+| 53 | Fuselage Structures | AAA | | Primary structure |
+| 54 | Nacelles & Pylons | AAA | PPP | AAA for structure; PPP for internals |
+| 55 | Stabilizers | AAA | | H/V tails |
+| 56 | Windows | AAA | | Cockpit/cabin |
+| 57 | Wings | AAA | | Primary structure |
+| 60 | Propeller—Practices | PPP | | If applicable |
+| 61 | Propellers | PPP | | If applicable |
+| 62 | Main Rotor | AAA | MEC | Rotary-wing |
+| 63 | Main Rotor Drive | MEC | AAA | Rotary-wing |
+| 64 | Tail Rotor | AAA | MEC | Rotary-wing |
+| 65 | Tail Rotor Drive | AAA | MEC | Rotary-wing |
+| 66 | Folding Blades/Supports | AAA | | Rotary-wing |
+| 67 | Rotors Flight Control | MEC | LCC | Rotary-wing |
+| 70 | Powerplant Practices | PPP | | General powerplant |
+| 71 | Power Plant | PPP | EEE, MEC | Engine installation |
+| 72 | Engine | PPP | EEE | Core/fan/EM |
+| 73 | Engine Fuel & Control | PPP | EEE, LCC | FADEC software WITH 73 |
+| 74 | Ignition | EEE | PPP | Igniters/exciters |
+| 75 | Engine Bleed Air | PPP | DDD, MEC | Bleed interfaces |
+| 76 | Engine Controls | LCC | PPP | Command/distribution |
+| 77 | Engine Indicating | EDI | PPP | EIU/EICAS |
+| 78 | Exhaust | PPP | EER | Noise/emissions interface |
+| 79 | Oil (Lubrication) | MEC | PPP | Oil systems |
+| 80 | Starting | EEE | PPP | Start & SGs |
+| 81 | Turbines (Aux) | PPP | | If applicable |
+| 82 | Water Injection | PPP | | If applicable |
+| 83 | Accessory Gearboxes | MEC | PPP | Accessories drive |
+| 84 | Propulsion Augmentation | EDI | PPP | FADEC adj/elec prop (if used) |
+| 85 | Emissions/Environmental | EER | PPP | Non-propulsion EMC/EMI here; propulsion EMC with PPP(78) |
+| 91 | Charts/Performance | IIS | EDI | Perf data |
+| 92 | EWIS (Wiring) | EEE | ALL | **Only wiring here** (authoritative) |
+| 93 | Central Control Systems | LCC | EDI | Supervisory/coord |
+| 94 | E/E Compartments | EDI | EEE | Racks/bays |
+
+### Capítulos reservados/plantillas (OOO)
+
+Los siguientes capítulos están reservados para uso futuro, templates de plataforma, o aplicaciones spacecraft:
+
+- **02, 03**: Operations, Support (Platform/reserved)
+- **13**: General Hardware (Common practices/templates)
+- **17-20**: Propeller chapters, Standard Practices (Reserved if N/A, templates)
+- **40**: Avionics Std/General (Platform templates)
+- **48**: Optical/Video (Templates; spacecraft uses)
+- **58-59**: Flight Compartment Equip/Furnishings (Reserved/templates, spacecraft docking/robotics uses)
+- **68-69**: Reserved (Rotorcraft)
+- **86-87**: Planetary Protection/Env, Radiation Effects (Spacecraft use)
+- **88-90**: Reserved, Space Traffic/Conjunction (Spacecraft use)
+- **95-99**: Reserved
+- **100**: General (Repository/meta templates)
+
+### Resumen por dominio (ATA primarios)
+
+* **AAA — Airframes, Aerodynamics, Airworthiness** → 06, 14, 51-57, 62, 64-66
+* **PPP — Propulsion, Fuel Systems** → 28, 49, 60-61, 70-73, 75, 78, 81-82
+* **MEC — Mechanical Systems, Modules** → 27, 29, 32, 36-37, 63, 67, 79, 83
+* **LCC — Linkages, Control, Communications** → 08, 22-23, 44-45, 76, 93
+* **EDI — Electronics, Digital Instruments** → 31, 34, 42, 77, 84, 94
+* **EEE — Electrical, Endotransponders, Circulation** → 24, 33, 39, 74, 80, 92
+* **EER — Environmental, Emissions, Remediation** → 15, 26, 38, 85
+* **DDD — Drainage, Dehumidification, Drying** → 09, 21, 30, 41
+* **CCC — Cockpit, Cabin, Cargo** → 11, 25, 35, 43, 50
+* **IIS — Information, Intelligence Systems** → 16, 46, 91
+* **LIB — Logistics, Inventory, Blockchain** → 01, 04-05, 12
+* **AAP — Airport Adaptable Platforms** → 10
+* **CQH — Cryogenics, Quantum, H2** → 47
+* **IIF — Industrial Infrastructure, Facilities** → 07
+* **OOO — OS, Ontologies, Office** → 02-03, 13, 17-20, 40, 48, 58-59, 68-69, 86-90, 95-100
 
 ---
 
