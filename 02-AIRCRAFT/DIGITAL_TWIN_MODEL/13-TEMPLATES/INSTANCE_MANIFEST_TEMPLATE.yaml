@@ -1,0 +1,68 @@
+instance_manifest:
+  version: 1.0
+  
+  aircraft_id: "[e.g., ACFT-001]"
+  serial_number: "[Manufacturer serial number, e.g., MSN-12345]"
+  registration: "[Civil aviation registration, e.g., N12345 or G-ABCD]"
+  variant: "[Configuration variant, e.g., VARIANT_PAX]"
+  
+  baseline_reference:
+    baseline_id: "[e.g., BASELINE_CDR_2025-01-15_V1.0]"
+    baseline_path: "../../04-VERSIONING_CONFIG/PARAMETER_SETS/BASELINE/"
+  
+  as_built_configuration:
+    file_path: "AS_BUILT_CONFIG.yaml"
+    date_captured: "[e.g., 2025-01-10]"
+    source: "[e.g., Final Assembly, Manufacturing Records]"
+    deviations_from_baseline:
+      - parameter: "[e.g., wing_rigging_left_deg]"
+        baseline_value: 2.0
+        as_built_value: 2.15
+        unit: "degrees"
+        reason: "[e.g., Rigging tolerance ±0.2°]"
+      - parameter: "[e.g., engine_left_thrust_deviation_percent]"
+        baseline_value: 0.0
+        as_built_value: +1.2
+        unit: "percent"
+        reason: "[e.g., Engine acceptance test, within spec]"
+  
+  calibration_deltas:
+    file_path: "CALIBRATION_DELTAS.yaml"
+    date_calibrated: "[e.g., 2025-01-12]"
+    calibration_basis: "[e.g., Flight test, 10 flights, 50 hours]"
+    tuned_parameters:
+      - parameter: "[e.g., cd0_correction]"
+        delta: -0.002
+        unit: "(dimensionless)"
+        confidence: 0.95
+      - parameter: "[e.g., h2_boil_off_correction]"
+        delta: +0.3
+        unit: "percent per day"
+        confidence: 0.85
+  
+  maintenance_log:
+    file_path: "MAINTENANCE_LOG.csv"
+    last_updated: "[e.g., 2025-01-15]"
+    
+  deployment_info:
+    deployment_date: "[e.g., 2025-01-15]"
+    operator: "[e.g., Airline XYZ]"
+    operating_base: "[e.g., London Heathrow (EGLL)]"
+    
+  ownership:
+    responsible_engineer: "[Name]"
+    accountable_manager: "[Name, Digital Twin Lead]"
+    contact_email: "[email]"
+  
+  change_history:
+    - version: "1.0.0"
+      date: "[e.g., 2025-01-15]"
+      author: "[Name]"
+      description: "Initial instance creation"
+      change_request_id: "[e.g., CR-2025-001]"
+
+  related_documents:
+    - title: "Model Manifest"
+      path: "../../MODEL_MANIFEST.yaml"
+    - title: "Baseline Parameter Set"
+      path: "../../PARAMETER_SETS/BASELINE/CDR_BASELINE_2025-01-15.yaml"

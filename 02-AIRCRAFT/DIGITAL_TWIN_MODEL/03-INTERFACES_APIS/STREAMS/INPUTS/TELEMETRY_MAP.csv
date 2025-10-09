@@ -1,0 +1,51 @@
+# TELEMETRY_MAP
+
+**📍 [IDEALE-EU](../../../../) > [02-AIRCRAFT](../../../) > [DIGITAL_TWIN_MODEL](../../) > 03-INTERFACES_APIS/STREAMS/INPUTS > TELEMETRY_MAP**
+
+Signal → model input mapping from operational data hub to digital twin.
+
+## Purpose
+
+Maps telemetry signals from aircraft to digital twin model inputs.
+
+## CSV Format
+
+See `TELEMETRY_MAP.csv` for the full mapping table.
+
+| Column | Description |
+|--------|-------------|
+| **signal_id** | Unique signal identifier (e.g., "H2_TANK_PRES_01") |
+| **signal_name** | Human-readable name |
+| **source** | Data source (ACMS, FDAU, sensor ID) |
+| **unit** | Engineering unit (bar, K, kg/s, etc.) |
+| **rate_hz** | Sampling rate (Hz) |
+| **model** | Target model (aerodynamics, thermal, etc.) |
+| **model_input** | Model input parameter name |
+| **transform** | Unit conversion or transformation (if needed) |
+
+## Example Mapping
+
+```csv
+signal_id,signal_name,source,unit,rate_hz,model,model_input,transform
+H2_TANK_PRES_01,H2 Tank Pressure,ACMS_H2_01,bar,1,ENERGY_H2,tank_pressure_bar,none
+H2_TANK_TEMP_01,H2 Tank Temperature,ACMS_H2_01,K,1,ENERGY_H2,tank_temp_K,none
+ENG_EGT_L,Left Engine EGT,FADEC_L,degC,10,PROPULSION,egt_left_C,none
+AIRSPEED_IAS,Indicated Airspeed,ADC_01,kts,10,AERODYNAMICS,ias_kts,IAS_to_TAS
+ALT_PRES,Pressure Altitude,ADC_01,ft,10,ENVIRONMENT,altitude_ft,none
+```
+
+## Data Validation
+
+All telemetry data undergoes validation before mapping:
+1. **Range Check**: Signal within expected min/max (see `../../01-ARCHITECTURE/ASSUMPTIONS_LIMITATIONS.md`)
+2. **Rate Check**: No excessive rate of change (spike detection)
+3. **Consistency Check**: Cross-signal validation (e.g., EGT vs. fuel flow)
+
+## Integration
+
+- **Source**: `01-FLEET/OPERATIONAL_DATA_HUB/` (see `../../09-INTEGRATIONS/OP_DATA_HUB_LINKS.md`)
+- **Destination**: Twin model runtime (see `../../02-MODELS/`)
+
+---
+
+**Status**: Configuration-controlled per `00-PROGRAM/CONFIG_MGMT/`

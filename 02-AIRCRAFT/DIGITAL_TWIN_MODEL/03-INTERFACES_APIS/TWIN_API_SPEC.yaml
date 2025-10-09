@@ -1,0 +1,210 @@
+openapi: 3.1.0
+info:
+  title: Aircraft Digital Twin API
+  version: 1.0.0
+  description: REST/gRPC API specification for aircraft digital twin interactions
+  contact:
+    name: Digital Twin Team
+    email: digital-twin@ideale-eu.org
+
+servers:
+  - url: https://api.ideale-eu.org/twin/v1
+    description: Production API
+  - url: https://api-staging.ideale-eu.org/twin/v1
+    description: Staging API
+
+security:
+  - OAuth2: []
+  - mTLS: []
+
+paths:
+  /aircraft/{aircraft_id}/state:
+    get:
+      summary: Get current aircraft state
+      description: Retrieve real-time state predictions from digital twin
+      parameters:
+        - name: aircraft_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "ACFT-001"
+      responses:
+        '200':
+          description: Current aircraft state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AircraftState'
+        '404':
+          description: Aircraft not found
+        '429':
+          description: Rate limit exceeded (100 req/min)
+
+  /aircraft/{aircraft_id}/kpis:
+    get:
+      summary: Get Key Performance Indicators
+      description: Retrieve health scores, RUL, energy KPIs
+      parameters:
+        - name: aircraft_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: kpi_type
+          in: query
+          schema:
+            type: string
+            enum: [health, rul, energy, all]
+      responses:
+        '200':
+          description: KPI data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KPIs'
+
+  /aircraft/{aircraft_id}/what-if:
+    post:
+      summary: Execute what-if scenario
+      description: Run simulation with hypothetical parameters
+      parameters:
+        - name: aircraft_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhatIfScenario'
+      responses:
+        '200':
+          description: Scenario results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScenarioResults'
+        '400':
+          description: Invalid scenario parameters
+        '503':
+          description: Simulation resources unavailable
+
+components:
+  schemas:
+    AircraftState:
+      type: object
+      properties:
+        aircraft_id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        position:
+          $ref: '#/components/schemas/Position'
+        velocity:
+          $ref: '#/components/schemas/Velocity'
+        fuel:
+          $ref: '#/components/schemas/FuelState'
+        systems:
+          $ref: '#/components/schemas/SystemsHealth'
+
+    Position:
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+        altitude_ft:
+          type: number
+
+    Velocity:
+      type: number
+      description: True airspeed in knots
+
+    FuelState:
+      type: object
+      properties:
+        h2_mass_kg:
+          type: number
+        tank_pressure_bar:
+          type: number
+        boil_off_rate_percent_per_day:
+          type: number
+
+    SystemsHealth:
+      type: object
+      properties:
+        propulsion:
+          $ref: '#/components/schemas/HealthScore'
+        structures:
+          $ref: '#/components/schemas/HealthScore'
+        thermal:
+          $ref: '#/components/schemas/HealthScore'
+
+    HealthScore:
+      type: object
+      properties:
+        score:
+          type: number
+          minimum: 0
+          maximum: 100
+        status:
+          type: string
+          enum: [healthy, degraded, critical]
+
+    KPIs:
+      type: object
+      properties:
+        health_score:
+          type: number
+        rul_hours:
+          type: number
+        energy_efficiency:
+          type: number
+
+    WhatIfScenario:
+      type: object
+      properties:
+        scenario_type:
+          type: string
+          enum: [failure_mode, design_change, extreme_condition]
+        parameters:
+          type: object
+          additionalProperties: true
+
+    ScenarioResults:
+      type: object
+      properties:
+        scenario_id:
+          type: string
+        performance_impact:
+          type: object
+        safety_margins:
+          type: object
+
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://auth.ideale-eu.org/oauth/token
+          scopes:
+            read:twin: Read twin data
+            write:twin: Write twin data
+    mTLS:
+      type: mutualTLS
+
+x-rate-limit:
+  requests_per_minute: 100
+  burst: 20
+
+x-auth-requirements:
+  - OAuth2 token required for all endpoints
+  - mTLS certificate required for production API
+  - Audit logging enabled for all requests

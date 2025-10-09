@@ -1,0 +1,124 @@
+model_manifest:
+  version: 1.0
+  
+  model_id: "ACFT_TWIN_MAIN_V1.0"
+  model_name: "Aircraft Digital Twin - Main Model"
+  model_type: "Integrated (Physics + Behavioral + Data-Driven)"
+  
+  version_info:
+    major: 1
+    minor: 0
+    patch: 0
+    build_date: "2025-01-15"
+    git_commit_sha: "abc123def456789"
+    baseline_id: "BASELINE_CDR_2025-01-15_V1.0"
+  
+  ownership:
+    responsible_engineer: "Jane Smith"
+    accountable_manager: "John Doe (Digital Twin Lead)"
+    organization: "IDEALE-EU Digital Twin Team"
+    contact_email: "digital-twin@ideale-eu.org"
+  
+  data_provenance:
+    training_data:
+      - source: "Flight Test Campaign FY2024"
+        dataset_id: "FT_2024_Q3_Q4"
+        num_flights: 250
+        flight_hours: 1500
+        date_range: "2024-07-01 to 2024-12-31"
+      - source: "Ground Test Rigs"
+        dataset_id: "GT_2024_H2_THERMAL"
+        num_tests: 120
+        date_range: "2024-01-01 to 2024-12-31"
+    
+    calibration_data:
+      - source: "Wind Tunnel Tests"
+        dataset_id: "WT_2024_AERO"
+        test_points: 500
+        date: "2024-03-15"
+      - source: "Structural Ground Test"
+        dataset_id: "SGT_2024_WING"
+        load_cases: 50
+        date: "2024-05-20"
+  
+  license:
+    type: "Proprietary"
+    owner: "IDEALE-EU Consortium"
+    restrictions: "Internal use only. Not for distribution outside consortium."
+    certification_basis: "EASA CS-25, FAA FAR Part 25"
+  
+  model_components:
+    physics_models:
+      - model_id: "AERO_CFD_SURROGATE_V1.2"
+        file_path: "02-MODELS/PHYSICS/AERODYNAMICS/CFD_SURROGATES/gpr_model_v1.2.pkl"
+        checksum_sha256: "abc123..."
+        fidelity_level: 4
+      - model_id: "STRUCT_FEM_REDUCED_V1.0"
+        file_path: "02-MODELS/PHYSICS/STRUCTURES/FEM_MODELS/reduced_fem_v1.0.h5"
+        checksum_sha256: "def456..."
+        fidelity_level: 3
+      - model_id: "THERMAL_CRYO_TANK_V1.1"
+        file_path: "02-MODELS/PHYSICS/THERMAL/CRYO_TANK/tank_model_v1.1.py"
+        checksum_sha256: "ghi789..."
+        fidelity_level: 4
+      - model_id: "PROPULSION_ENGINE_PERF_V1.0"
+        file_path: "02-MODELS/PHYSICS/PROPULSION/ENGINE_MODELS/engine_map_v1.0.csv"
+        checksum_sha256: "jkl012..."
+        fidelity_level: 5
+      - model_id: "H2_ENERGY_TANK_BOP_V1.0"
+        file_path: "02-MODELS/PHYSICS/ENERGY_H2/TANK_MODELS/h2_tank_v1.0.py"
+        checksum_sha256: "mno345..."
+        fidelity_level: 4
+    
+    behavioral_models:
+      - model_id: "STATE_MACHINE_IMA_HEALTH_V1.0"
+        file_path: "02-MODELS/BEHAVIORAL/STATE_MACHINES/IMA_HEALTH/ima_health_sm.c"
+        checksum_sha256: "pqr678..."
+      - model_id: "CONTROL_LOGIC_AUTOPILOT_V1.0"
+        file_path: "02-MODELS/BEHAVIORAL/CONTROL_LOGIC/AUTOPILOT/autopilot_v1.0.slx"
+        checksum_sha256: "stu901..."
+    
+    data_driven_models:
+      - model_id: "ANOMALY_DETECTOR_H2_LEAK_V1.2.3"
+        file_path: "02-MODELS/DATA_DRIVEN/ONNX_MODELS/SIGNED_MODELS/anomaly_detector_h2_leak_v1.2.3.onnx"
+        checksum_sha256: "vwx234..."
+        signature_gpg: "-----BEGIN PGP SIGNATURE-----..."
+        training_accuracy: 0.92
+        validation_auc: 0.88
+      - model_id: "SURROGATE_AERO_NEURAL_V1.0.5"
+        file_path: "02-MODELS/DATA_DRIVEN/SURROGATES/NEURAL_SURROGATES/aero_nn_v1.0.5.onnx"
+        checksum_sha256: "yz1567..."
+        signature_gpg: "-----BEGIN PGP SIGNATURE-----..."
+        rmse_vs_physics: 0.038
+  
+  validation_status:
+    validation_plan_ref: "06-VALIDATION_VERIFICATION/VVP_PLAN.md"
+    validation_report_ref: "06-VALIDATION_VERIFICATION/RESULTS/VALIDATION_REPORT_V1.0.pdf"
+    validation_date: "2025-01-10"
+    validation_engineer: "Alice Johnson"
+    test_coverage_percent: 96
+    acceptance_criteria_met: true
+  
+  deployment_targets:
+    - target: "Edge (On-Aircraft IMA)"
+      models: ["PROPULSION_ENGINE_PERF_V1.0", "ANOMALY_DETECTOR_H2_LEAK_V1.2.3"]
+      constraints: "CPU <15%, Memory <256MB"
+    - target: "Ground (Operations Center)"
+      models: "All models"
+      constraints: "None"
+  
+  change_history:
+    - version: "1.0.0"
+      date: "2025-01-15"
+      author: "Digital Twin Team"
+      description: "Initial release for CDR baseline"
+      change_request_id: "CR-2025-001"
+      ccb_approval_date: "2025-01-10"
+
+  related_documents:
+    - title: "Twin Scope Definition"
+      path: "01-ARCHITECTURE/TWIN_SCOPE.md"
+    - title: "Model Calibration Report"
+      path: "05-CALIBRATION_ALIGNMENT/ALIGNMENT_REPORTS/CALIBRATION_REPORT_V1.0.pdf"
+    - title: "Validation Report"
+      path: "06-VALIDATION_VERIFICATION/RESULTS/VALIDATION_REPORT_V1.0.pdf"

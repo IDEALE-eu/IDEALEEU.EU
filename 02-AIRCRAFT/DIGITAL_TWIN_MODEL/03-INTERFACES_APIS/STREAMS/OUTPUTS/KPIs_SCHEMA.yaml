@@ -1,0 +1,125 @@
+# KPIs_SCHEMA
+
+**📍 [IDEALE-EU](../../../../) > [02-AIRCRAFT](../../../) > [DIGITAL_TWIN_MODEL](../../) > 03-INTERFACES_APIS/STREAMS/OUTPUTS > KPIs_SCHEMA**
+
+Health, RUL, energy KPIs structured schema for digital twin outputs.
+
+## Purpose
+
+Defines structured schema for KPIs (Key Performance Indicators) output by the digital twin.
+
+## YAML Schema
+
+```yaml
+kpi_schema:
+  version: 1.0
+  timestamp: "ISO 8601 format"
+  aircraft_id: "string (e.g., ACFT-001)"
+  
+  health:
+    overall_score:
+      value: "0-100 (100 = perfect health)"
+      status: "healthy | degraded | critical"
+    subsystems:
+      propulsion:
+        score: "0-100"
+        status: "string"
+        anomaly_flags: ["list of detected anomalies"]
+      structures:
+        score: "0-100"
+        fatigue_index: "0-1 (0=new, 1=end of life)"
+      thermal:
+        score: "0-100"
+        insulation_effectiveness: "0-1"
+      h2_energy:
+        score: "0-100"
+        leak_detected: "boolean"
+
+  rul:
+    description: "Remaining Useful Life predictions"
+    components:
+      - component_id: "string (e.g., H2_VALVE_01)"
+        rul_hours: "number (predicted hours to failure)"
+        rul_cycles: "number (predicted cycles to failure)"
+        confidence: "0-1 (confidence interval)"
+        replacement_recommendation: "string (immediate | planned | monitor)"
+
+  energy:
+    h2_mass_kg: "number (current H2 mass)"
+    boil_off_rate_percent_per_day: "number"
+    fuel_efficiency_kg_per_nm: "number (kg per nautical mile)"
+    range_remaining_nm: "number (predicted range)"
+
+  performance:
+    drag_increase_percent: "number (relative to baseline)"
+    thrust_degradation_percent: "number (relative to baseline)"
+    efficiency_delta_percent: "number (relative to baseline)"
+
+  alerts:
+    - alert_id: "string"
+      severity: "info | warning | critical"
+      message: "string"
+      timestamp: "ISO 8601"
+      recommended_action: "string"
+```
+
+## Example JSON Output
+
+```json
+{
+  "version": "1.0",
+  "timestamp": "2025-01-15T14:32:00Z",
+  "aircraft_id": "ACFT-001",
+  "health": {
+    "overall_score": 92,
+    "status": "healthy",
+    "subsystems": {
+      "propulsion": {
+        "score": 95,
+        "status": "healthy",
+        "anomaly_flags": []
+      },
+      "h2_energy": {
+        "score": 88,
+        "status": "degraded",
+        "leak_detected": false
+      }
+    }
+  },
+  "rul": {
+    "components": [
+      {
+        "component_id": "H2_VALVE_01",
+        "rul_hours": 1250,
+        "rul_cycles": 800,
+        "confidence": 0.85,
+        "replacement_recommendation": "planned"
+      }
+    ]
+  },
+  "energy": {
+    "h2_mass_kg": 3450,
+    "boil_off_rate_percent_per_day": 1.8,
+    "fuel_efficiency_kg_per_nm": 2.1,
+    "range_remaining_nm": 1640
+  },
+  "alerts": [
+    {
+      "alert_id": "ALERT-20250115-001",
+      "severity": "warning",
+      "message": "H2 boil-off rate above nominal (1.8% vs. 1.5% expected)",
+      "timestamp": "2025-01-15T14:30:00Z",
+      "recommended_action": "Inspect insulation at next maintenance"
+    }
+  ]
+}
+```
+
+## Integration
+
+- **Destination**: `01-FLEET/OPERATIONAL_DATA_HUB/` (see `../../09-INTEGRATIONS/OP_DATA_HUB_LINKS.md`)
+- **Consumers**: Fleet dashboards, predictive maintenance system, MRO planning
+
+---
+
+**Status**: Configuration-controlled per `00-PROGRAM/CONFIG_MGMT/`
