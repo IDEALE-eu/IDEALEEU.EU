@@ -5,7 +5,7 @@ Manage coupling between optimization, CAD models, and CAE analysis.
 
 ## Subdirectories
 
-### CAD_LINKS/ — CAD Model Links
+### [CAD_LINKS/](CAD_LINKS/) — CAD Model Links
 Parametric CAD model integration:
 - Parametric CAD model references
 - Design variable to CAD parameter mappings
@@ -16,7 +16,7 @@ Parametric CAD model integration:
 
 **Purpose**: Enable automated geometry updates during optimization loops
 
-### CAE_LINKS/ — CAE Analysis Links
+### [CAE_LINKS/](CAE_LINKS/) — CAE Analysis Links
 FEA model coupling:
 - Mesh update procedures
 - Analysis model templates

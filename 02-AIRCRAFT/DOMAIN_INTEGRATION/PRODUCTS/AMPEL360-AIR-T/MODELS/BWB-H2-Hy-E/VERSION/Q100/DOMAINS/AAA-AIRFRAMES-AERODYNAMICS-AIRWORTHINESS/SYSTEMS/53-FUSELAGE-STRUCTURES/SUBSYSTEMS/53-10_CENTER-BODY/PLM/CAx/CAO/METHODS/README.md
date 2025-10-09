@@ -5,7 +5,7 @@ Optimization algorithms and methodologies applied to center body structural desi
 
 ## Subdirectories
 
-### TOPOLOGY/ — Topology Optimization
+### [TOPOLOGY/](TOPOLOGY/) — Topology Optimization
 Material layout optimization:
 - Density-based methods (SIMP, RAMP)
 - Level-set methods
@@ -16,7 +16,7 @@ Material layout optimization:
 
 **Application**: Early conceptual design phase for optimal material distribution
 
-### SIZE/ — Sizing Optimization
+### [SIZE/](SIZE/) — Sizing Optimization
 Parametric sizing of existing structures:
 - Cross-sectional dimension optimization
 - Thickness distributions
@@ -27,7 +27,7 @@ Parametric sizing of existing structures:
 
 **Application**: Detailed design phase for production structures
 
-### SHAPE/ — Shape Optimization
+### [SHAPE/](SHAPE/) — Shape Optimization
 Geometric boundary optimization:
 - Structural contour optimization
 - Surface shape refinement

@@ -5,7 +5,7 @@ Define structural and system constraints for center body optimization to ensure 
 
 ## Subdirectories
 
-### STRENGTH/ — Strength Constraints
+### [STRENGTH/](STRENGTH/) — Strength Constraints
 Structural strength requirements:
 - Ultimate load capability (1.5 × limit loads)
 - Material allowables (yield, ultimate, bearing)
@@ -13,7 +13,7 @@ Structural strength requirements:
 - Static strength verification
 - Reserve factors per CS-25
 
-### BUCKLING/ — Buckling Constraints
+### [BUCKLING/](BUCKLING/) — Buckling Constraints
 Stability requirements:
 - Panel buckling (local and global)
 - Column buckling of stiffeners
@@ -21,7 +21,7 @@ Stability requirements:
 - Crippling of stiffeners
 - Buckling margins and knockdown factors
 
-### PRESSURIZATION/ — Pressurization Constraints
+### [PRESSURIZATION/](PRESSURIZATION/) — Pressurization Constraints
 Pressure vessel requirements:
 - Cabin pressure differential (8.6 psi per Q100 config)
 - Hoop stress limits
@@ -29,21 +29,21 @@ Pressure vessel requirements:
 - Fatigue life under pressurization cycles
 - Crack propagation limits
 
-### CG/ — Center of Gravity Constraints
+### [CG/](CG/) — Center of Gravity Constraints
 Mass distribution requirements:
 - CG location envelope
 - Moment of inertia limits
 - Balance requirements
 - Loading scenarios
 
-### ACCESS/ — Access and Maintainability Constraints
+### [ACCESS/](ACCESS/) — Access and Maintainability Constraints
 Design for maintenance:
 - Minimum access panel sizes
 - Inspection point accessibility
 - Tool clearance requirements
 - Maintenance task compatibility
 
-### CLEARANCES/ — Clearance Constraints
+### [CLEARANCES/](CLEARANCES/) — Clearance Constraints
 Geometric and interference constraints:
 - Structural member clearances
 - System routing clearances

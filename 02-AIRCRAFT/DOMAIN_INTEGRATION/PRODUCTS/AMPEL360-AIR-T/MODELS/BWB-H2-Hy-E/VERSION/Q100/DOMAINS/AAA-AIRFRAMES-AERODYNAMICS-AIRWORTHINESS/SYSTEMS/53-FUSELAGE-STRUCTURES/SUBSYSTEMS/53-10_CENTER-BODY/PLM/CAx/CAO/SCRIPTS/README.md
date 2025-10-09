@@ -5,7 +5,7 @@ Automation and workflow scripts for optimization processes.
 
 ## Subdirectories
 
-### PRE/ — Pre-processing Scripts
+### [PRE/](PRE/) — Pre-processing Scripts
 Scripts for optimization setup:
 - Problem definition parsers
 - Design space initialization
@@ -17,7 +17,7 @@ Scripts for optimization setup:
 
 **Languages**: Python, MATLAB, Bash
 
-### POST/ — Post-processing Scripts
+### [POST/](POST/) — Post-processing Scripts
 Scripts for result analysis:
 - Result extraction and parsing
 - Pareto front generation
@@ -29,7 +29,7 @@ Scripts for result analysis:
 
 **Languages**: Python, MATLAB, R
 
-### DRIVERS/ — Optimization Drivers
+### [DRIVERS/](DRIVERS/) — Optimization Drivers
 Master scripts coordinating optimization workflow:
 - End-to-end optimization drivers
 - CAD/CAE/Optimizer coupling

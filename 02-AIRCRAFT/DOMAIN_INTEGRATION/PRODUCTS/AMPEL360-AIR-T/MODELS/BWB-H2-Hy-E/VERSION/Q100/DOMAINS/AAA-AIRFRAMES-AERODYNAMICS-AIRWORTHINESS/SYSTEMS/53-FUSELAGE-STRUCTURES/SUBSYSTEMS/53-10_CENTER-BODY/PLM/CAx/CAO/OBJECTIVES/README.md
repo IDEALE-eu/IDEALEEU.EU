@@ -5,7 +5,7 @@ Define optimization objective functions for center body design, supporting singl
 
 ## Subdirectories
 
-### MASS/ — Mass Minimization
+### [MASS/](MASS/) — Mass Minimization
 Structural mass objectives:
 - Total structural mass
 - Operating empty weight (OEW) contribution
@@ -16,7 +16,7 @@ Structural mass objectives:
 
 **Priority**: Primary objective for most structural optimizations
 
-### STIFFNESS/ — Stiffness Objectives
+### [STIFFNESS/](STIFFNESS/) — Stiffness Objectives
 Structural stiffness targets:
 - Global stiffness requirements
 - Deflection limits under load
@@ -26,7 +26,7 @@ Structural stiffness targets:
 
 **Priority**: Often a constraint, sometimes co-optimized with mass
 
-### COST/ — Cost Objectives
+### [COST/](COST/) — Cost Objectives
 Lifecycle cost minimization:
 - Manufacturing cost
 - Material cost

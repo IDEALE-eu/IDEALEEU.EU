@@ -5,7 +5,7 @@ Quality assurance, validation, and reproducibility checks for optimization workf
 
 ## Subdirectories
 
-### REPRODUCIBILITY/ — Reproducibility Validation
+### [REPRODUCIBILITY/](REPRODUCIBILITY/) — Reproducibility Validation
 Ensure optimization runs are reproducible:
 - Reference solutions and benchmarks
 - Regression test cases
@@ -17,7 +17,7 @@ Ensure optimization runs are reproducible:
 
 **Purpose**: Verify identical results with same inputs and configuration
 
-### CHECKS/ — Quality Checks
+### [CHECKS/](CHECKS/) — Quality Checks
 Validation and verification procedures:
 - Input data validation scripts
 - Constraint violation checks
@@ -51,4 +51,4 @@ Validation and verification procedures:
 - Update checks when methods change
 - Archive validation evidence
 - Link to Digital Twin validation framework
-- Follow 00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/TWIN_VALIDATION/
+- Follow [00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/TWIN_VALIDATION/](../../../../../../../../../../../../00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/TWIN_VALIDATION/)

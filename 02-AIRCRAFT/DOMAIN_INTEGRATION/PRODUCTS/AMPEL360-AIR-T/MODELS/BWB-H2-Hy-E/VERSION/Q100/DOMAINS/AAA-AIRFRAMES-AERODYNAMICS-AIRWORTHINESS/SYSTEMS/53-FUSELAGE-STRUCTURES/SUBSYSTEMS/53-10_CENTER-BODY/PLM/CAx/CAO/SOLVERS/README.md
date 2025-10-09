@@ -5,7 +5,7 @@ Computational solvers and platforms for executing optimization algorithms.
 
 ## Subdirectories
 
-### CLASSICAL/ — Classical Optimization Solvers
+### [CLASSICAL/](CLASSICAL/) — Classical Optimization Solvers
 Traditional optimization software and libraries:
 - **Commercial Tools**:
   - Altair OptiStruct
@@ -20,31 +20,31 @@ Traditional optimization software and libraries:
 
 **Capabilities**: Gradient-based and gradient-free methods, handles thousands of variables
 
-### QUANTUM_OA/ — Quantum-Assisted Optimization
+### [QUANTUM_OA/](QUANTUM_OA/) — Quantum-Assisted Optimization
 Quantum and quantum-inspired algorithms for optimization:
 
-#### QUBO/ — Quadratic Unconstrained Binary Optimization
+#### [QUBO/](QUANTUM_OA/QUBO/) — Quadratic Unconstrained Binary Optimization
 QUBO problem formulations:
 - Binary variable encodings
 - Penalty function formulations
 - Ising model equivalents
 - Problem reformulations
 
-#### MAPPING/ — Problem Mapping
+#### [MAPPING/](QUANTUM_OA/MAPPING/) — Problem Mapping
 Mapping optimization problems to quantum hardware:
 - Graph embeddings
 - Minor embeddings for quantum annealers
 - Qubit allocation strategies
 - Problem decomposition techniques
 
-#### RUNS/ — Quantum Solver Runs
+#### [RUNS/](QUANTUM_OA/RUNS/) — Quantum Solver Runs
 Execution records of quantum solvers:
 - D-Wave quantum annealer runs
 - Quantum Approximate Optimization Algorithm (QAOA) implementations
 - Hybrid quantum-classical runs
 - Run parameters and configurations
 
-#### LOGS/ — Quantum Solver Logs
+#### [LOGS/](QUANTUM_OA/LOGS/) — Quantum Solver Logs
 Execution logs and diagnostics:
 - Solver output logs
 - Convergence histories

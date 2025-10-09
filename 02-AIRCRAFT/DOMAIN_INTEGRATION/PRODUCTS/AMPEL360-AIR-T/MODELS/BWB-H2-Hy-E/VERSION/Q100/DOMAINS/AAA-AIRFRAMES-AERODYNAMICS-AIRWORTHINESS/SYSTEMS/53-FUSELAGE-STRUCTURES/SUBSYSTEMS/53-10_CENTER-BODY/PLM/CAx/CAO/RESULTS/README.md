@@ -5,7 +5,7 @@ Store and document optimization results, including Pareto fronts, plots, and for
 
 ## Subdirectories
 
-### PARETO/ — Pareto Frontier Results
+### [PARETO/](PARETO/) — Pareto Frontier Results
 Multi-objective optimization Pareto sets:
 - Pareto-optimal design points
 - Trade-off curves (mass vs. stiffness, mass vs. cost)
@@ -16,7 +16,7 @@ Multi-objective optimization Pareto sets:
 
 **Format**: CSV data files, JSON design vectors, visualization plots
 
-### PLOTS/ — Visualization and Plots
+### [PLOTS/](PLOTS/) — Visualization and Plots
 Graphical results and visualizations:
 - Convergence plots
 - Objective function histories
@@ -28,7 +28,7 @@ Graphical results and visualizations:
 
 **Format**: PNG, PDF, SVG; matplotlib, Tecplot, or commercial tool outputs
 
-### REPORTS/ — Formal Reports
+### [REPORTS/](REPORTS/) — Formal Reports
 Comprehensive optimization study reports:
 - Executive summaries
 - Problem formulation documentation

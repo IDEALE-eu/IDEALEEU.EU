@@ -5,7 +5,7 @@ Centralized engineering data repositories for materials and loads used in optimi
 
 ## Subdirectories
 
-### MATERIALS_DB/ — Materials Database
+### [MATERIALS_DB/](MATERIALS_DB/) — Materials Database
 Material properties and allowables:
 - Composite material properties (CFRP per Q100 config)
 - Aluminum alloy properties (secondary structure)
@@ -18,7 +18,7 @@ Material properties and allowables:
 
 **Format**: JSON, XML, CSV, or solver-specific material libraries
 
-### LOADS_DB/ — Loads Database
+### [LOADS_DB/](LOADS_DB/) — Loads Database
 Structural loads and load cases:
 - Flight loads (limit and ultimate, per Q100 envelope)
 - Ground loads (landing, taxiing, towing)
@@ -41,6 +41,6 @@ Structural loads and load cases:
 - Validate data before use in optimization
 
 ## Traceability
-- Materials data: Link to Q100/00-CONFIG/RULES.md
+- Materials data: Link to [Q100/00-CONFIG/RULES.md](../../../../../../../00-CONFIG/RULES.md)
 - Loads data: Link to loads analysis reports
-- Certifications: Reference 00-PROGRAM/CONFIG_MGMT/
+- Certifications: Reference [00-PROGRAM/CONFIG_MGMT/](../../../../../../../../../../../../00-PROGRAM/CONFIG_MGMT/)

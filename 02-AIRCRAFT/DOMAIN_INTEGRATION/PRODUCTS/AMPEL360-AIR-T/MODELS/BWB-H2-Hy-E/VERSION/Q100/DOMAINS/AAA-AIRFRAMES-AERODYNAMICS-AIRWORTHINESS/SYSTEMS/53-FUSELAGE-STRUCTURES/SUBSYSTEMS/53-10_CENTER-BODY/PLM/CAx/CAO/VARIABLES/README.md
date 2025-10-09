@@ -5,7 +5,7 @@ Definition and management of design variables for structural optimization of the
 
 ## Subdirectories
 
-### GEOMETRY/ — Geometric Design Variables
+### [GEOMETRY/](GEOMETRY/) — Geometric Design Variables
 Parametric geometry definitions:
 - Shell thickness distributions
 - Stringer/frame spacing and dimensions
@@ -13,7 +13,7 @@ Parametric geometry definitions:
 - Reinforcement locations
 - Cutout positions and sizes
 
-### LAYUP/ — Composite Layup Variables
+### [LAYUP/](LAYUP/) — Composite Layup Variables
 Composite material layup optimization:
 - Ply orientations (0°, ±45°, 90°)
 - Ply thicknesses
@@ -21,7 +21,7 @@ Composite material layup optimization:
 - Ply drop-off locations
 - Hybrid material configurations
 
-### GAUGES/ — Thickness and Sizing Variables
+### [GAUGES/](GAUGES/) — Thickness and Sizing Variables
 Material thickness and sizing parameters:
 - Skin thickness distributions
 - Stiffener dimensions (height, width, thickness)
@@ -29,7 +29,7 @@ Material thickness and sizing parameters:
 - Splice plate dimensions
 - Local reinforcement sizing
 
-### FASTENERS/ — Fastener Design Variables
+### [FASTENERS/](FASTENERS/) — Fastener Design Variables
 Mechanical fastener parameters:
 - Fastener type and diameter
 - Fastener spacing and patterns

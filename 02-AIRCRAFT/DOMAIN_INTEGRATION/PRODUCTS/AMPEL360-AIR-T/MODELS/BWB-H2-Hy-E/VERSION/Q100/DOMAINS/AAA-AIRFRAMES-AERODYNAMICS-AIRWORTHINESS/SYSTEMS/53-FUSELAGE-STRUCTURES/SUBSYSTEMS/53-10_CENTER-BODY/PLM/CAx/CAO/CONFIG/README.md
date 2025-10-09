@@ -5,7 +5,7 @@ Store optimization configuration files, parameters, and random seeds for reprodu
 
 ## Subdirectories
 
-### PARAMS/ — Parameter Files
+### [PARAMS/](PARAMS/) — Parameter Files
 Optimization algorithm parameters:
 - Solver settings (tolerance, max iterations, etc.)
 - Algorithm-specific parameters (population size, mutation rate)
@@ -16,7 +16,7 @@ Optimization algorithm parameters:
 
 **Format**: JSON, YAML, XML, or solver-specific formats
 
-### SEEDS/ — Random Seeds
+### [SEEDS/](SEEDS/) — Random Seeds
 Random number generator seeds for reproducibility:
 - Initial population seeds (genetic algorithms, PSO)
 - Monte Carlo simulation seeds

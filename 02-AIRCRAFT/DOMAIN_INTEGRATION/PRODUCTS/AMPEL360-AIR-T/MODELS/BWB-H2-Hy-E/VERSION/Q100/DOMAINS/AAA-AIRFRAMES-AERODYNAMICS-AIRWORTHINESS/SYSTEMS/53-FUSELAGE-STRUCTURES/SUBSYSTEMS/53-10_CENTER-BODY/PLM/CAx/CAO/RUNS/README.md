@@ -5,7 +5,7 @@ Manage optimization study execution, including run configurations and execution 
 
 ## Subdirectories
 
-### STUDIES/ — Optimization Studies
+### [STUDIES/](STUDIES/) — Optimization Studies
 Individual optimization study definitions:
 - Study configuration files
 - Initial design points
@@ -17,7 +17,7 @@ Individual optimization study definitions:
 
 **Organization**: One subdirectory per study (e.g., `STUDY_001_MASS_MIN/`, `STUDY_002_MULTIOBJECTIVE/`)
 
-### LOGS/ — Execution Logs
+### [LOGS/](LOGS/) — Execution Logs
 Runtime logs and diagnostics:
 - Solver output logs
 - Convergence histories
