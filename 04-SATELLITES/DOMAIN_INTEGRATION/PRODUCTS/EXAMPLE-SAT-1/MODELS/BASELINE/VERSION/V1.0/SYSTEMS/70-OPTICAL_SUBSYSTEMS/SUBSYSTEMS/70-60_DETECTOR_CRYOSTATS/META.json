@@ -1,0 +1,8 @@
+{
+  "scope": "subsystem",
+  "mission": "EXAMPLE-SAT-1",
+  "model": "BASELINE",
+  "version": "V1.0",
+  "sta_system": "70-OPTICAL_SUBSYSTEMS",
+  "subsystem": "70-60_DETECTOR_CRYOSTATS"
+}

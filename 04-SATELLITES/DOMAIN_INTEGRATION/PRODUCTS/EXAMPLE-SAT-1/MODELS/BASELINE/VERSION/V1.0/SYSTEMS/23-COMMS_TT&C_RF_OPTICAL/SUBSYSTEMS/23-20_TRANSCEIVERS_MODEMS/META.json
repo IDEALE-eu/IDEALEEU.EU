@@ -1,0 +1,8 @@
+{
+  "scope": "subsystem",
+  "mission": "EXAMPLE-SAT-1",
+  "model": "BASELINE",
+  "version": "V1.0",
+  "sta_system": "23-COMMS_TT&C_RF_OPTICAL",
+  "subsystem": "23-20_TRANSCEIVERS_MODEMS"
+}

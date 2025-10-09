@@ -1,0 +1,10 @@
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+31,23,data,digital,CCSDS,0,10Mbps,Telemetry downlink
+31,24,telemetry,digital,CAN,0,100kbps,EPS telemetry
+31,34,data,digital,RS422,0,1Mbps,GNC data exchange
+31,40,data,digital,SpaceWire,0,100Mbps,Internal data bus
+31,42,data,digital,Ethernet,0,1Gbps,FSW interface
+31,45,telemetry,digital,CAN,0,100kbps,Health monitoring
+31,70,data,digital,CameraLink,0,500Mbps,Optical payload data
+31,71,data,digital,LVDS,0,200Mbps,Science data
+31,97,data,electrical,harness,0,,Data harness connections

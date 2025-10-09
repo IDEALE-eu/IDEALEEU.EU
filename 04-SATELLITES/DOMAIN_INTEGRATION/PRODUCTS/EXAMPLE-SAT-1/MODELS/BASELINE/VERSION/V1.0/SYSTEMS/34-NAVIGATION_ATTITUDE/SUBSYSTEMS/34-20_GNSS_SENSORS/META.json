@@ -1,0 +1,8 @@
+{
+  "scope": "subsystem",
+  "mission": "EXAMPLE-SAT-1",
+  "model": "BASELINE",
+  "version": "V1.0",
+  "sta_system": "34-NAVIGATION_ATTITUDE",
+  "subsystem": "34-20_GNSS_SENSORS"
+}

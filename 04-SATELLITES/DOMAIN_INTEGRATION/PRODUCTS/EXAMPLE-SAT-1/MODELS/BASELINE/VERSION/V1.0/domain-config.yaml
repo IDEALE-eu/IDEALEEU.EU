@@ -1,0 +1,6 @@
+rules:
+  plm_at_domain_level: false
+  systems_required: true
+  harness_chapter: 97  # STA-97, not ATA-92
+  plm_in_subsystems_only: true
+  ecss_compliance: true
