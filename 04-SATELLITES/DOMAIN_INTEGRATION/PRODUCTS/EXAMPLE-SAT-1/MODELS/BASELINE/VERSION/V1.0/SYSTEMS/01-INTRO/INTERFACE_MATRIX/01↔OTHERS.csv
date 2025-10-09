@@ -1,1 +1,12 @@
 from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+01-INTRO,23-TT&C,command+telemetry,RF (S-band/X-band),CCSDS TM/TC (blue/green),-,2–256 kbps,"Mode commands, HK downlink windows"
+01-INTRO,31-DATA_HANDLING,data+timeline,copper backplane,SpaceWire RMAP / CCSDS UDP, -,100 Mb/s,"Mode tables, procedure timelines"
+01-INTRO,24-ELECTRICAL_POWER,power-budget-hook,―,Budget Contract (EPS profile),TBD,―,"Load-shed levels per mode; survival sets"
+01-INTRO,21-THERMAL_CONTROL,thermal-budget-hook,―,Thermal Budget Contract,―,―,"Mode envelopes for heaters/radiators"
+01-INTRO,34-NAVIGATION_ATTITUDE,timebase+sync,copper (I/O),1PPS + IRIG-B / PTP (1588),-,―,"Authoritative time for procedures/FDIR"
+01-INTRO,42-AVIONICS_CONTROL,configuration+health,copper (A653 backplane),ARINC653 Health/Config API, -,―,"Distribution of mode configs; sanity hooks"
+01-INTRO,45-HEALTH_MONITORING,telemetry-map,copper (I/O),CCSDS packet map (HK sets),-,up to 64 kbps,"Enter/exit mode stamps; FDIR counters"
+01-INTRO,71-INSTRUMENTS_PAYLOADS,scheduling+data,copper (SpaceWire),SpaceWire + CCSDS frames, -,10–200 Mb/s,"Observation windows; calibration sequences"
+01-INTRO,92-EWIS_HARNESS,physical-wiring,wire/cable,―,―,―,"Harness routing only; no logical signals here"
+01-INTRO,94-ELECTRONIC_COMPARTMENTS,thermal+EMC-constraints,―,Compliance refs,―,―,"Placement constraints for avionics/payload boxes"
+
