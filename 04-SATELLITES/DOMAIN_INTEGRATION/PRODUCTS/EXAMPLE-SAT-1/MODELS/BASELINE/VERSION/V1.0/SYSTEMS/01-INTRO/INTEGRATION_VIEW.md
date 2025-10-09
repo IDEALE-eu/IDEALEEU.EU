@@ -24,7 +24,7 @@ flowchart LR
   OPS[Mission Ops / MOC] --- TT&C
   TT&C[TT&C] --- CNDH[C&DH / Data Handling]
   CNDH --- PAY[Payload(s)]
-  CNDH --- PWR[Power (EPS)]
+  CNDH --- PWR[Power EPS]
   CNDH --- THM[Thermal]
   PAY --- THM
   PWR --- THM
