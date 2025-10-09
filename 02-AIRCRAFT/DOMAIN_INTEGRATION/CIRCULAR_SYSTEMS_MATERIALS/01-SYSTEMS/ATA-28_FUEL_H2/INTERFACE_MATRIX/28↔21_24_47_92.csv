@@ -1,0 +1,10 @@
+interface_id,from_system,to_system,interface_type,signal_description,unit,data_rate,criticality,icd_ref,notes
+28-21-001,ATA-28 H2 Tank,ATA-21 Heat Exchanger,Thermal,H2 boil-off cooling load,W,Continuous,High,ICD-28-21-001,Thermal integration for boil-off management
+28-21-002,ATA-28 Thermal HX,ATA-21 ECS Loop,Fluid,Glycol coolant loop,L/min,Continuous,Medium,ICD-28-21-002,Closed-loop thermal management
+28-24-001,ATA-28 BOP Controller,ATA-24 Power Distribution,Electrical,28 VDC control power,VDC,DC,Critical,ICD-28-24-001,Fuel management controller power
+28-24-002,ATA-28 Transfer Pump,ATA-24 Power Distribution,Electrical,115 VAC pump motor power,VAC,400 Hz,Critical,ICD-28-24-002,LH2 transfer pump
+28-24-003,ATA-28 Valve Actuators,ATA-24 Power Distribution,Electrical,28 VDC valve control,VDC,DC,Critical,ICD-28-24-003,Flow control valves
+28-47-001,ATA-47 Inert Gas,ATA-28 Tank Compartment,Pneumatic,N2 or He purge gas,psi,On-demand,Medium,ICD-28-47-001,Tank inerting for maintenance
+28-47-002,ATA-28 Leak Detection,ATA-47 Inert Gas,Data,H2 leak sensor signals,Digital,1 Hz,High,ICD-28-47-002,Safety monitoring
+28-92-001,ATA-28 BOP Controller,ATA-92 EWIS,Electrical,Controller harness,ARINC 429,10 Hz,Critical,ICD-28-92-001,Control and monitoring signals
+28-92-002,ATA-28 Tank Sensors,ATA-92 EWIS,Electrical,Temperature/pressure/level sensors,Analog,10 Hz,High,ICD-28-92-002,Tank instrumentation

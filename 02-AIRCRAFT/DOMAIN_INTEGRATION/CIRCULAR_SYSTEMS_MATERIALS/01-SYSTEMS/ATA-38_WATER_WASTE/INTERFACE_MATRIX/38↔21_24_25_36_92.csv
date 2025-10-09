@@ -1,0 +1,13 @@
+interface_id,from_system,to_system,interface_type,signal_description,unit,data_rate,criticality,icd_ref,notes
+38-21-001,ATA-21 Pack,ATA-38 Water Treatment,Fluid,ECS condensate water,L/hr,Continuous,Low,ICD-38-21-001,Condensate recovery for reuse
+38-21-002,ATA-21 Cooling Loop,ATA-38 Water Heater,Thermal,Waste heat for water heating,W,On-demand,Low,ICD-38-21-002,Energy recovery from ECS
+38-24-001,ATA-38 Distribution Pumps,ATA-24 Power Distribution,Electrical,28 VDC pump power,VDC,DC,Medium,ICD-38-24-001,Water distribution pumps
+38-24-002,ATA-38 Treatment Unit,ATA-24 Power Distribution,Electrical,115 VAC treatment power,VAC,400 Hz,Medium,ICD-38-24-002,UV lamps and heaters
+38-24-003,ATA-38 System Controller,ATA-24 Power Distribution,Electrical,28 VDC control power,VDC,DC,Medium,ICD-38-24-003,Water system controller
+38-25-001,ATA-38 Potable Water,ATA-25 Galleys,Fluid,Potable water supply,L/min,On-demand,Medium,ICD-38-25-001,Galley water supply
+38-25-002,ATA-38 Potable Water,ATA-25 Lavatories,Fluid,Potable water supply,L/min,On-demand,Medium,ICD-38-25-002,Lavatory water supply
+38-25-003,ATA-25 Galleys,ATA-38 Waste Collection,Fluid,Greywater drain,L/min,On-demand,Low,ICD-38-25-003,Galley wastewater
+38-25-004,ATA-25 Lavatories,ATA-38 Waste Collection,Fluid,Greywater/blackwater drain,L/min,On-demand,Medium,ICD-38-25-004,Lavatory waste
+38-36-001,ATA-36 Pneumatic,ATA-38 Waste System,Pneumatic,Flush system air pressure,psi,On-demand,Medium,ICD-38-36-001,Pneumatic flush toilets
+38-92-001,ATA-38 System Controller,ATA-92 EWIS,Electrical,Controller harness,ARINC 429,1 Hz,Medium,ICD-38-92-001,Control and monitoring
+38-92-002,ATA-38 Sensors,ATA-92 EWIS,Electrical,Flow/level/quality sensors,Analog,10 Hz,Medium,ICD-38-92-002,System instrumentation

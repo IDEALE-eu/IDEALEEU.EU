@@ -1,0 +1,12 @@
+interface_id,from_system,to_system,interface_type,signal_description,unit,data_rate,criticality,icd_ref,notes
+MTL-25-001,MTL Material Passport,ATA-25 Cabin Furnishings,Data,Interior material composition,Digital,On-demand,Medium,ICD-MTL-25-001,Seats panels carpets textiles composition
+MTL-25-002,MTL Reuse/Recycle,ATA-25 Cabin Refurbishment,Process,Component refurbishment plans,Document,On-demand,Low,ICD-MTL-25-002,5-7 year cabin refresh cycle
+MTL-51-001,MTL Material Passport,ATA-51 Primary Structure,Data,Structural material composition,Digital,On-demand,High,ICD-MTL-51-001,Aluminum alloys frames longerons
+MTL-51-002,MTL LCA Models,ATA-51 Structure Design,Data,Material environmental impact,Digital,On-demand,Medium,ICD-MTL-51-002,CO2 footprint energy use
+MTL-53-001,MTL Material Passport,ATA-53 Fuselage,Data,Fuselage material composition,Digital,On-demand,High,ICD-MTL-53-001,Skin panels fairings doors
+MTL-53-002,MTL Reuse/Recycle,ATA-53 Maintenance,Process,Component repair/refurbish plans,Document,On-demand,Medium,ICD-MTL-53-002,Disassembly instructions
+MTL-57-001,MTL Material Passport,ATA-57 Wings,Data,Wing material composition,Digital,On-demand,High,ICD-MTL-57-001,Wing skins ribs spars
+MTL-57-002,MTL LCA Models,ATA-57 Wing Design,Data,Material selection trade-offs,Digital,On-demand,Medium,ICD-MTL-57-002,Composite vs aluminum trade-offs
+MTL-SC-001,MTL Reuse/Recycle,Supply Chain Reverse Logistics,Process,End-of-life component return,Physical,On-demand,Medium,ICD-MTL-SC-001,Return logistics for reuse/recycle
+MTL-SC-002,MTL Material Recovery,Supply Chain Recyclers,Process,Material recovery specifications,Document,On-demand,Medium,ICD-MTL-SC-002,Recycling partner requirements
+MTL-SC-003,Supply Chain Recycled Materials,MTL Material Passport,Data,Recycled content certification,Digital,On-demand,Medium,ICD-MTL-SC-003,Closed-loop material supply

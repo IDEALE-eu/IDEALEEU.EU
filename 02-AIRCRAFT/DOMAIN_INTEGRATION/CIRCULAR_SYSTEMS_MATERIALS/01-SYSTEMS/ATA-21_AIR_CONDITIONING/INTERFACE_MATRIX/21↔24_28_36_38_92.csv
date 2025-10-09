@@ -1,0 +1,12 @@
+interface_id,from_system,to_system,interface_type,signal_description,unit,data_rate,criticality,icd_ref,notes
+21-24-001,ATA-21 ECS Controller,ATA-24 Power Distribution,Electrical,28 VDC control power,VDC,DC,High,ICD-21-24-001,Control power for pack controllers
+21-24-002,ATA-21 Pack Motors,ATA-24 Power Distribution,Electrical,115 VAC 3-phase pack motor power,VAC,400 Hz,Critical,ICD-21-24-002,Primary pack drive motors
+21-24-003,ATA-21 Zone Controllers,ATA-24 Power Distribution,Electrical,28 VDC zone controller power,VDC,DC,Medium,ICD-21-24-003,Temperature zone control
+21-28-001,ATA-21 Heat Exchanger,ATA-28 H2 Tank,Thermal,Waste heat rejection to H2 boil-off,W,Continuous,High,ICD-21-28-001,Thermal integration for H2 management
+21-28-002,ATA-21 Pack,ATA-28 Fuel System,Thermal,Fuel heat sink for pack cooling,W,Continuous,Medium,ICD-21-28-002,High-altitude cruise cooling
+21-36-001,ATA-36 Bleed Air,ATA-21 Pack,Pneumatic,Engine bleed air supply,psi,Continuous,Critical,ICD-21-36-001,Primary air source for packs
+21-36-002,ATA-21 Precooler,ATA-36 Ram Air,Pneumatic,Ram air for bleed cooling,psi,Continuous,Medium,ICD-21-36-002,Precooler air supply
+21-38-001,ATA-21 Pack,ATA-38 Water Treatment,Fluid,Condensate water from air conditioning,L/hr,Continuous,Low,ICD-21-38-001,Water recovery for reuse
+21-38-002,ATA-21 Cooling Loop,ATA-38 Potable System,Thermal,Chilled water for galley refrigeration,W,On-demand,Low,ICD-21-38-002,Galley cooling integration
+21-92-001,ATA-21 Pack Controller,ATA-92 EWIS,Electrical,Pack controller harness,ARINC 429,1 Hz,High,ICD-21-92-001,Control signals and status
+21-92-002,ATA-21 Zone Sensors,ATA-92 EWIS,Electrical,Temperature/pressure sensor wiring,Analog,10 Hz,Medium,ICD-21-92-002,Zone monitoring sensors
