@@ -1,0 +1,5 @@
+rules:
+  plm_at_domain_level: false
+  systems_required: true
+  ewis_only_ata_92: true
+  sw_with_host_lru: true
