@@ -1,0 +1,19 @@
+Metric,Description,Unit,Target,Threshold,Measurement_Frequency,Owner
+Loading_Time_Main,Main deck cargo loading time per ULD,minutes,<5,<7,Per Turnaround,Ground Ops
+Loading_Time_Lower,Lower deck cargo loading time per ULD,minutes,<4,<6,Per Turnaround,Ground Ops
+Unloading_Time_Main,Main deck cargo unloading time per ULD,minutes,<4,<6,Per Turnaround,Ground Ops
+Unloading_Time_Lower,Lower deck cargo unloading time per ULD,minutes,<3,<5,Per Turnaround,Ground Ops
+ULD_Position_Accuracy,Percentage of correctly positioned ULDs,%,>99,>97,Per Load,Ground Ops
+Weight_Discrepancy,Weight discrepancy between plan and actual,kg,<50,<100,Per Load,Load Planning
+Load_Cell_Accuracy,Load cell measurement accuracy,%,>99,>98,Monthly Calibration,Maintenance
+ULD_Lock_Failures,Number of ULD lock malfunctions,count,0,<1,Per Month,Maintenance
+PDU_Availability,PDU system availability,%,>99,>97,Daily,Maintenance
+Fire_Detector_Availability,Cargo fire detector availability,%,>99.9,>99,Daily,Safety Systems
+Cargo_Damage_Incidents,Number of cargo damage incidents,count,<1,<3,Per Month,Ground Ops
+Load_Planning_Changes,Number of last-minute load changes,count,<5,<10,Per Flight,Load Planning
+CG_Out_of_Limits,Number of CG out-of-limits warnings,count,0,<1,Per Month,Load Planning
+Overload_Warnings,Number of overload warnings,count,0,<1,Per Month,Load Planning
+Turnaround_Time_Cargo,Cargo contribution to turnaround time,minutes,<20,<30,Per Turnaround,Ground Ops
+ULD_Utilization,Cargo capacity utilization,%,>80,>70,Per Flight,Revenue Mgmt
+Hazmat_Compliance,Hazmat handling compliance,%,100,>99,Per Hazmat Load,Safety/Compliance
+Cargo_Revenue_Per_Flight,Average cargo revenue per flight,USD,Target varies,Threshold varies,Monthly,Revenue Mgmt

@@ -1,0 +1,9 @@
+Test Case ID,Requirement ID,Test Objective,Priority,Test Type,Status,Assigned To,Completion Date
+TC-CARGO-001,REQ-CARGO-001,Verify ULD lock engagement,Critical,Functional,Planned,Cargo Team,
+TC-CARGO-002,REQ-CARGO-002,Test load cell accuracy,Critical,Performance,Planned,Load Sensing Team,
+TC-CARGO-003,REQ-CARGO-003,Validate cargo fire detection,Critical,Safety,Planned,Fire Team,
+TC-CARGO-004,REQ-CARGO-004,Test PDU loading operation,High,Functional,Planned,Cargo Team,
+TC-CARGO-005,REQ-CARGO-005,Verify weight and balance calculation,Critical,Functional,Planned,Systems Team,
+TC-CARGO-006,REQ-CARGO-006,Test cargo door interlock,High,Safety,Planned,Safety Team,
+TC-CARGO-007,REQ-CARGO-007,Validate load distribution monitoring,High,Functional,Planned,Cargo Team,
+TC-CARGO-008,REQ-CARGO-008,Test overload warning system,Critical,Safety,Planned,Systems Team,

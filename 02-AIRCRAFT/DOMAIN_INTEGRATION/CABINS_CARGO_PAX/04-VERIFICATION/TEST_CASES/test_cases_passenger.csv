@@ -1,0 +1,9 @@
+Test Case ID,Requirement ID,Test Objective,Priority,Test Type,Status,Assigned To,Completion Date
+TC-PAX-001,REQ-PAX-001,Verify seat IFE screen functionality,High,Functional,Planned,IFE Team,
+TC-PAX-002,REQ-PAX-002,Validate passenger connectivity bandwidth,High,Performance,Planned,Network Team,
+TC-PAX-003,REQ-PAX-003,Test reading light control,Medium,Functional,Planned,Lighting Team,
+TC-PAX-004,REQ-PAX-004,Verify USB charging port output,Medium,Functional,Planned,Power Team,
+TC-PAX-005,REQ-PAX-005,Test attendant call system,High,Functional,Planned,CMS Team,
+TC-PAX-006,REQ-PAX-006,Validate cabin temperature control,Medium,Functional,Planned,ECS Team,
+TC-PAX-007,REQ-PAX-007,Test lavatory occupancy indication,Medium,Functional,Planned,CMS Team,
+TC-PAX-008,REQ-PAX-008,Verify galley equipment operation,High,Functional,Planned,Galley Team,

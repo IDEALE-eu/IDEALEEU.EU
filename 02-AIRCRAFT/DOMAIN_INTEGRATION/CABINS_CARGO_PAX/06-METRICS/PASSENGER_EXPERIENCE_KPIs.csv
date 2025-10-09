@@ -1,0 +1,17 @@
+Metric,Description,Unit,Target,Threshold,Measurement_Frequency,Owner
+NPS,Net Promoter Score (passenger satisfaction),%,70,60,Per Flight,Customer Experience
+Seat_OOS,Percentage of seats out of service,%,<1,<2,Daily,Maintenance
+IFE_Availability,In-Flight Entertainment system availability,%,>99,>97,Per Flight,IFE Team
+IFE_Content_Fresh,Days since last content update,days,<30,<45,Monthly,Content Team
+WiFi_Availability,Passenger WiFi availability,%,>95,>90,Per Flight,Connectivity Team
+WiFi_Bandwidth_Per_Pax,Average bandwidth per passenger,Mbps,>5,>2,Per Flight,Connectivity Team
+USB_Port_Functionality,Percentage of working USB ports,%,>99,>97,Weekly,Maintenance
+Lavatory_Availability,Percentage of functioning lavatories,%,>98,>95,Per Flight,Cabin Crew
+Lavatory_Cleanliness,Cleanliness score (1-5),score,>4.5,>4.0,Per Flight,Cabin Crew
+Galley_Equipment_OOS,Galley equipment out of service,%,<5,<10,Daily,Maintenance
+Passenger_Complaints,Number of passenger complaints,count,<5,<10,Per Flight,Customer Service
+Cabin_Temp_Comfort,Passengers comfortable with temperature,%,>90,>85,Per Flight Survey,Cabin Crew
+Reading_Light_Function,Percentage of working reading lights,%,>98,>95,Weekly,Maintenance
+Attendant_Call_Response,Average attendant call response time,seconds,<30,<60,Per Flight,Cabin Crew
+Boarding_Time,Average boarding time per passenger,seconds,<45,<60,Per Flight,Operations
+Deplaning_Time,Average deplaning time per passenger,seconds,<30,<45,Per Flight,Operations
