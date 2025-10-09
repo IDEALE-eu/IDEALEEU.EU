@@ -6,6 +6,18 @@ This directory contains simplified assembly models with reduced detail for desig
 
 ## Contents
 
+This directory is organized into the following subdirectories:
+
+### Directory Structure
+- **[ASM/](./ASM/)** — Simplified assembly model files
+- **[PARTS/](./PARTS/)** — Simplified component parts
+- **[RULES/](./RULES/)** — Simplification rules and guidelines
+- **[SUPPRESSION/](./SUPPRESSION/)** — Feature suppression records
+- **[VIEW_STATES/](./VIEW_STATES/)** — Saved display configurations
+- **[EXPORTS/](./EXPORTS/)** — Neutral format exports
+- **[DOCS/](./DOCS/)** — Approval and validation documentation
+- **[INDEX/](./INDEX/)** — Model registry and tracking
+
 ### Simplified Model Types
 - **Design review models**: Reduced detail for stakeholder reviews
 - **Conceptual models**: Early-stage design representations
