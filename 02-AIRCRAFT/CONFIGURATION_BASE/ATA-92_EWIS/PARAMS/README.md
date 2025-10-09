@@ -1,63 +1,74 @@
-# Wire Specifications and Parameters
+# PARAMS - System Parameters
 
-This directory contains wire gauge specifications, shielding requirements, zone definitions, and environmental ratings for all aircraft wiring.
+This directory contains parameter definitions, limits, and thresholds for the system.
 
-## Overview
+## Purpose
 
-Per EWIS rules, ALL wire specifications for the entire aircraft are centralized here.
+System parameters define the operational boundaries, performance characteristics, and configuration settings that govern system behavior. These parameters are essential for:
+- Operational safety margins
+- Performance optimization
+- System monitoring and alerting
+- Certification compliance
+- Maintenance planning
 
 ## Contents
 
-### Wire Specifications
-- `WIRE_GAUGE_SPECS.csv` - Wire gauge specifications (AWG/mm²)
-- `WIRE_DERATING.csv` - Current derating factors by environment
-- `ENVIRONMENTAL_RATINGS.csv` - Temperature and environmental ratings
+This directory should contain:
 
-### Shielding and Protection
-- `SHIELDING_SPECS.csv` - Shielding requirements by circuit type
-- `GROUNDING_SPECS.csv` - Grounding and bonding requirements
-- `WIRE_SEPARATION_RULES.csv` - Separation requirements (power vs. signal)
+### Parameter Definition Files
+- **Operating ranges and limits** - Min/max values for normal operation
+- **Performance thresholds** - Critical performance indicators and limits
+- **Configuration parameters** - System configuration settings
+- **Tolerance specifications** - Acceptable variations and tolerances
+- **Safety margins** - Built-in safety factors and margins
 
-### Zone Definitions
-- `ZONE_DEFINITIONS.csv` - Aircraft zone definitions for wire routing
-- `ZONE_ENVIRONMENTAL_CONDITIONS.csv` - Environmental conditions by zone
+### File Formats
 
-## Wire Marking Standards
+Parameters should be documented using:
+- CSV files for tabular parameter data
+- JSON/XML for structured parameter definitions
+- Markdown files for parameter documentation
 
-All wires marked per ARINC 622:
-- System code (ATA chapter)
-- Wire number
-- Segment identifier
-- Gauge designation
+## File Naming Convention
 
-Example: `27-1234-A-20` (ATA-27, wire 1234, segment A, 20 AWG)
+Use descriptive names that indicate the parameter category:
+- `[PARAMETER_TYPE]_LIMITS.csv`
+- `[PARAMETER_TYPE]_THRESHOLDS.csv`
+- `[SYSTEM]_PARAMS.json`
 
-## Regulatory Compliance
+## Parameter Categories
 
-EWIS specifications must comply with:
-- FAA SFAR 88
-- EASA CS-25 Amendment 15
-- DO-160 environmental testing
-- MIL-W-5088 wire specifications
-- SAE AS50881 wiring standards
+Common parameter categories include:
+1. **Operating Limits** - Temperature, pressure, voltage, current ranges
+2. **Performance Parameters** - Speed, flow rate, efficiency metrics
+3. **Control Parameters** - PID gains, control loop settings
+4. **Timing Parameters** - Cycle times, delays, timeouts
+5. **Safety Parameters** - Emergency limits, failure thresholds
 
-## Related Directories
+## Change Control
 
-- `../BASELINE/` - Harness assemblies and wire lists
-- `../HW_CONFIG/` - Connectors, splices, terminations
-- System ATA chapters - For signal definitions (stored in ICD/)
+All parameter changes must:
+- Follow the ECR/ECO process
+- Be documented in the CHANGE_LOG
+- Include justification and impact analysis
+- Receive appropriate approvals
+
+## References
+
+- [Configuration Rules](../../00-COMMON/RULES.md)
+- [Parameter Templates](../../00-COMMON/TEMPLATES/)
+- [Global Change Log](../../00-COMMON/GLOBAL_CHANGE_LOG.csv)
 
 ## Validation
 
-Wire specifications validated for:
-- Current carrying capacity with derating
-- Voltage drop calculations
-- Environmental suitability
-- EMI/EMC compliance
-- Safety margins
+Parameters must be:
+- Validated against system requirements
+- Verified through analysis or testing
+- Approved by system engineering
+- Traceable to certification basis
 
 ---
 
+**Status**: Active  
+**Owner**: Systems Engineering  
 **Last Updated**: 2024-01-15
-
-**Note**: All personnel working with EWIS data must complete EWIS training.
