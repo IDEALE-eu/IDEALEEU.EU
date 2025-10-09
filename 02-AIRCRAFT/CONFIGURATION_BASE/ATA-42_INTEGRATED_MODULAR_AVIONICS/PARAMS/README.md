@@ -1,51 +1,74 @@
-# Partition Definitions Directory
+# PARAMS - System Parameters
 
-This directory contains IMA partition definitions, CPU allocations, memory allocations, and partition-to-application bindings.
+This directory contains parameter definitions, limits, and thresholds for the system.
+
+## Purpose
+
+System parameters define the operational boundaries, performance characteristics, and configuration settings that govern system behavior. These parameters are essential for:
+- Operational safety margins
+- Performance optimization
+- System monitoring and alerting
+- Certification compliance
+- Maintenance planning
 
 ## Contents
 
-Key files for ARINC 653 partition management:
-- Partition definitions with resource allocations
-- Timing budgets and scheduling parameters
-- Application-to-partition bindings
-- Module-to-partition mappings
+This directory should contain:
 
-## File Format
+### Parameter Definition Files
+- **Operating ranges and limits** - Min/max values for normal operation
+- **Performance thresholds** - Critical performance indicators and limits
+- **Configuration parameters** - System configuration settings
+- **Tolerance specifications** - Acceptable variations and tolerances
+- **Safety margins** - Built-in safety factors and margins
 
-Partition maps typically in CSV format following `../../00-COMMON/TEMPLATES/PARTITION_MAP.csv`.
+### File Formats
 
-Required fields:
-- Partition_ID
-- Partition_Name
-- Module_ID
-- Core_Assignment
-- Memory_MB
-- CPU_Percent
-- Period_ms
-- Safety_Level (DAL-A through DAL-E)
-- Hosted_Application
-- Status
+Parameters should be documented using:
+- CSV files for tabular parameter data
+- JSON/XML for structured parameter definitions
+- Markdown files for parameter documentation
 
-## Expected Files
+## File Naming Convention
 
-- `PARTITION_MAP.csv` - Master partition mapping
-- `CPU_ALLOCATIONS.csv` - CPU percentage allocations
-- `MEMORY_ALLOCATIONS.csv` - Memory allocations
-- `TIMING_BUDGETS.csv` - Timing windows and periods
+Use descriptive names that indicate the parameter category:
+- `[PARAMETER_TYPE]_LIMITS.csv`
+- `[PARAMETER_TYPE]_THRESHOLDS.csv`
+- `[SYSTEM]_PARAMS.json`
+
+## Parameter Categories
+
+Common parameter categories include:
+1. **Operating Limits** - Temperature, pressure, voltage, current ranges
+2. **Performance Parameters** - Speed, flow rate, efficiency metrics
+3. **Control Parameters** - PID gains, control loop settings
+4. **Timing Parameters** - Cycle times, delays, timeouts
+5. **Safety Parameters** - Emergency limits, failure thresholds
+
+## Change Control
+
+All parameter changes must:
+- Follow the ECR/ECO process
+- Be documented in the CHANGE_LOG
+- Include justification and impact analysis
+- Receive appropriate approvals
+
+## References
+
+- [Configuration Rules](../../00-COMMON/RULES.md)
+- [Parameter Templates](../../00-COMMON/TEMPLATES/)
+- [Global Change Log](../../00-COMMON/GLOBAL_CHANGE_LOG.csv)
 
 ## Validation
 
-Ensure:
-- CPU allocations per core do not exceed 100%
-- Memory allocations fit within module capacity
-- Timing budgets allow for worst-case execution time (WCET)
-- Partition isolation requirements met
-
-## Related Files
-
-- `../BASELINE/IMA_PLATFORM_CONFIG.xml` - Complete ARINC 653 configuration
-- `../BASELINE/PARTITION_BINDINGS.csv` - Detailed application bindings
+Parameters must be:
+- Validated against system requirements
+- Verified through analysis or testing
+- Approved by system engineering
+- Traceable to certification basis
 
 ---
 
+**Status**: Active  
+**Owner**: Systems Engineering  
 **Last Updated**: 2024-01-15
