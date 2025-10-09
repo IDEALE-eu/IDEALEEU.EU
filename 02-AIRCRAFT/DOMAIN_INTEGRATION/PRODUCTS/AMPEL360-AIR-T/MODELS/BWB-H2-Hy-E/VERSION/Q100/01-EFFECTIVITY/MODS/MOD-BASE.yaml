@@ -1,0 +1,92 @@
+mod_id: "MOD-BASE"
+description: "Baseline configuration - standard production configuration"
+version: "1.0.0"
+effective_date: "2026-02-01"
+mod_type: "embodied"
+
+status: "active"
+category: "baseline"
+
+scope:
+  description: "Standard factory configuration as delivered. No optional modifications applied."
+  
+systems_affected: []
+
+changes_from_previous: null
+
+standard_configuration:
+  ata21_environmental:
+    - "Standard pressurization and air conditioning"
+    - "Dual pack ECS system"
+  
+  ata24_electrical:
+    - "Fuel cell primary power: 1.35 MW"
+    - "Battery backup: 175 kWh"
+    - "Dual bus distribution"
+  
+  ata25_cabin:
+    - "Standard economy seating"
+    - "Basic galley equipment"
+    - "LED cabin lighting"
+  
+  ata28_fuel:
+    - "LH2 tank capacity: 5000 kg"
+    - "Standard boil-off management"
+  
+  ata31_displays:
+    - "Baseline avionics displays"
+    - "4×12 inch multifunction displays (MFD)"
+    - "2×10 inch engine indication displays (EID)"
+  
+  ata34_navigation:
+    - "Dual AHRS/IRS"
+    - "Dual GNSS with SBAS"
+    - "Standard FMS"
+  
+  ata71_powerplant:
+    - "Fuel cell propulsion v1.0/1.1"
+    - "2 × 675 kW electric motors"
+    - "Ducted fan propulsors"
+
+documentation:
+  - "Aircraft Flight Manual (AFM) - Standard"
+  - "Maintenance Manual (AMM) - Baseline"
+  - "Illustrated Parts Catalog (IPC) - Baseline"
+  - "Wiring Diagram Manual (WDM) - Standard"
+
+certification:
+  basis: "Type Certificate baseline"
+  special_requirements: []
+
+weight_impact:
+  oew_change_kg: 0
+  mtow_change_kg: 0
+
+performance_impact:
+  range_change_nm: 0
+  payload_change_kg: 0
+
+cost:
+  non_recurring: "N/A"
+  recurring_per_aircraft: "Standard production cost"
+
+lead_time:
+  manufacturing: "Standard production schedule"
+  retrofit: "N/A (factory only)"
+
+compliance:
+  - "CS-25 Type Certificate"
+  - "Production Certificate requirements"
+  - "Quality Management System (AS9100)"
+
+notes: |
+  MOD-BASE represents the standard production configuration without any
+  optional modifications. This is the baseline against which all other
+  modifications are compared. All aircraft receive MOD-BASE as minimum
+  configuration during manufacturing.
+
+traceability:
+  config_set_ref: "../00-CONFIG/CONFIG_SETS/BASELINE-Q100.yaml"
+  requirements:
+    - "SYS-REQ-001: Baseline system requirements"
+    - "CERT-REQ-001: Type certificate compliance"
