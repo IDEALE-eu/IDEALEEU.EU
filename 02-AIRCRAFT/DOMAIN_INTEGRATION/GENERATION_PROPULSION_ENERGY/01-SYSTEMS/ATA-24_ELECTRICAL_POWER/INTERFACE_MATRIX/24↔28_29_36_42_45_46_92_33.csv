@@ -1,0 +1,17 @@
+Interface ID,Source System,Source LRU,Destination System,Destination LRU,Interface Type,Signal/Data,Protocol,Voltage,Current,Frequency,Connector Type,Wire Gauge,Notes
+IF-24-28-001,ATA-24,Main DC Bus,ATA-28,Fuel Pump 1,Power,DC Power,N/A,28V DC,15A,DC,MS3116F-12-10P,12 AWG,Primary fuel pump power
+IF-24-28-002,ATA-24,Essential DC Bus,ATA-28,Fuel Pump 2,Power,DC Power,N/A,28V DC,15A,DC,MS3116F-12-10P,12 AWG,Backup fuel pump power
+IF-24-28-003,ATA-28,Fuel Level Sensor,ATA-24,EMS,Data,Fuel Quantity,ARINC 429,N/A,N/A,100kbps,D-38999/26,22 AWG,Fuel level indication
+IF-24-29-001,ATA-24,AC Main Bus,ATA-29,Hydraulic Pump 1,Power,AC Power,N/A,115V AC,20A,400Hz,MS3116F-14-19S,10 AWG,Primary hydraulic pump
+IF-24-29-002,ATA-24,AC Main Bus,ATA-29,Hydraulic Pump 2,Power,AC Power,N/A,115V AC,20A,400Hz,MS3116F-14-19S,10 AWG,Secondary hydraulic pump
+IF-24-36-001,ATA-24,AC Main Bus,ATA-36,Pneumatic Compressor,Power,AC Power,N/A,115V AC,25A,400Hz,MS3116F-16-26P,8 AWG,Pneumatic system compressor
+IF-24-42-001,ATA-24,AC Essential Bus,ATA-42,IMA Cabinet 1,Power,AC Power,N/A,115V AC,10A,400Hz,MS3116F-12-10S,12 AWG,Primary avionics power
+IF-24-42-002,ATA-24,AC Essential Bus,ATA-42,IMA Cabinet 2,Power,AC Power,N/A,115V AC,10A,400Hz,MS3116F-12-10S,12 AWG,Secondary avionics power
+IF-24-42-003,ATA-42,IMA Module,ATA-24,EMS Controller,Data,System Status,ARINC 664,N/A,N/A,100Mbps,Fiber LC,N/A,Avionics data network
+IF-24-45-001,ATA-24,EMS Controller,ATA-45,CMS,Data,Fault Codes,ARINC 429,N/A,N/A,100kbps,D-38999/26,22 AWG,Electrical system faults
+IF-24-45-002,ATA-24,Generator GCU,ATA-45,CMS,Data,Generator Status,ARINC 429,N/A,N/A,100kbps,D-38999/26,22 AWG,Generator health monitoring
+IF-24-46-001,ATA-24,EMS Controller,ATA-46,EICAS Display,Data,Power Status,ARINC 664,N/A,N/A,100Mbps,Fiber LC,N/A,Cockpit power indications
+IF-24-46-002,ATA-24,Battery Monitor,ATA-46,EICAS Display,Data,Battery Status,ARINC 429,N/A,N/A,100kbps,D-38999/26,22 AWG,Battery SOC and health
+IF-24-92-001,ATA-24,All Components,ATA-92,Wiring Harnesses,Physical,Wiring,N/A,Various,Various,Various,Various,Various,All electrical wiring per EWIS
+IF-24-33-001,ATA-24,AC Main Bus,ATA-33,Interior Lights,Power,AC Power,N/A,115V AC,30A,400Hz,MS3116F-18-1P,8 AWG,Cabin lighting power
+IF-24-33-002,ATA-24,DC Essential Bus,ATA-33,Emergency Lights,Power,DC Power,N/A,28V DC,10A,DC,MS3116F-12-8S,14 AWG,Emergency lighting power
