@@ -23,7 +23,7 @@ This system defines the mission narrative (CONOPS), operational phases, and mode
 flowchart LR
   OPS[Mission Ops / MOC] --- TT&C
   TT&C[TT&C] --- CNDH[C&DH / Data Handling]
-  CNDH --- PAY[Payload(s)]
+  CNDH --- PAY[Payload]
   CNDH --- PWR[Power EPS]
   CNDH --- THM[Thermal]
   PAY --- THM
