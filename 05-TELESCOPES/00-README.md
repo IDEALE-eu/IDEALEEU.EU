@@ -104,3 +104,40 @@ DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT-ID>/MODELS/<MODEL-ID>/VERSION/<TAG>/
             ├─ tests/
             └─ META.json
 ```
+
+### Architecture Rules
+
+**Key principles for telescope systems:**
+
+1. **PLM/CAx ONLY in SUBSYSTEMS**: Engineering artifacts (CAD, CAE, CAM, etc.) are maintained only at the subsystem level under `SUBSYSTEMS/*/PLM/CAx/`, never at system or domain level.
+
+2. **Software with Host LRU**: Software resides with its hosting Line Replaceable Unit (e.g., avionics partitions under `42-AVIONICS_CONTROL`).
+
+3. **EWIS ONLY in 92-EWIS_HARNESS**: All electrical wiring interconnection system (harnesses, connectors, routing) is maintained exclusively in system `92-EWIS_HARNESS`.
+
+4. **Interface Matrices at System Level**: Each system has an `INTERFACE_MATRIX/` directory containing CSV files documenting interfaces with other systems.
+
+### Custom Optical Systems Block (70-OPTICAL_SUBSYSTEMS)
+
+System `70-OPTICAL_SUBSYSTEMS` is a custom block specifically for telescope optics, containing:
+
+**Subsystems:**
+- `70-10_PRIMARY_MIRROR` - Primary mirror assembly and coatings
+- `70-20_SECONDARY_MIRROR` - Secondary mirror assembly
+- `70-30_TERTIARY_FLAT` - Tertiary flat mirror (if applicable)
+- `70-40_CORRECTORS_LENS` - Corrector optics and lenses
+- `70-50_FILTERS_GRISMS` - Filters and grism assemblies
+- `70-60_DETECTOR_CRYOSTATS` - Detector assemblies and cryostats
+- `70-70_WAVEFRONT_SENSORS` - Wavefront sensing optics
+- `70-80_CALIBRATION_SOURCES` - Calibration light sources
+
+Each subsystem contains full PLM/CAx engineering artifacts (CAD, CAE, CAM, CAI, CAV, CAP, CAS, CMP).
+
+### Interface Matrix CSV Format
+
+All interface matrices use the following header:
+```csv
+from_system,to_system,interface_type,icd_ref,signals/measures,thermal,mechanical,electrical,data_bus,harness,sw_api,safety_class,owner,status,notes
+```
+
+Interface Control Documents (ICDs) are referenced from: `00-PROGRAM/CONFIG_MGMT/09-INTERFACES/`
