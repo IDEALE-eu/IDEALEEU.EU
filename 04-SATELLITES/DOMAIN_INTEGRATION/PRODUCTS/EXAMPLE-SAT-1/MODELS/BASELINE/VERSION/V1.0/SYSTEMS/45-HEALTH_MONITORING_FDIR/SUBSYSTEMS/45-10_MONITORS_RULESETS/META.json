@@ -1,0 +1,8 @@
+{
+  "scope": "subsystem",
+  "mission": "EXAMPLE-SAT-1",
+  "model": "BASELINE",
+  "version": "V1.0",
+  "sta_system": "45-HEALTH_MONITORING_FDIR",
+  "subsystem": "45-10_MONITORS_RULESETS"
+}

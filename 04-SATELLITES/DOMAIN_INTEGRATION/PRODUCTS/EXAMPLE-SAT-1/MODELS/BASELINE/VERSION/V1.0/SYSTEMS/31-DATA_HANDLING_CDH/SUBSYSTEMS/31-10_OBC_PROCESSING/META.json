@@ -1,0 +1,8 @@
+{
+  "scope": "subsystem",
+  "mission": "EXAMPLE-SAT-1",
+  "model": "BASELINE",
+  "version": "V1.0",
+  "sta_system": "31-DATA_HANDLING_CDH",
+  "subsystem": "31-10_OBC_PROCESSING"
+}

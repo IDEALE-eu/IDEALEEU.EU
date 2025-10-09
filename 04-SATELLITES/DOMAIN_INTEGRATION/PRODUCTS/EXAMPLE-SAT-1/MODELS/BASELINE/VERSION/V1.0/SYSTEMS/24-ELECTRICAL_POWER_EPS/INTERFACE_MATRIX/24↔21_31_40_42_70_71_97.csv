@@ -1,0 +1,8 @@
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+24,21,power,electrical,28V_bus,150,,Thermal heater power
+24,31,power,electrical,28V_bus,80,,OBC power supply
+24,40,power,electrical,28V_bus,30,,Data bus power
+24,42,power,electrical,28V_bus,100,,Avionics power
+24,70,power,electrical,28V_bus,200,,Payload power
+24,71,power,electrical,28V_bus,150,,Science payload power
+24,97,power,electrical,harness,0,,Power distribution harness

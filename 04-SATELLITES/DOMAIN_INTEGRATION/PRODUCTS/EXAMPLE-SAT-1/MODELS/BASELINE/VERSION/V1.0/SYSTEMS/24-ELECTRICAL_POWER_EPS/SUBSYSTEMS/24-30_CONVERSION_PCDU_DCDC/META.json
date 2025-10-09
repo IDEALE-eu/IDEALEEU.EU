@@ -1,0 +1,8 @@
+{
+  "scope": "subsystem",
+  "mission": "EXAMPLE-SAT-1",
+  "model": "BASELINE",
+  "version": "V1.0",
+  "sta_system": "24-ELECTRICAL_POWER_EPS",
+  "subsystem": "24-30_CONVERSION_PCDU_DCDC"
+}

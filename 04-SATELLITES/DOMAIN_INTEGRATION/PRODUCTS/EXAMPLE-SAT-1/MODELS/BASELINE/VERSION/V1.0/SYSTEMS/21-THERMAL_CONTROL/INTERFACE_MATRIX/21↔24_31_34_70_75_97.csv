@@ -1,0 +1,6 @@
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+21,24,power,electrical,28V_bus,150,,Heater power supply
+21,31,telemetry,digital,CCSDS,0,1kbps,Temperature sensor data
+21,34,thermal,conductive,thermal_strap,0,,Star tracker thermal mgmt
+21,70,thermal,conductive,cold_plate,0,,Detector cooling
+21,97,power,electrical,harness,0,,Heater control wiring

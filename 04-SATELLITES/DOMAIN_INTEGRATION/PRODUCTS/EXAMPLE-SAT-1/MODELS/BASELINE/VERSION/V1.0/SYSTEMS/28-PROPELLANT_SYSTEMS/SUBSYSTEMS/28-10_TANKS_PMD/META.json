@@ -1,0 +1,8 @@
+{
+  "scope": "subsystem",
+  "mission": "EXAMPLE-SAT-1",
+  "model": "BASELINE",
+  "version": "V1.0",
+  "sta_system": "28-PROPELLANT_SYSTEMS",
+  "subsystem": "28-10_TANKS_PMD"
+}

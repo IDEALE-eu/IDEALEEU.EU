@@ -9,9 +9,33 @@ This section contains all satellite-related design, systems engineering, and mis
 ## Contents
 
 - **00-README.md** - This file
-- **DOMAIN_INTEGRATION/** - Domain integration products, models, and systems following STA structure
+- **[DOMAIN_INTEGRATION/](DOMAIN_INTEGRATION/)** - Domain integration products, models, and systems following STA structure
+  - See [DOMAIN_INTEGRATION/README.md](DOMAIN_INTEGRATION/README.md) for complete documentation
+  - Use `scripts/create-satellite-domains.sh` to generate new mission structures
 - **CONFIGURATION_BASE/** - Baseline configuration and change management
 - **MISSION_DEFINITION/** - Mission objectives, requirements, and CONOPS
+
+## Quick Start
+
+### Creating a New Satellite Mission Structure
+
+To generate a complete STA-aligned satellite structure for a new mission:
+
+```bash
+./scripts/create-satellite-domains.sh <MISSION> <CONF> <TAG>
+```
+
+**Example:**
+```bash
+./scripts/create-satellite-domains.sh EARTH-OBS-1 BASELINE V1.0
+```
+
+This creates the complete structure under:
+```
+04-SATELLITES/DOMAIN_INTEGRATION/PRODUCTS/EARTH-OBS-1/MODELS/BASELINE/VERSION/V1.0/
+```
+
+See [DOMAIN_INTEGRATION/README.md](DOMAIN_INTEGRATION/README.md) for detailed documentation.
 
 ## STA Structure
 
@@ -89,3 +113,9 @@ DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT-ID>/MODELS/<MODEL-ID>/VERSION/<TAG>/
             ├─ tests/
             └─ META.json
 ```
+
+**Key Conventions:**
+- **PLM/CAx only in SUBSYSTEMS** - All engineering artifacts at subsystem level
+- **STA-97 for harness** - Electrical harness uses STA-97 (not ATA-92 which is for aircraft EWIS)
+- **Integration focus** - Each system has INTEGRATION_VIEW.md and INTERFACE_MATRIX/
+- **ECSS compliance** - Following ECSS-E/M/Q/S standards for space systems

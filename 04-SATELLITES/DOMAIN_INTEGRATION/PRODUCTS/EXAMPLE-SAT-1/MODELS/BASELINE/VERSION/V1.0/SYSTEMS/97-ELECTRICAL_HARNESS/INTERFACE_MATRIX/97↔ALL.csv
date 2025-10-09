@@ -1,0 +1,12 @@
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+97,21,harness,electrical,power_wiring,0,,Thermal heater wiring
+97,23,harness,electrical,RF_coax,0,,RF signal cables
+97,24,harness,electrical,power_bus,0,,Power distribution harness
+97,31,harness,electrical,data_cables,0,,Data interface cables
+97,34,harness,electrical,sensor_cables,0,,Sensor interface wiring
+97,40,harness,electrical,network_cables,0,,Data bus cabling
+97,42,harness,electrical,avionics_cables,0,,Avionics interconnect
+97,45,harness,electrical,monitor_wiring,0,,Health monitoring wiring
+97,61,harness,electrical,actuator_cables,0,,Thruster valve wiring
+97,70,harness,electrical,payload_cables,0,,Optical payload cabling
+97,71,harness,electrical,science_cables,0,,Science payload wiring

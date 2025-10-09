@@ -1,0 +1,8 @@
+{
+  "scope": "mission",
+  "mission": "EXAMPLE-SAT-1",
+  "model": "BASELINE",
+  "version": "V1.0",
+  "standard": "STA",
+  "domain": "SATELLITES"
+}
