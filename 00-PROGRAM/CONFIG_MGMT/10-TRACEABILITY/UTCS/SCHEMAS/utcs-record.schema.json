@@ -1,0 +1,12 @@
+{ "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "type":"object",
+  "required":["passport_id","artifact_path","sha256","owner","issued_at"],
+  "properties":{
+    "passport_id":{"type":"string"},
+    "artifact_path":{"type":"string"},
+    "sha256":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "owner":{"type":"string"},
+    "issued_at":{"type":"string","format":"date-time"},
+    "evidence_refs":{"type":"array","items":{"type":"string"}}
+  }
+}

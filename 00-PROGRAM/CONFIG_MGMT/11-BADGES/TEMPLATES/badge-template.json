@@ -1,0 +1,8 @@
+{
+  "badge_id":"BADGE-EXAMPLE",
+  "scope_ref":"path/to/system",
+  "criteria":["rule-1","rule-2"],
+  "issued_at":"${iso8601}",
+  "issuer":"CCB",
+  "evidence":["link1","link2"]
+}

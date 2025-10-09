@@ -59,6 +59,12 @@
   [06‑CHANGES](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/) · [05‑CCB](./00-PROGRAM/CONFIG_MGMT/05-CCB/)
 * **Traceability & ICDs:**
   [10‑TRACEABILITY](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/) · [09‑INTERFACES](./00-PROGRAM/CONFIG_MGMT/09-INTERFACES/)
+  * **UTCS Registry:** [10-TRACEABILITY/UTCS/](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/)
+* **Compliance & Security:**
+  * **Badge Registry:** [11-BADGES/](./00-PROGRAM/CONFIG_MGMT/11-BADGES/)
+  * **Ethical ML (MAL-EEM):** [13-GOVERNANCE/MAL-EEM/](./00-PROGRAM/13-GOVERNANCE/MAL-EEM/)
+* **Contribution & Reviews:**
+  * **CI validators:** [12-CI/validate-structure.sh](./00-PROGRAM/CONFIG_MGMT/12-CI/validate-structure.sh)
 
 ---
 
