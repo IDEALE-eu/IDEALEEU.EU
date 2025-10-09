@@ -1,0 +1,9 @@
+from_system,to_system,interface_type,icd_ref,signals/measures,thermal,mechanical,electrical,data_bus,harness,sw_api,safety_class,owner,status,notes
+21-THERMAL_CONTROL,51-PRIMARY_STRUCTURE,Mechanical/Thermal,ICD-021-051,Temperature monitoring,Heater dissipation,Heater mounting,Heater power/sensors,N/A,Harness-021-051,N/A,Class-B,Thermal Lead,TBD,Primary structure thermal control
+21-THERMAL_CONTROL,53-OPTICAL_TUBE_ASSEMBLY,Mechanical/Thermal,ICD-021-053,Temperature monitoring,Heater dissipation,Heater mounting,Heater power/sensors,N/A,Harness-021-053,N/A,Class-B,Thermal Lead,TBD,OTA thermal control
+21-THERMAL_CONTROL,70-OPTICAL_SUBSYSTEMS,Thermal,ICD-021-070,Optical thermal stability,Heat removal from optics,N/A,N/A,N/A,N/A,N/A,Class-A,Thermal Lead,TBD,Maintains optical performance
+72-CRYOGENIC_COOLING,51-PRIMARY_STRUCTURE,Mechanical/Thermal,ICD-072-051,Cryo system mounting,Cryo heat load,Cryo cooler mount,Cryo power,N/A,Harness-072-051,N/A,Class-A,Thermal Lead,TBD,Cryo system mounting
+72-CRYOGENIC_COOLING,70-OPTICAL_SUBSYSTEMS,Thermal,ICD-072-070,Detector cooling,Cryo heat removal,N/A,N/A,N/A,N/A,N/A,Class-A,Thermal Lead,TBD,Cryogenic detector cooling
+75-THERMAL_RADIATORS,51-PRIMARY_STRUCTURE,Mechanical,ICD-075-051,Radiator mounting,Heat rejection,Radiator mount,N/A,N/A,N/A,N/A,Class-B,Thermal Lead,TBD,Radiator mounting interface
+75-THERMAL_RADIATORS,53-OPTICAL_TUBE_ASSEMBLY,Thermal,ICD-075-053,Heat rejection,OTA heat removal,N/A,N/A,N/A,N/A,N/A,Class-B,Thermal Lead,TBD,OTA thermal rejection
+75-THERMAL_RADIATORS,70-OPTICAL_SUBSYSTEMS,Thermal,ICD-075-070,Heat rejection,Optics heat removal,N/A,N/A,N/A,N/A,N/A,Class-B,Thermal Lead,TBD,Optical system thermal rejection

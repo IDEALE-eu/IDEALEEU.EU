@@ -1,0 +1,7 @@
+from_system,to_system,interface_type,icd_ref,signals/measures,thermal,mechanical,electrical,data_bus,harness,sw_api,safety_class,owner,status,notes
+70-OPTICAL_SUBSYSTEMS,21-THERMAL_CONTROL,Thermal,ICD-070-021,Temperature sensors,Heater power dissipation,Sensor mounting,Temperature sensor wiring,N/A,Harness-070-021,N/A,Class-B,Optics Lead,TBD,Thermal stability feedback
+70-OPTICAL_SUBSYSTEMS,32-POINTING_STABILIZATION,Requirements,ICD-070-032,Wavefront stability requirement,N/A,N/A,N/A,N/A,N/A,N/A,Class-A,Optics Lead,TBD,Drives pointing jitter budget
+70-OPTICAL_SUBSYSTEMS,45-HEALTH_MONITORING,Data,ICD-070-045,Optical health telemetry,N/A,N/A,Data lines,N/A,Harness-070-045,Telemetry API,Class-C,Optics Lead,TBD,Contamination and alignment monitoring
+70-OPTICAL_SUBSYSTEMS,51-PRIMARY_STRUCTURE,Mechanical,ICD-070-051,Alignment references,N/A,Primary mount interface,N/A,N/A,N/A,N/A,Class-A,Structures Lead,TBD,Load path and stiffness
+70-OPTICAL_SUBSYSTEMS,55-SECONDARY_SUPPORT,Mechanical,ICD-070-055,Secondary mount,N/A,Spider/tower interface,N/A,N/A,N/A,N/A,Class-A,Structures Lead,TBD,Secondary support structure
+70-OPTICAL_SUBSYSTEMS,57-INSTRUMENT_BAYS,Mechanical/Optical,ICD-070-057,Focal plane location,N/A,Bay mounting interface,N/A,N/A,N/A,N/A,Class-A,Optics Lead,TBD,Instrument focal plane reference

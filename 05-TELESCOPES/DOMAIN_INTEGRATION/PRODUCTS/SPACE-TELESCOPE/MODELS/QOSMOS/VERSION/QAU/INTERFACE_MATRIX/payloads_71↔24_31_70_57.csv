@@ -1,0 +1,5 @@
+from_system,to_system,interface_type,icd_ref,signals/measures,thermal,mechanical,electrical,data_bus,harness,sw_api,safety_class,owner,status,notes
+71-INSTRUMENTS_PAYLOADS,24-ELECTRICAL_POWER,Electrical,ICD-071-024,Power consumption,Instrument heat dissipation,N/A,28V primary power,N/A,Harness-071-024,N/A,Class-A,Payloads Lead,TBD,Instrument power requirements
+71-INSTRUMENTS_PAYLOADS,31-DATA_HANDLING,Data,ICD-071-031,Science data,N/A,N/A,Data interface,SpaceWire,Harness-071-031,Data API,Class-A,Payloads Lead,TBD,High-rate science data
+71-INSTRUMENTS_PAYLOADS,70-OPTICAL_SUBSYSTEMS,Optical,ICD-071-070,Focal plane illumination,N/A,FPA mounting,N/A,N/A,N/A,N/A,Class-A,Payloads Lead,TBD,Optical interface to telescope
+71-INSTRUMENTS_PAYLOADS,57-INSTRUMENT_BAYS,Mechanical,ICD-071-057,Instrument mounting,Instrument heat load,Mechanical mount,N/A,N/A,N/A,N/A,Class-A,Payloads Lead,TBD,Physical mounting interface

@@ -1,0 +1,6 @@
+from_system,to_system,interface_type,icd_ref,signals/measures,thermal,mechanical,electrical,data_bus,harness,sw_api,safety_class,owner,status,notes
+24-ELECTRICAL_POWER,70-OPTICAL_SUBSYSTEMS,Electrical,ICD-024-070,Power consumption,Optics heat dissipation,N/A,28V regulated,N/A,Harness-024-070,N/A,Class-A,EPS Lead,TBD,Optical system power
+24-ELECTRICAL_POWER,71-INSTRUMENTS_PAYLOADS,Electrical,ICD-024-071,Power consumption,Instrument heat dissipation,N/A,28V regulated,N/A,Harness-024-071,N/A,Class-A,EPS Lead,TBD,Instrument power
+24-ELECTRICAL_POWER,72-CRYOGENIC_COOLING,Electrical,ICD-024-072,Power consumption,Cryo cooler heat dissipation,N/A,28V regulated,N/A,Harness-024-072,N/A,Class-A,EPS Lead,TBD,Cryogenic cooler power
+24-ELECTRICAL_POWER,78-BACKPLANE_ELECTRONICS,Electrical,ICD-024-078,Power consumption,Electronics heat dissipation,N/A,28V regulated,N/A,Harness-024-078,N/A,Class-A,EPS Lead,TBD,Backplane electronics power
+24-ELECTRICAL_POWER,92-EWIS_HARNESS,Electrical,ICD-024-092,Power distribution,Cable losses,N/A,Power feeds,N/A,Main power harness,N/A,Class-A,EPS Lead,TBD,Power distribution through EWIS
