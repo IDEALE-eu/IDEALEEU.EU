@@ -1,0 +1,5 @@
+rules:
+  plm_at_domain_level: false
+  systems_required: true
+  harness_in_power_set: true
+  sw_with_host_lru: true
