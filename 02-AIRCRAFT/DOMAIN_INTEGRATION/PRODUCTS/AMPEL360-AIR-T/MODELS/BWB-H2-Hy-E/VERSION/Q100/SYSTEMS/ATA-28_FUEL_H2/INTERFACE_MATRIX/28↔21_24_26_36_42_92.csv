@@ -1,0 +1,7 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+28,21,H2_Thermal_Conditioning,Fluid/Cryogenic,ICD-28-21,Vaporization and heat exchange
+28,24,Fuel_Cell_Power_Out,DC_Power/800VDC,ICD-28-24,Power generation from H2
+28,26,Leak_Detection_Fire,Discrete/Analog,ICD-28-26,H2 leak sensors and fire suppression
+28,36,H2_Inerting_Purge,Gas/Inert,ICD-28-36,Purging and inerting systems
+28,42,H2_System_Monitor,ARINC-664/AFDX,ICD-28-42,IMA health monitoring and control
+28,92,H2_Sensors_Valves,ARINC-429/Discrete,ICD-28-92,Sensors and valve control wiring

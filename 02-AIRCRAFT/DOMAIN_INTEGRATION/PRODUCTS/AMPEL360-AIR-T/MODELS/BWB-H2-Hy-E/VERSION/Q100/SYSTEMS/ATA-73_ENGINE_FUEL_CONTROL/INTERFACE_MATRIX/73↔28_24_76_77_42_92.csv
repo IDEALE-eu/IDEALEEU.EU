@@ -1,0 +1,7 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+73,28,H2_Flow_Control,Discrete/Analog,ICD-73-28,H2 flow rate control valves
+73,24,FADEC_Power,DC_Power/28VDC,ICD-73-24,FADEC control power
+73,76,Engine_Control_Coord,ARINC-429,ICD-73-76,Engine control integration
+73,77,Engine_Indication,ARINC-429,ICD-73-77,Engine parameters display
+73,42,IMA_FADEC_Interface,ARINC-664/AFDX,ICD-73-42,Health monitoring integration
+73,92,FADEC_Wiring,Power/Data,ICD-73-92,FADEC control and sensor wiring

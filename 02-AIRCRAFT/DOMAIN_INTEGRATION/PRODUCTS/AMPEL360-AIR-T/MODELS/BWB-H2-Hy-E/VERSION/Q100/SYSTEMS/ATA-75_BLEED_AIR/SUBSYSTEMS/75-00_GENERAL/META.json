@@ -1,0 +1,10 @@
+{
+  "scope": "instance",
+  "subsystem_id": "75-00_GENERAL",
+  "ata_chapter": "ATA-75",
+  "model": "BWB-H2-Hy-E",
+  "version": "Q100",
+  "description": "General bleed air system",
+  "criticality": "high",
+  "status": "baseline"
+}

@@ -1,0 +1,10 @@
+{
+  "scope": "instance",
+  "subsystem_id": "73-10_FADEC",
+  "ata_chapter": "ATA-73",
+  "model": "BWB-H2-Hy-E",
+  "version": "Q100",
+  "description": "Full Authority Digital Engine Control",
+  "criticality": "high",
+  "status": "baseline"
+}

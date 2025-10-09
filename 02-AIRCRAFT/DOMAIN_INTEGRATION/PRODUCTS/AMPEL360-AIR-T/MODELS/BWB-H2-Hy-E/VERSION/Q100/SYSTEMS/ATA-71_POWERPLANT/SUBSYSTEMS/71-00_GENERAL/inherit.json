@@ -1,0 +1,5 @@
+{
+  "inherits_from": "CONFIGURATION_BASE/ATA-71_POWERPLANT",
+  "override_params": [],
+  "additional_config": {}
+}

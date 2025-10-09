@@ -1,0 +1,10 @@
+{
+  "scope": "instance",
+  "subsystem_id": "92-00_WIRING_GENERAL",
+  "ata_chapter": "ATA-92",
+  "model": "BWB-H2-Hy-E",
+  "version": "Q100",
+  "description": "General wiring and harness systems",
+  "criticality": "high",
+  "status": "baseline"
+}

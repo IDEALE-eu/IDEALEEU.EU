@@ -1,0 +1,10 @@
+{
+  "scope": "instance",
+  "subsystem_id": "28-10_H2_TANKS_CRYOSTATS",
+  "ata_chapter": "ATA-28",
+  "model": "BWB-H2-Hy-E",
+  "version": "Q100",
+  "description": "Hydrogen cryogenic storage tanks and cryostats",
+  "criticality": "high",
+  "status": "baseline"
+}

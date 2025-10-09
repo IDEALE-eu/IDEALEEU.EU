@@ -1,0 +1,5 @@
+{
+  "inherits_from": "CONFIGURATION_BASE/ATA-73_ENGINE_FUEL_CONTROL",
+  "override_params": [],
+  "additional_config": {}
+}
