@@ -1,1 +1,13 @@
 from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+06-DIMENSIONS_ALIGNMENTS,51-PRIMARY_STRUCTURE,datums/mounting interfaces,mechanical,DATUMS.csv (v1),0,-,"Master datums; flatness & hole pattern tolerances ±0.3 mm"
+06-DIMENSIONS_ALIGNMENTS,53-STRUCTURES,frame transforms & tolerances,mechanical,FRAME_DEFS.yaml (SB↔module),0,-,"SB↔module transform with k=2 uncertainties"
+06-DIMENSIONS_ALIGNMENTS,57-INSTRUMENT_BAYS,boresight & lever-arm definitions,mechanical/geom,BORESIGHT_LEVER_ARMS.csv,0,-,"Each PF-i to SB; maintained per instrument"
+06-DIMENSIONS_ALIGNMENTS,34-NAVIGATION_ATTITUDE,star tracker/IMU alignment file,file (artifact),FRAME_DEFS.yaml + IMU_ALIGN.json,0,on change,"Delivered to GNC for on-board configuration"
+06-DIMENSIONS_ALIGNMENTS,31-DATA_HANDLING,survey data ingest,file (artifact),SURVEY_REDUCED/*.csv,0,per campaign,"Time-tagged reduced survey for baseline archival"
+06-DIMENSIONS_ALIGNMENTS,21-THERMAL_CONTROL,thermo-elastic budget inputs,N/A,ERROR_BUDGET.xlsx (thermal section),0,-,"ΔT→Δdeflection allocations for stability"
+06-DIMENSIONS_ALIGNMENTS,24-ELECTRICAL_POWER,harness reach/strain constraints,wiring,ZONE_PATHS.csv,0,-,"Keep-out volumes; strain relief lengths"
+06-DIMENSIONS_ALIGNMENTS,23-COMMUNICATIONS_RF,antenna phase-center alignment,mechanical/geom,ANTENNA_PHCENTERS.csv,0,-,"Phase center & polarization axes vs SB"
+06-DIMENSIONS_ALIGNMENTS,66-DEPLOYABLES,stowed↔deployed geometry transform,mechanical,DEPLOY_TRANSFORMS.yaml,0,-,"Post-deploy survey update required"
+06-DIMENSIONS_ALIGNMENTS,07-LIFTING_HANDLING,MGSE alignment & lift points,mechanical,MGSE_DATUMS.csv,0,-,"Fit-check with lifting frames & cradle"
+06-DIMENSIONS_ALIGNMENTS,10-PARKING_MOORING,launcher frame transform (LF),mechanical,LF_TRANSFORM.yaml,0,-,"SB↔LF transform for fairing/adapter integration"
+
