@@ -1,5 +1,0 @@
-{
-  "inherits_from": "CONFIGURATION_BASE/ATA-92_EWIS",
-  "override_params": [],
-  "additional_config": {}
-}

@@ -1,7 +1,0 @@
-from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
-71,24,Motor_Power_Input,DC_Power/800VDC,ICD-71-24,Electric motor power supply
-71,28,Fuel_Cell_H2_Supply,Gas/H2,ICD-71-28,H2 fuel supply to fuel cells
-71,29,Hydraulic_Actuation,Fluid/Hydraulic,ICD-71-29,Actuator hydraulic power
-71,36,Pneumatic_Integration,Gas/Bleed_Air,ICD-71-36,Bleed air systems
-71,75,Bleed_Air_Extract,Gas/Bleed_Air,ICD-71-75,Engine bleed air extraction
-71,92,Propulsion_Control_Wiring,Power/Data,ICD-71-92,Motor control and sensors

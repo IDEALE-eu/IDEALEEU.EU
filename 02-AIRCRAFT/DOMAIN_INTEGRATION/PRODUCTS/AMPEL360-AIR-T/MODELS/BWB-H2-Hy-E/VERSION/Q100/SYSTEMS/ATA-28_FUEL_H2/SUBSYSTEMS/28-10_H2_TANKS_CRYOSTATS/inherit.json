@@ -1,5 +1,0 @@
-{
-  "inherits_from": "CONFIGURATION_BASE/ATA-28_FUEL_H2",
-  "override_params": [],
-  "additional_config": {}
-}

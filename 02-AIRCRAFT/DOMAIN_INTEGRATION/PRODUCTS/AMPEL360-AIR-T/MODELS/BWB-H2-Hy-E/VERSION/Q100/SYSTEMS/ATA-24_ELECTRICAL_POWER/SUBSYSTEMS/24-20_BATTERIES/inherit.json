@@ -1,5 +1,0 @@
-{
-  "inherits_from": "CONFIGURATION_BASE/ATA-24_ELECTRICAL_POWER",
-  "override_params": [],
-  "additional_config": {}
-}

@@ -1,6 +1,0 @@
-from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
-21,24,Thermal_Load_Cooling,Fluid/Coolant,ATA-21-SPEC,Cooling for power electronics and batteries
-21,28,H2_Vaporizer_HX,Fluid/Cryogenic,ATA-28-SPEC,Heat exchange for H2 conditioning
-21,30,Ice_Protection_Thermal,Fluid/Thermal,ATA-30-SPEC,Anti-ice thermal loops
-21,36,Cabin_ECS_Integration,Fluid/Air,ATA-36-SPEC,Environmental control system
-21,92,Thermal_Sensors_Control,ARINC-429/Discrete,ICD-21-92,Temperature and flow sensors
