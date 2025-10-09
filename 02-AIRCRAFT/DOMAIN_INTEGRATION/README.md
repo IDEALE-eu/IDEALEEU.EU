@@ -9,7 +9,7 @@ DOMAIN_INTEGRATION/
 ├── PRODUCTS/
 │   └── AMPEL360-AIR-T/
 │       └── MODELS/
-│           └── BWB/
+│           └── BWB-H2-Hy-E/
 │               └── VERSION/
 │                   └── Q100/
 │                       ├── README.md                    # Main documentation
@@ -52,7 +52,7 @@ This validates:
 
 For detailed information about the domain structure, conventions, and rules, see:
 
-**[Q100/README.md](./PRODUCTS/AMPEL360-AIR-T/MODELS/BWB/VERSION/Q100/README.md)**
+**[Q100/README.md](./PRODUCTS/AMPEL360-AIR-T/MODELS/BWB-H2-Hy-E/VERSION/Q100/README.md)**
 
 ## Key Conventions
 
