@@ -1,0 +1,16 @@
+Power Budget Template
+
+This is a placeholder for an Excel workbook (.xlsx file).
+
+Contents should include:
+- System list
+- Power consumption by system
+- Operating modes
+- Load priorities
+- Total power calculation
+- Margin analysis
+
+Create actual Excel file with:
+- Columns: System, Power (kW), Priority, Operating Mode, Notes
+- Calculated totals and margins
+- Charts showing power distribution

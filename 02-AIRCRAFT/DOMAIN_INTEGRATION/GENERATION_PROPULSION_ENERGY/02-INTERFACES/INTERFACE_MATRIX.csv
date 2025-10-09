@@ -1,0 +1,73 @@
+Domain ID,Source ATA,Destination ATA,Interface Type,Primary Data/Signal,Protocol/Standard,Criticality,Notes
+DOM-IF-001,24,28,Power+Data,Fuel pump power and level sensing,DC Power + ARINC 429,High,Primary fuel system interface
+DOM-IF-002,24,29,Power,Hydraulic pump power,AC Power 115V/400Hz,High,Primary hydraulic power
+DOM-IF-003,24,36,Power,Pneumatic compressor power,AC Power 115V/400Hz,Medium,Pneumatic system
+DOM-IF-004,24,42,Power+Data,Avionics power and data,AC Power + ARINC 664,Critical,Essential avionics power
+DOM-IF-005,24,45,Data,Electrical system faults,ARINC 429,High,CMS fault reporting
+DOM-IF-006,24,46,Data,Power status displays,ARINC 664,High,Cockpit indications
+DOM-IF-007,24,92,Physical,All electrical wiring,EWIS Standards,Critical,Per EWIS rules
+DOM-IF-008,24,33,Power,Lighting power,AC/DC Mixed,Medium,Interior/exterior/emergency lighting
+DOM-IF-009,49,24,Power+Data,APU generator output and status,AC Power + ARINC 429,High,Ground/emergency power
+DOM-IF-010,49,28,Fluid+Control,APU fuel supply and valve control,Fuel + Discrete,High,APU fuel system
+DOM-IF-011,49,29,Pneumatic+Control,APU bleed air and valve control,Pneumatic + Discrete,High,Ground air supply
+DOM-IF-012,49,36,Data,APU parameters (EGT/N1/Oil),ARINC 429 + Analog,High,APU monitoring
+DOM-IF-013,49,92,Physical,All APU wiring,EWIS Standards,High,Per EWIS rules
+DOM-IF-014,71,24,Power,Powerplant electrical routing,Various,High,Nacelle power distribution
+DOM-IF-015,71,28,Fluid,Fuel system plumbing,Fuel Lines,High,Engine fuel supply
+DOM-IF-016,71,29,Mechanical,Hydraulic pump mounting,Mechanical Interface,High,Engine-driven pumps
+DOM-IF-017,71,36,Pneumatic,Pneumatic ducting,Pneumatic Lines,Medium,System air routing
+DOM-IF-018,71,75,Pneumatic,Bleed air manifolds,High-pressure Air,High,Engine bleed extraction
+DOM-IF-019,71,92,Physical,Powerplant wiring,EWIS Standards,High,Per EWIS rules
+DOM-IF-020,72,73,Data+Mechanical,Engine speed and fuel metering,Sensors + Actuation,Critical,FADEC interface
+DOM-IF-021,72,74,Physical,Igniter plugs,High-voltage Ignition,Critical,Engine ignition
+DOM-IF-022,72,75,Pneumatic,Bleed air ports,High-pressure Air,High,Bleed air extraction
+DOM-IF-023,72,76,Mechanical+Data,Control actuation and feedback,Actuation + Sensors,Critical,Engine control
+DOM-IF-024,72,77,Data,Engine parameter sensors,Various Analog/Digital,Critical,Engine monitoring
+DOM-IF-025,72,28,Fluid,Main fuel supply,Fuel Lines,Critical,Primary fuel feed
+DOM-IF-026,72,24,Power,Starter power,High-current DC,Critical,Engine starting
+DOM-IF-027,72,29,Mechanical,Engine-driven pump,Mechanical Drive,High,Hydraulic generation
+DOM-IF-028,72,36,Pneumatic,Starter air interface,High-pressure Air,High,Pneumatic starting
+DOM-IF-029,72,92,Physical,Engine wiring,EWIS Standards,Critical,Per EWIS rules
+DOM-IF-030,73,28,Fluid,FADEC fuel supply,Fuel Lines,Critical,Engine fuel control
+DOM-IF-031,73,24,Power,FADEC power,DC/AC Power,Critical,Control system power
+DOM-IF-032,73,76,Data,Thrust command interface,Digital Data,Critical,Control input
+DOM-IF-033,73,77,Data,Fuel flow indication,ARINC 429,High,Parameter display
+DOM-IF-034,73,42,Data,FADEC avionics bus,ARINC 664,High,System integration
+DOM-IF-035,73,92,Physical,FADEC wiring,EWIS Standards,Critical,Per EWIS rules
+DOM-IF-036,74,24,Power,Ignition power,High-voltage DC,Critical,Ignition system power
+DOM-IF-037,74,72,Physical,Igniter interface,High-voltage Connection,Critical,Ignition plugs
+DOM-IF-038,74,76,Control,Ignition command,Discrete Signal,Critical,Start sequence control
+DOM-IF-039,74,92,Physical,Ignition wiring,EWIS Standards,Critical,Per EWIS rules
+DOM-IF-040,75,21,Pneumatic,ECS air supply,Conditioned Air,High,Air conditioning
+DOM-IF-041,75,24,Power+Control,Valve power and control,DC Power + Discrete,High,Bleed valve control
+DOM-IF-042,75,29,Pneumatic,Hydraulic reservoir pressurization,Low-pressure Air,Medium,System pressurization
+DOM-IF-043,75,36,Pneumatic,Pneumatic system supply,Medium-pressure Air,Medium,General pneumatic
+DOM-IF-044,75,72,Pneumatic,Engine bleed ports,High-pressure Air,High,Bleed extraction
+DOM-IF-045,75,92,Physical,Bleed air wiring,EWIS Standards,High,Per EWIS rules
+DOM-IF-046,76,24,Power,Control system power,DC/AC Power,Critical,Primary control power
+DOM-IF-047,76,42,Data,Control data bus,ARINC 664,High,System integration
+DOM-IF-048,76,72,Mechanical,Engine actuation,Mechanical Control,Critical,Direct engine control
+DOM-IF-049,76,73,Data,FADEC interface,Digital Data,Critical,Coordinated control
+DOM-IF-050,76,74,Control,Ignition control,Discrete Signal,Critical,Ignition sequencing
+DOM-IF-051,76,77,Data,Parameter feedback,Various Digital,High,Control feedback
+DOM-IF-052,76,92,Physical,Control wiring,EWIS Standards,Critical,Per EWIS rules
+DOM-IF-053,77,24,Power,Sensor power,DC Power,High,Sensor power supply
+DOM-IF-054,77,31,Data,EICAS display data,ARINC 664,Critical,Cockpit displays
+DOM-IF-055,77,42,Data,Avionics data bus,ARINC 664,High,System integration
+DOM-IF-056,77,72,Data,Engine sensors,Various Analog/Digital,Critical,Primary engine data
+DOM-IF-057,77,73,Data,FADEC parameters,Digital Data,High,Fuel system data
+DOM-IF-058,77,76,Data,Control feedback,Digital Data,High,Control loop closure
+DOM-IF-059,77,92,Physical,Indication wiring,EWIS Standards,High,Per EWIS rules
+DOM-IF-060,78,72,Physical,Exhaust interface,High-temperature Connection,Critical,Engine exhaust
+DOM-IF-061,78,21,Thermal,Thermal management,Heat Transfer,High,Exhaust cooling
+DOM-IF-062,78,24,Power,Thrust reverser power,DC/Hydraulic Power,High,Reverser actuation
+DOM-IF-063,78,92,Physical,Exhaust wiring,EWIS Standards,Medium,Per EWIS rules
+DOM-IF-064,79,24,Power+Data,Oil pump power and monitoring,DC Power + Sensors,High,Oil system power
+DOM-IF-065,79,72,Fluid,Engine oil supply,Oil Lines,Critical,Engine lubrication
+DOM-IF-066,79,29,Thermal,Oil cooling interface,Heat Exchanger,High,Oil temperature control
+DOM-IF-067,79,36,Pneumatic,Oil tank pressurization,Low-pressure Air,Medium,Tank pressurization
+DOM-IF-068,79,92,Physical,Oil system wiring,EWIS Standards,High,Per EWIS rules
+DOM-IF-069,80,24,Power,Starter power supply,High-current DC,Critical,Engine starting power
+DOM-IF-070,80,49,Pneumatic,APU start air,High-pressure Air,High,Pneumatic starting
+DOM-IF-071,80,72,Mechanical,Starter drive interface,Mechanical Connection,Critical,Engine cranking
+DOM-IF-072,80,92,Physical,Starting wiring,EWIS Standards,Critical,Per EWIS rules

@@ -1,0 +1,2 @@
+Interface ID,Source System,Source LRU,Destination System,Destination LRU,Interface Type,Signal/Data,Protocol,Voltage,Current,Frequency,Connector Type,Wire Gauge,Notes
+IF-XX-YY-NNN,ATA-XX,LRU Name,ATA-YY,LRU Name,Type,Description,Protocol Name,Voltage Value,Current Value,Frequency Value,Connector P/N,Wire Size,Additional notes
