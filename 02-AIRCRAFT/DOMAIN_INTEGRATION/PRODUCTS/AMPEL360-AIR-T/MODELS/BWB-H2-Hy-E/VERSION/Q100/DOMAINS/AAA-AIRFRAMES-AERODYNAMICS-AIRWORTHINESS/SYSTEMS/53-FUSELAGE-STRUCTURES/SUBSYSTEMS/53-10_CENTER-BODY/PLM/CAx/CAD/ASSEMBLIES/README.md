@@ -1,4 +1,4 @@
-# ASSEMBLIES — CAD Assembly Files
+# ASSEMBLIES — CAD Assembly Files 
 
 ## Purpose
 
@@ -22,7 +22,9 @@ This directory contains CAD assembly models that combine multiple components fro
 
 Use the following naming pattern:
 ```
-<subsystem>_ASM_<assembly-name>_<version>.<ext>
+
+<subsystem>*ASM*<assembly-name>_<version>.<ext>
+
 ```
 
 Examples:
@@ -41,6 +43,7 @@ Organize assemblies by:
 
 ### Top-Level Assembly
 ```
+
 53-10_CENTER-BODY_COMPLETE
 ├── Frames (F01-F20)
 ├── Stringers (L/R, Upper/Lower)
@@ -48,15 +51,18 @@ Organize assemblies by:
 ├── Floors
 ├── Bulkheads
 └── Interface Fittings
+
 ```
 
 ### Sub-Assembly Example
 ```
+
 53-10_ASM_FRAME-SECTION_F05
 ├── Frame F05
 ├── Stringers (4x)
 ├── Skin panels (2x)
 └── Fasteners (clips, rivets)
+
 ```
 
 ## File Formats
@@ -138,3 +144,4 @@ Follow:
 - **ISO 10303-242** (STEP AP242): Assembly structure exchange
 - **AS9100**: Quality management requirements
 - **Internal design standards**: `../../STANDARDS/`
+```
