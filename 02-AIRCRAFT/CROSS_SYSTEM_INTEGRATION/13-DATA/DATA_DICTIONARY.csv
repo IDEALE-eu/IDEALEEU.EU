@@ -1,0 +1,14 @@
+signal_name,signal_id,data_type,units,range_min,range_max,resolution,source_lru,owner_domain,ata_chapter,notes
+Pitch_Angle,SIG-001,INT16,degrees,-90,90,0.01,IRS-1,Navigation,ATA-34,Aircraft pitch attitude
+Roll_Angle,SIG-002,INT16,degrees,-180,180,0.01,IRS-1,Navigation,ATA-34,Aircraft roll attitude
+True_Airspeed,SIG-003,UINT16,knots,0,600,0.1,ADC-1,Air Data,ATA-34,True airspeed
+Indicated_Airspeed,SIG-004,UINT16,knots,0,400,0.1,ADC-1,Air Data,ATA-34,Indicated airspeed
+Pressure_Altitude,SIG-005,INT32,feet,-1000,50000,1,ADC-1,Air Data,ATA-34,Pressure altitude
+GPS_Latitude,SIG-006,FLOAT64,degrees,-90,90,1e-7,GPS-1,Navigation,ATA-34,GPS latitude
+GPS_Longitude,SIG-007,FLOAT64,degrees,-180,180,1e-7,GPS-1,Navigation,ATA-34,GPS longitude
+Engine_N1,SIG-008,FLOAT32,percent RPM,0,110,0.1,FADEC-1,Propulsion,ATA-72,Engine N1 speed
+Engine_EGT,SIG-009,UINT16,degrees C,0,1200,1,FADEC-1,Propulsion,ATA-72,Exhaust gas temperature
+Hydraulic_Pressure,SIG-010,UINT16,psi,0,5000,1,HYD-SENSOR-1,Hydraulics,ATA-29,Hydraulic system pressure
+Fuel_Quantity,SIG-011,UINT32,kg,0,50000,0.1,FUEL-MGMT-1,Fuel,ATA-28,Total fuel remaining
+Battery_Voltage,SIG-012,UINT16,volts DC,0,32,0.1,BATTERY-1,Electrical,ATA-24,Battery voltage
+Fire_Warning,SIG-013,BOOL,boolean,0,1,1,FIRE-DET-1,Fire Detection,ATA-26,Fire warning status

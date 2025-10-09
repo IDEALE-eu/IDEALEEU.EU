@@ -1,0 +1,19 @@
+partition_id,partition_name,major_frame_ms,minor_frame_ms,time_window_ms,offset_ms,period_ms,deadline_ms,priority
+P001,Flight Control Primary,100,10,8,0,10,10,1
+P002,Flight Control Backup,100,10,8,10,10,20,1
+P003,Navigation Primary,100,50,40,20,50,50,3
+P004,Display Driver 1,100,20,18,60,20,80,5
+P005,Display Driver 2,100,20,18,80,20,100,5
+P006,Engine Monitoring,100,20,15,30,20,50,2
+P007,Engine Monitoring Backup,100,20,15,50,20,70,2
+P008,Air Data Processing,100,10,8,5,10,15,1
+P009,Air Data Backup,100,10,8,15,10,25,1
+P010,Inertial Reference,100,50,40,25,50,75,3
+P011,Inertial Reference Backup,100,50,40,75,50,125,3
+P012,Fire Detection,100,50,40,40,50,90,2
+P013,Hydraulic Monitoring,100,100,80,0,100,100,6
+P014,Fuel Management,100,500,400,100,500,600,7
+P015,Communications Handler,100,100,80,20,100,120,6
+P016,Weather Radar Handler,100,500,400,600,500,1100,8
+P017,System Health Monitor,100,100,80,40,100,140,4
+P018,Configuration Manager,100,1000,800,200,1000,1200,9

@@ -1,0 +1,50 @@
+# DO-254 Traceability
+
+## Overview
+
+Traceability matrix linking hardware requirements, design, verification per DO-254.
+
+## Traceability Structure
+
+```json
+{
+  "do254_trace": {
+    "version": "1.0",
+    "baseline": "IBL-2024-Q3",
+    "date": "2024-09-25",
+    "traces": [
+      {
+        "requirement_id": "HW-REQ-001",
+        "description": "AFDX switch redundancy",
+        "dal": "A",
+        "hdl_files": [
+          "afdx-switch/rtl/redundancy_manager.vhdl",
+          "afdx-switch/rtl/failover_controller.vhdl"
+        ],
+        "test_cases": [
+          "HW-TC-001",
+          "HW-TC-002"
+        ],
+        "verification_status": "PASS"
+      }
+    ]
+  }
+}
+```
+
+## Verification by DAL
+
+- **DAL A**: Full verification per DO-254 Table A-1
+- **DAL B**: Verification per DO-254 Table A-1 (reduced)
+- **DAL C/D**: Simplified verification
+
+## Hardware Verification Tools
+
+- **HDL Simulator**: ModelSim (DO-254 qualified)
+- **Synthesis**: Synopsys Design Compiler
+- **Formal Verification**: Cadence JasperGold
+
+## References
+
+- **DO-254**: Design Assurance Guidance for Airborne Electronic Hardware
+- **[02-NETWORKS_DATA_BUS/](../../02-NETWORKS_DATA_BUS/)** - Network hardware

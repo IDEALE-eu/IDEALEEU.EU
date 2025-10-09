@@ -1,0 +1,11 @@
+sw_component,lru_id,board,zone,partition_id,ata_chapter,dal,notes
+FCC-1 Primary Control Law,FCC-001,IMA-CORE-1 Board 1,Zone-A1,P001,ATA-27,A,Flight control software
+FCC-2 Backup Control Law,FCC-002,IMA-CORE-2 Board 1,Zone-A2,P002,ATA-27,A,Backup flight control
+ACE-1 Actuator Control,ACE-003,Dedicated HW,Zone-G1,N/A,ATA-27,A,Hardware-only LRU
+ACE-2 Actuator Control,ACE-004,Dedicated HW,Zone-G2,N/A,ATA-27,A,Hardware-only LRU
+FMS-1 Nav Solution,FMS-005,IMA-CORE-1 Board 2,Zone-B1,P003,ATA-34,B,Flight management
+GPS-1 Receiver FW,GPS-006,Dedicated HW,Zone-C1,N/A,ATA-34,B,COTS GPS receiver
+IRS-1 IMU Processing,IRS-008,IMA-CORE-1 Board 2,Zone-D1,P010,ATA-34,B,Inertial reference
+FADEC-1 Engine Control,FADEC-010,Dedicated HW,Zone-E1,N/A,ATA-72,A,Engine control
+Display-1 Graphics,DISP-014,IMA-CORE-1 Board 3,Zone-F1,P004,ATA-31,C,Display driver
+System Health Monitor,IMA-029,IMA-CORE-1 Board 4,Zone-B1,P017,ATA-45,B,Health aggregation

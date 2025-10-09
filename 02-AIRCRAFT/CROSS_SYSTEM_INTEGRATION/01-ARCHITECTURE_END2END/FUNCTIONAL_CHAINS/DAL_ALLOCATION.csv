@@ -1,0 +1,21 @@
+chain_id,chain_name,dal,justification,reference
+FC-001,Primary Flight Control - Pitch,A,"Failure could prevent continued safe flight and landing per CS-25.1309",ARP4754A Table 1
+FC-002,Navigation Solution,B,"Failure could result in serious injury or reduce crew ability to operate aircraft",ARP4754A Table 1
+FC-003,Engine Thrust Control,A,"Failure could prevent continued safe flight and landing",ARP4754A Table 1
+FC-004,Hydraulic Power Distribution,C,"Failure could result in minor injury or nuisance to occupants",ARP4754A Table 1
+FC-005,Electrical Power Distribution,A,"Total loss prevents continued safe flight and landing",CS-25.1351
+FC-006,Landing Gear Extension,B,"Failure could result in serious injury or operational limits",CS-25.729
+FC-007,Anti-Ice System,C,"Failure in icing conditions could affect safety margins",CS-25.1419
+FC-008,Fire Detection & Suppression,A,"Undetected fire could lead to catastrophic failure",CS-25.1181
+FC-009,Cabin Pressurization,B,"Loss of pressurization could result in serious injury",CS-25.841
+FC-010,Oxygen Supply,A,"Total loss at high altitude could be catastrophic",CS-25.1443
+FC-011,Fuel Quantity Indication,C,"Inaccurate indication could affect flight planning",CS-25.1337
+FC-012,Air Data System,A,"Total loss could prevent safe flight continuation",CS-25.1323
+FC-013,Autopilot Engage/Disengage,B,"Inadvertent operation could affect crew workload",CS-25.1329
+FC-014,Weather Radar,C,"Loss affects situational awareness but not immediate safety",CS-25.1327
+FC-015,Communications Voice,C,"Loss affects ATC coordination but not immediate flight safety",CS-25.1301
+FC-016,Brake System Control,A,"Total loss could prevent safe landing",CS-25.735
+FC-017,Flap/Slat Extension,B,"Asymmetry or failure could affect controllability",CS-25.701
+FC-018,Engine Fire Detection,A,"Undetected engine fire could lead to catastrophic failure",CS-25.1203
+FC-019,Flight Data Recording,D,"Failure does not affect flight operations",CS-25.1459
+FC-020,Passenger Address System,D,"Failure affects convenience but not safety",CS-25.1301

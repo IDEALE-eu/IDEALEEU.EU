@@ -1,0 +1,57 @@
+# DO-178C Traceability
+
+## Overview
+
+Traceability matrix linking requirements, code, tests, and coverage per DO-178C.
+
+## Traceability Structure
+
+```json
+{
+  "do178c_trace": {
+    "version": "1.0",
+    "baseline": "IBL-2024-Q3",
+    "date": "2024-09-25",
+    "traces": [
+      {
+        "requirement_id": "SYS-REQ-001",
+        "description": "Flight control sync between FCC-1 and FCC-2",
+        "dal": "A",
+        "source_files": [
+          "ata-27-flight-controls/src/fcc_sync.c",
+          "ata-27-flight-controls/src/fcc_redundancy.c"
+        ],
+        "test_cases": [
+          "TC-001",
+          "TC-002"
+        ],
+        "coverage": {
+          "statement": 100.0,
+          "branch": 100.0,
+          "mc_dc": 100.0
+        },
+        "verification_status": "PASS"
+      }
+    ]
+  }
+}
+```
+
+## Coverage Requirements by DAL
+
+- **DAL A**: Statement (100%), Branch (100%), MC/DC (100%)
+- **DAL B**: Statement (100%), Branch (100%)
+- **DAL C**: Statement (100%)
+- **DAL D**: None required
+
+## Verification Tools
+
+- **Compiler**: GCC 11.2 (DO-330 qualified)
+- **Coverage Tool**: VectorCAST (DO-330 qualified)
+- **Static Analyzer**: Coverity (DO-330 qualified)
+
+## References
+
+- **DO-178C**: Software Considerations in Airborne Systems
+- **DO-330**: Software Tool Qualification Considerations
+- **[06-SOFTWARE_INTEGRATION/BUILD_BASELINES.md](../../06-SOFTWARE_INTEGRATION/BUILD_BASELINES.md)**

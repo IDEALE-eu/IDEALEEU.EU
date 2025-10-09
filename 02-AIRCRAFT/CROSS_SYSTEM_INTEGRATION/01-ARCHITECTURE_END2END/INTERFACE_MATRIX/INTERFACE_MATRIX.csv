@@ -1,0 +1,29 @@
+icd_id,icd_title,party_a,party_b,interface_type,version,status,criticality,owner,date,config_mgmt_path
+ICD-0001,Aircraft-Propulsion System Interface,Airframe,Propulsion,Physical/Data,1.0,Approved,Critical,J. Smith,2024-01-15,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0001.md
+ICD-0002,Spacecraft-Ground Segment Interface,Spacecraft,Ground Station,Data/RF,1.0,Draft,Critical,M. Johnson,2024-01-20,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0002.md
+ICD-0003,Avionics-Flight Control Interface,Avionics Suite,Flight Control System,Data/AFDX,1.2,Approved,Critical,K. Lee,2024-01-25,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0003.md
+ICD-0004,Power System Interface,Power Generation,Power Distribution,Electrical,1.0,Draft,Critical,A. Chen,2024-02-01,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0004.md
+ICD-0005,Navigation-FMS Interface,Navigation System,FMS,Data/ARINC429,1.1,Approved,High,R. Williams,2024-02-05,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0005.md
+ICD-0006,Engine-FADEC Interface,Engine ECU,FADEC,Data/CAN,1.0,Approved,Critical,T. Anderson,2024-02-10,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0006.md
+ICD-0007,Hydraulic System Interface,Hydraulic Pump,Hydraulic Controller,Fluid/Data,1.0,Draft,High,S. Martinez,2024-02-15,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0007.md
+ICD-0008,Display-Avionics Interface,Display Units,Avionics Core,Data/AFDX,1.3,Approved,High,D. Thompson,2024-02-20,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0008.md
+ICD-0009,Landing Gear Interface,Landing Gear,Flight Control,Data/Discrete,1.0,Draft,High,J. Garcia,2024-02-25,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0009.md
+ICD-0010,Environmental Control Interface,ECS,Cabin Systems,Pneumatic/Data,1.1,Approved,Medium,L. Brown,2024-03-01,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0010.md
+ICD-0011,Fire Detection Interface,Fire Sensors,Fire Suppression,Data/Discrete,1.0,Approved,Critical,M. Davis,2024-03-05,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0011.md
+ICD-0012,Fuel System Interface,Fuel Tanks,Fuel Management,Fluid/Data,1.0,Draft,High,C. Wilson,2024-03-10,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0012.md
+ICD-0013,Communications Interface,Comms Radio,Avionics,Data/RF,1.2,Approved,Medium,P. Moore,2024-03-15,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0013.md
+ICD-0014,Weather Radar Interface,Weather Radar,Avionics,Data/ARINC429,1.0,Draft,Medium,N. Taylor,2024-03-20,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0014.md
+ICD-0015,Actuator Control Interface,Flight Control,Actuator Control Electronics,Data/AFDX,1.1,Approved,Critical,H. Jackson,2024-03-25,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0015.md
+ICD-0016,Oxygen System Interface,Oxygen Supply,Distribution,Pneumatic/Data,1.0,Approved,Critical,W. White,2024-03-30,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0016.md
+ICD-0017,Ice Protection Interface,Anti-Ice System,Wing/Engine,Electrical/Data,1.0,Draft,High,K. Harris,2024-04-05,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0017.md
+ICD-0018,Brake System Interface,Brake Control,Brake Actuators,Hydraulic/Data,1.1,Approved,Critical,G. Martin,2024-04-10,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0018.md
+ICD-0019,Lighting System Interface,Lighting Control,Lights,Electrical,1.0,Draft,Low,B. Thompson,2024-04-15,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0019.md
+ICD-0020,APU Interface,APU,Electrical/Bleed,Mechanical/Electrical,1.0,Approved,High,V. Lopez,2024-04-20,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0020.md
+ICD-0021,GPS-FMS Interface,GPS Receiver,FMS,Data/ARINC429,1.2,Approved,High,E. Hill,2024-04-25,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0021.md
+ICD-0022,IRS-FMS Interface,Inertial Reference,FMS,Data/AFDX,1.1,Approved,High,F. Scott,2024-04-30,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0022.md
+ICD-0023,Air Data-Avionics Interface,Air Data Computer,Avionics,Data/ARINC429,1.0,Draft,Critical,R. Green,2024-05-05,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0023.md
+ICD-0024,Cargo System Interface,Cargo Control,Cargo Doors,Data/Discrete,1.0,Draft,Medium,A. Adams,2024-05-10,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0024.md
+ICD-0025,Ground Service Interface,Ground Connector,Aircraft Systems,Data/Power,1.0,Approved,Low,S. Baker,2024-05-15,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0025.md
+ICD-0031,Throttle-FADEC Interface,Throttle Lever,FADEC,Data/Analog,1.0,Approved,Critical,T. Anderson,2024-06-01,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0031.md
+ICD-0032,FADEC-Engine ECU Interface,FADEC,Engine ECU,Data/CAN,1.1,Approved,Critical,T. Anderson,2024-06-05,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0032.md
+ICD-0041,Hydraulic Sensor Interface,Hydraulic Sensor,Hydraulic Controller,Data/ARINC429,1.0,Draft,High,S. Martinez,2024-07-01,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-0041.md

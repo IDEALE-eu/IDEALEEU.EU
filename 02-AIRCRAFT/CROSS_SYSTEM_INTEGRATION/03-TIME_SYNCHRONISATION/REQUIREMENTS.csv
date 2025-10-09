@@ -1,0 +1,33 @@
+system,functional_chain,dal,sync_requirement_us,latency_budget_us,wander_limit_ppb,holdover_spec,monitoring,status
+FCC-1,FC-001,A,1,0.8,10,N/A - Critical system,Continuous sync error monitoring,ALLOCATED
+FCC-2,FC-001,A,1,0.8,10,N/A - Critical system,Continuous sync error monitoring,ALLOCATED
+ACE-1,FC-001,A,1,0.8,10,N/A - Critical system,Continuous sync error monitoring,ALLOCATED
+ACE-2,FC-001,A,1,0.8,10,N/A - Critical system,Continuous sync error monitoring,ALLOCATED
+FADEC-1,FC-003,A,5,3,20,N/A - Critical system,Sync error logging,ALLOCATED
+FADEC-2,FC-003,A,5,3,20,N/A - Critical system,Sync error logging,ALLOCATED
+ENG-ECU-1,FC-003,A,5,3,20,N/A - Critical system,Sync error logging,ALLOCATED
+ENG-ECU-2,FC-003,A,5,3,20,N/A - Critical system,Sync error logging,ALLOCATED
+FIRE-DET-1,FC-008,A,10,7,50,N/A - Critical system,Sync error logging,ALLOCATED
+FIRE-SUPP-1,FC-008,A,10,7,50,N/A - Critical system,Sync error logging,ALLOCATED
+BRAKE-CTRL-1,FC-016,A,10,7,50,N/A - Critical system,Sync error logging,ALLOCATED
+BRAKE-ACT-1,FC-016,A,10,7,50,N/A - Critical system,Sync error logging,ALLOCATED
+ADC-1,FC-012,A,5,3,20,N/A - Critical system,Sync error logging,ALLOCATED
+ADC-2,FC-012,A,5,3,20,N/A - Critical system,Sync error logging,ALLOCATED
+GPS-1,FC-002,B,10,7,100,±1 μs for 10 min,Sync error and GNSS quality,ALLOCATED
+GPS-2,FC-002,B,10,7,100,±1 μs for 10 min,Sync error and GNSS quality,ALLOCATED
+IRS-1,FC-002,B,10,7,100,±10 μs for 1 hour,Sync error logging,ALLOCATED
+IRS-2,FC-002,B,10,7,100,±10 μs for 1 hour,Sync error logging,ALLOCATED
+FMS-1,FC-002,B,10,7,100,±10 μs for 1 hour,Sync error logging,ALLOCATED
+LG-CTRL-1,FC-006,B,20,15,200,±20 μs for 30 min,Periodic sync check,ALLOCATED
+PRESS-CTRL-1,FC-009,B,50,35,500,±50 μs for 30 min,Periodic sync check,ALLOCATED
+OXY-CTRL-1,FC-010,B,50,35,500,±50 μs for 30 min,Periodic sync check,ALLOCATED
+HYD-CTRL-1,FC-004,C,100,70,1000,±100 μs for 30 min,Periodic sync check,ALLOCATED
+FUEL-MGMT-1,FC-011,C,1000,700,10000,±1 ms for 1 hour,Periodic sync check,ALLOCATED
+DISPLAY-1,Multiple,C,100,70,1000,±100 μs for 30 min,Periodic sync check,ALLOCATED
+DISPLAY-2,Multiple,C,100,70,1000,±100 μs for 30 min,Periodic sync check,ALLOCATED
+COMMS-1,FC-015,C,500,350,5000,±500 μs for 1 hour,Periodic sync check,ALLOCATED
+WX-RADAR-1,FC-014,C,1000,700,10000,±1 ms for 1 hour,Periodic sync check,ALLOCATED
+IMA-CORE-1,Grandmaster,A,0.05,N/A,1,±10 μs for 24 hr (GNSS loss),Continuous GNSS and OCXO monitoring,ALLOCATED
+IMA-CORE-2,Grandmaster,A,0.05,N/A,1,±10 μs for 24 hr (GNSS loss),Continuous GNSS and OCXO monitoring,ALLOCATED
+AFDX-SW-1,Boundary Clock,A,0.2,N/A,5,N/A - passes through,PTP boundary clock health,ALLOCATED
+AFDX-SW-2,Boundary Clock,A,0.2,N/A,5,N/A - passes through,PTP boundary clock health,ALLOCATED

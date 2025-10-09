@@ -1,0 +1,10 @@
+req_id,functional_chain,icd_id,test_case_id,evidence_file,status,date_tested,notes
+SYS-REQ-001,FC-001,ICD-0003,TC-001,REPORTS/TC-001_FCC_SYNC.pdf,PASS,2024-09-15,Flight control sync verified
+SYS-REQ-002,FC-001,ICD-0015,TC-002,REPORTS/TC-002_FCC_ACE.pdf,PASS,2024-09-16,FCC to ACE command verified
+SYS-REQ-010,FC-002,ICD-0021,TC-010,REPORTS/TC-010_GPS_FMS.pdf,PASS,2024-09-18,GPS to FMS interface verified
+SYS-REQ-011,FC-002,ICD-0022,TC-011,REPORTS/TC-011_IRS_FMS.pdf,PASS,2024-09-18,IRS to FMS interface verified
+SYS-REQ-020,FC-003,ICD-0031,TC-020,REPORTS/TC-020_THROTTLE_FADEC.pdf,PASS,2024-09-20,Throttle to FADEC verified
+SYS-REQ-021,FC-003,ICD-0032,TC-021,REPORTS/TC-021_FADEC_ECU.pdf,PASS,2024-09-20,FADEC to ECU verified
+HZD-001,FC-001,ICD-0003,TC-100,REPORTS/TC-100_PITCH_FAIL.pdf,PASS,2024-09-22,Loss of pitch control mitigation verified
+HZD-012,FC-002,ICD-0021,TC-110,REPORTS/TC-110_NAV_FAIL.pdf,PASS,2024-09-23,Navigation failure mitigation verified
+HZD-025,FC-003,ICD-0032,TC-120,REPORTS/TC-120_THRUST_FAIL.pdf,PASS,2024-09-24,Engine control failure mitigation verified

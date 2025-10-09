@@ -1,0 +1,19 @@
+partition_id,partition_name,application,ata_chapter,module,criticality_dal,memory_kb,cpu_percent,network_quota_kbps,health_monitoring
+P001,Flight Control Primary,FCC-1 Primary Control Law,ATA-27,IMA-CORE-1,A,2048,25,1500,Level A - Immediate response
+P002,Flight Control Backup,FCC-2 Backup Control Law,ATA-27,IMA-CORE-2,A,2048,25,1500,Level A - Immediate response
+P003,Navigation Primary,FMS-1 Navigation Solution,ATA-34,IMA-CORE-1,B,4096,15,800,Level B - Shutdown partition
+P004,Display Driver 1,DISPLAY-1 Graphics Driver,ATA-31,IMA-CORE-1,C,8192,20,2000,Level C - Log and continue
+P005,Display Driver 2,DISPLAY-2 Graphics Driver,ATA-31,IMA-CORE-2,C,8192,20,2000,Level C - Log and continue
+P006,Engine Monitoring,FADEC-1 Monitoring App,ATA-72,IMA-CORE-1,A,1024,10,500,Level A - Immediate response
+P007,Engine Monitoring Backup,FADEC-2 Monitoring App,ATA-72,IMA-CORE-2,A,1024,10,500,Level A - Immediate response
+P008,Air Data Processing,ADC-1 Data Processing,ATA-34,IMA-CORE-1,A,512,8,300,Level A - Immediate response
+P009,Air Data Backup,ADC-2 Data Processing,ATA-34,IMA-CORE-2,A,512,8,300,Level A - Immediate response
+P010,Inertial Reference,IRS-1 IMU Processing,ATA-34,IMA-CORE-1,B,2048,12,600,Level B - Shutdown partition
+P011,Inertial Reference Backup,IRS-2 IMU Processing,ATA-34,IMA-CORE-2,B,2048,12,600,Level B - Shutdown partition
+P012,Fire Detection,FIRE-DET-1 Monitoring,ATA-26,IMA-CORE-1,A,256,5,200,Level A - Immediate response
+P013,Hydraulic Monitoring,HYD-CTRL-1 Monitoring,ATA-29,IMA-CORE-1,C,512,8,250,Level C - Log and continue
+P014,Fuel Management,FUEL-MGMT-1 App,ATA-28,IMA-CORE-2,C,1024,10,300,Level C - Log and continue
+P015,Communications Handler,COMMS-1 Protocol Stack,ATA-23,IMA-CORE-2,C,2048,12,1000,Level C - Log and continue
+P016,Weather Radar Handler,WX-RADAR-1 Data Processor,ATA-34,IMA-CORE-2,C,4096,15,5000,Level C - Log and continue
+P017,System Health Monitor,Cross-System Health Mon,ATA-45,IMA-CORE-1,B,1024,8,400,Level B - Shutdown partition
+P018,Configuration Manager,SW Config Management,ATA-45,IMA-CORE-2,D,2048,10,200,Level D - Log event

@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "chain.schema.json",
+  "title": "Functional Chain",
+  "description": "Schema for aircraft functional chain definition",
+  "type": "object",
+  "required": ["chain_id", "name", "dal", "path"],
+  "properties": {
+    "chain_id": {
+      "type": "string",
+      "pattern": "^FC-[0-9]{3}$",
+      "description": "Functional chain identifier (e.g., FC-001)"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 100,
+      "description": "Human-readable chain name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of chain purpose"
+    },
+    "dal": {
+      "type": "string",
+      "enum": ["A", "B", "C", "D"],
+      "description": "Design Assurance Level per ARP4754A"
+    },
+    "path": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["lru", "function", "latency_ms"],
+        "properties": {
+          "lru": {
+            "type": "string",
+            "description": "LRU identifier in the chain"
+          },
+          "function": {
+            "type": "string",
+            "description": "Function performed by this LRU in chain"
+          },
+          "latency_ms": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Processing latency in milliseconds"
+          }
+        }
+      }
+    },
+    "total_latency_budget_ms": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total end-to-end latency budget in ms"
+    },
+    "update_rate_hz": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Update rate in Hertz"
+    },
+    "interfaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["icd_id", "from", "to"],
+        "properties": {
+          "icd_id": {
+            "type": "string",
+            "pattern": "^ICD-[0-9]{4}$"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "hazards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["hazard_id", "description", "mitigation"],
+        "properties": {
+          "hazard_id": {
+            "type": "string",
+            "pattern": "^HZD-[0-9]{3}$"
+          },
+          "description": {
+            "type": "string"
+          },
+          "mitigation": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

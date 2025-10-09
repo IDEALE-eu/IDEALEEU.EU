@@ -1,0 +1,34 @@
+system,lru_id,nominal_power_w,max_power_w,voltage_dc,voltage_ac,contingency_margin_percent,brownout_tolerance,zone,notes
+FCC-1,FCC-001,45,60,28,N/A,20,18V for 50ms,Zone-A1,Dual-redundant flight control
+FCC-2,FCC-002,45,60,28,N/A,20,18V for 50ms,Zone-A2,Dual-redundant flight control
+ACE-1,ACE-003,80,120,28,N/A,25,18V for 50ms,Zone-G1,Actuator control electronics
+ACE-2,ACE-004,80,120,28,N/A,25,18V for 50ms,Zone-G2,Actuator control electronics
+FMS-1,FMS-005,35,50,28,N/A,20,20V for 100ms,Zone-B1,Flight management
+GPS-1,GPS-006,15,20,28,N/A,15,20V for 100ms,Zone-C1,GNSS receiver
+GPS-2,GPS-007,15,20,28,N/A,15,20V for 100ms,Zone-C2,GNSS receiver
+IRS-1,IRS-008,40,55,28,N/A,20,20V for 100ms,Zone-D1,Inertial reference
+IRS-2,IRS-009,40,55,28,N/A,20,20V for 100ms,Zone-D2,Inertial reference
+FADEC-1,FADEC-010,60,90,28,N/A,25,18V for 50ms,Zone-E1,Engine control
+FADEC-2,FADEC-011,60,90,28,N/A,25,18V for 50ms,Zone-E2,Engine control
+ENG-ECU-1,ECU-012,50,75,28,N/A,25,18V for 50ms,Zone-E1,Engine ECU
+ENG-ECU-2,ECU-013,50,75,28,N/A,25,18V for 50ms,Zone-E2,Engine ECU
+DISPLAY-1,DISP-014,70,100,28,N/A,20,20V for 200ms,Zone-F1,Primary flight display
+DISPLAY-2,DISP-015,70,100,28,N/A,20,20V for 200ms,Zone-F2,Multi-function display
+AVIONICS-1,AVION-016,120,180,28,N/A,25,20V for 100ms,Zone-B2,Integrated avionics
+ADC-1,ADC-017,25,35,28,N/A,15,20V for 100ms,Zone-H1,Air data computer
+ADC-2,ADC-018,25,35,28,N/A,15,20V for 100ms,Zone-H2,Air data computer
+HYD-CTRL-1,HYD-019,30,45,28,N/A,20,20V for 100ms,Zone-H1,Hydraulic controller
+BRAKE-CTRL-1,BRK-020,40,60,28,N/A,25,18V for 50ms,Zone-I1,Brake control
+FIRE-DET-1,FIRE-021,20,30,28,N/A,20,18V for 50ms,Zone-J1,Fire detection
+FIRE-SUPP-1,FIRE-022,30,50,28,N/A,25,18V for 50ms,Zone-J1,Fire suppression
+FUEL-MGMT-1,FUEL-023,35,50,28,N/A,20,20V for 200ms,Zone-K1,Fuel management
+COMMS-1,COMM-024,55,80,28,N/A,20,20V for 200ms,Zone-K1,Communications radio
+WX-RADAR-1,WXR-025,150,200,N/A,115VAC 400Hz,20,N/A - AC powered,Zone-L1,Weather radar
+PRESS-CTRL-1,PRESS-026,40,60,28,N/A,20,20V for 100ms,Zone-M1,Pressurization control
+LG-CTRL-1,LG-027,35,55,28,N/A,20,20V for 100ms,Zone-N1,Landing gear control
+OXY-CTRL-1,OXY-028,25,40,28,N/A,20,20V for 100ms,Zone-O1,Oxygen control
+IMA-CORE-1,IMA-029,200,300,28,N/A,30,20V for 100ms,Zone-B1,IMA core module (Grandmaster)
+IMA-CORE-2,IMA-030,200,300,28,N/A,30,20V for 100ms,Zone-B2,IMA core module (Backup GM)
+AFDX-SW-1,SW-031,80,120,28,N/A,25,20V for 100ms,Zone-P1,AFDX switch (Boundary Clock)
+AFDX-SW-2,SW-032,80,120,28,N/A,25,20V for 100ms,Zone-P2,AFDX switch (Boundary Clock)
+TOTAL,,1725,2550,,,,,,Excludes actuators and sensors

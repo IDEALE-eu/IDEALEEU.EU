@@ -1,0 +1,8 @@
+fmu_id,fmu_name,version,owner,export_tool,fmi_version,domain,status
+FMU-001,Flight Control Laws,v2.5.1,Flight Controls Team,Simulink R2024a,FMI 2.0,Control Systems,Released
+FMU-002,Engine Thermodynamics,v1.3.0,Propulsion Team,AMESim 2024.1,FMI 2.0,Propulsion,Released
+FMU-003,Hydraulic Network,v1.1.2,Hydraulics Team,SimulationX 4.5,FMI 2.0,Fluid Systems,Released
+FMU-004,Electrical Network,v2.0.3,Electrical Team,PLECS 4.8,FMI 2.0,Electrical,Released
+FMU-005,Fuel System,v1.4.1,Fuel Team,Simulink R2024a,FMI 2.0,Fluid Systems,Released
+FMU-006,Landing Gear Dynamics,v1.2.0,Structures Team,ADAMS 2024,FMI 2.0,Mechanical,In Development
+FMU-007,Environmental Control,v1.0.5,Environmental Team,Simulink R2024a,FMI 2.0,Thermal,Released

@@ -1,0 +1,11 @@
+kpi,system,target_value,current_avg,margin_status,trend,notes
+Latency_FC001_ms,Flight Control,40,32,GREEN,Stable,Within budget with 20% margin
+Latency_FC002_ms,Navigation,150,110,GREEN,Stable,Within budget with 27% margin
+Latency_FC003_ms,Engine Control,50,42,YELLOW,Increasing,Approaching budget limit
+Network_Dropouts_per_1000hrs,AFDX,<1,0.3,GREEN,Stable,Low dropout rate
+GPS_Loss_Events_per_10000hrs,Navigation,<5,2.1,GREEN,Stable,Acceptable performance
+AFDX_Switch_Resets_per_1000hrs,Network,<2,0.8,GREEN,Stable,Below threshold
+Fire_False_Alarms_per_1000hrs,Fire Detection,<10,4.8,GREEN,Stable,Within acceptable limits
+Hydraulic_Pressure_Drops_per_1000hrs,Hydraulics,<5,1.2,GREEN,Stable,Low frequency
+IMA_Partition_Restarts_per_1000hrs,IMA,<10,3.5,GREEN,Stable,Mostly DAL C/D partitions
+Battery_Capacity_Degradation_percent_per_year,Electrical,<5,2.1,GREEN,Stable,Within specification

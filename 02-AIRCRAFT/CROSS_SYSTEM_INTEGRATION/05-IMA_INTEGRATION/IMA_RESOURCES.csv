@@ -1,0 +1,19 @@
+partition_id,partition_name,cpu_quota_percent,memory_quota_kb,network_tx_quota_kbps,network_rx_quota_kbps,disk_quota_mb,actual_cpu_percent,actual_memory_kb,margin_cpu_percent,margin_memory_kb
+P001,Flight Control Primary,25,2048,1500,500,10,18,1650,7,398
+P002,Flight Control Backup,25,2048,1500,500,10,18,1650,7,398
+P003,Navigation Primary,15,4096,800,800,50,12,3200,3,896
+P004,Display Driver 1,20,8192,2000,100,20,16,6500,4,1692
+P005,Display Driver 2,20,8192,2000,100,20,16,6500,4,1692
+P006,Engine Monitoring,10,1024,500,500,5,8,820,2,204
+P007,Engine Monitoring Backup,10,1024,500,500,5,8,820,2,204
+P008,Air Data Processing,8,512,300,100,5,6,410,2,102
+P009,Air Data Backup,8,512,300,100,5,6,410,2,102
+P010,Inertial Reference,12,2048,600,200,10,10,1640,2,408
+P011,Inertial Reference Backup,12,2048,600,200,10,10,1640,2,408
+P012,Fire Detection,5,256,200,50,5,4,205,1,51
+P013,Hydraulic Monitoring,8,512,250,100,5,6,410,2,102
+P014,Fuel Management,10,1024,300,200,10,8,820,2,204
+P015,Communications Handler,12,2048,1000,1000,20,10,1640,2,408
+P016,Weather Radar Handler,15,4096,5000,500,50,12,3200,3,896
+P017,System Health Monitor,8,1024,400,400,30,6,820,2,204
+P018,Configuration Manager,10,2048,200,200,100,7,1640,3,408
