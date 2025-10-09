@@ -1,0 +1,15 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+51,53,Fuselage structural design rules,Allowables/margins/joints,Design manual,Material selection and joint design standards for fuselage
+51,53,Damage tolerance strategy,Inspection intervals/methods,DT/NDI plan,Detectable damage thresholds and inspection requirements
+51,57,Wing structural design rules,Allowables/margins/joints,Design manual,Material selection and joint design standards for wing
+51,57,Damage tolerance strategy,Inspection intervals/methods,DT/NDI plan,Detectable damage thresholds and inspection requirements
+51,54,Nacelle/Pylon structural design rules,Allowables/margins/joints,Design manual,Material selection and joint design standards for nacelles/pylons
+51,54,Damage tolerance strategy,Inspection intervals/methods,DT/NDI plan,Detectable damage thresholds and inspection requirements
+51,32,Landing gear attachment structure,Hardpoints/fittings,Interface loads spec,Structural provisions for landing gear mounting
+51,32,Landing gear loads,Load cases/factors,Loads document,Design load cases and safety factors for gear structures
+51,25,Cabin monuments hardpoints,Floor grid loads/attachments,Structural interface spec,Structural provisions for cabin equipment mounting
+51,25,Floor grid design,Load distribution/stiffness,Floor panel spec,Floor structural design rules and load paths
+51,24,Bonding and grounding,Electrical continuity,Bonding spec,Structural bonding requirements for electrical systems
+51,24,Lightning protection,Strike zones/conduction paths,Lightning protection spec,Structural provisions for lightning strike protection
+51,92,EWIS penetrations,Keep-outs/clearances,Penetration standard,Structural guidelines for wire harness routing
+51,92,Clamp and junction standards,Mounting provisions/loads,Installation spec,Structural support requirements for EWIS components

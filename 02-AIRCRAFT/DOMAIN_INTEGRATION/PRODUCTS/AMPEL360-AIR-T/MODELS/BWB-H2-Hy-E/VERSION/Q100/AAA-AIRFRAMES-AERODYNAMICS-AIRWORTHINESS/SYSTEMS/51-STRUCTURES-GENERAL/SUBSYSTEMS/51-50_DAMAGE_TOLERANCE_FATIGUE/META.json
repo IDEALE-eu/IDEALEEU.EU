@@ -1,0 +1,10 @@
+{
+  "subsystem": "51-50_DAMAGE_TOLERANCE_FATIGUE",
+  "title": "Damage Tolerance & Fatigue",
+  "system": "51-STRUCTURES-GENERAL",
+  "architecture": "BWB-H2-Hy-E",
+  "version": "Q100",
+  "owner": "Structures Team",
+  "status": "scaffold",
+  "last_updated": "2024"
+}

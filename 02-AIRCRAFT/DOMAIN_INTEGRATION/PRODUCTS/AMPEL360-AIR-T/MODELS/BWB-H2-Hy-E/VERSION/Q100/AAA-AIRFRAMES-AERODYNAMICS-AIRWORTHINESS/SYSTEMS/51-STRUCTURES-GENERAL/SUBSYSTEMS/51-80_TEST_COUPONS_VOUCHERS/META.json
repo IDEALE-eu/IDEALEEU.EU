@@ -1,0 +1,10 @@
+{
+  "subsystem": "51-80_TEST_COUPONS_VOUCHERS",
+  "title": "Test Coupons & Vouchers",
+  "system": "51-STRUCTURES-GENERAL",
+  "architecture": "BWB-H2-Hy-E",
+  "version": "Q100",
+  "owner": "Structures Team",
+  "status": "scaffold",
+  "last_updated": "2024"
+}
