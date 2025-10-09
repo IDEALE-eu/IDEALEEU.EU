@@ -1,0 +1,7 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+92,21,Thermal_System_Wiring,Power/Data/Analog,ICD-92-21,Temperature sensors and control
+92,24,Power_Distribution_Harness,DC/AC_Power,ICD-92-24,Power distribution wiring
+92,28,H2_System_Wiring,Power/Data/Safety,ICD-92-28,H2 sensors and safety interlocks
+92,42,IMA_Interconnect,ARINC-664/Power,ICD-92-42,IMA data and power buses
+92,71,Propulsion_Harness,High_Power/Control,ICD-92-71,Motor power and control wiring
+92,73,FADEC_Harness,Power/Data,ICD-92-73,FADEC control and monitoring

@@ -1,0 +1,9 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+24,28,Fuel_Cell_Power_Input,DC_Power/800VDC,ICD-24-28,Fuel cell power to DC bus
+24,29,Hydraulic_Pump_Power,AC_Power/115VAC,ICD-24-29,Emergency hydraulic pump
+24,36,Pneumatic_System_Power,AC_Power/115VAC,ICD-24-36,ECS and pressurization
+24,42,IMA_Power_Supply,DC_Power/28VDC,ICD-24-42,IMA module power
+24,45,CMCS_Power,DC_Power/28VDC,ICD-24-45,Central maintenance computer
+24,46,IFS_Power,DC_Power/28VDC,ICD-24-46,Information systems power
+24,92,Power_Distribution_Bus,DC/AC_Power,ICD-24-92,EWIS power distribution
+24,33,Lighting_Power,DC_Power/28VDC,ICD-24-33,Interior and exterior lighting

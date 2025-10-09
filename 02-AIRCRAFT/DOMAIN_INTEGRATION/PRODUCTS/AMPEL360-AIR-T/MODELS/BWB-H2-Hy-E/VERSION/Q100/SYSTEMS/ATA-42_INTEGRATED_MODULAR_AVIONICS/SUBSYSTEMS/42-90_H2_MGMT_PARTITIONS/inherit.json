@@ -1,0 +1,5 @@
+{
+  "inherits_from": "CONFIGURATION_BASE/ATA-42_INTEGRATED_MODULAR_AVIONICS",
+  "override_params": [],
+  "additional_config": {}
+}

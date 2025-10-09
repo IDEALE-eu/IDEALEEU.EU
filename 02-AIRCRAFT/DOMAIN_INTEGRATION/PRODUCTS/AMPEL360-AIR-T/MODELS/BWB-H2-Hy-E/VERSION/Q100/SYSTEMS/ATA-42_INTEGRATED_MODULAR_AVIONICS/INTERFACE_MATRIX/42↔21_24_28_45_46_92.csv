@@ -1,0 +1,7 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+42,21,Thermal_Mgmt_Control,ARINC-664/AFDX,ICD-42-21,Thermal system control commands
+42,24,Power_Load_Mgmt,ARINC-664/AFDX,ICD-42-24,Load shedding and power management
+42,28,H2_Fuel_Mgmt,ARINC-664/AFDX,ICD-42-28,H2 system monitoring and control
+42,45,CMCS_Integration,ARINC-664/AFDX,ICD-42-45,Maintenance and health data
+42,46,Flight_Deck_Display,ARINC-664/AFDX,ICD-42-46,Flight deck information systems
+42,92,IMA_Data_Power,ARINC-664/Power,ICD-42-92,IMA module interconnections
