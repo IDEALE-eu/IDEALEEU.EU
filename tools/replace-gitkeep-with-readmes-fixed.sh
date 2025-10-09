@@ -35,11 +35,11 @@ domain_from_path() {
 }
 system_id_from_path() {
   local p="$1"
-  echo "$p" | sed -nE 's#.*SYSTEMS/([^/]+)/?.*#\1#p' || echo ""
+  echo "$p" | sed -nE 's#.*SYSTEMS/([^/]+)/?.*#\1#p'
 }
 subsystem_id_from_path() {
   local p="$1"
-  echo "$p" | sed -nE 's#.*SUBSYSTEMS/([^/]+)/?.*#\1#p' || echo ""
+  echo "$p" | sed -nE 's#.*SUBSYSTEMS/([^/]+)/?.*#\1#p'
 }
 
 tpl_generic() {
