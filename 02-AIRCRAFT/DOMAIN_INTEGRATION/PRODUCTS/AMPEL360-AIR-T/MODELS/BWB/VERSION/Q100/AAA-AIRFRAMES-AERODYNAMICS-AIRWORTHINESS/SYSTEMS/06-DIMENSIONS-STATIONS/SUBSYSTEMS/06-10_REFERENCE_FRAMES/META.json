@@ -1,0 +1,9 @@
+{
+  "scope": "instance",
+  "product": "AMPEL360-AIR-T",
+  "model": "BWB",
+  "version": "Q100",
+  "system": "06-DIMENSIONS-STATIONS",
+  "subsystem": "06-10_REFERENCE_FRAMES",
+  "description": "Subsystem metadata for 06-10_REFERENCE_FRAMES"
+}

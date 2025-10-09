@@ -1,0 +1,9 @@
+{
+  "scope": "instance",
+  "product": "AMPEL360-AIR-T",
+  "model": "BWB",
+  "version": "Q100",
+  "system": "06-DIMENSIONS-STATIONS",
+  "subsystem": "06-40_CALIBRATION_PROTOCOLS",
+  "description": "Subsystem metadata for 06-40_CALIBRATION_PROTOCOLS"
+}

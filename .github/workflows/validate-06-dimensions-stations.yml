@@ -1,0 +1,216 @@
+name: Validate 06-DIMENSIONS-STATIONS Structure
+
+on:
+  push:
+    paths:
+      - '02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/MODELS/BWB/VERSION/Q100/AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/SYSTEMS/06-DIMENSIONS-STATIONS/**'
+      - 'scripts/validate-06-dimensions-stations.sh'
+      - '.github/workflows/validate-06-dimensions-stations.yml'
+  pull_request:
+    paths:
+      - '02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/MODELS/BWB/VERSION/Q100/AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/SYSTEMS/06-DIMENSIONS-STATIONS/**'
+      - 'scripts/validate-06-dimensions-stations.sh'
+      - '.github/workflows/validate-06-dimensions-stations.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-structure:
+    name: Validate 06-DIMENSIONS-STATIONS Structure
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+      
+      - name: Run validation script
+        id: validate
+        run: |
+          bash scripts/validate-06-dimensions-stations.sh
+          echo "validation_result=$?" >> $GITHUB_OUTPUT
+      
+      - name: Generate validation report
+        if: always()
+        run: |
+          echo "## 06-DIMENSIONS-STATIONS Validation Report" > validation-report.md
+          echo "" >> validation-report.md
+          echo "**Date**: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> validation-report.md
+          echo "**Commit**: ${{ github.sha }}" >> validation-report.md
+          echo "" >> validation-report.md
+          
+          if [ "${{ steps.validate.outputs.validation_result }}" == "0" ]; then
+            echo "✅ **Status**: PASSED" >> validation-report.md
+          else
+            echo "❌ **Status**: FAILED" >> validation-report.md
+          fi
+          
+          cat validation-report.md
+      
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-report
+          path: validation-report.md
+          retention-days: 30
+
+  validate-subsystems:
+    name: Validate Subsystems
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        subsystem:
+          - 06-10_REFERENCE_FRAMES
+          - 06-20_MEASUREMENT_POINTS
+          - 06-30_ALIGNMENT_TARGETS
+          - 06-40_CALIBRATION_PROTOCOLS
+          - 06-50_GEOMETRIC_MODELS
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+      
+      - name: Validate subsystem structure
+        id: validate-subsystem
+        env:
+          SUBSYSTEM_PATH: 02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/MODELS/BWB/VERSION/Q100/AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/SYSTEMS/06-DIMENSIONS-STATIONS/SUBSYSTEMS/${{ matrix.subsystem }}
+        run: |
+          echo "Validating subsystem: ${{ matrix.subsystem }}"
+          
+          ERRORS=0
+          
+          # Check mandatory files
+          if [ ! -f "$SUBSYSTEM_PATH/README.md" ]; then
+            echo "❌ Missing README.md"
+            ERRORS=$((ERRORS + 1))
+          else
+            echo "✅ README.md exists"
+          fi
+          
+          if [ ! -f "$SUBSYSTEM_PATH/META.json" ]; then
+            echo "❌ Missing META.json"
+            ERRORS=$((ERRORS + 1))
+          else
+            echo "✅ META.json exists"
+            # Validate scope field
+            if jq -e '.scope == "instance"' "$SUBSYSTEM_PATH/META.json" > /dev/null; then
+              echo "✅ META.json has correct scope"
+            else
+              echo "❌ META.json has incorrect scope"
+              ERRORS=$((ERRORS + 1))
+            fi
+          fi
+          
+          if [ ! -f "$SUBSYSTEM_PATH/PLM/EBOM_LINKS.md" ]; then
+            echo "❌ Missing PLM/EBOM_LINKS.md"
+            ERRORS=$((ERRORS + 1))
+          else
+            echo "✅ PLM/EBOM_LINKS.md exists"
+          fi
+          
+          # Check PLM/CAx structure
+          CAX_DIRS=("CAD" "CAE" "CAO" "CAM" "CAI" "CAV" "CAP" "CAS" "CMP")
+          MISSING_CAX=0
+          
+          for cax_dir in "${CAX_DIRS[@]}"; do
+            if [ ! -d "$SUBSYSTEM_PATH/PLM/CAx/$cax_dir" ]; then
+              echo "❌ Missing PLM/CAx/$cax_dir"
+              MISSING_CAX=$((MISSING_CAX + 1))
+            fi
+          done
+          
+          if [ $MISSING_CAX -eq 0 ]; then
+            echo "✅ All CAx directories present"
+          else
+            echo "❌ $MISSING_CAX CAx directories missing"
+            ERRORS=$((ERRORS + 1))
+          fi
+          
+          # Set output
+          echo "errors=$ERRORS" >> $GITHUB_OUTPUT
+          
+          if [ $ERRORS -eq 0 ]; then
+            echo "subsystem_status=✅ PASSED" >> $GITHUB_OUTPUT
+            exit 0
+          else
+            echo "subsystem_status=❌ FAILED" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+      
+      - name: Generate subsystem badge data
+        if: always()
+        run: |
+          mkdir -p badges
+          if [ "${{ steps.validate-subsystem.outputs.errors }}" == "0" ]; then
+            echo '{"schemaVersion":1,"label":"${{ matrix.subsystem }}","message":"valid","color":"success"}' > badges/${{ matrix.subsystem }}.json
+          else
+            echo '{"schemaVersion":1,"label":"${{ matrix.subsystem }}","message":"invalid","color":"critical"}' > badges/${{ matrix.subsystem }}.json
+          fi
+      
+      - name: Upload badge data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: badge-${{ matrix.subsystem }}
+          path: badges/${{ matrix.subsystem }}.json
+          retention-days: 30
+
+  generate-summary:
+    name: Generate Validation Summary
+    runs-on: ubuntu-latest
+    needs: [validate-structure, validate-subsystems]
+    if: always()
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Download all badge artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: badges
+      
+      - name: Generate summary badges
+        run: |
+          echo "## 06-DIMENSIONS-STATIONS Validation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### System Structure" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ needs.validate-structure.result }}" == "success" ]; then
+            echo "![Structure](https://img.shields.io/badge/structure-valid-success)" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "![Structure](https://img.shields.io/badge/structure-invalid-critical)" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Subsystems" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # List all subsystems
+          SUBSYSTEMS=("06-10_REFERENCE_FRAMES" "06-20_MEASUREMENT_POINTS" "06-30_ALIGNMENT_TARGETS" "06-40_CALIBRATION_PROTOCOLS" "06-50_GEOMETRIC_MODELS")
+          
+          for subsystem in "${SUBSYSTEMS[@]}"; do
+            if [ -f "badges/badge-${subsystem}/${subsystem}.json" ]; then
+              STATUS=$(jq -r '.message' "badges/badge-${subsystem}/${subsystem}.json")
+              if [ "$STATUS" == "valid" ]; then
+                echo "- ✅ **${subsystem}**: Valid" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "- ❌ **${subsystem}**: Invalid" >> $GITHUB_STEP_SUMMARY
+              fi
+            else
+              echo "- ⚠️ **${subsystem}**: Not validated" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "*Generated at $(date -u '+%Y-%m-%d %H:%M:%S UTC')*" >> $GITHUB_STEP_SUMMARY

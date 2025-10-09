@@ -1,2 +1,13 @@
 from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
-XX,YY,ejemplo_bus,ARINC/Ethernet/fluido,ref-ICD,observaciones
+06,51,Structural Datum Points,Physical Reference Points,ISO-1151 / ASME-Y14.5,Primary structural reference coordinates
+06,53,Fuselage Station Definitions,Geometric Reference,ATA-06 Station System,Station numbering and cross-sections
+06,55,Stabilizer Reference Axes,Physical Reference Points,ISO-1151,Empennage alignment references
+06,57,Wing Station & Reference Plane,Geometric Reference,ATA-06 Station System,Wing buttock lines and waterlines
+06,70,Engine Thrust Line Alignment,Physical Reference Points,Engine Mount Datum,Thrust axis and mount interface geometry
+06,32,Landing Gear Contact Points,Geometric Reference,Ground Reference Plane,Wheel contact geometry and CG position
+06,92,EWIS Installation References,Routing Geometry,Installation Coordinates,Wire routing reference points
+51,06,Structural Interface Geometry,Physical Surfaces,CAD Model Exchange,As-built structural geometry
+53,06,Fuselage As-Built Dimensions,Measurement Data,Dimensional Inspection Reports,Actual fuselage station measurements
+57,06,Wing As-Built Dimensions,Measurement Data,Dimensional Inspection Reports,Actual wing station measurements
+55,06,Stabilizer As-Built Dimensions,Measurement Data,Dimensional Inspection Reports,Actual empennage measurements
+70,06,Engine Installation Survey,Measurement Data,Alignment Reports,Engine mounting position verification
