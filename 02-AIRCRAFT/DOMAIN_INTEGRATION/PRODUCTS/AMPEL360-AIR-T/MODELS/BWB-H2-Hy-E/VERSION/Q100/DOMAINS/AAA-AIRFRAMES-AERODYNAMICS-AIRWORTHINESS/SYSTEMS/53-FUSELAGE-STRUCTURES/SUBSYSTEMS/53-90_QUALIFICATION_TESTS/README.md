@@ -1,10 +1,10 @@
-# 53-10_CENTER-BODY — Fuselage Structures (BWB-H2-Hy-E, Q100)
+# 53-90_QUALIFICATION_TESTS — Fuselage Structures (BWB-H2-Hy-E, Q100)
 
 **Purpose**  
-Central fuselage section with wing integration and main landing gear interfaces
+Comprehensive test evidence including fatigue, vibration, and impact validation
 
 ## Scope
-- Detailed specifications and design artifacts for 53-10_CENTER-BODY
+- Detailed specifications and design artifacts for 53-90_QUALIFICATION_TESTS
 - Integration with ATA-53 Fuselage Structures system
 - Compliance with BWB-H2-Hy-E structural requirements
 

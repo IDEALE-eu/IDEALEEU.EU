@@ -1,4 +1,4 @@
-# EBOM_LINKS — 53-10_CENTER-BODY
+# EBOM_LINKS — 53-60_DOORS_HATCHES
 
 Reference links:
 - CAD models: `./CAx/CAD/`

@@ -1,4 +1,4 @@
-# EBOM_LINKS — 53-10_CENTER-BODY
+# EBOM_LINKS — 53-70_MOUNTING_INTERFACES
 
 Reference links:
 - CAD models: `./CAx/CAD/`

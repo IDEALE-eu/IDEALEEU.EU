@@ -1,10 +1,10 @@
-# 53-10_CENTER-BODY — Fuselage Structures (BWB-H2-Hy-E, Q100)
+# 53-50_SKIN_PANELS — Fuselage Structures (BWB-H2-Hy-E, Q100)
 
 **Purpose**  
-Central fuselage section with wing integration and main landing gear interfaces
+External panels with advanced composite materials and surface treatments
 
 ## Scope
-- Detailed specifications and design artifacts for 53-10_CENTER-BODY
+- Detailed specifications and design artifacts for 53-50_SKIN_PANELS
 - Integration with ATA-53 Fuselage Structures system
 - Compliance with BWB-H2-Hy-E structural requirements
 

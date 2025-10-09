@@ -1,4 +1,4 @@
-# EBOM_LINKS — 53-10_CENTER-BODY
+# EBOM_LINKS — 53-40_BULKHEADS_FRAMES
 
 Reference links:
 - CAD models: `./CAx/CAD/`
