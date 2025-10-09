@@ -22,5 +22,5 @@ The maintenance program establishes maintenance requirements based on:
 ## Related Documents
 
 - [01-FLEET/MRO_STRATEGY/03-MAINTENANCE_PROGRAM/](../../../../../../../../../../01-FLEET/MRO_STRATEGY/03-MAINTENANCE_PROGRAM/)
-- Engineering analysis results in ../CAE/
-- Design data in ../CAD/
+- Engineering analysis results in [../CAE/](../CAE/)
+- Design data in [../CAD/](../CAD/)

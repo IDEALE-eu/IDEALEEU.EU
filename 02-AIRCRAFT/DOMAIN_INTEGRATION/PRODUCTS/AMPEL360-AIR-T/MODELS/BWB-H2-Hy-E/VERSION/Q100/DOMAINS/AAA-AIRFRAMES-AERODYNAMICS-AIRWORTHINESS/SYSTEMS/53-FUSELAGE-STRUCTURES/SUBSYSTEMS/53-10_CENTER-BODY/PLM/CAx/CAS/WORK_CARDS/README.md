@@ -34,5 +34,5 @@ All work cards include:
 ## Related Documents
 
 - [00-PROGRAM/QUALITY_QMS/03-WORK_INSTRUCTIONS/](../../../../../../../../../../00-PROGRAM/QUALITY_QMS/03-WORK_INSTRUCTIONS/)
-- Task definitions in ../TASKS/
-- Inspection procedures in ../INSPECTION/
+- Task definitions in [../TASKS/](../TASKS/)
+- Inspection procedures in [../INSPECTION/](../INSPECTION/)

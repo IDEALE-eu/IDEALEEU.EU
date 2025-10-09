@@ -35,4 +35,4 @@ Define spare parts requirements, stocking levels, and kit configurations for mai
 ## Related Documents
 
 - [01-FLEET/MRO_STRATEGY/05-LOGISTICS_SUPPORT/](../../../../../../../../../../01-FLEET/MRO_STRATEGY/05-LOGISTICS_SUPPORT/)
-- Engineering BOM in ../../EBOM_LINKS.md
+- Engineering BOM in [../../EBOM_LINKS.md](../../EBOM_LINKS.md)

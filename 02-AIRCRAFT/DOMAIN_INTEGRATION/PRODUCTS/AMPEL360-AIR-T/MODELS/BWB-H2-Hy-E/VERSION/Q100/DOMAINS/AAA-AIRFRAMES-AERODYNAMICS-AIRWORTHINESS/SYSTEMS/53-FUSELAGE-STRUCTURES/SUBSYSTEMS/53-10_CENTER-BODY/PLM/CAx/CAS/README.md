@@ -56,7 +56,7 @@ This directory integrates maintenance engineering with simulation capabilities:
 
 ## Integration Points
 
-- **CAD**: Design models for access and tooling analysis
-- **CAE/FEA**: Structural analysis for repair substantiation
-- **CAM**: Manufacturing data for repair procedures
-- **PLM/EBOM**: Parts provisioning and spares management
+- **[CAD](../CAD/)**: Design models for access and tooling analysis
+- **[CAE](../CAE/)/[FEA](../CAE/FEA/)**: Structural analysis for repair substantiation
+- **[CAM](../CAM/)**: Manufacturing data for repair procedures
+- **[PLM](../../)/[EBOM](../../EBOM_LINKS.md)**: Parts provisioning and spares management
