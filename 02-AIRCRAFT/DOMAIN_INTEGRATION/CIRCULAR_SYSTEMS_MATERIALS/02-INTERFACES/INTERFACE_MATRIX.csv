@@ -1,0 +1,44 @@
+icd_id,from_system,to_system,interface_type,signal_description,unit,data_rate,criticality,icd_ref,notes
+ICD-21-24-001,ATA-21 ECS Controller,ATA-24 Power Distribution,Electrical,28 VDC control power,VDC,DC,High,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-21-24-001.md,Control power for pack controllers
+ICD-21-24-002,ATA-21 Pack Motors,ATA-24 Power Distribution,Electrical,115 VAC 3-phase pack motor power,VAC,400 Hz,Critical,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-21-24-002.md,Primary pack drive motors
+ICD-21-24-003,ATA-21 Zone Controllers,ATA-24 Power Distribution,Electrical,28 VDC zone controller power,VDC,DC,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-21-24-003.md,Temperature zone control
+ICD-21-28-001,ATA-21 Heat Exchanger,ATA-28 H2 Tank,Thermal,Waste heat rejection to H2 boil-off,W,Continuous,High,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-21-28-001.md,Thermal integration for H2 management
+ICD-21-28-002,ATA-21 Pack,ATA-28 Fuel System,Thermal,Fuel heat sink for pack cooling,W,Continuous,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-21-28-002.md,High-altitude cruise cooling
+ICD-21-36-001,ATA-36 Bleed Air,ATA-21 Pack,Pneumatic,Engine bleed air supply,psi,Continuous,Critical,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-21-36-001.md,Primary air source for packs
+ICD-21-36-002,ATA-21 Precooler,ATA-36 Ram Air,Pneumatic,Ram air for bleed cooling,psi,Continuous,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-21-36-002.md,Precooler air supply
+ICD-21-38-001,ATA-21 Pack,ATA-38 Water Treatment,Fluid,Condensate water from air conditioning,L/hr,Continuous,Low,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-21-38-001.md,Water recovery for reuse
+ICD-21-38-002,ATA-21 Cooling Loop,ATA-38 Potable System,Thermal,Chilled water for galley refrigeration,W,On-demand,Low,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-21-38-002.md,Galley cooling integration
+ICD-21-92-001,ATA-21 Pack Controller,ATA-92 EWIS,Electrical,Pack controller harness,ARINC 429,1 Hz,High,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-21-92-001.md,Control signals and status
+ICD-21-92-002,ATA-21 Zone Sensors,ATA-92 EWIS,Electrical,Temperature/pressure sensor wiring,Analog,10 Hz,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-21-92-002.md,Zone monitoring sensors
+ICD-28-21-001,ATA-28 H2 Tank,ATA-21 Heat Exchanger,Thermal,H2 boil-off cooling load,W,Continuous,High,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-28-21-001.md,Thermal integration for boil-off management
+ICD-28-21-002,ATA-28 Thermal HX,ATA-21 ECS Loop,Fluid,Glycol coolant loop,L/min,Continuous,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-28-21-002.md,Closed-loop thermal management
+ICD-28-24-001,ATA-28 BOP Controller,ATA-24 Power Distribution,Electrical,28 VDC control power,VDC,DC,Critical,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-28-24-001.md,Fuel management controller power
+ICD-28-24-002,ATA-28 Transfer Pump,ATA-24 Power Distribution,Electrical,115 VAC pump motor power,VAC,400 Hz,Critical,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-28-24-002.md,LH2 transfer pump
+ICD-28-24-003,ATA-28 Valve Actuators,ATA-24 Power Distribution,Electrical,28 VDC valve control,VDC,DC,Critical,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-28-24-003.md,Flow control valves
+ICD-28-47-001,ATA-47 Inert Gas,ATA-28 Tank Compartment,Pneumatic,N2 or He purge gas,psi,On-demand,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-28-47-001.md,Tank inerting for maintenance
+ICD-28-47-002,ATA-28 Leak Detection,ATA-47 Inert Gas,Data,H2 leak sensor signals,Digital,1 Hz,High,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-28-47-002.md,Safety monitoring
+ICD-28-92-001,ATA-28 BOP Controller,ATA-92 EWIS,Electrical,Controller harness,ARINC 429,10 Hz,Critical,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-28-92-001.md,Control and monitoring signals
+ICD-28-92-002,ATA-28 Tank Sensors,ATA-92 EWIS,Electrical,Temperature/pressure/level sensors,Analog,10 Hz,High,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-28-92-002.md,Tank instrumentation
+ICD-38-21-001,ATA-21 Pack,ATA-38 Water Treatment,Fluid,ECS condensate water,L/hr,Continuous,Low,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-38-21-001.md,Condensate recovery for reuse
+ICD-38-21-002,ATA-21 Cooling Loop,ATA-38 Water Heater,Thermal,Waste heat for water heating,W,On-demand,Low,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-38-21-002.md,Energy recovery from ECS
+ICD-38-24-001,ATA-38 Distribution Pumps,ATA-24 Power Distribution,Electrical,28 VDC pump power,VDC,DC,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-38-24-001.md,Water distribution pumps
+ICD-38-24-002,ATA-38 Treatment Unit,ATA-24 Power Distribution,Electrical,115 VAC treatment power,VAC,400 Hz,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-38-24-002.md,UV lamps and heaters
+ICD-38-24-003,ATA-38 System Controller,ATA-24 Power Distribution,Electrical,28 VDC control power,VDC,DC,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-38-24-003.md,Water system controller
+ICD-38-25-001,ATA-38 Potable Water,ATA-25 Galleys,Fluid,Potable water supply,L/min,On-demand,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-38-25-001.md,Galley water supply
+ICD-38-25-002,ATA-38 Potable Water,ATA-25 Lavatories,Fluid,Potable water supply,L/min,On-demand,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-38-25-002.md,Lavatory water supply
+ICD-38-25-003,ATA-25 Galleys,ATA-38 Waste Collection,Fluid,Greywater drain,L/min,On-demand,Low,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-38-25-003.md,Galley wastewater
+ICD-38-25-004,ATA-25 Lavatories,ATA-38 Waste Collection,Fluid,Greywater/blackwater drain,L/min,On-demand,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-38-25-004.md,Lavatory waste
+ICD-38-36-001,ATA-36 Pneumatic,ATA-38 Waste System,Pneumatic,Flush system air pressure,psi,On-demand,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-38-36-001.md,Pneumatic flush toilets
+ICD-38-92-001,ATA-38 System Controller,ATA-92 EWIS,Electrical,Controller harness,ARINC 429,1 Hz,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-38-92-001.md,Control and monitoring
+ICD-38-92-002,ATA-38 Sensors,ATA-92 EWIS,Electrical,Flow/level/quality sensors,Analog,10 Hz,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-38-92-002.md,System instrumentation
+ICD-MTL-25-001,MTL Material Passport,ATA-25 Cabin Furnishings,Data,Interior material composition,Digital,On-demand,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-MTL-25-001.md,Seats panels carpets textiles composition
+ICD-MTL-25-002,MTL Reuse/Recycle,ATA-25 Cabin Refurbishment,Process,Component refurbishment plans,Document,On-demand,Low,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-MTL-25-002.md,5-7 year cabin refresh cycle
+ICD-MTL-51-001,MTL Material Passport,ATA-51 Primary Structure,Data,Structural material composition,Digital,On-demand,High,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-MTL-51-001.md,Aluminum alloys frames longerons
+ICD-MTL-51-002,MTL LCA Models,ATA-51 Structure Design,Data,Material environmental impact,Digital,On-demand,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-MTL-51-002.md,CO2 footprint energy use
+ICD-MTL-53-001,MTL Material Passport,ATA-53 Fuselage,Data,Fuselage material composition,Digital,On-demand,High,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-MTL-53-001.md,Skin panels fairings doors
+ICD-MTL-53-002,MTL Reuse/Recycle,ATA-53 Maintenance,Process,Component repair/refurbish plans,Document,On-demand,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-MTL-53-002.md,Disassembly instructions
+ICD-MTL-57-001,MTL Material Passport,ATA-57 Wings,Data,Wing material composition,Digital,On-demand,High,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-MTL-57-001.md,Wing skins ribs spars
+ICD-MTL-57-002,MTL LCA Models,ATA-57 Wing Design,Data,Material selection trade-offs,Digital,On-demand,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-MTL-57-002.md,Composite vs aluminum trade-offs
+ICD-MTL-SC-001,MTL Reuse/Recycle,Supply Chain Reverse Logistics,Process,End-of-life component return,Physical,On-demand,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-MTL-SC-001.md,Return logistics for reuse/recycle
+ICD-MTL-SC-002,MTL Material Recovery,Supply Chain Recyclers,Process,Material recovery specifications,Document,On-demand,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-MTL-SC-002.md,Recycling partner requirements
+ICD-MTL-SC-003,Supply Chain Recycled Materials,MTL Material Passport,Data,Recycled content certification,Digital,On-demand,Medium,00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-MTL-SC-003.md,Closed-loop material supply
