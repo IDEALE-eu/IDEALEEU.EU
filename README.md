@@ -2,214 +2,186 @@
 
 [https://www.idealeeu.eu](https://www.idealeeu.eu)
 
-> **Mission:** Design, certify, manufacture, and industrialise next-gen **aircraft** and **space systems** with a closed-loop digital thread from concept to fleet operations.
+> **Mission:** Design, certify, manufacture, and industrialise next-gen **aircraft** and **space systems** with a closed-loop digital thread—from concept to fleet ops.
 
 ---
 
 ## Program Overview
 
-This repository is the **single source of truth** for IDEALE EU: governance, engineering, certification, industrialisation, and fleet ops. It unifies **ATA-aligned Aircraft (AIR-T)** and **STA-aligned Space (SPACE-T)** architectures with rigorous CM, IMA-centric integration, and operations feedback.
+Single source of truth for **engineering**, **certification**, **industrialisation**, and **fleet operations**. We use **ATA-aligned (AIR-T)** and **STA-aligned (SPACE-T)** architectures, rigorous CM, and domain-based integration.
 
-### Charter
+**Standards (baseline)**
+Aircraft: ARP4754A/ARP4761, DO-178C/DO-254/DO-160, AS9100, CS-23/CS-25
+Space: ECSS (E/Q/M) and mission-specific authority rules
 
-**Goals**
-
-* Flight-ready prototypes
-* Type certification / flight-worthiness (aircraft) & FRR (space)
-* Serial production ramp ≥ target rate
-* Cost, safety, reliability KPIs within targets
-
-**Standards Baseline**
-
-* **Aircraft:** ARP4754A / ARP4761, DO-178C / DO-254 / DO-160, AS9100, CS-23 / CS-25
-* **Space:** ECSS (E/Q/M series)
-
-**Stage Gates**
+**Stage gates**
 SRR → MCR → PDR → CDR → TRR → PRR → ORR/EIS (aircraft) / FRR (space)
-**V&V:** Requirements trace, HARA/SSA, FTA/FMEA, ground/flight test, conformity
 
 ---
 
-## Repository Map (first level is identical for air & space programs)
+## Repository Map
 
 ```
 IDEALEEU.EU/
-├─ 00-PROGRAM/
-├─ 01-FLEET/
-├─ 02-AIRCRAFT/
-├─ 03-SPACECRAFT/
-├─ 04-SATELLITES/
-├─ 05-TELESCOPES/
-├─ 06-PROBES/
-├─ 07-DRONES/
-├─ 08-LAUNCHERS/
-├─ 09-STM-SPACE-STATION-MODULES/
-└─ 10-BUSINESS/
+├─ 00-PROGRAM/          # Governance, CM, QMS, standards, supply chain
+├─ 01-FLEET/            # Operational data hub, MRO, federated learning
+├─ 02-AIRCRAFT/         # AIR-T (ATA) baselines + domain integration
+├─ 03-SPACECRAFT/       # SPACE-T (STA) baselines + domain integration
+└─ 04-BUSINESS/         # Market, partnerships, finance
 ```
 
 **Quick links**
 
-* Governance: `00-PROGRAM/GOVERNANCE.md`
-* Standards: `00-PROGRAM/STANDARDS/`
-* CM (plans, baselines, changes, interfaces, trace): `00-PROGRAM/CONFIG_MGMT/`
-* QMS: `00-PROGRAM/QUALITY_QMS/`
-* Digital Thread: `00-PROGRAM/DIGITAL_THREAD/`
-* **Aircraft ATA Baselines (AIR-T):** `02-AIRCRAFT/CONFIGURATION_BASE/`
-* **Space STA Baselines (SPACE-T):** `03-SPACECRAFT/CONFIGURATION_BASE/`
-* Cross-System Integration (Aircraft): `02-AIRCRAFT/CROSS_SYSTEM_INTEGRATION/`
-* Fleet Ops Hub: `01-FLEET/OPERATIONAL_DATA_HUB/`
-* MRO Strategy: `01-FLEET/MRO_STRATEGY/`
-* Federated Learning: `01-FLEET/FEDERATED_LEARNING/`
-* STM Modules: `09-STM-SPACE-STATION-MODULES/`
+* CM (all): [`00-PROGRAM/CONFIG_MGMT/`](./00-PROGRAM/CONFIG_MGMT/) · QMS: [`00-PROGRAM/QUALITY_QMS/`](./00-PROGRAM/QUALITY_QMS/)
+* Digital Thread: [`00-PROGRAM/DIGITAL_THREAD/`](./00-PROGRAM/DIGITAL_THREAD/)
+* ATA Baselines (AIR-T): [`02-AIRCRAFT/CONFIGURATION_BASE/`](./02-AIRCRAFT/CONFIGURATION_BASE/)
+* STA Baselines (SPACE-T): [`03-SPACECRAFT/CONFIGURATION_BASE/`](./03-SPACECRAFT/CONFIGURATION_BASE/)
+* Cross-System/Integration (air): [`02-AIRCRAFT/CROSS_SYSTEM_INTEGRATION/`](./02-AIRCRAFT/CROSS_SYSTEM_INTEGRATION/)
+* Fleet ops hub: [`01-FLEET/OPERATIONAL_DATA_HUB/`](./01-FLEET/OPERATIONAL_DATA_HUB/)
 
 ---
 
-## Product Architecture (uniform for AIR-T & SPACE-T families)
+## Unified Product Architecture (AIR-T & SPACE-T)
 
-All products (air or space) use the same pathing and structure:
+**Both aircraft and spacecraft use the same first-level organisation and path pattern.**
+
+**Canonical path (applies to AIR-T and SPACE-T):**
 
 ```
-…/DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT-ID>/MODELS/<MODEL-ID>/VERSION/<TAG>/
+<02-AIRCRAFT | 03-SPACECRAFT>/DOMAIN_INTEGRATION/
+  PRODUCTS/<ARCH-FAMILY>/
+    MODELS/<MODEL-ID>/            # e.g., BWB-H2-Hy-E
+      VERSION/<TAG>/              # e.g., Q100
+        SYSTEMS/ATA-XX_* or STA-XX_*/
+          INTEGRATION_VIEW.md
+          INTERFACE_MATRIX/<X↔Y.csv>
+          SUBSYSTEMS/<XX-YY_*>/PLM/CAx/(CAD/CAE/CAM/…)
+```
+
+### AIR-T (ATA — Air Transport Architecture, aircraft)
+
+* Systems folders use **ATA-XX** (e.g., `ATA-24_ELECTRICAL_POWER/`).
+* EWIS wiring is **only** in `ATA-92`.
+
+### SPACE-T (STA — Space Transport Architecture, spacecraft)
+
+* Systems folders use **STA-XX** (space-adapted chaptering mirroring the sets below).
+* Spacecraft-specific sets (A–M) map to STA chapters (structures, thermal/TPS, EPS, TT&C, C&DH, avionics/SW, control/FDIR, ECLSS, propulsion/fluids, docking/robotics, env/safety/traffic, ground/ops, program/compliance).
+
+---
+
+## Domain Integration (15 canonical domains, `/SYSTEMS/` everywhere)
+
+> **PLM/CAx live only inside `SUBSYSTEMS/…/PLM/CAx/`**.
+> **Software lives with its host LRU. EWIS only in ATA-92 (AIR-T) / STA-97 (wiring).**
+
+### Aircraft (AIR-T) — Domains → primary ATA
+
+* **AAA** Airframes/Aero/Airworthiness → 06, 50, **51–57**, 54*(shared)*
+* **PPP** Propulsion/Fuel → **28**, **49**, 54*(shared)*, 60–61, 70–73, **75**, 78, 81–82
+* **MEC** Mechanical → **27**, **29**, **32**, 36–37, 63, 67, 79, 83
+* **LCC** Linkages/Control/Comms → 08, **22**, 23, 44, 45, 76, 93
+* **EDI** Electronics/Digital/Instruments → **31**, **34**, **42**, **77**, 84, 94
+* **EEE** Electrical/Lights/Start → **24**, **33**, 39, 74, 80, 97
+* **EER** Environmental/Emissions → 15, **26**, **38**, 85
+* **DDD** Drain/De-ice → 09, **21**, **30**, 41
+* **CCC** Cockpit/Cabin/Cargo → 11, **25**, **35**, 43, **50**
+* **IIS** Information/IT → 16, **46**, 91
+* **LIB** Logistics/Limits → 01, 04, **05**, **12**
+* **AAP** Airport/Handling → **10**
+* **CQH** Cryogenics/H₂/NGS → **47**
+* **IIF** Industrial Infrastructure → **07**
+* **OOO** OS/Ontologies/Reserved → 13, 20, reserved chapters
+
+### Space (SPACE-T) — Domains → STA sets (chapter families)
+
+* **Structures & Mechanisms (A)** → STA 06, 50–57, 66, 94
+* **Thermal & TPS (B)** → STA 21, 30
+* **Power / EPS / Harness (C)** → STA 24, 39, 49, 97
+* **Comms & TT&C (D)** → STA 23, 33, 48
+* **Nav, Time & Data Handling (E)** → STA 31, 34, 41
+* **Avionics, FSW & Databus (F)** → STA 40, 42, 93
+* **Control, Autonomy & FDIR (G)** → STA 22, 44, 45
+* **ECLSS & Payload Accommodation (H)** → STA 25, 35–38
+* **Propulsion & Fluids (I)** → STA 28–29, 47, 60–61, 70–83, 84–85
+* **Docking, Sampling & Robotics (J)** → STA 58–59
+* **Environment, Safety & STM (K)** → STA 15, 26, 86–87, 90
+* **Ground, Integration & Mission Ops (L)** → STA 07, 10, 16, 32, 46, 92
+* **Program, Compliance & Records (M)** → STA 01, 04–05, 11–14, 17–20, 98–99
+* **Plus the remaining two domains (IIF/OOO) mirrored for space where applicable.**
+
+---
+
+## Product Portfolio (families you can instantiate under `/PRODUCTS/`)
+
+* **AMPEL360-AIR-T** (aircraft) — e.g., `MODELS/BWB-H2-Hy-E/`
+* **AMPEL360-SPACE-T** (spacecraft bus)
+* **SATELLITES** *(04)* — GEO/LEO/MEO families
+* **TELESCOPES** *(05)* — space & ground segments
+* **PROBES** *(06)* — planetary/interplanetary
+* **DRONES** *(07)* — UAS/VTOL families
+* **LAUNCHERS** *(08)* — small/medium/heavy
+* **STM — Space Station Modules** *(09)* — pressurised/unpressurised
+
+> Each family follows the same `PRODUCTS/<FAMILY>/MODELS/<MODEL>/VERSION/<TAG>/SYSTEMS/…` pattern (AIR-T uses ATA; SPACE-T uses STA).
+
+---
+
+## Example (aircraft) — model spotlight
+
+**AMPEL360-AIR-T · `BWB-H2-Hy-E` · Q100**
+
+```
+02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/MODELS/BWB-H2-Hy-E/VERSION/Q100/
 └─ SYSTEMS/
-   └─ <ATA|STA>-XX_NAME/
-      ├─ INTEGRATION_VIEW.md
-      ├─ INTERFACE_MATRIX/
-      │  └─ XX↔OTHERS.csv
-      └─ SUBSYSTEMS/
-         └─ <XX-YY_SUBSYS>/
-            ├─ README.md
-            ├─ DELs/ …            # certification docs (instance scope)
-            ├─ PAx/ …             # packaging/output artifacts
-            ├─ PLM/               # **real artifacts only at SUBSYSTEM level**
-            │  ├─ EBOM_LINKS.md
-            │  └─ CAx/ (CAD/CAE/CAO/CAM/CAI/CAV/CAP/CAS/CMP)
-            ├─ SUPPLIERS/ …
-            ├─ policy/  tests/
-            └─ META.json  inherit.json
+   ├─ ATA-28_FUEL_H2/…/SUBSYSTEMS/28-10_H2_TANKS_CRYOSTATS/PLM/CAx/
+   ├─ ATA-24_ELECTRICAL_POWER/…/SUBSYSTEMS/24-20_BATTERIES/PLM/CAx/
+   ├─ ATA-42_INTEGRATED_MODULAR_AVIONICS/…/SUBSYSTEMS/42-90_H2_MGMT_PARTITIONS/PLM/CAx/
+   ├─ ATA-71_POWERPLANT/…                       # + interface matrices & integration views
+   └─ ATA-92_EWIS/…                             # wiring only
 ```
-
-**Rules**
-
-* **SW with its host LRU** (e.g., FADEC in ATA-73; A653 partitions in ATA-42).
-* **EWIS only in ATA-92** (aircraft); equivalent harness rules centralised in STA Power/Harness set.
-* **Interfaces** live in each system’s `INTERFACE_MATRIX/` + `INTEGRATION_VIEW.md`.
-* **PLM/CAx** exists **only** inside `SUBSYSTEMS/` (templates/policies at domain level).
-
----
-
-## Aircraft Domain Integration (AIR-T, ATA-aligned)
-
-**15 canonical domains** (all use `/SYSTEMS/…/SUBSYSTEMS/…/PLM/CAx`):
-
-| Domain (abbr.)                            | Primary ATA Chapters (examples)                                        |
-| ----------------------------------------- | ---------------------------------------------------------------------- |
-| **AAA – Airframes/Aero/Airworthiness**    | 06, 50, **51**, **52**, **53**, **54**(shared), **55**, **56**, **57** |
-| **PPP – Propulsion/Fuel**                 | **28**, **49**, **54**(shared), 60–61, 70–73, **75**, 78, 81–82        |
-| **MEC – Mechanical Systems**              | **27**, **29**, **32**, **36**–37, 63, 67, 79, 83                      |
-| **LCC – Linkages/Control/Comms**          | 08, **22**, 23, 44, 45, 76, 93                                         |
-| **EDI – Electronics/Avionics/Indicators** | **31**, **34**, **42**, **77**, 84, 94                                 |
-| **EEE – Electrical/Lights/Start**         | **24**, **33**, 39, 74, 80, 97                                         |
-| **EER – Environmental/Emissions**         | 15, **26**, **38**, 85                                                 |
-| **DDD – Drainage/Deshielo**               | 09, **21**, **30**, 41                                                 |
-| **CCC – Cockpit/Cabin/Cargo**             | 11, **25**, **35**, 43, **50**                                         |
-| **IIS – Information/IT**                  | 16, **46**, 91                                                         |
-| **LIB – Logistics/Límites**               | 01, 04, **05**, **12**                                                 |
-| **AAP – Operación en tierra**             | **10**                                                                 |
-| **CQH – Criogénicos/H2/NGS**              | **47**                                                                 |
-| **IIF – Infraestructura industrial**      | **07**                                                                 |
-| **OOO – OS/Ontologías/Reservas**          | 13, 20, reserved chapters (templates)                                  |
-
-> Full ATA baseline: `02-AIRCRAFT/CONFIGURATION_BASE/` (IMA in **ATA-42**, EWIS in **ATA-92**).
-
----
-
-## Space Domain Integration (SPACE-T, STA-aligned)
-
-Space systems follow the same structure and **/SYSTEMS** conventions, organised by **STA “sets”** (chapter groupings). Each set uses standard **10–90** sections (design → test → ops):
-
-* **A) Structures & Mechanisms** — ch. 06, 50, 51, 52, 53, 55, 56, 57, 66, 94
-  *10 Primary · 20 Secondary · 30 Doors/Hatches · 40 Joints · 50 Mechanisms/Deploy · 60 Mounts/Align · 70 Materials · 80 NDI · 90 Qual/Acceptance*
-* **B) Thermal & TPS** — ch. 21, 30
-  *10 Radiators/HX · 20 MLI · 30 Heaters · 40 Pipes/Straps · 50 TPS · 60 Sensors · 70 Algorithms · 80 TVAC · 90 Contamination/Bakeout*
-* **C) Power / EPS / Harness** — ch. 24, 39, 49, 97
-  *10 Generation · 20 Storage · 30 Conversion/PCDU · 40 Distribution · 50 Protection/GB · 60 Metering · 70 Control/Modes · 80 Harness · 90 Thermal/EGSE*
-* **D) Communications (RF/Optical) & TT&C** — ch. 23, 33, 48
-  *10 RF FE · 20 TRX/Modems · 30 Antennas · 40 CCSDS TM/TC · 50 Ranging · 60 RF Switching · 70 Optical Terminals · 80 Calibration · 90 Ground IF/Ops*
-* **E) Navigation, Time & Data Handling** — ch. 31, 34, 41
-  *10 Nav Sensors · 20 Timing · 30 C&DH/Recording · 40 I/O · 50 Processing/Storage · 60 TLM Params · 70 FDIR Hooks · 80 HIL/SIL · 90 Security/Hardening*
-* **F) Avionics, FSW & Databus** — ch. 40, 42, 93
-  *10 Computers · 20 FSW/Services · 30 Networks (SpW/1553/CAN/IMA) · 40 Boot/Update · 50 Timebase · 60 Drivers/I-O · 70 Mode Tables · 80 HIL/SIL · 90 Cyber*
-* **G) Control, Autonomy, FDIR & Health** — ch. 22, 44, 45
-  *10 Architecture/Modes · 20 GNC · 30 Actuation · 40 FDIR Rules · 50 Health/CBM · 60 Redundancy/X-strap · 70 Trending · 80 CL-verification · 90 Ops/Limits*
-* **H) ECLSS, Crew & Payload Accommodation** — ch. 25, 35, 36, 37, 38
-  *10 Atmosphere · 20 Pressure · 30 CO₂/Trace · 40 Humidity · 50 Water/Waste · 60 Fire(26 IF) · 70 Sensors · 80 Control Elec/SW · 90 Ops/Mx*
-* **I) Propulsion & Fluids** — ch. 28, 29, 47, 60–61, 70–75, 76–80, 81–85
-  *10 Tanks/PMD · 20 Press/Purge · 30 Feed · 40 Thrust Devices · 50 Ignition/Actuation · 60 Thermal · 70 TVC/Allocation · 80 Control/Seq · 90 Safety/Plume/EMC*
-  *(54 structure: if owned by structures → Set A; if propulsion internals → Set I)*
-* **J) Docking, Sampling & Robotics** — ch. 58, 59
-  *10 Sensing · 20 Latch · 30 Seals · 40 Umbilicals · 50 Drives · 60 Control · 70 Safety/Abort · 80 Testbeds · 90 Ops*
-* **K) Environment, Safety & Space Traffic** — ch. 15, 26, 86, 87, 90
-  *10 Acoustics/Vibe · 20 Ordnance/Hazards · 30 Planetary Prot · 40 Radiation · 50 Conjunction/Debris · 60 EMC/EMI · 70 Safety Analyses · 80 V&V · 90 Compliance*
-* **L) Ground, Integration & Mission Ops** — ch. 07, 10, 16, 32, 46, 92
-  *10 MGSE/Handling · 20 EGSE · 30 I&T · 40 EDL/Landing Ops · 50 Ground/MOC IF · 60 Calibration/Geometry · 70 Procedures/Training · 80 Ops Data · 90 Archival/Handover*
-* **M) Program, Compliance & Records** — ch. 01, 04, 05, 11–14, 17–20, 98–99
-  *10 Governance · 20 Plans · 30 Req/Compliance · 40 Risk · 50 Reviews/Gates · 60 Standards/Tailor · 70 Records · 80 Training · 90 Audits/Export*
-
-> Space families (STA structure) apply to **03-SPACECRAFT**, **04-SATELLITES**, **05-TELESCOPES**, **06-PROBES**, **07-DRONES (space/strat)**, **08-LAUNCHERS**, **09-STM**.
 
 ---
 
 ## Ways of Working
 
-* **Baselines & Releases:** `00-PROGRAM/CONFIG_MGMT/04-BASELINES/` and `…/07-RELEASES/`
-* **Changes:** ECR/ECO via `…/06-CHANGES/` with CCB oversight `…/05-CCB/`
-* **Traceability:** `…/10-TRACEABILITY/`
-* **ICDs:** `…/09-INTERFACES/` (see `ICD_INDEX.md`)
-* **Automation:** repo scripts (e.g., `scripts/create-domains.sh`, `scripts/validate-structure.sh`) and CI gates in `…/13-AUTOMATION/`
+* **Baselines & Releases:** [`00-PROGRAM/CONFIG_MGMT/04-BASELINES/`](./00-PROGRAM/CONFIG_MGMT/04-BASELINES/) · [`07-RELEASES/`](./00-PROGRAM/CONFIG_MGMT/07-RELEASES/)
+* **Changes:** ECR/ECO via [`06-CHANGES/`](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/) with CCB oversight (`05-CCB/`).
+* **Traceability:** [`10-TRACEABILITY/`](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/)
+* **ICDs:** [`09-INTERFACES/`](./00-PROGRAM/CONFIG_MGMT/09-INTERFACES/) + index.
+* **Validation gates (CI):** every `SYSTEMS/…` must include `INTEGRATION_VIEW.md`, `INTERFACE_MATRIX/*.csv`, and at least one `SUBSYSTEMS/*/PLM/CAx/` branch. No PLM at domain level.
 
 ---
 
 ## Metrics
 
-* Requirements coverage ≥ **99%**
-* Defect escape rate ≤ **target**
-* Weight/mass budgets within **margins**
-* Schedule variance ≤ **target**
-* Unit cost ≤ **target**
-* Dispatch reliability / mission success ≥ **target**
-
-Dashboards: `00-PROGRAM/DIGITAL_THREAD/10-METRICS/` and `01-FLEET/ANALYTICS_AND_AI/DASHBOARD_SPECS/`
+* Requirements coverage ≥ **99%** · Dispatch/mission success ≥ **target**
+* Weight/mass within **margins** · Schedule variance ≤ **target** · Unit cost ≤ **target**
+  Dashboards: [`00-PROGRAM/DIGITAL_THREAD/10-METRICS/`](./00-PROGRAM/DIGITAL_THREAD/10-METRICS/) and fleet dashboards under `01-FLEET/ANALYTICS_AND_AI/DASHBOARD_SPECS/`.
 
 ---
 
 ## Get Started
 
-1. **Governance:** `00-PROGRAM/GOVERNANCE.md`
-2. **CM Plan:** `00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md`
-3. **ICD Template:** `00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-XXXX.md`
-4. **Raise ECR:** `00-PROGRAM/CONFIG_MGMT/06-CHANGES/05-ECR/`
+1. Governance: [`00-PROGRAM/GOVERNANCE.md`](./00-PROGRAM/GOVERNANCE.md)
+2. CM Plan: [`00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md`](./00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md)
+3. Use the ICD template: [`…/09-INTERFACES/ICD-XXXX.md`](./00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-XXXX.md)
+4. File an ECR: [`…/06-CHANGES/05-ECR/`](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/05-ECR/)
 
 ---
 
-## Glossary (only terms used here)
+## Glossary (terms used here)
 
-* **AIR-T** — *Air Transport Architecture* (aircraft; ATA-aligned).
-* **ATA** — Air Transport Association iSpec 2200 chapter scheme.
-* **CCB** — Configuration Control Board.
-* **ECR / ECO** — Engineering Change Request / Order.
-* **EWIS** — Electrical Wiring Interconnection System (ATA-92).
-* **FDIR** — Fault Detection, Isolation & Recovery.
-* **HIL / SIL** — Hardware/Software-in-the-Loop.
-* **ICD** — Interface Control Document.
-* **IMA** — Integrated Modular Avionics (e.g., ARINC 653; ATA-42).
-* **LRU** — Line Replaceable Unit.
-* **MBSE** — Model-Based Systems Engineering.
-* **PCDU** — Power Conditioning & Distribution Unit (space).
-* **PLM / CAx** — Product Lifecycle Management / CAD-CAE-CAM… artifacts.
-* **SPACE-T (STA)** — *Space Transport Architecture* (space; STA chapter sets).
-* **STM** — Space Station Modules (pressurised elements).
-* **TT&C** — Telemetry, Tracking & Command.
-* **V&V** — Verification & Validation.
+* **AIR-T**: *Air Transport Architecture* (aircraft; ATA-aligned).
+* **STA**: *Space Transport Architecture* (spacecraft; space-adapted chaptering).
+* **ATA**: Air Transport Association chaptering standard (aircraft systems).
+* **IMA (ATA-42)**: Integrated Modular Avionics.
+* **EWIS (ATA-92/STA-97)**: Electrical Wiring Interconnection System.
+* **PLM / CAx**: Product Lifecycle Management / CAD-CAE-CAM… artefacts.
+* **LRU**: Line-Replaceable Unit (host for software baselines).
+* **ICD**: Interface Control Document.
+* **ECR/ECO / CCB**: Change request/order / Change Control Board.
+* **SRR/PDR/CDR/TRR/PRR/ORR/FRR**: Program review gates (system & flight).
 
 ---
 
