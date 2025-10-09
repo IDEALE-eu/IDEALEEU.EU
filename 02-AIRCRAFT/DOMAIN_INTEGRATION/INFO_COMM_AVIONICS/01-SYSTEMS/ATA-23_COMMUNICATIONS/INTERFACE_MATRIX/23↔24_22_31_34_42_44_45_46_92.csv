@@ -1,0 +1,11 @@
+Interface_ID,Source_System,Target_System,Signal_Name,Bus_Type,Data_Rate,Criticality,ICD_Reference,Notes
+IF-23-001,ATA-23,ATA-24,Power_28VDC,Power,N/A,Essential,ICD-0045,Primary power supply
+IF-23-002,ATA-23,ATA-31,Audio_Output,ARINC429,12.5kHz,Essential,ICD-0052,Flight deck audio
+IF-23-003,ATA-23,ATA-34,Position_Request,ARINC429,12.5kHz,Essential,ICD-0058,For ACARS position reports
+IF-23-004,ATA-34,ATA-23,Aircraft_Position,ARINC429,12.5kHz,Essential,ICD-0058,ACARS position data
+IF-23-005,ATA-23,ATA-22,CPDLC_Clearance,AFDX,100ms,Essential,ICD-0067,Datalink clearances to autopilot
+IF-23-006,ATA-23,ATA-42,Comm_Data,AFDX,50ms,Essential,ICD-0072,Communication application via IMA
+IF-23-007,ATA-23,ATA-44,PA_Audio,Analog,N/A,Non-Essential,ICD-0078,Passenger address system
+IF-23-008,ATA-23,ATA-45,BITE_Status,ARINC429,12.5kHz,Non-Essential,ICD-0083,Radio health monitoring
+IF-23-009,ATA-23,ATA-46,Load_Request,ARINC615A,N/A,Non-Essential,ICD-0089,Software loading for radios
+IF-23-010,ATA-23,ATA-92,Wiring,EWIS,N/A,Essential,See_ATA-92,All wiring in ATA-92 per rules

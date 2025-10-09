@@ -1,0 +1,9 @@
+Interface_ID,Source_System,Target_System,Signal_Name,Bus_Type,Data_Rate,Criticality,ICD_Reference,Notes
+IF-22-001,ATA-22,ATA-24,Power_28VDC,Power,N/A,Essential,ICD-0044,Primary power supply
+IF-22-002,ATA-22,ATA-31,AP_Mode_Status,AFDX,100ms,Essential,ICD-0051,Autopilot mode annunciations
+IF-22-003,ATA-34,ATA-22,FMS_Guidance,ARINC429,50Hz,Essential,ICD-0060,FMS LNAV/VNAV guidance
+IF-22-004,ATA-22,ATA-42,AFCS_Partition,APEX,Major_Frame,Essential,ICD-0079,AFCS hosted on IMA
+IF-22-005,ATA-22,ATA-45,AFCS_BITE,ARINC429,1Hz,Non-Essential,ICD-0086,Autopilot health monitoring
+IF-22-006,ATA-22,ATA-46,AFCS_Load,ARINC615A,N/A,Essential,ICD-0092,AFCS software loading
+IF-22-007,ATA-22,ATA-92,Wiring,EWIS,N/A,Essential,See_ATA-92,All wiring in ATA-92 per rules
+IF-22-008,ATA-22,ATA-27,Flight_Control_Cmd,ARINC429,50Hz,Essential,ICD-0110,Commands to flight controls

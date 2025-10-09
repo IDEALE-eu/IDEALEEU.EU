@@ -1,0 +1,11 @@
+Interface_ID,Source_System,Target_System,Signal_Name,Bus_Type,Data_Rate,Criticality,ICD_Reference,Notes
+IF-42-001,ATA-42,ATA-24,Power_28VDC,Power,N/A,Essential,ICD-0047,IMA cabinet power
+IF-42-002,ATA-22,ATA-42,AFCS_Partition,APEX,Major_Frame,Essential,ICD-0074,AFCS hosted on IMA
+IF-42-003,ATA-23,ATA-42,Comm_Partition,APEX,Major_Frame,Essential,ICD-0075,Communication apps on IMA
+IF-42-004,ATA-31,ATA-42,Display_Partition,APEX,Major_Frame,Essential,ICD-0076,Display management on IMA
+IF-42-005,ATA-34,ATA-42,FMS_Partition,APEX,Major_Frame,Essential,ICD-0077,FMS hosted on IMA
+IF-42-006,ATA-42,ATA-45,IMA_Health,AFDX,1Hz,Non-Essential,ICD-0085,IMA module health status
+IF-42-007,ATA-42,ATA-46,IMA_Load,ARINC615A,N/A,Essential,ICD-0091,IMA OS and partition loading
+IF-42-008,ATA-42,ATA-92,Wiring,EWIS,N/A,Essential,See_ATA-92,All wiring in ATA-92 per rules
+IF-42-009,ATA-42,All_Systems,AFDX_Network,AFDX,VL_Specific,Essential,ICD-0100,AFDX network backbone
+IF-42-010,ATA-42,Legacy_Systems,A429_Gateway,ARINC429,12.5kHz,Essential,ICD-0101,Gateway for legacy equipment

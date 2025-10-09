@@ -1,0 +1,13 @@
+Interface_ID,Source_System,Target_System,Signal_Name,Bus_Type,Data_Rate,Criticality,ICD_Reference,Notes
+IF-34-001,ATA-34,ATA-24,Power_28VDC,Power,N/A,Essential,ICD-0046,Primary power supply
+IF-34-002,ATA-34,ATA-22,FMS_Lateral_Guidance,ARINC429,50Hz,Essential,ICD-0053,LNAV guidance to autopilot
+IF-34-003,ATA-34,ATA-22,FMS_Vertical_Guidance,ARINC429,50Hz,Essential,ICD-0053,VNAV guidance to autopilot
+IF-34-004,ATA-34,ATA-23,Aircraft_Position,ARINC429,1Hz,Essential,ICD-0059,Position for ACARS
+IF-34-005,ATA-34,ATA-31,Navigation_Data,AFDX,100ms,Essential,ICD-0068,Nav display data
+IF-34-006,ATA-34,ATA-31,FMS_Flight_Plan,AFDX,1000ms,Essential,ICD-0068,Flight plan for ND
+IF-34-007,ATA-34,ATA-42,FMS_Application,AFDX,50ms,Essential,ICD-0073,FMS hosted on IMA
+IF-34-008,ATA-34,ATA-45,Nav_BITE_Status,ARINC429,1Hz,Non-Essential,ICD-0084,Navigation system health
+IF-34-009,ATA-34,ATA-46,Nav_DB_Load,ARINC615A,N/A,Essential,ICD-0090,Navigation database updates (ARINC 424)
+IF-34-010,ATA-34,ATA-92,Wiring,EWIS,N/A,Essential,See_ATA-92,All wiring in ATA-92 per rules
+IF-34-011,ATA-31,ATA-34,IRS_Position,ARINC429,50Hz,Essential,ICD-0068,IRS position to FMS
+IF-34-012,ATA-31,ATA-34,Air_Data,ARINC429,50Hz,Essential,ICD-0068,Air data to FMS

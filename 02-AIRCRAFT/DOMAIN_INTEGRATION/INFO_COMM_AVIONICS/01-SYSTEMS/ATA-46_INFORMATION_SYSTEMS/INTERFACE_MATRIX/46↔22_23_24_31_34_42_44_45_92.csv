@@ -1,0 +1,11 @@
+Interface_ID,Source_System,Target_System,Signal_Name,Bus_Type,Data_Rate,Criticality,ICD_Reference,Notes
+IF-46-001,ATA-46,ATA-24,Power_28VDC,Power,N/A,Essential,ICD-0050,Data loader power supply
+IF-46-002,ATA-46,ATA-22,AFCS_SW_Load,ARINC615A,N/A,Essential,ICD-0070,AFCS software loading
+IF-46-003,ATA-46,ATA-23,Comm_SW_Load,ARINC615A,N/A,Essential,ICD-0071,Communication software loading
+IF-46-004,ATA-46,ATA-31,Display_SW_Load,ARINC615A,N/A,Essential,ICD-0082,Display software loading
+IF-46-005,ATA-46,ATA-34,Nav_DB_Load,ARINC615A,N/A,Essential,ICD-0088,Navigation database loading
+IF-46-006,ATA-46,ATA-42,IMA_Load,ARINC615A,N/A,Essential,ICD-0095,IMA OS and partition loading
+IF-46-007,ATA-46,ATA-44,IFE_SW_Load,ARINC615A,N/A,Non-Essential,ICD-0096,IFE software loading
+IF-46-008,ATA-45,ATA-46,Maint_Data,Ethernet,Varies,Non-Essential,ICD-0097,Maintenance data download
+IF-46-009,ATA-46,ATA-92,Wiring,EWIS,N/A,Essential,See_ATA-92,All wiring in ATA-92 per rules
+IF-46-010,ATA-46,All_Systems,Cybersecurity,Firewall,N/A,Essential,ICD-0140,Cybersecurity monitoring

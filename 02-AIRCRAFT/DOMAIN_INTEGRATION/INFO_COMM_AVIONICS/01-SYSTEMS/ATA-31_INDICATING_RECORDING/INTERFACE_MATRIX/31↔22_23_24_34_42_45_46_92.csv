@@ -1,0 +1,10 @@
+Interface_ID,Source_System,Target_System,Signal_Name,Bus_Type,Data_Rate,Criticality,ICD_Reference,Notes
+IF-31-001,ATA-31,ATA-24,Power_28VDC,Power,N/A,Essential,ICD-0048,Display and recorder power
+IF-31-002,ATA-22,ATA-31,AP_Mode_Status,AFDX,100ms,Essential,ICD-0061,Autopilot mode display
+IF-31-003,ATA-23,ATA-31,Radio_Status,ARINC429,1Hz,Essential,ICD-0062,Communication status display
+IF-31-004,ATA-34,ATA-31,Nav_Data,AFDX,100ms,Essential,ICD-0063,Navigation display data
+IF-31-005,ATA-31,ATA-42,Display_Data,AFDX,50ms,Essential,ICD-0080,Display data via IMA network
+IF-31-006,ATA-31,ATA-45,Recorder_Data,ARINC717,64wps,Non-Essential,ICD-0087,FDR/QAR data for maintenance
+IF-31-007,ATA-31,ATA-46,Display_Load,ARINC615A,N/A,Essential,ICD-0093,Display software loading
+IF-31-008,ATA-31,ATA-92,Wiring,EWIS,N/A,Essential,See_ATA-92,All wiring in ATA-92 per rules
+IF-31-009,All_Systems,ATA-31,Recording_Data,ARINC429/AFDX,Varies,Essential,ICD-0120,Data for FDR/CVR/QAR

@@ -1,0 +1,10 @@
+Interface_ID,Source_System,Target_System,Signal_Name,Bus_Type,Data_Rate,Criticality,ICD_Reference,Notes
+IF-45-001,ATA-45,ATA-24,Power_28VDC,Power,N/A,Essential,ICD-0049,CMC power supply
+IF-45-002,ATA-22,ATA-45,AFCS_BITE,ARINC429,1Hz,Non-Essential,ICD-0064,Autopilot health data
+IF-45-003,ATA-23,ATA-45,Comm_BITE,ARINC429,1Hz,Non-Essential,ICD-0065,Communication health data
+IF-45-004,ATA-31,ATA-45,Recording_Status,ARINC429,1Hz,Non-Essential,ICD-0066,Recorder health status
+IF-45-005,ATA-34,ATA-45,Nav_BITE,ARINC429,1Hz,Non-Essential,ICD-0069,Navigation health data
+IF-45-006,ATA-42,ATA-45,IMA_Health,AFDX,1Hz,Non-Essential,ICD-0081,IMA health monitoring
+IF-45-007,ATA-45,ATA-46,Maint_Data_Transfer,Ethernet,Varies,Non-Essential,ICD-0094,Maintenance data download
+IF-45-008,ATA-45,ATA-92,Wiring,EWIS,N/A,Essential,See_ATA-92,All wiring in ATA-92 per rules
+IF-45-009,ATA-45,ATA-31,Maint_Messages,AFDX,1Hz,Non-Essential,ICD-0130,Maintenance message display

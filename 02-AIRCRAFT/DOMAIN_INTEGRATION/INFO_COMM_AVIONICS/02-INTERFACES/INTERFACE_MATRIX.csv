@@ -1,0 +1,16 @@
+Domain_Interface_ID,From_System,To_System,Interface_Type,Bus_Type,Criticality,ICD_Reference,Status,Notes
+DI-001,ATA-22,ATA-34,Data,ARINC429,Essential,ICD-0060,Active,FMS guidance to AFCS
+DI-002,ATA-23,ATA-34,Data,ARINC429,Essential,ICD-0058,Active,Position for ACARS
+DI-003,ATA-31,ATA-42,Data,AFDX,Essential,ICD-0080,Active,Display data via IMA
+DI-004,ATA-34,ATA-31,Data,AFDX,Essential,ICD-0063,Active,Navigation display
+DI-005,ATA-42,All_Avionics,Network,AFDX,Essential,ICD-0100,Active,AFDX backbone
+DI-006,ATA-45,All_Avionics,Data,ARINC429/AFDX,Non-Essential,ICD-0085-089,Active,BITE collection
+DI-007,ATA-46,All_Avionics,Data,ARINC615A,Essential,ICD-0090-099,Active,Software loading
+DI-008,ATA-44,ATA-46,Security,Firewall,Essential,ICD-0150,Active,Cabin network isolation
+DI-009,All_Avionics,ATA-24,Power,28VDC,Essential,ICD-0044-055,Active,Electrical power
+DI-010,All_Avionics,ATA-92,Physical,EWIS,Essential,See_ATA-92,Active,All wiring per ATA-92 rules
+DI-011,ATA-22,ATA-27,Data,ARINC429,Essential,ICD-0110,Active,Flight control commands (cross-domain)
+DI-012,ATA-34,ATA-76/77,Data,ARINC429,Essential,ICD-0120,Active,Engine data integration (cross-domain)
+DI-013,ATA-23,ATA-44,Data,Satellite,Non-Essential,ICD-0056,Active,Cabin connectivity uplink
+DI-014,ATA-31,ATA-44,Data,AFDX,Non-Essential,ICD-0057,Active,One-way flight info to IFE
+DI-015,ATA-42,Legacy_LRUs,Gateway,ARINC429,Essential,ICD-0101,Active,AFDX to ARINC 429 gateway

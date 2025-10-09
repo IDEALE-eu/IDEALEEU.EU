@@ -1,0 +1,8 @@
+Interface_ID,Source_System,Target_System,Signal_Name,Bus_Type,Data_Rate,Criticality,ICD_Reference,Notes
+IF-44-001,ATA-44,ATA-24,Power_28VDC,Power,N/A,Non-Essential,ICD-0055,IFE/Cabin power supply
+IF-44-002,ATA-23,ATA-44,Connectivity_Uplink,Satellite,Varies,Non-Essential,ICD-0056,Internet connectivity
+IF-44-003,ATA-31,ATA-44,Flight_Info,AFDX,1Hz,Non-Essential,ICD-0057,One-way flight info to IFE
+IF-44-004,ATA-44,ATA-42,IFE_Network,AFDX,Varies,Non-Essential,ICD-0098,IFE via isolated network
+IF-44-005,ATA-46,ATA-44,IFE_SW_Load,ARINC615A,N/A,Non-Essential,ICD-0099,IFE content and software
+IF-44-006,ATA-44,ATA-92,Wiring,EWIS,N/A,Non-Essential,See_ATA-92,All wiring in ATA-92 per rules
+IF-44-007,ATA-46,ATA-44,Network_Firewall,Firewall,N/A,Essential,ICD-0150,Cabin network isolation
