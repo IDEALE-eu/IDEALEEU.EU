@@ -28,7 +28,7 @@ arch_from_path() {
 domain_from_path() {
   local p="$1"
   if [[ "$p" == *"/DOMAIN_INTEGRATION/"* ]]; then
-    echo "$p" | sed -E 's#.*DOMAIN_INTEGRATION/([^/]+).*#\1#' || echo "N/A"
+    echo "$p" | sed -E 's#.*DOMAIN_INTEGRATION/([^/]+).*#\1#'
   else
     echo "N/A"
   fi
