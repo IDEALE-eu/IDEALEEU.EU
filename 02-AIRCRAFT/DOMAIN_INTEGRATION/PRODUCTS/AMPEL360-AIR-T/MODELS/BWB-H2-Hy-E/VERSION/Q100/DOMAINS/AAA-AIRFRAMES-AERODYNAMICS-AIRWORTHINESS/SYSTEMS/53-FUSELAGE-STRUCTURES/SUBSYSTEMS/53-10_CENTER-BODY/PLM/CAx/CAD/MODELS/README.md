@@ -46,25 +46,25 @@ Organize models by:
 - **Creo (PTC)**: `.prt`, `.asm`
 
 ### Best Practices
-- Always export to neutral formats (see `../EXPORTS/`) for long-term archival
+- Always export to neutral formats (see [`../EXPORTS/`](../EXPORTS/)) for long-term archival
 - Document design parameters in model properties or separate parameter file
 - Include material specifications in model metadata
-- Link to applicable standards in `../../PLM/EBOM_LINKS.md`
+- Link to applicable standards in [`../../PLM/EBOM_LINKS.md`](../../EBOM_LINKS.md)
 
 ## Version Control
 
 - Use Git LFS for large binary files (> 10 MB)
 - Tag major design milestones with version numbers
 - Document design changes in commit messages
-- Reference related drawings in `../DRAWINGS/`
+- Reference related drawings in [`../DRAWINGS/`](../DRAWINGS/)
 
 ## References
 
-- **Geometry standards**: `../../../51-STRUCTURES-GENERAL/SUBSYSTEMS/51-00_GENERAL/`
-- **Data exchange**: `../EXPORTS/`
-- **Assembly models**: `../ASSEMBLIES/`
-- **Engineering drawings**: `../DRAWINGS/`
-- **EBOM links**: `../../EBOM_LINKS.md`
+- **Geometry standards**: [`../../../51-STRUCTURES-GENERAL/SUBSYSTEMS/51-00_GENERAL/`](../../../51-STRUCTURES-GENERAL/SUBSYSTEMS/51-00_GENERAL/)
+- **Data exchange**: [`../EXPORTS/`](../EXPORTS/)
+- **Assembly models**: [`../ASSEMBLIES/`](../ASSEMBLIES/)
+- **Engineering drawings**: [`../DRAWINGS/`](../DRAWINGS/)
+- **EBOM links**: [`../../EBOM_LINKS.md`](../../EBOM_LINKS.md)
 
 ## Metadata Requirements
 

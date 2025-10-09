@@ -326,10 +326,10 @@ Ensure JT metadata matches PLM:
 
 ## Related Directories
 
-- **Source models**: `../../MODELS/` and `../../ASSEMBLIES/`
-- **Other formats**: `../STEP/`, `../IGES/`, `../DXF/`
-- **Drawings**: `../../DRAWINGS/`
-- **Data exchange**: `/00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DATA_EXCHANGE/`
+- **Source models**: [`../../MODELS/`](../../MODELS/) and [`../../ASSEMBLIES/`](../../ASSEMBLIES/)
+- **Other formats**: [`../STEP/`](../STEP/), [`../IGES/`](../IGES/), [`../DXF/`](../DXF/)
+- **Drawings**: [`../../DRAWINGS/`](../../DRAWINGS/)
+- **Data exchange**: [`/00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DATA_EXCHANGE/`](/00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DATA_EXCHANGE/)
 
 ## Best Use Strategy
 

@@ -211,9 +211,9 @@ Include in templates:
 - **Company design manual**: Internal standards
 
 ### Related Directories
-- **General structures**: `../../../51-STRUCTURES-GENERAL/SUBSYSTEMS/51-00_GENERAL/`
-- **Standards**: `../../STANDARDS/`
-- **EBOM**: `../../EBOM_LINKS.md`
+- **General structures**: [`../../../51-STRUCTURES-GENERAL/SUBSYSTEMS/51-00_GENERAL/`](../../../51-STRUCTURES-GENERAL/SUBSYSTEMS/51-00_GENERAL/)
+- **Standards**: [`../../STANDARDS/`](../../STANDARDS/)
+- **EBOM**: [`../../EBOM_LINKS.md`](../../EBOM_LINKS.md)
 
 ## Best Practices
 

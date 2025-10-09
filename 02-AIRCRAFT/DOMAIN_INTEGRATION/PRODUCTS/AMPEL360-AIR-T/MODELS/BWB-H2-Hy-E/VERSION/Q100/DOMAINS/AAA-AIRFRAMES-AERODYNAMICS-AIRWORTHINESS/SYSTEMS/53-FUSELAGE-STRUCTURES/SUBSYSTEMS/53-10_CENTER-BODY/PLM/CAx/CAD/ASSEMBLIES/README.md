@@ -105,7 +105,7 @@ Before committing assemblies:
 - [ ] No interference between parts
 - [ ] Assembly mass properties calculated
 - [ ] BOM exported and accurate
-- [ ] Neutral format (STEP) exported to `../EXPORTS/STEP/`
+- [ ] Neutral format (STEP) exported to [`../EXPORTS/STEP/`](../EXPORTS/STEP/)
 - [ ] Assembly sequence documented
 
 ## Integration Points
@@ -119,10 +119,10 @@ Before committing assemblies:
 - **57-00 Wings**: Wing-to-body attachment
 
 ### Related Directories
-- **Component models**: `../MODELS/`
-- **Assembly drawings**: `../DRAWINGS/`
-- **Neutral exports**: `../EXPORTS/STEP/`
-- **Interface definitions**: `../../INTERFACE_MATRIX/`
+- **Component models**: [`../MODELS/`](../MODELS/)
+- **Assembly drawings**: [`../DRAWINGS/`](../DRAWINGS/)
+- **Neutral exports**: [`../EXPORTS/STEP/`](../EXPORTS/STEP/)
+- **Interface definitions**: [`../../INTERFACE_MATRIX/`](../../INTERFACE_MATRIX/)
 
 ## Version Control
 

@@ -310,9 +310,9 @@ For complete documentation:
 
 ### Cross-Reference
 Link DXF to other files:
-- Reference 3D model in `../../MODELS/`
-- Link to drawing in `../../DRAWINGS/`
-- Reference STEP file in `../STEP/`
+- Reference 3D model in [`../../MODELS/`](../../MODELS/)
+- Link to drawing in [`../../DRAWINGS/`](../../DRAWINGS/)
+- Reference STEP file in [`../STEP/`](../STEP/)
 
 ## Tools and Software
 
@@ -355,10 +355,10 @@ Link DXF to other files:
 
 ## Related Directories
 
-- **Source drawings**: `../../DRAWINGS/`
-- **3D models**: `../../MODELS/` and `../../ASSEMBLIES/`
-- **Other formats**: `../STEP/`, `../IGES/`, `../JT/`
-- **Data exchange standards**: `/00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DATA_EXCHANGE/`
+- **Source drawings**: [`../../DRAWINGS/`](../../DRAWINGS/)
+- **3D models**: [`../../MODELS/`](../../MODELS/) and [`../../ASSEMBLIES/`](../../ASSEMBLIES/)
+- **Other formats**: [`../STEP/`](../STEP/), [`../IGES/`](../IGES/), [`../JT/`](../JT/)
+- **Data exchange standards**: [`/00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DATA_EXCHANGE/`](/00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DATA_EXCHANGE/)
 
 ## Troubleshooting
 

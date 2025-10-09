@@ -46,7 +46,7 @@ Examples:
 - **NX Drafting**: `.prt` (drawings in NX are part files)
 
 ### Export to DXF
-Export 2D geometry to `../EXPORTS/DXF/` for:
+Export 2D geometry to [`../EXPORTS/DXF/`](../EXPORTS/DXF/) for:
 - Manufacturing (CNC programming)
 - Laser cutting templates
 - Sheet metal development
@@ -149,17 +149,17 @@ Before releasing drawings:
 ## References
 
 ### Related Directories
-- **CAD models**: `../MODELS/` and `../ASSEMBLIES/`
-- **DXF exports**: `../EXPORTS/DXF/`
-- **STEP exports**: `../EXPORTS/STEP/`
-- **EBOM links**: `../../EBOM_LINKS.md`
+- **CAD models**: [`../MODELS/`](../MODELS/) and [`../ASSEMBLIES/`](../ASSEMBLIES/)
+- **DXF exports**: [`../EXPORTS/DXF/`](../EXPORTS/DXF/)
+- **STEP exports**: [`../EXPORTS/STEP/`](../EXPORTS/STEP/)
+- **EBOM links**: [`../../EBOM_LINKS.md`](../../EBOM_LINKS.md)
 
 ### Applicable Standards
 - **ASME Y14.5**: GD&T standard
 - **ISO 1101**: Geometrical tolerancing (European)
 - **ATA iSpec 2200**: Technical publications
 - **AS9100**: Aerospace quality management
-- **General tolerances**: `../../../51-STRUCTURES-GENERAL/SUBSYSTEMS/51-00_GENERAL/`
+- **General tolerances**: [`../../../51-STRUCTURES-GENERAL/SUBSYSTEMS/51-00_GENERAL/`](../../../51-STRUCTURES-GENERAL/SUBSYSTEMS/51-00_GENERAL/)
 
 ## Best Practices
 

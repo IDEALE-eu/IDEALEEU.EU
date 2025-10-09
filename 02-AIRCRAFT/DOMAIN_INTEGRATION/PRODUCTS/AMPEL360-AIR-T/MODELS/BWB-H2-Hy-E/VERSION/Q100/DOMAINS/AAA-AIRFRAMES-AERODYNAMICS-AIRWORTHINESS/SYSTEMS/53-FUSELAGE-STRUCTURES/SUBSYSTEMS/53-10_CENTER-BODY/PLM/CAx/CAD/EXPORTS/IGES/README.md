@@ -295,9 +295,9 @@ Different CAD systems implement IGES differently:
 
 ## Related Directories
 
-- **Source models**: `../../MODELS/` and `../../ASSEMBLIES/`
-- **Other formats**: `../STEP/`, `../JT/`, `../DXF/`
-- **Drawings**: `../../DRAWINGS/`
+- **Source models**: [`../../MODELS/`](../../MODELS/) and [`../../ASSEMBLIES/`](../../ASSEMBLIES/)
+- **Other formats**: [`../STEP/`](../STEP/), [`../JT/`](../JT/), [`../DXF/`](../DXF/)
+- **Drawings**: [`../../DRAWINGS/`](../../DRAWINGS/)
 
 ## Standards and References
 

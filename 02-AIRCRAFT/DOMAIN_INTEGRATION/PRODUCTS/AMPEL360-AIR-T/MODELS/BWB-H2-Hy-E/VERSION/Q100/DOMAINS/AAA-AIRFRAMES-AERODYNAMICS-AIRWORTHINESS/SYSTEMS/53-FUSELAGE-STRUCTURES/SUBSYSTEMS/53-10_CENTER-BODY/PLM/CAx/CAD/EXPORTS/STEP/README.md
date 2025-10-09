@@ -289,10 +289,10 @@ If STEP files are too large:
 
 ## Related Directories
 
-- **Source models**: `../../MODELS/` and `../../ASSEMBLIES/`
-- **Other formats**: `../IGES/`, `../JT/`, `../DXF/`
-- **Drawings**: `../../DRAWINGS/`
-- **Standards**: `/00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DATA_EXCHANGE/`
+- **Source models**: [`../../MODELS/`](../../MODELS/) and [`../../ASSEMBLIES/`](../../ASSEMBLIES/)
+- **Other formats**: [`../IGES/`](../IGES/), [`../JT/`](../JT/), [`../DXF/`](../DXF/)
+- **Drawings**: [`../../DRAWINGS/`](../../DRAWINGS/)
+- **Standards**: [`/00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DATA_EXCHANGE/`](/00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DATA_EXCHANGE/)
 
 ## Tools and Software
 

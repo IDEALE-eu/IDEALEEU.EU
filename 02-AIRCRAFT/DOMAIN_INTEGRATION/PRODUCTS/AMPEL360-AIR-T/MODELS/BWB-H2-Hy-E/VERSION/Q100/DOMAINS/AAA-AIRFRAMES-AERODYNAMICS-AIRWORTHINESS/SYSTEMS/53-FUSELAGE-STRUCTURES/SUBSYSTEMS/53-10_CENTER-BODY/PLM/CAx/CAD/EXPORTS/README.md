@@ -18,28 +18,28 @@ Neutral formats enable:
 This directory contains exports in four industry-standard neutral formats:
 
 ### STEP (ISO 10303-242)
-**Directory**: `./STEP/`
+**Directory**: [`./STEP/`](./STEP/)
 - **Best for**: 3D geometry, assemblies, PMI (GD&T)
 - **Use cases**: Primary exchange format for aerospace
-- **Details**: See `./STEP/README.md`
+- **Details**: See [`./STEP/README.md`](./STEP/README.md)
 
 ### IGES (Initial Graphics Exchange Specification)
-**Directory**: `./IGES/`
+**Directory**: [`./IGES/`](./IGES/)
 - **Best for**: 3D surfaces and wireframe
 - **Use cases**: Legacy systems, CAM systems
-- **Details**: See `./IGES/README.md`
+- **Details**: See [`./IGES/README.md`](./IGES/README.md)
 
 ### JT (ISO 14306)
-**Directory**: `./JT/`
+**Directory**: [`./JT/`](./JT/)
 - **Best for**: Lightweight visualization, large assemblies
 - **Use cases**: Design reviews, PLM integration
-- **Details**: See `./JT/README.md`
+- **Details**: See [`./JT/README.md`](./JT/README.md)
 
 ### DXF (Drawing Exchange Format)
-**Directory**: `./DXF/`
+**Directory**: [`./DXF/`](./DXF/)
 - **Best for**: 2D drawings, manufacturing documentation
 - **Use cases**: CNC programming, sheet metal, laser cutting
-- **Details**: See `./DXF/README.md`
+- **Details**: See [`./DXF/README.md`](./DXF/README.md)
 
 ## Export Workflow
 
@@ -114,7 +114,7 @@ Export assemblies to:
 
 ### For Drawings
 Export 2D drawings to:
-- **PDF**: Primary distribution format (see `../DRAWINGS/`)
+- **PDF**: Primary distribution format (see [`../DRAWINGS/`](../DRAWINGS/))
 - **DXF**: 2D geometry for manufacturing
 
 ## Version Control
@@ -206,9 +206,9 @@ Before committing exported files:
 - **DXF Reference**: AutoCAD DXF format guide
 
 ### Related Directories
-- **Native models**: `../MODELS/` and `../ASSEMBLIES/`
-- **Drawings**: `../DRAWINGS/`
-- **Data exchange standards**: `/00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DATA_EXCHANGE/`
+- **Native models**: [`../MODELS/`](../MODELS/) and [`../ASSEMBLIES/`](../ASSEMBLIES/)
+- **Drawings**: [`../DRAWINGS/`](../DRAWINGS/)
+- **Data exchange standards**: [`/00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DATA_EXCHANGE/`](/00-PROGRAM/STANDARDS/04-CROSS_CUTTING/DATA_EXCHANGE/)
 
 ### Tools
 - **STEP viewers**: CAx-IF viewer, Jotne EDM Model Checker
