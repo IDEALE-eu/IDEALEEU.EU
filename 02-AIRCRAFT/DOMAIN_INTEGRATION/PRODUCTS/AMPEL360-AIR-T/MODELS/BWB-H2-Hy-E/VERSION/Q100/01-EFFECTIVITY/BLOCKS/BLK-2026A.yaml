@@ -6,7 +6,7 @@ production_period:
   quarter: "Q1-Q2 2026"
 
 manufacturing:
-  location: "Final Assembly Line 1, Hamburg, Germany"
+  location: "Final Assembly Line 1, Getafe, Madrid"
   rate: "2 aircraft per month"
   serial_range:
     start: "ACFT-Q100-001"
