@@ -1,7 +1,7 @@
-# EBOM Links — 53-10_CENTER_BODY
+# EBOM Links — 53-80_MATERIALS_COATINGS
 
 ## Part Numbers
-- Main assembly: TBD (BWB-H2-Hy-E-Q100-53-10)
+- Main assembly: TBD (BWB-H2-Hy-E-Q100-53-80)
 - Configuration: Q100 baseline
 - Drawing references: TBD
 

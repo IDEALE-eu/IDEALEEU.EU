@@ -5,10 +5,10 @@
   "version": "Q100",
   "domain": "AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS",
   "system": "53-FUSELAGE-STRUCTURES",
-  "subsystem": "53-10_CENTER_BODY",
+  "subsystem": "53-60_DOORS_HATCHES",
   "ata_chapter": "53",
   "configuration": "BWB with hydrogen propulsion",
   "materials": ["CFRP", "Aluminum", "Titanium"],
   "optimization": "QUANTUM_OA enabled",
-  "last_updated": "2025-01-09T15:20:00Z"
+  "last_updated": "2025-10-09T15:19:39Z"
 }

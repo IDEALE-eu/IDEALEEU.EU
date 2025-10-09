@@ -1,2 +1,11 @@
 from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
-XX,YY,ejemplo_bus,ARINC/Ethernet/fluido,ref-ICD,observaciones
+53,51,structural_load_transfer,mechanical_loads,ATA-51-STRUCT,Primary structure coordination and load paths
+53,52,door_frame_interface,mechanical_attachment,ATA-52-DOORS,Door and hatch structural mounting (via 53-60)
+53,55,empennage_attachment,mechanical_loads,ATA-55-STAB,Aft fuselage stabilizer mounting points (via 53-30)
+53,57,wing_fuselage_integration,mechanical_loads,ATA-57-WING,Critical BWB wing-body load path integration (via 53-10)
+53,21,thermal_interfaces,thermal_transfer,ATA-21-THERMAL,Hydrogen cryogenic system thermal management
+53,30,anti_ice_mounting,mechanical_mounting,ATA-30-ICE,Anti-icing system structural support
+53,32,landing_gear_attachment,mechanical_loads,ATA-32-GEAR,Main and nose gear structural attachment points (via 53-10)
+53,70,sensor_mounting,mechanical_mounting,ATA-70-OPTICAL,Optical sensor and equipment mounting provisions (via 53-70)
+53,71,propulsion_mounting,mechanical_loads,ATA-71-POWERPLANT,Hybrid-electric propulsion system mounting (via 53-30)
+53,92,harness_routing,cable_routing,ATA-92-EWIS,Electrical harness protection and routing through structure

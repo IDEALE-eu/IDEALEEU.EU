@@ -1,7 +1,7 @@
-# EBOM Links — 53-10_CENTER_BODY
+# EBOM Links — 53-60_DOORS_HATCHES
 
 ## Part Numbers
-- Main assembly: TBD (BWB-H2-Hy-E-Q100-53-10)
+- Main assembly: TBD (BWB-H2-Hy-E-Q100-53-60)
 - Configuration: Q100 baseline
 - Drawing references: TBD
 
