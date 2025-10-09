@@ -203,11 +203,7 @@ EOF
 }
 
 # Main
-FILES=()
-while IFS= read -r -d '' file; do
-  FILES+=("$file")
-done < <(find "$ROOT" -type f -name .gitkeep -print0 | sort -z)
-
+mapfile -d '' -t FILES < <(find "$ROOT" -type f -name .gitkeep -print0 | sort -z)
 if [[ ${#FILES[@]} -eq 0 ]]; then
   echo "No .gitkeep found in $ROOT"
   exit 0
