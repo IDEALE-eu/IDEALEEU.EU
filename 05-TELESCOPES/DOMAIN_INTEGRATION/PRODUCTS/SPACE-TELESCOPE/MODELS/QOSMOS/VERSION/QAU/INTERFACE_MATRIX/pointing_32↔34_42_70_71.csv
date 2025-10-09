@@ -1,0 +1,5 @@
+from_system,to_system,interface_type,icd_ref,signals/measures,thermal,mechanical,electrical,data_bus,harness,sw_api,safety_class,owner,status,notes
+32-POINTING_STABILIZATION,34-NAVIGATION_ATTITUDE,Data,ICD-032-034,Attitude feedback,N/A,N/A,Data lines,1553 bus,Harness-032-034,Attitude API,Class-A,GNC Lead,TBD,Attitude determination for pointing
+32-POINTING_STABILIZATION,42-AVIONICS_CONTROL,Control,ICD-032-042,Pointing commands,N/A,N/A,Control signals,1553 bus,Harness-032-042,Control API,Class-A,GNC Lead,TBD,Pointing control loop
+32-POINTING_STABILIZATION,70-OPTICAL_SUBSYSTEMS,Requirements,ICD-032-070,Pointing requirements,N/A,N/A,N/A,N/A,N/A,N/A,Class-A,GNC Lead,TBD,Optical pointing stability requirements
+32-POINTING_STABILIZATION,71-INSTRUMENTS_PAYLOADS,Requirements,ICD-032-071,Instrument pointing,N/A,N/A,N/A,N/A,N/A,N/A,Class-A,GNC Lead,TBD,Instrument pointing requirements

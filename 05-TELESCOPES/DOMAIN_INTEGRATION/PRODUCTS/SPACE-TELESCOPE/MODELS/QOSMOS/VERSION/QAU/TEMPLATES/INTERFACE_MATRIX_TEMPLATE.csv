@@ -1,0 +1,2 @@
+from_system,to_system,interface_type,icd_ref,signals/measures,thermal,mechanical,electrical,data_bus,harness,sw_api,safety_class,owner,status,notes
+70-OPTICAL_SUBSYSTEMS,76-MIRROR_CONTROL,Mechanical/Electrical,ICD-XXX-001,Actuator positioning,,Primary mirror mount,24V power,N/A,Harness-070-076,N/A,Class-B,Optics Lead,Draft,Example interface

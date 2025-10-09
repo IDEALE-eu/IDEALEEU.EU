@@ -1,0 +1,15 @@
+from_system,to_system,interface_type,icd_ref,signals/measures,thermal,mechanical,electrical,data_bus,harness,sw_api,safety_class,owner,status,notes
+92-EWIS_HARNESS,01-INTRO,Physical,ICD-092-001,General wiring,N/A,Cable routing,All electrical,All buses,Main harness,N/A,Class-A,EWIS Lead,TBD,Introduction system wiring
+92-EWIS_HARNESS,06-DIMENSIONS_ALIGNMENTS,Physical,ICD-092-006,Alignment sensors,N/A,Cable routing,Sensor wiring,N/A,Sensor harness,N/A,Class-B,EWIS Lead,TBD,Alignment sensor wiring
+92-EWIS_HARNESS,15-ENVIRONMENT_VIBRATION,Physical,ICD-092-015,Environmental sensors,N/A,Cable routing,Sensor wiring,N/A,Env harness,N/A,Class-C,EWIS Lead,TBD,Environmental monitoring wiring
+92-EWIS_HARNESS,21-THERMAL_CONTROL,Physical,ICD-092-021,Thermal control,N/A,Cable routing,Heater and sensor wiring,N/A,Thermal harness,N/A,Class-B,EWIS Lead,TBD,Thermal system wiring
+92-EWIS_HARNESS,24-ELECTRICAL_POWER,Physical,ICD-092-024,Power distribution,N/A,Cable routing,Power feeds,N/A,Power harness,N/A,Class-A,EWIS Lead,TBD,Primary power distribution
+92-EWIS_HARNESS,31-DATA_HANDLING,Physical,ICD-092-031,Data wiring,N/A,Cable routing,Data lines,SpaceWire/1553,Data harness,N/A,Class-A,EWIS Lead,TBD,C&DH wiring
+92-EWIS_HARNESS,32-POINTING_STABILIZATION,Physical,ICD-092-032,Control wiring,N/A,Cable routing,Control signals,1553,Control harness,N/A,Class-A,EWIS Lead,TBD,Pointing control wiring
+92-EWIS_HARNESS,34-NAVIGATION_ATTITUDE,Physical,ICD-092-034,Sensor wiring,N/A,Cable routing,Sensor interfaces,1553,Sensor harness,N/A,Class-A,EWIS Lead,TBD,Star tracker and IMU wiring
+92-EWIS_HARNESS,42-AVIONICS_CONTROL,Physical,ICD-092-042,Avionics wiring,N/A,Cable routing,Control and data,1553,Avionics harness,N/A,Class-A,EWIS Lead,TBD,Avionics interconnect
+92-EWIS_HARNESS,45-HEALTH_MONITORING,Physical,ICD-092-045,Health monitoring,N/A,Cable routing,Telemetry wiring,N/A,Telemetry harness,N/A,Class-C,EWIS Lead,TBD,Health monitoring sensors
+92-EWIS_HARNESS,70-OPTICAL_SUBSYSTEMS,Physical,ICD-092-070,Optical system wiring,N/A,Cable routing,Sensor and control,N/A,Optics harness,N/A,Class-B,EWIS Lead,TBD,Optical subsystem wiring
+92-EWIS_HARNESS,71-INSTRUMENTS_PAYLOADS,Physical,ICD-092-071,Instrument wiring,N/A,Cable routing,Power and data,SpaceWire,Instrument harness,N/A,Class-A,EWIS Lead,TBD,Science instrument wiring
+92-EWIS_HARNESS,72-CRYOGENIC_COOLING,Physical,ICD-092-072,Cryo system wiring,N/A,Cable routing,Power and control,N/A,Cryo harness,N/A,Class-A,EWIS Lead,TBD,Cryogenic cooler wiring
+92-EWIS_HARNESS,78-BACKPLANE_ELECTRONICS,Physical,ICD-092-078,Backplane wiring,N/A,Cable routing,Data interfaces,SpaceWire,Backplane harness,N/A,Class-A,EWIS Lead,TBD,Backplane electronics wiring
