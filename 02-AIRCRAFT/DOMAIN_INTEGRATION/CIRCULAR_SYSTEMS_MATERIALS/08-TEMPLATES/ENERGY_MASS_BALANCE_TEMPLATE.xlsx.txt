@@ -1,0 +1,46 @@
+This is a placeholder for ENERGY_MASS_BALANCE_TEMPLATE.xlsx
+
+The actual Excel template should include the following worksheets:
+
+1. SUMMARY
+   - Overall energy and mass balance summary
+   - Key performance indicators
+   - Comparison to baseline and targets
+
+2. ENERGY_INPUTS
+   - System-by-system energy inputs
+   - Power consumption breakdown
+   - Fuel/H2 chemical energy
+
+3. ENERGY_OUTPUTS
+   - Useful work output
+   - Waste heat
+   - Energy losses
+
+4. HEAT_RECOVERY
+   - Heat recovery opportunities
+   - Recovery efficiency
+   - Energy savings
+
+5. WATER_BALANCE
+   - Water inputs (fresh water, condensate)
+   - Water outputs (consumption, waste)
+   - Reclamation efficiency
+
+6. H2_BALANCE
+   - H2 storage and consumption
+   - Boil-off rate
+   - BOG utilization
+
+7. MATERIAL_FLOW
+   - Material inputs (virgin, recycled)
+   - Material outputs (to aircraft, to waste)
+   - Recycling rate
+
+8. SENSITIVITY_ANALYSIS
+   - Key parameters and sensitivities
+   - Scenario analysis
+
+To create the actual Excel file, use a spreadsheet application and
+implement the structure above with appropriate formulas and charts.
+

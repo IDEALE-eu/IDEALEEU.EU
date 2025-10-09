@@ -1,0 +1,212 @@
+# Telemetry Schema - Circular Systems Domain
+# Version: 1.0.0
+# Last Updated: 2024-12-XX
+
+signals:
+  # ============================================================================
+  # ATA-21 Air Conditioning System
+  # ============================================================================
+  
+  - name: ATA21_PACK_01_INLET_TEMP_C
+    description: Pack 1 inlet air temperature
+    unit: degC
+    sample_rate_hz: 1
+    range: [-60, 150]
+    ebom_ref: PLM-21-00-001
+    criticality: high
+    
+  - name: ATA21_PACK_01_OUTLET_TEMP_C
+    description: Pack 1 outlet air temperature
+    unit: degC
+    sample_rate_hz: 1
+    range: [0, 50]
+    ebom_ref: PLM-21-00-001
+    criticality: high
+    
+  - name: ATA21_PACK_01_FLOW_RATE_KG_S
+    description: Pack 1 air mass flow rate
+    unit: kg/s
+    sample_rate_hz: 1
+    range: [0, 2]
+    ebom_ref: PLM-21-00-001
+    criticality: medium
+    
+  - name: ATA21_CABIN_TEMP_C
+    description: Cabin average temperature
+    unit: degC
+    sample_rate_hz: 1
+    range: [10, 35]
+    ebom_ref: PLM-21-10-001
+    criticality: high
+    
+  - name: ATA21_CABIN_PRESSURE_PSI
+    description: Cabin pressure
+    unit: psi
+    sample_rate_hz: 1
+    range: [10, 15]
+    ebom_ref: PLM-21-20-001
+    criticality: critical
+    
+  - name: ATA21_HEAT_REJECTION_KW
+    description: ECS heat rejection to H2 system
+    unit: kW
+    sample_rate_hz: 1
+    range: [0, 30]
+    ebom_ref: PLM-21-00-002
+    criticality: medium
+    
+  # ============================================================================
+  # ATA-28 Fuel/H2 System
+  # ============================================================================
+  
+  - name: ATA28_TANK_01_LEVEL_PCT
+    description: H2 tank 1 fill level
+    unit: percent
+    sample_rate_hz: 10
+    range: [0, 100]
+    ebom_ref: PLM-28-00-001
+    criticality: critical
+    
+  - name: ATA28_TANK_01_PRESSURE_BAR
+    description: H2 tank 1 pressure
+    unit: bar
+    sample_rate_hz: 10
+    range: [0, 700]
+    ebom_ref: PLM-28-00-001
+    criticality: critical
+    
+  - name: ATA28_TANK_01_TEMP_K
+    description: H2 tank 1 temperature
+    unit: K
+    sample_rate_hz: 10
+    range: [15, 25]
+    ebom_ref: PLM-28-00-001
+    criticality: high
+    
+  - name: ATA28_BOILOFF_RATE_PCT_DAY
+    description: H2 boil-off rate
+    unit: percent_per_day
+    sample_rate_hz: 0.1
+    range: [0, 5]
+    ebom_ref: PLM-28-00-001
+    criticality: high
+    
+  - name: ATA28_FLOW_RATE_KG_S
+    description: H2 flow rate to engine
+    unit: kg/s
+    sample_rate_hz: 10
+    range: [0, 0.5]
+    ebom_ref: PLM-28-10-001
+    criticality: critical
+    
+  - name: ATA28_THERMAL_HX_HEAT_FLOW_KW
+    description: Heat flow through ECS-H2 heat exchanger
+    unit: kW
+    sample_rate_hz: 1
+    range: [0, 30]
+    ebom_ref: PLM-28-20-001
+    criticality: medium
+    
+  - name: ATA28_BOG_UTILIZATION_PCT
+    description: Boil-off gas utilization rate
+    unit: percent
+    sample_rate_hz: 0.1
+    range: [0, 100]
+    ebom_ref: PLM-28-10-001
+    criticality: medium
+    
+  # ============================================================================
+  # ATA-38 Water/Waste System
+  # ============================================================================
+  
+  - name: ATA38_POTABLE_TANK_LEVEL_L
+    description: Potable water tank level
+    unit: liters
+    sample_rate_hz: 0.1
+    range: [0, 300]
+    ebom_ref: PLM-38-00-001
+    criticality: medium
+    
+  - name: ATA38_WASTE_TANK_LEVEL_L
+    description: Waste water tank level
+    unit: liters
+    sample_rate_hz: 0.1
+    range: [0, 300]
+    ebom_ref: PLM-38-10-001
+    criticality: medium
+    
+  - name: ATA38_TREATMENT_FLOW_RATE_L_HR
+    description: Water treatment flow rate
+    unit: L/hr
+    sample_rate_hz: 0.1
+    range: [0, 100]
+    ebom_ref: PLM-38-10-100
+    criticality: low
+    
+  - name: ATA38_WATER_QUALITY_TURBIDITY_NTU
+    description: Treated water turbidity
+    unit: NTU
+    sample_rate_hz: 0.1
+    range: [0, 5]
+    ebom_ref: PLM-38-10-200
+    criticality: medium
+    
+  - name: ATA38_WATER_QUALITY_PH
+    description: Treated water pH
+    unit: pH
+    sample_rate_hz: 0.1
+    range: [6.5, 8.5]
+    ebom_ref: PLM-38-10-201
+    criticality: medium
+    
+  - name: ATA38_CONDENSATE_FLOW_RATE_L_HR
+    description: ECS condensate recovery rate
+    unit: L/hr
+    sample_rate_hz: 0.1
+    range: [0, 20]
+    ebom_ref: PLM-38-10-100
+    criticality: low
+    
+  - name: ATA38_RECLAMATION_EFFICIENCY_PCT
+    description: Water reclamation efficiency
+    unit: percent
+    sample_rate_hz: 0.1
+    range: [0, 100]
+    ebom_ref: PLM-38-10-100
+    criticality: low
+    
+  # ============================================================================
+  # Domain-Level Integration Metrics
+  # ============================================================================
+  
+  - name: DOMAIN_THERMAL_EFFICIENCY_PCT
+    description: Overall thermal system efficiency
+    unit: percent
+    sample_rate_hz: 0.1
+    range: [0, 100]
+    ebom_ref: N/A
+    criticality: low
+    
+  - name: DOMAIN_ENERGY_BALANCE_KW
+    description: Net energy balance (input - output)
+    unit: kW
+    sample_rate_hz: 1
+    range: [-100, 100]
+    ebom_ref: N/A
+    criticality: low
+    
+  - name: DOMAIN_WATER_SAVINGS_L_FLIGHT
+    description: Fresh water savings per flight
+    unit: liters
+    sample_rate_hz: 0.01
+    range: [0, 100]
+    ebom_ref: N/A
+    criticality: low
+    
+  - name: DOMAIN_H2_EFFICIENCY_PCT
+    description: H2 system efficiency (including boil-off)
+    unit: percent
+    sample_rate_hz: 0.1
+    range: [0, 100]
+    ebom_ref: N/A
+    criticality: low

@@ -1,0 +1,2 @@
+interface_id,from_system,to_system,interface_type,signal_description,unit,data_rate,criticality,icd_ref,notes
+ICD-XX-YY-001,System A,System B,Electrical,Description of signal,unit,rate,criticality,ICD reference,Additional notes

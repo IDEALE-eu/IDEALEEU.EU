@@ -1,0 +1,176 @@
+# Material Passport Template
+# Version: 1.0
+# ISO 11469 compliant
+
+material_passport:
+  # ============================================================================
+  # Identification
+  # ============================================================================
+  passport_id: "MPP-YYYY-NNNNN"
+  creation_date: "YYYY-MM-DD"
+  last_updated: "YYYY-MM-DD"
+  
+  component:
+    component_id: "Component P/N or serial number"
+    component_name: "Descriptive name"
+    manufacturer: "Manufacturer name"
+    batch_number: "Production batch"
+    production_date: "YYYY-MM-DD"
+    ebom_ref: "PLM reference (e.g., PLM-XX-XX-XXX)"
+  
+  # ============================================================================
+  # Material Composition
+  # ============================================================================
+  composition:
+    primary_material:
+      material_type: "Aluminum alloy 7075-T6"
+      cas_number: "N/A (alloy)"
+      weight_percent: 95.0
+      iso_abbreviation: "AL-7075"  # ISO 1043 for plastics, custom for metals
+      
+    additives:
+      - name: "Zinc"
+        cas_number: "7440-66-6"
+        weight_percent: 5.5
+        function: "Alloying element for strength"
+        
+      - name: "Magnesium"
+        cas_number: "7439-95-4"
+        weight_percent: 2.5
+        function: "Alloying element for corrosion resistance"
+    
+    coatings:
+      - name: "Anodized coating (Type II)"
+        thickness_microns: 10
+        cas_number: "N/A"
+        weight_percent: 0.5
+        function: "Corrosion protection"
+    
+    hazardous_substances:
+      - substance: "Chromium VI"
+        cas_number: "18540-29-9"
+        present: false
+        concentration_ppm: 0
+        reach_svhc: true
+        
+      - substance: "Cadmium"
+        cas_number: "7440-43-9"
+        present: false
+        concentration_ppm: 0
+        rohs_restricted: true
+  
+  # ============================================================================
+  # Manufacturing and Treatment
+  # ============================================================================
+  manufacturing:
+    processes:
+      - process: "Extrusion"
+        date: "YYYY-MM-DD"
+        parameters: "Temperature: 450°C, Speed: 10 m/min"
+        
+      - process: "Heat treatment (T6)"
+        date: "YYYY-MM-DD"
+        parameters: "Solution heat: 480°C, Age: 120°C for 24 hrs"
+    
+    surface_treatment:
+      - treatment: "Anodizing (Type II)"
+        date: "YYYY-MM-DD"
+        parameters: "Sulfuric acid, 20V, 30 min"
+  
+  joining_methods:
+    - method: "Riveting"
+      fastener_type: "Aluminum rivets (2117-T4)"
+      removable: true
+      
+    - method: "Adhesive bonding"
+      adhesive_type: "Epoxy (Cytec FM 300)"
+      removable: false
+  
+  # ============================================================================
+  # Recyclability and Circularity
+  # ============================================================================
+  circularity:
+    recyclability:
+      material_recoverable: true
+      recovery_rate_percent: 90
+      separation_ease: "Easy - single material"
+      contamination_risk: "Low"
+      recycling_process: "Melting and refining"
+      recycling_partners:
+        - name: "Recycler A"
+          location: "Location A"
+          certification: "ISO 14001"
+    
+    reuse_potential:
+      reusable: true
+      reuse_criteria: "Visual inspection, dimensional check, no cracks"
+      reuse_cycles: 3
+      
+    repair_potential:
+      repairable: true
+      repair_methods: "Welding (qualified procedure), blending (damage removal)"
+      
+    refurbishment_potential:
+      refurbishable: false
+      refurbishment_process: "N/A"
+  
+  # ============================================================================
+  # Environmental Impact
+  # ============================================================================
+  environmental:
+    lca_data:
+      carbon_footprint_kg_co2: 12.5
+      energy_content_mj: 180
+      water_usage_liters: 50
+      lca_report_ref: "LCA-2024-001"
+      
+    eol_scenarios:
+      - scenario: "Recycling (primary)"
+        probability_percent: 90
+        co2_impact_kg: -8.0  # Negative = carbon credit
+        
+      - scenario: "Landfill"
+        probability_percent: 10
+        co2_impact_kg: 1.0
+  
+  # ============================================================================
+  # Compliance and Certification
+  # ============================================================================
+  compliance:
+    standards:
+      - standard: "REACH"
+        status: "Compliant"
+        certificate_ref: "REACH-CERT-2024-001"
+        expiry_date: "YYYY-MM-DD"
+        
+      - standard: "RoHS"
+        status: "Compliant"
+        certificate_ref: "ROHS-CERT-2024-001"
+        expiry_date: "N/A"
+    
+    supplier_certifications:
+      - certification: "ISO 9001"
+        certificate_number: "ISO9001-2024-001"
+        expiry_date: "YYYY-MM-DD"
+        
+      - certification: "AS9100"
+        certificate_number: "AS9100-2024-001"
+        expiry_date: "YYYY-MM-DD"
+  
+  # ============================================================================
+  # Traceability
+  # ============================================================================
+  traceability:
+    supply_chain:
+      - stage: "Raw material"
+        supplier: "Supplier A"
+        location: "Location A"
+        batch_number: "BATCH-001"
+        
+      - stage: "Processing"
+        supplier: "Processor B"
+        location: "Location B"
+        batch_number: "BATCH-002"
+    
+    digital_twin_link: "DT_Component_12345"
+    blockchain_hash: "0x1234567890abcdef..."  # Optional: blockchain immutability

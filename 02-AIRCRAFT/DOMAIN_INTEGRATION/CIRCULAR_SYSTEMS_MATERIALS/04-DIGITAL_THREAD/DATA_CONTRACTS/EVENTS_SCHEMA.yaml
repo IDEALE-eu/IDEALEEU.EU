@@ -1,0 +1,232 @@
+# Events Schema - Circular Systems Domain
+# Version: 1.0.0
+# Last Updated: 2024-12-XX
+
+events:
+  # ============================================================================
+  # ATA-21 Air Conditioning System Events
+  # ============================================================================
+  
+  - name: ATA21_PACK_STARTUP
+    code: ATA21-001
+    severity: info
+    description: ECS pack startup sequence initiated
+    ncr_link: null
+    
+  - name: ATA21_PACK_SHUTDOWN
+    code: ATA21-002
+    severity: info
+    description: ECS pack shutdown sequence initiated
+    ncr_link: null
+    
+  - name: ATA21_CABIN_TEMP_HIGH
+    code: ATA21-101
+    severity: warning
+    description: Cabin temperature above target range
+    ncr_link: NCR-2024-ATA21-101
+    
+  - name: ATA21_CABIN_PRESSURE_LOW
+    code: ATA21-201
+    severity: caution
+    description: Cabin pressure below target
+    ncr_link: NCR-2024-ATA21-201
+    
+  - name: ATA21_PACK_FAILURE
+    code: ATA21-301
+    severity: critical
+    description: ECS pack failure detected
+    ncr_link: NCR-2024-ATA21-301
+    
+  # ============================================================================
+  # ATA-28 Fuel/H2 System Events
+  # ============================================================================
+  
+  - name: ATA28_TANK_FILL_START
+    code: ATA28-001
+    severity: info
+    description: H2 tank filling started
+    ncr_link: null
+    
+  - name: ATA28_TANK_FILL_COMPLETE
+    code: ATA28-002
+    severity: info
+    description: H2 tank filling completed
+    ncr_link: null
+    
+  - name: ATA28_BOILOFF_HIGH
+    code: ATA28-101
+    severity: warning
+    description: H2 boil-off rate above threshold
+    ncr_link: NCR-2024-ATA28-101
+    
+  - name: ATA28_TANK_PRESSURE_HIGH
+    code: ATA28-201
+    severity: caution
+    description: H2 tank pressure approaching relief pressure
+    ncr_link: NCR-2024-ATA28-201
+    
+  - name: ATA28_LEAK_DETECTED
+    code: ATA28-301
+    severity: critical
+    description: H2 leak detected
+    ncr_link: NCR-2024-ATA28-301
+    
+  - name: ATA28_BOP_FAILURE
+    code: ATA28-302
+    severity: critical
+    description: BOP controller failure
+    ncr_link: NCR-2024-ATA28-302
+    
+  - name: ATA28_THERMAL_INTEGRATION_ACTIVE
+    code: ATA28-401
+    severity: info
+    description: ECS-H2 thermal integration activated
+    ncr_link: null
+    
+  # ============================================================================
+  # ATA-38 Water/Waste System Events
+  # ============================================================================
+  
+  - name: ATA38_TREATMENT_START
+    code: ATA38-001
+    severity: info
+    description: Water treatment cycle started
+    ncr_link: null
+    
+  - name: ATA38_TREATMENT_COMPLETE
+    code: ATA38-002
+    severity: info
+    description: Water treatment cycle completed
+    ncr_link: null
+    
+  - name: ATA38_WATER_QUALITY_FAIL
+    code: ATA38-101
+    severity: warning
+    description: Treated water quality below standard
+    ncr_link: NCR-2024-ATA38-101
+    
+  - name: ATA38_POTABLE_TANK_LOW
+    code: ATA38-201
+    severity: caution
+    description: Potable water tank level low
+    ncr_link: NCR-2024-ATA38-201
+    
+  - name: ATA38_WASTE_TANK_FULL
+    code: ATA38-202
+    severity: caution
+    description: Waste water tank approaching full
+    ncr_link: NCR-2024-ATA38-202
+    
+  - name: ATA38_TREATMENT_FAILURE
+    code: ATA38-301
+    severity: warning
+    description: Water treatment system failure
+    ncr_link: NCR-2024-ATA38-301
+    
+  - name: ATA38_UV_LAMP_FAILED
+    code: ATA38-302
+    severity: warning
+    description: UV sterilization lamp failure
+    ncr_link: NCR-2024-ATA38-302
+    
+  # ============================================================================
+  # MTL-CIRCULARITY Events
+  # ============================================================================
+  
+  - name: MTL_COMPONENT_EOL
+    code: MTL-001
+    severity: info
+    description: Component reached end-of-life threshold
+    ncr_link: null
+    
+  - name: MTL_COMPONENT_REMOVED
+    code: MTL-002
+    severity: info
+    description: Component removed from aircraft
+    ncr_link: null
+    
+  - name: MTL_COMPONENT_REUSED
+    code: MTL-101
+    severity: info
+    description: Component approved for reuse
+    ncr_link: null
+    
+  - name: MTL_COMPONENT_REFURBISHED
+    code: MTL-102
+    severity: info
+    description: Component refurbished and returned to service
+    ncr_link: null
+    
+  - name: MTL_COMPONENT_RECYCLED
+    code: MTL-103
+    severity: info
+    description: Component sent for material recycling
+    ncr_link: null
+    
+  - name: MTL_PASSPORT_CREATED
+    code: MTL-201
+    severity: info
+    description: Material passport created for new component
+    ncr_link: null
+    
+  - name: MTL_LCA_THRESHOLD_EXCEEDED
+    code: MTL-301
+    severity: warning
+    description: Component LCA impact exceeds threshold
+    ncr_link: NCR-2024-MTL-301
+    
+  # ============================================================================
+  # Domain-Level Integration Events
+  # ============================================================================
+  
+  - name: DOMAIN_THERMAL_EFFICIENCY_TARGET_MET
+    code: DOMAIN-001
+    severity: info
+    description: Domain thermal efficiency target achieved
+    ncr_link: null
+    
+  - name: DOMAIN_WATER_SAVINGS_TARGET_MET
+    code: DOMAIN-002
+    severity: info
+    description: Domain water savings target achieved
+    ncr_link: null
+    
+  - name: DOMAIN_H2_EFFICIENCY_TARGET_MET
+    code: DOMAIN-003
+    severity: info
+    description: Domain H2 efficiency target achieved
+    ncr_link: null
+    
+  - name: DOMAIN_INTEGRATION_FAILURE
+    code: DOMAIN-101
+    severity: warning
+    description: Cross-system integration failure detected
+    ncr_link: NCR-2024-DOMAIN-101
+    
+  # ============================================================================
+  # Maintenance Events
+  # ============================================================================
+  
+  - name: MAINTENANCE_SCHEDULED
+    code: MAINT-001
+    severity: info
+    description: Scheduled maintenance event
+    ncr_link: null
+    
+  - name: MAINTENANCE_COMPLETED
+    code: MAINT-002
+    severity: info
+    description: Maintenance completed
+    ncr_link: null
+    
+  - name: COMPONENT_REPLACEMENT
+    code: MAINT-101
+    severity: info
+    description: Component replaced
+    ncr_link: null
+    
+  - name: INSPECTION_COMPLETED
+    code: MAINT-102
+    severity: info
+    description: Scheduled inspection completed
+    ncr_link: null
