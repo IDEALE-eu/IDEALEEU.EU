@@ -198,7 +198,44 @@ Los siguientes capítulos están reservados para uso futuro, templates de plataf
 
 Los siguientes sistemas demuestran la estructura para los 15 dominios:
 
-### AAA — 53 FUSELAGE STRUCTURES
+### AAA — Airframes, Aerodynamics, Airworthiness (Complete Integration)
+
+El dominio AAA incluye todos los capítulos ATA de estructuras principales:
+
+#### ATA-06 Dimensions/Stations
+
+```
+AAA-.../SYSTEMS/06-DIMENSIONS-STATIONS/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/06↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 06-00_GENERAL/
+      └─ PLM/CAx/(CAD|CAE|CAM|…)
+```
+
+#### ATA-51 Structures—General
+
+```
+AAA-.../SYSTEMS/51-STRUCTURES-GENERAL/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/51↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 51-00_STANDARDS/
+      └─ PLM/CAx/…
+```
+
+#### ATA-52 Doors
+
+```
+AAA-.../SYSTEMS/52-DOORS/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/52↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 52-10_PASSENGER-DOORS/
+      └─ PLM/CAx/…
+```
+
+#### ATA-53 Fuselage Structures
 
 ```
 AAA-.../SYSTEMS/53-FUSELAGE-STRUCTURES/
@@ -206,7 +243,51 @@ AAA-.../SYSTEMS/53-FUSELAGE-STRUCTURES/
 ├─ INTERFACE_MATRIX/53↔OTROS.csv
 └─ SUBSYSTEMS/
    └─ 53-10_CENTER-BODY/
-      └─ PLM/CAx/(CAD|CAE|CAM|…)
+      └─ PLM/CAx/…
+```
+
+#### ATA-54 Nacelles & Pylons
+
+```
+AAA-.../SYSTEMS/54-NACELLES-PYLONS/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/54↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 54-10_ENGINE-MOUNTS/
+      └─ PLM/CAx/…
+```
+
+#### ATA-55 Stabilizers
+
+```
+AAA-.../SYSTEMS/55-STABILIZERS/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/55↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 55-10_HORIZONTAL-STAB/
+      └─ PLM/CAx/…
+```
+
+#### ATA-56 Windows
+
+```
+AAA-.../SYSTEMS/56-WINDOWS/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/56↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 56-10_COCKPIT-WINDOWS/
+      └─ PLM/CAx/…
+```
+
+#### ATA-57 Wings
+
+```
+AAA-.../SYSTEMS/57-WINGS/
+├─ INTEGRATION_VIEW.md
+├─ INTERFACE_MATRIX/57↔OTROS.csv
+└─ SUBSYSTEMS/
+   └─ 57-10_CENTER-WING/
+      └─ PLM/CAx/…
 ```
 
 ### PPP — 71 POWER PLANT
@@ -396,7 +477,9 @@ Para generar la estructura inicial de dominios, utilice el script:
 
 Este script creará:
 - Los 15 dominios con sus carpetas obligatorias
-- **15 sistemas representativos** (uno por dominio) con subsistemas
+- **Sistemas representativos para todos los dominios**
+  - **AAA**: 8 sistemas principales de estructuras (ATA 06, 51-57)
+  - **Otros dominios**: 1 sistema representativo por dominio
 - Toda la estructura PLM/CAx necesaria en cada subsistema
 
 ## Validación
