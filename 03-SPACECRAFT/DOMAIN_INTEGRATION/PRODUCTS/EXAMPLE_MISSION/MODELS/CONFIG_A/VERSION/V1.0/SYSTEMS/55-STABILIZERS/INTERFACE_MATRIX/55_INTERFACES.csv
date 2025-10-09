@@ -1,0 +1,7 @@
+Interface_ID,Source_System,Destination_System,Interface_Type,Signal_Type,Connector_Type,ICD_Reference,Status
+IF-55-001,ATA-55,ATA-24,Electrical,Power,MIL-DTL-38999,ICD-55-24-001,Active
+IF-55-002,ATA-55,ATA-42,Data,Serial,MIL-STD-1553,ICD-55-42-001,Active
+IF-55-003,ATA-55,ATA-21,Thermal,Heat Transfer,Thermal Strap,ICD-55-21-001,Active
+IF-55-004,ATA-42,ATA-55,Data,Commands,MIL-STD-1553,ICD-42-55-001,Active
+IF-55-005,ATA-55,ATA-45,Data,Telemetry,MIL-STD-1553,ICD-55-45-001,Active
+IF-55-006,ATA-55,ATA-92,Electrical,Harness,Harness Assembly,ICD-55-92-001,Active

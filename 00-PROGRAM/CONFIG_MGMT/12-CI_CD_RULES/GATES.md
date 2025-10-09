@@ -123,8 +123,15 @@ pre-commit run --all-files
 - [ ] Required directories present
 - [ ] README.md present in each major directory
 - [ ] Baseline structure matches requirements
+- [ ] **03-SPACECRAFT/DOMAIN_INTEGRATION** structure compliance
+  - [ ] SYSTEMS directories present with ATA-XX_NAME pattern
+  - [ ] Each system has INTEGRATION_VIEW.md
+  - [ ] Each system has INTERFACE_MATRIX/*.csv
+  - [ ] PLM artifacts only under SUBSYSTEMS/*/PLM/CAx/
+  - [ ] Software with host LRU placement
+  - [ ] EWIS in ATA-92 (physical wiring)
 
-**Custom Script:** `scripts/validate-structure.sh`
+**Custom Script:** `00-PROGRAM/CONFIG_MGMT/12-CI_CD_RULES/SCRIPTS/validate-structure.sh`
 
 #### 2.4 CSV/YAML Validation
 
@@ -303,7 +310,7 @@ jobs:
         run: ./scripts/validate-file-names.sh
       
       - name: Directory Structure Check
-        run: ./scripts/validate-structure.sh
+        run: ./00-PROGRAM/CONFIG_MGMT/12-CI_CD_RULES/SCRIPTS/validate-structure.sh
       
       - name: Part Number Validation
         run: python scripts/validate-part-numbers.py

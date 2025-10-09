@@ -1,0 +1,7 @@
+Interface_ID,Source_System,Destination_System,Interface_Type,Signal_Type,Connector_Type,ICD_Reference,Status
+IF-35-001,ATA-35,ATA-24,Electrical,Power,MIL-DTL-38999,ICD-35-24-001,Active
+IF-35-002,ATA-35,ATA-42,Data,Serial,MIL-STD-1553,ICD-35-42-001,Active
+IF-35-003,ATA-35,ATA-21,Thermal,Heat Transfer,Thermal Strap,ICD-35-21-001,Active
+IF-35-004,ATA-42,ATA-35,Data,Commands,MIL-STD-1553,ICD-42-35-001,Active
+IF-35-005,ATA-35,ATA-45,Data,Telemetry,MIL-STD-1553,ICD-35-45-001,Active
+IF-35-006,ATA-35,ATA-92,Electrical,Harness,Harness Assembly,ICD-35-92-001,Active
