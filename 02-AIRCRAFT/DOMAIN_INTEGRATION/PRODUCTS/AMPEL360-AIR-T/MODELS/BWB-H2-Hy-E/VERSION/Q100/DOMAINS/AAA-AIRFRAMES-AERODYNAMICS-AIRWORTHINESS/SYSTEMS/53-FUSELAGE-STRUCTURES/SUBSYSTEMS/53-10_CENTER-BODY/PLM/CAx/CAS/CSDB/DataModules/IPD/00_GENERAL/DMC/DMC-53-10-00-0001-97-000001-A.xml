@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  S1000D Issue 6.0 Data Module
+  IPD Category: General Information
+  
+  This is a placeholder IPD Data Module for the 53-10 Center Body subsystem.
+  This file should be populated with actual illustrated parts data content.
+-->
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.s1000d.org/S1000D_6-0/xml_schema_flat http://www.s1000d.org/S1000D_6-0/xml_schema_flat/dmodule.xsd">
+  
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <dmCode modelIdentCode="AMP360" 
+                systemDiffCode="AAA"
+                systemCode="53" 
+                subSystemCode="10" 
+                subSubSystemCode="00"
+                assyCode="00A" 
+                disassyCode="00" 
+                disassyCodeVariant="01"
+                infoCode="97" 
+                infoCodeVariant="A" 
+                itemLocationCode="A"/>
+        <language languageIsoCode="en" countryIsoCode="US"/>
+        <issueInfo issueNumber="001" inWork="00"/>
+      </dmIdent>
+      <dmAddressItems>
+        <issueDate year="2025" month="10" day="10"/>
+        <dmTitle>
+          <techName>Center Body - General Information</techName>
+          <infoName>Illustrated Parts Data</infoName>
+        </dmTitle>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus issueType="new">
+      <security securityClassification="01"/>
+      <responsiblePartnerCompany enterpriseCode="IDEALE">
+        <enterpriseName>IDEALE EU Consortium</enterpriseName>
+      </responsiblePartnerCompany>
+      <originator enterpriseCode="IDEALE">
+        <enterpriseName>IDEALE EU Technical Publications</enterpriseName>
+      </originator>
+      <applic>
+        <displayText>
+          <simplePara>All</simplePara>
+        </displayText>
+      </applic>
+      <brexDmRef>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="AMP360"
+                    systemDiffCode="AAA"
+                    systemCode="00"
+                    subSystemCode="00"
+                    subSubSystemCode="00"
+                    assyCode="00A"
+                    disassyCode="00"
+                    disassyCodeVariant="0"
+                    infoCode="022"
+                    infoCodeVariant="A"
+                    itemLocationCode="A"/>
+          </dmRefIdent>
+        </dmRef>
+      </brexDmRef>
+      <qualityAssurance>
+        <unverified/>
+      </qualityAssurance>
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <illustratedPartsCatalog>
+      <catalogSeqNumber catalogSeqNumberValue="C00-00"/>
+      <catalogSeqNumberRef/>
+      
+      <figure id="fig-00-001">
+        <title>General Information - Assembly View</title>
+        <graphic infoEntityIdent="ICN-53-10-00-0001-A"/>
+      </figure>
+      
+      <partsList>
+        <title>General Information - Parts List</title>
+        <partTable>
+          <partTableEntry>
+            <partNumber>AMP-5310-0001</partNumber>
+            <itemIdentData>
+              <descrForPart>Placeholder component for General Information</descrForPart>
+            </itemIdentData>
+            <quantity quantityValue="1"/>
+            <unitOfMeasure>EA</unitOfMeasure>
+          </partTableEntry>
+        </partTable>
+      </partsList>
+      
+    </illustratedPartsCatalog>
+  </content>
+</dmodule>
