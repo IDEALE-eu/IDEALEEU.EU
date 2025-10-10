@@ -1,0 +1,6 @@
+{
+  "inherit_from": [
+    "../../../../DELs/TEMPLATES",
+    "../../../../PAx/STANDARDS"
+  ]
+}
