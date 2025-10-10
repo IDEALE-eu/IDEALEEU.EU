@@ -1,0 +1,6 @@
+{
+  "model": "thermal-math-model",
+  "format": "IEF",
+  "version": "1.0",
+  "description": "Thermal mathematical model for TCS architecture"
+}
