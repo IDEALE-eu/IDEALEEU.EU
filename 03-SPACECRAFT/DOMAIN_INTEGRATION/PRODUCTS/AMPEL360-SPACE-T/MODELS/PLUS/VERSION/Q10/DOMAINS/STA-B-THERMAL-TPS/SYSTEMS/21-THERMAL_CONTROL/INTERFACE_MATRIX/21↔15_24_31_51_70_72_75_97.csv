@@ -1,0 +1,13 @@
+interface_id,from_system,to_system,interface_type,description,status,owner,closure_date
+IFX-21-15-001,21,15,Environmental,Thermal environment characterization,Open,TBD,
+IFX-21-24-001,21,24,Electrical,Heater power supply,Open,TBD,
+IFX-21-24-002,21,24,Electrical,Sensor power distribution,Open,TBD,
+IFX-21-31-001,21,31,Data,Temperature sensor data acquisition,Open,TBD,
+IFX-21-31-002,21,31,Data,Heater command interface,Open,TBD,
+IFX-21-51-001,21,51,Mechanical,Radiator mounting interfaces,Open,TBD,
+IFX-21-51-002,21,51,Mechanical,Heat path through structure,Open,TBD,
+IFX-21-70-001,21,70,Software,Thermal control algorithm interface,Open,TBD,
+IFX-21-72-001,21,72,Thermal,Avionics cooling requirements,Open,TBD,
+IFX-21-75-001,21,75,Fluid,Coolant loop interfaces,Open,TBD,
+IFX-21-97-001,21,97,Electrical,Sensor wiring harness,Open,TBD,
+IFX-21-97-002,21,97,Electrical,Heater power harness,Open,TBD,
