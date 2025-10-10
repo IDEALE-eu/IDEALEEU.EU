@@ -2,7 +2,7 @@
 
 [https://www.idealeeu.eu](https://www.idealeeu.eu)
 
-> **Mission:** Design, certify, manufacture, and industrialise next‑gen **aircraft** and **spacecraft** with a closed‑loop digital thread—from concept to fleet ops.
+> **Mission:** Design, certify, manufacture, and industrialise next‑gen **aircraft**, **spacecraft** and **aerospace full assets portfolio** with a closed‑loop digital thread—from concept to fleet ops.
 
 ---
 
