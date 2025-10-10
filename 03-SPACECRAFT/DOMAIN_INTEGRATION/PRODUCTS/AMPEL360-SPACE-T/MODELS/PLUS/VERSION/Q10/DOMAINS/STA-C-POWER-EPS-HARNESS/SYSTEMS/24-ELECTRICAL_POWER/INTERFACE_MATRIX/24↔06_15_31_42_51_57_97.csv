@@ -1,0 +1,9 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+24,06,Mounting provisions,Structural,Mechanical,Power equipment mounting points and alignment
+24,15,Environmental protection,Physical,Environmental,Thermal and vibration isolation for power components
+24,31,Command/Telemetry,Data signals,CCSDS/MIL-STD-1553,Power system monitoring and control
+24,39,Power distribution control,Electrical power,Commanded switching,Integration with power control panels
+24,42,Heat dissipation,Thermal interface,Conduction/radiation,Waste heat from power electronics
+24,51,Structural mounting,Structural loads,Mechanical,Load paths for power equipment
+24,57,Solar array power,Electrical power,High voltage DC,Solar panel power generation interface
+24,97,Power distribution wiring,Electrical connections,Harness/cables,Primary and secondary power distribution

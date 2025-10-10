@@ -1,0 +1,9 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+39,06,Panel mounting,Structural,Mechanical,Control panel mounting and alignment
+39,15,Environmental protection,Physical,Environmental,Shock and vibration isolation
+39,24,Primary power input,Electrical power,Regulated DC,Power input from EPS
+39,31,Command/Telemetry,Data signals,CCSDS/MIL-STD-1553,Power control commands and status
+39,39,Internal distribution,Electrical power,Switched DC,Internal power routing
+39,42,Heat dissipation,Thermal interface,Conduction/radiation,Switching equipment heat management
+39,51,Structural support,Structural loads,Mechanical,Panel and equipment mounting
+39,97,Control wiring,Electrical connections,Harness/cables,Power distribution and control signals

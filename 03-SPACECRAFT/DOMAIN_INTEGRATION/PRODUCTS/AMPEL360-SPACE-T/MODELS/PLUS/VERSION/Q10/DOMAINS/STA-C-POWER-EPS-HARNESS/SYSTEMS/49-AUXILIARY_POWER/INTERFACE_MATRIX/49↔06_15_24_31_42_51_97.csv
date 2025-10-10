@@ -1,0 +1,9 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+49,06,Equipment mounting,Structural,Mechanical,Auxiliary power equipment mounting
+49,15,Environmental protection,Physical,Environmental,Environmental isolation and protection
+49,24,Power output to EPS,Electrical power,Regulated DC,Auxiliary power integration with primary EPS
+49,31,Monitoring and control,Data signals,CCSDS/MIL-STD-1553,Auxiliary power system telemetry and commands
+49,39,Power switching,Electrical power,Commanded switching,Integration with power control
+49,42,Thermal management,Thermal interface,Conduction/radiation,Waste heat dissipation
+49,51,Structural mounting,Structural loads,Mechanical,Mounting and load paths
+49,97,Electrical connections,Electrical connections,Harness/cables,Power output and control wiring
