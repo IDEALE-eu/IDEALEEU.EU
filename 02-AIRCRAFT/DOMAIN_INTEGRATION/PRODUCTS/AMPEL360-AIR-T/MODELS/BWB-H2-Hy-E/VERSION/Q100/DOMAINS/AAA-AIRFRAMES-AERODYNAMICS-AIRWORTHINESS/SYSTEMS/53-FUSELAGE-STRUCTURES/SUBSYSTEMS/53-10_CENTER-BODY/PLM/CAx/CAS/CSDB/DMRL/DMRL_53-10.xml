@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Data Module Requirements List for 53-10 Center Body -->
+<dmrl xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat">
+  <identAndStatusSection>
+    <dmrlIdent>
+      <dmrlCode modelIdentCode="AMP360" senderIdent="AAA"/>
+      <issueInfo issueNumber="001" inWork="00"/>
+      <language languageIsoCode="en" countryIsoCode="US"/>
+    </dmrlIdent>
+    <dmrlStatus>
+      <security securityClassification="01"/>
+      <responsiblePartnerCompany enterpriseCode="AAA"/>
+      <originator enterpriseCode="AAA"/>
+      <issueDate year="2025" month="10" day="10"/>
+    </dmrlStatus>
+  </identAndStatusSection>
+  
+  <content>
+    <dmrlList>
+      <dmrlEntry>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="AMP360" systemDiffCode="AAA"
+                    systemCode="00" subSystemCode="00" subSubSystemCode="00"
+                    assyCode="00A" disassyCode="00" disassyCodeVariant="0"
+                    infoCode="000A" infoCodeVariant="A" itemLocationCode="A"/>
+            <language languageIsoCode="en" countryIsoCode="US"/>
+            <issueInfo issueNumber="001" inWork="00"/>
+          </dmRefIdent>
+        </dmRef>
+        <dmrlEntryType>required</dmrlEntryType>
+        <remarks>
+          <para>BREX Data Module - Business Rules Exchange for AMPEL360 AIR-T</para>
+        </remarks>
+      </dmrlEntry>
+      
+      <dmrlEntry>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="AMP360" systemDiffCode="AAA"
+                    systemCode="53" subSystemCode="10" subSubSystemCode="00"
+                    assyCode="00A" disassyCode="00" disassyCodeVariant="0"
+                    infoCode="040A" infoCodeVariant="D" itemLocationCode="A"/>
+            <language languageIsoCode="en" countryIsoCode="US"/>
+          </dmRefIdent>
+        </dmRef>
+        <dmrlEntryType>required</dmrlEntryType>
+        <remarks>
+          <para>Center Body Description - General overview and system description</para>
+        </remarks>
+      </dmrlEntry>
+      
+      <dmrlEntry>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="AMP360" systemDiffCode="AAA"
+                    systemCode="53" subSystemCode="10" subSubSystemCode="00"
+                    assyCode="00A" disassyCode="10" disassyCodeVariant="0"
+                    infoCode="310A" infoCodeVariant="P" itemLocationCode="A"/>
+            <language languageIsoCode="en" countryIsoCode="US"/>
+          </dmRefIdent>
+        </dmRef>
+        <dmrlEntryType>required</dmrlEntryType>
+        <remarks>
+          <para>Forward Bulkhead Installation Procedure</para>
+        </remarks>
+      </dmrlEntry>
+      
+      <dmrlEntry>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="AMP360" systemDiffCode="AAA"
+                    systemCode="53" subSystemCode="10" subSubSystemCode="00"
+                    assyCode="00A" disassyCode="20" disassyCodeVariant="0"
+                    infoCode="310A" infoCodeVariant="P" itemLocationCode="A"/>
+            <language languageIsoCode="en" countryIsoCode="US"/>
+          </dmRefIdent>
+        </dmRef>
+        <dmrlEntryType>required</dmrlEntryType>
+        <remarks>
+          <para>Aft Bulkhead Installation Procedure</para>
+        </remarks>
+      </dmrlEntry>
+      
+      <dmrlEntry>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="AMP360" systemDiffCode="AAA"
+                    systemCode="53" subSystemCode="10" subSubSystemCode="00"
+                    assyCode="00A" disassyCode="00" disassyCodeVariant="0"
+                    infoCode="800A" infoCodeVariant="I" itemLocationCode="A"/>
+            <language languageIsoCode="en" countryIsoCode="US"/>
+          </dmRefIdent>
+        </dmRef>
+        <dmrlEntryType>required</dmrlEntryType>
+        <remarks>
+          <para>Illustrated Parts Data - Center Body components</para>
+        </remarks>
+      </dmrlEntry>
+      
+      <dmrlEntry>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="AMP360" systemDiffCode="AAA"
+                    systemCode="53" subSystemCode="10" subSubSystemCode="00"
+                    assyCode="00A" disassyCode="00" disassyCodeVariant="0"
+                    infoCode="600A" infoCodeVariant="A" itemLocationCode="A"/>
+            <language languageIsoCode="en" countryIsoCode="US"/>
+          </dmRefIdent>
+        </dmRef>
+        <dmrlEntryType>required</dmrlEntryType>
+        <remarks>
+          <para>Inspection Procedures - Center Body structural inspection</para>
+        </remarks>
+      </dmrlEntry>
+    </dmrlList>
+  </content>
+</dmrl>
