@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "26",
+  "subsystem_id": "10",
+  "name": "ACOUSTICS_VIBRATION",
+  "description": "Efectos acústicos en sistemas pirotécnicos"
+}

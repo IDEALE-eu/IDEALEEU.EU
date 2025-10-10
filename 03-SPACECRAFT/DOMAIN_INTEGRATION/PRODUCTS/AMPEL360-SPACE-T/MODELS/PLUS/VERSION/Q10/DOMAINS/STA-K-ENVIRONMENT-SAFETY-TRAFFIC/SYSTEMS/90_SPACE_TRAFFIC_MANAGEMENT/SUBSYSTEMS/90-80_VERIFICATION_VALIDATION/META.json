@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "90",
+  "subsystem_id": "80",
+  "name": "VERIFICATION_VALIDATION",
+  "description": "Validación de algoritmos de STM y alertas"
+}

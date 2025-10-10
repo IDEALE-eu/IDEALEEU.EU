@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "90",
+  "subsystem_id": "70",
+  "name": "SAFETY_ANALYSES",
+  "description": "Análisis de colisión y fragmentación"
+}

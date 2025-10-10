@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "26",
+  "subsystem_id": "80",
+  "name": "VERIFICATION_VALIDATION",
+  "description": "Pruebas de ignición, contención y fallo seguro"
+}

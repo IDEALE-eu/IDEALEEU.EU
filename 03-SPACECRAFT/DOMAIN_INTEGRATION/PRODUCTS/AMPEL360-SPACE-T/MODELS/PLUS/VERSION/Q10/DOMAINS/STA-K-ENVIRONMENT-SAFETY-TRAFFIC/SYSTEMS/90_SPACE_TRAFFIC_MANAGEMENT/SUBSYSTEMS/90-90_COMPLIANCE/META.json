@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "90",
+  "subsystem_id": "90",
+  "name": "COMPLIANCE",
+  "description": "Normativas de STM (UNOOSA, ISO 27875, etc.)"
+}
