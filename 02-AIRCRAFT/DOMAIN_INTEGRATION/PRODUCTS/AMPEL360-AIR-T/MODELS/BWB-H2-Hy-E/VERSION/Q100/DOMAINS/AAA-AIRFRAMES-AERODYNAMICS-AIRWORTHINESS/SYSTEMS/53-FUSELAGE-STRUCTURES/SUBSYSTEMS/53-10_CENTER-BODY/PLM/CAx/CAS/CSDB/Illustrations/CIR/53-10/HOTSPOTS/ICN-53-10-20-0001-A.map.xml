@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hotspot map for ICN-53-10-20-0001-A -->
+<hotspotMap xmlns="http://www.s1000d.org/S1000D_6-0/xml/schema/hotspot">
+  <hotspot id="hs001" shape="rect" coords="100,100,200,150" 
+           target="DMC-AMP360-AAA-53-10-20-10A-040A-D" 
+           description="Forward attachment point"/>
+  <hotspot id="hs002" shape="rect" coords="250,100,350,150" 
+           target="DMC-AMP360-AAA-53-10-20-20A-040A-D" 
+           description="Aft attachment point"/>
+  <hotspot id="hs003" shape="circle" coords="175,225,40" 
+           target="DMC-AMP360-AAA-53-10-20-30A-040A-D" 
+           description="Center bulkhead structure"/>
+</hotspotMap>

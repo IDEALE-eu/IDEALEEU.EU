@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CIR Manifest for 53-10 Center Body",
+  "description": "Maps Data Module Codes (DMCs) to Illustration Control Numbers (ICNs) for CI cross-checks",
+  "version": "1.0.0",
+  "dmc_to_icn_mapping": {
+    "DMC-AMP360-AAA-53-10-10-00A-040A-D": [
+      "ICN-53-10-10-0001-A"
+    ],
+    "DMC-AMP360-AAA-53-10-20-00A-040A-D": [
+      "ICN-53-10-20-0001-A"
+    ],
+    "DMC-AMP360-AAA-53-10-00-00A-800A-I": [
+      "ICN-53-10-10-0001-A",
+      "ICN-53-10-20-0001-A",
+      "ICN-53-10-95-0003-A"
+    ]
+  },
+  "metadata": {
+    "subsystem": "53-10",
+    "subsystem_name": "Center Body",
+    "last_updated": "2025-10-10",
+    "maintainer": "AMPEL360 Technical Publications"
+  }
+}
