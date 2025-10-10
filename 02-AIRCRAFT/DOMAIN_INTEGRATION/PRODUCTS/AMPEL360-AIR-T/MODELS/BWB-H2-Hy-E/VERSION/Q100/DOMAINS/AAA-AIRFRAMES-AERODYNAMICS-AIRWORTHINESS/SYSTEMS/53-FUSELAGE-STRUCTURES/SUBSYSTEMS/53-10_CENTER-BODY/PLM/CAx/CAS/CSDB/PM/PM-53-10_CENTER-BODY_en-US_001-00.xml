@@ -25,6 +25,8 @@
   </identAndStatusSection>
 
   <content>
+
+    <!-- INTRODUCTION -->
     <pmEntry>
       <pmEntryTitle>Introduction</pmEntryTitle>
       <dmRef>
@@ -35,12 +37,18 @@
                   infoCode="000A" infoCodeVariant="A" itemLocationCode="A"/>
           <language languageIsoCode="en" countryIsoCode="US"/>
         </dmRefIdent>
+        <dmRefAddressItems>
+          <dmTitle>
+            <techName>Purpose, Scope and Applicability</techName>
+          </dmTitle>
+        </dmRefAddressItems>
       </dmRef>
     </pmEntry>
 
+    <!-- DESCRIPTION AND OPERATION -->
     <pmEntry>
       <pmEntryTitle>Description and Operation</pmEntryTitle>
-      
+
       <pmEntry>
         <pmEntryTitle>System Description</pmEntryTitle>
         <dmRef>
@@ -51,9 +59,14 @@
                     infoCode="040A" infoCodeVariant="D" itemLocationCode="A"/>
             <language languageIsoCode="en" countryIsoCode="US"/>
           </dmRefIdent>
+          <dmRefAddressItems>
+            <dmTitle>
+              <techName>Center Body Overview and Functional Zones</techName>
+            </dmTitle>
+          </dmRefAddressItems>
         </dmRef>
       </pmEntry>
-      
+
       <pmEntry>
         <pmEntryTitle>Component Descriptions</pmEntryTitle>
         <dmRef>
@@ -64,13 +77,55 @@
                     infoCode="040A" infoCodeVariant="D" itemLocationCode="A"/>
             <language languageIsoCode="en" countryIsoCode="US"/>
           </dmRefIdent>
+          <dmRefAddressItems>
+            <dmTitle>
+              <techName>Panels, Spines and Wing-Blend Subassemblies</techName>
+            </dmTitle>
+          </dmRefAddressItems>
+        </dmRef>
+      </pmEntry>
+
+      <pmEntry>
+        <pmEntryTitle>Safety Precautions</pmEntryTitle>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="AMP360" systemDiffCode="AAA"
+                    systemCode="53" subSystemCode="10" subSubSystemCode="00"
+                    assyCode="00A" disassyCode="00" disassyCodeVariant="0"
+                    infoCode="020A" infoCodeVariant="A" itemLocationCode="A"/>
+            <language languageIsoCode="en" countryIsoCode="US"/>
+          </dmRefIdent>
+          <dmRefAddressItems>
+            <dmTitle>
+              <techName>General Safety and Access Limitations</techName>
+            </dmTitle>
+          </dmRefAddressItems>
         </dmRef>
       </pmEntry>
     </pmEntry>
 
+    <!-- MAINTENANCE PROCEDURES -->
     <pmEntry>
       <pmEntryTitle>Maintenance Procedures</pmEntryTitle>
-      
+
+      <pmEntry>
+        <pmEntryTitle>Tools and Equipment</pmEntryTitle>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="AMP360" systemDiffCode="AAA"
+                    systemCode="53" subSystemCode="10" subSubSystemCode="00"
+                    assyCode="00A" disassyCode="00" disassyCodeVariant="0"
+                    infoCode="070A" infoCodeVariant="A" itemLocationCode="A"/>
+            <language languageIsoCode="en" countryIsoCode="US"/>
+          </dmRefIdent>
+          <dmRefAddressItems>
+            <dmTitle>
+              <techName>Required Special Tools and Consumables</techName>
+            </dmTitle>
+          </dmRefAddressItems>
+        </dmRef>
+      </pmEntry>
+
       <pmEntry>
         <pmEntryTitle>Installation</pmEntryTitle>
         <dmRef>
@@ -88,7 +143,7 @@
           </dmRefAddressItems>
         </dmRef>
       </pmEntry>
-      
+
       <pmEntry>
         <pmEntryTitle>Removal</pmEntryTitle>
         <dmRef>
@@ -99,9 +154,14 @@
                     infoCode="320A" infoCodeVariant="P" itemLocationCode="A"/>
             <language languageIsoCode="en" countryIsoCode="US"/>
           </dmRefIdent>
+          <dmRefAddressItems>
+            <dmTitle>
+              <techName>Forward Bulkhead Removal</techName>
+            </dmTitle>
+          </dmRefAddressItems>
         </dmRef>
       </pmEntry>
-      
+
       <pmEntry>
         <pmEntryTitle>Inspection</pmEntryTitle>
         <dmRef>
@@ -112,10 +172,35 @@
                     infoCode="600A" infoCodeVariant="A" itemLocationCode="A"/>
             <language languageIsoCode="en" countryIsoCode="US"/>
           </dmRefIdent>
+          <dmRefAddressItems>
+            <dmTitle>
+              <techName>General Visual and NDI for Center Body</techName>
+            </dmTitle>
+          </dmRefAddressItems>
         </dmRef>
       </pmEntry>
+
+      <pmEntry>
+        <pmEntryTitle>Fault Isolation</pmEntryTitle>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="AMP360" systemDiffCode="AAA"
+                    systemCode="53" subSystemCode="10" subSubSystemCode="00"
+                    assyCode="00A" disassyCode="00" disassyCodeVariant="0"
+                    infoCode="400A" infoCodeVariant="F" itemLocationCode="A"/>
+            <language languageIsoCode="en" countryIsoCode="US"/>
+          </dmRefIdent>
+          <dmRefAddressItems>
+            <dmTitle>
+              <techName>Troubleshooting Tree — Center Body Panels</techName>
+            </dmTitle>
+          </dmRefAddressItems>
+        </dmRef>
+      </pmEntry>
+
     </pmEntry>
 
+    <!-- ILLUSTRATED PARTS DATA -->
     <pmEntry>
       <pmEntryTitle>Illustrated Parts Data</pmEntryTitle>
       <dmRef>
@@ -126,12 +211,18 @@
                   infoCode="800A" infoCodeVariant="I" itemLocationCode="A"/>
           <language languageIsoCode="en" countryIsoCode="US"/>
         </dmRefIdent>
+        <dmRefAddressItems>
+          <dmTitle>
+            <techName>IPD — Center Body Assemblies and Hardware</techName>
+          </dmTitle>
+        </dmRefAddressItems>
       </dmRef>
     </pmEntry>
 
+    <!-- APPENDICES -->
     <pmEntry>
       <pmEntryTitle>Appendices</pmEntryTitle>
-      
+
       <pmEntry>
         <pmEntryTitle>Abbreviations and Acronyms</pmEntryTitle>
         <dmRef>
@@ -142,8 +233,33 @@
                     infoCode="018A" infoCodeVariant="A" itemLocationCode="A"/>
             <language languageIsoCode="en" countryIsoCode="US"/>
           </dmRefIdent>
+          <dmRefAddressItems>
+            <dmTitle>
+              <techName>General Abbreviations</techName>
+            </dmTitle>
+          </dmRefAddressItems>
         </dmRef>
       </pmEntry>
+
+      <pmEntry>
+        <pmEntryTitle>Torque Values</pmEntryTitle>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="AMP360" systemDiffCode="AAA"
+                    systemCode="00" subSystemCode="00" subSubSystemCode="00"
+                    assyCode="00A" disassyCode="00" disassyCodeVariant="0"
+                    infoCode="021A" infoCodeVariant="A" itemLocationCode="A"/>
+            <language languageIsoCode="en" countryIsoCode="US"/>
+          </dmRefIdent>
+          <dmRefAddressItems>
+            <dmTitle>
+              <techName>Standard Torque Tables</techName>
+            </dmTitle>
+          </dmRefAddressItems>
+        </dmRef>
+      </pmEntry>
+
     </pmEntry>
+
   </content>
 </pm>
