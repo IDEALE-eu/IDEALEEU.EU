@@ -1,0 +1,24 @@
+{
+  "ief_version": "0.1",
+  "artifact": {
+    "content": { "encoding": "base64", "mime_types": ["application/json"] },
+    "metadata": {
+      "part_number": "EXS1-15-50-TEST-SEQ01",
+      "tool": "TestOrch 1.4",
+      "creator": "QA/Test",
+      "created_at": "2025-10-10T00:00:00Z",
+      "project": "EXAMPLE-SAT-1",
+      "configuration": "BASELINE/V1.0"
+    },
+    "lineage": {
+      "parent_ref": "utcs://EXS1/94-QUALIFICATION_ACCEPTANCE/plan-v1",
+      "changes": "Initial environmental sequence"
+    },
+    "utcs": {
+      "context_id": "utcs://EXS1/15-50/V1.0/test-sequence",
+      "evidence_links": [
+        "00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-94-ENV-PLAN-01"
+      ]
+    }
+  }
+}
