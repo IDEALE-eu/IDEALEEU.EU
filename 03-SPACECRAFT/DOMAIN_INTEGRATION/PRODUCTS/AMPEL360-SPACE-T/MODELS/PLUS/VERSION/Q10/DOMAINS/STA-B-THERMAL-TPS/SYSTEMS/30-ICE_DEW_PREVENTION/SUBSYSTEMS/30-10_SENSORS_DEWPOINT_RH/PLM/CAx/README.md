@@ -1,48 +1,50 @@
-# 30-10 SENSORS - CAx DATA MANAGEMENT
+# 30-10 SENSORS – CAx DATA MANAGEMENT
+
+This directory contains authoritative digital engineering artifacts for the dew point and relative humidity sensing subsystem, aligned with the AMPEL360-SPACE-T digital thread.
 
 ## CAD (Computer-Aided Design)
-- Modelos 3D de configuraciones de montaje de sensores
-- Definiciones de interfaz con el sistema de protección térmica
-- Diseños de rutado de cables y arneses
-- **Salidas:** STEP, IGES, PDF
+- 3D models of sensor mounting configurations
+- Interface definitions with thermal protection system (TPS) and structures
+- Cable and harness routing geometry
+- **Deliverables:** STEP (AP203/214), IGES, annotated PDF drawings
 
-## CAE (Computer-Aided Engineering)  
-- Análisis térmico del rendimiento del sensor
-- Análisis estructural de soportes de montaje
-- Simulaciones de exposición a radiación
-- **Datos no geométricos:** `CAE/DATA/`
+## CAE (Computer-Aided Engineering)
+- Thermal analysis of sensor housing under operational and survival environments
+- Structural FEM of mounts under launch vibration and quasi-static loads
+- Radiation exposure simulations (total ionizing dose, SEE)
+- **Non-geometric data:** `CAE/DATA/` (input decks, material libraries, solver logs)
 
 ## CAM (Computer-Aided Manufacturing)
-- Programas CNC para fabricación de soportes
-- Trayectorias de mecanizado para interfaces
-- **Salidas:** programas NC, planes de fabricación
+- CNC programs for precision machining of sensor brackets and thermal shunts
+- Toolpath definitions for tight-tolerance interfaces
+- **Deliverables:** NC code (ISO 6983), manufacturing process plans
 
 ## CAI (Computer-Aided Integration)
-- ICDs con sistemas 06, 15, 21
-- Bancadas de integración de sensores
-- Harness a nivel de sistema
-- **Salidas:** planes de integración
+- Integration work instructions for sensor installation
+- Harness integration schematics (linked to EGSE)
+- ICD implementation artifacts with Systems 06 (Thermal), 15 (Env. Monitoring), 21 (Power)
+- **Deliverables:** integration sequence diagrams, fixture models
 
 ## CAV (Computer-Aided Validation)
-- Entornos HIL/SIL para validación
-- Fixtures de calibración de sensores
-- Escenarios de prueba (sin resultados)
-- **Salidas:** bancos de prueba
+- Hardware-in-the-Loop (HIL) and Software-in-the-Loop (SIL) test environments
+- Calibration fixture designs and procedures
+- Test scenarios (inputs, pass/fail criteria – *excluding actual test results*)
+- **Deliverables:** validation benches, procedure scripts
 
 ## CAP (Computer-Aided Process Planning)
-- Rutas de proceso de instalación
-- BoP para integración de sensores
-- Instrucciones de trabajo de calibración
-- **Salidas:** planes de proceso
+- Work instructions for sensor installation, bonding, and grounding
+- Bill of Process (BoP) for clean-room integration
+- Calibration and checkout procedures (pre-shipment)
+- **Deliverables:** process flow diagrams, operator work instructions
 
 ## CAS (Computer-Aided Service and Sustainment)
-- Manuales MRO para sensores
-- Procedimientos de reemplazo y calibración
-- Configuraciones en servicio
-- **Salidas:** manuales de servicio
+- MRO manuals for sensor replacement and recalibration
+- On-orbit troubleshooting procedures
+- Spare part management and configuration tracking
+- **Deliverables:** service bulletins, maintenance schedules
 
 ## CMP (Computer-Aided Compliance and Certification)
-- Evidencias de ensayos ambientales
-- Certificados de calibración
-- Trazabilidad regulatoria
-- **Salidas:** certificados de cumplimiento
+- Environmental test evidence (thermal-vacuum, vibration, shock)
+- Calibration certificates and metrological traceability
+- Regulatory compliance records (ITAR, RoHS, material outgassing per ASTM E595)
+- **Deliverables:** test reports, qualification certificates
