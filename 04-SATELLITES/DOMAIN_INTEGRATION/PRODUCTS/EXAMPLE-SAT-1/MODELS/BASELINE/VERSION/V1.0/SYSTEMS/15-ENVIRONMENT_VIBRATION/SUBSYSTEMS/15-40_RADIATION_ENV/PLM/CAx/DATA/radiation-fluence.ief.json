@@ -1,0 +1,24 @@
+{
+  "ief_version": "0.1",
+  "artifact": {
+    "content": { "encoding": "base64", "mime_types": ["application/json"] },
+    "metadata": {
+      "part_number": "EXS1-15-40-ENV-RAD-FL01",
+      "tool": "SPENVIS",
+      "creator": "Environment Team",
+      "created_at": "2025-10-10T00:00:00Z",
+      "project": "EXAMPLE-SAT-1",
+      "configuration": "BASELINE/V1.0"
+    },
+    "lineage": {
+      "parent_ref": "utcs://EXS1/orbit/L2/design-v1",
+      "changes": "TID/fluence update"
+    },
+    "utcs": {
+      "context_id": "utcs://EXS1/15-40/V1.0/radiation-fluence",
+      "evidence_links": [
+        "00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-15-53-RAD-01"
+      ]
+    }
+  }
+}

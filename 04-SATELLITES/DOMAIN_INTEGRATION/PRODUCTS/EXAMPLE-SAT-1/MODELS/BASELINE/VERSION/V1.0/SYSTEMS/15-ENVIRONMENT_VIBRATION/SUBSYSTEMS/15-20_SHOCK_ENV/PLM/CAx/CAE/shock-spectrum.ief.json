@@ -1,0 +1,24 @@
+{
+  "ief_version": "0.1",
+  "artifact": {
+    "content": { "encoding": "base64", "mime_types": ["application/json"] },
+    "metadata": {
+      "part_number": "EXS1-15-20-ENV-SHOCK-SS01",
+      "tool": "ShockSpec v1.0",
+      "creator": "Environment Team",
+      "created_at": "2025-10-10T00:00:00Z",
+      "project": "EXAMPLE-SAT-1",
+      "configuration": "BASELINE/V1.0"
+    },
+    "lineage": {
+      "parent_ref": "utcs://EXS1/launch-icd/sep-event",
+      "changes": "Baseline SRS definition"
+    },
+    "utcs": {
+      "context_id": "utcs://EXS1/15-20/V1.0/shock-spectrum",
+      "evidence_links": [
+        "00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-15-51-SHOCK-01"
+      ]
+    }
+  }
+}
