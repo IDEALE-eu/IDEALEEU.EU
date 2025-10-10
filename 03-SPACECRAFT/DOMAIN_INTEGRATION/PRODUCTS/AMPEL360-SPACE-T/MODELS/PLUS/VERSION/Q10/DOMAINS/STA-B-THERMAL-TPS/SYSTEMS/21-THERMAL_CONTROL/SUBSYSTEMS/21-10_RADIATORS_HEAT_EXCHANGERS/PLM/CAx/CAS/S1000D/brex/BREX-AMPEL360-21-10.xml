@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- BREX — AMPEL360 — Subsystem 21-10 (Thermal Control: Radiators & Heat Exchangers) -->
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <dmCode modelIdentCode="AMPEL360" systemDiffCode="0"
+                systemCode="2110" subSystemCode="00" subSubSystemCode="00"
+                disassyCode="00" disassyCodeVariant="A"
+                infoCode="023" infoCodeVariant="A" itemLocationCode="A"/>
+        <language countryIsoCode="US" languageIsoCode="en"/>
+        <issueInfo issueNumber="01" inWork="01"/>
+        <security securityClassification="01"/>
+      </dmIdent>
+      <dmAddressItems>
+        <issueDate year="2025" month="10" day="11"/>
+        <dmTitle>
+          <techName>Business Rules Exchange (BREX) for 21-10 Radiators &amp; Heat Exchangers</techName>
+        </dmTitle>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus>
+      <security securityClassification="01"/>
+      <responsiblePartnerCompany>
+        <enterpriseName>IDEALE Consortium</enterpriseName>
+      </responsiblePartnerCompany>
+      <originator>
+        <enterpriseName>Thermal Control Team</enterpriseName>
+      </originator>
+      <applic>
+        <displayText>
+          <simplePara>Applicable to AMPEL360-SPACE-T, Q10 and later.</simplePara>
+        </displayText>
+      </applic>
+      <brexDmRef>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="S1000D" systemDiffCode="0"
+                    systemCode="0000" subSystemCode="00" subSubSystemCode="00"
+                    disassyCode="00" disassyCodeVariant="A"
+                    infoCode="022" infoCodeVariant="A" itemLocationCode="D"/>
+          </dmRefIdent>
+        </dmRef>
+      </brexDmRef>
+      <qualityAssurance>
+        <unverified/>
+      </qualityAssurance>
+    </dmStatus>
+  </identAndStatusSection>
+  <content>
+    <description>
+      <levelledPara>
+        <title>BREX Rules for 21-10</title>
+        <para>This BREX defines project-specific constraints on S1000D data modules for subsystem 21-10.</para>
+      </levelledPara>
+    </description>
+  </content>
+</dmodule>
