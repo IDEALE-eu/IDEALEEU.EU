@@ -48,6 +48,90 @@ Each test assembly should include:
 - Data acquisition requirements
 - Success criteria
 
+## Directory Structure
+
+### MODELS/
+Test article CAD models, including simplified geometries and instrumentation provisions.
+
+### DRAWINGS/
+Engineering drawings for test articles, instrumentation layouts, and setup diagrams.
+
+### RIGS/
+Test rig configurations and specifications:
+- **PRESSURE_RIG/** — Pressurization test rig
+- **VENT_RIG/** — Venting system test rig
+- **THERMAL_RIG/** — Thermal/cryogenic test rig
+- **STRUCTURAL_RIG/** — Structural test rig for static and fatigue loading
+
+### INSTRUMENTATION/
+Instrumentation specifications, layouts, and calibration data:
+- **STRAIN_GAUGES/** — Strain measurement systems
+- **DIC/** — Digital Image Correlation
+- **ACCELEROMETERS/** — Vibration and acceleration measurement
+- **THERMOCOUPLES/** — Temperature measurement
+- **DAQ/** — Data acquisition system configuration
+
+### SETUP/
+Test setup documentation:
+- **PROCEDURES/** — Detailed setup procedures
+- **TOOL_LIST/** — Required tools and equipment
+- **SETUP_SHEETS/** — Setup data sheets and checklists
+
+### LOAD_CASES/
+Test load cases and scenarios:
+- **STATIC/** — Static strength tests
+- **FATIGUE/** — Fatigue and durability testing
+- **BUCKLING/** — Buckling stability tests
+- **DYNAMIC/** — Dynamic response testing
+- **VIBRATION/** — Vibration qualification
+- **PRESSURIZATION/** — Pressurization testing
+- **IMPACT/** — Impact damage resistance
+- **CRYO/** — Cryogenic testing for H₂ compatibility
+- **FIRE/** — Fire resistance testing
+- **LIGHTNING/** — Lightning strike testing
+
+### SEQUENCE/
+Test execution sequences:
+- **STEPS/** — Step-by-step test procedures
+- **CHECKPOINTS/** — Verification and hold points
+- **ANIMATIONS/** — Visual test sequence animations
+
+### CALIBRATION/
+Instrumentation and equipment calibration:
+- **CERTS/** — Calibration certificates
+- **SCHEDULE/** — Calibration schedules
+- **RECORDS/** — Calibration history and records
+
+### RUN_DATA/
+Test execution data:
+- **RAW/** — Raw unprocessed data files
+- **PROCESSED/** — Processed and reduced data
+- **LOGS/** — Test execution logs
+
+### REPORTS/
+Test reports and analysis:
+- **FIRST_ARTICLE/** — First article test reports
+- **PERIODIC/** — Periodic progress reports
+- **CORRELATION/** — Test-analysis correlation studies
+
+### QA/
+Quality assurance documentation:
+- **CHECKS/** — Inspection checklists and records
+- **NCR/** — Non-Conformance Reports
+- **FRACAS/** — Failure Reporting and Corrective Action System
+
+### REVISIONS/
+Document and design revision control:
+- **DRAFT/** — Work-in-progress documents
+- **RELEASED/** — Approved and released documentation
+- **OBSOLETE/** — Superseded documents
+
+### TEMPLATES/
+Standard templates and forms for test documentation.
+
+### INDEX/
+Documentation indexes, catalogs, and cross-references.
+
 ## Related Directories
 
 - **Fixtures**: [`../FIXTURES/`](../FIXTURES/)
