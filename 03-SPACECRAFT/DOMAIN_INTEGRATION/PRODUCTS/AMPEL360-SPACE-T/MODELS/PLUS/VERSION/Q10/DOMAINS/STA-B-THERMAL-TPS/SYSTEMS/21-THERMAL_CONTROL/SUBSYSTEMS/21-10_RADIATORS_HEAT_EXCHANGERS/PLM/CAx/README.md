@@ -10,7 +10,7 @@ This directory contains all Computer-Aided X (CAx) engineering artifacts organiz
 - **CAI/** - Installation procedures and assembly instructions
 - **CAV/** - Validation test data and verification evidence
 - **CAP/** - Manufacturing planning and process documentation
-- **CAS/** - System-level thermal simulations
+- **CAS/** - In Service manintenance and documentation
 - **CMP/** - Reports, documentation, and deliverables
 
 ## Usage
