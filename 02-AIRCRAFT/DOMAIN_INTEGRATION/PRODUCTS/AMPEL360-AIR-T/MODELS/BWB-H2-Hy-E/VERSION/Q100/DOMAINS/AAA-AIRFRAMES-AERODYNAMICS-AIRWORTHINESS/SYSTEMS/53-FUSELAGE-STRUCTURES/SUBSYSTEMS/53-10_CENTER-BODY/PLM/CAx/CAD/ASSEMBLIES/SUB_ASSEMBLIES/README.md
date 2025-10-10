@@ -36,10 +36,47 @@ Examples:
 
 ## Organization
 
-Organize sub-assemblies by:
-- **Zone**: Forward, center, aft sections
-- **Component type**: Frames, stringers, skin panels
-- **Assembly level**: Detail vs. intermediate sub-assemblies
+Sub-assemblies are organized by structural type and function:
+
+### Primary Structure Modules
+- **[FRAME_SECTIONS/](./FRAME_SECTIONS/)** — Frame section assemblies (frames with stringers and skin)
+  - **FXX/** — Individual frame station assemblies (F01, F05, F10, etc.)
+- **[STRINGER_BAYS/](./STRINGER_BAYS/)** — Longitudinal stringer bay assemblies
+  - **LXX/** — Individual stringer runs (L01, R01, C01, etc.)
+- **[SKIN_PANEL_MODULES/](./SKIN_PANEL_MODULES/)** — Skin panel assemblies with reinforcements
+  - **PXX/** — Individual panel modules (P01, P15, P25, etc.)
+
+### Secondary Structure Modules
+- **[FLOOR_MODULES/](./FLOOR_MODULES/)** — Floor beam and panel assemblies
+  - **BAY_XX/** — Floor modules by bay (BAY_01, BAY_05, etc.)
+- **[BULKHEAD_MODULES/](./BULKHEAD_MODULES/)** — Bulkhead assemblies
+  - **BH_XX/** — Individual bulkheads (BH_01, BH_05, etc.)
+
+### Interface and Special Assemblies
+- **[INTERFACE_GROUPS/](./INTERFACE_GROUPS/)** — Major interface assemblies
+  - **WING_INTERFACE/** — Wing-to-body joint assemblies
+  - **NOSE_INTERFACE/** — Forward section connection assemblies
+  - **AFT_INTERFACE/** — Aft section connection assemblies
+- **[DOOR_SURROUNDS/](./DOOR_SURROUNDS/)** — Door frame and surround assemblies
+- **[WINDOW_BAYS/](./WINDOW_BAYS/)** — Window installation assemblies
+- **[MOUNTING_UNITS/](./MOUNTING_UNITS/)** — Equipment mounting bracket assemblies
+- **[TANK_SUPPORT_MODULES/](./TANK_SUPPORT_MODULES/)** — Fuel tank support structure assemblies
+
+### Assembly Support
+- **[FASTENER_SETS/](./FASTENER_SETS/)** — Fastener schedules and sets by assembly
+- **[JIG_READY/](./JIG_READY/)** — Jig-ready assembly configurations
+
+### Documentation and Management
+- **[DOCS/](./DOCS/)** — Sub-assembly documentation
+  - **[BOM/](./DOCS/BOM/)** — Bills of materials for sub-assemblies
+  - **[SEQUENCE/](./DOCS/SEQUENCE/)** — Assembly sequence procedures
+  - **[CHECKS/](./DOCS/CHECKS/)** — Inspection and verification procedures
+- **[REVISIONS/](./REVISIONS/)** — Revision management
+  - **[DRAFT/](./REVISIONS/DRAFT/)** — Work-in-progress assemblies
+  - **[RELEASED/](./REVISIONS/RELEASED/)** — Released production assemblies
+  - **[OBSOLETE/](./REVISIONS/OBSOLETE/)** — Superseded or retired assemblies
+- **[TEMPLATES/](./TEMPLATES/)** — Reusable assembly templates and standards
+- **[INDEX/](./INDEX/)** — Index files and cross-references
 
 ## Assembly Guidelines
 
