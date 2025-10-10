@@ -39,6 +39,28 @@ Organize assemblies by:
 - **Zone**: Forward, center, aft center body sections
 - **System interface**: Wing interface, door interface, etc.
 
+### Directory Structure
+
+Assemblies are organized into the following subdirectories:
+
+- **[TOP_LEVEL/](./TOP_LEVEL/)** — Top-level assembly models (complete center body)
+- **[SUB_ASSEMBLIES/](./SUB_ASSEMBLIES/)** — Sub-assembly models (frame sections, panel groups)
+- **[INSTALLATION/](./INSTALLATION/)** — Installation assemblies (interfaces with adjacent systems)
+- **[TEST/](./TEST/)** — Test article assemblies (qualification and verification)
+- **[FIXTURES/](./FIXTURES/)** — Assembly fixtures and tooling
+  - **[FIXTURES/JIGS/](./FIXTURES/JIGS/)** — Assembly jigs and positioning fixtures
+  - **[FIXTURES/CHECK_FIXTURES/](./FIXTURES/CHECK_FIXTURES/)** — Inspection and verification tooling
+- **[CONFIGURATIONS/](./CONFIGURATIONS/)** — Configuration variants
+  - **[CONFIGURATIONS/SIMPLIFIED/](./CONFIGURATIONS/SIMPLIFIED/)** — Simplified models for reviews
+  - **[CONFIGURATIONS/LIGHTWEIGHT/](./CONFIGURATIONS/LIGHTWEIGHT/)** — Lightweight models for performance
+- **[REFERENCES/](./REFERENCES/)** — Reference geometry
+  - **[REFERENCES/COORDINATE_SYSTEMS/](./REFERENCES/COORDINATE_SYSTEMS/)** — Coordinate system definitions
+  - **[REFERENCES/PLANES/](./REFERENCES/PLANES/)** — Reference planes and datum surfaces
+- **[DOCS/](./DOCS/)** — Assembly documentation
+  - **[DOCS/BOM/](./DOCS/BOM/)** — Bills of Materials
+  - **[DOCS/INTERFACE_CONTROL/](./DOCS/INTERFACE_CONTROL/)** — Interface control documents
+  - **[DOCS/SEQUENCE/](./DOCS/SEQUENCE/)** — Assembly sequence documentation
+
 ## Assembly Structure
 
 ### Top-Level Assembly

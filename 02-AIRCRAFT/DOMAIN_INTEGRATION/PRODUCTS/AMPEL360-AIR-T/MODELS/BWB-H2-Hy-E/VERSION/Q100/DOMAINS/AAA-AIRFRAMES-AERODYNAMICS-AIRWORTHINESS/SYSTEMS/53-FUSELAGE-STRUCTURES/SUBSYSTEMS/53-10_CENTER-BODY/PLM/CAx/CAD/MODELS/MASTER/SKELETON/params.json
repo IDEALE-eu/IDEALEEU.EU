@@ -1,0 +1,184 @@
+{
+  "description": "Parametric model definition for Q100 Center Body (53-10) - BWB-H2-Hy-E",
+  "version": "1.0.0",
+  "model": "Q100_CENTER_BODY",
+  "units": {
+    "length": "mm",
+    "mass": "kg",
+    "stress": "MPa"
+  },
+  "parameters": {
+    "overall_geometry": {
+      "cb_length": {
+        "value": 8000.0,
+        "min": 6500.0,
+        "max": 9500.0,
+        "unit": "mm",
+        "description": "Center body overall length"
+      },
+      "cb_width": {
+        "value": 12000.0,
+        "min": 10000.0,
+        "max": 14000.0,
+        "unit": "mm",
+        "description": "Center body maximum width"
+      },
+      "cb_height": {
+        "value": 3200.0,
+        "min": 2800.0,
+        "max": 3600.0,
+        "unit": "mm",
+        "description": "Center body maximum height"
+      }
+    },
+    "structural_parameters": {
+      "skin_thickness": {
+        "value": 3.0,
+        "min": 2.0,
+        "max": 5.0,
+        "unit": "mm",
+        "description": "Skin panel thickness"
+      },
+      "frame_spacing": {
+        "value": 500.0,
+        "min": 400.0,
+        "max": 600.0,
+        "unit": "mm",
+        "description": "Frame spacing along length"
+      },
+      "frame_web_thickness": {
+        "value": 2.5,
+        "min": 2.0,
+        "max": 4.0,
+        "unit": "mm",
+        "description": "Frame web thickness"
+      },
+      "frame_cap_area": {
+        "value": 150.0,
+        "min": 100.0,
+        "max": 250.0,
+        "unit": "mm^2",
+        "description": "Frame cap cross-sectional area"
+      },
+      "stringer_spacing": {
+        "value": 150.0,
+        "min": 120.0,
+        "max": 200.0,
+        "unit": "mm",
+        "description": "Longitudinal stringer spacing"
+      },
+      "stringer_area": {
+        "value": 80.0,
+        "min": 50.0,
+        "max": 120.0,
+        "unit": "mm^2",
+        "description": "Stringer cross-sectional area"
+      },
+      "bulkhead_thickness": {
+        "value": 4.0,
+        "min": 3.0,
+        "max": 6.0,
+        "unit": "mm",
+        "description": "Pressure bulkhead thickness"
+      }
+    },
+    "material_properties": {
+      "material_id": {
+        "value": "AL_2024_T3",
+        "options": ["AL_2024_T3", "AL_7075_T6", "CFRP_UD"],
+        "description": "Primary structural material"
+      }
+    },
+    "load_parameters": {
+      "cabin_pressure": {
+        "value": 0.062,
+        "min": 0.055,
+        "max": 0.070,
+        "unit": "MPa",
+        "description": "Cabin differential pressure"
+      },
+      "design_load_factor": {
+        "value": 2.5,
+        "min": 2.25,
+        "max": 3.0,
+        "unit": "-",
+        "description": "Design ultimate load factor"
+      }
+    },
+    "optimization_regions": {
+      "floor_beam_height": {
+        "value": 200.0,
+        "min": 150.0,
+        "max": 300.0,
+        "unit": "mm",
+        "description": "Floor beam height"
+      },
+      "floor_beam_web_thickness": {
+        "value": 2.0,
+        "min": 1.5,
+        "max": 3.0,
+        "unit": "mm",
+        "description": "Floor beam web thickness"
+      },
+      "keel_beam_height": {
+        "value": 300.0,
+        "min": 250.0,
+        "max": 400.0,
+        "unit": "mm",
+        "description": "Keel beam height"
+      },
+      "keel_beam_thickness": {
+        "value": 3.5,
+        "min": 2.5,
+        "max": 5.0,
+        "unit": "mm",
+        "description": "Keel beam thickness"
+      },
+      "window_frame_reinforcement": {
+        "value": 1.5,
+        "min": 1.2,
+        "max": 2.5,
+        "unit": "-",
+        "description": "Window frame reinforcement factor"
+      },
+      "door_cutout_reinforcement": {
+        "value": 1.8,
+        "min": 1.5,
+        "max": 2.5,
+        "unit": "-",
+        "description": "Door cutout reinforcement factor"
+      }
+    }
+  },
+  "constraints": {
+    "geometric": [
+      "cb_length <= 9500",
+      "cb_width <= 14000",
+      "cb_height >= 2800",
+      "frame_spacing >= 400",
+      "skin_thickness >= 2.0"
+    ],
+    "structural": [
+      "von_mises_stress <= material_yield / 1.5",
+      "buckling_reserve_factor >= 1.1",
+      "deflection <= cb_length / 500"
+    ]
+  },
+  "derived_parameters": {
+    "total_mass": {
+      "formula": "estimated_from_cae",
+      "unit": "kg"
+    },
+    "structural_efficiency": {
+      "formula": "payload_mass / structural_mass",
+      "unit": "-"
+    }
+  },
+  "metadata": {
+    "created": "2025-10-09",
+    "author": "Design Automation System",
+    "project": "BWB-H2-Hy-E Q100",
+    "subsystem": "53-10 Center Body",
+    "total_design_variables": 18
+  }
+}
