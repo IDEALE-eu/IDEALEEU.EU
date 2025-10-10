@@ -1,18 +1,18 @@
-# CAx Engineering Artifacts for 21-10_RADIATORS_HEAT_EXCHANGERS
+# CAx/README.md (drop-in)
 
-This directory contains all Computer-Aided X (CAx) engineering artifacts organized by discipline.
+## Scope
+Authoritative folders for 21-10 radiators/heat exchangers PLM artifacts. No source code.
 
-## Directory Structure
+## Folders
+- **CAD/** – 3D assemblies, drawings, STEP/IGES, GD&T.
+- **CAE/** – Thermal balance, radiative cases, FEA, models, results.
+- **CAM/** – Toolpaths, fixtures, routing, NC, traveler exports.
+- **CAI/** – Installation/assembly work instructions, checklists.
+- **CAV/** – TVAC, leak, proof/burst, vibration test setups and evidence.
+- **CAP/** – Manufacturing plans, bondline cure schedules, coating processes.
+- **CAS/** – Maintenance/inspection manuals, repair limits, service bulletins.
+- **CMP/** – Qualification/compliance reports, certificates, trace matrices.
 
-- **CAD/** - 3D models, drawings, and design data
-- **CAE/** - Thermal analysis, FEA, and simulation results
-- **CAM/** - Manufacturing data, NC programs, and tooling
-- **CAI/** - Installation procedures and assembly instructions
-- **CAV/** - Validation test data and verification evidence
-- **CAP/** - Manufacturing planning and process documentation
-- **CAS/** - In Service manintenance and documentation
-- **CMP/** - Reports, documentation, and deliverables
-
-## Usage
-
-Place engineering files in the appropriate subdirectory based on the tool or discipline used to create them.
+## Conventions
+- File IDs: `21-10_<artifact>__rNN__{WIP|RVW|REL}.*`
+- Evidence lives in **CMP/**; raw test data in **CAV/**; instructions in **CAI/**.
