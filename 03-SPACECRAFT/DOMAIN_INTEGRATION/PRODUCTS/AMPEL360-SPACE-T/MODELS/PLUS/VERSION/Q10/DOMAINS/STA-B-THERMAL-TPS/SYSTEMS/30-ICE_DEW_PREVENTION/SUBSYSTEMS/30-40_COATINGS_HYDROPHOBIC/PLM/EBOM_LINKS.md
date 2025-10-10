@@ -20,7 +20,16 @@ PART-67890 | Mounting Bracket | PLM://erp.example.com/parts/67890 | Rev B | Stan
 
 ## BOM Entries
 
-_To be populated with actual part references_
+COAT-HYDRO-SPRAY | Hydrophobic Spray Coating (Fluoropolymer-based) | PLM://plm.ampel.space/parts/COAT-HYDRO-SPRAY | Rev D | Supplier: NeverWet
+COAT-NANO-CERAMIC | Nanostructured Ceramic Hydrophobic Coating | PLM://plm.ampel.space/parts/COAT-NANO-CERAMIC | Rev B | Supplier: Nanotech Surface
+PRIMER-SURF-PREP | Surface Preparation Primer (silane-based) | PLM://plm.ampel.space/parts/PRIMER-SURF-PREP | Rev A | Supplier: Dow Corning
+APPL-SPRAY-GUN | Precision HVLP Spray Gun (low-outgassing compatible) | PLM://plm.ampel.space/parts/APPL-SPRAY-GUN | Rev C | Supplier: Graco
+MASK-TAPE-KAPT | High-Temperature Kapton Masking Tape (25mm) | PLM://plm.ampel.space/parts/MASK-TAPE-KAPT | Rev A | Standard Part
+CLEAN-SOLV-IPA | Isopropyl Alcohol Cleaning Solution (99.9% pure) | PLM://plm.ampel.space/parts/CLEAN-SOLV-IPA | Rev A | Standard Part
+WIPE-CLEANROOM | Cleanroom-Grade Wipes (lint-free, polyester) | PLM://plm.ampel.space/parts/WIPE-CLEANROOM | Rev B | Supplier: Berkshire
+TEST-KIT-WCA | Water Contact Angle Test Kit | PLM://plm.ampel.space/parts/TEST-KIT-WCA | Rev A | Supplier: Krüss
+CURE-OVEN-VAC | Vacuum Cure Oven (150°C max, low-pressure) | PLM://plm.ampel.space/parts/CURE-OVEN-VAC | Rev B | Supplier: Despatch Industries
+THICK-GAUGE-DIG | Digital Thickness Gauge (coating measurement) | PLM://plm.ampel.space/parts/THICK-GAUGE-DIG | Rev A | Standard Part
 
 ---
 
