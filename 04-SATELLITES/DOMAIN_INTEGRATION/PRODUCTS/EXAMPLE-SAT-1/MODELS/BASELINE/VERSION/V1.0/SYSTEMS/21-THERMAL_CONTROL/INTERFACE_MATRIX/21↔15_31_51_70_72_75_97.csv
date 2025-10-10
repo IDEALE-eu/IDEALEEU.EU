@@ -1,0 +1,8 @@
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+21,15,thermal,conductive,thermal_interface,0,,Thermal coupling
+21,31,telemetry,digital,CCSDS,0,1kbps,Temperature sensor data
+21,51,thermal,structural,mounting,0,,Structure thermal path
+21,70,thermal,conductive,cold_plate,0,,Detector cooling
+21,72,thermal,radiative,coating,0,,Surface thermal properties
+21,75,power,electrical,harness,0,,Heater control wiring
+21,97,data,digital,bus,0,10kbps,Thermal control commands
