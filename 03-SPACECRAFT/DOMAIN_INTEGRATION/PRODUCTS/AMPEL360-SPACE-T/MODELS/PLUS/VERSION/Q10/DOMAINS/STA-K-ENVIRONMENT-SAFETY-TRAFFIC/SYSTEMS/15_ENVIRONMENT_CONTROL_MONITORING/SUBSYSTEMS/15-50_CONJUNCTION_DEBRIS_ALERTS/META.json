@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "15",
+  "subsystem_id": "50",
+  "name": "CONJUNCTION_DEBRIS_ALERTS",
+  "description": "Alertas de conjunción y escombros orbitales"
+}

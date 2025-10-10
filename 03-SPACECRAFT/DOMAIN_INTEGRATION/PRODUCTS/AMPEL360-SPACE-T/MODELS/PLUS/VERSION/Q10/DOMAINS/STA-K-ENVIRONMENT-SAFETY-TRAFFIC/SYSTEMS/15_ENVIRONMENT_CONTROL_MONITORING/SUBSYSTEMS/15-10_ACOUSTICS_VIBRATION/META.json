@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "15",
+  "subsystem_id": "10",
+  "name": "ACOUSTICS_VIBRATION",
+  "description": "Monitoreo de ruido y vibraciones"
+}

@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "86",
+  "subsystem_id": "80",
+  "name": "VERIFICATION_VALIDATION",
+  "description": "Validación de protocolos de limpieza y sellado"
+}

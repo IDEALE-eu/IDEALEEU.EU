@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "15",
+  "subsystem_id": "90",
+  "name": "COMPLIANCE",
+  "description": "Cumplimiento normativo (NASA-STD, ECSS, etc.)"
+}

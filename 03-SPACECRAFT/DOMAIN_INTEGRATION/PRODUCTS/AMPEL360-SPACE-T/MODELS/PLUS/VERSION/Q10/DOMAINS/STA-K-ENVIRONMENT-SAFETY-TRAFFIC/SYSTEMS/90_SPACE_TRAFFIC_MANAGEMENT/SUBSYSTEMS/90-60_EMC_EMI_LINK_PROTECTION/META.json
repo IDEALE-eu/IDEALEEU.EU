@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "90",
+  "subsystem_id": "60",
+  "name": "EMC_EMI_LINK_PROTECTION",
+  "description": "Protección de enlaces de TT&C frente a interferencias"
+}

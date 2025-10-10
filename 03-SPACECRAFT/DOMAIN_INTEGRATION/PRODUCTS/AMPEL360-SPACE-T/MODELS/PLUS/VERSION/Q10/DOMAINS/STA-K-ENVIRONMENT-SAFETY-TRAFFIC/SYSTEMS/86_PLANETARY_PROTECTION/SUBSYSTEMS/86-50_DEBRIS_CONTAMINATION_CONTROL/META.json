@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "86",
+  "subsystem_id": "50",
+  "name": "DEBRIS_CONTAMINATION_CONTROL",
+  "description": "Control de contaminación cruzada y residuos"
+}

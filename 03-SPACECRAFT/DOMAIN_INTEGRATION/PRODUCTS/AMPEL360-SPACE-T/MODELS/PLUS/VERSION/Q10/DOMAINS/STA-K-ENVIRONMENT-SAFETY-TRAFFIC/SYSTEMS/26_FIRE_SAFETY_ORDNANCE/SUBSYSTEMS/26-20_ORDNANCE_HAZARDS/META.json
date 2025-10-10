@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "26",
+  "subsystem_id": "20",
+  "name": "ORDNANCE_HAZARDS",
+  "description": "Gestión de riesgos de carga útil pirotécnica"
+}

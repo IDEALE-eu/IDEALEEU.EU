@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "15",
+  "subsystem_id": "40",
+  "name": "RADIATION_MONITORING",
+  "description": "Detección y registro de radiación"
+}

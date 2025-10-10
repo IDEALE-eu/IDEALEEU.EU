@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "87",
+  "subsystem_id": "60",
+  "name": "EMC_EMI_INTERACTIONS",
+  "description": "Acoplamiento radiación-EMI en sistemas electrónicos"
+}

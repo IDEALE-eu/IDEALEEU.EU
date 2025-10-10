@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "system_id": "87",
+  "subsystem_id": "80",
+  "name": "VERIFICATION_VALIDATION",
+  "description": "Simulaciones (GEANT4, SPENVIS) y pruebas"
+}
