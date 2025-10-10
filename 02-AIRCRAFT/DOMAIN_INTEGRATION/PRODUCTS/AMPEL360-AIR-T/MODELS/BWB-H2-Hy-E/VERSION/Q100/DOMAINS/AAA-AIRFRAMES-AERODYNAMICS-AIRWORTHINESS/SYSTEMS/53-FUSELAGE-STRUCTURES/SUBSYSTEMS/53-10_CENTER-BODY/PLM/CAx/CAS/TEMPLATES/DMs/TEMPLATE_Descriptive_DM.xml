@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  TEMPLATE: Descriptive Data Module
+  
+  Usage:
+  1. Copy this template to CSDB/DMs/Descriptive/
+  2. Rename following DMC convention
+  3. Update all placeholder values marked with [PLACEHOLDER]
+  4. Author content in <description> section
+  5. Validate with BREX before release
+-->
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <!-- Update DMC components -->
+        <dmCode modelIdentCode="AMP360" 
+                systemDiffCode="AAA"
+                systemCode="53" 
+                subSystemCode="10" 
+                subSubSystemCode="00"
+                assyCode="00A" 
+                disassyCode="00" 
+                disassyCodeVariant="0"
+                infoCode="040A" 
+                infoCodeVariant="D" 
+                itemLocationCode="A"/>
+        <language languageIsoCode="en" countryIsoCode="US"/>
+        <issueInfo issueNumber="001" inWork="01"/>
+        <!-- Update UTCS anchor with unique sequential number -->
+        <extension>
+          <utcs id="UTCS-AMP360-AAA-53-10-DMC-[PLACEHOLDER-SEQ]"/>
+        </extension>
+      </dmIdent>
+      <dmAddressItems>
+        <!-- Update issue date -->
+        <issueDate year="2025" month="10" day="10"/>
+        <dmTitle>
+          <techName>[PLACEHOLDER - Technical Name]</techName>
+          <infoName>[PLACEHOLDER - Information Type]</infoName>
+        </dmTitle>
+        <responsiblePartnerCompany enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Technical Publications</enterpriseName>
+        </responsiblePartnerCompany>
+        <originator enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Engineering</enterpriseName>
+        </originator>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus>
+      <security securityClassification="01" commercialExportControl="false"/>
+      <qualityAssurance qaResponsiblePartnerCompany="AAA" qaReviewed="false"/>
+      <!-- Add reasonForUpdate for issues > 001 -->
+      <!-- <reasonForUpdate>Update description text per ECO-YYYY-NNNN</reasonForUpdate> -->
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <description>
+      <levelledPara>
+        <title>[PLACEHOLDER - Main Section Title]</title>
+        
+        <levelledPara>
+          <title>[PLACEHOLDER - Subsection Title]</title>
+          <para>
+            [PLACEHOLDER - Description text. Use ASD-STE-100 Simplified Technical English. 
+            Keep sentences ≤ 25 words. Use active voice. Present tense for descriptions.]
+          </para>
+          
+          <!-- Optional: Add figure -->
+          <!--
+          <figure>
+            <title>[PLACEHOLDER - Figure Title]</title>
+            <graphic xlink:href="ICN-53-10-ISO-001-A.svg"/>
+          </figure>
+          -->
+          
+          <!-- Optional: Add table -->
+          <!--
+          <table>
+            <title>[PLACEHOLDER - Table Title]</title>
+            <tgroup cols="2">
+              <colspec colname="col1"/>
+              <colspec colname="col2"/>
+              <thead>
+                <row>
+                  <entry>Parameter</entry>
+                  <entry>Value</entry>
+                </row>
+              </thead>
+              <tbody>
+                <row>
+                  <entry>Example</entry>
+                  <entry>Value</entry>
+                </row>
+              </tbody>
+            </tgroup>
+          </table>
+          -->
+        </levelledPara>
+      </levelledPara>
+    </description>
+  </content>
+</dmodule>

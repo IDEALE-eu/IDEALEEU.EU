@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <dmCode modelIdentCode="AMP360" systemDiffCode="AAA"
+                systemCode="00" subSystemCode="00" subSubSystemCode="00"
+                assyCode="00A" disassyCode="00" disassyCodeVariant="0"
+                infoCode="000A" infoCodeVariant="A" itemLocationCode="A"/>
+        <language languageIsoCode="en" countryIsoCode="US"/>
+        <issueInfo issueNumber="001" inWork="00"/>
+        <extension>
+          <utcs id="UTCS-AMP360-AAA-00-00-BREX-001"/>
+        </extension>
+      </dmIdent>
+      <dmAddressItems>
+        <issueDate year="2025" month="10" day="10"/>
+        <responsiblePartnerCompany enterpriseCode="AAA"/>
+        <originator enterpriseCode="AAA"/>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus>
+      <security securityClassification="01" commercialExportControl="false"/>
+      <qualityAssurance qaResponsiblePartnerCompany="AAA" qaReviewed="true"/>
+      <reasonForUpdate>Initial release of AMPEL360 AIR-T BREX with 120 validation rules</reasonForUpdate>
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <brex>
+      <contextRules>
+
+        <!-- ===== A. IDS & Metadata (001-020) ===== -->
+        <structureObjectRuleGroup>
+          <title>IDS &amp; Metadata</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmIdent/dmCode)]</objectPath>
+            <objectUse>[AMP360-BREX-001] [ERROR] DM must contain &lt;dmCode&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmIdent/language)]</objectPath>
+            <objectUse>[AMP360-BREX-002] [ERROR] DM must contain &lt;language&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmIdent/issueInfo)]</objectPath>
+            <objectUse>[AMP360-BREX-003] [ERROR] DM must contain &lt;issueInfo&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmAddressItems/issueDate)]</objectPath>
+            <objectUse>[AMP360-BREX-004] [ERROR] DM must contain &lt;issueDate&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmAddressItems/responsiblePartnerCompany)]</objectPath>
+            <objectUse>[AMP360-BREX-005] [ERROR] DM must contain &lt;responsiblePartnerCompany&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmStatus/security)]</objectPath>
+            <objectUse>[AMP360-BREX-006] [ERROR] DM must contain &lt;security&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmStatus/qualityAssurance)]</objectPath>
+            <objectUse>[AMP360-BREX-007] [ERROR] DM must contain &lt;qualityAssurance&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmAddressItems/originator)]</objectPath>
+            <objectUse>[AMP360-BREX-008] [WARN] DM should contain &lt;originator&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//content[not(node())]</objectPath>
+            <objectUse>[AMP360-BREX-009] [ERROR] &lt;content&gt; must not be empty.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmStatus[@issueType='status']/preliminary</objectPath>
+            <objectUse>[AMP360-BREX-010] [ERROR] &lt;preliminary&gt; not allowed in released content.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'TBD') or contains(text(),'???') or contains(text(),'INSERT')]</objectPath>
+            <objectUse>[AMP360-BREX-011] [ERROR] Prohibit placeholder text (TBD/???/INSERT).</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//emphasis</objectPath>
+            <objectUse>[AMP360-BREX-012] [WARN] &lt;emphasis&gt; discouraged (ASD-STE style).</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//externalRef[not(@xlink:href)]</objectPath>
+            <objectUse>[AMP360-BREX-013] [ERROR] &lt;externalRef&gt; must include @xlink:href.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*/@id[. = following::*/@id]</objectPath>
+            <objectUse>[AMP360-BREX-014] [ERROR] xml:id values must be unique.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmStatus[not(security)]</objectPath>
+            <objectUse>[AMP360-BREX-015] [ERROR] &lt;security&gt; mandatory within &lt;dmStatus&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmStatus[not(qualityAssurance)]</objectPath>
+            <objectUse>[AMP360-BREX-016] [ERROR] &lt;qualityAssurance&gt; mandatory within &lt;dmStatus&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmCode[not(@modelIdentCode)]</objectPath>
+            <objectUse>[AMP360-BREX-017] [ERROR] @modelIdentCode required.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmCode[not(@systemDiffCode)]</objectPath>
+            <objectUse>[AMP360-BREX-018] [ERROR] @systemDiffCode required.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmCode[not(@infoCode)]</objectPath>
+            <objectUse>[AMP360-BREX-019] [ERROR] @infoCode required.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmCode[not(@itemLocationCode)]</objectPath>
+            <objectUse>[AMP360-BREX-020] [ERROR] @itemLocationCode required.</objectUse>
+          </structureObjectRule>
+        </structureObjectRuleGroup>
+
+        <!-- ===== B. DMC & Ownership (021-030) ===== -->
+        <structureObjectRuleGroup>
+          <title>DMC &amp; Ownership</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//dmAddress/dmIdent/dmCode/@modelIdentCode</objectPath>
+            <objectUse>[AMP360-BREX-021] [ERROR] @modelIdentCode must be AMP360.</objectUse>
+            <objectValue valueAllowed="AMP360"/>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//dmAddress/dmIdent/dmCode/@systemDiffCode</objectPath>
+            <objectUse>[AMP360-BREX-022] [ERROR] @systemDiffCode must be AAA.</objectUse>
+            <objectValue valueAllowed="AAA"/>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//dmAddress/dmIdent/dmCode/@disassyCodeVariant</objectPath>
+            <objectUse>[AMP360-BREX-023] [ERROR] @disassyCodeVariant must be 0-9.</objectUse>
+            <objectValue valueAllowed="0"/>
+            <objectValue valueAllowed="1"/>
+            <objectValue valueAllowed="2"/>
+            <objectValue valueAllowed="3"/>
+            <objectValue valueAllowed="4"/>
+            <objectValue valueAllowed="5"/>
+            <objectValue valueAllowed="6"/>
+            <objectValue valueAllowed="7"/>
+            <objectValue valueAllowed="8"/>
+            <objectValue valueAllowed="9"/>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//dmAddress/dmIdent/dmCode/@assyCode</objectPath>
+            <objectUse>[AMP360-BREX-024] [ERROR] @assyCode must be 00A.</objectUse>
+            <objectValue valueAllowed="00A"/>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//dmAddress/dmIdent/dmCode/@itemLocationCode</objectPath>
+            <objectUse>[AMP360-BREX-025] [ERROR] @itemLocationCode must be A.</objectUse>
+            <objectValue valueAllowed="A"/>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//dmAddress/dmAddressItems/responsiblePartnerCompany/@enterpriseCode</objectPath>
+            <objectUse>[AMP360-BREX-026] [ERROR] responsiblePartnerCompany/@enterpriseCode must be AAA.</objectUse>
+            <objectValue valueAllowed="AAA"/>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//dmStatus/qualityAssurance/@qaResponsiblePartnerCompany</objectPath>
+            <objectUse>[AMP360-BREX-027] [ERROR] qualityAssurance/@qaResponsiblePartnerCompany must be AAA.</objectUse>
+            <objectValue valueAllowed="AAA"/>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//issueInfo[not(@inWork)]</objectPath>
+            <objectUse>[AMP360-BREX-028] [ERROR] issueInfo/@inWork must be 00-99.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//issueInfo[not(@issueNumber)]</objectPath>
+            <objectUse>[AMP360-BREX-029] [ERROR] issueInfo/@issueNumber must be 000-999.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//dmAddress/dmIdent/language/@countryIsoCode</objectPath>
+            <objectUse>[AMP360-BREX-030] [ERROR] language/@countryIsoCode must be US.</objectUse>
+            <objectValue valueAllowed="US"/>
+          </structureObjectRule>
+        </structureObjectRuleGroup>
+
+        <!-- ===== C. Language & Localization (031-040) ===== -->
+        <structureObjectRuleGroup>
+          <title>Language &amp; Localization</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//dmAddress/dmIdent/language/@languageIsoCode</objectPath>
+            <objectUse>[AMP360-BREX-031] [ERROR] language/@languageIsoCode must be en.</objectUse>
+            <objectValue valueAllowed="en"/>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'colour')]</objectPath>
+            <objectUse>[AMP360-BREX-032] [WARN] Prefer U.S. spelling ("color", not "colour").</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'centre')]</objectPath>
+            <objectUse>[AMP360-BREX-033] [WARN] Prefer U.S. spelling ("center", not "centre").</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'approx.')]</objectPath>
+            <objectUse>[AMP360-BREX-034] [WARN] Avoid "approx."; specify tolerances.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//proceduralStep//*[contains(text(),'should')]</objectPath>
+            <objectUse>[AMP360-BREX-035] [WARN] Avoid "should" in steps (imperative voice).</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//proceduralStep//*[contains(text(),'may')]</objectPath>
+            <objectUse>[AMP360-BREX-036] [WARN] Avoid "may" in steps (be explicit).</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//proceduralStep//*[contains(text(),'shall be')]</objectPath>
+            <objectUse>[AMP360-BREX-037] [WARN] Avoid passive voice ("shall be").</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//para[string-length(.) &gt; 500]</objectPath>
+            <objectUse>[AMP360-BREX-038] [WARN] Prefer sentences ≤ 25 words.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//note//warning | //note//caution</objectPath>
+            <objectUse>[AMP360-BREX-039] [ERROR] Do not put safety messages inside &lt;note&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'™') or contains(text(),'®')]</objectPath>
+            <objectUse>[AMP360-BREX-040] [WARN] Avoid trademarks/brands in tech prose.</objectUse>
+          </structureObjectRule>
+        </structureObjectRuleGroup>
+
+        <!-- ===== D. Security & QA (041-050) ===== -->
+        <structureObjectRuleGroup>
+          <title>Security &amp; QA</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//security/@securityClassification</objectPath>
+            <objectUse>[AMP360-BREX-041] [ERROR] securityClassification must be 01-05.</objectUse>
+            <objectValue valueAllowed="01"/>
+            <objectValue valueAllowed="02"/>
+            <objectValue valueAllowed="03"/>
+            <objectValue valueAllowed="04"/>
+            <objectValue valueAllowed="05"/>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//security[not(@commercialExportControl)]</objectPath>
+            <objectUse>[AMP360-BREX-042] [ERROR] commercialExportControl must be declared.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//qualityAssurance[not(@qaReviewed)]</objectPath>
+            <objectUse>[AMP360-BREX-043] [ERROR] qaReviewed attribute must be present.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//qualityAssurance/@qaReviewed</objectPath>
+            <objectUse>[AMP360-BREX-044] [ERROR] qaReviewed must be true or false.</objectUse>
+            <objectValue valueAllowed="true"/>
+            <objectValue valueAllowed="false"/>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//security[@securityClassification!='01']</objectPath>
+            <objectUse>[AMP360-BREX-045] [WARN] Default security is "01 Unclassified" (advisory).</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'ITAR')][not(ancestor::dmStatus/security/@commercialExportControl='true')]</objectPath>
+            <objectUse>[AMP360-BREX-046] [ERROR] If "ITAR" present, ensure export metadata.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'EAR')][not(ancestor::dmStatus/security/@commercialExportControl='true')]</objectPath>
+            <objectUse>[AMP360-BREX-047] [ERROR] If "EAR" present, ensure export metadata.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmStatus[@issueType='changed'][not(reasonForUpdate)]</objectPath>
+            <objectUse>[AMP360-BREX-048] [WARN] Changed issues should include reasonForUpdate.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmStatus[@issueType='deleted']//content[node()]</objectPath>
+            <objectUse>[AMP360-BREX-049] [ERROR] issueType='deleted' must have no residual content.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmStatus[@issueType='status']//issueInfo[@inWork!='00']</objectPath>
+            <objectUse>[AMP360-BREX-050] [ERROR] Released DMs must have inWork='00'.</objectUse>
+          </structureObjectRule>
+        </structureObjectRuleGroup>
+
+        <!-- ===== E. Applicability & ACT (051-060) ===== -->
+        <structureObjectRuleGroup>
+          <title>Applicability &amp; ACT</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[@applicRefId='']</objectPath>
+            <objectUse>[AMP360-BREX-051] [ERROR] @applicRefId must not be empty.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//applic[not(node())]</objectPath>
+            <objectUse>[AMP360-BREX-052] [ERROR] &lt;applic&gt; blocks must not be empty.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//applic[not(cond or prodattr or lifecycle)]</objectPath>
+            <objectUse>[AMP360-BREX-053] [WARN] Applicability should use cond/prodattr/lifecycle.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//actRef[not(@applicRefId)]</objectPath>
+            <objectUse>[AMP360-BREX-054] [ERROR] ACT references must not be empty.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//effectivity[not(cond or serialNumber)]</objectPath>
+            <objectUse>[AMP360-BREX-055] [ERROR] &lt;effectivity&gt; must contain a condition or S/N range.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//serialNumber[not(@from) or not(@to)]</objectPath>
+            <objectUse>[AMP360-BREX-056] [ERROR] &lt;serialNumber&gt; ranges require from/to.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//negatedApplic[not(@applicRefKey)]</objectPath>
+            <objectUse>[AMP360-BREX-057] [WARN] Negated applicability should reference an ACT key.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//applic[not(@applicRefId)]</objectPath>
+            <objectUse>[AMP360-BREX-058] [WARN] Prefer ACT keys for applicability where possible.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//applicRefKey[not(@id)]</objectPath>
+            <objectUse>[AMP360-BREX-059] [ERROR] applicRefKey entries require @id.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//applic[not(ancestor::content)]</objectPath>
+            <objectUse>[AMP360-BREX-060] [ERROR] &lt;applic&gt; must be scoped within &lt;content&gt;.</objectUse>
+          </structureObjectRule>
+        </structureObjectRuleGroup>
+
+        <!-- ===== F. Procedural Structure (061-075) ===== -->
+        <structureObjectRuleGroup>
+          <title>Procedural Structure</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//procedure[not(proceduralStep)]</objectPath>
+            <objectUse>[AMP360-BREX-061] [ERROR] &lt;procedure&gt; must contain &lt;proceduralStep&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//proceduralStep[not(stepPara)]</objectPath>
+            <objectUse>[AMP360-BREX-062] [ERROR] Each &lt;proceduralStep&gt; must contain &lt;stepPara&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//sequentialList//sequentialList</objectPath>
+            <objectUse>[AMP360-BREX-063] [ERROR] No nested &lt;sequentialList&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//randomList//randomList</objectPath>
+            <objectUse>[AMP360-BREX-064] [ERROR] No nested &lt;randomList&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//randomList//randomList//randomList | //sequentialList//sequentialList//sequentialList</objectPath>
+            <objectUse>[AMP360-BREX-065] [ERROR] List nesting depth &gt; 2 not allowed.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//warning//caution | //caution//warning</objectPath>
+            <objectUse>[AMP360-BREX-066] [ERROR] Do not nest &lt;warning&gt;/&lt;caution&gt; inside each other.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//stepPara//figure</objectPath>
+            <objectUse>[AMP360-BREX-067] [WARN] Prefer figures at step level, not inside stepPara.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//prereq[not(node())]</objectPath>
+            <objectUse>[AMP360-BREX-068] [ERROR] &lt;prereq&gt; must not be empty.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//closeRqmts[not(node())]</objectPath>
+            <objectUse>[AMP360-BREX-069] [ERROR] &lt;closeRqmts&gt; must not be empty.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//preliminaryRqmts[not(requiredPersons)]</objectPath>
+            <objectUse>[AMP360-BREX-070] [WARN] Declare manpower explicitly in &lt;requiredPersons&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//tools[not(node())]</objectPath>
+            <objectUse>[AMP360-BREX-071] [ERROR] &lt;tools&gt; cannot be empty when present.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//consumables[not(node())]</objectPath>
+            <objectUse>[AMP360-BREX-072] [ERROR] &lt;consumables&gt; cannot be empty when present.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//spares[not(node())]</objectPath>
+            <objectUse>[AMP360-BREX-073] [ERROR] &lt;spares&gt; cannot be empty when present.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//stepPara[contains(text(),'may') or contains(text(),'should')]</objectPath>
+            <objectUse>[AMP360-BREX-074] [WARN] Avoid permissive/passive in stepPara.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//stepPara[contains(text(),'carefully') or contains(text(),'properly')]</objectPath>
+            <objectUse>[AMP360-BREX-075] [WARN] Avoid vague adverbs in stepPara.</objectUse>
+          </structureObjectRule>
+        </structureObjectRuleGroup>
+
+        <!-- ===== G. Fault Isolation (076-085) ===== -->
+        <structureObjectRuleGroup>
+          <title>Fault Isolation</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//faultIsolation[not(fiDecision)]</objectPath>
+            <objectUse>[AMP360-BREX-076] [ERROR] &lt;faultIsolation&gt; must contain decisions.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//fiDecision[not(fiYes) or not(fiNo)]</objectPath>
+            <objectUse>[AMP360-BREX-077] [ERROR] Every &lt;fiDecision&gt; has both fiYes and fiNo.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//fiDecision//fiDecision//fiDecision</objectPath>
+            <objectUse>[AMP360-BREX-078] [WARN] Decision nesting depth ≤ 2.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//fiAction[not(@refId or procedureRef)]</objectPath>
+            <objectUse>[AMP360-BREX-079] [WARN] &lt;fiAction&gt; should reference procedures/tests.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//test[not(acceptanceCriteria)]</objectPath>
+            <objectUse>[AMP360-BREX-080] [ERROR] &lt;test&gt; must state acceptance criteria.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//test[not(tools)]</objectPath>
+            <objectUse>[AMP360-BREX-081] [WARN] &lt;test&gt; should list required tools.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//symptom[not(node())]</objectPath>
+            <objectUse>[AMP360-BREX-082] [ERROR] &lt;symptom&gt; must not be empty.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//faultIsolation//note//warning | //faultIsolation//note//caution</objectPath>
+            <objectUse>[AMP360-BREX-083] [ERROR] No safety inside FI notes.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//faultIsolation//listItem[not(node())]</objectPath>
+            <objectUse>[AMP360-BREX-084] [ERROR] No empty list items in FI.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//faultIsolation//internalRef[not(@internalRefId)]</objectPath>
+            <objectUse>[AMP360-BREX-085] [ERROR] internalRefId required in FI references.</objectUse>
+          </structureObjectRule>
+        </structureObjectRuleGroup>
+
+        <!-- ===== H. Illustrations & Graphics (086-095) ===== -->
+        <structureObjectRuleGroup>
+          <title>Illustrations &amp; Graphics</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//graphic[not(@xlink:href)]</objectPath>
+            <objectUse>[AMP360-BREX-086] [ERROR] &lt;graphic&gt; requires @xlink:href.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//graphic[@xlink:href][not(ends-with(@xlink:href,'.svg') or ends-with(@xlink:href,'.png') or ends-with(@xlink:href,'.cgm'))]</objectPath>
+            <objectUse>[AMP360-BREX-087] [ERROR] Allowed image formats: svg, png, cgm.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//hotspotRef[not(@xlink:href)]</objectPath>
+            <objectUse>[AMP360-BREX-088] [ERROR] &lt;hotspotRef&gt; requires @xlink:href.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//graphicRef[not(@infoName)]</objectPath>
+            <objectUse>[AMP360-BREX-089] [ERROR] &lt;graphicRef&gt; must declare infoName (ICN).</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//figure[not(title)]</objectPath>
+            <objectUse>[AMP360-BREX-090] [WARN] &lt;figure&gt; should have a &lt;title&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//callout[not(@id)]</objectPath>
+            <objectUse>[AMP360-BREX-091] [ERROR] &lt;callout&gt; requires @id.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//callout[not(calloutTarget)]</objectPath>
+            <objectUse>[AMP360-BREX-092] [ERROR] &lt;callout&gt; requires a calloutTarget.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//graphic[contains(@xlink:href,' ')]</objectPath>
+            <objectUse>[AMP360-BREX-093] [ERROR] No spaces in ICN filenames.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//graphic[starts-with(@xlink:href,'http:')]</objectPath>
+            <objectUse>[AMP360-BREX-094] [WARN] Prefer https over http in figure links.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//graphic[contains(@xlink:href,'DRAFT')]</objectPath>
+            <objectUse>[AMP360-BREX-095] [ERROR] No "DRAFT" watermarks in released figures.</objectUse>
+          </structureObjectRule>
+        </structureObjectRuleGroup>
+
+        <!-- ===== I. IPD & Logistics (096-105) ===== -->
+        <structureObjectRuleGroup>
+          <title>IPD &amp; Logistics</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//spareItem[not(partNumber)]</objectPath>
+            <objectUse>[AMP360-BREX-096] [ERROR] IPD spare item must have &lt;partNumber&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//spareItem[not(quantity)]</objectPath>
+            <objectUse>[AMP360-BREX-097] [ERROR] IPD spare item must have &lt;quantity&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//quantity[not(@unitOfMeasure)]</objectPath>
+            <objectUse>[AMP360-BREX-098] [ERROR] &lt;quantity&gt; must declare @unitOfMeasure.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//quantity/@unitOfMeasure</objectPath>
+            <objectUse>[AMP360-BREX-099] [ERROR] Allowed UOM: EA, M, MM, IN, KG, NM, LBF-FT, DEG-C.</objectUse>
+            <objectValue valueAllowed="EA"/>
+            <objectValue valueAllowed="M"/>
+            <objectValue valueAllowed="MM"/>
+            <objectValue valueAllowed="IN"/>
+            <objectValue valueAllowed="KG"/>
+            <objectValue valueAllowed="NM"/>
+            <objectValue valueAllowed="LBF-FT"/>
+            <objectValue valueAllowed="DEG-C"/>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//manufacturerCode[not(text())]</objectPath>
+            <objectUse>[AMP360-BREX-100] [ERROR] manufacturerCode must be from approved list.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//nsn[not(matches(text(),'^\d{4}-\d{2}-\d{3}-\d{4}$'))]</objectPath>
+            <objectUse>[AMP360-BREX-101] [WARN] nsn should follow NATO format.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="2">//lifecycle/@lifecyclePhase</objectPath>
+            <objectUse>[AMP360-BREX-102] [ERROR] lifecycle must be active|obsolete|provisional.</objectUse>
+            <objectValue valueAllowed="active"/>
+            <objectValue valueAllowed="obsolete"/>
+            <objectValue valueAllowed="provisional"/>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//partDescription[contains(text(),'TBD')]</objectPath>
+            <objectUse>[AMP360-BREX-103] [ERROR] No TBD in parts descriptions.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//illustratedPartsCatalog[not(.//graphic)]</objectPath>
+            <objectUse>[AMP360-BREX-104] [ERROR] IPD figure must reference an ICN.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//illustratedPartsCatalog//callout[not(@number)]</objectPath>
+            <objectUse>[AMP360-BREX-105] [ERROR] IPD callout must have a number.</objectUse>
+          </structureObjectRule>
+        </structureObjectRuleGroup>
+
+        <!-- ===== J. References & Linking (106-110) ===== -->
+        <structureObjectRuleGroup>
+          <title>References &amp; Linking</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[@internalRefId='']</objectPath>
+            <objectUse>[AMP360-BREX-106] [ERROR] internalRefId must not be empty.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//externalRef[@xlink:href][not(starts-with(@xlink:href,'http:') or starts-with(@xlink:href,'https:') or starts-with(@xlink:href,'mailto:') or starts-with(@xlink:href,'file:'))]</objectPath>
+            <objectUse>[AMP360-BREX-107] [ERROR] Allowed link schemes: http/https/mailto/file.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//externalPubRef[not(@pubTitle)]</objectPath>
+            <objectUse>[AMP360-BREX-108] [WARN] External pubs should include doc number/type.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//internalRef[not(@internalRefId)]</objectPath>
+            <objectUse>[AMP360-BREX-109] [ERROR] internalRef must have internalRefId.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//externalRef[not(@xlink:href)]</objectPath>
+            <objectUse>[AMP360-BREX-110] [ERROR] externalRef must have xlink:href.</objectUse>
+          </structureObjectRule>
+        </structureObjectRuleGroup>
+
+        <!-- ===== K. Controlled Language & Domain Safety (111-120) ===== -->
+        <structureObjectRuleGroup>
+          <title>Controlled Language &amp; Domain Safety</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'very') or contains(text(),'really') or contains(text(),'quite')]</objectPath>
+            <objectUse>[AMP360-BREX-111] [WARN] Avoid intensifiers (very/really/quite).</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'carefully') or contains(text(),'properly') or contains(text(),'sufficiently')]</objectPath>
+            <objectUse>[AMP360-BREX-112] [WARN] Avoid vague adverbs (carefully/properly/sufficiently).</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//note//warning | //note//caution</objectPath>
+            <objectUse>[AMP360-BREX-113] [ERROR] Do not nest safety inside notes.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'ensure that')]</objectPath>
+            <objectUse>[AMP360-BREX-114] [WARN] Prefer direct imperatives over "ensure that".</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[not(ancestor::warning or ancestor::caution)][contains(text(),'never')]</objectPath>
+            <objectUse>[AMP360-BREX-115] [WARN] Avoid absolute "never" unless safety-critical.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'hydrogen') or contains(text(),'H2')][not(ancestor::dmodule//warning or ancestor::dmodule//caution)]</objectPath>
+            <objectUse>[AMP360-BREX-116] [ERROR] If "hydrogen/H2" mentioned, verify safety warnings exist.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'cryogenic')][not(ancestor::procedure//warning or ancestor::procedure//caution)]</objectPath>
+            <objectUse>[AMP360-BREX-117] [ERROR] If "cryogenic" mentioned, verify PPE/handling steps.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'high voltage') or contains(text(),'HV')][not(ancestor::procedure//warning)]</objectPath>
+            <objectUse>[AMP360-BREX-118] [ERROR] If "high voltage/HV" mentioned, verify LOTO references.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmIdent/extension/utcs)]</objectPath>
+            <objectUse>[AMP360-BREX-119] [ERROR] UTCS anchor required in IDS/extension.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmIdent/extension/utcs/@id)]</objectPath>
+            <objectUse>[AMP360-BREX-120] [WARN] UTCS anchor present; CI cross-checks format.</objectUse>
+          </structureObjectRule>
+        </structureObjectRuleGroup>
+
+      </contextRules>
+    </brex>
+  </content>
+</dmodule>

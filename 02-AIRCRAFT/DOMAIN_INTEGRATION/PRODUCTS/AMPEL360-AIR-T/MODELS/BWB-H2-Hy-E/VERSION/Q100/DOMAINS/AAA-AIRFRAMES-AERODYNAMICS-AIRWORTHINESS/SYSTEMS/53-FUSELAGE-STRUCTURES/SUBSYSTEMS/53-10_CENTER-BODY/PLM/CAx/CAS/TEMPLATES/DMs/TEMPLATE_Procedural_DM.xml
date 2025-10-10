@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  TEMPLATE: Procedural Data Module
+  
+  Usage:
+  1. Copy this template to CSDB/DMs/Procedural/
+  2. Rename following DMC convention (info code 3XX for procedures)
+  3. Update all placeholder values marked with [PLACEHOLDER]
+  4. Author procedure steps
+  5. Add prerequisites, tools, safety warnings as needed
+  6. Validate with BREX before release
+-->
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <!-- Update DMC components -->
+        <dmCode modelIdentCode="AMP360" 
+                systemDiffCode="AAA"
+                systemCode="53" 
+                subSystemCode="10" 
+                subSubSystemCode="00"
+                assyCode="00A" 
+                disassyCode="10" 
+                disassyCodeVariant="0"
+                infoCode="310A" 
+                infoCodeVariant="P" 
+                itemLocationCode="A"/>
+        <language languageIsoCode="en" countryIsoCode="US"/>
+        <issueInfo issueNumber="001" inWork="01"/>
+        <!-- Update UTCS anchor with unique sequential number -->
+        <extension>
+          <utcs id="UTCS-AMP360-AAA-53-10-DMC-[PLACEHOLDER-SEQ]"/>
+        </extension>
+      </dmIdent>
+      <dmAddressItems>
+        <!-- Update issue date -->
+        <issueDate year="2025" month="10" day="10"/>
+        <dmTitle>
+          <techName>[PLACEHOLDER - Component Name]</techName>
+          <infoName>Installation</infoName>
+        </dmTitle>
+        <responsiblePartnerCompany enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Technical Publications</enterpriseName>
+        </responsiblePartnerCompany>
+        <originator enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Engineering</enterpriseName>
+        </originator>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus>
+      <security securityClassification="01" commercialExportControl="false"/>
+      <qualityAssurance qaResponsiblePartnerCompany="AAA" qaReviewed="false"/>
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <procedure>
+      <preliminaryRqmts>
+        <reqPersons>
+          <person>
+            <personType>mechanic</personType>
+            <numberOfPersons>1</numberOfPersons>
+            <personCategory>
+              <personSkill skillLevel="2"/>
+            </personCategory>
+          </person>
+        </reqPersons>
+        
+        <reqTools>
+          <toolRef>
+            <toolNumber>[PLACEHOLDER - Tool part number]</toolNumber>
+            <toolName>[PLACEHOLDER - Tool name]</toolName>
+          </toolRef>
+          <!-- Add more tools as needed -->
+        </reqTools>
+        
+        <reqSupplies>
+          <supply>
+            <supplyName>[PLACEHOLDER - Supply/consumable name]</supplyName>
+            <supplyQuantity unitOfMeasure="EA">1</supplyQuantity>
+          </supply>
+        </reqSupplies>
+        
+        <!-- Optional: Required conditions -->
+        <!--
+        <reqConds>
+          <reqCond>
+            <condText>Aircraft on jacks</condText>
+          </reqCond>
+          <reqCond>
+            <condText>Power off</condText>
+          </reqCond>
+        </reqConds>
+        -->
+      </preliminaryRqmts>
+
+      <mainProcedure>
+        <proceduralStep id="step-001">
+          <!-- Add WARNING if hazardous -->
+          <!--
+          <warning>
+            <warningType>warning</warningType>
+            <warningText>
+              <para>High voltage present. Risk of electrocution.</para>
+              <para>Make sure that the power is off before you start.</para>
+            </warningText>
+          </warning>
+          -->
+          
+          <!-- Add CAUTION if risk of equipment damage -->
+          <!--
+          <caution>
+            <cautionType>caution</cautionType>
+            <cautionText>
+              <para>Do not exceed torque limit. Excessive torque can damage threads.</para>
+            </cautionText>
+          </caution>
+          -->
+          
+          <para>[PLACEHOLDER - First step instruction. Use imperative mood: "Remove the cover."]</para>
+          
+          <!-- Optional: Add substeps -->
+          <!--
+          <proceduralStep>
+            <para>[PLACEHOLDER - Substep 1]</para>
+          </proceduralStep>
+          <proceduralStep>
+            <para>[PLACEHOLDER - Substep 2]</para>
+          </proceduralStep>
+          -->
+        </proceduralStep>
+
+        <proceduralStep id="step-002">
+          <para>[PLACEHOLDER - Second step instruction]</para>
+          
+          <!-- Optional: Add figure at step level -->
+          <!--
+          <figure>
+            <title>[PLACEHOLDER - Figure title]</title>
+            <graphic xlink:href="ICN-53-10-ISO-001-A.svg"/>
+          </figure>
+          -->
+        </proceduralStep>
+
+        <proceduralStep id="step-003">
+          <para>[PLACEHOLDER - Third step instruction]</para>
+          
+          <!-- Optional: Add note for additional information -->
+          <!--
+          <note>
+            <para>[PLACEHOLDER - Additional information or tip]</para>
+          </note>
+          -->
+        </proceduralStep>
+
+        <!-- Add more procedural steps as needed -->
+
+      </mainProcedure>
+
+      <closeRqmts>
+        <reqCond>
+          <condText>Perform operational check per DMC-[PLACEHOLDER-REF]</condText>
+        </reqCond>
+        <reqCond>
+          <condText>Document maintenance action in aircraft log</condText>
+        </reqCond>
+      </closeRqmts>
+    </procedure>
+  </content>
+</dmodule>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Applicability Cross-reference Table for 53-10 Center Body -->
+<applicCrossRefTable xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat">
+  <identAndStatusSection>
+    <actIdent>
+      <actCode modelIdentCode="AMP360" senderIdent="AAA"/>
+      <issueInfo issueNumber="001" inWork="00"/>
+      <language languageIsoCode="en" countryIsoCode="US"/>
+    </actIdent>
+    <actStatus>
+      <security securityClassification="01"/>
+      <responsiblePartnerCompany enterpriseCode="AAA"/>
+      <originator enterpriseCode="AAA"/>
+      <issueDate year="2025" month="10" day="10"/>
+    </actStatus>
+  </identAndStatusSection>
+
+  <content>
+    <productCrossRefTable>
+      <productIdent>
+        <productType>aircraft</productType>
+        <productIdentValue>AMPEL360-AIR-T</productIdentValue>
+        <productModelValue>BWB-H2-Hy-E Q100</productModelValue>
+      </productIdent>
+      
+      <!-- Configuration Sets -->
+      <product id="CFG-BASELINE-Q100">
+        <productAttribute>
+          <productAttributeName>Configuration</productAttributeName>
+          <productAttributeValue>Baseline Q100</productAttributeValue>
+        </productAttribute>
+        <remarks>
+          <para>Standard production configuration for Q100 variant</para>
+        </remarks>
+      </product>
+      
+      <product id="CFG-PAX-Q100">
+        <productAttribute>
+          <productAttributeName>Configuration</productAttributeName>
+          <productAttributeValue>Passenger Q100</productAttributeValue>
+        </productAttribute>
+        <remarks>
+          <para>Dual-class passenger layout configuration</para>
+        </remarks>
+      </product>
+      
+      <!-- Modification States -->
+      <product id="MOD-BASE">
+        <productAttribute>
+          <productAttributeName>Modification</productAttributeName>
+          <productAttributeValue>Base</productAttributeValue>
+        </productAttribute>
+        <remarks>
+          <para>Base production standard, no modifications</para>
+        </remarks>
+      </product>
+      
+      <product id="MOD-M1">
+        <productAttribute>
+          <productAttributeName>Modification</productAttributeName>
+          <productAttributeValue>M1</productAttributeValue>
+        </productAttribute>
+        <remarks>
+          <para>Modification M1: Enhanced avionics suite and predictive maintenance</para>
+        </remarks>
+      </product>
+      
+      <product id="MOD-M2">
+        <productAttribute>
+          <productAttributeName>Modification</productAttributeName>
+          <productAttributeValue>M2</productAttributeValue>
+        </productAttribute>
+        <remarks>
+          <para>Modification M2: Extended range hydrogen system upgrade</para>
+        </remarks>
+      </product>
+      
+      <!-- Serial Number Blocks -->
+      <product id="BLK-2026A">
+        <productAttribute>
+          <productAttributeName>SerialBlock</productAttributeName>
+          <productAttributeValue>2026A</productAttributeValue>
+        </productAttribute>
+        <serialNumberRange>
+          <fromSerialNumber>001</fromSerialNumber>
+          <toSerialNumber>030</toSerialNumber>
+        </serialNumberRange>
+        <remarks>
+          <para>Initial production block, 2026 Q1-Q2</para>
+        </remarks>
+      </product>
+      
+      <product id="BLK-2026B">
+        <productAttribute>
+          <productAttributeName>SerialBlock</productAttributeName>
+          <productAttributeValue>2026B</productAttributeValue>
+        </productAttribute>
+        <serialNumberRange>
+          <fromSerialNumber>031</fromSerialNumber>
+          <toSerialNumber>060</toSerialNumber>
+        </serialNumberRange>
+        <remarks>
+          <para>Second production block, 2026 Q3-Q4</para>
+        </remarks>
+      </product>
+      
+      <product id="BLK-2027A">
+        <productAttribute>
+          <productAttributeName>SerialBlock</productAttributeName>
+          <productAttributeValue>2027A</productAttributeValue>
+        </productAttribute>
+        <serialNumberRange>
+          <fromSerialNumber>061</fromSerialNumber>
+          <toSerialNumber>120</toSerialNumber>
+        </serialNumberRange>
+        <remarks>
+          <para>Third production block, 2027 full year</para>
+        </remarks>
+      </product>
+      
+      <!-- Customer Options -->
+      <product id="OPT-AVIONICS-SUITE">
+        <productAttribute>
+          <productAttributeName>Option</productAttributeName>
+          <productAttributeValue>Enhanced Avionics</productAttributeValue>
+        </productAttribute>
+        <remarks>
+          <para>Premium avionics suite with advanced weather radar and HUD</para>
+        </remarks>
+      </product>
+      
+      <product id="OPT-CABIN-LAYOUT">
+        <productAttribute>
+          <productAttributeName>Option</productAttributeName>
+          <productAttributeValue>Premium Cabin</productAttributeValue>
+        </productAttribute>
+        <remarks>
+          <para>Premium cabin layout with enhanced passenger comfort</para>
+        </remarks>
+      </product>
+    </productCrossRefTable>
+    
+    <!-- Applicability Conditions -->
+    <condCrossRefTable>
+      <cond id="COND-ALL">
+        <condValue>all</condValue>
+        <remarks>
+          <para>Applies to all aircraft configurations</para>
+        </remarks>
+      </cond>
+      
+      <cond id="COND-BASELINE">
+        <condProduct>
+          <productRef applicRefId="CFG-BASELINE-Q100"/>
+        </condProduct>
+        <remarks>
+          <para>Applies only to baseline configuration</para>
+        </remarks>
+      </cond>
+      
+      <cond id="COND-WITH-M1">
+        <condProduct>
+          <productRef applicRefId="MOD-M1"/>
+        </condProduct>
+        <remarks>
+          <para>Applies to aircraft with M1 modification</para>
+        </remarks>
+      </cond>
+      
+      <cond id="COND-2026A-BLOCK">
+        <condProduct>
+          <productRef applicRefId="BLK-2026A"/>
+        </condProduct>
+        <remarks>
+          <para>Applies only to 2026A production block (MSN 001-030)</para>
+        </remarks>
+      </cond>
+    </condCrossRefTable>
+  </content>
+</applicCrossRefTable>
