@@ -1,0 +1,7 @@
+# CAD for 94_40_ENVIRONMENTAL_SEQUENCES
+
+## Purpose
+CAD engineering artifacts for 94_40_ENVIRONMENTAL_SEQUENCES.
+
+## Contents
+Engineering files and data specific to this CAx discipline.
