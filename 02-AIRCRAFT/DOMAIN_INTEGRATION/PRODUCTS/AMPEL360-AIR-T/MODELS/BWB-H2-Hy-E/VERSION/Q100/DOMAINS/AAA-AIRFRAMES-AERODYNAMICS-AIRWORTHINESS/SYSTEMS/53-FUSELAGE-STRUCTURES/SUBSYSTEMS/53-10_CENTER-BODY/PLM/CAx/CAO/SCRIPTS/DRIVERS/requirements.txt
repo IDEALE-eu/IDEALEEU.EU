@@ -1,0 +1,24 @@
+# Python dependencies for Q100 Center Body Optimization
+
+# Core optimization framework
+pymoo>=0.6.0
+
+# Scientific computing
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Configuration and data handling
+pyyaml>=6.0
+pandas>=2.0.0
+
+# Plotting and visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Optional: FEA integration
+# meshio>=5.3.0  # Mesh I/O for various formats
+# h5py>=3.8.0    # HDF5 for large datasets
+
+# Optional: Advanced features
+# scikit-learn>=1.2.0  # Metamodeling (GP, RSM)
+# joblib>=1.2.0        # Parallel execution
