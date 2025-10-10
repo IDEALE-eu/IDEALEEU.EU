@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Data Module: System Description - Center Body
+  DMC: DMC-AMP360-AAA-53-10-10-00A-041A-D_en-US_001-00
+  InfoCode: 041A (System Description)
+  Status: Released
+-->
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <dmCode modelIdentCode="AMP360" 
+                systemDiffCode="AAA"
+                systemCode="53" 
+                subSystemCode="10" 
+                subSubSystemCode="10"
+                assyCode="00A" 
+                disassyCode="00" 
+                disassyCodeVariant="0"
+                infoCode="041" 
+                infoCodeVariant="A" 
+                itemLocationCode="D"/>
+        <language languageIsoCode="en" countryIsoCode="US"/>
+        <issueInfo issueNumber="001" inWork="00"/>
+        <extension>
+          <utcs id="UTCS-AMP360-AAA-53-10-DMC-001"/>
+        </extension>
+      </dmIdent>
+      <dmAddressItems>
+        <issueDate year="2025" month="10" day="10"/>
+        <dmTitle>
+          <techName>Center Body</techName>
+          <infoName>System Description</infoName>
+        </dmTitle>
+        <responsiblePartnerCompany enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Technical Publications</enterpriseName>
+        </responsiblePartnerCompany>
+        <originator enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Engineering</enterpriseName>
+        </originator>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus>
+      <security securityClassification="01" commercialExportControl="false"/>
+      <qualityAssurance qaResponsiblePartnerCompany="AAA" qaReviewed="false"/>
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <description>
+      <levelledPara>
+        <title>System Description</title>
+        
+        <levelledPara>
+          <title>System Overview</title>
+          <para>
+            The Center Body system comprises multiple structural assemblies including 
+            forward and aft bulkheads, center body skin panels, internal frames, and 
+            stringers. These components work together to form the primary load-bearing 
+            structure of the aircraft.
+          </para>
+        </levelledPara>
+        
+        <levelledPara>
+          <title>System Components</title>
+          <para>
+            Major components include: Forward Bulkhead Assembly, Aft Bulkhead Assembly, 
+            Upper Skin Panels, Lower Skin Panels, Internal Frame Structure, Longitudinal 
+            Stringers, and Interface Fittings for wing attachment.
+          </para>
+        </levelledPara>
+      </levelledPara>
+    </description>
+  </content>
+</dmodule>

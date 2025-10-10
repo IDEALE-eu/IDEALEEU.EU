@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Data Module: Controls and Indicators - Center Body
+  DMC: DMC-AMP360-AAA-53-10-60-00A-045A-D_en-US_001-00
+  InfoCode: 045A (Controls Description)
+  Status: Released
+-->
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <dmCode modelIdentCode="AMP360" 
+                systemDiffCode="AAA"
+                systemCode="53" 
+                subSystemCode="10" 
+                subSubSystemCode="60"
+                assyCode="00A" 
+                disassyCode="00" 
+                disassyCodeVariant="0"
+                infoCode="045" 
+                infoCodeVariant="A" 
+                itemLocationCode="D"/>
+        <language languageIsoCode="en" countryIsoCode="US"/>
+        <issueInfo issueNumber="001" inWork="00"/>
+        <extension>
+          <utcs id="UTCS-AMP360-AAA-53-10-DMC-006"/>
+        </extension>
+      </dmIdent>
+      <dmAddressItems>
+        <issueDate year="2025" month="10" day="10"/>
+        <dmTitle>
+          <techName>Center Body</techName>
+          <infoName>Controls and Indicators</infoName>
+        </dmTitle>
+        <responsiblePartnerCompany enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Technical Publications</enterpriseName>
+        </responsiblePartnerCompany>
+        <originator enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Engineering</enterpriseName>
+        </originator>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus>
+      <security securityClassification="01" commercialExportControl="false"/>
+      <qualityAssurance qaResponsiblePartnerCompany="AAA" qaReviewed="false"/>
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <description>
+      <levelledPara>
+        <title>Controls and Indicators</title>
+        
+        <levelledPara>
+          <title>Structural Health Monitoring</title>
+          <para>
+            The Center Body is equipped with strain sensors and acoustic emission monitors 
+            at critical load points. These sensors provide real-time structural health data 
+            to the aircraft health monitoring system.
+          </para>
+        </levelledPara>
+        
+        <levelledPara>
+          <title>Indicator Systems</title>
+          <para>
+            Visual inspection ports are provided at strategic locations to allow direct 
+            observation of critical structural areas. Indicator marks on primary structure 
+            show proper alignment and load distribution.
+          </para>
+        </levelledPara>
+      </levelledPara>
+    </description>
+  </content>
+</dmodule>
