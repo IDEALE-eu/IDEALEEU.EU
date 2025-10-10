@@ -10,6 +10,9 @@
                 infoCode="000A" infoCodeVariant="A" itemLocationCode="A"/>
         <language languageIsoCode="en" countryIsoCode="US"/>
         <issueInfo issueNumber="001" inWork="00"/>
+        <extension>
+          <utcs id="UTCS-AMP360-AAA-00-00-BREX-001"/>
+        </extension>
       </dmIdent>
       <dmAddressItems>
         <issueDate year="2025" month="10" day="10"/>
