@@ -1,0 +1,8 @@
+{
+  "scope": "system",
+  "owner": "48-ANTENNAS",
+  "status": "draft",
+  "utcs": "utcs://AMPEL360/48/Q10",
+  "interfaces": ["23","24","21","51","93","97","06"],
+  "ssot": "EBOM and ICDs for antennas live here"
+}

@@ -1,0 +1,12 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+48-ANTENNAS,06-DIMENSIONS_STATIONS,MOUNTING_DATUMS,mechanical,GD&T per 06,Antenna alignment and reference frames
+48-ANTENNAS,51-STRUCTURES,MOUNTING_INTERFACE,mechanical,ISO 4762 fasteners / ECSS,Load paths and mounting stiffness
+48-ANTENNAS,21-THERMAL_CONTROL,THERMAL_ENVIRONMENT,thermal,Survival temps / operating range,Antenna thermal limits
+48-ANTENNAS,23-COMMUNICATIONS_RF_LINKS,RF_FEED_TX,RF medium,WR-112/90 WG or SMA/K coax,VSWR ≤1.5; TX path
+48-ANTENNAS,23-COMMUNICATIONS_RF_LINKS,RF_FEED_RX,RF medium,WG/coax,VSWR ≤1.5; RX path; NF budget
+48-ANTENNAS,23-COMMUNICATIONS_RF_LINKS,POLARIZATION_CTRL,RF control,OMT/rotary joint interface,Polarization alignment per ICD
+48-ANTENNAS,24-ELECTRICAL_POWER,MECHANISM_POWER,power,28 VDC (if mechanisms present),Deployment/pointing power
+48-ANTENNAS,93-DATABUS_NETWORKS,MECHANISM_CTRL,databus,1553B/SpW/CAN (if mechanisms present),Control/telemetry for mechanisms
+48-ANTENNAS,97-HARNESS_EWIS,RF_COAX_ROUTING,RF cable,RG-402/TFlex; SMA/K,RF harness routing to 23
+48-ANTENNAS,97-HARNESS_EWIS,MECH_HARNESS,signal,Control harness (if applicable),Mechanism control wiring
+48-ANTENNAS,06-DIMENSIONS_STATIONS,LABELING_MARKING,marking,ECSS-Q-ST-70-61C,Antenna ID and polarization marking
