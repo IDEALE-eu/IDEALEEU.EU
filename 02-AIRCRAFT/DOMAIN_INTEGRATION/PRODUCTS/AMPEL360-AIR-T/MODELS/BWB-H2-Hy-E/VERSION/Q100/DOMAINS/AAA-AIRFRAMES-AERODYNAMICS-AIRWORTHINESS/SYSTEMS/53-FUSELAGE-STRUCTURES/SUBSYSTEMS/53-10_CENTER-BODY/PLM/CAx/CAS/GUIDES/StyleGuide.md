@@ -271,14 +271,36 @@ Use for items with no required order:
 
 ### ICN Naming Convention
 
+**Pattern:**
 ```
-ICN-<SystemCode>-<SubSystemCode>-<DrawingType>-<SequentialNumber>-<Variant>.<format>
+ICN-<chapter>-<section>-<subsection>-<seq>-<issue>.<format>
 ```
 
 **Example:**
 ```
-ICN-53-10-ISO-001-A.svg
-ICN-53-10-SEC-002-B.png
+ICN-53-10-10-0001-A.svg
+ICN-53-10-20-0002-A.png
+ICN-53-10-95-0003-A.svg
+```
+
+**Components:**
+- **chapter**: ATA chapter (e.g., 53 = Fuselage Structures)
+- **section**: Subsystem (e.g., 10 = Center Body)
+- **subsection**: Component code (10-89 for specific components, 90-99 for generic)
+- **seq**: Sequential number (0001-9999)
+- **issue**: Revision letter (A-Z)
+- **format**: File extension (svg, png, cgm)
+
+### ICN Storage Location
+
+All ICNs are stored in the **Centralized Illustration Repository (CIR)**:
+```
+CSDB/Illustrations/CIR/53-10/DERIVED/SVG/ICN-53-10-10-0001-A.svg
+```
+
+Data Modules reference ICNs using relative paths:
+```xml
+<graphicRef xlink:href="../../../Illustrations/CIR/53-10/DERIVED/SVG/ICN-53-10-10-0001-A.svg"/>
 ```
 
 ### Figure Titles

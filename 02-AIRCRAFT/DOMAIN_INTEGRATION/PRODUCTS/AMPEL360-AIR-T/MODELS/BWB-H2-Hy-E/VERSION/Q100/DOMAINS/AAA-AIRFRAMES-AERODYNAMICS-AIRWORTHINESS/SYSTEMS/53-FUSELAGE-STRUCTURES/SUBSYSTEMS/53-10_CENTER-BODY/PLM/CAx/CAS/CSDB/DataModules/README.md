@@ -98,7 +98,8 @@ All Data Modules must:
 2. **Pass BREX validation** (120 business rules)
 3. **Comply with ASD-STE-100** Simplified Technical English
 4. **Include UTCS anchors** for traceability
-5. **Pass quality review** before release (inWork=00)
+5. **Reference ICNs correctly** from the Centralized Illustration Repository (CIR)
+6. **Pass quality review** before release (inWork=00)
 
 ### Validation Command
 ```bash
@@ -107,6 +108,9 @@ python ../../VALIDATION/BREX/validate_brex.py <dm-file>
 
 # Validate entire directory
 python ../../VALIDATION/BREX/validate_brex.py DataModules/
+
+# Check ICN links
+python ../../VALIDATION/tools/check_links.py DataModules/
 ```
 
 ## Metadata Requirements
@@ -145,6 +149,82 @@ Before releasing a Data Module (setting inWork=00):
 - **Conventions**: `../../GUIDES/Conventions.md`
 - **Language Guide**: `../../GUIDES/Language.md`
 - **Validation**: `../../VALIDATION/`
+- **CIR (Illustrations)**: `../Illustrations/CIR/` - Centralized Illustration Repository
+
+## Illustrations and ICN References
+
+### Centralized Illustration Repository (CIR)
+
+All illustrations are stored in the **Centralized Illustration Repository (CIR)** at:
+```
+../Illustrations/CIR/53-10/
+```
+
+Instead of maintaining ICN subdirectories within each DataModule folder, all ICNs are centralized. This provides:
+- Single source of truth for all illustrations
+- Reusability across multiple Data Modules
+- Easier version control and maintenance
+- Simplified CI/CD validation
+
+### Referencing ICNs in Data Modules
+
+Use **relative paths** to reference illustrations from the CIR:
+
+```xml
+<!-- From DataModules/Descriptive/10_SYSTEM-DESCRIPTION/DMC-xxx.xml -->
+<figure>
+  <title>Center Body Aft Bulkhead Assembly</title>
+  <graphic infoEntityIdent="ICN-53-10-20-0001-A">
+    <sheet chgType="new" gnbr="00" revdate="2025-10-10"
+           infoEntityIdent="ICN-53-10-20-0001-A">
+      <graphicRef xlink:href="../../../Illustrations/CIR/53-10/DERIVED/SVG/ICN-53-10-20-0001-A.svg"/>
+    </sheet>
+  </graphic>
+</figure>
+```
+
+### Interactive Graphics with Hotspots
+
+For interactive illustrations with clickable hotspot regions:
+
+```xml
+<figure>
+  <title>Center Body Aft Bulkhead (Interactive)</title>
+  <graphic infoEntityIdent="ICN-53-10-20-0001-A">
+    <hotspot>
+      <hotspotRef xlink:href="../../../Illustrations/CIR/53-10/HOTSPOTS/ICN-53-10-20-0001-A.map.xml"/>
+    </hotspot>
+  </graphic>
+</figure>
+```
+
+### Path Calculation
+
+From a DM located at `DataModules/Descriptive/10_SYSTEM-DESCRIPTION/`:
+1. Go up 3 directory levels: `../../../`
+2. Navigate to CIR: `Illustrations/CIR/53-10/`
+3. Select format: `DERIVED/SVG/`
+4. Reference file: `ICN-53-10-20-0001-A.svg`
+
+Result: `../../../Illustrations/CIR/53-10/DERIVED/SVG/ICN-53-10-20-0001-A.svg`
+
+### ICN Naming Pattern
+
+```
+ICN-<chapter>-<section>-<subsection>-<seq>-<issue>.<ext>
+```
+
+Example: `ICN-53-10-20-0001-A.svg`
+- **53**: Fuselage Structures (chapter)
+- **10**: Center Body (subsystem)
+- **20**: Aft Bulkhead (component)
+- **0001**: Sequential number
+- **A**: Revision letter
+- **svg**: File format
+
+For more details, see:
+- CIR Documentation: `../Illustrations/CIR/README.md`
+- Naming Conventions: `../../GUIDES/Conventions.md`
 
 ## S1000D Compliance
 

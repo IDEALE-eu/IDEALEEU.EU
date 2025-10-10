@@ -127,37 +127,39 @@ DMC-AMP360-AAA-53-10-00-00A-040A-D_en-US_001-00.xml
 
 ### Illustration Control Number (ICN) Files
 
-**Pattern**: `ICN-<SystemCode>-<SubSysCode>-<Type>-<SeqNum>-<Var>.<format>`
+**Pattern**: `ICN-<chapter>-<section>-<subsection>-<seq>-<issue>.<ext>`
 
 **Examples**:
 ```
-ICN-53-10-ISO-001-A.svg
-ICN-53-10-EXPL-002-A.png
-ICN-53-10-SEC-003-B.svg
-ICN-24-20-SCHM-010-A.svg
+ICN-53-10-10-0001-A.svg
+ICN-53-10-20-0001-A.svg
+ICN-53-10-95-0003-A.png
+ICN-24-20-10-0010-A.svg
 ```
 
-#### ICN Type Codes
+#### ICN Components
 
-| Code | Type | Description |
-|------|------|-------------|
-| ISO | Isometric | 3D isometric view |
-| EXPL | Exploded | Exploded assembly view |
-| SEC | Section | Cross-section or cutaway |
-| SCHM | Schematic | Electrical/hydraulic schematic |
-| WIRE | Wiring | Wiring diagram |
-| DET | Detail | Detail view of component |
-| ASSY | Assembly | Assembly view |
-| PHOTO | Photograph | Photo or realistic rendering |
+- **chapter**: ATA chapter number (e.g., 53 = Fuselage Structures)
+- **section**: Subsystem code (e.g., 10 = Center Body)
+- **subsection**: Component code within subsystem (10, 20, 30, etc.)
+  - `00-09`: General/overview
+  - `10-89`: Specific components
+  - `90-99`: Special/generic illustrations
+- **seq**: Sequential number (0001-9999)
+- **issue**: Revision letter (A-Z)
+- **ext**: File extension (svg, png, cgm, master, txt, map.xml)
 
 #### ICN Formats
 - **SVG**: Vector graphics (preferred)
 - **PNG**: Raster graphics (min 300 DPI)
 - **CGM**: Computer Graphics Metafile (legacy)
+- **master**: Master source files (AI, Sketch, etc.)
+- **txt**: Alternative text for accessibility
+- **map.xml**: Hotspot mapping for interactive graphics
 
-#### ICN Variant
-- **A**: Primary variant
-- **B-Z**: Alternative variants (different views, configurations)
+#### ICN Revision (Issue Letter)
+- **A**: Initial release
+- **B-Z**: Subsequent revisions (incremental changes)
 
 ### Publication Module (PM) Files
 
@@ -202,16 +204,31 @@ DMC-AMP360-AAA-00-00-00-00A-000A-A_en-US_001-00.xml
 ### CSDB Structure
 ```
 CSDB/
-├── DMs/
+├── DataModules/
 │   ├── Descriptive/         # Info codes 000-099
 │   ├── Procedural/          # Info codes 100-799
 │   ├── FaultIsolation/      # Info codes 100-199 (troubleshooting)
 │   ├── IPD/                 # Info codes 800-899
 │   └── Common/              # Reusable/shared DMs
-├── ICN/
-│   ├── SVG/                 # Organized by system-subsystem
-│   ├── PNG/
-│   └── CGM/
+├── Illustrations/           # Centralized Illustration Repository (CIR)
+│   └── CIR/
+│       ├── _COMMON/         # Shared/reusable illustrations
+│       │   ├── MASTER/
+│       │   ├── DERIVED/
+│       │   │   ├── SVG/
+│       │   │   ├── CGM/
+│       │   │   └── PNG/
+│       │   └── ALT_TEXT/
+│       └── 53-10/           # Subsystem-specific illustrations
+│           ├── MASTER/
+│           ├── DERIVED/
+│           │   ├── SVG/
+│           │   ├── CGM/
+│           │   └── PNG/
+│           ├── HOTSPOTS/
+│           ├── ALT_TEXT/
+│           ├── cir-index.csv
+│           └── cir-manifest.json
 ├── DMRL/                    # One DMRL per subsystem
 ├── BREX/                    # Program-level BREX DMs
 ├── PM/                      # Publication Modules
@@ -220,18 +237,47 @@ CSDB/
 └── Reuse/                   # Reusable content fragments
 ```
 
-### ICN Subdirectories
-Organize by system-subsystem:
+### CIR (Centralized Illustration Repository)
+
+All Illustration Control Numbers (ICNs) are stored in a centralized location under `CSDB/Illustrations/CIR/`. This provides:
+- **Single source of truth** for all illustrations
+- **Reusability** across multiple Data Modules
+- **Version control** with clear revision tracking
+- **Easier validation** of ICN references
+
+**Directory Structure**:
 ```
-ICN/SVG/
-├── 53-10/                   # Center Body
-│   ├── ICN-53-10-ISO-001-A.svg
-│   ├── ICN-53-10-EXPL-002-A.svg
-│   └── ...
-├── 53-20/                   # Nose Section
-├── 24-20/                   # Fuel Cell Power
-└── ...
+CIR/
+├── _COMMON/                 # Shared illustrations used across subsystems
+└── 53-10/                   # Subsystem-specific (e.g., Center Body)
+    ├── MASTER/              # Master source files
+    ├── DERIVED/             # Published formats
+    │   ├── SVG/             # Vector graphics (preferred)
+    │   ├── CGM/             # Computer Graphics Metafile (legacy)
+    │   └── PNG/             # Raster graphics (min 300 DPI)
+    ├── HOTSPOTS/            # Interactive hotspot maps
+    ├── ALT_TEXT/            # Accessibility descriptions
+    ├── cir-index.csv        # ICN inventory and metadata
+    └── cir-manifest.json    # DMC to ICN mapping
 ```
+
+### Linking to ICNs from Data Modules
+
+Data Modules reference ICNs using **relative paths** from the DataModule location:
+
+```xml
+<!-- From DataModules/Descriptive/10_SYSTEM-DESCRIPTION/ -->
+<graphicRef xlink:href="../../../Illustrations/CIR/53-10/DERIVED/SVG/ICN-53-10-20-0001-A.svg"/>
+
+<!-- Hotspot reference -->
+<hotspotRef xlink:href="../../../Illustrations/CIR/53-10/HOTSPOTS/ICN-53-10-20-0001-A.map.xml"/>
+```
+
+**Path Calculation**:
+- From `DataModules/Descriptive/10_SYSTEM-DESCRIPTION/DMC-xxx.xml`
+- Go up 3 levels: `../../../`
+- Navigate to: `Illustrations/CIR/53-10/DERIVED/SVG/`
+- Reference: `ICN-53-10-20-0001-A.svg`
 
 ## XML Coding Standards
 
@@ -431,13 +477,19 @@ release/issue-002
 ### Validation Scripts
 ```bash
 # Validate DMC naming
-python tools/validate_dmc_naming.py CSDB/DMs/
+python tools/validate_dmc_naming.py CSDB/DataModules/
 
 # Validate BREX compliance
-python VALIDATION/BREX/validate_brex.py CSDB/DMs/
+python VALIDATION/BREX/validate_brex.py CSDB/DataModules/
 
 # Check UTCS anchors
-python tools/validate_utcs.py CSDB/DMs/
+python tools/validate_utcs.py CSDB/DataModules/
+
+# Validate ICN references and links
+python tools/check_links.py CSDB/DataModules/
+
+# Validate CIR manifest consistency
+python tools/validate_cir_manifest.py CSDB/Illustrations/CIR/53-10/cir-manifest.json
 ```
 
 ### Automatic Naming
@@ -445,15 +497,21 @@ Use templates to generate properly named files:
 ```bash
 # Generate new DM from template
 python tools/new_dm.py --system 53 --subsystem 10 --info 310 --type P
+
+# Generate new ICN entry
+python tools/new_icn.py --system 53 --subsystem 10 --component 20 --seq 0001 --format svg
 ```
 
 ### Batch Operations
 ```bash
 # Increment issue numbers for release
-python tools/increment_issue.py CSDB/DMs/Procedural/
+python tools/increment_issue.py CSDB/DataModules/Procedural/
 
 # Update issue dates
-python tools/update_dates.py CSDB/DMs/
+python tools/update_dates.py CSDB/DataModules/
+
+# Update CIR index from manifest
+python tools/update_cir_index.py CSDB/Illustrations/CIR/53-10/
 ```
 
 ## Compliance Summary
@@ -475,6 +533,70 @@ All naming conventions are enforced by:
 2. BREX rules
 3. CI/CD pipeline checks
 4. Pre-commit hooks
+
+## CIR Manifests
+
+### cir-index.csv
+
+The CIR index provides an inventory of all ICNs with metadata for tracking and management.
+
+**Format**:
+```csv
+ICN,Title,Format,Rev,Owner,Effectivity
+ICN-53-10-10-0001-A,Center Body Forward Bulkhead Installation,SVG,A,AMPEL360,ALL
+ICN-53-10-20-0001-A,Center Body Aft Bulkhead Assembly,SVG,A,AMPEL360,ALL
+```
+
+**Fields**:
+- **ICN**: Illustration Control Number (unique identifier)
+- **Title**: Human-readable description of the illustration
+- **Format**: Primary published format (SVG, PNG, CGM)
+- **Rev**: Current revision letter (A-Z)
+- **Owner**: Responsible organization or team
+- **Effectivity**: Applicability (ALL, or specific aircraft/configuration)
+
+**Purpose**:
+- Quick reference for available illustrations
+- Tracking ownership and responsibility
+- Managing effectivity and applicability
+- Supporting configuration management
+
+### cir-manifest.json
+
+The CIR manifest maps Data Module Codes (DMCs) to their referenced ICNs, enabling automated validation.
+
+**Format**:
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CIR Manifest for 53-10 Center Body",
+  "dmc_to_icn_mapping": {
+    "DMC-AMP360-AAA-53-10-10-00A-040A-D": [
+      "ICN-53-10-10-0001-A"
+    ],
+    "DMC-AMP360-AAA-53-10-20-00A-040A-D": [
+      "ICN-53-10-20-0001-A"
+    ]
+  },
+  "metadata": {
+    "subsystem": "53-10",
+    "last_updated": "2025-10-10"
+  }
+}
+```
+
+**Purpose**:
+- CI/CD validation: Ensure all referenced ICNs exist
+- Link integrity: Detect broken or missing ICN references
+- Orphan detection: Identify unused ICNs
+- Version consistency: Track ICN usage across DMCs
+- Impact analysis: Understand which DMCs use specific ICNs
+
+**Validation Use Cases**:
+1. **Pre-commit checks**: Verify ICN references before committing DMCs
+2. **CI/CD pipeline**: Automated link validation on every PR
+3. **Release gates**: Ensure all ICNs are present before publication
+4. **Refactoring**: Safely update ICN names or locations
 
 ## Support and Resources
 
