@@ -1,0 +1,17 @@
+hole_id,x_fs,y_bl,z_wl,diameter,type,pattern_id,description
+H-500-001,500,0,120,10.0,THROUGH,FP-01,Center top attachment
+H-500-002,500,60,120,10.0,THROUGH,FP-01,Upper right attachment
+H-500-003,500,-60,120,10.0,THROUGH,FP-01,Upper left attachment
+H-500-004,500,120,60,8.0,THROUGH,FP-02,Right side upper mid
+H-500-005,500,-120,60,8.0,THROUGH,FP-02,Left side upper mid
+H-500-006,500,120,0,8.0,THROUGH,FP-02,Right side centerline
+H-500-007,500,-120,0,8.0,THROUGH,FP-02,Left side centerline
+H-500-008,500,120,-60,8.0,THROUGH,FP-02,Right side lower mid
+H-500-009,500,-120,-60,8.0,THROUGH,FP-02,Left side lower mid
+H-500-010,500,60,-120,10.0,THROUGH,FP-01,Lower right attachment
+H-500-011,500,-60,-120,10.0,THROUGH,FP-01,Lower left attachment
+H-500-012,500,0,-120,10.0,THROUGH,FP-01,Center bottom attachment
+H-500-S01,500,30,30,6.35,THROUGH,FP-04,Service hole reinforcement Q1
+H-500-S02,500,-30,30,6.35,THROUGH,FP-04,Service hole reinforcement Q2
+H-500-S03,500,-30,-30,6.35,THROUGH,FP-04,Service hole reinforcement Q3
+H-500-S04,500,30,-30,6.35,THROUGH,FP-04,Service hole reinforcement Q4

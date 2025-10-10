@@ -1,0 +1,11 @@
+! Standard hole definitions for bulkhead modules
+! Format: Hole_ID, Diameter, Tolerance, Type
+!
+HOLE_ID     DIAMETER    TOLERANCE    TYPE
+H-6.35      6.35        +0.05/-0.00  THROUGH
+H-8.00      8.00        +0.05/-0.00  THROUGH
+H-10.00     10.00       +0.08/-0.00  THROUGH
+H-12.00     12.00       +0.08/-0.00  THROUGH
+H-16.00     16.00       +0.10/-0.00  THROUGH
+CB-10-8     10.00       +0.05/-0.00  COUNTERBORE-D16-H8
+CB-12-10    12.00       +0.08/-0.00  COUNTERBORE-D20-H10

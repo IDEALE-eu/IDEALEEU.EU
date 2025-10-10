@@ -1,0 +1,11 @@
+hole_id,x_fs,y_bl,z_wl,diameter,type,pattern_id,description
+H-350-001,350,0,100,10.0,THROUGH,FP-01,Center top attachment
+H-350-002,350,50,100,10.0,THROUGH,FP-01,Upper right attachment
+H-350-003,350,-50,100,10.0,THROUGH,FP-01,Upper left attachment
+H-350-004,350,100,50,8.0,THROUGH,FP-02,Right side mid
+H-350-005,350,-100,50,8.0,THROUGH,FP-02,Left side mid
+H-350-006,350,100,-50,8.0,THROUGH,FP-02,Right side lower
+H-350-007,350,-100,-50,8.0,THROUGH,FP-02,Left side lower
+H-350-008,350,50,-100,10.0,THROUGH,FP-01,Lower right attachment
+H-350-009,350,-50,-100,10.0,THROUGH,FP-01,Lower left attachment
+H-350-010,350,0,-100,10.0,THROUGH,FP-01,Center bottom attachment

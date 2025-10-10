@@ -1,0 +1,21 @@
+! Drawing template for bulkhead modules
+! File: drawing_template.drw
+!
+! This is a placeholder template file for CAD drawing structure
+! To be populated with CAD system-specific template content
+!
+! Usage:
+! 1. Copy this file to new bulkhead module directory
+! 2. Rename following naming convention: 53-10-BH-STA<fs>_MASTER_ASM.drw
+! 3. Add standard views (front, top, side, isometric)
+! 4. Add detail views of critical features
+! 5. Add BOM table
+! 6. Export to PDF
+!
+! Drawing contains:
+! - Title block with metadata
+! - Multiple views of assembly
+! - Section views as needed
+! - Detail views of interfaces
+! - Bill of Materials (BOM)
+! - Notes and specifications

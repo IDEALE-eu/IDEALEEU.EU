@@ -1,0 +1,18 @@
+! Panel component for BH-STA500 Aft Pressure Bulkhead
+! File: 53-10-BH-STA500_PANEL.prt
+!
+! Component Description:
+! - Main bulkhead panel/web with service hole
+! - Material: AL-2024-T3 sheet, 3.5mm thickness
+! - References skeleton for datum planes and curves
+!
+! Features:
+! - Primary bulkhead surface
+! - Perimeter trim
+! - Service hole cutout (reinforced)
+! - Lightening holes (if applicable)
+!
+! Manufacturing:
+! - Formed sheet metal or machined plate
+!
+! This is a placeholder file for CAD system-specific content

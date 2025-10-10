@@ -1,0 +1,5 @@
+fastener_type,pattern_id,spacing_mm,edge_distance_mm,description
+NAS1149,FP-01,50,25,Standard rivet pattern for web-to-frame
+NAS1149,FP-02,75,30,Rivet pattern for stringer-to-skin
+MS20470,FP-03,100,40,Standard bolt pattern for bulkhead attachment
+NAS6204,FP-04,60,28,Close spacing pattern for high-load areas

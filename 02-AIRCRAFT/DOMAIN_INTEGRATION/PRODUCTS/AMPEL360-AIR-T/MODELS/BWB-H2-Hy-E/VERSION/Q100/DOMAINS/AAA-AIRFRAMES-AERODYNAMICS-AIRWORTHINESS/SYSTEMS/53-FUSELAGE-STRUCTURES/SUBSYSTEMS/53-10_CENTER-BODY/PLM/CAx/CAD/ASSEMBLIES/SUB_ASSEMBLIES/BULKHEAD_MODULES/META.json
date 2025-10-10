@@ -1,0 +1,12 @@
+{
+  "scope": "cad-assemblies",
+  "owner": "AAA-53-10",
+  "baseline": "Q100",
+  "status": "draft",
+  "model_units": "mm",
+  "datums": ["FS", "BL", "WL"],
+  "links": {
+    "dimensions_stations": "../../../../../../../../../SYSTEMS/06-DIMENSIONS-STATIONS/",
+    "materials_allowables": "../../../../../../../../../SYSTEMS/51-STRUCTURES-GENERAL/SUBSYSTEMS/51-10_MATERIALS_ALLOWABLES/"
+  }
+}

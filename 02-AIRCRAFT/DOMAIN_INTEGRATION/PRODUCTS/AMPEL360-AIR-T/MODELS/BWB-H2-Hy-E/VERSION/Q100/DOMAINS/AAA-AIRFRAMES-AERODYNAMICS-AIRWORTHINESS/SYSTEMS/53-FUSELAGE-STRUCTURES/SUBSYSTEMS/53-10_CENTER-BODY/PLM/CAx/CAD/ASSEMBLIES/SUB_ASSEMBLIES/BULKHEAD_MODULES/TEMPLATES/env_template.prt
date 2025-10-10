@@ -1,0 +1,19 @@
+! Environment template for bulkhead modules
+! File: env_template.prt
+!
+! This is a placeholder template file for CAD environment/envelope structure
+! To be populated with CAD system-specific template content
+!
+! Usage:
+! 1. Copy this file to new bulkhead module directory
+! 2. Rename following naming convention: 53-10-BH-STA<fs>_ENV.prt
+! 3. Define envelope surfaces and volumes
+! 4. Add clearance zones
+! 5. Add interface boundaries
+!
+! Environment contains:
+! - Envelope surfaces
+! - Keep-out zones
+! - Clearance volumes
+! - Interface boundaries
+! - No manufacturing features
