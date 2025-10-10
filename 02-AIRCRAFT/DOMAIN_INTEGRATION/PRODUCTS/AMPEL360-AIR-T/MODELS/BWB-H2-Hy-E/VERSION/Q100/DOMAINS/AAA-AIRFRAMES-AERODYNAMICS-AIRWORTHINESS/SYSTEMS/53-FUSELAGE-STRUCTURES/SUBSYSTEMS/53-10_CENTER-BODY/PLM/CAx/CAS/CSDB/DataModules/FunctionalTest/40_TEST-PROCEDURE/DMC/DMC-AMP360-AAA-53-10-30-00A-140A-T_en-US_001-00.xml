@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <dmCode modelIdentCode="AMP360" systemDiffCode="AAA"
+                systemCode="53" subSystemCode="10" subSubSystemCode="30"
+                assyCode="00A" disassyCode="00" disassyCodeVariant="0"
+                infoCode="140A" infoCodeVariant="A" itemLocationCode="A"/>
+        <language languageIsoCode="en" countryIsoCode="US"/>
+        <issueInfo issueNumber="001" inWork="00"/>
+        <extension>
+          <utcs id="UTCS-AMP360-AAA-53-10-DMC-003"/>
+        </extension>
+      </dmIdent>
+      <dmAddressItems>
+        <issueDate year="2025" month="10" day="10"/>
+        <responsiblePartnerCompany enterpriseCode="AAA"/>
+        <originator enterpriseCode="AAA"/>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus>
+      <security securityClassification="01" commercialExportControl="false"/>
+      <qualityAssurance qaResponsiblePartnerCompany="AAA" qaReviewed="true"/>
+      <reasonForUpdate>Initial release of Skin Panels performance test procedure</reasonForUpdate>
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <description>
+      <levelledPara>
+        <title>Center Body Skin Panels Performance Test Procedure</title>
+        <para>This data module describes the performance test procedure for the Center Body Skin Panels (53-10-30).</para>
+        
+        <levelledPara>
+          <title>Test Objectives</title>
+          <para>To verify that the Center Body Skin Panels meet all structural performance requirements, including stiffness, strength, and damage tolerance under expected operational conditions.</para>
+        </levelledPara>
+
+        <levelledPara>
+          <title>Prerequisites</title>
+          <para>Before performing this test, ensure the following conditions are met:</para>
+          <para>
+            <randomList>
+              <listItem>
+                <para>Panels are properly installed per installation procedures</para>
+              </listItem>
+              <listItem>
+                <para>All fasteners are correctly torqued</para>
+              </listItem>
+              <listItem>
+                <para>Test equipment is calibrated and operational</para>
+              </listItem>
+              <listItem>
+                <para>Safety precautions are in place</para>
+              </listItem>
+            </randomList>
+          </para>
+        </levelledPara>
+
+        <levelledPara>
+          <title>Safety Precautions</title>
+          <warning>
+            <warningAndCautionPara>Ensure all personnel are clear of the test area before applying pressure or loads.</warningAndCautionPara>
+          </warning>
+          <caution>
+            <warningAndCautionPara>Monitor for any signs of panel buckling during the test.</warningAndCautionPara>
+          </caution>
+        </levelledPara>
+
+        <levelledPara>
+          <title>Required Test Equipment</title>
+          <para>The following test equipment is required:</para>
+          <para>
+            <sequentialList>
+              <listItem>
+                <para>Pressure test system with capacity up to 2.5 bar</para>
+              </listItem>
+              <listItem>
+                <para>Strain gauges and data acquisition system</para>
+              </listItem>
+              <listItem>
+                <para>Out-of-plane displacement measurement system (laser or photogrammetry)</para>
+              </listItem>
+              <listItem>
+                <para>Pressure sensors and monitoring equipment</para>
+              </listItem>
+              <listItem>
+                <para>Acoustic emission monitoring system</para>
+              </listItem>
+            </sequentialList>
+          </para>
+        </levelledPara>
+
+        <levelledPara>
+          <title>Test Procedure</title>
+          <para>
+            <sequentialList>
+              <listItem>
+                <para>Verify that all prerequisites have been met.</para>
+              </listItem>
+              <listItem>
+                <para>Install strain gauges at designated measurement points on the skin panels.</para>
+              </listItem>
+              <listItem>
+                <para>Set up displacement measurement system and establish baseline readings.</para>
+              </listItem>
+              <listItem>
+                <para>Seal the test section and verify leak tightness.</para>
+              </listItem>
+              <listItem>
+                <para>Pressurize the cabin section in increments of 0.25 bar up to 2.0 bar (design pressure).</para>
+              </listItem>
+              <listItem>
+                <para>Record strain, displacement, and acoustic emission data at each pressure increment.</para>
+              </listItem>
+              <listItem>
+                <para>Hold at maximum test pressure for 10 minutes.</para>
+              </listItem>
+              <listItem>
+                <para>Depressurize in 0.25 bar steps, recording data at each decrement.</para>
+              </listItem>
+              <listItem>
+                <para>Perform visual inspection for any signs of damage, delamination, or permanent deformation.</para>
+              </listItem>
+            </sequentialList>
+          </para>
+        </levelledPara>
+
+        <levelledPara>
+          <title>Acceptance Criteria</title>
+          <para>The Center Body Skin Panels pass the performance test if:</para>
+          <para>
+            <randomList>
+              <listItem>
+                <para>No visible cracks, delamination, fastener yielding, or permanent deformation observed</para>
+              </listItem>
+              <listItem>
+                <para>Maximum recorded strain is within design allowables</para>
+              </listItem>
+              <listItem>
+                <para>Maximum out-of-plane displacement is less than 5 mm at design pressure</para>
+              </listItem>
+              <listItem>
+                <para>Permanent set after depressurization is less than 0.1 mm</para>
+              </listItem>
+              <listItem>
+                <para>No acoustic emission events indicating structural damage</para>
+              </listItem>
+            </randomList>
+          </para>
+        </levelledPara>
+
+        <levelledPara>
+          <title>Data Recording</title>
+          <para>Record all test data in the approved test report form. Include:</para>
+          <para>
+            <randomList>
+              <listItem>
+                <para>Date, time, and test personnel</para>
+              </listItem>
+              <listItem>
+                <para>Panel serial numbers and configuration</para>
+              </listItem>
+              <listItem>
+                <para>Test equipment identification and calibration dates</para>
+              </listItem>
+              <listItem>
+                <para>All pressure, strain, displacement, and acoustic emission measurements</para>
+              </listItem>
+              <listItem>
+                <para>Pass/fail determination and signatures</para>
+              </listItem>
+            </randomList>
+          </para>
+        </levelledPara>
+      </levelledPara>
+    </description>
+  </content>
+</dmodule>
