@@ -1,0 +1,12 @@
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+25,06,mechanical,structural,mounting_spec,0,,Dimensional constraints and mounting
+25,15,operational,coordination,safety_protocol,0,,Environmental safety coordination
+25,21,thermal,conductive,heat_transfer,0,,Thermal management interfaces
+25,24,power,electrical,28V_bus,500,,Primary power supply
+25,26,operational,coordination,fire_suppression_protocol,0,,Fire suppression coordination
+25,33,data,digital,CCSDS,0,1Mbps,Environmental telemetry
+25,40,data,digital,MIL-STD-1553,0,1Mbps,Avionics integration
+25,42,data,digital,CAN,0,500kbps,Software control interface
+25,51,mechanical,structural,mounting_interface,0,,Structural support
+25,93,data,digital,SpaceWire,0,10Mbps,Data bus connectivity
+25,97,electrical,wiring,harness_spec,0,,Electrical distribution
