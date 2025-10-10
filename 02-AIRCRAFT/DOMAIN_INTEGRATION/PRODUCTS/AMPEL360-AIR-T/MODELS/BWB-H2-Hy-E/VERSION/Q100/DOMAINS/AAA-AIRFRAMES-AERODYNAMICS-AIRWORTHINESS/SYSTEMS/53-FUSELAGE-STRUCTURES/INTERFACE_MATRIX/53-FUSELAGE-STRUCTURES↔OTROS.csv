@@ -1,2 +1,10 @@
-from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
-XX,YY,ejemplo_bus,ARINC/Ethernet/fluido,ref-ICD,observaciones
+from_system,to_system,interface_type,icd_ref,signals/measures,thermal,mechanical,electrical,data_bus,harness,sw_api,safety_class,owner,status,notes
+53-FUSELAGE-STRUCTURES,06-DIMENSIONS-STATIONS,reference_geometry,ICD-53-06-REF-01,"Stations, waterlines, buttock lines; datum CS",N/A,N/A,N/A,N/A,N/A,N/A,B,Structures Team,Released,Geometry control and verification
+53-FUSELAGE-STRUCTURES,52-DOORS,cutout_boundary,ICD-53-52-DOOR-01,"Frame loads, seal gaps, hinge loci, keep-out zones",YES,YES,N/A,N/A,YES,N/A,A,Structures Team,Released,Pressurization-critical openings
+53-FUSELAGE-STRUCTURES,54-NACELLES-PYLONS,mount_interface,ICD-53-54-PYLON-01,"Hardpoint coords, shear/tension limits, torque",YES,YES,N/A,N/A,N/A,N/A,A,Structures Team,Draft,BWB center-body pylon attach
+53-FUSELAGE-STRUCTURES,55-STABILIZERS,empennage_join,ICD-53-55-EMP-01,"Tailcone frames, fitting geometry, allowable loads",N/A,YES,N/A,N/A,YES,N/A,B,Structures Team,Draft,Empennage attach and load paths
+53-FUSELAGE-STRUCTURES,56-WINDOWS,cutout_boundary,ICD-53-56-WIN-01,"Cutout dimensions, pressure ring, fastener pattern",YES,YES,N/A,N/A,N/A,N/A,A,Structures Team,Released,Pressure vessel integrity
+53-FUSELAGE-STRUCTURES,57-WINGS,wing-to-body_join,ICD-53-57-WTB-01,"Spar/skin joint, shear/moment envelopes, deflections",N/A,YES,N/A,N/A,YES,N/A,A,Structures Team,Draft,Primary load transfer
+53-FUSELAGE-STRUCTURES,21-THERMAL_CONTROL,thermal_management_interface,ICD-53-21-THERM-01,"Insulation zones, allowable heat flux, condensation limits",YES,N/A,N/A,N/A,N/A,N/A,B,Structures Team,Draft,Boundaries near cryogenic/H2 systems
+53-FUSELAGE-STRUCTURES,92-ELECTRICAL_WIRING,EWIS_pass-through,ICD-53-92-EWIS-01,"Penetrations, clamp zones, bonding/ESD paths",N/A,YES,YES,N/A,YES,N/A,B,Structures Team,Released,Routing through frames and skins
+
