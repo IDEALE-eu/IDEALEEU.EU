@@ -1,0 +1,9 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+97,06,Routing paths,Physical routing,Mechanical,Cable routing and connector locations
+97,15,Cable protection,Physical,Environmental,Environmental protection for cables
+97,24,Power distribution,Electrical power,Various DC voltages,Primary and secondary power distribution
+97,31,Data transmission,Data signals,Various protocols,Signal wiring and data buses
+97,39,Control interconnects,Electrical connections,Mixed signals,Power control wiring
+97,42,Thermal interfaces,Thermal contact,Physical,Cable thermal management
+97,51,Mounting provisions,Structural attachment,Mechanical,Cable clamps and routing supports
+97,57,Solar array wiring,Electrical power,High voltage DC,Solar panel interconnections
