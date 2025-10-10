@@ -1,37 +1,39 @@
 # 07-MGSE — Mechanical Ground Support Equipment
 
-**Purpose:**  
-Mechanical Ground Support Equipment (MGSE) enables safe handling, integration, transportation, and testing of the EXAMPLE-SAT-1 spacecraft during assembly, integration, and test (AIT) phases. This includes cradles, lift fixtures, alignment tools, and cleanroom handling aids.
+**Optional system. Include only if required by mission.**  
+**Flight status:** Non-flight. Ground use only.
 
-**Integration Status:**  
-- **Non-flight system** — used exclusively in ground operations  
-- **Not part of flight configuration** — excluded from mass/power/thermal budgets  
-- **Interface-critical** — defines mechanical and alignment boundaries for flight hardware
+## Purpose
+Enable safe handling, integration, transport, and test of EXAMPLE-SAT-1 during AIT. Includes cradles, lift fixtures, alignment tools, and cleanroom handling aids.
 
-**Key Interfaces:**  
-- **51-PRIMARY_STRUCTURE**: Load paths, interface plates, alignment pins  
-- **50-MECHANISMS_DEPLOYABLES**: Stowage and deployment verification fixtures  
-- **16-EGSE**: Coordination with electrical ground support during integrated tests  
-- **07-MGSE ↔ 00-PROGRAM/CONFIG_MGMT/09-INTERFACES/**: ICDs managed centrally (e.g., `ICD-MGSE-51-01`)
+## Integration status
+- Non-flight system used only in ground operations.
+- Excluded from flight mass, power, and thermal budgets.
+- Interface-critical for mechanical and alignment boundaries.
 
-**Design & Compliance:**  
-- Complies with ECSS-E-HB-32-23A (MGSE design handbook)  
-- Materials: non-magnetic, low-outgassing (per ECSS-Q-ST-70-02C)  
-- Cleanliness: ISO Class 8 (or better) compatible  
-- Traceability: All MGSE items tracked in `00-PROGRAM/CONFIG_MGMT/05-CONFIGURATION/`
+## Key interfaces
+- **51-PRIMARY_STRUCTURE:** Load paths, interface plates, alignment pins.
+- **50-MECHANISMS_DEPLOYABLES:** Stowage and deployment verification fixtures.
+- **16-EGSE:** Coordination during integrated tests.
+- **ICDs:** Managed centrally at `00-PROGRAM/CONFIG_MGMT/09-INTERFACES/` (e.g., `ICD-MGSE-51-01`).
 
-**Artifacts:**  
-MGSE design and verification artifacts are maintained in engineering workspaces.  
-**No PLM/CAx content resides in this folder** — per IDEALE rule: *PLM/CAx only in flight SUBSYSTEMS*.
+> Interface matrix for this system: `INTERFACE_MATRIX/07↔51_50_16.csv`.
 
-**Verification:**  
-- Structural FEM (static, dynamic)  
-- Modal survey during AIT  
-- Alignment repeatability checks (< 50 µm)  
-- Witnessed dry-runs with flight hardware
+## Design and compliance
+- ECSS-E-HB-32-23A (MGSE design handbook).
+- Materials: non-magnetic, low-outgassing (ECSS-Q-ST-70-02C).
+- Cleanliness: ISO Class 8 or better.
+- Traceability: All MGSE items tracked in `00-PROGRAM/CONFIG_MGMT/05-CONFIGURATION/`.
 
-**Ownership:**  
-- AIT Lead Engineering  
-- Configuration managed via ECR/ECO in `00-PROGRAM/CONFIG_MGMT/06-CHANGES/`
-```
+## Artifacts rule
+No PLM/CAx content in this folder. Per IDEALE rule, PLM/CAx resides only in **flight** `SUBSYSTEMS/`.
 
+## Verification
+- Structural FEM (static, dynamic).
+- Modal survey during AIT.
+- Alignment repeatability checks (< 50 µm).
+- Witnessed dry-runs with flight hardware.
+
+## Ownership
+- AIT Lead Engineering.
+- Changes via ECR/ECO in `00-PROGRAM/CONFIG_MGMT/06-CHANGES/`.
