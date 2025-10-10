@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Data Module: Materials and Coatings - Center Body
+  DMC: DMC-AMP360-AAA-53-10-90-00A-048A-D_en-US_001-00
+  InfoCode: 048A (Materials Description)
+  Status: Released
+-->
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <dmCode modelIdentCode="AMP360" 
+                systemDiffCode="AAA"
+                systemCode="53" 
+                subSystemCode="10" 
+                subSubSystemCode="90"
+                assyCode="00A" 
+                disassyCode="00" 
+                disassyCodeVariant="0"
+                infoCode="048" 
+                infoCodeVariant="A" 
+                itemLocationCode="D"/>
+        <language languageIsoCode="en" countryIsoCode="US"/>
+        <issueInfo issueNumber="001" inWork="00"/>
+        <extension>
+          <utcs id="UTCS-AMP360-AAA-53-10-DMC-009"/>
+        </extension>
+      </dmIdent>
+      <dmAddressItems>
+        <issueDate year="2025" month="10" day="10"/>
+        <dmTitle>
+          <techName>Center Body</techName>
+          <infoName>Materials and Coatings</infoName>
+        </dmTitle>
+        <responsiblePartnerCompany enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Technical Publications</enterpriseName>
+        </responsiblePartnerCompany>
+        <originator enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Engineering</enterpriseName>
+        </originator>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus>
+      <security securityClassification="01" commercialExportControl="false"/>
+      <qualityAssurance qaResponsiblePartnerCompany="AAA" qaReviewed="false"/>
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <description>
+      <levelledPara>
+        <title>Materials and Coatings</title>
+        
+        <levelledPara>
+          <title>Primary Materials</title>
+          <para>
+            Skin panels: Carbon fiber reinforced polymer (CFRP) prepreg, autoclave cured. 
+            Frames and stringers: CFRP with aluminum alloy reinforcements at high-load 
+            points. Bulkheads: Aluminum alloy 7075-T6 with CFRP facings.
+          </para>
+        </levelledPara>
+        
+        <levelledPara>
+          <title>Surface Coatings</title>
+          <para>
+            External surfaces: Two-part polyurethane topcoat with corrosion-inhibiting 
+            primer. Internal surfaces: Epoxy primer per specification MIL-PRF-23377. 
+            Lightning strike protection: Expanded copper foil mesh embedded in surface layers.
+          </para>
+        </levelledPara>
+      </levelledPara>
+    </description>
+  </content>
+</dmodule>

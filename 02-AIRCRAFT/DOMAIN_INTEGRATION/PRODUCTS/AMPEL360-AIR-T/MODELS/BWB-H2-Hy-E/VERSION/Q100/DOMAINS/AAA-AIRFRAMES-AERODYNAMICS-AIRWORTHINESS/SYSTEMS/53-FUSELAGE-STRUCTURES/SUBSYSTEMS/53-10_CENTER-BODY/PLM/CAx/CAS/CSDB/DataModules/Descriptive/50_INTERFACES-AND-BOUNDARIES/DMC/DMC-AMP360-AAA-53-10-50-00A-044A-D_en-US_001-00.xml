@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Data Module: Interfaces and Boundaries - Center Body
+  DMC: DMC-AMP360-AAA-53-10-50-00A-044A-D_en-US_001-00
+  InfoCode: 044A (Interface Description)
+  Status: Released
+-->
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <dmCode modelIdentCode="AMP360" 
+                systemDiffCode="AAA"
+                systemCode="53" 
+                subSystemCode="10" 
+                subSubSystemCode="50"
+                assyCode="00A" 
+                disassyCode="00" 
+                disassyCodeVariant="0"
+                infoCode="044" 
+                infoCodeVariant="A" 
+                itemLocationCode="D"/>
+        <language languageIsoCode="en" countryIsoCode="US"/>
+        <issueInfo issueNumber="001" inWork="00"/>
+        <extension>
+          <utcs id="UTCS-AMP360-AAA-53-10-DMC-005"/>
+        </extension>
+      </dmIdent>
+      <dmAddressItems>
+        <issueDate year="2025" month="10" day="10"/>
+        <dmTitle>
+          <techName>Center Body</techName>
+          <infoName>Interfaces and Boundaries</infoName>
+        </dmTitle>
+        <responsiblePartnerCompany enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Technical Publications</enterpriseName>
+        </responsiblePartnerCompany>
+        <originator enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Engineering</enterpriseName>
+        </originator>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus>
+      <security securityClassification="01" commercialExportControl="false"/>
+      <qualityAssurance qaResponsiblePartnerCompany="AAA" qaReviewed="false"/>
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <description>
+      <levelledPara>
+        <title>Interfaces and Boundaries</title>
+        
+        <levelledPara>
+          <title>Structural Interfaces</title>
+          <para>
+            The Center Body interfaces with Wing Structures (ATA 57), Doors and Hatches 
+            (ATA 52), and Landing Gear attachments (ATA 32). Interface control documents 
+            define mating dimensions, fastener patterns, and load transfer requirements.
+          </para>
+        </levelledPara>
+        
+        <levelledPara>
+          <title>System Boundaries</title>
+          <para>
+            Forward boundary is at FS 100 (forward pressure bulkhead). Aft boundary is 
+            at FS 600 (aft pressure bulkhead). Lateral boundaries are defined by the 
+            wing-body blend line at each side.
+          </para>
+        </levelledPara>
+      </levelledPara>
+    </description>
+  </content>
+</dmodule>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Data Module: Theory of Operation - Center Body
+  DMC: DMC-AMP360-AAA-53-10-20-00A-001A-D_en-US_001-00
+  InfoCode: 001A (Operational Theory)
+  Status: Released
+-->
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <dmCode modelIdentCode="AMP360" 
+                systemDiffCode="AAA"
+                systemCode="53" 
+                subSystemCode="10" 
+                subSubSystemCode="20"
+                assyCode="00A" 
+                disassyCode="00" 
+                disassyCodeVariant="0"
+                infoCode="001" 
+                infoCodeVariant="A" 
+                itemLocationCode="D"/>
+        <language languageIsoCode="en" countryIsoCode="US"/>
+        <issueInfo issueNumber="001" inWork="00"/>
+        <extension>
+          <utcs id="UTCS-AMP360-AAA-53-10-DMC-002"/>
+        </extension>
+      </dmIdent>
+      <dmAddressItems>
+        <issueDate year="2025" month="10" day="10"/>
+        <dmTitle>
+          <techName>Center Body</techName>
+          <infoName>Theory of Operation</infoName>
+        </dmTitle>
+        <responsiblePartnerCompany enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Technical Publications</enterpriseName>
+        </responsiblePartnerCompany>
+        <originator enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Engineering</enterpriseName>
+        </originator>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus>
+      <security securityClassification="01" commercialExportControl="false"/>
+      <qualityAssurance qaResponsiblePartnerCompany="AAA" qaReviewed="false"/>
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <description>
+      <levelledPara>
+        <title>Theory of Operation</title>
+        
+        <levelledPara>
+          <title>Load Distribution</title>
+          <para>
+            The Center Body operates as a semi-monocoque structure, distributing flight 
+            loads through the skin panels to longitudinal stringers and transverse frames. 
+            This design provides optimal strength-to-weight ratio while maintaining structural 
+            integrity under various flight conditions.
+          </para>
+        </levelledPara>
+        
+        <levelledPara>
+          <title>Aerodynamic Integration</title>
+          <para>
+            The Center Body shape is optimized to blend seamlessly with the wing structure, 
+            creating a continuous lifting surface. This integration reduces drag and improves 
+            overall aerodynamic efficiency of the BWB configuration.
+          </para>
+        </levelledPara>
+      </levelledPara>
+    </description>
+  </content>
+</dmodule>

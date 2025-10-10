@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <title>ICN-AMP360-AAA-53-10-10-00A-070A-I002-00</title>
+  <desc>System description illustration for Center Body - Placeholder</desc>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8f8f8"/>
+  
+  <!-- Border -->
+  <rect x="10" y="10" width="780" height="580" fill="none" stroke="#333" stroke-width="2"/>
+  
+  <!-- Title block -->
+  <rect x="30" y="30" width="740" height="80" fill="#e8e8e8" stroke="#333" stroke-width="1"/>
+  <text x="400" y="60" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">
+    Center Body - System Description
+  </text>
+  <text x="400" y="90" font-family="Arial, sans-serif" font-size="16" text-anchor="middle">
+    ICN-AMP360-AAA-53-10-10-00A-070A-I002-00
+  </text>
+  
+  <!-- Placeholder content area -->
+  <rect x="100" y="150" width="600" height="350" fill="white" stroke="#666" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="400" y="320" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#999">
+    [Illustration Content Placeholder]
+  </text>
+  <text x="400" y="350" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#999">
+    System components and assemblies
+  </text>
+  
+  <!-- Reference info -->
+  <text x="30" y="570" font-family="Arial, sans-serif" font-size="12" fill="#666">
+    AMPEL360 AIR-T | BWB-H2-Hy-E | Q100 | ATA 53-10
+  </text>
+</svg>
