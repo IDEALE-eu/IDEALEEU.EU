@@ -1,0 +1,23 @@
+Control,DO-178C,ARP4754A,ISO 27001,ISO 14971,GDPR,Notes
+Configuration Management,A-8,5.3,A.8.32,—,—,Baselines and change control per CM Plan
+Safety Case,—,5.5,—,Risk controls,—,Hazard closure required before operations
+DPIA,—,—,—,—,Art. 35,DPO sign-off required for high-risk processing
+SBOM/VEX,—,—,A.5.33,—,—,Supplier security and vulnerability management
+ML Evaluations,—,—,—,—,—,Tied to MAL-EEM ethical ML framework
+Requirements Traceability,Table A-1,5.3.3,—,—,—,UTCS threads provide end-to-end traceability
+Software Development,All sections,—,—,—,—,Software lifecycle per DO-178C
+System Development,—,All sections,—,—,—,System lifecycle per ARP4754A
+Hazard Analysis,—,5.4.1,—,Risk analysis,—,FHA/PSSA/SSA per ARP4754A
+Risk Management,—,5.4,A.5.7,All sections,—,Risk identification and mitigation
+Information Security,—,—,All controls,—,—,ISO 27001 ISMS framework
+Access Control,—,—,A.5.15-A.5.18,—,—,Authentication and authorization
+Cryptography,—,—,A.5.33,—,—,Key management and encryption
+Incident Response,—,—,A.5.24-A.5.28,—,—,Security incident handling
+Data Protection,—,—,—,—,All articles,GDPR compliance framework
+Consent Management,—,—,—,—,Art. 6-7,Legal basis and consent mechanisms
+Data Subject Rights,—,—,—,—,Art. 15-22,Access rectification erasure portability
+Privacy by Design,—,—,—,—,Art. 25,Privacy considerations from inception
+Audit and Review,Table A-3,—,A.5.37,—,—,Configuration and functional audits
+Testing and Verification,Table A-6,5.6,—,Verification,—,Test coverage and traceability
+Document Control,—,5.3.6,A.5.10,Documentation,—,Version control and approval
+Supplier Management,—,5.3.7,A.5.19-A.5.23,—,—,Supplier qualification and oversight
