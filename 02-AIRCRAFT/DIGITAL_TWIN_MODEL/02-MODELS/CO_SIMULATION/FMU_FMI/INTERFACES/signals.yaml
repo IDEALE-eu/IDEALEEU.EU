@@ -1,0 +1,513 @@
+# FMU_FMI Signal Interface Definition
+# Version: 1.0
+# Last Updated: 2025-10-11
+# Purpose: Define standardized signal interfaces between FMUs for co-simulation
+# Related System: ATA-27 Flight Controls (Primary use case)
+
+version: "1.0"
+last_updated: "2025-10-11"
+description: "Signal interface definitions for FMU co-simulation with focus on flight control system"
+applicable_systems:
+  - ATA-27 Flight Controls
+  - ATA-22 Auto Flight
+  - ATA-34 Air Data
+  - ATA-28 Fuel (H2 System)
+
+# Signal Categories
+# 1. Control Inputs (from pilot/autopilot)
+# 2. Sensor Inputs (from aircraft systems)
+# 3. Actuator Commands (to control surfaces)
+# 4. Feedback Signals (from actuators/sensors)
+# 5. System Status (health, mode, faults)
+
+# =============================================================================
+# ATA-27 FLIGHT CONTROL SIGNALS
+# =============================================================================
+
+flight_control_signals:
+  
+  # ---------------------------------------------------------------------------
+  # PILOT INPUTS (from ATA-25 Cockpit Controls)
+  # ---------------------------------------------------------------------------
+  pilot_inputs:
+    - name: pilot_stick_pitch
+      fmu_source: Control_FMU
+      fmu_destination: Aero_FMU
+      signal_type: continuous
+      unit: deg
+      range: [-20, 15]
+      nominal: 0
+      sample_rate: 50 Hz
+      description: "Pilot longitudinal stick position (nose up/down)"
+      ebom_ref: ATA-27-10-001
+      interface_type: ARINC_429
+      tolerance: 0.1
+      
+    - name: pilot_stick_roll
+      fmu_source: Control_FMU
+      fmu_destination: Aero_FMU
+      signal_type: continuous
+      unit: deg
+      range: [-30, 30]
+      nominal: 0
+      sample_rate: 50 Hz
+      description: "Pilot lateral stick position (roll left/right)"
+      ebom_ref: ATA-27-10-002
+      interface_type: ARINC_429
+      tolerance: 0.1
+      
+    - name: pilot_rudder_pedal
+      fmu_source: Control_FMU
+      fmu_destination: Aero_FMU
+      signal_type: continuous
+      unit: deg
+      range: [-25, 25]
+      nominal: 0
+      sample_rate: 50 Hz
+      description: "Pilot rudder pedal position"
+      ebom_ref: ATA-27-10-003
+      interface_type: ARINC_429
+      tolerance: 0.1
+
+  # ---------------------------------------------------------------------------
+  # CONTROL SURFACE DEFLECTIONS (commands to actuators)
+  # ---------------------------------------------------------------------------
+  control_surface_commands:
+    - name: elevator_cmd
+      fmu_source: Control_FMU
+      fmu_destination: [Aero_FMU, Struct_FMU]
+      signal_type: continuous
+      unit: deg
+      range: [-25, 15]
+      nominal: 0
+      sample_rate: 50 Hz
+      rate_limit: 30 deg/s
+      description: "Elevator deflection command (positive = trailing edge down)"
+      ebom_ref: ATA-27-21-001
+      interface_type: ARINC_429
+      safety_critical: true
+      dal_level: A
+      
+    - name: aileron_left_cmd
+      fmu_source: Control_FMU
+      fmu_destination: [Aero_FMU, Struct_FMU]
+      signal_type: continuous
+      unit: deg
+      range: [-25, 25]
+      nominal: 0
+      sample_rate: 50 Hz
+      rate_limit: 40 deg/s
+      description: "Left aileron deflection command"
+      ebom_ref: ATA-27-22-001
+      interface_type: ARINC_429
+      safety_critical: true
+      dal_level: A
+      
+    - name: aileron_right_cmd
+      fmu_source: Control_FMU
+      fmu_destination: [Aero_FMU, Struct_FMU]
+      signal_type: continuous
+      unit: deg
+      range: [-25, 25]
+      nominal: 0
+      sample_rate: 50 Hz
+      rate_limit: 40 deg/s
+      description: "Right aileron deflection command"
+      ebom_ref: ATA-27-22-002
+      interface_type: ARINC_429
+      safety_critical: true
+      dal_level: A
+      
+    - name: rudder_cmd
+      fmu_source: Control_FMU
+      fmu_destination: [Aero_FMU, Struct_FMU]
+      signal_type: continuous
+      unit: deg
+      range: [-25, 25]
+      nominal: 0
+      sample_rate: 50 Hz
+      rate_limit: 35 deg/s
+      description: "Rudder deflection command"
+      ebom_ref: ATA-27-23-001
+      interface_type: ARINC_429
+      safety_critical: true
+      dal_level: A
+      
+    - name: spoiler_left_cmd
+      fmu_source: Control_FMU
+      fmu_destination: [Aero_FMU, Struct_FMU]
+      signal_type: continuous
+      unit: deg
+      range: [0, 50]
+      nominal: 0
+      sample_rate: 50 Hz
+      rate_limit: 50 deg/s
+      description: "Left spoiler deflection command"
+      ebom_ref: ATA-27-24-001
+      interface_type: ARINC_429
+      safety_critical: true
+      dal_level: B
+      
+    - name: spoiler_right_cmd
+      fmu_source: Control_FMU
+      fmu_destination: [Aero_FMU, Struct_FMU]
+      signal_type: continuous
+      unit: deg
+      range: [0, 50]
+      nominal: 0
+      sample_rate: 50 Hz
+      rate_limit: 50 deg/s
+      description: "Right spoiler deflection command"
+      ebom_ref: ATA-27-24-002
+      interface_type: ARINC_429
+      safety_critical: true
+      dal_level: B
+
+  # ---------------------------------------------------------------------------
+  # ACTUATOR FEEDBACK (position, force, health)
+  # ---------------------------------------------------------------------------
+  actuator_feedback:
+    - name: elevator_position_fb
+      fmu_source: Struct_FMU
+      fmu_destination: Control_FMU
+      signal_type: continuous
+      unit: deg
+      range: [-25, 15]
+      sample_rate: 100 Hz
+      description: "Measured elevator position feedback"
+      ebom_ref: ATA-27-21-101
+      interface_type: ARINC_429
+      redundancy: triple
+      
+    - name: elevator_force_fb
+      fmu_source: Struct_FMU
+      fmu_destination: Control_FMU
+      signal_type: continuous
+      unit: N
+      range: [-5000, 5000]
+      sample_rate: 100 Hz
+      description: "Measured hinge moment on elevator"
+      ebom_ref: ATA-27-21-102
+      interface_type: ARINC_429
+      
+    - name: aileron_left_position_fb
+      fmu_source: Struct_FMU
+      fmu_destination: Control_FMU
+      signal_type: continuous
+      unit: deg
+      range: [-25, 25]
+      sample_rate: 100 Hz
+      description: "Measured left aileron position"
+      ebom_ref: ATA-27-22-101
+      interface_type: ARINC_429
+      redundancy: triple
+      
+    - name: rudder_position_fb
+      fmu_source: Struct_FMU
+      fmu_destination: Control_FMU
+      signal_type: continuous
+      unit: deg
+      range: [-25, 25]
+      sample_rate: 100 Hz
+      description: "Measured rudder position"
+      ebom_ref: ATA-27-23-101
+      interface_type: ARINC_429
+      redundancy: triple
+
+  # ---------------------------------------------------------------------------
+  # AERODYNAMIC COEFFICIENTS (from Aero_FMU to flight dynamics)
+  # ---------------------------------------------------------------------------
+  aerodynamic_outputs:
+    - name: lift_coefficient
+      fmu_source: Aero_FMU
+      fmu_destination: Struct_FMU
+      signal_type: continuous
+      unit: dimensionless
+      range: [-1.5, 2.5]
+      nominal: 0.5
+      sample_rate: 100 Hz
+      description: "Total aircraft lift coefficient (CL)"
+      ebom_ref: ATA-27-30-001
+      
+    - name: drag_coefficient
+      fmu_source: Aero_FMU
+      fmu_destination: Propulsion_FMU
+      signal_type: continuous
+      unit: dimensionless
+      range: [0.015, 0.35]
+      nominal: 0.025
+      sample_rate: 100 Hz
+      description: "Total aircraft drag coefficient (CD)"
+      ebom_ref: ATA-27-30-002
+      
+    - name: pitch_moment_coefficient
+      fmu_source: Aero_FMU
+      fmu_destination: Struct_FMU
+      signal_type: continuous
+      unit: dimensionless
+      range: [-0.5, 0.5]
+      nominal: 0.0
+      sample_rate: 100 Hz
+      description: "Pitching moment coefficient (CM)"
+      ebom_ref: ATA-27-30-003
+      
+    - name: roll_moment_coefficient
+      fmu_source: Aero_FMU
+      fmu_destination: Struct_FMU
+      signal_type: continuous
+      unit: dimensionless
+      range: [-0.3, 0.3]
+      nominal: 0.0
+      sample_rate: 100 Hz
+      description: "Rolling moment coefficient (Cl)"
+      ebom_ref: ATA-27-30-004
+      
+    - name: yaw_moment_coefficient
+      fmu_source: Aero_FMU
+      fmu_destination: Struct_FMU
+      signal_type: continuous
+      unit: dimensionless
+      range: [-0.2, 0.2]
+      nominal: 0.0
+      sample_rate: 100 Hz
+      description: "Yawing moment coefficient (Cn)"
+      ebom_ref: ATA-27-30-005
+
+  # ---------------------------------------------------------------------------
+  # AIR DATA INPUTS (from ATA-34)
+  # ---------------------------------------------------------------------------
+  air_data_inputs:
+    - name: angle_of_attack
+      fmu_source: Control_FMU
+      fmu_destination: Aero_FMU
+      signal_type: continuous
+      unit: deg
+      range: [-10, 25]
+      nominal: 5
+      sample_rate: 50 Hz
+      description: "Angle of attack (alpha)"
+      ebom_ref: ATA-34-12-001
+      interface_type: ARINC_429
+      
+    - name: sideslip_angle
+      fmu_source: Control_FMU
+      fmu_destination: Aero_FMU
+      signal_type: continuous
+      unit: deg
+      range: [-15, 15]
+      nominal: 0
+      sample_rate: 50 Hz
+      description: "Sideslip angle (beta)"
+      ebom_ref: ATA-34-12-002
+      interface_type: ARINC_429
+      
+    - name: mach_number
+      fmu_source: Control_FMU
+      fmu_destination: [Aero_FMU, Propulsion_FMU]
+      signal_type: continuous
+      unit: dimensionless
+      range: [0, 0.85]
+      nominal: 0.75
+      sample_rate: 10 Hz
+      description: "Aircraft Mach number"
+      ebom_ref: ATA-34-13-001
+      interface_type: ARINC_429
+      
+    - name: calibrated_airspeed
+      fmu_source: Control_FMU
+      fmu_destination: Aero_FMU
+      signal_type: continuous
+      unit: kt
+      range: [0, 350]
+      nominal: 250
+      sample_rate: 10 Hz
+      description: "Calibrated airspeed"
+      ebom_ref: ATA-34-13-002
+      interface_type: ARINC_429
+      
+    - name: altitude_pressure
+      fmu_source: Control_FMU
+      fmu_destination: [Aero_FMU, Propulsion_FMU, H2_FMU]
+      signal_type: continuous
+      unit: ft
+      range: [0, 45000]
+      nominal: 35000
+      sample_rate: 10 Hz
+      description: "Pressure altitude"
+      ebom_ref: ATA-34-14-001
+      interface_type: ARINC_429
+
+  # ---------------------------------------------------------------------------
+  # CONTROL SYSTEM MODE AND STATUS
+  # ---------------------------------------------------------------------------
+  system_status:
+    - name: fcc_mode
+      fmu_source: Control_FMU
+      fmu_destination: [Aero_FMU, Struct_FMU]
+      signal_type: discrete
+      unit: enum
+      values: [NORMAL, DIRECT, ALTERNATE, DEGRADED, MANUAL]
+      nominal: NORMAL
+      sample_rate: 10 Hz
+      description: "Flight Control Computer operating mode"
+      ebom_ref: ATA-27-40-001
+      interface_type: ARINC_429
+      safety_critical: true
+      
+    - name: fcc_health_status
+      fmu_source: Control_FMU
+      fmu_destination: Control_FMU
+      signal_type: discrete
+      unit: enum
+      values: [HEALTHY, DEGRADED, FAILED]
+      nominal: HEALTHY
+      sample_rate: 10 Hz
+      description: "Overall FCC health status"
+      ebom_ref: ATA-27-40-002
+      interface_type: ARINC_429
+      safety_critical: true
+      
+    - name: actuator_fault_flags
+      fmu_source: Struct_FMU
+      fmu_destination: Control_FMU
+      signal_type: discrete
+      unit: bitfield
+      description: "Fault flags for each actuator (bit-encoded)"
+      ebom_ref: ATA-27-40-003
+      interface_type: ARINC_429
+      safety_critical: true
+
+# =============================================================================
+# SIGNAL MAPPING CONFIGURATION
+# =============================================================================
+
+signal_mapping:
+  description: "Defines how signals are mapped between FMUs in co-simulation"
+  
+  # Control loop: Pilot -> FCC -> Actuator -> Aircraft -> Sensors -> FCC
+  control_loop:
+    - source: Control_FMU.pilot_stick_pitch
+      destination: Aero_FMU.elevator_deflection
+      transformation: control_law_pitch
+      latency_ms: 10
+      
+    - source: Control_FMU.pilot_stick_roll
+      destination: [Aero_FMU.aileron_left, Aero_FMU.aileron_right]
+      transformation: control_law_roll
+      latency_ms: 10
+      
+    - source: Aero_FMU.lift_coefficient
+      destination: Struct_FMU.aerodynamic_lift
+      transformation: dynamic_pressure_scaling
+      latency_ms: 5
+      
+    - source: Struct_FMU.elevator_position_fb
+      destination: Control_FMU.elevator_sensor
+      transformation: none
+      latency_ms: 5
+
+# =============================================================================
+# UNIT CONVERSION RULES
+# =============================================================================
+
+unit_conversions:
+  - from_unit: deg
+    to_unit: rad
+    conversion: multiply_by_pi_div_180
+    
+  - from_unit: kt
+    to_unit: m/s
+    conversion: multiply_by_0.514444
+    
+  - from_unit: ft
+    to_unit: m
+    conversion: multiply_by_0.3048
+    
+  - from_unit: lb
+    to_unit: kg
+    conversion: multiply_by_0.453592
+
+# =============================================================================
+# VALIDATION RULES
+# =============================================================================
+
+validation:
+  range_check:
+    enabled: true
+    action_on_violation: saturate_and_warn
+    
+  rate_of_change_check:
+    enabled: true
+    threshold_multiplier: 3.0
+    action_on_violation: reject_and_hold
+    
+  consistency_check:
+    enabled: true
+    check_pairs:
+      - [aileron_left_cmd, aileron_right_cmd]
+      - [elevator_cmd, elevator_position_fb]
+    tolerance: 5%
+    
+  redundancy_voting:
+    enabled: true
+    voting_algorithm: median_select
+    minimum_channels: 2
+    maximum_deviation: 2.0
+
+# =============================================================================
+# INTERFACE PROTOCOL SPECIFICATIONS
+# =============================================================================
+
+protocols:
+  ARINC_429:
+    word_rate: 100 kbps
+    format: 32-bit
+    parity: odd
+    bit_order: MSB_first
+    
+  ARINC_664:
+    standard: Part 7 (AFDX)
+    bandwidth: 100 Mbps
+    redundancy: dual_channel
+    
+  discrete_io:
+    voltage_logic: 28V_discrete
+    update_rate: 50 Hz
+
+# =============================================================================
+# TRACEABILITY
+# =============================================================================
+
+traceability:
+  requirements:
+    - req_id: REQ-FC-001
+      description: "Control surface deflection shall be commanded at minimum 50 Hz"
+      verification: signals.control_surface_commands[*].sample_rate >= 50
+      
+    - req_id: REQ-FC-002
+      description: "Actuator position feedback shall be provided at minimum 100 Hz"
+      verification: signals.actuator_feedback[*].sample_rate >= 100
+      
+    - req_id: REQ-FC-003
+      description: "Flight control signals shall be safety-critical DAL-A"
+      verification: signals.control_surface_commands[*].dal_level == A
+      
+  references:
+    - doc_id: SPEC-ATA27-001
+      title: "Flight Control System Requirements Specification"
+      section: "3.2 Signal Interfaces"
+      
+    - doc_id: ICD-ATA27-ATA34
+      title: "Interface Control Document: Flight Controls to Air Data"
+      version: "2.1"
+
+# =============================================================================
+# CHANGE HISTORY
+# =============================================================================
+
+change_history:
+  - version: "1.0"
+    date: "2025-10-11"
+    author: "Digital Twin Team"
+    description: "Initial signal interface definition for ATA-27 flight controls"
+    approved_by: "Configuration Control Board"

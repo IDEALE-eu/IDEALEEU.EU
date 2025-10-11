@@ -1,0 +1,313 @@
+# Unit Definitions and Conversions for FMU Signals
+# Version: 1.0
+# Last Updated: 2025-10-11
+
+version: "1.0"
+description: "Standard units and conversion factors for FMU signal interfaces"
+
+# =============================================================================
+# STANDARD UNITS (SI preferred, exceptions documented)
+# =============================================================================
+
+standard_units:
+  # Length
+  length:
+    si_unit: m
+    accepted_alternatives:
+      - unit: ft
+        conversion_to_si: 0.3048
+        use_case: "Altitude, aviation standard"
+      - unit: km
+        conversion_to_si: 1000.0
+        use_case: "Long distances"
+      - unit: nm
+        conversion_to_si: 1852.0
+        use_case: "Navigation, nautical miles"
+  
+  # Velocity
+  velocity:
+    si_unit: m/s
+    accepted_alternatives:
+      - unit: kt
+        conversion_to_si: 0.514444
+        use_case: "Airspeed, aviation standard"
+      - unit: km/h
+        conversion_to_si: 0.277778
+        use_case: "Ground speed"
+  
+  # Angles
+  angle:
+    si_unit: rad
+    accepted_alternatives:
+      - unit: deg
+        conversion_to_si: 0.0174533  # π/180
+        use_case: "Control surface deflections, pilot displays"
+  
+  # Angular velocity
+  angular_velocity:
+    si_unit: rad/s
+    accepted_alternatives:
+      - unit: deg/s
+        conversion_to_si: 0.0174533
+        use_case: "Rate limits, rotation rates"
+      - unit: rpm
+        conversion_to_si: 0.104720  # 2π/60
+        use_case: "Engine speeds"
+  
+  # Mass
+  mass:
+    si_unit: kg
+    accepted_alternatives:
+      - unit: lb
+        conversion_to_si: 0.453592
+        use_case: "Weight, aviation legacy"
+  
+  # Force
+  force:
+    si_unit: N
+    accepted_alternatives:
+      - unit: lbf
+        conversion_to_si: 4.44822
+        use_case: "Thrust, aviation standard"
+      - unit: kN
+        conversion_to_si: 1000.0
+        use_case: "Large forces"
+  
+  # Pressure
+  pressure:
+    si_unit: Pa
+    accepted_alternatives:
+      - unit: bar
+        conversion_to_si: 100000.0
+        use_case: "Hydrogen storage, hydraulic systems"
+      - unit: psi
+        conversion_to_si: 6894.76
+        use_case: "Tire pressure, pneumatics"
+      - unit: mbar
+        conversion_to_si: 100.0
+        use_case: "Atmospheric pressure, altimetry"
+      - unit: inHg
+        conversion_to_si: 3386.39
+        use_case: "Barometric pressure, aviation"
+  
+  # Temperature
+  temperature:
+    si_unit: K
+    accepted_alternatives:
+      - unit: degC
+        conversion_to_si: "T(K) = T(°C) + 273.15"
+        use_case: "General use, pilot displays"
+      - unit: degF
+        conversion_to_si: "T(K) = (T(°F) - 32) × 5/9 + 273.15"
+        use_case: "Legacy aviation systems"
+  
+  # Power
+  power:
+    si_unit: W
+    accepted_alternatives:
+      - unit: kW
+        conversion_to_si: 1000.0
+        use_case: "Fuel cell output, electrical power"
+      - unit: hp
+        conversion_to_si: 745.7
+        use_case: "Engine power, legacy"
+  
+  # Energy
+  energy:
+    si_unit: J
+    accepted_alternatives:
+      - unit: kWh
+        conversion_to_si: 3600000.0
+        use_case: "Battery capacity, electrical energy"
+  
+  # Flow rate (mass)
+  mass_flow:
+    si_unit: kg/s
+    accepted_alternatives:
+      - unit: kg/h
+        conversion_to_si: 0.000277778
+        use_case: "Fuel flow, hydrogen consumption"
+      - unit: lb/h
+        conversion_to_si: 0.000125998
+        use_case: "Fuel flow, aviation standard"
+  
+  # Time
+  time:
+    si_unit: s
+    accepted_alternatives:
+      - unit: min
+        conversion_to_si: 60.0
+        use_case: "Flight duration"
+      - unit: h
+        conversion_to_si: 3600.0
+        use_case: "Mission time, endurance"
+
+# =============================================================================
+# DIMENSIONLESS QUANTITIES
+# =============================================================================
+
+dimensionless:
+  - name: Mach_number
+    description: "Ratio of airspeed to speed of sound"
+    symbol: M
+    typical_range: [0, 0.95]
+  
+  - name: lift_coefficient
+    description: "Aerodynamic lift coefficient"
+    symbol: CL
+    typical_range: [-1.5, 2.5]
+  
+  - name: drag_coefficient
+    description: "Aerodynamic drag coefficient"
+    symbol: CD
+    typical_range: [0.015, 0.35]
+  
+  - name: efficiency
+    description: "System efficiency (ratio)"
+    symbol: η
+    typical_range: [0, 1]
+  
+  - name: load_factor
+    description: "Structural load factor (g-loading)"
+    symbol: n
+    typical_range: [-2, 4]
+
+# =============================================================================
+# CONVERSION FUNCTIONS
+# =============================================================================
+
+conversion_functions:
+  temperature_conversions:
+    celsius_to_kelvin: "K = C + 273.15"
+    fahrenheit_to_kelvin: "K = (F - 32) × 5/9 + 273.15"
+    kelvin_to_celsius: "C = K - 273.15"
+  
+  angle_conversions:
+    deg_to_rad: "rad = deg × π/180"
+    rad_to_deg: "deg = rad × 180/π"
+  
+  pressure_conversions:
+    altitude_to_pressure: "P(Pa) = 101325 × (1 - 2.25577e-5 × h(m))^5.25588"
+    pressure_to_altitude: "h(m) = (1 - (P/101325)^0.190284) / 2.25577e-5"
+
+# =============================================================================
+# UNIT VALIDATION RULES
+# =============================================================================
+
+validation_rules:
+  strict_mode:
+    enabled: true
+    description: "Enforce strict unit checking at FMU boundaries"
+    
+  automatic_conversion:
+    enabled: true
+    description: "Automatically convert units at FMU interfaces"
+    log_conversions: true
+    
+  unit_mismatch_handling:
+    action: error
+    alternatives: [error, warning, silent_convert]
+    
+  precision_preservation:
+    minimum_decimal_places: 6
+    rounding_mode: round_half_to_even
+
+# =============================================================================
+# SIGNAL-SPECIFIC UNIT ASSIGNMENTS
+# =============================================================================
+
+signal_unit_assignments:
+  flight_controls:
+    control_surface_deflections: deg
+    actuator_forces: N
+    hinge_moments: N·m
+    position_feedback: deg
+    rate_limits: deg/s
+  
+  air_data:
+    airspeed: kt
+    altitude: ft
+    angle_of_attack: deg
+    sideslip: deg
+    mach_number: dimensionless
+    static_pressure: mbar
+    dynamic_pressure: Pa
+  
+  propulsion:
+    thrust: kN
+    fuel_flow: kg/h
+    exhaust_gas_temp: degC
+    shaft_speed: rpm
+    power_output: kW
+  
+  structures:
+    loads: N
+    moments: N·m
+    deflections: m
+    stress: Pa
+    strain: dimensionless
+  
+  thermal:
+    temperature: degC
+    heat_flux: W/m²
+    thermal_resistance: K/W
+  
+  h2_system:
+    tank_pressure: bar
+    mass_flow: kg/h
+    temperature: K
+    boil_off_rate: kg/h
+    density: kg/m³
+
+# =============================================================================
+# BEST PRACTICES
+# =============================================================================
+
+best_practices:
+  - rule: "Always specify units explicitly in signal definitions"
+    rationale: "Prevents ambiguity and unit mismatch errors"
+  
+  - rule: "Use SI units for internal calculations"
+    rationale: "Maintains consistency and reduces conversion errors"
+  
+  - rule: "Document all unit conversions at FMU boundaries"
+    rationale: "Enables traceability and debugging"
+  
+  - rule: "Preserve precision in unit conversions"
+    rationale: "Avoids accumulated numerical errors"
+  
+  - rule: "Use aviation-standard units for pilot-facing interfaces"
+    rationale: "Matches regulatory requirements and pilot expectations"
+
+# =============================================================================
+# REFERENCES
+# =============================================================================
+
+references:
+  standards:
+    - name: "ISO 80000-3"
+      description: "Quantities and units - Part 3: Space and time"
+    
+    - name: "ISO 80000-4"
+      description: "Quantities and units - Part 4: Mechanics"
+    
+    - name: "SAE AS8015"
+      description: "Aerospace - Units of measurement"
+    
+    - name: "ICAO Annex 5"
+      description: "Units of measurement to be used in air and ground operations"
+  
+  internal_docs:
+    - doc_id: "UNITS_NORMALIZATION.md"
+      location: "01-FLEET/OPERATIONAL_DATA_HUB/03-DATA_STORAGE/"
+      description: "Fleet-wide unit normalization guidelines"
+
+# =============================================================================
+# CHANGE HISTORY
+# =============================================================================
+
+change_history:
+  - version: "1.0"
+    date: "2025-10-11"
+    author: "Digital Twin Team"
+    description: "Initial unit definitions for FMU signal interfaces"

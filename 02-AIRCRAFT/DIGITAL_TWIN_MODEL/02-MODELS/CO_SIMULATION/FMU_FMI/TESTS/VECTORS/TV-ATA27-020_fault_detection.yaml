@@ -1,0 +1,295 @@
+# Test Vector: ATA-27 Flight Control - Actuator Fault Detection
+# Version: 1.0
+# Requirement: REQ-FC-SAFETY-001
+# Description: Validate detection of elevator actuator jam
+# Related Spec: SPECS/fmi_config.yaml - event handling
+
+test_vector:
+  id: TV-ATA27-020
+  name: "Actuator Jam Detection"
+  description: "Validate FCC detection and response to elevator actuator jam"
+  system: ATA-27 Flight Controls
+  subsystem: Fault Detection and Isolation
+  requirement_id: REQ-FC-SAFETY-001
+  dal_level: A
+  
+  # Test metadata
+  metadata:
+    created_date: "2025-10-11"
+    author: "Flight Controls Safety Team"
+    review_status: "approved"
+    test_type: "safety-critical"
+    simulation_environment: "FMU co-simulation"
+    hazard_classification: "catastrophic"
+    
+  # Initial conditions - normal cruise
+  initial_conditions:
+    time: 0.0 s
+    altitude: 35000 ft
+    airspeed: 250 kt
+    mach_number: 0.75
+    angle_of_attack: 2.5 deg
+    fcc_mode: NORMAL
+    
+    # Initial control surface positions
+    elevator_position: 0.0 deg
+    aileron_left_position: 0.0 deg
+    aileron_right_position: 0.0 deg
+    rudder_position: 0.0 deg
+    
+    # All systems healthy
+    fcc_health_status: HEALTHY
+    actuator_fault_flags: 0x00000000
+
+  # Test sequence - inject fault
+  test_sequence:
+    - time: 0.0 s
+      action: "Initialize - normal operation"
+      pilot_stick_pitch: 0.0 deg
+      expected_elevator_cmd: 0.0 deg
+      actuator_fault_flags: 0x00000000
+      
+    - time: 1.0 s
+      action: "Command elevator deflection"
+      pilot_stick_pitch: 3.0 deg
+      expected_elevator_cmd: -2.1 deg
+      expected_elevator_position_fb: -2.0 deg
+      tolerance: 0.5 deg
+      
+    - time: 2.0 s
+      action: "INJECT FAULT - elevator jams at current position"
+      fault_injection: "elevator_jam"
+      jammed_position: -2.0 deg
+      expected_actuator_fault_flags: 0x00000001  # bit 0 = elevator
+      
+    - time: 2.1 s
+      action: "FCC detects position feedback mismatch"
+      pilot_stick_pitch: 0.0 deg  # command return to neutral
+      expected_elevator_cmd: 0.0 deg
+      expected_elevator_position_fb: -2.0 deg  # still jammed
+      detection_threshold_exceeded: true
+      
+    - time: 2.5 s
+      action: "FCC declares fault after confirmation delay"
+      expected_fcc_health_status: DEGRADED
+      expected_fcc_mode: DIRECT
+      expected_fault_annunciation: true
+      
+    - time: 3.0 s
+      action: "Pilot continues control - degraded mode"
+      pilot_stick_pitch: -2.0 deg  # nose down command
+      expected_elevator_cmd: 1.4 deg  # should command down
+      expected_elevator_position_fb: -2.0 deg  # still jammed
+      
+    - time: 5.0 s
+      action: "End test"
+
+  # Fault injection parameters
+  fault_injection:
+    type: "actuator_jam"
+    component: "elevator_actuator"
+    injection_time: 2.0 s
+    parameters:
+      jammed_position: -2.0 deg
+      friction_force: 5000 N  # simulated jam force
+      
+  # Expected fault detection timeline
+  fault_detection:
+    - time: 2.0 s
+      event: "Fault injected"
+      
+    - time: 2.1 s
+      event: "Position error exceeds threshold"
+      threshold: 0.5 deg
+      actual_error: 2.1 deg
+      
+    - time: 2.2 s
+      event: "Error persists for 100 ms"
+      confirmation_time: 0.1 s
+      
+    - time: 2.5 s
+      event: "Fault declared, mode change"
+      mode_transition: "NORMAL → DIRECT"
+      fault_flag_set: true
+      
+  # Pass/fail criteria
+  pass_criteria:
+    - criterion: "Fault detected within 500 ms"
+      check: "fault_detection_time < 0.5 s"
+      required: true
+      
+    - criterion: "Mode transitions to DIRECT"
+      check: "fcc_mode == DIRECT after fault"
+      required: true
+      
+    - criterion: "Fault flag correctly set"
+      check: "actuator_fault_flags & 0x01 == 0x01"
+      required: true
+      
+    - criterion: "FCC health status updates to DEGRADED"
+      check: "fcc_health_status == DEGRADED"
+      required: true
+      
+    - criterion: "Pilot retains control (degraded)"
+      check: "control_authority_available == true"
+      required: true
+      
+    - criterion: "No false positives before fault"
+      check: "fault_flags == 0 for t < 2.0 s"
+      required: true
+
+  # Validation against SPEC
+  spec_validation:
+    spec_file: "../SPECS/fmi_config.yaml"
+    spec_section: "event_handling.discrete_events"
+    
+    checks:
+      - parameter: "actuator_fault"
+        spec_requirement: "priority: critical"
+        test_validation: "fault detected and isolated"
+        status: "compliant"
+        
+      - parameter: "mode_change"
+        spec_requirement: "priority: high"
+        test_validation: "mode transition executed"
+        status: "compliant"
+
+  # FMU configuration for test
+  fmu_configuration:
+    active_fmus: [Control_FMU, Aero_FMU, Struct_FMU]
+    
+    step_sizes:
+      Control_FMU: 0.02 s  # 50 Hz
+      Aero_FMU: 0.01 s     # 100 Hz
+      Struct_FMU: 0.01 s   # 100 Hz
+      
+    signal_connections:
+      - source: Control_FMU.elevator_cmd
+        destination: Struct_FMU.elevator_cmd_input
+      - source: Struct_FMU.elevator_position_fb
+        destination: Control_FMU.elevator_sensor
+      - source: Struct_FMU.actuator_fault_flags
+        destination: Control_FMU.fault_status_input
+
+  # Data logging
+  logged_signals:
+    - signal: pilot_stick_pitch
+      fmu: Control_FMU
+      unit: deg
+      sample_rate: 50 Hz
+      
+    - signal: elevator_cmd
+      fmu: Control_FMU
+      unit: deg
+      sample_rate: 50 Hz
+      
+    - signal: elevator_position_fb
+      fmu: Struct_FMU
+      unit: deg
+      sample_rate: 100 Hz
+      
+    - signal: actuator_fault_flags
+      fmu: Struct_FMU
+      unit: bitfield
+      sample_rate: 50 Hz
+      
+    - signal: fcc_mode
+      fmu: Control_FMU
+      unit: enum
+      sample_rate: 10 Hz
+      
+    - signal: fcc_health_status
+      fmu: Control_FMU
+      unit: enum
+      sample_rate: 10 Hz
+
+  # Analysis methods
+  analysis:
+    methods:
+      - name: "Fault detection latency"
+        description: "Time from fault injection to fault declaration"
+        target: "< 500 ms"
+        
+      - name: "False positive rate"
+        description: "No false faults before actual fault"
+        target: "0 false positives"
+        
+      - name: "Mode transition time"
+        description: "Time to switch from NORMAL to DIRECT mode"
+        target: "< 100 ms"
+        
+      - name: "Residual control authority"
+        description: "Verify pilot can still control aircraft in degraded mode"
+        target: "Yes"
+
+  # Traceability
+  traceability:
+    requirements:
+      - req_id: REQ-FC-SAFETY-001
+        description: "System shall detect actuator jam within 500 ms"
+        source_doc: "SYS-SPEC-ATA27-v2.1"
+        verification_method: "test"
+        
+      - req_id: REQ-FC-SAFETY-002
+        description: "System shall transition to degraded mode upon fault detection"
+        source_doc: "SYS-SPEC-ATA27-v2.1"
+        verification_method: "test"
+        
+      - req_id: REQ-FC-SAFETY-003
+        description: "Fault detection shall not produce false positives"
+        source_doc: "SYS-SPEC-ATA27-v2.1"
+        verification_method: "test"
+        
+    ebom_references:
+      - ATA-27-21-001: "Elevator actuator command"
+      - ATA-27-21-101: "Elevator position feedback"
+      - ATA-27-40-001: "FCC mode"
+      - ATA-27-40-002: "FCC health status"
+      - ATA-27-40-003: "Actuator fault flags"
+      
+    hazard_analysis:
+      - hazard_id: HAZ-FC-001
+        description: "Uncommanded elevator deflection"
+        severity: "Catastrophic"
+        mitigation: "Fault detection and mode transition"
+        
+      - hazard_id: HAZ-FC-002
+        description: "Loss of pitch control"
+        severity: "Catastrophic"
+        mitigation: "Redundant control paths"
+
+  # Related test vectors
+  related_tests:
+    - TV-ATA27-001: "Elevator Step Response (nominal)"
+    - TV-ATA27-021: "Actuator Runaway"
+    - TV-ATA27-022: "Sensor Failure"
+    - TV-ATA27-023: "FCC Mode Transition"
+
+# Expected output file format
+output_format:
+  file: "results/TV-ATA27-020_results.csv"
+  columns:
+    - time_s
+    - pilot_stick_pitch_deg
+    - elevator_cmd_deg
+    - elevator_position_fb_deg
+    - actuator_fault_flags_hex
+    - fcc_mode_enum
+    - fcc_health_status_enum
+    - pass_fail
+
+# Execution
+execution:
+  script: "../TOOLS/scripts/run_test_vector.py"
+  command: "python run_test_vector.py --test-vector TV-ATA27-020_fault_detection.yaml --output results/"
+  
+  environment:
+    fmu_path: "../COMPONENTS/"
+    orchestration_config: "../ORCHESTRATION/configs/flight_controls.yaml"
+    fault_injection_enabled: true
+    
+  options:
+    real_time: false
+    visualization: true
+    generate_plots: true
+    safety_critical_validation: true
