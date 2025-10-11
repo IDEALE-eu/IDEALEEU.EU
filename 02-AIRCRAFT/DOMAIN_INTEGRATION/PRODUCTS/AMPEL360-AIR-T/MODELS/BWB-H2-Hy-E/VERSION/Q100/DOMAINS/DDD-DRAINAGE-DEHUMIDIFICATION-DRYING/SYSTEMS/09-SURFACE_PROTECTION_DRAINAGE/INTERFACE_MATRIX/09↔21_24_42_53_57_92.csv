@@ -1,0 +1,7 @@
+from_ata,to_ata,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+09,21,Thermal/Fluid,Drain lines,ECS drainage spec,0,N/A,Condensate drain lines from air conditioning units
+09,24,Electrical,DC power,28V aircraft power,50,N/A,Power for heated drain lines in critical areas
+09,42,Signal,Digital,Discrete signals,2,1 Hz,Moisture detection sensor signals to flight deck
+09,53,Structural,Drain integration,Structural spec,0,N/A,Drain hole placement and structural reinforcement
+09,57,Structural,Drain integration,Wing drainage spec,0,N/A,Wing surface drainage paths and anti-ice runoff
+09,92,Electrical,Wire harness,EWIS standard,10,N/A,Wiring for moisture sensors and drain heaters

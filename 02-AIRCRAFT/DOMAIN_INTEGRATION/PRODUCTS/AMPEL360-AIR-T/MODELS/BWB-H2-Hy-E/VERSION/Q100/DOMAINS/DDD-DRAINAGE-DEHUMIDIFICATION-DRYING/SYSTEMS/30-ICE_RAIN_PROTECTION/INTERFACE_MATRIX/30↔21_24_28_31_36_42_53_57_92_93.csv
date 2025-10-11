@@ -1,0 +1,11 @@
+from_ata,to_ata,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+30,21,Thermal/Fluid,Hot air,ECS thermal spec,0,N/A,Hot air for anti-ice from ECS system
+30,24,Electrical,DC power,28V aircraft power,2000,N/A,Power for heated drains and de-ice elements
+30,28,Thermal/Fluid,Fuel lines,Fuel heating spec,0,N/A,Fuel-based heat for wing anti-ice
+30,31,Data,Ethernet,ARINC 429,10,1 Mbps,Ice detection data and system status
+30,36,Pneumatic,Bleed air,Pneumatic spec,0,N/A,Bleed air for pneumatic anti-ice systems
+30,42,Signal,Digital,Discrete signals,5,10 Hz,Ice detection alerts to flight deck
+30,53,Structural,Drain routing,Structural spec,0,N/A,Drain line integration through fuselage
+30,57,Structural,Anti-ice integration,Wing spec,0,N/A,Wing anti-ice and drainage path integration
+30,92,Electrical,Wire harness,EWIS standard,100,N/A,Wiring for heaters and ice detectors
+30,93,Data,Databus,ARINC 664,20,100 Mbps,Anti-ice system health monitoring

@@ -1,0 +1,8 @@
+from_ata,to_ata,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+41,24,Electrical,DC power,28V aircraft power,500,N/A,Power for ballast pumps and control valves
+41,31,Data,Ethernet,ARINC 429,10,1 Mbps,Ballast quantity and system status reporting
+41,42,Signal,Digital,Flight control protocol,5,10 Hz,Weight/balance data to flight control system
+41,53,Structural,Mounting,Structural spec,0,N/A,Fuselage ballast tank mounting and integration
+41,57,Structural,Mounting,Wing spec,0,N/A,Wing ballast tank integration if applicable
+41,92,Electrical,Wire harness,EWIS standard,50,N/A,Wiring for level sensors valves and pumps
+41,93,Data,Databus,ARINC 664,15,100 Mbps,Ballast system health monitoring
