@@ -45,7 +45,27 @@ This directory defines the standardized signal interfaces between Functional Moc
 - Source FMU → Signal → Destination FMU(s)
 - Used by orchestration layer to configure co-simulation
 
-## Use Case: ATA-27 Flight Control System
+### battery_thermal_fmu.yaml
+**Battery Thermal FMU Interface Specification**
+- Complete FMU interface manifest for battery thermal model
+- Parameters: cell mass, specific heat, number of cells in series
+- Inputs: power draw, ambient temperature, coolant flow rate
+- Outputs: average/max cell temperature, heat rejection
+- Safety limits: temperature warnings and fault thresholds
+- Unit conversions: L/min to m³/s
+- Dependencies: output signal dependencies on inputs
+- CI checks: validation rules for FMU interface
+
+This example demonstrates:
+- FMI 3.0 co-simulation FMU specification format
+- Parameter configuration with default values
+- Input/output variable definitions with value references
+- Safety-critical limits (thermal management)
+- Integration with electrical propulsion systems
+
+## Use Cases
+
+### Use Case 1: ATA-27 Flight Control System
 
 The signal definitions in this directory are primarily designed to support the flight control system co-simulation:
 
@@ -64,6 +84,33 @@ pilot_stick_pitch (Control_FMU)
     → lift_coefficient (Aero_FMU → Struct_FMU)
       → elevator_position_fb (Struct_FMU → Control_FMU)
 ```
+
+### Use Case 2: Battery Thermal Management
+
+The `battery_thermal_fmu.yaml` demonstrates thermal management for electric propulsion batteries:
+
+#### Thermal Control Loop
+1. **Power Demand** → Battery_Thermal_FMU receives power draw from propulsion
+2. **Heat Generation** → Internal heat generated from electrical resistance
+3. **Cooling System** → Coolant flow rate controls heat rejection
+4. **Temperature Monitoring** → Average and maximum cell temperatures tracked
+5. **Safety Limits** → Temperature warnings (50°C) and faults (60°C)
+6. **Feedback Loop** → Thermal state informs power management system
+
+#### Example Signal Chain
+```
+power_draw_w (Propulsion_FMU → Battery_Thermal_FMU)
+  → avg_cell_temp_k (Battery_Thermal_FMU → Thermal_Management)
+    → coolant_flow_rate_lpm (Thermal_Management → Battery_Thermal_FMU)
+      → heat_rejection_w (Battery_Thermal_FMU → Cooling_System)
+```
+
+#### Key Features
+- **Parameters**: Configurable cell properties (mass: 0.45 kg, Cp: 900 J/kg·K, 96 cells in series)
+- **Inputs**: Power demand (0-50 kW), ambient temp (223-323 K), coolant flow (0-20 L/min)
+- **Outputs**: Average temp, max temp, heat rejection rate
+- **Safety**: Two-level warnings (warn at 50°C, fault at 60°C)
+- **Units**: Automatic conversion from L/min to m³/s for SI compatibility
 
 ## Signal Naming Convention
 
@@ -110,7 +157,8 @@ See `../TESTS/VECTORS/` for validation test vectors.
 
 ## Related Documents
 
-- [signals.yaml](signals.yaml) - Complete signal interface specification
+- [signals.yaml](signals.yaml) - Complete signal interface specification for flight controls
+- [battery_thermal_fmu.yaml](battery_thermal_fmu.yaml) - Battery thermal FMU interface specification
 - [units.yaml](units.yaml) - Unit definitions and conversions
 - [mapping.csv](mapping.csv) - FMU connection matrix
 - [../SPECS/](../SPECS/) - FMI specifications and tolerances

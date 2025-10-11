@@ -58,6 +58,7 @@ FMU_FMI/
 | **Propulsion_FMU** | Propulsion | Throttle, altitude, Mach | Thrust, fuel flow, EGT | 10 Hz |
 | **H2_FMU** | H₂ Energy | Fuel demand, ambient T | Tank pressure, boil-off | 1 Hz |
 | **Control_FMU** | Control Logic | Sensors, pilot commands | Actuator commands | 50 Hz |
+| **Battery_Thermal_FMU** | Battery Thermal Mgmt | Power draw, ambient T, coolant flow | Avg/max cell temp, heat rejection | 100 Hz |
 
 ## FMI 3.0 Features
 
@@ -101,6 +102,35 @@ pilot_stick_pitch (Control_FMU, 50 Hz)
 
 Full test vectors and validation results in [TESTS/VECTORS/](TESTS/VECTORS/)
 
+## Use Case 2: Battery Thermal Management
+
+The **Battery Thermal FMU** (`INTERFACES/battery_thermal_fmu.yaml`) demonstrates thermal management for electric propulsion batteries:
+
+### Thermal Control Architecture
+```
+Power Demand → Battery_Thermal_FMU → Temperature Monitoring
+                       ↓
+            [Heat Generation Model]
+                       ↓
+    Cooling System → Heat Rejection → Safety Limits
+                       ↓
+           Thermal Management System
+```
+
+### Example Integration
+- **Parameters**: 96 cells in series, 0.45 kg/cell, Cp = 900 J/kg·K
+- **Inputs**: Power draw (0-50 kW), ambient temp (223-323 K), coolant flow (0-20 L/min)
+- **Outputs**: Average cell temp, max cell temp, heat rejection rate
+- **Safety**: Warning at 50°C, fault at 60°C
+- **Integration**: Connects to Propulsion_FMU for power demand, Thermal_Management for cooling control
+
+This example shows:
+- Complete FMI 3.0 interface specification format
+- Parameter configuration and default values
+- Safety-critical thermal limits
+- Unit conversion (L/min ↔ m³/s)
+- Output dependencies on inputs for co-simulation
+
 ## Connection Matrix
 
 Signal connections between FMUs are defined in [INTERFACES/mapping.csv](INTERFACES/mapping.csv).
@@ -123,9 +153,10 @@ Full connection matrix with all 37+ signal connections: [INTERFACES/mapping.csv]
 ### 1. Explore Signal Interfaces
 ```bash
 cd INTERFACES/
-cat signals.yaml  # Review signal definitions
-cat units.yaml    # Review unit conversions
-cat mapping.csv   # Review FMU connections
+cat signals.yaml               # Flight control signal definitions
+cat battery_thermal_fmu.yaml   # Battery thermal FMU interface
+cat units.yaml                 # Review unit conversions
+cat mapping.csv                # Review FMU connections
 ```
 
 ### 2. Review Specifications
@@ -171,7 +202,8 @@ cat TV-ATA27-001_report.txt     # Test report
 ## Related Documents
 
 ### Internal References
-- [INTERFACES/signals.yaml](INTERFACES/signals.yaml) - Complete signal definitions
+- [INTERFACES/signals.yaml](INTERFACES/signals.yaml) - Flight control signal definitions
+- [INTERFACES/battery_thermal_fmu.yaml](INTERFACES/battery_thermal_fmu.yaml) - Battery thermal FMU interface
 - [INTERFACES/units.yaml](INTERFACES/units.yaml) - Unit standards and conversions
 - [SPECS/fmi_config.yaml](SPECS/fmi_config.yaml) - FMI configuration
 - [TESTS/VECTORS/](TESTS/VECTORS/) - Validation test vectors
