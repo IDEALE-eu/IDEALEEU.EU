@@ -1,0 +1,26 @@
+Source_System,Target_System,Interface_Type,Description,Data_Flow,Physical_Connection,Criticality,Status,Owner,Notes
+CQH-47,ATA-24,Electrical,Power supply to cryogenic equipment,Bidirectional,Wiring harness,High,Active,CQH/EEE,Electrical power for pumps and valves
+CQH-47,ATA-26,Monitoring,Fire detection in cryo areas,CQH→26,Sensor network,Critical,Active,CQH/Safety,Fire/safety monitoring integration
+CQH-47,ATA-28,Fluid,Fuel system interface for LH2,Bidirectional,Cryogenic lines,Critical,Active,CQH/PPP,Primary fuel feed interface
+CQH-47,ATA-31,Data,Instrument/sensor data,CQH→31,ARINC 429/664,High,Active,CQH/EDI,Telemetry and sensor data
+CQH-47,ATA-42,Control,IMA integration for monitoring,Bidirectional,Ethernet/ARINC 664,High,Active,CQH/IIS,Integrated Modular Avionics
+CQH-47,ATA-92,Physical,Electrical wiring and installation,Physical,EWIS,High,Active,CQH/EEE,Electrical wiring interconnect system
+CQH-47,ATA-93,Physical,MLI and insulation blankets,Physical,Thermal barriers,High,Active,CQH/AAA,Insulation integration with structure
+47-00,47-10,Standards,Taxonomy and material standards,47-00→47-10,Documentation,Medium,Active,CQH,General standards apply to NGS
+47-00,47-20,Standards,Cryo material compatibility,47-00→47-20,Documentation,High,Active,CQH,Material specs for LH2 systems
+47-00,47-30,Standards,MLI material specifications,47-00→47-30,Documentation,High,Active,CQH,Insulation material standards
+47-00,47-40,Standards,Valve material compatibility,47-00→47-40,Documentation,High,Active,CQH,Cryogenic valve materials
+47-00,47-50,Standards,Sensor specifications,47-00→47-50,Documentation,High,Active,CQH,Sensor material and calibration standards
+47-00,47-60,Standards,Purge system standards,47-00→47-60,Documentation,Medium,Active,CQH,N2 purge specifications
+47-00,47-70,Standards,Relief system standards,47-00→47-70,Documentation,High,Active,CQH,Safety relief requirements
+47-10,47-20,Fluid,N2 supply for thermal management,47-10→47-20,N2 lines,Medium,Active,CQH,Nitrogen for purge/inerting
+47-10,47-60,Fluid,Primary N2 feed to purge system,47-10→47-60,N2 manifold,High,Active,CQH,Main nitrogen supply
+47-20,47-30,Thermal,Heat load from MLI,47-30→47-20,Thermal coupling,Medium,Active,CQH,Insulation heat leak management
+47-20,47-40,Control,Valve control for thermal loops,47-20→47-40,Control signals,High,Active,CQH,Temperature control valves
+47-20,47-50,Monitoring,Temperature/pressure monitoring,47-50→47-20,Sensor signals,High,Active,CQH,Process monitoring
+47-20,47-70,Fluid,BOG from thermal conditioning,47-20→47-70,BOG lines,High,Active,CQH,Boil-off gas management
+47-30,47-50,Monitoring,FBG sensor integration,47-50→47-30,Fiber optic,High,Active,CQH,Temperature monitoring via FBG
+47-40,47-50,Feedback,Valve position sensing,47-50→47-40,Position sensors,High,Active,CQH,Valve status feedback
+47-60,47-20,Safety,Emergency purge to LH2 systems,47-60→47-20,Purge lines,Critical,Active,CQH,Emergency shutdown purge
+47-60,47-30,Safety,Purge for MLI void spaces,47-60→47-30,Purge connections,Medium,Active,CQH,MLI space inerting
+47-70,ATA-28,Venting,BOG venting coordination,47-70→28,Vent stack,High,Active,CQH/PPP,Boil-off gas disposal

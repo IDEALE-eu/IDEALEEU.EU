@@ -1,4 +1,4 @@
-# Engineering BOM Links - 47-10_NGS
+# Engineering BOM Links - 47-32_FBG_TEMPERATURE_ARRAY
 
 ## Purpose
 
