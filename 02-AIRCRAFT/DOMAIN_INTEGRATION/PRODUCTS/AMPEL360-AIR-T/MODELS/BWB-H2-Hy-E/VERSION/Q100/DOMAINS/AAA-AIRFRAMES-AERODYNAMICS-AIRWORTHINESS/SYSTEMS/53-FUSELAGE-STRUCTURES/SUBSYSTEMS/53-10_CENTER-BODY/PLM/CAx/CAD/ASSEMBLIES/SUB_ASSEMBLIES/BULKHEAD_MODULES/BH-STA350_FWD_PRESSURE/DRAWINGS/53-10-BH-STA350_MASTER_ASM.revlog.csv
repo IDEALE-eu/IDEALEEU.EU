@@ -1,0 +1,3 @@
+rev,date,author,change,impact,rel_tag
+00,2025-09-28,aaa-53-cad,Initial skeleton and interfaces,none,DRAFT
+01,2025-10-05,aaa-53-cad,Hole pattern update to match 51-30 table,medium,Q100-R0
