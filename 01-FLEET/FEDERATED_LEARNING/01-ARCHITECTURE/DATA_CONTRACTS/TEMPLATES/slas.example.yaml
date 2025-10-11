@@ -1,0 +1,328 @@
+# Service Level Agreements (SLAs)
+#
+# Defines availability, performance, and quality guarantees for data streams
+# used in federated learning.
+
+sla_metadata:
+  version: "1.0.0"
+  owner: "AI/ML Team - Data Engineering"
+  contract_id: "example_contract_v1"
+  effective_date: "2025-10-11"
+  review_period: "quarterly"
+
+# Availability SLA
+availability:
+  target: "99.5%"
+  measurement_window: "monthly"
+  calculation_method: "uptime / (uptime + downtime)"
+  
+  uptime_definition: |
+    Data ingestion pipeline is operational and accepting telemetry data
+    from FL clients with latency < max_ingestion_latency.
+  
+  downtime_definition: |
+    Data ingestion pipeline is unreachable, rejecting data, or experiencing
+    latency > 2× max_ingestion_latency for > 5 consecutive minutes.
+  
+  planned_maintenance:
+    schedule: "First Sunday of month, 00:00-04:00 UTC"
+    advance_notice: "7 days"
+    excluded_from_sla: true
+  
+  penalties:
+    99.0_to_99.5: "Service credit: 10% monthly cost"
+    98.0_to_99.0: "Service credit: 25% monthly cost"
+    below_98.0: "Service credit: 50% monthly cost"
+  
+  monitoring:
+    health_check_endpoint: "/health"
+    check_frequency: "60 seconds"
+    alert_threshold: "2 consecutive failures"
+
+# Latency SLA
+latency:
+  ingestion:
+    target: "10 seconds (p95)"
+    description: "Time from client transmission to server acknowledgment"
+    measurement: "Client-side timestamp to server ingestion timestamp"
+    
+  validation:
+    target: "5 seconds (p95)"
+    description: "Time to validate data against contract constraints"
+    measurement: "Ingestion timestamp to validation complete timestamp"
+  
+  end_to_end:
+    target: "15 seconds (p95)"
+    description: "Total time from client transmission to data availability"
+    measurement: "Client timestamp to data lake write timestamp"
+  
+  percentiles:
+    p50: "5 seconds"
+    p95: "15 seconds"
+    p99: "30 seconds"
+    p99.9: "60 seconds"
+  
+  breach_conditions:
+    warning: "p95 > 20 seconds for > 10 minutes"
+    critical: "p95 > 30 seconds for > 5 minutes"
+  
+  monitoring:
+    metrics: ["p50", "p95", "p99", "max"]
+    frequency: "real-time"
+    dashboard: "Grafana: Data Ingestion Latency"
+
+# Data Quality SLA
+data_quality:
+  completeness:
+    target: "> 95%"
+    description: "Percentage of expected data points received"
+    measurement: "received_count / expected_count"
+    
+    expected_data:
+      calculation: "num_clients × num_signals × sample_rate × time_window"
+      example: "100 clients × 50 signals × 1 Hz × 3600s = 18M points/hour"
+    
+    breach_conditions:
+      warning: "completeness < 95% for > 1 hour"
+      critical: "completeness < 90% for > 30 minutes"
+  
+  accuracy:
+    target: "Sensor calibration within 6 months"
+    description: "All sensors must have valid calibration certificates"
+    measurement: "Manual audit of calibration records"
+    
+    validation:
+      - "Calibration certificate on file"
+      - "Calibration date within 6 months"
+      - "Calibration traceable to NIST standards"
+    
+    breach_conditions:
+      warning: "> 5% sensors overdue calibration"
+      critical: "> 10% sensors overdue calibration"
+  
+  timeliness:
+    target: "Timestamp accuracy ± 1 second UTC"
+    description: "GPS time sync required for all FL clients"
+    measurement: "Compare client timestamp to server receipt time"
+    
+    validation:
+      - "GPS time sync active"
+      - "NTP sync as backup"
+      - "Clock drift < 1 second/day"
+    
+    breach_conditions:
+      warning: "Clock drift > 2 seconds for > 5% of clients"
+      critical: "Clock drift > 5 seconds for > 10% of clients"
+  
+  constraint_compliance:
+    target: "> 99%"
+    description: "Percentage of data passing constraint validation"
+    measurement: "passed_count / total_count"
+    
+    constraint_types:
+      - "Range validation"
+      - "Rate-of-change validation"
+      - "Consistency checks"
+      - "Completeness checks"
+    
+    breach_conditions:
+      warning: "compliance < 99% for > 1 hour"
+      critical: "compliance < 95% for > 30 minutes"
+
+# Throughput SLA
+throughput:
+  target: "100,000 messages/second"
+  description: "Peak ingestion rate during SATCOM windows"
+  measurement: "Messages processed per second (sustained)"
+  
+  scaling:
+    horizontal: "Auto-scale ingestion workers"
+    trigger: "CPU > 70% or queue depth > 10,000"
+    max_workers: 20
+  
+  burst_capacity:
+    target: "200,000 messages/second"
+    duration: "5 minutes"
+    description: "Handle temporary spikes (e.g., fleet-wide event)"
+  
+  breach_conditions:
+    warning: "Sustained throughput < 80,000 msg/s for > 5 minutes"
+    critical: "Sustained throughput < 50,000 msg/s for > 2 minutes"
+
+# Data Freshness SLA
+freshness:
+  target: "Data available within 1 minute of receipt"
+  description: "Maximum staleness for downstream consumers"
+  measurement: "Current time - latest data timestamp"
+  
+  use_cases:
+    real_time_monitoring: "< 1 minute"
+    fl_training: "< 10 minutes"
+    batch_analytics: "< 1 hour"
+  
+  breach_conditions:
+    warning: "freshness > 2 minutes for > 10 minutes"
+    critical: "freshness > 5 minutes for > 5 minutes"
+
+# Data Retention SLA
+retention:
+  raw_telemetry:
+    duration: "90 days"
+    storage_tier: "hot"
+    backup: "daily"
+    recovery_time: "< 4 hours"
+  
+  aggregated_metrics:
+    duration: "2 years"
+    storage_tier: "warm"
+    backup: "weekly"
+    recovery_time: "< 24 hours"
+  
+  model_gradients:
+    duration: "30 days"
+    storage_tier: "hot"
+    backup: "daily"
+    recovery_time: "< 1 hour"
+  
+  disposal:
+    method: "Secure deletion (DoD 5220.22-M)"
+    verification: "Deletion certificate generated"
+    audit_trail: "retained for 5 years"
+
+# Error Rate SLA
+error_rate:
+  ingestion_errors:
+    target: "< 0.1%"
+    description: "Failed to ingest due to system errors"
+    measurement: "error_count / total_attempts"
+    
+    error_categories:
+      - "Network timeout"
+      - "Server error (5xx)"
+      - "Authentication failure"
+      - "Quota exceeded"
+    
+    breach_conditions:
+      warning: "error_rate > 0.5% for > 10 minutes"
+      critical: "error_rate > 1.0% for > 5 minutes"
+  
+  validation_errors:
+    target: "< 1%"
+    description: "Failed validation (constraint violations)"
+    measurement: "rejected_count / ingested_count"
+    
+    action:
+      - "Log rejected messages"
+      - "Quarantine for review"
+      - "Alert data quality team"
+    
+    breach_conditions:
+      warning: "validation_error_rate > 5% for > 1 hour"
+      critical: "validation_error_rate > 10% for > 30 minutes"
+
+# Support and Response Time SLA
+support:
+  severity_levels:
+    critical:
+      definition: "Data ingestion completely down, no workaround"
+      response_time: "15 minutes"
+      resolution_time: "4 hours"
+      availability: "24/7"
+      escalation: "Immediate (PagerDuty)"
+    
+    high:
+      definition: "Major degradation, partial workaround available"
+      response_time: "1 hour"
+      resolution_time: "8 hours"
+      availability: "24/7"
+      escalation: "After 4 hours"
+    
+    medium:
+      definition: "Minor issue, workaround available"
+      response_time: "4 hours"
+      resolution_time: "24 hours"
+      availability: "Business hours (06:00-18:00 UTC)"
+      escalation: "After 24 hours"
+    
+    low:
+      definition: "Enhancement request or question"
+      response_time: "24 hours"
+      resolution_time: "best effort"
+      availability: "Business hours"
+      escalation: "None"
+  
+  contact:
+    primary: "Slack: #data-engineering-oncall"
+    secondary: "Email: data-engineering@ideale.eu"
+    emergency: "PagerDuty: Data Engineering rotation"
+
+# Monitoring and Reporting
+monitoring:
+  real_time_dashboard:
+    tool: "Grafana"
+    url: "https://monitoring.ideale.eu/d/data-contracts"
+    metrics:
+      - "Availability"
+      - "Latency (p50, p95, p99)"
+      - "Throughput (msg/s)"
+      - "Error rate"
+      - "Data quality score"
+  
+  alerts:
+    channels: ["PagerDuty", "Slack", "Email"]
+    escalation_policy: "Data Engineering on-call rotation"
+    
+    alert_rules:
+      - name: "High Error Rate"
+        condition: "error_rate > 1% for 5 minutes"
+        severity: "critical"
+      
+      - name: "High Latency"
+        condition: "p95_latency > 30s for 5 minutes"
+        severity: "critical"
+      
+      - name: "Low Availability"
+        condition: "uptime < 99.5% in current month"
+        severity: "warning"
+  
+  reporting:
+    frequency: "monthly"
+    recipients: ["AI/ML Team", "Fleet Operations", "CCB"]
+    contents:
+      - "SLA compliance summary"
+      - "Breach incidents and root causes"
+      - "Performance trends"
+      - "Improvement recommendations"
+
+# SLA Review and Updates
+review:
+  frequency: "quarterly"
+  participants:
+    - "Data Engineering Lead"
+    - "FL Engineering Lead"
+    - "Fleet Operations Manager"
+    - "CCB Representative"
+  
+  triggers_for_ad_hoc_review:
+    - "Multiple SLA breaches in one month"
+    - "Significant architecture changes"
+    - "New FL use cases with different requirements"
+    - "Regulatory requirement changes"
+
+# Related Documents
+related_documents:
+  - path: "../data_contract.yaml"
+    description: "Parent data contract"
+  - path: "constraints.yaml"
+    description: "Data quality constraints"
+  - path: "../../../12-METRICS/KPI_DEFINITIONS.md"
+    description: "KPI definitions and tracking"
+  - path: "../../../OPERATIONAL_DATA_HUB/05-DATA_QUALITY/"
+    description: "Fleet-wide data quality framework"
+
+# Change History
+change_history:
+  - version: "1.0.0"
+    date: "2025-10-11"
+    author: "AI/ML Team - Data Engineering"
+    changes: "Initial SLA definitions for aircraft telemetry"

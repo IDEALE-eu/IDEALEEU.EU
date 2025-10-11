@@ -1,0 +1,274 @@
+# Differential Privacy Policy
+#
+# Defines differential privacy (DP) configuration for federated learning.
+# DP provides provable privacy guarantees by adding calibrated noise to model updates.
+
+dp_metadata:
+  version: "1.0.0"
+  owner: "AI/ML Team - Privacy Engineering"
+  mechanism: "DP-SGD"  # Differentially Private Stochastic Gradient Descent
+  last_reviewed: "2025-10-11"
+
+# Privacy Budget
+# (ε, δ)-differential privacy guarantees
+privacy_budget:
+  epsilon: 1.0
+    # Interpretation: Privacy loss per client per training round
+    # Lower ε = stronger privacy (more noise) but lower accuracy
+    # Typical values: 0.1-10.0
+    # Chosen value: 1.0 (moderate privacy, good accuracy)
+  
+  delta: 1.0e-5
+    # Interpretation: Probability of privacy guarantee failure
+    # Should be << 1/n where n = dataset size
+    # Typical values: 1e-5 to 1e-6
+    # Chosen value: 1e-5 for fleet size ~10,000 aircraft
+  
+  composition:
+    method: "Rényi Differential Privacy (RDP)"
+    description: |
+      Tracks cumulative privacy loss across multiple training rounds.
+      RDP provides tighter composition bounds than basic DP.
+  
+  budget_allocation:
+    per_round: 0.02  # ε per FL round
+    total_rounds: 50  # Maximum 50 rounds
+    total_budget: 1.0  # 50 rounds × 0.02 = 1.0
+  
+  exhaustion_policy:
+    action: "Stop training and deploy model"
+    alert: "Notify privacy officer 5 rounds before exhaustion"
+
+# DP-SGD Configuration
+dp_sgd:
+  enabled: true
+  
+  gradient_clipping:
+    max_norm: 1.0
+    description: |
+      Clip gradients to bounded L2 norm before adding noise.
+      Prevents single data point from dominating gradient update.
+    justification: "Essential for DP guarantee calibration"
+  
+  noise_addition:
+    mechanism: "Gaussian"
+    noise_multiplier: 1.1
+    description: |
+      Add Gaussian noise ~ N(0, σ²) to clipped gradients.
+      σ = noise_multiplier × max_norm / batch_size
+    calibration: "Calibrated to achieve (ε, δ)-DP"
+  
+  lot_size:
+    value: 32
+    description: |
+      Number of samples in each training batch.
+      Larger batches = less noise per sample = better accuracy.
+    justification: "Balance between privacy and convergence speed"
+  
+  iterations_per_epoch:
+    compute: "dataset_size / lot_size"
+    description: "Number of gradient updates per local epoch"
+
+# Privacy Accounting
+privacy_accounting:
+  accountant: "Opacus Privacy Engine"
+  library_version: "1.4.0"
+  
+  tracking:
+    log_file: "privacy_budget_log.jsonl"
+    fields:
+      - "round_number"
+      - "epsilon_consumed"
+      - "delta_consumed"
+      - "epsilon_remaining"
+      - "gradient_norm_stats"
+      - "noise_scale"
+  
+  auditing:
+    frequency: "every_round"
+    alert_threshold: 0.90  # Alert when 90% of budget consumed
+    report_destination: "12-METRICS/PRIVACY/"
+
+# Client-Side DP Enforcement
+client_side:
+  enforcement: "mandatory"
+  
+  validation:
+    - "Verify gradient clipping applied"
+    - "Verify noise addition calibrated correctly"
+    - "Verify privacy budget tracked accurately"
+  
+  rejection_policy:
+    action: "Reject updates without DP"
+    log: true
+    alert_dpo: true
+
+# Per-Example Privacy Guarantee
+per_example_guarantee:
+  interpretation: |
+    For any single telemetry record in the training dataset,
+    an adversary cannot determine with confidence > (e^ε - 1)
+    whether that specific record was in the training data.
+    
+    With ε=1.0:
+    - e^1.0 ≈ 2.72
+    - (e^1.0 - 1) ≈ 1.72
+    - Privacy guarantee: ~172% distinguishability bound
+    
+    Informal interpretation: Even with access to the model,
+    an adversary has at most 2.72× better odds of guessing
+    whether a specific data record was used in training.
+
+# Trade-offs
+privacy_accuracy_tradeoff:
+  privacy_level: "moderate"
+  expected_accuracy_loss: "2-5%"
+  
+  comparison:
+    no_dp:
+      epsilon: "infinity"
+      accuracy: "baseline"
+      privacy: "none"
+    
+    high_dp:
+      epsilon: 0.1
+      accuracy: "baseline - 10-15%"
+      privacy: "strong"
+    
+    moderate_dp:
+      epsilon: 1.0
+      accuracy: "baseline - 2-5%"
+      privacy: "moderate"
+    
+    low_dp:
+      epsilon: 10.0
+      accuracy: "baseline - 0.5-1%"
+      privacy: "weak"
+
+# Threat Model
+threat_model:
+  adversary_capabilities:
+    - "Access to final trained model"
+    - "Access to public model API (inference)"
+    - "Knowledge of FL algorithm and hyperparameters"
+    - "Potentially control some FL clients (Byzantine)"
+  
+  adversary_goals:
+    - "Reconstruct training data (model inversion)"
+    - "Determine membership (membership inference)"
+    - "Extract sensitive attributes (attribute inference)"
+  
+  defenses:
+    model_inversion:
+      defense: "DP noise prevents reconstruction"
+      effectiveness: "high"
+    
+    membership_inference:
+      defense: "DP bounds membership advantage"
+      effectiveness: "high"
+    
+    attribute_inference:
+      defense: "DP + data minimization + pseudonymization"
+      effectiveness: "moderate-high"
+
+# Sensitivity Analysis
+sensitivity_analysis:
+  gradient_sensitivity:
+    definition: "Max L2 norm change from adding/removing one example"
+    bound: "max_norm × 2"  # Due to gradient clipping
+    justification: "Clipping ensures bounded sensitivity"
+  
+  parameter_tuning:
+    epsilon:
+      decrease: "Stronger privacy, lower accuracy"
+      increase: "Weaker privacy, higher accuracy"
+    
+    max_norm:
+      decrease: "More aggressive clipping, potential underfitting"
+      increase: "Less clipping, higher sensitivity, more noise needed"
+    
+    noise_multiplier:
+      decrease: "Less noise, weaker privacy (ε increases)"
+      increase: "More noise, stronger privacy (ε decreases)"
+
+# Validation and Testing
+validation:
+  pre_deployment:
+    - "Privacy budget calculation verified"
+    - "Noise calibration tested on synthetic data"
+    - "Gradient clipping bounds validated"
+  
+  continuous_monitoring:
+    - "Privacy budget consumption tracking"
+    - "Gradient norm distribution monitoring"
+    - "Anomaly detection (unusually large gradients)"
+  
+  post_deployment:
+    - "Privacy audit using membership inference attacks"
+    - "Model inversion attack resistance testing"
+
+# Regulatory Compliance
+regulatory_compliance:
+  gdpr:
+    article_25: "Privacy by design and by default"
+    recital_78: "Appropriate technical and organizational measures"
+    justification: "DP provides state-of-the-art privacy protection"
+  
+  ccpa:
+    section_1798_100: "Notice of data collection and use"
+    justification: "DP minimizes re-identification risk"
+  
+  aviation_specific:
+    do_326a: "Airworthiness security process specification"
+    justification: "DP prevents data leakage from ML models"
+
+# Emergency Procedures
+emergency_procedures:
+  budget_exhaustion:
+    action: |
+      1. Stop all FL training immediately
+      2. Deploy current model (if validation passed)
+      3. Request budget increase from privacy board
+      4. Document justification for additional budget
+  
+  privacy_breach_suspected:
+    action: |
+      1. Halt FL system immediately
+      2. Notify DPO and security team
+      3. Initiate incident response (16-INCIDENT_RESPONSE/)
+      4. Conduct privacy audit and forensic analysis
+      5. Report to supervisory authority (72 hours)
+
+# References and Standards
+references:
+  papers:
+    - "Abadi et al. (2016): Deep Learning with Differential Privacy"
+    - "Mironov (2017): Rényi Differential Privacy"
+    - "Dwork & Roth (2014): The Algorithmic Foundations of DP"
+  
+  implementations:
+    - "Google Differential Privacy Library"
+    - "PyTorch Opacus"
+    - "TensorFlow Privacy"
+  
+  standards:
+    - "ISO/IEC 20889:2018 - Privacy enhancing data de-identification"
+    - "NIST Privacy Framework"
+
+# Related Documents
+related_documents:
+  - path: "../data_contract.yaml"
+    description: "Parent data contract"
+  - path: "pii_map.yaml"
+    description: "PII mapping and pseudonymization"
+  - path: "../../../05-PRIVACY_SECURITY/DP_SGD.md"
+    description: "DP-SGD implementation details"
+  - path: "../../../11-COMPLIANCE/PRIVACY.md"
+    description: "GDPR compliance policy"
+
+# Change History
+change_history:
+  - version: "1.0.0"
+    date: "2025-10-11"
+    author: "AI/ML Team - Privacy Engineering"
+    changes: "Initial DP policy for aircraft telemetry FL"
