@@ -1,0 +1,11 @@
+Signal ID,Direction,Source System,ATA,Destination System,Message Type,Protocol,Frequency Hz,Data Type,Unit,Description
+DTM-001,Input,Aircraft FADEC,76,Digital Twin,Telemetry,CAN,10,float,percent,Fuel cell power output
+DTM-002,Input,Aircraft BMS,24,Digital Twin,Telemetry,CAN,1,float,percent,Battery state of charge
+DTM-003,Input,Aircraft AHRS,34,Digital Twin,Telemetry,ARINC 429,50,float,deg,Pitch angle
+DTM-004,Input,Aircraft GPS,34,Digital Twin,Telemetry,RS-422,10,double,deg,Latitude
+DTM-005,Output,Digital Twin,,Aircraft Display,KPI,Ethernet,1,float,kg,Predicted H2 consumption
+DTM-006,Output,Digital Twin,,Ground Station,Alert,ACARS,0.1,string,n/a,Anomaly notification
+DTM-007,Input,Aircraft Air Data,34,Digital Twin,Telemetry,ARINC 429,20,float,kts,True airspeed
+DTM-008,Input,Aircraft Fuel System,28,Digital Twin,Telemetry,CAN,1,float,bar,H2 tank pressure
+DTM-009,Output,Digital Twin,,MRO System,Recommendation,HTTPS,0.01,JSON,n/a,Maintenance recommendation
+DTM-010,Bidirectional,Digital Twin,,Configuration DB,Config Sync,PostgreSQL,0.001,JSON,n/a,Configuration data

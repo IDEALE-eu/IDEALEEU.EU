@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://ideale-eu.eu/schemas/commands.schema.json",
+  "title": "Digital Twin Commands",
+  "description": "Schema for commands sent to digital twin",
+  "type": "object",
+  "required": ["command_id", "timestamp", "command_type"],
+  "properties": {
+    "command_id": {
+      "type": "string",
+      "description": "Unique command identifier (UUID)"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Command timestamp (UTC)"
+    },
+    "command_type": {
+      "type": "string",
+      "enum": ["start_simulation", "stop_simulation", "update_parameters", "query_kpi", "calibrate_model"]
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Command-specific parameters"
+    },
+    "requester": {
+      "type": "string",
+      "description": "User or system initiating command"
+    }
+  }
+}

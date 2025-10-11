@@ -1,0 +1,87 @@
+# Body to Wind Frame Transformation
+
+description: Transformation from aircraft body frame to wind frame (aerodynamic axes)
+version: 1.0
+last_updated: 2025-01-XX
+
+# Transformation Definition
+
+transformation:
+  from_frame: Body
+  to_frame: Wind
+  type: Rotation
+  depends_on:
+    - alpha  # Angle of attack (deg)
+    - beta   # Sideslip angle (deg)
+
+# Rotation Matrix (function of alpha, beta)
+
+rotation_matrix:
+  description: R_wind_body = R_z(beta) * R_y(alpha)
+  formula: |
+    R = [cos(alpha)*cos(beta),  sin(beta), sin(alpha)*cos(beta)]
+        [-cos(alpha)*sin(beta), cos(beta), -sin(alpha)*sin(beta)]
+        [-sin(alpha),           0,         cos(alpha)]
+  
+  implementation:
+    python: |
+      import numpy as np
+      def body_to_wind(alpha_deg, beta_deg):
+          alpha = np.radians(alpha_deg)
+          beta = np.radians(beta_deg)
+          
+          ca, sa = np.cos(alpha), np.sin(alpha)
+          cb, sb = np.cos(beta), np.sin(beta)
+          
+          R = np.array([
+              [ca*cb,  sb,  sa*cb],
+              [-ca*sb, cb, -sa*sb],
+              [-sa,    0,   ca]
+          ])
+          return R
+
+# Typical Operating Ranges
+
+operating_ranges:
+  alpha:
+    min_deg: -5
+    max_deg: 20
+    typical_cruise_deg: 3
+  beta:
+    min_deg: -15
+    max_deg: 15
+    typical_cruise_deg: 0
+
+# Example Transformations
+
+examples:
+  - condition: Level cruise
+    alpha_deg: 3.0
+    beta_deg: 0.0
+    rotation_matrix:
+      - [0.9986, 0.0000, 0.0523]
+      - [0.0000, 1.0000, 0.0000]
+      - [-0.0523, 0.0000, 0.9986]
+    
+  - condition: Takeoff rotation
+    alpha_deg: 12.0
+    beta_deg: 0.0
+    rotation_matrix:
+      - [0.9781, 0.0000, 0.2079]
+      - [0.0000, 1.0000, 0.0000]
+      - [-0.2079, 0.0000, 0.9781]
+    
+  - condition: Crosswind landing
+    alpha_deg: 8.0
+    beta_deg: 5.0
+    rotation_matrix:
+      - [0.9848, 0.0872, 0.1478]
+      - [-0.0869, 0.9962, -0.0123]
+      - [-0.1392, 0.0000, 0.9903]
+
+# Usage in Digital Twin
+
+usage:
+  aerodynamic_forces: Transform from wind frame (where computed) to body frame
+  flight_dynamics: Convert airspeed vector to body frame components
+  control_laws: Reference frame for stability augmentation

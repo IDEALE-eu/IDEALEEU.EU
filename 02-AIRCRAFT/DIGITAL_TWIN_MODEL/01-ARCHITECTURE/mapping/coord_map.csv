@@ -1,0 +1,26 @@
+From Frame,To Frame,Transformation Type,Rotation Order,Rotation X (deg),Rotation Y (deg),Rotation Z (deg),Translation X (m),Translation Y (m),Translation Z (m),Description,Notes
+Body,Wind,Rotation,ZYX,alpha,0,beta,0,0,0,Body to wind frame transformation,Alpha = angle of attack; Beta = sideslip
+Body,Earth_NED,Rotation,ZYX,pitch,roll,yaw,0,0,0,Body to local NED frame,Standard aircraft attitude
+Body,ECEF,Rotation+Translation,Custom,0,0,0,lat_dependent,lon_dependent,alt_dependent,Body to Earth-centered frame,Requires geodetic position
+Sensor_GPS,Body,Translation,None,0,0,0,0.5,0,1.2,GPS antenna to body frame,Antenna on upper fuselage
+Sensor_IMU,Body,Rotation+Translation,ZYX,0,0,0,-0.1,0,-0.05,IMU to body frame,Near aircraft CG
+Sensor_ADS,Body,Translation,None,0,0,0,2.5,0,0.3,Air data sensor to body,Pitot-static probe
+Sensor_AOA_L,Body,Translation,None,0,0,0,1.8,-2.5,0.2,Left AOA vane to body,Port side nose
+Sensor_AOA_R,Body,Translation,None,0,0,0,1.8,2.5,0.2,Right AOA vane to body,Starboard side nose
+Sensor_FC,Body,Translation,None,0,0,0,-3.0,0,-0.8,Fuel cell to body frame,Aft fuselage bay
+NED,ECEF,Rotation+Translation,Custom,0,0,0,x_ecef,y_ecef,z_ecef,Local NED to ECEF,Position dependent
+Wind,Stability,Rotation,ZYX,0,-alpha,0,0,0,0,Wind to stability axes,Rotate by -alpha about Y
+Stability,Body,Rotation,ZYX,0,alpha,-beta,0,0,0,Stability to body axes,Standard aero convention
+CG,Body,Translation,None,0,0,0,-0.02,0,-0.01,Center of gravity offset,CG varies with loading
+AC,Body,Translation,None,0,0,0,0.15,0,-0.05,Aerodynamic center offset,Wing quarter chord
+CP,Body,Translation,None,0,0,0,0.20,0,-0.05,Center of pressure offset,Load dependent
+Tank1_Frame,Body,Translation,None,0,0,0,-4.0,-1.5,0.5,H2 Tank 1 to body,Port aft tank
+Tank2_Frame,Body,Translation,None,0,0,0,-4.0,1.5,0.5,H2 Tank 2 to body,Starboard aft tank
+Battery_Frame,Body,Translation,None,0,0,0,-2.5,0,-0.6,Battery pack to body,Center fuselage bay
+Camera_FWD,Body,Rotation+Translation,ZYX,0,-15,0,3.0,0,0.5,Forward camera to body,15° down look
+Camera_AFT,Body,Rotation+Translation,ZYX,0,180,0,-8.0,0,0.5,Aft camera to body,180° rear look
+Propeller_L,Body,Rotation+Translation,ZYX,0,0,0,0.5,-3.0,0,Left propeller to body,Port wing nacelle
+Propeller_R,Body,Rotation+Translation,ZYX,0,0,0,0.5,3.0,0,Right propeller to body,Starboard nacelle
+Winglet_L,Body,Translation,None,0,0,0,-0.5,-6.0,1.0,Left winglet frame,Port tip
+Winglet_R,Body,Translation,None,0,0,0,-0.5,6.0,1.0,Right winglet frame,Starboard tip
+Payload_Bay,Body,Translation,None,0,0,0,1.0,0,-0.5,Payload bay frame,Forward cargo

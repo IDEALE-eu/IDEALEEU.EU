@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://ideale-eu.eu/ontology/digital-twin#"
+     xml:base="http://ideale-eu.eu/ontology/digital-twin"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="http://ideale-eu.eu/ontology/digital-twin">
+        <dc:title>Aircraft Digital Twin Ontology</dc:title>
+        <dc:description>Ontology for hydrogen-powered aircraft digital twin</dc:description>
+        <dc:creator>IDEALE-EU Digital Twin Team</dc:creator>
+        <dc:date>2025-01-XX</dc:date>
+        <owl:versionInfo>1.0</owl:versionInfo>
+    </owl:Ontology>
+    
+    <!-- Top-level Classes -->
+    
+    <owl:Class rdf:about="#Aircraft">
+        <rdfs:label>Aircraft</rdfs:label>
+        <rdfs:comment>Top-level aircraft entity</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="#System">
+        <rdfs:label>System</rdfs:label>
+        <rdfs:comment>Aircraft system (ATA chapter level)</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="#Subsystem">
+        <rdfs:label>Subsystem</rdfs:label>
+        <rdfs:comment>Subsystem component</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#System"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="#Component">
+        <rdfs:label>Component</rdfs:label>
+        <rdfs:comment>Physical component or part</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="#Sensor">
+        <rdfs:label>Sensor</rdfs:label>
+        <rdfs:comment>Measurement sensor</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Component"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="#Actuator">
+        <rdfs:label>Actuator</rdfs:label>
+        <rdfs:comment>Control actuator</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Component"/>
+    </owl:Class>
+    
+    <!-- Model Classes -->
+    
+    <owl:Class rdf:about="#Model">
+        <rdfs:label>Model</rdfs:label>
+        <rdfs:comment>Digital twin model</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="#PhysicsModel">
+        <rdfs:label>Physics-Based Model</rdfs:label>
+        <rdfs:comment>First-principles physics model</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Model"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="#DataDrivenModel">
+        <rdfs:label>Data-Driven Model</rdfs:label>
+        <rdfs:comment>Machine learning or statistical model</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Model"/>
+    </owl:Class>
+    
+    <owl:Class rdf:about="#BehavioralModel">
+        <rdfs:label>Behavioral Model</rdfs:label>
+        <rdfs:comment>State machine or control logic model</rdfs:comment>
+        <rdfs:subClassOf rdf:resource="#Model"/>
+    </owl:Class>
+    
+    <!-- Data Classes -->
+    
+    <owl:Class rdf:about="#Signal">
+        <rdfs:label>Signal</rdfs:label>
+        <rdfs:comment>Telemetry or control signal</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="#Parameter">
+        <rdfs:label>Parameter</rdfs:label>
+        <rdfs:comment>Model parameter or configuration value</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="#KPI">
+        <rdfs:label>Key Performance Indicator</rdfs:label>
+        <rdfs:comment>Performance metric</rdfs:comment>
+    </owl:Class>
+    
+    <!-- Properties -->
+    
+    <owl:ObjectProperty rdf:about="#hasSystem">
+        <rdfs:label>has system</rdfs:label>
+        <rdfs:domain rdf:resource="#Aircraft"/>
+        <rdfs:range rdf:resource="#System"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="#hasSubsystem">
+        <rdfs:label>has subsystem</rdfs:label>
+        <rdfs:domain rdf:resource="#System"/>
+        <rdfs:range rdf:resource="#Subsystem"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="#hasComponent">
+        <rdfs:label>has component</rdfs:label>
+        <rdfs:domain rdf:resource="#Subsystem"/>
+        <rdfs:range rdf:resource="#Component"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="#hasSensor">
+        <rdfs:label>has sensor</rdfs:label>
+        <rdfs:range rdf:resource="#Sensor"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="#measures">
+        <rdfs:label>measures</rdfs:label>
+        <rdfs:domain rdf:resource="#Sensor"/>
+        <rdfs:range rdf:resource="#Signal"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="#modeledBy">
+        <rdfs:label>modeled by</rdfs:label>
+        <rdfs:range rdf:resource="#Model"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="#hasInput">
+        <rdfs:label>has input</rdfs:label>
+        <rdfs:domain rdf:resource="#Model"/>
+        <rdfs:range rdf:resource="#Signal"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="#hasOutput">
+        <rdfs:label>has output</rdfs:label>
+        <rdfs:domain rdf:resource="#Model"/>
+        <rdfs:range rdf:resource="#Signal"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="#hasParameter">
+        <rdfs:label>has parameter</rdfs:label>
+        <rdfs:domain rdf:resource="#Model"/>
+        <rdfs:range rdf:resource="#Parameter"/>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="#produces">
+        <rdfs:label>produces</rdfs:label>
+        <rdfs:domain rdf:resource="#Model"/>
+        <rdfs:range rdf:resource="#KPI"/>
+    </owl:ObjectProperty>
+    
+    <!-- Data Properties -->
+    
+    <owl:DatatypeProperty rdf:about="#ataChapter">
+        <rdfs:label>ATA chapter</rdfs:label>
+        <rdfs:domain rdf:resource="#System"/>
+        <rdfs:range rdf:resource="xsd:string"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="#serialNumber">
+        <rdfs:label>serial number</rdfs:label>
+        <rdfs:range rdf:resource="xsd:string"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="#unit">
+        <rdfs:label>unit</rdfs:label>
+        <rdfs:domain rdf:resource="#Signal"/>
+        <rdfs:range rdf:resource="xsd:string"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="#sampleRate">
+        <rdfs:label>sample rate (Hz)</rdfs:label>
+        <rdfs:domain rdf:resource="#Signal"/>
+        <rdfs:range rdf:resource="xsd:float"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="#minValue">
+        <rdfs:label>minimum value</rdfs:label>
+        <rdfs:range rdf:resource="xsd:float"/>
+    </owl:DatatypeProperty>
+    
+    <owl:DatatypeProperty rdf:about="#maxValue">
+        <rdfs:label>maximum value</rdfs:label>
+        <rdfs:range rdf:resource="xsd:float"/>
+    </owl:DatatypeProperty>
+    
+    <!-- Example Individuals -->
+    
+    <Aircraft rdf:about="#AC-H2-001">
+        <rdfs:label>Aircraft AC-H2-001</rdfs:label>
+        <serialNumber>AC-H2-001</serialNumber>
+        <hasSystem rdf:resource="#PropulsionSystem"/>
+        <hasSystem rdf:resource="#ElectricalSystem"/>
+    </Aircraft>
+    
+    <System rdf:about="#PropulsionSystem">
+        <rdfs:label>Propulsion System</rdfs:label>
+        <ataChapter>ATA-76</ataChapter>
+        <hasSubsystem rdf:resource="#FuelCellSubsystem"/>
+    </System>
+    
+    <Subsystem rdf:about="#FuelCellSubsystem">
+        <rdfs:label>Fuel Cell Subsystem</rdfs:label>
+        <hasSensor rdf:resource="#Sensor_FC_Voltage"/>
+    </Subsystem>
+    
+    <Sensor rdf:about="#Sensor_FC_Voltage">
+        <rdfs:label>Fuel Cell Voltage Sensor</rdfs:label>
+        <serialNumber>SIG-003</serialNumber>
+        <measures rdf:resource="#Signal_FC_Voltage"/>
+    </Sensor>
+    
+    <Signal rdf:about="#Signal_FC_Voltage">
+        <rdfs:label>Fuel Cell Stack Voltage</rdfs:label>
+        <unit>V</unit>
+        <sampleRate>100</sampleRate>
+        <minValue>200</minValue>
+        <maxValue>280</maxValue>
+    </Signal>
+    
+    <PhysicsModel rdf:about="#FuelCellModel">
+        <rdfs:label>Fuel Cell Physics Model</rdfs:label>
+        <hasInput rdf:resource="#Signal_H2_FlowRate"/>
+        <hasOutput rdf:resource="#Signal_FC_Voltage"/>
+        <produces rdf:resource="#KPI_FuelCellEfficiency"/>
+    </PhysicsModel>
+    
+</rdf:RDF>

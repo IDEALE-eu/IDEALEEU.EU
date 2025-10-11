@@ -1,0 +1,9 @@
+This is a placeholder for FMU (Functional Mock-up Unit) files.
+FMU files are ZIP archives containing model binaries and XML descriptors.
+
+Example FMU files would be placed here:
+- fuel_system.fmu
+- aerodynamics.fmu
+- battery_model.fmu
+
+See FMI standard: https://fmi-standard.org/

@@ -1,0 +1,43 @@
+openapi: 3.0.3
+info:
+  title: Digital Twin External API
+  description: API for external systems to interact with aircraft digital twin
+  version: 1.0.0
+  contact:
+    name: Digital Twin API Team
+    email: dt-api@ideale-eu.eu
+servers:
+  - url: https://api.digitaltwin.ideale-eu.eu/v1
+    description: Production API
+paths:
+  /telemetry:
+    post:
+      summary: Submit telemetry data
+      description: Stream telemetry data from aircraft to digital twin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../schemas/telemetry.schema.json'
+      responses:
+        '202':
+          description: Telemetry accepted for processing
+        '400':
+          description: Invalid telemetry data
+        '401':
+          description: Unauthorized
+  /kpis/{aircraft_id}:
+    get:
+      summary: Query KPIs for aircraft
+      parameters:
+        - name: aircraft_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: KPIs retrieved successfully
+        '404':
+          description: Aircraft not found

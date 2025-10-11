@@ -1,0 +1,41 @@
+Signal ID,Signal Name,Unit,Source System,ATA Chapter,Twin Variable,Model Component,Conversion Factor,Offset,Sample Rate Hz,Data Type,Valid Range,Notes
+SIG-001,Engine N1 Speed,percent,FADEC,ATA-76,n1_percent,propulsion.engine,1.0,0.0,10,float,[0-110],Fuel cell equivalent
+SIG-002,Engine N2 Speed,percent,FADEC,ATA-76,n2_percent,propulsion.compressor,1.0,0.0,10,float,[0-110],Compressor speed
+SIG-003,Fuel Cell Stack Voltage,V,FC Controller,ATA-76,fc_voltage,propulsion.fuel_cell,1.0,0.0,100,float,[200-280],Main power source
+SIG-004,Fuel Cell Stack Current,A,FC Controller,ATA-76,fc_current,propulsion.fuel_cell,1.0,0.0,100,float,[0-500],Power output
+SIG-005,H2 Tank 1 Pressure,bar,Pressure Sensor,ATA-28,h2_tank1_pressure,fuel_system.tank1,1.0,0.0,1,float,[0-700],High pressure H2
+SIG-006,H2 Tank 2 Pressure,bar,Pressure Sensor,ATA-28,h2_tank2_pressure,fuel_system.tank2,1.0,0.0,1,float,[0-700],High pressure H2
+SIG-007,H2 Flow Rate,kg/h,Flow Meter,ATA-28,h2_flow_rate,fuel_system.flow,1.0,0.0,10,float,[0-50],Mass flow to FC
+SIG-008,Battery SOC,percent,BMS,ATA-24,battery_soc,electrical.battery,1.0,0.0,1,float,[0-100],State of charge
+SIG-009,Battery Voltage,V,BMS,ATA-24,battery_voltage,electrical.battery,1.0,0.0,10,float,[190-280],Pack voltage
+SIG-010,Battery Current,A,BMS,ATA-24,battery_current,electrical.battery,1.0,0.0,10,float,[-400-400],Charge/discharge
+SIG-011,Total Air Temperature,degC,Air Data,ATA-34,tat_degC,atmosphere.temperature,1.0,-273.15,1,float,[-60-60],Outside air
+SIG-012,Static Pressure,hPa,Air Data,ATA-34,static_pressure_hPa,atmosphere.pressure,1.0,0.0,1,float,[200-1100],Altitude sensing
+SIG-013,Dynamic Pressure,hPa,Air Data,ATA-34,dynamic_pressure_hPa,atmosphere.q,1.0,0.0,10,float,[0-500],Airspeed sensing
+SIG-014,Angle of Attack,deg,Air Data,ATA-34,alpha_deg,aerodynamics.alpha,1.0,0.0,20,float,[-10-30],AOA vane
+SIG-015,Sideslip Angle,deg,Air Data,ATA-34,beta_deg,aerodynamics.beta,1.0,0.0,20,float,[-30-30],Beta vane
+SIG-016,True Airspeed,kts,Air Data,ATA-34,tas_kts,kinematics.airspeed,1.0,0.0,10,float,[0-400],Computed TAS
+SIG-017,Altitude MSL,ft,Air Data,ATA-34,altitude_msl_ft,kinematics.altitude,1.0,0.0,10,float,[-1000-50000],GPS/baro fusion
+SIG-018,Vertical Speed,fpm,Air Data,ATA-34,vertical_speed_fpm,kinematics.climb_rate,1.0,0.0,10,float,[-6000-6000],Rate of climb
+SIG-019,Latitude,deg,GPS/INS,ATA-34,latitude_deg,navigation.position.lat,1.0,0.0,10,double,[-90-90],WGS84
+SIG-020,Longitude,deg,GPS/INS,ATA-34,longitude_deg,navigation.position.lon,1.0,0.0,10,double,[-180-180],WGS84
+SIG-021,Ground Speed,kts,GPS/INS,ATA-34,ground_speed_kts,navigation.ground_speed,1.0,0.0,10,float,[0-400],GPS derived
+SIG-022,Track Angle,deg,GPS/INS,ATA-34,track_deg,navigation.track,1.0,0.0,10,float,[0-360],Ground track
+SIG-023,Pitch Angle,deg,AHRS,ATA-34,pitch_deg,attitude.pitch,1.0,0.0,50,float,[-90-90],Body pitch
+SIG-024,Roll Angle,deg,AHRS,ATA-34,roll_deg,attitude.roll,1.0,0.0,50,float,[-180-180],Body roll
+SIG-025,Yaw Angle,deg,AHRS,ATA-34,yaw_deg,attitude.yaw,1.0,0.0,50,float,[0-360],True heading
+SIG-026,Pitch Rate,deg/s,AHRS,ATA-34,pitch_rate_deg_per_s,rates.q,1.0,0.0,50,float,[-30-30],Body rate
+SIG-027,Roll Rate,deg/s,AHRS,ATA-34,roll_rate_deg_per_s,rates.p,1.0,0.0,50,float,[-60-60],Body rate
+SIG-028,Yaw Rate,deg/s,AHRS,ATA-34,yaw_rate_deg_per_s,rates.r,1.0,0.0,50,float,[-30-30],Body rate
+SIG-029,Accel X,g,IMU,ATA-34,accel_x_g,forces.accel_x,1.0,0.0,100,float,[-10-10],Body X axis
+SIG-030,Accel Y,g,IMU,ATA-34,accel_y_g,forces.accel_y,1.0,0.0,100,float,[-10-10],Body Y axis
+SIG-031,Accel Z,g,IMU,ATA-34,accel_z_g,forces.accel_z,1.0,0.0,100,float,[-10-10],Body Z axis
+SIG-032,Elevator Position,deg,Flight Controls,ATA-27,elevator_deg,controls.elevator,1.0,0.0,50,float,[-30-20],Trailing edge down positive
+SIG-033,Aileron Position,deg,Flight Controls,ATA-27,aileron_deg,controls.aileron,1.0,0.0,50,float,[-25-25],Right down positive
+SIG-034,Rudder Position,deg,Flight Controls,ATA-27,rudder_deg,controls.rudder,1.0,0.0,50,float,[-30-30],Right positive
+SIG-035,Flap Position,deg,Flight Controls,ATA-27,flap_deg,controls.flap,1.0,0.0,5,float,[0-40],Trailing edge
+SIG-036,Cabin Temperature,degC,ECS,ATA-21,cabin_temp_degC,environmental.cabin_temp,1.0,0.0,0.1,float,[15-30],Passenger comfort
+SIG-037,Cabin Altitude,ft,ECS,ATA-21,cabin_altitude_ft,environmental.cabin_alt,1.0,0.0,1,float,[0-10000],Pressurization
+SIG-038,Outside Air Temp,degC,Sensors,ATA-34,oat_degC,atmosphere.oat,1.0,-273.15,1,float,[-60-60],Static temp
+SIG-039,Wing Ice Detection,boolean,Ice Detection,ATA-30,ice_detected,environmental.icing,1.0,0.0,1,bool,[0-1],Ice presence flag
+SIG-040,Total Aircraft Weight,kg,Weight System,ATA-00,weight_kg,mass.total,1.0,0.0,1,float,[30000-45000],Computed weight
