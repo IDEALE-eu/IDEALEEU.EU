@@ -1,0 +1,453 @@
+# CONTROL_LOGIC INTERFACE SIGNALS
+# ATA-27 Flight Controls - Signal Interface Definition
+# Related to: 02-AIRCRAFT/CONFIGURATION_BASE/ATA-27_FLIGHT_CONTROLS/
+
+version: 1.0
+last_updated: 2025-01-15
+system: ATA-27_FLIGHT_CONTROLS
+subsystem: Flight Control Computer (FCC)
+description: Interface Control Document (ICD) for flight control signals between FCC and actuators
+
+# ==============================================================================
+# INPUT SIGNALS - From cockpit and sensors to FCC
+# ==============================================================================
+
+inputs:
+  
+  # Pilot Commands (from ATA-25 Cockpit Controls)
+  - name: pilot_stick_pitch_cmd
+    signal_id: FCC_IN_001
+    type: analog
+    unit: degrees
+    range: [-15.0, 15.0]
+    sample_rate_hz: 50
+    protocol: ARINC_429
+    ebom_ref: ATA-25-31-001
+    description: Pilot stick pitch command (nose up/down)
+    source: Cockpit control column
+    dal_level: DAL-A
+    redundancy: dual_channel
+    
+  - name: pilot_stick_roll_cmd
+    signal_id: FCC_IN_002
+    type: analog
+    unit: degrees
+    range: [-30.0, 30.0]
+    sample_rate_hz: 50
+    protocol: ARINC_429
+    ebom_ref: ATA-25-31-002
+    description: Pilot stick roll command (left/right)
+    source: Cockpit control wheel
+    dal_level: DAL-A
+    redundancy: dual_channel
+    
+  - name: pilot_rudder_pedal_cmd
+    signal_id: FCC_IN_003
+    type: analog
+    unit: degrees
+    range: [-25.0, 25.0]
+    sample_rate_hz: 50
+    protocol: ARINC_429
+    ebom_ref: ATA-25-31-003
+    description: Pilot rudder pedal command (yaw left/right)
+    source: Cockpit rudder pedals
+    dal_level: DAL-A
+    redundancy: dual_channel
+  
+  # Air Data Inputs (from ATA-34 Air Data System)
+  - name: airspeed_indicated
+    signal_id: FCC_IN_010
+    type: analog
+    unit: knots
+    range: [0, 350]
+    sample_rate_hz: 10
+    protocol: ARINC_429
+    ebom_ref: ATA-34-12-001
+    description: Indicated airspeed from pitot-static system
+    source: Air Data Computer (ADC)
+    dal_level: DAL-A
+    redundancy: triple_channel
+    
+  - name: altitude_pressure
+    signal_id: FCC_IN_011
+    type: analog
+    unit: feet
+    range: [-1000, 45000]
+    sample_rate_hz: 10
+    protocol: ARINC_429
+    ebom_ref: ATA-34-12-002
+    description: Pressure altitude
+    source: Air Data Computer (ADC)
+    dal_level: DAL-A
+    redundancy: triple_channel
+    
+  - name: angle_of_attack
+    signal_id: FCC_IN_012
+    type: analog
+    unit: degrees
+    range: [-10.0, 30.0]
+    sample_rate_hz: 50
+    protocol: ARINC_429
+    ebom_ref: ATA-34-13-001
+    description: Angle of attack (AoA) for envelope protection
+    source: AoA sensors
+    dal_level: DAL-A
+    redundancy: triple_channel
+    validation: cross_channel_comparison
+  
+  # Autopilot Commands (from ATA-22 Auto Flight)
+  - name: autopilot_pitch_cmd
+    signal_id: FCC_IN_020
+    type: analog
+    unit: degrees
+    range: [-10.0, 20.0]
+    sample_rate_hz: 20
+    protocol: ARINC_664
+    ebom_ref: ATA-22-11-001
+    description: Autopilot pitch command when engaged
+    source: Autopilot computer
+    dal_level: DAL-A
+    redundancy: dual_channel
+    
+  - name: autopilot_roll_cmd
+    signal_id: FCC_IN_021
+    type: analog
+    unit: degrees
+    range: [-30.0, 30.0]
+    sample_rate_hz: 20
+    protocol: ARINC_664
+    ebom_ref: ATA-22-11-002
+    description: Autopilot roll command when engaged
+    source: Autopilot computer
+    dal_level: DAL-A
+    redundancy: dual_channel
+    
+  - name: autopilot_engage_discrete
+    signal_id: FCC_IN_022
+    type: discrete
+    values: [ENGAGED, DISENGAGED]
+    sample_rate_hz: 10
+    protocol: ARINC_429
+    ebom_ref: ATA-22-11-010
+    description: Autopilot engagement status
+    source: Autopilot computer
+    dal_level: DAL-A
+    redundancy: dual_channel
+
+  # Surface Position Feedback
+  - name: elevator_position_left
+    signal_id: FCC_IN_030
+    type: analog
+    unit: degrees
+    range: [-25.0, 15.0]
+    sample_rate_hz: 100
+    protocol: analog_4_20mA
+    ebom_ref: ATA-27-21-101
+    description: Left elevator actual position feedback
+    source: Elevator position transducer
+    dal_level: DAL-A
+    redundancy: triple_channel
+    
+  - name: elevator_position_right
+    signal_id: FCC_IN_031
+    type: analog
+    unit: degrees
+    range: [-25.0, 15.0]
+    sample_rate_hz: 100
+    protocol: analog_4_20mA
+    ebom_ref: ATA-27-21-102
+    description: Right elevator actual position feedback
+    source: Elevator position transducer
+    dal_level: DAL-A
+    redundancy: triple_channel
+    
+  - name: aileron_position_left
+    signal_id: FCC_IN_032
+    type: analog
+    unit: degrees
+    range: [-20.0, 20.0]
+    sample_rate_hz: 100
+    protocol: analog_4_20mA
+    ebom_ref: ATA-27-22-101
+    description: Left aileron actual position feedback
+    source: Aileron position transducer
+    dal_level: DAL-A
+    redundancy: triple_channel
+    
+  - name: aileron_position_right
+    signal_id: FCC_IN_033
+    type: analog
+    unit: degrees
+    range: [-20.0, 20.0]
+    sample_rate_hz: 100
+    protocol: analog_4_20mA
+    ebom_ref: ATA-27-22-102
+    description: Right aileron actual position feedback
+    source: Aileron position transducer
+    dal_level: DAL-A
+    redundancy: triple_channel
+
+# ==============================================================================
+# OUTPUT SIGNALS - From FCC to actuators and systems
+# ==============================================================================
+
+outputs:
+  
+  # Primary Control Surface Commands
+  - name: elevator_cmd_left
+    signal_id: FCC_OUT_001
+    type: analog
+    unit: degrees
+    range: [-25.0, 15.0]
+    sample_rate_hz: 50
+    protocol: ARINC_429
+    ebom_ref: ATA-27-41-001
+    description: Left elevator command from control laws
+    destination: Left elevator servo actuator
+    dal_level: DAL-A
+    redundancy: triple_channel
+    latency_max_ms: 20
+    
+  - name: elevator_cmd_right
+    signal_id: FCC_OUT_002
+    type: analog
+    unit: degrees
+    range: [-25.0, 15.0]
+    sample_rate_hz: 50
+    protocol: ARINC_429
+    ebom_ref: ATA-27-41-002
+    description: Right elevator command from control laws
+    destination: Right elevator servo actuator
+    dal_level: DAL-A
+    redundancy: triple_channel
+    latency_max_ms: 20
+    
+  - name: aileron_cmd_left
+    signal_id: FCC_OUT_003
+    type: analog
+    unit: degrees
+    range: [-20.0, 20.0]
+    sample_rate_hz: 50
+    protocol: ARINC_429
+    ebom_ref: ATA-27-42-001
+    description: Left aileron command from control laws
+    destination: Left aileron servo actuator
+    dal_level: DAL-A
+    redundancy: triple_channel
+    latency_max_ms: 20
+    
+  - name: aileron_cmd_right
+    signal_id: FCC_OUT_004
+    type: analog
+    unit: degrees
+    range: [-20.0, 20.0]
+    sample_rate_hz: 50
+    protocol: ARINC_429
+    ebom_ref: ATA-27-42-002
+    description: Right aileron command from control laws
+    destination: Right aileron servo actuator
+    dal_level: DAL-A
+    redundancy: triple_channel
+    latency_max_ms: 20
+    
+  - name: rudder_cmd
+    signal_id: FCC_OUT_005
+    type: analog
+    unit: degrees
+    range: [-25.0, 25.0]
+    sample_rate_hz: 50
+    protocol: ARINC_429
+    ebom_ref: ATA-27-43-001
+    description: Rudder command from control laws
+    destination: Rudder servo actuator
+    dal_level: DAL-A
+    redundancy: triple_channel
+    latency_max_ms: 20
+  
+  # Status and Health Monitoring
+  - name: fcc_status_word
+    signal_id: FCC_OUT_010
+    type: discrete
+    values: [NORMAL, DEGRADED, FAILED, INIT, TEST]
+    sample_rate_hz: 10
+    protocol: ARINC_429
+    ebom_ref: ATA-27-45-001
+    description: FCC health status word
+    destination: Central Maintenance Computer (CMC)
+    dal_level: DAL-A
+    redundancy: dual_channel
+    
+  - name: control_law_mode
+    signal_id: FCC_OUT_011
+    type: discrete
+    values: [NORMAL_LAW, ALTERNATE_LAW, DIRECT_LAW]
+    sample_rate_hz: 10
+    protocol: ARINC_429
+    ebom_ref: ATA-27-45-002
+    description: Active control law mode
+    destination: EICAS display (ATA-31)
+    dal_level: DAL-A
+    redundancy: dual_channel
+    
+  - name: envelope_protection_active
+    signal_id: FCC_OUT_012
+    type: discrete
+    values: [ACTIVE, INACTIVE]
+    sample_rate_hz: 10
+    protocol: ARINC_429
+    ebom_ref: ATA-27-45-003
+    description: Flight envelope protection status
+    destination: EICAS display (ATA-31)
+    dal_level: DAL-A
+    redundancy: dual_channel
+
+  # Built-In Test (BIT) Results
+  - name: bit_result_continuous
+    signal_id: FCC_OUT_020
+    type: discrete
+    values: [PASS, FAIL, IN_PROGRESS, NOT_RUN]
+    sample_rate_hz: 1
+    protocol: ARINC_429
+    ebom_ref: ATA-27-46-001
+    description: Continuous BIT result
+    destination: Central Maintenance Computer (CMC)
+    dal_level: DAL-A
+    
+  - name: bit_fault_code
+    signal_id: FCC_OUT_021
+    type: integer
+    range: [0, 9999]
+    sample_rate_hz: 1
+    protocol: ARINC_429
+    ebom_ref: ATA-27-46-002
+    description: BIT fault code for maintenance
+    destination: Central Maintenance Computer (CMC)
+    dal_level: DAL-A
+
+# ==============================================================================
+# INTERNAL SIGNALS - Control law intermediate variables
+# ==============================================================================
+
+internal:
+  
+  - name: pitch_rate_estimate
+    signal_id: FCC_INT_001
+    type: analog
+    unit: deg_per_sec
+    range: [-10.0, 10.0]
+    sample_rate_hz: 50
+    description: Estimated pitch rate from sensor fusion
+    usage: Control law computation
+    
+  - name: roll_rate_estimate
+    signal_id: FCC_INT_002
+    type: analog
+    unit: deg_per_sec
+    range: [-30.0, 30.0]
+    sample_rate_hz: 50
+    description: Estimated roll rate from sensor fusion
+    usage: Control law computation
+    
+  - name: load_factor_estimate
+    signal_id: FCC_INT_003
+    type: analog
+    unit: g
+    range: [-1.0, 3.5]
+    sample_rate_hz: 50
+    description: Estimated load factor (n_z)
+    usage: Envelope protection logic
+    
+  - name: dynamic_pressure
+    signal_id: FCC_INT_004
+    type: analog
+    unit: psf
+    range: [0, 1000]
+    sample_rate_hz: 10
+    description: Dynamic pressure (q) for gain scheduling
+    usage: Control law gain scheduling
+
+# ==============================================================================
+# SIGNAL VALIDATION AND MONITORING
+# ==============================================================================
+
+validation:
+  cross_channel_comparison:
+    enabled: true
+    max_deviation_threshold: 5%
+    action_on_failure: Isolate failed channel
+    
+  range_checks:
+    enabled: true
+    action_on_violation: Set to limit value and flag error
+    
+  rate_of_change_monitoring:
+    enabled: true
+    max_rate_threshold: Signal-specific (see individual signals)
+    action_on_violation: Flag as suspect, use previous valid value
+    
+  signal_freshness:
+    timeout_ms: 100
+    action_on_timeout: Use last valid value and flag stale data
+
+# ==============================================================================
+# INTERFACE PROTOCOLS
+# ==============================================================================
+
+protocols:
+  ARINC_429:
+    bus_speed: 100_kbps
+    word_format: 32_bit
+    label_format: Octal
+    refresh_rate: Signal-specific
+    
+  ARINC_664:
+    standard: Part 7 (AFDX)
+    bandwidth: 100_Mbps
+    virtual_links: Defined per subsystem
+    
+  analog_4_20mA:
+    loop_power: 24_VDC
+    zero_scale: 4_mA
+    full_scale: 20_mA
+    filtering: 10_Hz_lowpass
+
+# ==============================================================================
+# TIMING REQUIREMENTS
+# ==============================================================================
+
+timing:
+  control_loop_rate_hz: 50
+  maximum_latency_input_to_output_ms: 40
+  watchdog_timeout_ms: 100
+  sync_accuracy_us: 100
+  
+# See timing.md for detailed timing analysis and budgets
+
+# ==============================================================================
+# SAFETY AND CERTIFICATION
+# ==============================================================================
+
+safety:
+  dal_level: DAL-A
+  standard: DO-178C
+  redundancy_architecture: Triple-modular redundancy with voting
+  fault_detection_coverage: >99%
+  common_mode_failure_protection: Dissimilar software versions
+  
+certification:
+  authority: EASA / FAA
+  program: CS-25 / FAR Part 25
+  verification_method: Requirements-based testing + formal methods
+  traceability: All signals linked to system requirements
+
+# ==============================================================================
+# CHANGE HISTORY
+# ==============================================================================
+
+change_log:
+  - version: 1.0
+    date: 2025-01-15
+    author: Flight Controls Engineering
+    description: Initial signal interface definition
+    ecr_reference: ECR-2025-001
+    ccb_approval: 2025-01-10

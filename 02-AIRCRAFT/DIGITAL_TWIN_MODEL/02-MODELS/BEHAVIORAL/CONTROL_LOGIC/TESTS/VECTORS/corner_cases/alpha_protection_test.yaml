@@ -1,0 +1,390 @@
+# ALPHA PROTECTION CORNER CASE TEST
+# Test Case: ALPHA-PROT-001
+# Validates: REQ-FCC-041 (Angle of Attack Protection)
+
+test_metadata:
+  test_id: ALPHA-PROT-001
+  name: High Angle of Attack Protection - Normal Law
+  description: Validate automatic protection against excessive angle of attack
+  requirement: REQ-FCC-041
+  spec_reference: ../SPEC/control_modes.md
+  dal_level: DAL-A
+  test_type: corner_case
+  hazard_class: CATASTROPHIC  # Loss of control
+  author: Flight Controls Test Team
+  date_created: 2025-01-15
+  status: approved
+
+# Test Configuration
+configuration:
+  control_law_mode: NORMAL_LAW
+  flight_condition:
+    altitude_ft: 15000
+    airspeed_kts: 180          # Near stall warning speed
+    mach: 0.28
+    weight_lb: 150000          # Heavy weight
+    cg_position: 35% MAC       # Aft CG (worst case)
+    configuration: FLAPS_15    # Takeoff/approach config
+    
+  environmental_conditions:
+    temperature_degC: 15
+    pressure_altitude_ft: 15000
+    turbulence: MODERATE       # Challenging conditions
+    wind_shear: NONE
+    
+  initial_trim_state:
+    pitch_angle_deg: 8.0       # Elevated pitch
+    bank_angle_deg: 0.0
+    heading_deg: 0.0
+    climb_rate_fpm: 500        # Climbing
+    load_factor_g: 1.0
+    angle_of_attack_deg: 8.0   # Near warning threshold
+
+# Scenario Description
+scenario:
+  description: |
+    Pilot commands aggressive pitch-up maneuver, approaching stall angle of attack.
+    The alpha protection system should activate and automatically limit the pitch-up
+    command to prevent stall, even if pilot continues to pull back on the stick.
+    
+  phases:
+    - phase: 1_initial_trim
+      duration_sec: 2.0
+      description: Establish steady climb at elevated AoA
+      
+    - phase: 2_aggressive_input
+      duration_sec: 3.0
+      description: Pilot applies full aft stick (simulating over-reaction or emergency)
+      
+    - phase: 3_protection_active
+      duration_sec: 5.0
+      description: Alpha protection limits pitch-up, prevents stall
+      
+    - phase: 4_recovery
+      duration_sec: 5.0
+      description: Pilot releases input, aircraft returns to safe AoA
+
+# Input Signals
+inputs:
+  
+  # Aggressive pitch-up input
+  - signal: pilot_stick_pitch_cmd
+    signal_id: FCC_IN_001
+    profile:
+      - time_sec: 0.0
+        value_deg: 3.0        # Moderate back pressure (climbing)
+      - time_sec: 2.0
+        value_deg: 3.0
+      - time_sec: 2.1
+        value_deg: 15.0       # Aggressive full aft stick (worst case)
+      - time_sec: 5.0
+        value_deg: 15.0       # Pilot holds input
+      - time_sec: 5.1
+        value_deg: 0.0        # Pilot releases
+      - time_sec: 15.0
+        value_deg: 0.0
+        
+  - signal: pilot_stick_roll_cmd
+    signal_id: FCC_IN_002
+    profile:
+      - time_sec: 0.0
+        value_deg: 0.0        # Wings level
+      - time_sec: 15.0
+        value_deg: 0.0
+        
+  - signal: pilot_rudder_pedal_cmd
+    signal_id: FCC_IN_003
+    profile:
+      - time_sec: 0.0
+        value_deg: 0.0
+      - time_sec: 15.0
+        value_deg: 0.0
+        
+  # Air data (dynamic based on aircraft response)
+  - signal: airspeed_indicated
+    signal_id: FCC_IN_010
+    profile:
+      - time_sec: 0.0
+        value_kts: 180
+      - time_sec: 15.0
+        value_kts: '[computed]'  # Will decrease during maneuver
+        
+  - signal: angle_of_attack
+    signal_id: FCC_IN_012
+    profile:
+      - time_sec: 0.0
+        value_deg: 8.0        # Initial (below warning)
+      - time_sec: 15.0
+        value_deg: '[computed]'  # Dynamic response
+
+# Expected Outputs
+expected_outputs:
+  
+  - signal: elevator_cmd_left
+    signal_id: FCC_OUT_001
+    requirements:
+      # Phase 1: Normal response
+      - time_sec: 1.0
+        value_deg: '[trim value]'
+        
+      # Phase 2: Initial pitch-up response
+      - time_sec: 2.5
+        condition: value increases (pitch up)
+        
+      # Phase 3: Protection activates
+      - time_range_sec: [3.0, 5.0]
+        condition: |
+          Elevator command LIMITED despite continued aft stick input.
+          Protection should prevent elevator from reaching full deflection.
+        expected_max_deg: 12.0    # Limited (vs. 15 deg without protection)
+        
+      # Phase 4: Recovery
+      - time_sec: 8.0
+        condition: value decreasing (pitch down)
+        
+  - signal: envelope_protection_active
+    signal_id: FCC_OUT_012
+    requirements:
+      - time_sec: 0.0
+        value: INACTIVE
+        
+      # Protection activates when AoA exceeds threshold (15 deg)
+      - time_sec: '[when AoA > 15 deg]'
+        value: ACTIVE
+        transition_time_max_ms: 50   # Must activate quickly
+        
+      # Remains active while AoA is high
+      - time_range_sec: '[protection period]'
+        value: ACTIVE
+        
+      # Deactivates when AoA returns to safe range
+      - time_sec: '[when AoA < 13 deg]'
+        value: INACTIVE
+        hysteresis: 2 degrees  # Prevents oscillation
+        
+  - signal: control_law_mode
+    signal_id: FCC_OUT_011
+    requirements:
+      - time_sec: 0.0
+        value: NORMAL_LAW
+      - time_sec: 15.0
+        value: NORMAL_LAW   # Should remain in Normal Law
+
+# Critical Safety Checks
+safety_checks:
+  
+  angle_of_attack_limits:
+    description: AoA must never exceed hard limit
+    
+    warning_threshold_deg: 12.0
+    protection_threshold_deg: 15.0
+    hard_limit_deg: 18.0        # From REQ-FCC-041
+    
+    check:
+      - metric: maximum_angle_of_attack
+        limit_deg: 18.0
+        severity: CRITICAL
+        action_if_violated: TEST FAIL - Stall protection failure
+        
+  load_factor_limits:
+    description: Load factor must remain within structural limits
+    
+    check:
+      - metric: maximum_load_factor
+        limit_g: 2.5            # From REQ-FCC-042
+        severity: CRITICAL
+        
+      - metric: minimum_load_factor
+        limit_g: -1.0
+        severity: CRITICAL
+        
+  airspeed_limits:
+    description: Aircraft must not slow below minimum control speed
+    
+    check:
+      - metric: minimum_airspeed
+        limit_kts: 155          # V_MCL (minimum control speed)
+        severity: CRITICAL
+        action_if_violated: TEST FAIL - Loss of control authority
+
+# Performance Metrics
+performance_metrics:
+  
+  protection_activation:
+    description: Validate protection activates at correct threshold
+    
+    activation_aoa:
+      requirement: Protection activates at 15 deg AoA
+      tolerance_deg: 0.5
+      measured: '[to be filled]'
+      status: '[PASS/FAIL]'
+      
+    activation_time:
+      requirement: Protection activates within 50 ms of threshold
+      limit_ms: 50
+      measured: '[to be filled]'
+      status: '[PASS/FAIL]'
+      
+  protection_effectiveness:
+    description: Validate protection prevents excessive AoA
+    
+    max_aoa_reached:
+      requirement: Maximum AoA < 18 deg (hard limit)
+      limit_deg: 18.0
+      measured: '[to be filled]'
+      status: '[PASS/FAIL]'
+      
+    steady_state_aoa_with_protection:
+      requirement: With full aft stick, AoA stabilizes at safe level
+      expected_deg: 16.5
+      tolerance_deg: 1.0
+      measured: '[to be filled]'
+      status: '[PASS/FAIL]'
+      
+  crew_awareness:
+    description: Validate crew receives appropriate warnings
+    
+    warning_annunciation:
+      requirement: Alpha warning displayed when threshold exceeded
+      check: EICAS message "ALPHA PROT" displayed
+      status: '[PASS/FAIL]'
+      
+    stick_shaker:
+      requirement: Stick shaker activates at warning threshold (if equipped)
+      activation_aoa_deg: 12.0
+      status: '[PASS/FAIL]'
+
+# Acceptance Criteria
+acceptance_criteria:
+  - criterion: Protection activates at 15 deg AoA (±0.5 deg)
+    requirement: REQ-FCC-041
+    priority: CRITICAL
+    
+  - criterion: Maximum AoA never exceeds 18 deg
+    requirement: REQ-FCC-041
+    priority: CRITICAL
+    
+  - criterion: Protection activation time < 50 ms
+    requirement: System response time
+    priority: HIGH
+    
+  - criterion: Aircraft remains controllable throughout maneuver
+    requirement: CS 25.143
+    priority: CRITICAL
+    
+  - criterion: No mode transitions (remains in Normal Law)
+    requirement: REQ-FCC-060
+    priority: HIGH
+
+# Test Execution
+execution:
+  simulation_time_sec: 15.0
+  time_step_sec: 0.001
+  control_loop_rate_hz: 50
+  data_logging_rate_hz: 100
+  
+  test_environment: HIL         # Hardware-in-the-Loop required for corner cases
+  model_version: FCC_v2.1.0
+  test_harness: ../SIM/harness/fcc_hil_harness.py
+  
+  flight_dynamics_model: high_fidelity_6dof  # Full non-linear model
+  aerodynamics_model: CFD_validated_tables
+  actuator_dynamics: real_actuator_hardware
+
+# Data Logging
+data_logging:
+  signals_to_log:
+    # Critical safety signals
+    - angle_of_attack
+    - airspeed_indicated
+    - load_factor_estimate
+    
+    # Control inputs
+    - pilot_stick_pitch_cmd
+    
+    # Control outputs
+    - elevator_cmd_left
+    - elevator_cmd_right
+    - envelope_protection_active
+    - control_law_mode
+    
+    # Internal states
+    - pitch_rate_estimate
+    - dynamic_pressure
+    
+    # Aircraft state
+    - pitch_angle
+    - flight_path_angle
+    - altitude_pressure
+    
+  output_format: HDF5          # High-rate data
+  output_file: '../EVIDENCE/test_results/ALPHA-PROT-001_{{timestamp}}.h5'
+
+# Failure Mode Analysis
+failure_modes:
+  description: Test behavior if protection fails
+  
+  what_if_scenarios:
+    - scenario: Protection fails to activate
+      consequence: AoA exceeds 18 deg, possible stall
+      mitigation: Pilot training, backup warnings (stick shaker)
+      probability: <1e-9 per flight hour (DAL-A target)
+      
+    - scenario: Protection activates prematurely
+      consequence: Reduced pitch authority, pilot confusion
+      mitigation: Threshold margin, flight testing validation
+      probability: <1e-7 per flight hour
+      
+    - scenario: Single AoA sensor fails high
+      consequence: False protection activation
+      mitigation: Triple-sensor voting, cross-validation
+      handled_by: REQ-FCC-090 (monitoring)
+
+# Regression Testing
+regression:
+  baseline_test_date: 2025-01-12
+  baseline_results_file: '../EVIDENCE/baseline/ALPHA-PROT-001_baseline.h5'
+  tolerance_for_regression:
+    activation_threshold_deg: 0.2
+    max_aoa_deg: 0.5
+    activation_time_ms: 10
+  action_on_regression: Mandatory engineering review + flight test
+
+# Traceability
+traceability:
+  requirements:
+    - REQ-FCC-001  # Normal Law architecture
+    - REQ-FCC-040  # Envelope protection
+    - REQ-FCC-041  # Alpha protection thresholds
+    - CS 25.143    # Controllability
+    - CS 25.1505   # Maximum operating limit speed
+    
+  signals:
+    - FCC_IN_001   # pilot_stick_pitch_cmd
+    - FCC_IN_012   # angle_of_attack
+    - FCC_OUT_001  # elevator_cmd_left
+    - FCC_OUT_012  # envelope_protection_active
+    
+  related_test_cases:
+    - LOAD-FACTOR-001   # Load factor protection
+    - PITCH-RESP-001    # Normal pitch response
+    - VMO-PROT-001      # Overspeed protection
+
+# Certification Evidence
+certification:
+  test_witness_required: true
+  witness_organization: EASA / FAA
+  criticality: Flight Safety Critical
+  compliance_showing:
+    - CS 25.143(g): General - Stall warning
+    - CS 25.201: Stall demonstration
+    - CS 25.203: Stall characteristics
+  evidence_artifact: Test report + video recording + telemetry data
+
+# Change History
+change_log:
+  - version: 1.0
+    date: 2025-01-15
+    author: Flight Controls Test Team
+    description: Initial corner case test definition
+    ecr_reference: ECR-2025-001
