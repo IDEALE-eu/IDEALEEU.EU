@@ -1,0 +1,14 @@
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+07,06,mechanical,physical_attachment,ICD-07-06,0,N/A,Jacks interface with aircraft lifting points
+07,10,operational,coordination,PROC-07-10,0,N/A,Lifting coordination with parking/mooring
+07,15,safety,interlock,ICD-07-15,0,N/A,Safety interlocks for oxygen systems during maintenance
+07,21,safety,interlock,ICD-07-21,0,N/A,HVAC shutdown during lifting operations
+07,24,electrical,120VAC,ICD-07-24,2000,N/A,Ground power for hydraulic pump units
+07,26,safety,interlock,ICD-07-26,0,N/A,Fire protection coordination during maintenance
+07,31,communication,ethernet,ICD-07-31,50,1Gbps,Status monitoring and control interface
+07,42,hydraulic,fluid_power,ICD-07-42,0,N/A,Hydraulic system depressurization coordination
+07,50,structural,load_transfer,ICD-07-50,0,N/A,Wing attachment points for slings and spreaders
+07,53,structural,load_transfer,ICD-07-53,0,N/A,Fuselage lifting points and shoring interfaces
+07,57,structural,access,ICD-07-57,0,N/A,Wing root access for maintenance platforms
+07,92,electrical,cable_routing,ICD-07-92,0,N/A,EWIS disconnection procedures during lifting
+07,93,mechanical,access,ICD-07-93,0,N/A,Store loading coordination with access platforms

@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "subsystem_id": "07-50",
+  "subsystem_name": "ENGINE_CHANGE_CRADLES_BOOMS",
+  "parent_system": "07-LIFTING-SHORING",
+  "last_updated": "2025-10-11"
+}

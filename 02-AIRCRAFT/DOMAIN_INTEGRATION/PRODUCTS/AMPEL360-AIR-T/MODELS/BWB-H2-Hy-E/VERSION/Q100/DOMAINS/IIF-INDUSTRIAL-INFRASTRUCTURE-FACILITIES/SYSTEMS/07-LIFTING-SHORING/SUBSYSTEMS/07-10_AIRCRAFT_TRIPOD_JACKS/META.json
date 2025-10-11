@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "subsystem_id": "07-10",
+  "subsystem_name": "AIRCRAFT_TRIPOD_JACKS",
+  "parent_system": "07-LIFTING-SHORING",
+  "last_updated": "2025-10-11"
+}
