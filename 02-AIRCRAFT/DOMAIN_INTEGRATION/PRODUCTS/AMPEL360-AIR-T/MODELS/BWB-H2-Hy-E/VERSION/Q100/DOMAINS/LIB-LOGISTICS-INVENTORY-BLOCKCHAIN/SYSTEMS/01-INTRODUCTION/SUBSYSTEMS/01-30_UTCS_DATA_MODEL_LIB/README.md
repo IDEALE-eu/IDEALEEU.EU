@@ -1,12 +1,12 @@
-# Subsystem: 05-00_GENERAL
+# Subsystem: 01-30_UTCS_DATA_MODEL_LIB
 
 ## Description
 
-General standards and conventions for time limits and scheduling.
+UTCS data model for logistics
 
 ## Parent System
 
-[05-TIME-LIMITS](../../) - Logistics and inventory management system.
+[01-INTRODUCTION](../../) - Logistics and inventory management system.
 
 ## PLM Structure
 
@@ -30,7 +30,7 @@ This subsystem contains engineering artifacts organized by CAx discipline:
 ## Directory Structure
 
 ```
-05-00_GENERAL/
+01-30_UTCS_DATA_MODEL_LIB/
 ├─ README.md (this file)
 └─ PLM/
    ├─ EBOM_LINKS.md
@@ -69,7 +69,7 @@ Update [PLM/EBOM_LINKS.md](./PLM/EBOM_LINKS.md) with:
 
 ## Navigation
 
-- [⬆️ Back to 05-TIME-LIMITS](../../)
+- [⬆️ Back to 01-INTRODUCTION](../../)
 - [📋 System Integration View](../../INTEGRATION_VIEW.md)
 - [🔗 System Interfaces](../../INTERFACE_MATRIX/)
 - [📂 All Subsystems](../)
@@ -77,7 +77,7 @@ Update [PLM/EBOM_LINKS.md](./PLM/EBOM_LINKS.md) with:
 
 ## References
 
-- Parent System: [05-TIME-LIMITS](../../README.md)
+- Parent System: [01-INTRODUCTION](../../README.md)
 - Interface Matrix: [../../INTERFACE_MATRIX/](../../INTERFACE_MATRIX/)
 - Validation: `scripts/validate-structure.sh`
 
