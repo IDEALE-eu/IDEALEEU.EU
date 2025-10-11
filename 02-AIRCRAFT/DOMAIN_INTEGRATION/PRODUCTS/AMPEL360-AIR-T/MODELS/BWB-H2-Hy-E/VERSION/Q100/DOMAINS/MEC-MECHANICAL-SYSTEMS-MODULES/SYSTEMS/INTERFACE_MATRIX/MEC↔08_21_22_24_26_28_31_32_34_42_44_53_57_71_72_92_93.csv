@@ -1,0 +1,18 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+27,08,flight_control_position,ARINC429/electrical,ARINC653,Control surface position feedback
+27,24,actuator_power,electrical_power,MIL-STD-704,Electric actuator power supply
+29,21,engine_driven_pump,mechanical_drive,ARP4754A,Engine-driven hydraulic pump interface
+29,26,fire_detection,hydraulic_fluid,ARP4761,Hydraulic system fire detection
+32,22,autoflight_interface,ARINC429,ARINC653,Landing gear position to autoflight
+32,28,fuel_drain,hydraulic_fluid,ARP4754A,Landing gear bay fuel drainage
+32,31,gear_position_indication,discrete_signals,ARINC429,Gear position to cockpit displays
+32,34,nav_alignment,discrete_signals,ARINC653,Weight-on-wheels to navigation systems
+32,42,IMA_interface,ARINC664,AFDX,Landing gear data to IMA
+29,44,cabin_systems,hydraulic_pressure,ARP4754A,Hydraulic power for cabin door actuators
+27,53,structure_attach,mechanical_interface,MMPDS,Flight control surface attachment to wing structure
+36,57,wing_anti_ice,pneumatic_air,ARP85,Pneumatic air for wing leading edge anti-ice
+36,71,engine_start,pneumatic_air,ARP4754A,Pneumatic air for engine starting
+32,72,brake_control,electrical/hydraulic,ARP4754A,Brake control system interface
+27,92,harness_routing,electrical_harness,AS50881,Wiring harness routing for flight controls
+29,92,pump_motor_power,electrical_power,AS50881,Electric motor power for hydraulic pumps
+79,93,fluid_monitoring,sensors,ARP4754A,Oil condition monitoring sensors
