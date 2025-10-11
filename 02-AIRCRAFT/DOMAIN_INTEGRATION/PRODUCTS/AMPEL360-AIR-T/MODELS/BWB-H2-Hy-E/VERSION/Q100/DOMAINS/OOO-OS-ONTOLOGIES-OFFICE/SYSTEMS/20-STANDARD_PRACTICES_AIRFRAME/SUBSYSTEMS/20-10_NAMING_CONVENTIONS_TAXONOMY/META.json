@@ -1,0 +1,9 @@
+{
+  "scope": "instance",
+  "subsystem": "20-10_NAMING_CONVENTIONS_TAXONOMY",
+  "domain": "OOO-OS-ONTOLOGIES-OFFICE",
+  "architecture": "AIR-T",
+  "owner": "Domain Lead",
+  "status": "scaffold",
+  "created": "2025-10-11"
+}

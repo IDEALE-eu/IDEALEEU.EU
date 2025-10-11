@@ -1,0 +1,9 @@
+{
+  "scope": "instance",
+  "subsystem": "48-00_STANDARDS_GENERAL",
+  "domain": "OOO-OS-ONTOLOGIES-OFFICE",
+  "architecture": "AIR-T",
+  "owner": "Domain Lead",
+  "status": "scaffold",
+  "created": "2025-10-11"
+}
