@@ -1,0 +1,38 @@
+meta:
+  version: "1.0.0"
+  description: "I/O contract for the aerodynamic coefficients and loads block."
+  model_ref: "PHYSICS/AERODYNAMICS"
+
+inputs:
+  - {name: alpha_rad,  dtype: float32, unit: radians, range: [-0.35, 0.35]}
+  - {name: beta_rad,   dtype: float32, unit: radians, range: [-0.35, 0.35]}
+  - {name: mach,       dtype: float32, unit: none,    range: [0.0, 0.85]}
+  - {name: qbar_pa,    dtype: float32, unit: Pascals, range: [500, 90000]}
+  - {name: rho_kgpm3,  dtype: float32, unit: kg/m^3,  range: [0.2, 1.4]}
+  - {name: tas_mps,    dtype: float32, unit: m/s,     range: [0.0, 300.0]}
+  - {name: delta_e_rad,dtype: float32, unit: radians, range: [-0.52, 0.35]}
+  - {name: delta_a_rad,dtype: float32, unit: radians, range: [-0.35, 0.35]}
+  - {name: delta_r_rad,dtype: float32, unit: radians, range: [-0.35, 0.35]}
+
+outputs:
+  - {name: CL, dtype: float32, unit: none}
+  - {name: CD, dtype: float32, unit: none}
+  - {name: CY, dtype: float32, unit: none}
+  - {name: Cl, dtype: float32, unit: none}
+  - {name: Cm, dtype: float32, unit: none}
+  - {name: Cn, dtype: float32, unit: none}
+  - {name: FX_N, dtype: float32, unit: N}
+  - {name: FY_N, dtype: float32, unit: N}
+  - {name: FZ_N, dtype: float32, unit: N}
+  - {name: MX_Nm, dtype: float32, unit: N*m}
+  - {name: MY_Nm, dtype: float32, unit: N*m}
+  - {name: MZ_Nm, dtype: float32, unit: N*m}
+
+rates:
+  update_hz: 200
+  freshness_ms: 10
+
+geom:
+  S_ref_m2: 16.2
+  c_ref_m: 1.9
+  b_ref_m: 10.8

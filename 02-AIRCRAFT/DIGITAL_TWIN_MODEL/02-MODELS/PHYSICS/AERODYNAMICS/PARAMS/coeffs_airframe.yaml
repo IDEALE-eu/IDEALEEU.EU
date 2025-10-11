@@ -1,0 +1,16 @@
+meta: {version: "1.0.0", description: "Baseline coefficients at trim point."}
+trim:
+  CL0: 0.25
+  CD0: 0.028
+  Cm0: -0.05
+derivatives_lin:  # per radian
+  CL_alpha: 5.5
+  Cm_alpha: -1.2
+  CY_beta: -0.9
+  Cl_beta: -0.12
+  Cn_beta: 0.18
+cross_terms:
+  CL_q_hat: 8.0         # q_hat = q*c/(2*V)
+  Cm_q_hat: -30.0
+  Cl_p_hat: -0.6        # p_hat = p*b/(2*V)
+  Cn_r_hat: -0.2

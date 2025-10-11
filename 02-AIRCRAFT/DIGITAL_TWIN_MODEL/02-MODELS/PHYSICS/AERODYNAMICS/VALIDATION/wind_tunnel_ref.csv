@@ -1,0 +1,6 @@
+test_id,alpha_deg,mach,qbar_pa,CL_measured,CD_measured,Cm_measured,notes
+WT001,2.0,0.6,18000,0.331,0.0358,-0.079,Cruise condition
+WT002,5.0,0.5,20000,0.495,0.0338,-0.151,Medium alpha
+WT003,10.0,0.3,15000,0.785,0.0563,-0.243,High alpha
+WT004,0.0,0.4,16000,0.195,0.0242,-0.053,Zero alpha
+WT005,-5.0,0.5,19000,-0.092,0.0332,0.048,Negative alpha
