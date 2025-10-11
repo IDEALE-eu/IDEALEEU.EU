@@ -1,0 +1,30 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+01,24,power_supply,electrical,MIL-STD-704,Power for blockchain nodes and data systems
+01,31,data_exchange,digital,ARINC 664,Aircraft condition monitoring data to blockchain
+01,42,avionics_interface,digital,ARINC 429,Flight data for maintenance scheduling
+01,45,diagnostics,digital,IEEE 1451,Central maintenance system interface
+01,46,network,digital,Ethernet/TCP-IP,Information systems network connectivity
+01,92,wiring,electrical,AS50881,Harness for blockchain and logistics sensors
+01,93,cabling,electrical,AS50881,Data network cabling
+01,100,standards,documentation,ATA Spec 100,General standards compliance
+04,24,power_monitoring,electrical,MIL-STD-704,Power quality monitoring for life-limited parts
+04,31,health_data,digital,ARINC 664,Structural health monitoring data
+04,42,alert_system,digital,ARINC 429,Airworthiness limitation alerts
+04,45,inspection_data,digital,IEEE 1451,Inspection and compliance data
+04,92,sensor_harness,electrical,AS50881,Sensors for airworthiness monitoring
+05,24,power_timers,electrical,MIL-STD-704,Power supply for time counters
+05,31,flight_hours,digital,ARINC 664,Flight hours and cycles data
+05,42,schedule_alerts,digital,ARINC 429,Maintenance schedule alerts
+05,45,utilization_data,digital,IEEE 1451,Equipment utilization tracking
+05,46,calendar_sync,digital,NTP,Time synchronization for scheduling
+05,92,counter_wiring,electrical,AS50881,Wiring for utilization counters
+12,24,gse_power,electrical,MIL-STD-704,Ground support equipment power interface
+12,31,service_records,digital,ARINC 664,Service completion data logging
+12,42,servicing_status,digital,ARINC 429,Servicing status to flight systems
+12,45,tool_interface,physical,Custom,Ground support equipment interfaces
+12,92,service_harness,electrical,AS50881,Temporary harness connections for servicing
+12,93,service_connections,electrical,AS50881,Service point connections
+100,24,monitoring,electrical,MIL-STD-704,System-wide monitoring power
+100,31,metadata_exchange,digital,ARINC 664,Metadata and configuration exchange
+100,46,access_control,digital,LDAP/RBAC,Role-based access control for systems
+100,92,common_harness,electrical,AS50881,Common logistics system wiring
