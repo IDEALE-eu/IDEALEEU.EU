@@ -1,0 +1,28 @@
+- name: "cruise_alpha2_m0p6"
+  alpha_deg: 2.0
+  mach: 0.6
+  qbar_pa: 18000
+  deltas_rad: {e: 0.0, a: 0.0, r: 0.0}
+  expected:
+    CL: {value: 0.33, atol: 0.02}
+    CD: {value: 0.036, atol: 0.004}
+    Cm: {value: -0.08, atol: 0.01}
+
+- name: "high_alpha_low_mach"
+  alpha_deg: 10.0
+  mach: 0.3
+  qbar_pa: 15000
+  deltas_rad: {e: 0.0, a: 0.0, r: 0.0}
+  expected:
+    CL: {value: 0.79, atol: 0.03}
+    CD: {value: 0.057, atol: 0.005}
+    Cm: {value: -0.24, atol: 0.02}
+
+- name: "elevator_deflection"
+  alpha_deg: 5.0
+  mach: 0.5
+  qbar_pa: 20000
+  deltas_rad: {e: 0.1, a: 0.0, r: 0.0}
+  expected:
+    CL: {value: 0.56, atol: 0.02}
+    Cm: {value: -0.26, atol: 0.02}
