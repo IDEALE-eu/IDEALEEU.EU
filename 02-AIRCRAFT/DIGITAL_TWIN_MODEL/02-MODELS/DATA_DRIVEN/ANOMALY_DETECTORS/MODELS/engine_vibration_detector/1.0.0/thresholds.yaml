@@ -1,0 +1,146 @@
+# Anomaly Detection Thresholds
+# Model: ANOMALY_DETECTOR_ENGINE_VIB_V1.0.0
+# Version: 1.0.0
+# Calibrated: 2025-10-11
+
+# Reconstruction Error Threshold
+# Based on 97th percentile of normal training data
+reconstruction_error_threshold:
+  default: 3.5
+  unit: "mse"
+  description: "MSE reconstruction error threshold. Values > 3.5 indicate anomaly."
+  calibration_method: "97th percentile of normal training distribution"
+  
+# Severity Levels
+severity_levels:
+  normal:
+    min: 0.0
+    max: 3.5
+    action: "No action required"
+    
+  minor:
+    min: 3.5
+    max: 5.0
+    action: "Log alert, continue monitoring"
+    alert_color: "yellow"
+    
+  moderate:
+    min: 5.0
+    max: 8.0
+    action: "Notify maintenance team, schedule inspection within 48 hours"
+    alert_color: "orange"
+    
+  severe:
+    min: 8.0
+    max: 999.9
+    action: "Immediate maintenance required, ground aircraft"
+    alert_color: "red"
+
+# Flight Phase-Specific Thresholds
+# Adjusted for expected vibration variance by phase
+flight_phase_thresholds:
+  ground:
+    threshold: 3.2
+    note: "Lower baseline vibration"
+    
+  taxi:
+    threshold: 3.5
+    note: "Variable RPM conditions"
+    
+  takeoff:
+    threshold: 4.0
+    note: "Higher transient tolerance (high loads)"
+    
+  climb:
+    threshold: 3.6
+    note: "Steady high power"
+    
+  cruise:
+    threshold: 3.4
+    note: "Steady state (optimal detection conditions)"
+    
+  descent:
+    threshold: 3.7
+    note: "Power reduction transients"
+    
+  approach_landing:
+    threshold: 4.0
+    note: "Variable power settings, higher false alarm tolerance"
+
+# Per-Feature Contribution Thresholds
+# Used for explainability and root cause hints
+feature_contribution_thresholds:
+  vib_fan_rms:
+    high: 2.5
+    moderate: 1.5
+    interpretation: "Fan bearing wear or blade imbalance"
+    
+  vib_compressor_rms:
+    high: 2.0
+    moderate: 1.2
+    interpretation: "Compressor bearing wear"
+    
+  vib_turbine_rms:
+    high: 1.8
+    moderate: 1.0
+    interpretation: "Turbine bearing wear"
+    
+  vib_imbalance_score:
+    high: 1.5
+    moderate: 0.8
+    interpretation: "Blade imbalance (check 1P frequency component)"
+
+# Confidence Intervals
+# Used to assess certainty of anomaly detection
+confidence_levels:
+  high_confidence:
+    min_score: 8.0
+    description: "Clear anomaly, high certainty"
+    false_positive_rate: "< 0.1%"
+    
+  medium_confidence:
+    min_score: 5.0
+    max_score: 8.0
+    description: "Probable anomaly, review recommended"
+    false_positive_rate: "0.5%"
+    
+  low_confidence:
+    min_score: 3.5
+    max_score: 5.0
+    description: "Possible anomaly, continue monitoring"
+    false_positive_rate: "2.7%"
+
+# Temporal Persistence Filters
+# Reduce false alarms by requiring anomaly persistence
+persistence_filters:
+  min_consecutive_anomalies: 3
+  window_size_seconds: 30
+  description: "Require 3 consecutive anomalies within 30 seconds to trigger alert"
+  
+  cooldown_period_seconds: 300
+  description: "After alert, suppress duplicate alerts for 5 minutes"
+
+# Adaptive Thresholds (Future Enhancement)
+# Placeholder for adaptive threshold adjustment based on drift
+adaptive_thresholds:
+  enabled: false
+  update_frequency: "weekly"
+  method: "percentile_tracking"
+  note: "Planned for v2.0 - will adjust thresholds based on fleet-wide drift"
+
+# Performance Targets
+performance_targets:
+  false_alarm_rate: "< 5%"
+  recall: "> 85%"
+  precision: "> 85%"
+  max_latency_ms: 50
+  
+# Calibration History
+calibration_history:
+  - version: "1.0.0"
+    date: "2025-10-11"
+    method: "97th percentile on 450k training samples"
+    default_threshold: 3.5
+    validation_far: 2.7%
+    validation_recall: 87.5%
+    notes: "Initial calibration"

@@ -1,0 +1,330 @@
+# Concept Drift Monitoring Configuration
+# Model: Engine Vibration Anomaly Detector
+# Version: 1.0.0
+
+concept_drift_monitoring:
+  model_id: ANOMALY_DETECTOR_ENGINE_VIB_V1.0.0
+  enabled: true
+  frequency: continuous
+  
+# ADWIN (Adaptive Windowing) Configuration
+adwin_monitoring:
+  enabled: true
+  method: adwin
+  description: "Detects changes in reconstruction error distribution"
+  
+  delta: 0.002
+  description_delta: "Confidence level (smaller = more sensitive)"
+  
+  window_monitoring:
+    metric: reconstruction_error
+    aggregation: mean
+    
+  alert_rules:
+    - condition: adwin_change_detected
+      action: concept_drift_alert
+      recipients: [datascience@ideale.eu]
+      
+    - condition: adwin_change_detected
+      duration: 3 detections in 7 days
+      action: investigation_required
+      recipients: [datascience@ideale.eu, safety@ideale.eu]
+
+# DDM (Drift Detection Method) Configuration
+ddm_monitoring:
+  enabled: true
+  method: drift_detection_method
+  description: "Monitors error rate changes"
+  
+  warning_level: 2
+  drift_level: 3
+  
+  monitored_metric: false_alarm_rate
+  
+  alert_rules:
+    - condition: warning_level_reached
+      action: warning_notification
+      recipients: [datascience@ideale.eu]
+      
+    - condition: drift_level_reached
+      action: retraining_evaluation
+      recipients: [datascience@ideale.eu, ccb@ideale.eu]
+
+# EDDM (Early Drift Detection Method) Configuration
+eddm_monitoring:
+  enabled: true
+  method: early_drift_detection_method
+  description: "Early detection of performance degradation"
+  
+  alpha: 0.95
+  beta: 0.90
+  
+  monitored_metrics:
+    - recall
+    - precision
+    - false_alarm_rate
+    
+  alert_rules:
+    - condition: early_warning
+      action: enhanced_monitoring
+      recipients: [datascience@ideale.eu]
+
+# Performance-Based Drift Detection
+performance_drift:
+  enabled: true
+  
+  metrics_tracking:
+    auc:
+      baseline: 0.92
+      warning_threshold: 0.88
+      critical_threshold: 0.85
+      window_size: 7 days
+      
+    recall:
+      baseline: 0.875
+      warning_threshold: 0.85
+      critical_threshold: 0.80
+      window_size: 7 days
+      
+    false_alarm_rate:
+      baseline: 0.027
+      warning_threshold: 0.04
+      critical_threshold: 0.05
+      window_size: 7 days
+      
+  alert_rules:
+    - condition: metric < warning_threshold
+      duration: 3 days
+      action: performance_warning
+      recipients: [datascience@ideale.eu]
+      
+    - condition: metric < critical_threshold
+      duration: 1 day
+      action: critical_performance_alert
+      recipients: [datascience@ideale.eu, safety@ideale.eu, ccb@ideale.eu]
+
+# Anomaly Score Distribution Monitoring
+anomaly_score_tracking:
+  enabled: true
+  
+  reference_distribution:
+    source: ../../DATA/features/engine_vibration/training_anomaly_scores.parquet
+    mean: 1.85
+    std: 0.92
+    p95: 3.5
+    p99: 5.2
+    
+  production_monitoring:
+    statistical_tests:
+      - kolmogorov_smirnov
+      - anderson_darling
+      - chi_square
+    
+    alert_rules:
+      - condition: distribution_shift_detected
+        significance_level: 0.05
+        action: distribution_drift_alert
+        recipients: [datascience@ideale.eu]
+
+# Confusion Matrix Tracking
+confusion_matrix_monitoring:
+  enabled: true
+  description: "Track changes in confusion matrix over time"
+  
+  baseline:
+    true_negatives: 47250
+    false_positives: 250
+    false_negatives: 188
+    true_positives: 1312
+    
+  tracking_window: 30 days
+  
+  alert_rules:
+    - condition: false_positive_rate > 0.05
+      action: far_threshold_exceeded
+      recipients: [datascience@ideale.eu]
+      
+    - condition: false_negative_rate > 0.15
+      action: safety_concern
+      recipients: [datascience@ideale.eu, safety@ideale.eu]
+
+# Per-Segment Performance Tracking
+segment_performance:
+  enabled: true
+  
+  segments:
+    flight_phase:
+      - ground
+      - taxi
+      - takeoff
+      - climb
+      - cruise
+      - descent
+      - approach_landing
+      
+    aircraft_variant:
+      - passenger
+      - cargo
+      - long_range
+      
+    engine_type:
+      - engine_a
+      - engine_b
+      
+  alert_rules:
+    - condition: segment_performance_degradation > 10%
+      action: segment_drift_alert
+      recipients: [datascience@ideale.eu]
+
+# Temporal Pattern Detection
+temporal_patterns:
+  enabled: true
+  
+  patterns:
+    time_of_day:
+      buckets: [night, morning, afternoon, evening]
+      
+    day_of_week:
+      buckets: [weekday, weekend]
+      
+    seasonal:
+      buckets: [winter, spring, summer, fall]
+      
+  detect_anomalies_in_patterns: true
+
+# Root Cause Analysis
+root_cause_analysis:
+  enabled: true
+  
+  automated_checks:
+    - check_sensor_calibration_dates
+    - check_fleet_composition_changes
+    - check_maintenance_policy_changes
+    - check_operational_envelope_changes
+    
+  manual_investigation_triggers:
+    - persistent_drift
+    - sudden_performance_drop
+    - segment_specific_drift
+
+# Retraining Decision Logic
+retraining_triggers:
+  automatic_triggers:
+    - condition: adwin_change_detected
+      consecutive_detections: 3
+      time_window: 7 days
+      
+    - condition: auc < 0.85
+      duration: 7 days
+      
+    - condition: false_alarm_rate > 0.05
+      duration: 3 days
+      
+  manual_triggers:
+    - new_fault_types_identified
+    - fleet_expansion
+    - operational_changes
+    
+  retraining_policy:
+    cooldown_period: 30 days
+    min_new_samples: 10000
+    require_approval: true
+    approvers:
+      - data_science_lead
+      - safety_engineer
+      - ccb
+
+# Shadow Mode for Updated Models
+shadow_mode_validation:
+  enabled: true
+  
+  when_retraining_triggered:
+    duration: 30 days
+    min_aircraft: 100
+    min_flights: 1000
+    
+    validation_criteria:
+      auc: ">= baseline"
+      recall: ">= baseline"
+      false_alarm_rate: "<= baseline * 1.1"
+      
+    rollback_criteria:
+      auc: "< baseline - 0.05"
+      false_alarm_rate: "> baseline * 1.5"
+
+# Automated Actions
+automated_actions:
+  concept_drift_alert:
+    enabled: true
+    method: email
+    
+  investigation_required:
+    enabled: true
+    method: jira_ticket
+    project: MLOPS
+    issue_type: investigation
+    
+  retraining_evaluation:
+    enabled: false
+    method: manual_review
+    
+  critical_performance_alert:
+    enabled: true
+    method: pagerduty
+    escalation_policy: ml_ops_on_call
+
+# Logging and Reporting
+logging:
+  enabled: true
+  output_path: ../alerts/concept_drift_logs/
+  format: json
+  retention_days: 365
+  
+reporting:
+  enabled: true
+  frequency: weekly
+  recipients:
+    - datascience@ideale.eu
+    - enginesystems@ideale.eu
+    - safety@ideale.eu
+  
+  report_contents:
+    - performance_trends
+    - drift_detection_summary
+    - confusion_matrix_evolution
+    - segment_analysis
+    - retraining_recommendations
+
+# Compliance and Audit
+compliance:
+  audit_trail: true
+  audit_log_path: ../alerts/audit_logs/
+  
+  safety_critical_alerts:
+    - false_negative_rate_increase
+    - critical_performance_degradation
+    
+  mandatory_reviews:
+    frequency: quarterly
+    reviewers: [safety_engineer, data_science_lead]
+
+# Integration with Model Registry
+registry_integration:
+  enabled: true
+  update_model_status: true
+  
+  status_transitions:
+    - from: production
+      to: monitoring_enhanced
+      condition: concept_drift_warning
+      
+    - from: production
+      to: retraining_required
+      condition: concept_drift_critical
+
+# Related Configurations
+related_configs:
+  data_drift_config: data_drift.yaml
+  performance_monitoring: ../../EVALUATION/offline/performance_tracking.yaml
+  model_registry: ../../REGISTRY/index.yaml
+  retraining_pipeline: ../../PIPELINES/training/configs/engine_vibration_config.yaml

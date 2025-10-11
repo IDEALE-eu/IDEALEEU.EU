@@ -1,0 +1,240 @@
+# Data Drift Monitoring Configuration
+# Model: Engine Vibration Anomaly Detector
+# Version: 1.0.0
+
+drift_monitoring_config:
+  model_id: ANOMALY_DETECTOR_ENGINE_VIB_V1.0.0
+  enabled: true
+  frequency: daily
+  
+# Population Stability Index (PSI) Configuration
+psi_monitoring:
+  enabled: true
+  method: population_stability_index
+  
+  thresholds:
+    no_drift: 0.10
+    minor_drift: 0.25
+    major_drift: 0.50
+    
+  alert_rules:
+    - condition: psi > 0.25
+      duration: 1 day
+      action: warning_notification
+      recipients: [datascience@ideale.eu]
+      
+    - condition: psi > 0.25
+      duration: 7 days
+      action: retraining_trigger
+      recipients: [datascience@ideale.eu, ccb@ideale.eu]
+      
+    - condition: psi > 0.50
+      duration: 1 day
+      action: critical_alert
+      recipients: [datascience@ideale.eu, safety@ideale.eu, ccb@ideale.eu]
+  
+  features_monitored:
+    - vib_fan_rms
+    - vib_fan_peak
+    - vib_compressor_rms
+    - vib_turbine_rms
+    - vib_imbalance_score
+    - n1
+    - n2
+    - egt
+    - n1_rate_of_change
+  
+  reference_distribution:
+    type: training_set
+    source: ../../DATA/features/engine_vibration/training_distribution.parquet
+    updated: 2025-09-15
+
+# Kolmogorov-Smirnov (KS) Test Configuration
+ks_test_monitoring:
+  enabled: true
+  method: kolmogorov_smirnov
+  
+  significance_level: 0.05
+  
+  alert_rules:
+    - condition: ks_statistic > 0.15
+      action: warning_notification
+      recipients: [datascience@ideale.eu]
+      
+    - condition: p_value < 0.001
+      duration: 3 days
+      action: investigation_required
+      recipients: [datascience@ideale.eu, enginesystems@ideale.eu]
+
+# Kullback-Leibler (KL) Divergence Configuration
+kl_divergence_monitoring:
+  enabled: true
+  method: kullback_leibler
+  
+  threshold: 0.5
+  
+  alert_rules:
+    - condition: kl_divergence > 0.5
+      action: drift_detected
+      recipients: [datascience@ideale.eu]
+
+# Feature-Level Drift Tracking
+feature_drift_tracking:
+  enabled: true
+  
+  per_feature_monitoring:
+    vib_fan_rms:
+      psi_threshold: 0.25
+      ks_threshold: 0.15
+      importance: high
+      
+    vib_compressor_rms:
+      psi_threshold: 0.25
+      ks_threshold: 0.15
+      importance: high
+      
+    vib_turbine_rms:
+      psi_threshold: 0.25
+      ks_threshold: 0.15
+      importance: medium
+      
+    vib_imbalance_score:
+      psi_threshold: 0.30
+      ks_threshold: 0.20
+      importance: medium
+      
+    n1:
+      psi_threshold: 0.20
+      ks_threshold: 0.12
+      importance: medium
+      
+    n2:
+      psi_threshold: 0.20
+      ks_threshold: 0.12
+      importance: low
+      
+    egt:
+      psi_threshold: 0.25
+      ks_threshold: 0.15
+      importance: low
+      
+    n1_rate_of_change:
+      psi_threshold: 0.30
+      ks_threshold: 0.20
+      importance: low
+
+# Multivariate Drift Detection
+multivariate_drift:
+  enabled: true
+  method: mmd
+  kernel: rbf
+  
+  threshold: 0.1
+  
+  alert_rules:
+    - condition: mmd > 0.1
+      action: multivariate_drift_detected
+      recipients: [datascience@ideale.eu]
+
+# Temporal Drift Patterns
+temporal_analysis:
+  enabled: true
+  
+  patterns_to_detect:
+    - seasonal_drift
+    - gradual_drift
+    - sudden_drift
+    
+  time_windows:
+    - 7 days
+    - 30 days
+    - 90 days
+    
+  visualization:
+    enabled: true
+    output_path: ../alerts/drift_visualizations/
+
+# Fleet-Level Drift Analysis
+fleet_analysis:
+  enabled: true
+  
+  segments:
+    - by_aircraft_variant
+    - by_engine_type
+    - by_geographic_region
+    - by_flight_phase_distribution
+    
+  alert_if_segment_drift: true
+  min_segment_size: 50 flights
+
+# Automated Actions
+automated_actions:
+  warning_notification:
+    enabled: true
+    method: email
+    
+  retraining_trigger:
+    enabled: false
+    method: pipeline_trigger
+    pipeline_endpoint: /api/v1/training/trigger
+    
+  critical_alert:
+    enabled: true
+    method: pagerduty
+    escalation_policy: ml_ops_on_call
+    
+  investigation_required:
+    enabled: true
+    method: jira_ticket
+    project: MLOPS
+    issue_type: investigation
+
+# Logging and Reporting
+logging:
+  enabled: true
+  output_path: ../alerts/drift_logs/
+  format: json
+  retention_days: 365
+  
+reporting:
+  enabled: true
+  frequency: weekly
+  recipients:
+    - datascience@ideale.eu
+    - enginesystems@ideale.eu
+  
+  report_contents:
+    - psi_summary
+    - feature_drift_heatmap
+    - temporal_trends
+    - fleet_segment_analysis
+    - recommended_actions
+
+# Integration with Model Registry
+registry_integration:
+  enabled: true
+  update_model_status_on_drift: true
+  
+  status_transitions:
+    - from: production
+      to: monitoring_required
+      condition: minor_drift_detected
+      
+    - from: production
+      to: retraining_required
+      condition: major_drift_detected
+
+# Compliance and Audit
+compliance:
+  audit_trail: true
+  audit_log_path: ../alerts/audit_logs/
+  
+  required_approvals:
+    retraining: [data_science_lead, safety_engineer]
+    model_update: [ccb]
+
+# Related Configurations
+related_configs:
+  concept_drift_config: concept_drift.yaml
+  performance_monitoring: ../../EVALUATION/offline/performance_tracking.yaml
+  model_registry: ../../REGISTRY/index.yaml

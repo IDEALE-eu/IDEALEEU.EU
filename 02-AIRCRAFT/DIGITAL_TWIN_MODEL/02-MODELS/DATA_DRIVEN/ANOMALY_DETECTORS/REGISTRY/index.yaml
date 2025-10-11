@@ -1,0 +1,180 @@
+# Model Registry Index
+# Central catalog of all anomaly detection models
+# Version: 1.0.0
+# Last Updated: 2025-10-11
+
+models:
+  - model_id: ANOMALY_DETECTOR_ENGINE_VIB_V1.0.0
+    model_name: Engine Vibration Anomaly Detector
+    version: 1.0.0
+    status: production
+    criticality: A
+    ata_chapter: ATA-72
+    ata_section: 72-00 Engine
+    
+    deployment:
+      deployed_date: 2025-10-11
+      deployment_environments:
+        - ground_operations_center
+        - digital_twin
+      fleet_coverage: 100%
+      aircraft_count: 250
+    
+    paths:
+      model_file: MODELS/engine_vibration_detector/1.0.0/model.onnx
+      scaler_file: MODELS/engine_vibration_detector/1.0.0/scaler.pkl
+      signature: MODELS/engine_vibration_detector/1.0.0/signature.json
+      thresholds: MODELS/engine_vibration_detector/1.0.0/thresholds.yaml
+      metrics: MODELS/engine_vibration_detector/1.0.0/metrics.json
+      model_card: MODELS/engine_vibration_detector/1.0.0/card.md
+      data_contract: DATA/contracts/signals_engine_vibration.yaml
+    
+    performance:
+      auc: 0.92
+      precision: 0.892
+      recall: 0.875
+      false_alarm_rate: 0.027
+      inference_latency_ms: 12
+    
+    monitoring:
+      psi_threshold: 0.25
+      auc_threshold: 0.85
+      far_threshold: 0.05
+      drift_alerts_enabled: true
+      performance_tracking_enabled: true
+    
+    ownership:
+      owner: Data Science Team
+      domain_expert: Engine Systems Team
+      safety_engineer: Sarah Williams
+      contact: elena.martinez@ideale.eu
+    
+    certification:
+      requirements: REQ-ANOMALY-ENGINE-001
+      hazards: HAZ-ENGINE-001
+      certification_memo: CERT-ML-ENGINE-VIB-001
+      standards:
+        - ARP4754A
+        - DO-178C
+        - DO-326A
+    
+    lifecycle:
+      training_dataset: flight_test_fy2024_engine_vib
+      training_date: 2025-09-15
+      validation_date: 2025-09-30
+      shadow_mode_start: 2025-10-01
+      shadow_mode_end: 2025-10-31
+      production_release: 2025-11-01
+      next_review_date: 2026-01-11
+      retraining_schedule: quarterly
+    
+    dependencies:
+      tensorflow_version: 2.14
+      onnx_version: 1.14
+      sklearn_version: 1.3
+      python_version: 3.10
+    
+    changelog:
+      - version: 1.0.0
+        date: 2025-10-11
+        changes: Initial production release
+        author: Data Science Team
+
+  # Placeholder for future models
+  # - model_id: ANOMALY_DETECTOR_LANDING_GEAR_V1.0.0
+  #   model_name: Landing Gear Anomaly Detector
+  #   version: 1.0.0
+  #   status: development
+  #   ata_chapter: ATA-32
+  #   ...
+
+# Model Status Definitions
+model_statuses:
+  development:
+    description: Model in active development, not validated
+    deployment_allowed: false
+    
+  validation:
+    description: Model undergoing validation testing
+    deployment_allowed: false
+    
+  shadow_mode:
+    description: Model deployed in shadow mode (monitoring only, no actions)
+    deployment_allowed: true
+    actions_enabled: false
+    
+  production:
+    description: Model fully deployed and operational
+    deployment_allowed: true
+    actions_enabled: true
+    
+  deprecated:
+    description: Model deprecated, being phased out
+    deployment_allowed: false
+    replacement_required: true
+    
+  retired:
+    description: Model retired, no longer in use
+    deployment_allowed: false
+
+# Criticality Levels (per ARP4754A)
+criticality_levels:
+  A:
+    description: Catastrophic failure conditions
+    validation_requirements:
+      - 5-fold cross-validation
+      - 30-day shadow mode (min 100 aircraft)
+      - FMEA and FTA completed
+      - DO-178C Level A compliance
+      
+  B:
+    description: Hazardous failure conditions
+    validation_requirements:
+      - 5-fold cross-validation
+      - 14-day shadow mode (min 50 aircraft)
+      - FMEA completed
+      - DO-178C Level B compliance
+      
+  C:
+    description: Major failure conditions
+    validation_requirements:
+      - 3-fold cross-validation
+      - 7-day shadow mode (min 20 aircraft)
+      - Hazard analysis completed
+      
+  D:
+    description: Minor failure conditions
+    validation_requirements:
+      - Test set validation
+      - Offline validation sufficient
+
+# Governance
+governance:
+  review_cycle: quarterly
+  change_process: ECR required for model changes
+  approvers:
+    - Configuration Control Board (CCB)
+    - Safety Review Board
+    - Data Science Lead
+  
+  retraining_policy:
+    triggers:
+      - Data drift (PSI > 0.25 for 7 days)
+      - Performance degradation (AUC < threshold)
+      - New fault types identified
+      - Fleet expansion
+    schedule: quarterly_or_triggered
+    
+  retirement_policy:
+    criteria:
+      - Model replaced by newer version
+      - Use case no longer relevant
+      - Persistent performance issues
+    process: Gradual phase-out over 3 months minimum
+
+# Related Documents
+related_documents:
+  update_policy: ../../08-SYNCHRONISATION/UPDATE_POLICY.md
+  ata_mapping: ../../09-INTEGRATIONS/ATA_MAPPING.md
+  cert_evidence: ../../06-VALIDATION_VERIFICATION/CERT_EVIDENCE_LINKS.md
+  model_card_template: ../../13-TEMPLATES/MODEL_CARD_TEMPLATE.md

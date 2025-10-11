@@ -1,0 +1,257 @@
+# DATA CONTRACT: Engine Vibration Anomaly Detection
+# ATA Chapter: ATA-72 (Engine)
+# Version: 1.0.0
+# Owner: Data Science Team
+# Last Updated: 2025-10-11
+
+version: 1.0.0
+schema_name: engine_vibration_anomaly_detection
+ata_chapter: ATA-72
+ata_section: 72-00 Engine
+ebom_ref: ATA-72-00-001
+
+description: |
+  Data contract for engine vibration-based anomaly detection.
+  Monitors engine vibration patterns across multiple sensors to detect
+  bearing wear, blade imbalance, and other mechanical anomalies.
+
+# Input Signals
+signals:
+  # Primary Vibration Sensors
+  - name: engine_1_vib_fan_bearing
+    unit: mils
+    sample_rate: 100 Hz
+    range: [0, 10]
+    type: float32
+    ebom_ref: ATA-72-11-001
+    description: Engine 1 fan bearing vibration (peak-to-peak displacement)
+    criticality: A
+    privacy_level: low
+    
+  - name: engine_1_vib_compressor_bearing
+    unit: mils
+    sample_rate: 100 Hz
+    range: [0, 10]
+    type: float32
+    ebom_ref: ATA-72-11-002
+    description: Engine 1 compressor bearing vibration
+    criticality: A
+    privacy_level: low
+    
+  - name: engine_1_vib_turbine_bearing
+    unit: mils
+    sample_rate: 100 Hz
+    range: [0, 10]
+    type: float32
+    ebom_ref: ATA-72-11-003
+    description: Engine 1 turbine bearing vibration
+    criticality: A
+    privacy_level: low
+    
+  # Engine Operating Parameters (Context)
+  - name: engine_1_n1
+    unit: percent
+    sample_rate: 10 Hz
+    range: [0, 110]
+    type: float32
+    ebom_ref: ATA-77-11-001
+    description: Engine 1 fan speed (N1) as percentage of max RPM
+    criticality: B
+    privacy_level: low
+    
+  - name: engine_1_n2
+    unit: percent
+    sample_rate: 10 Hz
+    range: [0, 110]
+    type: float32
+    ebom_ref: ATA-77-11-002
+    description: Engine 1 core speed (N2) as percentage of max RPM
+    criticality: B
+    privacy_level: low
+    
+  - name: engine_1_egt
+    unit: celsius
+    sample_rate: 10 Hz
+    range: [0, 1200]
+    type: float32
+    ebom_ref: ATA-77-11-003
+    description: Engine 1 exhaust gas temperature
+    criticality: B
+    privacy_level: low
+    
+  - name: engine_1_oil_pressure
+    unit: psi
+    sample_rate: 1 Hz
+    range: [0, 150]
+    type: float32
+    ebom_ref: ATA-79-11-001
+    description: Engine 1 oil pressure
+    criticality: B
+    privacy_level: low
+    
+  - name: engine_1_oil_temperature
+    unit: celsius
+    sample_rate: 1 Hz
+    range: [-40, 150]
+    type: float32
+    ebom_ref: ATA-79-11-002
+    description: Engine 1 oil temperature
+    criticality: B
+    privacy_level: low
+    
+  # Operational Context
+  - name: flight_phase
+    unit: categorical
+    sample_rate: 1 Hz
+    range: [0, 7]
+    type: uint8
+    ebom_ref: ATA-45-61-001
+    description: |
+      Flight phase encoding: 0=ground, 1=taxi, 2=takeoff, 3=climb, 
+      4=cruise, 5=descent, 6=approach, 7=landing
+    criticality: C
+    privacy_level: low
+
+# Feature Engineering
+features:
+  - name: vib_fan_rms
+    description: RMS vibration over 10-second window (fan bearing)
+    window_size: 10 seconds
+    aggregation: rms
+    source: engine_1_vib_fan_bearing
+    
+  - name: vib_fan_peak
+    description: Peak vibration over 10-second window (fan bearing)
+    window_size: 10 seconds
+    aggregation: max
+    source: engine_1_vib_fan_bearing
+    
+  - name: vib_compressor_rms
+    description: RMS vibration over 10-second window (compressor bearing)
+    window_size: 10 seconds
+    aggregation: rms
+    source: engine_1_vib_compressor_bearing
+    
+  - name: vib_turbine_rms
+    description: RMS vibration over 10-second window (turbine bearing)
+    window_size: 10 seconds
+    aggregation: rms
+    source: engine_1_vib_turbine_bearing
+    
+  - name: vib_imbalance_score
+    description: |
+      Computed imbalance metric from frequency domain analysis (FFT).
+      Ratio of 1P component to broadband noise.
+    computation: fft_1p_ratio
+    source: [engine_1_vib_fan_bearing, engine_1_n1]
+    
+  - name: n1_rate_of_change
+    description: Rate of change of N1 (for transient detection)
+    window_size: 5 seconds
+    aggregation: derivative
+    source: engine_1_n1
+
+# Target Labels
+labels:
+  - name: vibration_anomaly
+    type: binary
+    description: Binary label (0=normal, 1=anomaly)
+    source: expert_labeling
+    
+  - name: anomaly_severity
+    type: categorical
+    description: |
+      Severity classification: 0=normal, 1=minor, 2=moderate, 3=severe
+    values: [0, 1, 2, 3]
+    source: expert_labeling
+    
+  - name: fault_type
+    type: categorical
+    description: |
+      Fault type classification: 0=none, 1=bearing_wear, 2=blade_imbalance,
+      3=mounting_looseness, 4=shaft_misalignment, 5=other
+    values: [0, 1, 2, 3, 4, 5]
+    source: maintenance_records
+
+# Data Quality Requirements
+quality_requirements:
+  completeness:
+    min_coverage: 95%
+    description: At least 95% of expected samples must be present
+    
+  consistency:
+    max_outliers: 1%
+    description: No more than 1% of values outside 3-sigma range
+    
+  timeliness:
+    max_latency: 500 ms
+    description: Data must arrive within 500ms for real-time inference
+    
+  accuracy:
+    sensor_calibration: annual
+    description: Sensors must be calibrated annually per maintenance schedule
+
+# Validation Rules
+validation:
+  range_checks:
+    enabled: true
+    action: flag
+    description: Flag values outside specified ranges
+    
+  rate_of_change_checks:
+    max_delta: 2.0
+    description: Flag if vibration changes by more than 2 mils per second
+    
+  missing_data_policy:
+    max_gap: 10 seconds
+    action: interpolate_linear
+    description: Interpolate gaps < 10 seconds; mark as missing otherwise
+
+# Integration Points
+integrations:
+  source_system: Aircraft Data Acquisition Unit (DAU)
+  target_systems:
+    - Digital Twin Model
+    - Predictive Maintenance System
+    - Fleet Health Dashboard
+  
+  ingestion_method: MQTT streaming
+  data_format: Apache Parquet
+  compression: snappy
+
+# Privacy and Security
+privacy:
+  pii_fields: none
+  encryption: TLS 1.3 in transit, AES-256 at rest
+  retention: 2 years operational, 7 years archived
+  access_control: Role-based (ML Team, Maintenance, Safety)
+
+# Compliance
+compliance:
+  standards:
+    - ARP4754A (Safety assessment)
+    - DO-178C (Software development)
+    - DO-326A (Cybersecurity)
+  
+  traceability:
+    requirements_link: REQ-ANOMALY-ENGINE-001
+    ncr_links: []
+    certification_link: CERT-ML-ENGINE-VIB-001
+
+# Ownership and Governance
+ownership:
+  data_steward: Data Science Team
+  domain_expert: Engine Systems Team
+  approver: Configuration Control Board (CCB)
+  
+governance:
+  review_cycle: quarterly
+  change_process: ECR required for breaking changes
+  version_policy: semantic versioning (major.minor.patch)
+
+# Change History
+change_history:
+  - version: 1.0.0
+    date: 2025-10-11
+    author: Data Science Team
+    changes: Initial data contract for engine vibration anomaly detection
