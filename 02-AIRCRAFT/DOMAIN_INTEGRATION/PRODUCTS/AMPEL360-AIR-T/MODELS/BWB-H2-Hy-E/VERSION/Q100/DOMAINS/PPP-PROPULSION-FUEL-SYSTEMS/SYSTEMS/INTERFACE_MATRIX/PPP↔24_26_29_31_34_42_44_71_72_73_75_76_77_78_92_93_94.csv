@@ -1,0 +1,19 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+28,24,electrical_power,electrical,DO-160,Power supply for fuel pumps
+28,73,fuel_supply,LH2/fluid,ARP-1401,Primary fuel feed to engines
+28,92,wiring,electrical,ARP-4754,Fuel system control wiring
+49,24,electrical_power,electrical,DO-160,APU power interfaces
+49,73,fuel_supply,fuel/fluid,ARP-1401,APU fuel control
+49,78,exhaust,gas/thermal,Custom,APU exhaust interface
+71,24,electrical_power,electrical,DO-160,Engine electrical systems
+71,26,fire_protection,detection/suppression,ARP-5412,Engine fire protection
+71,29,hydraulic,hydraulic/fluid,ARP-1401,Engine-driven hydraulic pumps
+71,54,structural,mechanical/loads,Custom,Engine mount interfaces
+72,73,fuel_control,LH2/fluid,ARP-1401,Engine fuel delivery
+72,75,bleed_air,pneumatic,ARP-1401,Engine bleed air extraction
+72,78,exhaust,gas/thermal,Custom,Engine exhaust
+73,31,data_control,ARINC-429/CAN,DO-178C,FADEC data to displays
+73,34,navigation_data,ARINC-429,DO-178C,Engine position for nav
+75,21,bleed_air_supply,pneumatic,ARP-1401,Bleed air to ECS
+75,30,ice_protection,pneumatic/thermal,ARP-1401,Anti-ice system
+78,15,noise_emissions,acoustic,ICAO-Annex-16,Exhaust noise compliance
