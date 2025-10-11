@@ -1,0 +1,15 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+56,24,Power for heating elements,Electrical power,MIL-STD-704,Window heating and defog systems
+56,24,Bonding and grounding,Electrical bonding,MIL-B-5087,EMI/EMC protection
+56,30,Anti-ice coordination,Control signals,Discrete,Ice protection coordination
+56,30,Defog coordination,Control signals,Discrete,Cockpit defog coordination
+56,31,Window health status,Sensor data,ARINC-429,Delamination and crack detection
+56,31,Temperature monitoring,Analog signals,0-5V,Window heating temperature
+56,42,Health monitoring data,Digital bus,AFDX/ARINC-664,Integrated health monitoring
+56,42,Sensor data integration,Digital bus,AFDX/ARINC-664,Sensor fusion and processing
+56,52,Frame interfaces,Structural,Drawing ref,Mounting and sealing coordination
+56,53,Window cutouts,Structural,Drawing ref,Fuselage frame integration
+56,53,Load paths,Structural,Drawing ref,Pressure loads and bird strike
+56,92,Heating element wiring,Wire harnesses,AS50881,Electrical wiring installation
+56,92,Sensor wiring,Wire harnesses,AS50881,Health monitoring sensors
+56,93,Usage monitoring,Data link,Protocol TBD,Window lifecycle tracking
