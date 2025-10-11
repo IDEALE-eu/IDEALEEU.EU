@@ -1,0 +1,169 @@
+# Alert Rules Configuration
+# Defines conditions and actions for automated alerting
+
+alert_rules:
+  # Critical alerts - Immediate action required
+  - name: storage_critical
+    description: "Storage capacity exceeds 90%"
+    condition:
+      type: threshold
+      metric: storage.disk_usage_percent
+      operator: ">"
+      value: 90
+    severity: critical
+    actions:
+      - type: suspend_training
+        immediate: true
+      - type: cleanup
+        target: old_gradients
+        max_age_days: 3
+      - type: notify
+        channels: ["fl-orchestrator", "system-health-monitor"]
+        message: "CRITICAL: Storage at {value}% - training suspended"
+    cooldown_seconds: 300
+
+  - name: network_down
+    description: "Cannot reach central FL server"
+    condition:
+      type: connectivity
+      target: central_server
+      status: unreachable
+      duration_seconds: 300
+    severity: critical
+    actions:
+      - type: defer_training
+        retry_interval_seconds: 600
+      - type: notify
+        channels: ["fl-orchestrator"]
+        message: "CRITICAL: FL server unreachable - deferring training"
+    cooldown_seconds: 600
+
+  - name: security_violation
+    description: "Certificate expired or invalid"
+    condition:
+      type: security
+      check: certificate_validity
+      status: fail
+    severity: critical
+    actions:
+      - type: suspend_all_operations
+        immediate: true
+      - type: notify
+        channels: ["security-team", "fl-orchestrator"]
+        message: "CRITICAL: Security violation - all operations suspended"
+    cooldown_seconds: 0
+
+  - name: thermal_critical
+    description: "CPU or GPU temperature exceeds safe limits"
+    condition:
+      type: threshold
+      metric: health.temperature_celsius
+      operator: ">"
+      value: 80
+      targets: ["cpu", "gpu"]
+    severity: critical
+    actions:
+      - type: suspend_training
+        immediate: true
+      - type: throttle_cpu
+        max_percent: 20
+      - type: notify
+        channels: ["system-health-monitor"]
+        message: "CRITICAL: Thermal limit exceeded - training suspended"
+    cooldown_seconds: 600
+
+  # Warning alerts - Log and monitor
+  - name: storage_warning
+    description: "Storage capacity exceeds 75%"
+    condition:
+      type: threshold
+      metric: storage.disk_usage_percent
+      operator: ">"
+      value: 75
+    severity: warning
+    actions:
+      - type: cleanup
+        target: old_logs
+        max_age_days: 14
+      - type: notify
+        channels: ["system-health-monitor"]
+        message: "WARNING: Storage at {value}% - cleanup initiated"
+    cooldown_seconds: 3600
+
+  - name: high_latency
+    description: "Network latency exceeds acceptable threshold"
+    condition:
+      type: threshold
+      metric: network.latency_ms
+      operator: ">"
+      value: 500
+      duration_seconds: 300
+    severity: warning
+    actions:
+      - type: log
+        level: warning
+      - type: notify
+        channels: ["system-health-monitor"]
+        message: "WARNING: High network latency {value}ms"
+    cooldown_seconds: 1800
+
+  - name: memory_pressure
+    description: "Memory usage exceeds 70%"
+    condition:
+      type: threshold
+      metric: health.memory_usage_percent
+      operator: ">"
+      value: 70
+      duration_seconds: 180
+    severity: warning
+    actions:
+      - type: log
+        level: warning
+      - type: clear_cache
+        targets: ["model_cache", "gradient_cache"]
+      - type: notify
+        channels: ["system-health-monitor"]
+        message: "WARNING: Memory pressure at {value}%"
+    cooldown_seconds: 600
+
+  # Informational alerts - Daily summary
+  - name: training_environment_degraded
+    description: "Training environment checks failing"
+    condition:
+      type: status
+      check: training_environment
+      status: warn
+      duration_seconds: 3600
+    severity: info
+    actions:
+      - type: log
+        level: info
+      - type: notify
+        channels: ["system-health-monitor"]
+        message: "INFO: Training environment degraded"
+    cooldown_seconds: 86400
+
+# Alert routing
+routing:
+  channels:
+    fl-orchestrator:
+      type: grpc
+      endpoint: "fl-server.ideale-eu.eu:50051"
+      retry_count: 3
+    
+    system-health-monitor:
+      type: mqtt
+      topic: "fl/alerts/health"
+      broker: "mqtt.ideale-eu.eu"
+      port: 8883
+    
+    security-team:
+      type: grpc
+      endpoint: "security-monitor.ideale-eu.eu:50051"
+      priority: critical
+
+# Global settings
+global:
+  max_alerts_per_minute: 10
+  batch_similar_alerts: true
+  batch_window_seconds: 60

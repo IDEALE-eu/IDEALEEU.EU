@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://ideale-eu.eu/schemas/diag_report.schema.json",
+  "title": "Diagnostic Report",
+  "description": "Schema for FL client diagnostic reports",
+  "type": "object",
+  "required": ["timestamp", "agent_id", "aircraft_id", "diagnostics", "overall_status"],
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp (UTC) when report was generated"
+    },
+    "agent_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Unique identifier for the diagnostic agent"
+    },
+    "aircraft_id": {
+      "type": "string",
+      "pattern": "^AC-H2-[0-9]{3}$",
+      "description": "Aircraft serial number"
+    },
+    "overall_status": {
+      "type": "string",
+      "enum": ["healthy", "unhealthy", "unknown"],
+      "description": "Overall health status of the FL client"
+    },
+    "diagnostics": {
+      "type": "object",
+      "required": ["health", "network", "storage", "security", "training"],
+      "properties": {
+        "health": {
+          "$ref": "#/definitions/checkResult"
+        },
+        "network": {
+          "$ref": "#/definitions/checkResult"
+        },
+        "storage": {
+          "$ref": "#/definitions/checkResult"
+        },
+        "security": {
+          "$ref": "#/definitions/checkResult"
+        },
+        "training": {
+          "$ref": "#/definitions/checkResult"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "agent_version": {
+          "type": "string"
+        },
+        "hostname": {
+          "type": "string"
+        },
+        "flight_phase": {
+          "type": "string",
+          "enum": ["ground", "taxi", "takeoff", "climb", "cruise", "descent", "approach", "landing"]
+        }
+      }
+    }
+  },
+  "definitions": {
+    "checkResult": {
+      "type": "object",
+      "required": ["status", "checks"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["healthy", "unhealthy", "unknown", "warn"],
+          "description": "Status of this check category"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/individualCheck"
+          }
+        }
+      }
+    },
+    "individualCheck": {
+      "type": "object",
+      "required": ["name", "status"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the individual check"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pass", "fail", "warn", "unknown"],
+          "description": "Status of this individual check"
+        },
+        "metrics": {
+          "type": "object",
+          "description": "Metrics collected during the check"
+        },
+        "message": {
+          "type": "string",
+          "description": "Optional message providing details about the check result"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When this specific check was performed"
+        }
+      }
+    }
+  }
+}

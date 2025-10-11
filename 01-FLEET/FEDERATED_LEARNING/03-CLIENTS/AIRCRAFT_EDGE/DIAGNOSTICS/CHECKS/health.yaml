@@ -1,0 +1,91 @@
+# Health Check Configuration
+# Monitors CPU, Memory, GPU, and Disk health
+
+description: "Hardware health monitoring for FL client"
+enabled: true
+
+thresholds:
+  cpu:
+    max_usage_percent: 75
+    max_temperature_celsius: 75
+    description: "CPU usage and temperature limits per RUNTIME_CONSTRAINTS.md"
+  
+  memory:
+    max_usage_percent: 80
+    max_allocation_mb: 1024
+    description: "Memory constraints (1GB limit per RUNTIME_CONSTRAINTS.md)"
+  
+  gpu:
+    max_temperature_celsius: 85
+    max_memory_usage_percent: 90
+    description: "GPU temperature and memory thresholds"
+  
+  disk:
+    max_usage_percent: 85
+    min_free_space_gb: 2
+    description: "Disk usage (10GB total limit per RUNTIME_CONSTRAINTS.md)"
+
+checks:
+  - name: cpu_usage
+    type: percentage
+    target: cpu
+    metric: usage_percent
+    warning_threshold: 60
+    critical_threshold: 75
+    interval_seconds: 60
+  
+  - name: cpu_temperature
+    type: temperature
+    target: cpu
+    metric: temperature_celsius
+    warning_threshold: 70
+    critical_threshold: 75
+    interval_seconds: 60
+  
+  - name: memory_usage
+    type: percentage
+    target: memory
+    metric: usage_percent
+    warning_threshold: 70
+    critical_threshold: 80
+    interval_seconds: 60
+  
+  - name: gpu_temperature
+    type: temperature
+    target: gpu
+    metric: temperature_celsius
+    warning_threshold: 80
+    critical_threshold: 85
+    interval_seconds: 300
+    optional: true
+  
+  - name: gpu_memory
+    type: percentage
+    target: gpu
+    metric: memory_usage_percent
+    warning_threshold: 85
+    critical_threshold: 90
+    interval_seconds: 300
+    optional: true
+  
+  - name: disk_usage
+    type: percentage
+    target: disk
+    metric: usage_percent
+    warning_threshold: 75
+    critical_threshold: 85
+    interval_seconds: 300
+
+alerting:
+  critical:
+    action: suspend_training
+    notify: ["system_health_monitor", "fl_orchestrator"]
+  
+  warning:
+    action: log_and_continue
+    notify: ["system_health_monitor"]
+
+# Related documents
+references:
+  - ../RUNTIME_CONSTRAINTS.md
+  - ../../12-METRICS/KPI_DEFINITIONS.md

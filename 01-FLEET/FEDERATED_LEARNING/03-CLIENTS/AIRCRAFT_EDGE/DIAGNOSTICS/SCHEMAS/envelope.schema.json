@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://ideale-eu.eu/schemas/envelope.schema.json",
+  "title": "Diagnostic Event Envelope",
+  "description": "Envelope for diagnostic events published to telemetry topics",
+  "type": "object",
+  "required": ["event_id", "event_type", "timestamp", "source", "payload"],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for this event"
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "diagnostic.report",
+        "diagnostic.alert",
+        "diagnostic.heartbeat"
+      ],
+      "description": "Type of diagnostic event"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp (UTC) when event was created"
+    },
+    "source": {
+      "type": "object",
+      "required": ["agent_id", "aircraft_id"],
+      "properties": {
+        "agent_id": {
+          "type": "string",
+          "description": "Diagnostic agent identifier"
+        },
+        "aircraft_id": {
+          "type": "string",
+          "pattern": "^AC-H2-[0-9]{3}$",
+          "description": "Aircraft serial number"
+        },
+        "hostname": {
+          "type": "string",
+          "description": "Hostname of the edge device"
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            },
+            "longitude": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            },
+            "altitude_ft": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "description": "Event-specific payload (e.g., diagnostic report, alert details)"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "description": "Version of the event schema"
+        },
+        "compression": {
+          "type": "string",
+          "enum": ["none", "gzip", "lz4"],
+          "description": "Compression applied to payload"
+        },
+        "signature": {
+          "type": "string",
+          "description": "Digital signature of the payload (for integrity)"
+        }
+      }
+    },
+    "routing": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": "Telemetry topic for event routing"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["low", "normal", "high", "critical"],
+          "default": "normal"
+        },
+        "ttl_seconds": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Time-to-live for the event"
+        }
+      }
+    }
+  }
+}

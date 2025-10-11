@@ -1,0 +1,79 @@
+# Training Environment Check Configuration
+# Monitors FL training environment readiness
+
+description: "Training environment health monitoring"
+enabled: true
+
+requires_docker: true
+docker_image: "fl-client:latest"
+docker_registry: "registry.ideale-eu.eu"
+
+checks:
+  - name: docker_available
+    type: service_status
+    service: docker
+    critical: true
+    interval_seconds: 300
+  
+  - name: docker_image_present
+    type: image_exists
+    image: "fl-client:latest"
+    critical: true
+    interval_seconds: 3600
+  
+  - name: docker_image_version
+    type: version_check
+    image: "fl-client:latest"
+    min_version: "1.0.0"
+    interval_seconds: 86400
+  
+  - name: fl_client_process
+    type: process_check
+    process_name: "fl-client"
+    expected_state: "running"
+    interval_seconds: 60
+    optional: true
+  
+  - name: python_environment
+    type: environment_check
+    python_version: ">=3.8"
+    required_packages:
+      - "torch>=1.10"
+      - "numpy>=1.20"
+      - "grpcio>=1.40"
+    interval_seconds: 86400
+  
+  - name: model_inference_test
+    type: inference_test
+    test_input: "/var/fl-client/test_data/sample.json"
+    expected_latency_ms: 100
+    interval_seconds: 3600
+    optional: true
+
+environment_constraints:
+  max_training_time_minutes: 60
+  max_model_size_mb: 500
+  max_gradient_size_mb: 100
+
+training_phases:
+  allowed_phases: ["cruise"]
+  min_altitude_ft: 10000
+  description: "Training only during cruise per RUNTIME_CONSTRAINTS.md"
+
+alerting:
+  critical:
+    action: skip_training_round
+    notify: ["fl_orchestrator"]
+    message: "Training environment not ready"
+  
+  warning:
+    action: log_and_retry
+    notify: ["system_health_monitor"]
+    message: "Training environment degraded"
+
+# Related documents
+references:
+  - ../RUNTIME_CONSTRAINTS.md
+  - ../SANDBOXING.md
+  - ../../06-MODELS/REGISTRY.md
+  - ../../09-DEPLOYMENT/DEPLOYMENT_GUIDE.md

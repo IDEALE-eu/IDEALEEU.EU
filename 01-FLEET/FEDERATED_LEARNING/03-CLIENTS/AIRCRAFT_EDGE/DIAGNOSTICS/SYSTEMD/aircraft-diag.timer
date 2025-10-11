@@ -1,0 +1,16 @@
+[Unit]
+Description=Aircraft Edge FL Client Diagnostic Timer
+Documentation=file:///home/fl-client/DIAGNOSTICS/00-README.md
+Requires=aircraft-diag.service
+
+[Timer]
+# Run every 60 seconds
+OnBootSec=30
+OnUnitActiveSec=60
+
+# Timer behavior
+Persistent=true
+AccuracySec=5s
+
+[Install]
+WantedBy=timers.target

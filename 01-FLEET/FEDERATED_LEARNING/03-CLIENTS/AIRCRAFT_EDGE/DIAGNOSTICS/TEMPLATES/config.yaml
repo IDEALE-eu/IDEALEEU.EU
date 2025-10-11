@@ -1,0 +1,55 @@
+# Diagnostic Agent Configuration
+
+# Agent identification
+agent_id: "aircraft-edge-001"
+aircraft_id: "AC-H2-001"
+hostname: "fl-edge-001"
+
+# Check intervals (seconds)
+check_interval: 60
+full_health_check_interval: 3600
+
+# Report settings
+report_format: "json"
+compress_reports: false
+
+# Telemetry settings
+telemetry:
+  enabled: true
+  topic: "fl/diagnostics/aircraft"
+  broker: "mqtt.ideale-eu.eu"
+  port: 8883
+  use_tls: true
+
+# Logging
+logging:
+  level: "INFO"
+  file: "/var/fl-client/diagnostics.log"
+  max_size_mb: 100
+  backup_count: 5
+
+# Alert settings
+alerts:
+  enabled: true
+  critical_notify: ["fl-orchestrator", "system-health-monitor"]
+  warning_notify: ["system-health-monitor"]
+
+# Resource constraints (from RUNTIME_CONSTRAINTS.md)
+constraints:
+  max_cpu_percent: 30
+  max_memory_mb: 1024
+  max_disk_gb: 10
+  max_network_mbps: 10
+
+# Training phase constraints
+training_phases:
+  allowed: ["cruise"]
+  min_altitude_ft: 10000
+
+# Paths
+paths:
+  checks_dir: "./CHECKS"
+  schemas_dir: "./SCHEMAS"
+  data_dir: "/var/fl-client"
+  reports_dir: "/var/fl-client/reports"
+  certs_dir: "/etc/fl-client/certs"

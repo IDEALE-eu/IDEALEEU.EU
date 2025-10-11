@@ -1,0 +1,43 @@
+[Unit]
+Description=Aircraft Edge FL Client Diagnostic Service
+Documentation=file:///home/fl-client/DIAGNOSTICS/00-README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=fl-client
+Group=fl-client
+WorkingDirectory=/opt/fl-client/diagnostics
+
+# Environment
+Environment="PYTHONUNBUFFERED=1"
+Environment="FL_CLIENT_HOME=/var/fl-client"
+
+# Execute diagnostic agent
+ExecStart=/usr/bin/python3 /opt/fl-client/diagnostics/AGENTS/diag_agent.py
+
+# Resource limits (per RUNTIME_CONSTRAINTS.md)
+CPUQuota=30%
+MemoryMax=1G
+TasksMax=10
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/fl-client
+ReadOnlyPaths=/etc/fl-client
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=aircraft-diag
+
+# Restart policy
+Restart=on-failure
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,146 @@
+{
+  "event_id": "550e8400-e29b-41d4-a716-446655440000",
+  "event_type": "diagnostic.report",
+  "timestamp": "2025-10-11T19:00:00Z",
+  "source": {
+    "agent_id": "aircraft-edge-001",
+    "aircraft_id": "AC-H2-001",
+    "hostname": "fl-edge-001",
+    "location": {
+      "latitude": 52.3676,
+      "longitude": 4.9041,
+      "altitude_ft": 35000
+    }
+  },
+  "payload": {
+    "timestamp": "2025-10-11T19:00:00Z",
+    "agent_id": "aircraft-edge-001",
+    "aircraft_id": "AC-H2-001",
+    "overall_status": "healthy",
+    "diagnostics": {
+      "health": {
+        "status": "healthy",
+        "checks": [
+          {
+            "name": "cpu",
+            "status": "pass",
+            "metrics": {
+              "usage_percent": 25.3,
+              "temperature_celsius": 62.5
+            }
+          },
+          {
+            "name": "memory",
+            "status": "pass",
+            "metrics": {
+              "usage_percent": 55.2,
+              "available_mb": 458.4,
+              "total_mb": 1024.0
+            }
+          },
+          {
+            "name": "gpu",
+            "status": "pass",
+            "metrics": {
+              "temperature_celsius": 68.0,
+              "memory_used_mb": 2048.0,
+              "memory_total_mb": 8192.0
+            }
+          },
+          {
+            "name": "disk",
+            "status": "pass",
+            "metrics": {
+              "usage_percent": 68.5,
+              "available_gb": 3.15,
+              "total_gb": 10.0
+            }
+          }
+        ]
+      },
+      "network": {
+        "status": "healthy",
+        "checks": [
+          {
+            "name": "central_server_connectivity",
+            "status": "pass",
+            "metrics": {
+              "latency_ms": 145.2,
+              "host": "fl-server.ideale-eu.eu"
+            }
+          }
+        ]
+      },
+      "storage": {
+        "status": "healthy",
+        "checks": [
+          {
+            "name": "fl_data_directory",
+            "status": "pass",
+            "metrics": {
+              "path": "/var/fl-client",
+              "exists": true,
+              "size_mb": 2456.8
+            }
+          }
+        ]
+      },
+      "security": {
+        "status": "healthy",
+        "checks": [
+          {
+            "name": "certificate_client_cert",
+            "status": "pass",
+            "metrics": {
+              "path": "/etc/fl-client/certs/client.crt",
+              "permissions": "644"
+            }
+          },
+          {
+            "name": "certificate_client_key",
+            "status": "pass",
+            "metrics": {
+              "path": "/etc/fl-client/certs/client.key",
+              "permissions": "600"
+            }
+          },
+          {
+            "name": "certificate_ca_cert",
+            "status": "pass",
+            "metrics": {
+              "path": "/etc/fl-client/certs/ca.crt",
+              "permissions": "644"
+            }
+          }
+        ]
+      },
+      "training": {
+        "status": "healthy",
+        "checks": [
+          {
+            "name": "training_environment",
+            "status": "pass",
+            "metrics": {
+              "docker_available": true,
+              "required_image_present": true
+            }
+          }
+        ]
+      }
+    },
+    "metadata": {
+      "agent_version": "1.0.0",
+      "hostname": "fl-edge-001",
+      "flight_phase": "cruise"
+    }
+  },
+  "metadata": {
+    "schema_version": "1.0.0",
+    "compression": "none"
+  },
+  "routing": {
+    "topic": "fl/diagnostics/AC-H2-001/report",
+    "priority": "normal",
+    "ttl_seconds": 86400
+  }
+}
