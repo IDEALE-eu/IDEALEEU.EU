@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ideale.eu/schemas/ief-manifest.json",
+  "title": "IEF Manifest",
+  "description": "Integrity & Evidence Framework manifest for AMPEL360 releases",
+  "type": "object",
+  "required": ["rel_id", "utcs", "artifacts", "hashes", "signatures", "provenance"],
+  "properties": {
+    "rel_id": {
+      "type": "string",
+      "description": "Unique release identifier",
+      "pattern": "^REL-[0-9]{4}-[0-9]{3}$"
+    },
+    "utcs": {
+      "type": "string",
+      "description": "UTCS thread ID linking this release",
+      "pattern": "^UTCS-[0-9]{3,}$"
+    },
+    "artifacts": {
+      "type": "array",
+      "description": "List of artifacts included in this release",
+      "items": {
+        "type": "object",
+        "required": ["name", "path", "sha256"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Artifact name"
+          },
+          "path": {
+            "type": "string",
+            "description": "Relative path to artifact within release package"
+          },
+          "sha256": {
+            "type": "string",
+            "description": "SHA256 hash of the artifact",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "sbom": {
+            "type": "string",
+            "description": "Path to SBOM file for this artifact (if applicable)"
+          },
+          "vex": {
+            "type": "string",
+            "description": "Path to VEX file for this artifact (if applicable)"
+          }
+        }
+      }
+    },
+    "hashes": {
+      "type": "object",
+      "description": "Additional hash checksums",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "signatures": {
+      "type": "array",
+      "description": "Cryptographic signatures for the manifest",
+      "items": {
+        "type": "string",
+        "description": "Base64-encoded signature"
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Build provenance information",
+      "required": ["builder", "cb", "qb", "timestamp"],
+      "properties": {
+        "builder": {
+          "type": "string",
+          "description": "Build system identifier"
+        },
+        "cb": {
+          "type": "string",
+          "description": "Configuration Baseline identifier"
+        },
+        "qb": {
+          "type": "string",
+          "description": "Quality Baseline identifier"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Build timestamp in ISO 8601 format"
+        },
+        "build_id": {
+          "type": "string",
+          "description": "CI/CD build identifier"
+        },
+        "commit_sha": {
+          "type": "string",
+          "description": "Git commit SHA of source code"
+        }
+      }
+    }
+  }
+}
