@@ -13,21 +13,14 @@ Control layer for cabin systems, including cabin management, lighting control, a
 - Attendant control panels
 - Cabin system monitoring
 
-## PLM Structure
+## Subsystems
 
-This system contains engineering artifacts organized by CAx discipline:
+- [44-00_CMS](./SUBSYSTEMS/44-00_CMS/) - Cabin management system
 
-### CAx Directories
+## Integration
 
-- [CAD/](./PLM/CAx/CAD/) - Computer-Aided Design (3D models, drawings)
-- [CAE/](./PLM/CAx/CAE/) - Computer-Aided Engineering (FEA, analysis)
-- [CAO/](./PLM/CAx/CAO/) - Computer-Aided Optimization (design optimization)
-- [CAM/](./PLM/CAx/CAM/) - Computer-Aided Manufacturing (NC programming, tooling)
-- [CAI/](./PLM/CAx/CAI/) - Computer-Aided Installation (installation drawings, procedures)
-- [CAV/](./PLM/CAx/CAV/) - Computer-Aided Validation (test models, validation data)
-- [CAP/](./PLM/CAx/CAP/) - Computer-Aided Process Planning (process plans, work instructions)
-- [CAS/](./PLM/CAx/CAS/) - Computer-Aided Simulation (system simulations)
-- [CMP/](./PLM/CAx/CMP/) - Composite Materials Processing (layup data, curing)
+See [INTEGRATION_VIEW.md](./INTEGRATION_VIEW.md) for functional integration details.
+See [INTERFACE_MATRIX/](./INTERFACE_MATRIX/) for interface definitions.
 
 ## Related Systems
 

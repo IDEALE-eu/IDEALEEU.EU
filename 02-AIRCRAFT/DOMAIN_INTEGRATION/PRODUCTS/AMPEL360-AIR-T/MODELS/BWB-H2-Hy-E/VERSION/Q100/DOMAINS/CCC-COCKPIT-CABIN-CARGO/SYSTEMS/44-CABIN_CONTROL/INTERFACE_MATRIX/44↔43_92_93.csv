@@ -1,0 +1,4 @@
+Source_System,Target_System,Interface_Type,Description,Criticality
+44-CABIN_CONTROL,43-CABIN_SYSTEMS,Control,Control of cabin systems,Medium
+44-CABIN_CONTROL,92-ELECTRICAL_WIRING,Electrical,Control wiring distribution,Medium
+44-CABIN_CONTROL,93-INFORMATION,Information,Cabin management data,Medium

@@ -1,0 +1,3 @@
+Source_System,Target_System,Interface_Type,Description,Criticality
+11-PLACARDS_MARKINGS,24-ELECTRICAL,Physical,Placard mounting and illumination,Low
+11-PLACARDS_MARKINGS,31-INSTRUMENTS,Information,Instrument panel markings,Medium

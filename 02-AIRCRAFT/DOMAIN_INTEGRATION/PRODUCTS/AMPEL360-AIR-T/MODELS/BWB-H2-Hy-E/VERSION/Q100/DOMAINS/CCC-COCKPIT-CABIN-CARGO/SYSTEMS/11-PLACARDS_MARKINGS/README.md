@@ -13,21 +13,14 @@ Placards and markings for cabin, cockpit, and cargo areas. Includes safety placa
 - Cargo loading placards
 - Maintenance access markings
 
-## PLM Structure
+## Subsystems
 
-This system contains engineering artifacts organized by CAx discipline:
+- [11-00_GENERAL](./SUBSYSTEMS/11-00_GENERAL/) - General placards and markings
 
-### CAx Directories
+## Integration
 
-- [CAD/](./PLM/CAx/CAD/) - Computer-Aided Design (3D models, drawings)
-- [CAE/](./PLM/CAx/CAE/) - Computer-Aided Engineering (FEA, analysis)
-- [CAO/](./PLM/CAx/CAO/) - Computer-Aided Optimization (design optimization)
-- [CAM/](./PLM/CAx/CAM/) - Computer-Aided Manufacturing (NC programming, tooling)
-- [CAI/](./PLM/CAx/CAI/) - Computer-Aided Installation (installation drawings, procedures)
-- [CAV/](./PLM/CAx/CAV/) - Computer-Aided Validation (test models, validation data)
-- [CAP/](./PLM/CAx/CAP/) - Computer-Aided Process Planning (process plans, work instructions)
-- [CAS/](./PLM/CAx/CAS/) - Computer-Aided Simulation (system simulations)
-- [CMP/](./PLM/CAx/CMP/) - Composite Materials Processing (layup data, curing)
+See [INTEGRATION_VIEW.md](./INTEGRATION_VIEW.md) for functional integration details.
+See [INTERFACE_MATRIX/](./INTERFACE_MATRIX/) for interface definitions.
 
 ## Related Systems
 

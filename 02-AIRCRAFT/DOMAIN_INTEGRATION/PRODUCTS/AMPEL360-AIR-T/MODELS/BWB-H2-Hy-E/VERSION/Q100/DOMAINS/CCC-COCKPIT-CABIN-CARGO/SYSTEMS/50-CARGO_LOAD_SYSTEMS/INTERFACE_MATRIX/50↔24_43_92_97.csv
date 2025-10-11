@@ -1,0 +1,5 @@
+Source_System,Target_System,Interface_Type,Description,Criticality
+50-CARGO_LOAD,24-ELECTRICAL,Physical,Cargo door mechanism power and control,High
+50-CARGO_LOAD,43-CABIN_SYSTEMS,Physical,Cabin-cargo physical interface,Medium
+50-CARGO_LOAD,92-ELECTRICAL_WIRING,Electrical,Cargo system power distribution,Medium
+50-CARGO_LOAD,97-WIRING,Information,Cargo weight and balance data,High
