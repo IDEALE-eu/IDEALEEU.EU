@@ -1,0 +1,234 @@
+# Training Configuration Template for Surrogate Models
+#
+# This file defines all parameters needed to reproduce the training of a surrogate model.
+# It ensures reproducibility, traceability, and version control.
+#
+# Version: 1.0.0
+# Template Author: Digital Twin Model Team
+
+metadata:
+  surrogate_id: <sur_id>
+  version: <semver>
+  training_date: YYYY-MM-DDTHH:MM:SSZ
+  trained_by: <name/team>
+  description: <brief description>
+  
+# Data sources
+data:
+  training:
+    source: <path or reference to training data>
+    format: npz  # npz, csv, hdf5, parquet
+    size_samples: <number of samples>
+    hash: <SHA-256 hash for data integrity>
+    doe_type: <DOE type used>
+    # Example: Latin Hypercube Sampling, Full Factorial, Adaptive
+    
+  validation:
+    source: <path or reference to validation data>
+    format: npz
+    size_samples: <number of samples>
+    hash: <SHA-256 hash>
+    split_method: holdout  # holdout, k-fold, stratified
+    split_ratio: 0.2  # If holdout
+    
+  preprocessing:
+    scaling: true
+    feature_engineering: false
+    outlier_removal:
+      enabled: true
+      method: iqr  # iqr, zscore, isolation_forest
+      threshold: 3.0
+    missing_data_handling: none  # none, interpolation, removal
+
+# Model algorithm and architecture
+algorithm:
+  type: <algorithm_name>
+  # Options: gaussian_process, random_forest, xgboost, neural_network, 
+  #          polynomial_chaos, radial_basis_function, kriging, etc.
+  
+  framework: <framework_name>
+  # Example: scikit-learn, GPy, xgboost, tensorflow, pytorch
+  
+  version: <framework_version>
+  
+  hyperparameters:
+    # For Gaussian Process:
+    kernel: <kernel_type>
+    # Example: RBF, Matern, RationalQuadratic
+    length_scale: <value or 'auto'>
+    noise_level: <value or 'auto'>
+    optimizer: <optimizer>
+    n_restarts_optimizer: <int>
+    
+    # For Random Forest / XGBoost:
+    # n_estimators: <int>
+    # max_depth: <int>
+    # learning_rate: <float>
+    # min_samples_split: <int>
+    
+    # For Neural Network:
+    # architecture: [<input_dim>, <hidden1>, <hidden2>, ..., <output_dim>]
+    # activation: <activation_function>
+    # optimizer: <optimizer_name>
+    # learning_rate: <float>
+    # batch_size: <int>
+    # epochs: <int>
+    # dropout: <float>
+    
+    # For Polynomial Chaos Expansion:
+    # polynomial_degree: <int>
+    # distribution_type: <uniform, normal, etc.>
+
+# Training process
+training:
+  random_seed: <int>  # For reproducibility
+  
+  cross_validation:
+    enabled: true
+    folds: 5
+    metric: rmse  # rmse, mae, r2, neg_log_likelihood
+  
+  early_stopping:
+    enabled: false  # If applicable (neural networks)
+    patience: <int>
+    metric: validation_loss
+  
+  hyperparameter_tuning:
+    enabled: false
+    method: grid_search  # grid_search, random_search, bayesian_optimization
+    search_space:
+      # Define ranges for hyperparameters
+      # Example:
+      # length_scale: [0.1, 1.0, 10.0]
+      # n_estimators: [50, 100, 200]
+  
+  computational_resources:
+    cpu_cores: <int>
+    gpu: <true/false>
+    max_memory_gb: <float>
+    estimated_training_time: <duration>  # e.g., "2h 30m"
+
+# Model selection and evaluation
+evaluation:
+  metrics:
+    - name: rmse
+      target: <value>
+      weight: 1.0
+    - name: mae
+      target: <value>
+      weight: 0.5
+    - name: r2_score
+      target: <value>
+      weight: 0.5
+    - name: max_error
+      target: <value>
+      weight: 0.3
+  
+  validation_strategy:
+    holdout_test: true
+    test_size: 0.15
+    
+  slice_performance:
+    enabled: true
+    slices:
+      - description: <description of input space region>
+        bounds:
+          <input_name>: [<min>, <max>]
+        target_metric: rmse
+        target_value: <value>
+
+# Uncertainty quantification
+uncertainty:
+  method: <method_name>
+  # Options: gp_variance, bootstrap_ensemble, dropout_ensemble, 
+  #          quantile_regression, conformal_prediction
+  
+  parameters:
+    confidence_level: 0.95
+    # For ensemble:
+    # n_models: <int>
+    # For conformal:
+    # calibration_set_size: <int>
+  
+  validation:
+    calibration_check: true
+    expected_coverage: 0.95
+    measured_coverage: <to be filled after training>
+
+# Domain of validity
+domain_validity:
+  training_envelope:
+    # Define the bounds of training data
+    <input_1_name>: [<min_train>, <max_train>]
+    <input_2_name>: [<min_train>, <max_train>]
+  
+  extrapolation_policy:
+    allow_extrapolation: false
+    max_extrapolation_distance: 0.1  # As fraction of range
+    confidence_penalty: exponential  # How to adjust uncertainty for extrapolation
+
+# Optimization and regularization
+regularization:
+  enabled: false
+  type: l2  # l1, l2, elastic_net
+  strength: <value>
+
+# Output artifacts
+artifacts:
+  model_file: model.joblib  # or model.pkl, model.h5, model.onnx
+  scaler_file: scaler.joblib  # If scaling is applied
+  metadata_file: train_config.yaml  # This file
+  training_logs: training/logs/
+  checkpoints: training/checkpoints/  # For iterative training
+
+# Reproducibility
+reproducibility:
+  environment:
+    python_version: <version>
+    packages:
+      - <package1>==<version>
+      - <package2>==<version>
+    # Example:
+    # - numpy==1.24.0
+    # - scikit-learn==1.2.0
+  
+  docker_image: <image:tag>  # If training in container
+  
+  hardware:
+    cpu_model: <model>
+    gpu_model: <model, if applicable>
+
+# Quality checks
+quality_gates:
+  - check: training_converged
+    passed: <true/false, to be filled>
+  - check: validation_rmse_below_threshold
+    threshold: <value>
+    passed: <true/false, to be filled>
+  - check: no_overfitting
+    max_train_val_gap: 0.1
+    passed: <true/false, to be filled>
+  - check: coverage_envelope
+    min_coverage_percent: 95
+    passed: <true/false, to be filled>
+
+# Version control and traceability
+traceability:
+  requirements: [<REQ-ID-1>, <REQ-ID-2>]
+  high_fidelity_model: <reference to physics model>
+  doe_plan: <reference to DOE specification>
+  git_commit: <commit SHA>
+  training_job_id: <job ID in training system>
+
+# Notes and comments
+notes:
+  - <note 1>
+  - <note 2>
+  # Example: "Training performed on cluster node XYZ"
+  # Example: "Hyperparameters selected based on previous optimization study"
+
+# Approval and sign-off
+approval:
+  reviewed_by: <name>
+  review_date: YYYY-MM-DD
+  approved_for_production: <true/false>

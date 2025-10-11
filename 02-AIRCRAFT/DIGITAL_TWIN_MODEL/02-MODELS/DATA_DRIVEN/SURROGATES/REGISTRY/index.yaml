@@ -1,0 +1,101 @@
+# SURROGATE MODEL REGISTRY
+# 
+# Central index of all surrogate models used in the digital twin.
+# Each entry tracks model ID, version, purpose, and location.
+#
+# Format:
+#   <sur_id>:
+#     description: Brief description of surrogate purpose
+#     domain: Physics domain (aerodynamics, thermal, structural, etc.)
+#     versions:
+#       - semver: Semantic version
+#         status: [development|validated|production|deprecated]
+#         created_date: ISO 8601 timestamp
+#         approved_by: Name/team
+#         location: Path relative to SURROGATES/
+
+registry_metadata:
+  version: 1.0.0
+  last_updated: 2025-10-11
+  owner: Digital Twin Model Team
+  description: Central registry for data-driven surrogate models
+
+surrogates:
+  # Example entry - Aerodynamic surrogate for wing coefficients
+  aero_wing_cl_cd:
+    description: Predicts lift and drag coefficients for wing based on angle of attack and Mach number
+    domain: aerodynamics
+    ata_chapter: ATA-57  # Wings
+    input_dims: 2  # [alpha, Mach]
+    output_dims: 2  # [CL, CD]
+    fidelity_source: CFD  # High-fidelity source
+    versions:
+      - semver: 1.0.0
+        status: validated
+        created_date: 2025-01-15T10:30:00Z
+        approved_by: Aerodynamics Team Lead
+        location: aero_wing_cl_cd/1.0.0/
+        notes: Initial production version, validated against CFD data
+      - semver: 1.1.0
+        status: development
+        created_date: 2025-03-10T14:20:00Z
+        approved_by: Development Team
+        location: aero_wing_cl_cd/1.1.0/
+        notes: Enhanced with compressibility corrections
+  
+  # Example entry - Thermal surrogate for electronic component
+  thermal_avionics_temp:
+    description: Predicts temperature of avionics bay electronic component based on ambient temp, power load, and airflow
+    domain: thermal
+    ata_chapter: ATA-31  # Indicating/Recording Systems
+    input_dims: 3  # [T_ambient, P_load, airflow]
+    output_dims: 1  # [T_component]
+    fidelity_source: FEM  # Finite Element Model
+    versions:
+      - semver: 1.0.0
+        status: production
+        created_date: 2024-11-20T09:15:00Z
+        approved_by: Thermal Analysis Lead
+        location: thermal_avionics_temp/1.0.0/
+        notes: Production model for real-time health monitoring
+  
+  # Example entry - Structural surrogate for fatigue
+  struct_fatigue_cycles:
+    description: Predicts fatigue life cycles for fuselage panel based on load spectrum
+    domain: structural
+    ata_chapter: ATA-53  # Fuselage
+    input_dims: 5  # Load spectrum parameters
+    output_dims: 1  # [N_cycles_to_failure]
+    fidelity_source: FEM  # Finite Element Analysis
+    versions:
+      - semver: 2.0.0
+        status: production
+        created_date: 2025-02-01T11:45:00Z
+        approved_by: Structures Engineering Lead
+        location: struct_fatigue_cycles/2.0.0/
+        notes: Updated with new material properties
+
+# Registry policies
+policies:
+  versioning:
+    scheme: semantic_versioning  # MAJOR.MINOR.PATCH
+    major: Breaking changes to I/O contract
+    minor: New features, improved accuracy (backward compatible)
+    patch: Bug fixes, documentation updates
+  
+  lifecycle:
+    development: Model in training/testing phase
+    validated: Passed validation against high-fidelity data
+    production: Approved for operational use in digital twin
+    deprecated: Superseded by newer version, scheduled for removal
+  
+  approval_requirements:
+    development: Team lead approval
+    validated: Validation report + technical review
+    production: Safety review + configuration board approval
+    deprecated: Migration plan required
+  
+  retention:
+    production_versions: Keep indefinitely for traceability
+    deprecated_versions: Keep for 2 years after deprecation
+    development_versions: Keep until replaced or archived

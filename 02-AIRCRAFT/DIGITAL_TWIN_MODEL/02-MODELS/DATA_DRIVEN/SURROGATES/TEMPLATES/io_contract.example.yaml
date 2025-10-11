@@ -1,0 +1,167 @@
+# I/O Contract Template for Surrogate Models
+#
+# This file defines the input/output interface, units, scaling, and valid ranges
+# for a surrogate model. It serves as a contract between the model and consumers.
+#
+# Version: 1.0.0
+# Template Author: Digital Twin Model Team
+
+metadata:
+  surrogate_id: <sur_id>
+  version: <semver>
+  created_date: YYYY-MM-DDTHH:MM:SSZ
+  updated_date: YYYY-MM-DDTHH:MM:SSZ
+  author: <name>
+  description: <brief description of what the surrogate predicts>
+
+# Input specification
+inputs:
+  - name: <input_1_name>
+    description: <description of input variable>
+    unit: <SI unit or custom unit>
+    type: float  # float, int, categorical
+    physical_range:
+      min: <physical minimum value>
+      max: <physical maximum value>
+    training_range:
+      min: <minimum value in training data>
+      max: <maximum value in training data>
+    scaling:
+      method: standardization  # standardization, normalization, log, none
+      params:
+        mean: <mean value>
+        std: <standard deviation>
+        # OR for normalization:
+        # min: <min value>
+        # max: <max value>
+    
+  - name: <input_2_name>
+    description: <description of second input>
+    unit: <unit>
+    type: float
+    physical_range:
+      min: <value>
+      max: <value>
+    training_range:
+      min: <value>
+      max: <value>
+    scaling:
+      method: normalization
+      params:
+        min: <value>
+        max: <value>
+
+# Output specification
+outputs:
+  - name: <output_1_name>
+    description: <description of output variable>
+    unit: <SI unit or custom unit>
+    type: float
+    expected_range:
+      min: <expected minimum value>
+      max: <expected maximum value>
+    scaling:
+      method: standardization
+      params:
+        mean: <mean value>
+        std: <standard deviation>
+    uncertainty:
+      quantified: true  # Whether uncertainty is provided
+      method: gaussian_process_variance  # GP variance, ensemble std, quantile regression, conformal
+      confidence_level: 0.95  # Confidence level for intervals
+
+# Domain of validity
+domain_of_validity:
+  description: >
+    Define the region in input space where the surrogate is valid and reliable.
+    Outside this domain, predictions should be flagged or rejected.
+  
+  input_bounds:
+    <input_1_name>: [<min>, <max>]
+    <input_2_name>: [<min>, <max>]
+  
+  combined_constraints:
+    # Optional: Define constraints that involve multiple inputs
+    - description: <constraint description>
+      expression: <mathematical expression>
+      # Example: "Mach * sqrt(T_ambient) < 500"
+  
+  out_of_domain_policy:
+    action: flag_and_extrapolate  # reject, flag_and_extrapolate, clip_to_boundary
+    warning_margin: 0.05  # Warn if within 5% of boundary
+    logging: true  # Log all OOD queries
+
+# Coordinate systems and reference frames
+reference_frames:
+  inputs:
+    description: <coordinate system for inputs, if applicable>
+    # Example: "Body-fixed frame, origin at aircraft CG"
+  outputs:
+    description: <coordinate system for outputs>
+    # Example: "Aerodynamic coefficients in wind axis"
+
+# Dependencies and compatibility
+dependencies:
+  runtime_libraries:
+    - name: <library_name>
+      version: <version>
+      # Example: scikit-learn>=1.0.0
+  
+  preprocessing_models:
+    - name: <preprocessor_name>
+      location: <path>
+      # Example: Feature selector, PCA transform
+  
+  postprocessing:
+    - name: <postprocessor_name>
+      description: <what it does>
+      # Example: Unit conversion, coordinate transform
+
+# Performance guarantees
+performance:
+  inference_time:
+    target_ms: <target latency in milliseconds>
+    measured_mean_ms: <measured mean>
+    measured_p95_ms: <95th percentile>
+    measured_p99_ms: <99th percentile>
+  
+  accuracy:
+    metric: RMSE  # RMSE, MAE, R2, etc.
+    target_value: <target>
+    achieved_value: <achieved on validation set>
+  
+  memory_footprint:
+    model_size_mb: <size>
+    runtime_memory_mb: <runtime RAM>
+
+# Validation and testing
+validation:
+  test_dataset_size: <number of samples>
+  test_coverage_percent: <percentage of operational envelope>
+  validation_date: YYYY-MM-DD
+  validation_report: <path to validation report>
+
+# Usage notes
+usage_notes:
+  - <note 1>
+  - <note 2>
+  # Example: "Model trained on sea-level conditions, extrapolation to high altitude may be inaccurate"
+
+# Version history
+version_history:
+  - version: <semver>
+    date: YYYY-MM-DD
+    changes:
+      - <change description>
+    author: <name>
+
+# Compliance and traceability
+compliance:
+  certification_level: <DO-178C level, if applicable>
+  traceability:
+    requirements: [<REQ-ID-1>, <REQ-ID-2>]
+    verification_tests: [<TEST-ID-1>, <TEST-ID-2>]
+  approval:
+    approved_by: <name>
+    approval_date: YYYY-MM-DD
+    approval_authority: <role/board>
