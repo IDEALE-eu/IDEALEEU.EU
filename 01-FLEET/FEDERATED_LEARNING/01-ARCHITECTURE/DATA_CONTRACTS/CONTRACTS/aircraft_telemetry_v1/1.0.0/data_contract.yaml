@@ -1,0 +1,324 @@
+# Aircraft Telemetry Data Contract v1
+# 
+# Standardized data contract for aircraft telemetry in federated learning.
+# This contract ensures consistency, quality, and privacy across all FL clients.
+
+# Contract Metadata
+contract_metadata:
+  contract_id: "aircraft_telemetry_v1"
+  version: "1.0.0"
+  status: "active"
+  description: |
+    Aircraft telemetry data stream for federated learning model training.
+    Includes flight dynamics, propulsion, environmental, fuel, and system health signals.
+    All data is pseudonymized and subject to differential privacy.
+  owner: "AI/ML Team - Data Engineering"
+  contact: "ml-data@ideale.eu"
+  created_date: "2025-10-11"
+  updated_date: "2025-10-11"
+
+# Schema Reference
+schema:
+  format: "avro"
+  file: "schema.avsc"
+  version: "1.0.0"
+  namespace: "ideale.fleet.federated_learning"
+  
+  signal_categories:
+    - "Flight Dynamics (airspeed, altitude, attitude)"
+    - "Propulsion (engine parameters, fuel flow)"
+    - "Environmental (temperature, pressure)"
+    - "Fuel System (tank quantities, pressure)"
+    - "System Health (CPU, memory, network)"
+  
+  total_signals: 24
+  sampling_rates: "0.1 Hz to 100 Hz (signal-dependent)"
+
+# Data Quality Constraints
+constraints:
+  file: "constraints.yaml"
+  summary:
+    - "Range validation for 24 telemetry signals"
+    - "Rate-of-change limits for critical parameters"
+    - "Completeness threshold: max 5% missing per signal"
+    - "Temporal consistency: monotonic timestamps"
+    - "Cross-signal consistency checks (e.g., pressure-temperature)"
+  
+  enforcement_point: "Client-side (edge device)"
+  action_on_violation: "Quarantine or flag with quality indicator"
+
+# Privacy Policy
+privacy:
+  pii_map_file: "pii_map.yaml"
+  dp_policy_file: "dp_policy.yaml"
+  
+  pseudonymisation:
+    platform_id: 
+      method: "SHA-256 with salt"
+      input: "tail_number"
+      reversible: true  # Mapping table for GDPR erasure
+    
+    flight_id:
+      method: "SHA-256 with salt"
+      input: "flight_number + date"
+      reversible: true
+  
+  data_minimization:
+    excluded_fields:
+      - "Pilot/crew PII (names, IDs)"
+      - "Passenger data"
+      - "Precise GPS coordinates"
+      - "Commercial information"
+    
+    included_fields:
+      - "Pseudonymized platform/flight IDs"
+      - "Sensor telemetry (non-identifying)"
+      - "System health metrics"
+  
+  differential_privacy:
+    enabled: true
+    epsilon: 1.0
+    delta: 1.0e-5
+    mechanism: "DP-SGD"
+  
+  retention:
+    raw_data: "90 days"
+    aggregated_metrics: "2 years"
+    model_gradients: "30 days"
+    pseudonym_mapping: "5 years (GDPR compliance)"
+
+# Service Level Agreements
+slas:
+  file: "slas.yaml"
+  
+  availability:
+    target: "99.5% uptime"
+    measurement: "monthly"
+  
+  latency:
+    ingestion_p95: "10 seconds"
+    validation_p95: "5 seconds"
+    end_to_end_p95: "15 seconds"
+  
+  data_quality:
+    completeness: "> 95%"
+    accuracy: "Sensor calibration within 6 months"
+    timeliness: "Timestamp accuracy ± 1 second"
+    constraint_compliance: "> 99%"
+  
+  throughput:
+    peak_rate: "100,000 messages/second"
+    burst_capacity: "200,000 messages/second (5 min)"
+
+# Validation and Testing
+validation:
+  test_file: "tests/contract_test.py"
+  
+  test_cases:
+    - "Schema compliance (Avro deserialization)"
+    - "Range constraint validation (all 24 signals)"
+    - "Rate-of-change validation (critical parameters)"
+    - "PII detection (ensure no cleartext PII)"
+    - "Completeness checks (missing data thresholds)"
+    - "Timestamp validation (monotonic, not future)"
+  
+  automated_checks:
+    pre_deployment: true
+    continuous_validation: true
+    alert_on_failure: true
+    
+  validation_frequency:
+    client_side: "every message"
+    server_side: "sample 10% of messages"
+
+# Examples and Documentation
+examples:
+  sample_data: "examples/telemetry_sample.jsonl"
+  sample_format: "JSON Lines (newline-delimited JSON)"
+  sample_size: "1000 records covering all 24 signals"
+  sample_scenarios:
+    - "Typical cruise flight"
+    - "Takeoff and climb"
+    - "Descent and landing"
+    - "Ground operations"
+
+# Integration Points
+integration:
+  upstream_sources:
+    - source: "01-FLEET/OPERATIONAL_DATA_HUB/02-DATA_INGESTION/INGESTION_PIPELINES/REAL_TIME_STREAM/"
+      protocol: "Kafka (topic: ideale.telemetry.v1)"
+      authentication: "TLS 1.3 + X.509 certificates"
+    
+    - source: "Aircraft avionics data buses"
+      protocol: "ARINC 429, MIL-STD-1553"
+      gateway: "Edge FL client on aircraft IMA"
+  
+  downstream_consumers:
+    - consumer: "03-CLIENTS/ - FL edge clients"
+      usage: "Local training data preprocessing"
+      access: "Direct file system access"
+    
+    - consumer: "04-ALGORITHMS/ - FL training algorithms"
+      usage: "Model training and validation"
+      access: "Data loader API"
+    
+    - consumer: "06-MODELS/ - Model registry"
+      usage: "Dataset provenance tracking"
+      access: "Metadata API"
+  
+  compatibility:
+    backward_compatible: true
+    forward_compatible: false
+    deprecation_notice_days: 180
+    migration_support_days: 360
+
+# Compliance
+compliance:
+  gdpr:
+    compliant: true
+    legal_basis: "Legitimate interest (Art. 6(1)(f))"
+    legitimate_interest: "Aviation safety, predictive maintenance, operational efficiency"
+    balancing_test: "Balancing-Test-2025-FL-001"
+    dpia_reference: "DPIA-2025-FL-001"
+    dpia_conclusion: "Low residual risk after pseudonymization and DP"
+  
+  export_control:
+    classification: "EAR99"
+    approved_jurisdictions: ["EU", "US", "UK", "Canada", "Australia"]
+    export_license: "Not required (EAR99)"
+  
+  safety_certification:
+    level: "DO-178C Level C"
+    scope: "Advisory system only (no flight-critical actuation)"
+    limitation: "Model outputs require crew approval before action"
+  
+  industry_standards:
+    - "ATA Spec 100 (Air Transport Association)"
+    - "ARINC 664 (AFDX Avionics Full-Duplex Switched Ethernet)"
+    - "DO-326A (Airworthiness Security Process Specification)"
+    - "AS-5780 (Hydrogen Storage Systems)"
+
+# Change Control
+change_control:
+  ecr_number: "ECR-2025-001"
+  ccb_approval: true
+  ccb_approval_date: "2025-10-11"
+  
+  approvers:
+    - role: "Data Engineering Lead"
+      name: "Data Eng Team"
+      approved: true
+      date: "2025-10-11"
+    
+    - role: "Privacy Officer (DPO)"
+      name: "Privacy Team"
+      approved: true
+      date: "2025-10-11"
+    
+    - role: "Security Team"
+      name: "Security Team"
+      approved: true
+      date: "2025-10-11"
+    
+    - role: "CCB Chair"
+      name: "Configuration Control Board"
+      approved: true
+      date: "2025-10-11"
+
+# Related Contracts
+related_contracts:
+  - contract_id: "labels_events_v1"
+    relationship: "complementary"
+    description: "Event labels (faults, warnings) for supervised learning"
+    path: "../labels_events_v1/"
+  
+  - contract_id: "environmental_conditions_v1"
+    relationship: "supplementary"
+    description: "Additional environmental data (weather, turbulence)"
+    path: "../environmental_conditions_v1/"
+
+# Use Cases
+use_cases:
+  - use_case: "Predictive Maintenance - Engine Health"
+    description: "Predict engine bearing failure 100 flight hours in advance"
+    signals_used:
+      - "engine_1_vibration"
+      - "engine_1_oil_temperature"
+      - "engine_1_oil_pressure"
+      - "engine_1_n1"
+      - "engine_1_n2"
+    model_type: "LSTM binary classifier"
+    
+  - use_case: "Anomaly Detection - Sensor Drift"
+    description: "Detect sensor faults and system anomalies in real-time"
+    signals_used: "all_signals"
+    model_type: "Autoencoder"
+  
+  - use_case: "Fuel Optimization"
+    description: "Optimize fuel consumption based on flight conditions"
+    signals_used:
+      - "engine_1_fuel_flow"
+      - "airspeed_true"
+      - "altitude_pressure"
+      - "outside_air_temperature"
+    model_type: "Regression model"
+
+# Performance Characteristics
+performance:
+  message_size:
+    avg: "500 bytes"
+    max: "2 KB"
+    compression: "Snappy (50% reduction)"
+  
+  data_volume:
+    per_flight: "~500 MB (4-hour flight)"
+    per_aircraft_per_day: "~1 GB"
+    fleet_per_day: "~100 GB (100 aircraft)"
+  
+  network_bandwidth:
+    per_client: "10 Mbps peak (SATCOM window)"
+    aggregated: "1 Gbps (100 clients × 10 Mbps)"
+
+# Monitoring and Observability
+monitoring:
+  metrics:
+    - "Messages ingested per second"
+    - "Validation success rate"
+    - "Constraint violation rate by signal"
+    - "Data quality score"
+    - "Latency percentiles (p50, p95, p99)"
+  
+  dashboards:
+    - "Grafana: Data Ingestion Metrics"
+    - "Grafana: Data Quality Dashboard"
+    - "Grafana: Privacy Budget Consumption"
+  
+  alerts:
+    - name: "High Validation Error Rate"
+      condition: "validation_errors > 5% for 1 hour"
+      severity: "critical"
+      action: "Alert data engineering on-call"
+    
+    - name: "Privacy Budget Exhaustion"
+      condition: "epsilon_remaining < 0.1"
+      severity: "critical"
+      action: "Halt training, alert privacy officer"
+
+# Contact and Support
+support:
+  owner_team: "AI/ML Team - Data Engineering"
+  owner_email: "ml-data@ideale.eu"
+  on_call: "Slack: #data-engineering-oncall"
+  documentation: "https://docs.ideale.eu/data-contracts/aircraft-telemetry-v1"
+  issue_tracker: "GitHub Issues: IDEALE-eu/IDEALEEU.EU"
+
+# Change History
+change_history:
+  - version: "1.0.0"
+    date: "2025-10-11"
+    author: "AI/ML Team - Data Engineering"
+    changes: |
+      Initial aircraft telemetry data contract for federated learning.
+      Includes 24 signals across 5 categories with comprehensive
+      quality constraints, privacy policies, and SLAs.
+    ecr: "ECR-2025-001"

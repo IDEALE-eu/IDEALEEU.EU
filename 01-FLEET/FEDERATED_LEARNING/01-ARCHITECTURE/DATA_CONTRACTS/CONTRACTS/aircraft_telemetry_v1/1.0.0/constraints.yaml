@@ -1,0 +1,315 @@
+# Data Quality Constraints for Aircraft Telemetry v1
+#
+# Defines validation rules enforced at data ingestion (client-side).
+# Ensures only high-quality, compliant data is used for FL training.
+
+constraints_metadata:
+  version: "1.0.0"
+  contract_id: "aircraft_telemetry_v1"
+  owner: "AI/ML Team - Data Engineering"
+  description: "Quality constraints for aircraft telemetry signals"
+
+# Range Validation
+# Critical constraint: Engine temperature must be within physically plausible range
+range_constraints:
+  # Engine Parameters - CRITICAL for predictive maintenance
+  - signal: "engine_1_egt"
+    description: "Engine 1 exhaust gas temperature"
+    unit: "celsius"
+    min: -50  # Absolute minimum (cold soak at altitude)
+    max: 1200  # Material limit (turbine blades)
+    physical_justification: |
+      EGT range based on:
+      - Minimum: Cold soak at cruise altitude (-50°C ambient)
+      - Maximum: Turbine material limit (1200°C for nickel superalloys)
+      - Typical cruise: 400-600°C
+      - Typical takeoff: 800-1000°C
+    action_below: "REJECT"
+    action_above: "ALERT"  # Potential overheat - critical safety issue
+    alert_priority: "critical"
+  
+  - signal: "engine_1_oil_temperature"
+    description: "Engine 1 oil temperature"
+    unit: "celsius"
+    min: -40
+    max: 150
+    physical_justification: |
+      Oil temperature limits based on:
+      - Minimum: Viscosity at extreme cold (-40°C)
+      - Maximum: Thermal degradation limit (150°C)
+      - Typical operating range: 70-110°C
+    action_below: "ALERT"  # Potential viscosity issues
+    action_above: "ALERT"  # Potential cooling system failure
+    alert_priority: "high"
+  
+  - signal: "engine_1_oil_pressure"
+    description: "Engine 1 oil pressure"
+    unit: "psi"
+    min: 10  # Minimum safe operating pressure
+    max: 150  # Maximum system pressure
+    physical_justification: |
+      Oil pressure limits:
+      - Minimum: 10 psi minimum for lubrication
+      - Maximum: 150 psi system design limit
+      - Typical: 40-80 psi
+    action_below: "ALERT"  # Low oil pressure - engine damage risk
+    action_above: "ALERT"  # Potential blockage or sensor fault
+    alert_priority: "critical"
+  
+  # Flight Dynamics
+  - signal: "airspeed_indicated"
+    description: "Indicated airspeed"
+    unit: "knots"
+    min: 0
+    max: 400
+    physical_justification: |
+      Airspeed limits:
+      - Minimum: 0 (on ground)
+      - Maximum: 400 KIAS (exceeds Vne for most aircraft)
+    action_below: "REJECT"
+    action_above: "ALERT"
+    alert_priority: "high"
+  
+  - signal: "altitude_pressure"
+    description: "Pressure altitude"
+    unit: "feet"
+    min: -1000
+    max: 50000
+    physical_justification: |
+      Altitude limits:
+      - Minimum: -1000 ft (Dead Sea, below sea level airports)
+      - Maximum: 50,000 ft (exceeds certified ceiling for most aircraft)
+    action_below: "ALERT"
+    action_above: "REJECT"
+    alert_priority: "medium"
+  
+  # Hydrogen System (BWB-H2 specific)
+  - signal: "h2_tank_pressure_fwd"
+    description: "Forward hydrogen tank pressure"
+    unit: "bar"
+    min: 0
+    max: 350
+    physical_justification: |
+      H2 tank pressure limits per AS-5780:
+      - Minimum: 0 bar (empty tank)
+      - Maximum: 350 bar (design pressure limit)
+      - Typical: 250-350 bar (full tank)
+    action_below: "REJECT"
+    action_above: "ALERT"  # Overpressure - safety critical
+    alert_priority: "critical"
+  
+  - signal: "h2_tank_temp_fwd"
+    description: "Forward hydrogen tank temperature"
+    unit: "kelvin"
+    min: 18  # Below triple point → invalid
+    max: 42  # Excessive boil-off → invalid
+    physical_justification: |
+      H2 cryogenic storage temperature:
+      - Minimum: 18K (below H2 triple point at 13.8K)
+      - Maximum: 42K (excessive boil-off rate)
+      - Typical: 20-25K (liquid hydrogen)
+    action_below: "REJECT"
+    action_above: "ALERT"
+    alert_priority: "critical"
+  
+  # Environmental
+  - signal: "outside_air_temperature"
+    description: "Outside air temperature"
+    unit: "celsius"
+    min: -70
+    max: 60
+    physical_justification: |
+      OAT range:
+      - Minimum: -70°C (extreme cold at high altitude)
+      - Maximum: 60°C (hot ground operations)
+    action_below: "ALERT"
+    action_above: "ALERT"
+    alert_priority: "low"
+
+# Rate of Change Validation
+# Detects unrealistic changes indicating sensor faults or anomalies
+rate_of_change_constraints:
+  - signal: "engine_1_egt"
+    description: "EGT rate of change"
+    max_delta: 100  # celsius/second
+    unit: "celsius/second"
+    window: 1  # seconds
+    physical_justification: |
+      Rapid EGT changes indicate:
+      - Abnormal combustion
+      - Fuel control malfunction
+      - Sensor fault
+      Typical rate: 10-20°C/s during transients
+    action_exceed: "ALERT"
+    alert_priority: "high"
+  
+  - signal: "h2_tank_pressure_fwd"
+    description: "H2 tank pressure rate of change"
+    max_delta: 50  # bar/second
+    unit: "bar/second"
+    window: 1  # seconds
+    physical_justification: |
+      Rapid pressure changes indicate:
+      - Leak (rapid decrease)
+      - Overpressure event (rapid increase)
+      - Sensor fault
+      Typical rate: <5 bar/s during normal operations
+    action_exceed: "ALERT"
+    alert_priority: "critical"
+  
+  - signal: "altitude_pressure"
+    description: "Altitude rate of change (vertical speed)"
+    max_delta: 100  # feet/second (6000 ft/min)
+    unit: "feet/second"
+    window: 1
+    physical_justification: |
+      Maximum climb/descent rates:
+      - Typical: 1500-2500 ft/min (25-42 ft/s)
+      - Emergency: 4000-6000 ft/min (67-100 ft/s)
+    action_exceed: "ALERT"
+    alert_priority: "medium"
+
+# Consistency Validation
+# Cross-signal physics-based validation
+consistency_constraints:
+  - name: "H2 pressure-temperature relationship"
+    description: "Hydrogen tank pressure should follow ideal gas law approximation"
+    signals:
+      - "h2_tank_pressure_fwd"
+      - "h2_tank_temp_fwd"
+    condition: "pressure < 400 * (temp / 300)"
+    physical_justification: |
+      Simplified ideal gas law: P ∝ T
+      At 300K (27°C), expect ~400 bar maximum
+      Deviation indicates:
+      - Tank overfilled
+      - Temperature sensor fault
+      - Pressure sensor fault
+    action_fail: "WARNING"
+    alert_priority: "medium"
+  
+  - name: "Engine oil pressure-temperature correlation"
+    description: "Oil pressure decreases as temperature increases (viscosity effect)"
+    signals:
+      - "engine_1_oil_pressure"
+      - "engine_1_oil_temperature"
+    condition: "(temp > 90) implies (pressure > 30)"
+    physical_justification: |
+      Hot oil (>90°C) should maintain pressure >30 psi.
+      Lower pressure indicates:
+      - Oil level low
+      - Pump failure
+      - Excessive bearing clearance (wear)
+    action_fail: "WARNING"
+    alert_priority: "high"
+  
+  - name: "Airspeed consistency"
+    description: "True airspeed should be >= indicated airspeed at altitude"
+    signals:
+      - "airspeed_true"
+      - "airspeed_indicated"
+      - "altitude_pressure"
+    condition: "(altitude > 5000) implies (airspeed_true >= airspeed_indicated * 1.1)"
+    physical_justification: |
+      TAS = IAS × sqrt(ρ₀/ρ)
+      At altitude, air density decreases, so TAS > IAS
+    action_fail: "WARNING"
+    alert_priority: "low"
+
+# Completeness Validation
+completeness_constraints:
+  - scope: "per_signal_per_flight"
+    max_missing_rate: 0.05  # 5% maximum missing values
+    window: "1_hour"
+    action_exceed: "ALERT"
+    alert_priority: "medium"
+  
+  - scope: "required_fields"
+    fields:
+      - "timestamp"
+      - "platform_id"
+      - "signal_name"
+      - "value"
+      - "quality"
+    action_missing: "REJECT"
+
+# Temporal Validation
+temporal_constraints:
+  - constraint: "timestamp_in_past"
+    description: "Timestamp must be in the past (not future)"
+    max_future_offset: 60  # seconds (allow small clock skew)
+    action_fail: "REJECT"
+  
+  - constraint: "timestamp_not_too_old"
+    description: "Reject stale data"
+    max_age: 86400  # 24 hours
+    action_fail: "REJECT"
+  
+  - constraint: "monotonic_increasing"
+    description: "Timestamps should be monotonically increasing per signal"
+    action_fail: "WARNING"
+
+# Statistical Validation
+statistical_constraints:
+  - method: "3_sigma_rule"
+    description: "Flag values > 3 standard deviations from rolling mean"
+    signals: "all_numeric"
+    window: "1_day"
+    action_flag: "ALERT"
+    alert_priority: "low"
+
+# Actions on Constraint Violation
+action_definitions:
+  REJECT:
+    description: "Reject message, do not ingest"
+    log: true
+    alert: true
+    quarantine: true
+    quality_flag: null  # Not ingested
+  
+  ALERT:
+    description: "Accept with quality flag, generate alert"
+    log: true
+    alert: true
+    quarantine: false
+    quality_flag: 1  # suspect
+  
+  WARNING:
+    description: "Accept with warning, log for review"
+    log: true
+    alert: false
+    quarantine: false
+    quality_flag: 1  # suspect
+
+# Validation Reporting
+reporting:
+  metrics:
+    - "constraint_violation_rate"
+    - "rejection_rate"
+    - "data_quality_score"
+    - "violations_by_signal"
+    - "violations_by_constraint_type"
+  
+  frequency: "hourly"
+  destination: "12-METRICS/DATA_QUALITY/"
+  
+  alerting:
+    critical_threshold: 0.10  # 10% violation rate
+    warning_threshold: 0.05   # 5% violation rate
+    channels: ["slack", "email"]
+
+# Related Documents
+related_documents:
+  - path: "data_contract.yaml"
+    description: "Parent data contract"
+  - path: "../../../OPERATIONAL_DATA_HUB/02-DATA_INGESTION/DATA_VALIDATION_RULES.md"
+    description: "Fleet-wide validation rules"
+  - path: "../../SAFETY_GUARDS.md"
+    description: "Safety bounds for digital twin runtime"
+
+# Change History
+change_history:
+  - version: "1.0.0"
+    date: "2025-10-11"
+    author: "AI/ML Team - Data Engineering"
+    changes: "Initial constraint definitions with engine temperature validation"
