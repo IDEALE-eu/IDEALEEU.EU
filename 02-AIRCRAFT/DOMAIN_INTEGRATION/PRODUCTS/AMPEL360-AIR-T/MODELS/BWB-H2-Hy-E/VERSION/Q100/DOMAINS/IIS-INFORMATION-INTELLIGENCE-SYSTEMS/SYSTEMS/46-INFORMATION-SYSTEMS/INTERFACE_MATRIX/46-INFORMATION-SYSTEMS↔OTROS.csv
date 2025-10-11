@@ -1,2 +1,7 @@
-from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
-XX,YY,ejemplo_bus,ARINC/Ethernet/fluido,ref-ICD,observaciones
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+46,23,data,ARINC664,AFDX,0,100Mbps,Communication system data
+46,24,power,electrical,DO-160,500,N/A,Power for information systems
+46,31,data,ARINC429,ARINC429,0,100kbps,Instrument data interface
+46,34,data,ARINC664,AFDX,0,100Mbps,Navigation data interface
+46,42,data,ARINC664,AFDX,0,1Gbps,IMA integration
+46,92,electrical,wire_harness,MIL-DTL-38999,200,N/A,Electrical wiring
