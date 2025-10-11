@@ -1,0 +1,215 @@
+# Environmental Model Calibration Parameters
+
+version: 1.0
+last_updated: 2025-01-XX
+applicable_variants: [baseline_v1.0, advanced_v1.1]
+validation_region: Europe + North Atlantic
+data_sources: [ECMWF_ERA5, NOAA_GFS, historical_flight_data]
+
+# Atmospheric Model
+
+atmosphere:
+  model_type: ISA_with_perturbations
+  description: International Standard Atmosphere with real-world variations
+  
+  standard_atmosphere:
+    base: ISA_1976
+    valid_altitude_range_ft: [0, 50000]
+    
+  temperature_deviations:
+    mean_offset_degC: 0.0
+    std_dev_degC: 5.0
+    correlation_length_km: 50
+    seasonal_variation:
+      winter_offset_degC: -3.0
+      summer_offset_degC: 2.0
+      
+  pressure_deviations:
+    mean_offset_hPa: 0.0
+    std_dev_hPa: 5.0
+    barometric_tendency_hPa_per_3h: [-3, 3]
+    
+  density_calculation:
+    method: Equation_of_state
+    humidity_correction: true
+    reference_humidity_percent: 50
+
+# Wind Model
+
+wind:
+  model_type: Statistical_turbulence
+  description: Mean wind + turbulence (Dryden/von Karman spectra)
+  
+  mean_wind:
+    data_source: ECMWF_forecast
+    update_frequency_hours: 6
+    horizontal_resolution_km: 25
+    vertical_resolution_ft: 1000
+    forecast_horizon_hours: 72
+    
+  turbulence:
+    model: Dryden_spectrum
+    intensity_levels:
+      light: 
+        sigma_u_m_per_s: 1.5
+        sigma_v_m_per_s: 1.5
+        sigma_w_m_per_s: 1.0
+      moderate:
+        sigma_u_m_per_s: 3.0
+        sigma_v_m_per_s: 3.0
+        sigma_w_m_per_s: 2.0
+      severe:
+        sigma_u_m_per_s: 6.0
+        sigma_v_m_per_s: 6.0
+        sigma_w_m_per_s: 4.0
+    length_scales:
+      L_u_m: 1000
+      L_v_m: 1000
+      L_w_m: 500
+      
+  wind_shear:
+    enabled: true
+    max_gradient_kts_per_100ft: 5
+    detection_threshold_kts_per_100ft: 2
+
+# Icing Model
+
+icing:
+  model_type: Messinger_thermodynamic
+  description: Liquid water content and icing accretion model
+  
+  liquid_water_content:
+    max_lwc_g_per_m3: 1.5
+    median_volumetric_diameter_um: 20
+    altitude_range_ft: [0, 25000]
+    temperature_range_degC: [-40, 0]
+    
+  accretion_model:
+    method: Messinger_energy_balance
+    collection_efficiency: 0.8
+    runback_fraction: 0.2
+    ice_density_kg_per_m3: 917
+    
+  ice_types:
+    rime:
+      temperature_range_degC: [-40, -10]
+      density_kg_per_m3: 900
+      adhesion_strength_kPa: 100
+    glaze:
+      temperature_range_degC: [-10, 0]
+      density_kg_per_m3: 917
+      adhesion_strength_kPa: 200
+      
+  protection_systems:
+    electrothermal_deicing: true
+    bleed_air_anti_icing: true
+    effectiveness_percent: 95
+
+# Precipitation Model
+
+precipitation:
+  types: [rain, snow, hail]
+  
+  rain:
+    intensity_categories:
+      light: 
+        rate_mm_per_h: [0.25, 2.5]
+        visibility_impact_km: [5, 10]
+      moderate:
+        rate_mm_per_h: [2.5, 10]
+        visibility_impact_km: [2, 5]
+      heavy:
+        rate_mm_per_h: [10, 50]
+        visibility_impact_km: [0.5, 2]
+    droplet_size_distribution: Marshall_Palmer
+    
+  snow:
+    intensity_mm_water_equiv_per_h: [0.1, 10]
+    crystal_type: [dendrite, plate, column, needle]
+    accretion_on_surfaces: true
+    
+  hail:
+    diameter_range_mm: [5, 50]
+    terminal_velocity_m_per_s: [10, 40]
+    structural_threat: true
+
+# Solar Radiation Model
+
+solar_radiation:
+  model_type: Bird_clear_sky
+  description: Direct and diffuse solar irradiance
+  
+  direct_beam:
+    extraterrestrial_irradiance_W_per_m2: 1367
+    atmospheric_transmittance: 0.75
+    
+  diffuse:
+    rayleigh_scattering: true
+    aerosol_optical_depth: 0.1
+    
+  cloud_attenuation:
+    clear_sky_factor: 1.0
+    partly_cloudy_factor: 0.6
+    overcast_factor: 0.2
+    
+  surface_albedo:
+    ocean: 0.06
+    land_vegetation: 0.2
+    snow_ice: 0.8
+
+# Gravity Model
+
+gravity:
+  model: WGS84_ellipsoid
+  
+  parameters:
+    equatorial_gravity_m_per_s2: 9.7803253359
+    polar_gravity_m_per_s2: 9.8321849378
+    flattening: 0.00335281066475
+    
+  altitude_correction:
+    enabled: true
+    free_air_gradient_m_per_s2_per_m: -3.086e-6
+
+# Magnetic Field Model
+
+magnetic_field:
+  model: WMM2025
+  description: World Magnetic Model for navigation
+  
+  parameters:
+    epoch: 2025.0
+    valid_until: 2030.0
+    declination_accuracy_deg: 0.5
+    inclination_accuracy_deg: 0.5
+    total_intensity_accuracy_nT: 100
+    
+  update_policy:
+    frequency: 5 years (WMM release cycle)
+    interim_updates: As needed for geomagnetic disturbances
+
+# Model Validation
+
+validation:
+  reference_data: Historical flight test data (2023-2024)
+  metrics:
+    temperature_rmse_degC: 1.5
+    wind_speed_rmse_kts: 3.0
+    wind_direction_mae_deg: 5.0
+    pressure_rmse_hPa: 2.0
+  validation_flights: 120
+  coverage:
+    seasons: [winter, spring, summer, fall]
+    regions: [continental_EU, UK, North_Atlantic, Scandinavia]
+    altitudes_ft: [0, 5000, 10000, 20000, 35000, 41000]
+
+# Uncertainty Quantification
+
+uncertainty:
+  method: Monte_Carlo_sampling
+  samples_per_scenario: 1000
+  confidence_level: 95
+  parameters:
+    temperature_uncertainty_degC: 2.0
+    wind_uncertainty_kts: 5.0
+    pressure_uncertainty_hPa: 3.0

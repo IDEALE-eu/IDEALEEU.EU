@@ -1,0 +1,16 @@
+Requirement ID,Category,Priority,Description,Rationale,Source,Verification Method,Status,Owner,Notes
+DTM-REQ-001,Functional,High,Twin shall ingest telemetry data at minimum 10 Hz,Real-time monitoring capability,TWIN_SCOPE.md Use Case 1,Test,Approved,Data Engineering,
+DTM-REQ-002,Functional,High,Twin shall execute physics models within 100ms,Real-time prediction for in-flight decision support,TWIN_SCOPE.md Use Case 2,Test,Approved,Model Team,
+DTM-REQ-003,Functional,Medium,Twin shall provide REST API for data queries,Integration with fleet management systems,TWIN_SCOPE.md Use Case 3,Inspection,Approved,API Team,
+DTM-REQ-004,Performance,High,Twin shall achieve >95% prediction accuracy for fuel consumption,Mission planning reliability,Fleet Operations,Analysis+Test,In Progress,Analytics Team,Calibration dependent
+DTM-REQ-005,Performance,High,Twin shall detect anomalies with <1% false positive rate,Minimize alert fatigue,Maintenance Team,Test,In Progress,ML Team,Requires validation dataset
+DTM-REQ-006,Interface,High,Twin shall accept FMI 2.0 compliant FMU models,Interoperability with simulation tools,Model Integration,Inspection,Approved,Integration Team,
+DTM-REQ-007,Quality,High,Twin models shall be calibrated within 12 months,Maintain prediction accuracy,ASSUMPTIONS_LIMITATIONS.md,Analysis,Approved,Calibration Team,
+DTM-REQ-008,Security,Critical,Twin shall encrypt all telemetry data in transit and at rest,Data protection and privacy,Security Policy,Inspection+Test,Approved,Security Team,
+DTM-REQ-009,Functional,Medium,Twin shall provide gRPC streaming API for real-time KPIs,Low-latency monitoring,Operations Center,Test,Draft,API Team,
+DTM-REQ-010,Performance,Medium,Twin shall scale to support 100 concurrent aircraft,Fleet scalability,Fleet Strategy,Test,Draft,Infrastructure Team,
+DTM-REQ-011,Quality,High,Twin shall detect model drift with PSI <0.25,Model reliability over time,ASSUMPTIONS_LIMITATIONS.md,Analysis,Approved,ML Ops Team,
+DTM-REQ-012,Functional,High,Twin shall maintain audit log of all model executions,Traceability and compliance,Compliance Team,Inspection,Approved,Platform Team,
+DTM-REQ-013,Interface,Medium,Twin shall expose OpenAPI 3.0 specification,Developer integration,API Strategy,Inspection,Approved,API Team,
+DTM-REQ-014,Performance,High,Twin storage shall support minimum 1 year of historical data,Trend analysis and reporting,Analytics Requirements,Analysis,Approved,Data Team,
+DTM-REQ-015,Quality,High,Twin validation test suite shall cover ≥95% of operational envelope,Model reliability,ASSUMPTIONS_LIMITATIONS.md,Analysis+Test,In Progress,V&V Team,

@@ -1,0 +1,26 @@
+{
+  "scope": "architecture",
+  "artifact_type": "digital_twin_architecture",
+  "version": "1.0.0",
+  "status": "baseline",
+  "owner": "Digital Twin Team",
+  "created": "2025-01-XX",
+  "last_updated": "2025-01-XX",
+  "description": "Aircraft digital twin architecture artifacts and specifications",
+  "configuration_control": true,
+  "approval_authority": "Chief Digital Officer",
+  "related_documents": [
+    "../02-MODELS/",
+    "../03-INTERFACES_APIS/",
+    "../07-RUNTIME_DEPLOYMENT/",
+    "REFERENCE_ARCHITECTURE.md",
+    "TWIN_SCOPE.md",
+    "ASSUMPTIONS_LIMITATIONS.md"
+  ],
+  "tags": [
+    "digital-twin",
+    "architecture",
+    "aircraft",
+    "iso-23247"
+  ]
+}

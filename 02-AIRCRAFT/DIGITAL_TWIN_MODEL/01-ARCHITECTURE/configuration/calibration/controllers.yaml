@@ -1,0 +1,204 @@
+# Controller Calibration Parameters
+
+version: 1.0
+last_updated: 2025-01-XX
+applicable_variants: [baseline_v1.0, advanced_v1.1]
+tuning_date: 2024-11-20
+validation_status: Flight-tested
+
+# Fuel Cell Power Management Controller
+
+fuel_cell_controller:
+  controller_id: FC_PWR_CTRL_01
+  type: PID_with_feedforward
+  description: Manages fuel cell power output based on electrical demand
+  
+  pid_gains:
+    proportional: 0.8
+    integral: 0.15
+    derivative: 0.05
+    integral_limit: 50.0
+    derivative_filter_time_constant: 0.1
+    
+  feedforward:
+    demand_to_h2_flow_gain: 0.023  # kg/h per kW
+    temperature_compensation: true
+    altitude_compensation: true
+    
+  limits:
+    max_power_kW: 500
+    min_power_kW: 10
+    max_ramp_rate_kW_per_s: 50
+    max_h2_flow_kg_per_h: 50
+    
+  safety:
+    overvoltage_limit_V: 280
+    undervoltage_limit_V: 200
+    overtemperature_limit_degC: 85
+    emergency_shutdown_enabled: true
+
+# Hydrogen Pressure Regulator
+
+h2_pressure_regulator:
+  controller_id: H2_PRESS_REG_01
+  type: Cascade_PID
+  description: Maintains regulated H2 pressure to fuel cell
+  
+  outer_loop_pressure:
+    proportional: 1.2
+    integral: 0.25
+    derivative: 0.08
+    setpoint_bar: 3.5
+    tolerance_bar: 0.1
+    
+  inner_loop_valve:
+    proportional: 2.5
+    integral: 0.5
+    derivative: 0.0
+    
+  limits:
+    max_valve_position: 100  # percent
+    min_valve_position: 5    # percent
+    max_valve_rate: 10       # percent per second
+    
+  safety:
+    overpressure_limit_bar: 5.0
+    underpressure_limit_bar: 2.0
+    emergency_vent_enabled: true
+
+# Flight Control System - Autopilot
+
+autopilot_controller:
+  controller_id: AP_CTRL_01
+  type: Model_predictive_control
+  description: Attitude and trajectory control
+  
+  attitude_control:
+    pitch:
+      proportional: 2.0
+      integral: 0.3
+      derivative: 0.15
+      max_rate_deg_per_s: 5
+      
+    roll:
+      proportional: 1.8
+      integral: 0.25
+      derivative: 0.12
+      max_rate_deg_per_s: 15
+      
+    yaw:
+      proportional: 1.5
+      integral: 0.2
+      derivative: 0.1
+      max_rate_deg_per_s: 3
+      
+  trajectory_control:
+    altitude_hold:
+      proportional: 0.5
+      integral: 0.05
+      derivative: 0.08
+      tolerance_ft: 50
+      
+    heading_hold:
+      proportional: 0.8
+      integral: 0.1
+      derivative: 0.05
+      tolerance_deg: 2
+      
+    speed_hold:
+      proportional: 0.3
+      integral: 0.08
+      derivative: 0.02
+      tolerance_kts: 5
+      
+  limits:
+    max_pitch_deg: 20
+    min_pitch_deg: -10
+    max_roll_deg: 30
+    max_load_factor_g: 2.5
+
+# Battery Management System
+
+battery_controller:
+  controller_id: BMS_01
+  type: State_machine_with_SOC_estimation
+  description: Manages battery charging/discharging and cell balancing
+  
+  soc_estimation:
+    method: Extended_Kalman_Filter
+    coulomb_counting_weight: 0.7
+    voltage_based_weight: 0.3
+    update_rate_hz: 10
+    
+  charge_control:
+    max_charge_current_A: 200
+    max_charge_voltage_V: 270
+    taper_current_threshold_A: 20
+    charge_termination_current_A: 5
+    
+  discharge_control:
+    max_discharge_current_A: 400
+    min_discharge_voltage_V: 200
+    cutoff_voltage_V: 190
+    
+  cell_balancing:
+    enabled: true
+    threshold_mV: 10
+    balancing_current_mA: 200
+    
+  thermal_management:
+    target_temperature_degC: 25
+    max_temperature_degC: 45
+    min_temperature_degC: 5
+    heating_enabled: true
+    cooling_enabled: true
+
+# Environmental Control System
+
+ecs_controller:
+  controller_id: ECS_01
+  type: Multi_zone_PID
+  description: Cabin temperature and pressure control
+  
+  temperature_control:
+    proportional: 1.5
+    integral: 0.2
+    derivative: 0.1
+    setpoint_degC: 22
+    tolerance_degC: 2
+    
+  pressure_control:
+    proportional: 2.0
+    integral: 0.3
+    derivative: 0.15
+    setpoint_altitude_ft: 8000
+    tolerance_ft: 200
+    
+  humidity_control:
+    proportional: 1.0
+    integral: 0.15
+    derivative: 0.05
+    setpoint_rh_percent: 40
+    tolerance_percent: 10
+
+# Controller Update and Tuning
+
+update_policy:
+  method: Over-the-air software update
+  approval_required: Chief Engineer + Flight Test Lead
+  validation_required: Hardware-in-the-loop testing before deployment
+  rollback_capability: true
+  
+tuning_policy:
+  frequency: After significant design change or flight test anomaly
+  methodology: System identification followed by optimization
+  validation: Simulation + ground test + flight test
+  documentation: Tuning report filed in configuration management
+
+# Safety Monitors
+
+safety_monitors:
+  enabled: true
+  watchdog_timeout_ms: 100
+  redundancy: Dual-channel cross-check
+  fail_safe_action: Transition to degraded mode or safe shutdown

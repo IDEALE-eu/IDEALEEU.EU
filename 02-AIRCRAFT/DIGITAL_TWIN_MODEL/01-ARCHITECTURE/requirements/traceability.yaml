@@ -1,0 +1,211 @@
+# Digital Twin Requirements Traceability
+
+version: 1.0
+last_updated: 2025-01-XX
+owner: Digital Twin Team
+
+# Traceability Matrix
+
+requirements:
+  - id: DTM-REQ-001
+    description: Telemetry ingestion at 10 Hz minimum
+    parent: SYS-REQ-301
+    children: []
+    verification:
+      method: Test
+      artifacts:
+        - ../validation/tests/test_telemetry_ingestion.py
+        - ../validation/reports/telemetry_performance.pdf
+    implementation:
+      - ../../12-CODE/ingestion/telemetry_service.py
+      - ../data_contracts/schemas/telemetry.schema.json
+    status: Verified
+    
+  - id: DTM-REQ-002
+    description: Physics model execution <100ms
+    parent: SYS-REQ-302
+    children: []
+    verification:
+      method: Test
+      artifacts:
+        - ../validation/tests/test_model_performance.py
+        - ../validation/reports/model_latency.pdf
+    implementation:
+      - ../../02-MODELS/PHYSICS/
+      - ../execution/orchestration/run_local.yaml
+    status: Verified
+    
+  - id: DTM-REQ-003
+    description: REST API for data queries
+    parent: SYS-REQ-310
+    children:
+      - DTM-REQ-013
+    verification:
+      method: Inspection
+      artifacts:
+        - ../api/rest/openapi.yaml
+    implementation:
+      - ../../12-CODE/api/rest_api.py
+    status: Verified
+    
+  - id: DTM-REQ-004
+    description: ">95% prediction accuracy for fuel consumption"
+    parent: SYS-REQ-401
+    children: []
+    verification:
+      method: Analysis+Test
+      artifacts:
+        - ../validation/reports/fuel_prediction_accuracy.pdf
+        - ../analysis/notebooks/kpi_sanity.ipynb
+    implementation:
+      - ../../02-MODELS/PHYSICS/fuel_system.fmu
+      - ../configuration/calibration/env_models.yaml
+    status: In Progress
+    
+  - id: DTM-REQ-005
+    description: Anomaly detection <1% false positive rate
+    parent: SYS-REQ-402
+    children: []
+    verification:
+      method: Test
+      artifacts:
+        - ../validation/tests/test_anomaly_detection.py
+    implementation:
+      - ../../02-MODELS/DATA_DRIVEN/ONNX_MODELS/anomaly_detector.onnx
+    status: In Progress
+    
+  - id: DTM-REQ-006
+    description: FMI 2.0 compliant FMU support
+    parent: SYS-REQ-320
+    children: []
+    verification:
+      method: Inspection
+      artifacts:
+        - ../models/fmu/placeholder.fmu
+        - ../interfaces/README.md
+    implementation:
+      - ../../12-CODE/model_runtime/fmu_loader.py
+    status: Verified
+    
+  - id: DTM-REQ-007
+    description: Model calibration within 12 months
+    parent: SYS-REQ-501
+    children: []
+    verification:
+      method: Analysis
+      artifacts:
+        - ../../05-CALIBRATION_ALIGNMENT/CALIBRATION_PLAN.md
+        - ../configuration/calibration/
+    implementation:
+      - ../../05-CALIBRATION_ALIGNMENT/
+    status: Verified
+    
+  - id: DTM-REQ-008
+    description: Encrypt telemetry data in transit and at rest
+    parent: SYS-REQ-601
+    children: []
+    verification:
+      method: Inspection+Test
+      artifacts:
+        - ../security/encryption.md
+        - ../validation/tests/test_security.py
+    implementation:
+      - ../../07-RUNTIME_DEPLOYMENT/CYBERSECURITY.md
+      - ../../12-CODE/security/encryption.py
+    status: Verified
+    
+  - id: DTM-REQ-009
+    description: gRPC streaming API for real-time KPIs
+    parent: SYS-REQ-311
+    children: []
+    verification:
+      method: Test
+      artifacts:
+        - ../api/grpc/services.proto
+    implementation:
+      - ../../12-CODE/api/grpc_server.py
+    status: Draft
+    
+  - id: DTM-REQ-010
+    description: Scale to 100 concurrent aircraft
+    parent: SYS-REQ-403
+    children: []
+    verification:
+      method: Test
+      artifacts:
+        - ../validation/tests/test_scalability.py
+    implementation:
+      - ../execution/docker/compose.yml
+      - ../../07-RUNTIME_DEPLOYMENT/
+    status: Draft
+    
+  - id: DTM-REQ-011
+    description: Model drift detection PSI <0.25
+    parent: SYS-REQ-502
+    children: []
+    verification:
+      method: Analysis
+      artifacts:
+        - ../../08-SYNCHRONISATION/DRIFT_DETECTION.md
+        - ../kpis/thresholds.csv
+    implementation:
+      - ../../12-CODE/monitoring/drift_detector.py
+    status: Verified
+    
+  - id: DTM-REQ-012
+    description: Audit log of all model executions
+    parent: SYS-REQ-602
+    children: []
+    verification:
+      method: Inspection
+      artifacts:
+        - ../security/access_control.yaml
+    implementation:
+      - ../../12-CODE/platform/audit_logger.py
+    status: Verified
+    
+  - id: DTM-REQ-013
+    description: OpenAPI 3.0 specification
+    parent: DTM-REQ-003
+    children: []
+    verification:
+      method: Inspection
+      artifacts:
+        - ../api/rest/openapi.yaml
+    implementation:
+      - ../api/rest/openapi.yaml
+    status: Verified
+    
+  - id: DTM-REQ-014
+    description: 1 year minimum historical data storage
+    parent: SYS-REQ-404
+    children: []
+    verification:
+      method: Analysis
+      artifacts:
+        - ../../07-RUNTIME_DEPLOYMENT/STORAGE_PLAN.md
+    implementation:
+      - ../execution/docker/compose.yml
+    status: Verified
+    
+  - id: DTM-REQ-015
+    description: Validation coverage ≥95% of operational envelope
+    parent: SYS-REQ-503
+    children: []
+    verification:
+      method: Analysis+Test
+      artifacts:
+        - ../../06-VALIDATION_VERIFICATION/VVP_PLAN.md
+        - ../validation/tests/
+    implementation:
+      - ../validation/tests/mil/
+      - ../validation/tests/hil/
+    status: In Progress
+
+# Coverage Statistics
+coverage:
+  total_requirements: 15
+  verified: 9
+  in_progress: 4
+  draft: 2
+  coverage_percentage: 60.0
