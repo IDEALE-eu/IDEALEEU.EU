@@ -1,0 +1,264 @@
+# Kubernetes CronJob Example for Scheduled FL Training
+#
+# This CronJob triggers federated learning training rounds on a schedule.
+# It creates Argo Workflow instances for each training round.
+#
+# Documentation: https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: fl-training-weekly
+  namespace: federated-learning
+  labels:
+    app: fl-orchestrator
+    job-type: fl-training-cron
+    job-id: fl-pm-engine-oil-2024q4
+  annotations:
+    description: "Weekly FL training round trigger"
+    owner: "AI/ML Team"
+    contact: "ml-team@ideale.eu"
+    
+spec:
+  # Schedule: Every Sunday at 00:00 UTC
+  schedule: "0 0 * * 0"
+  timezone: "UTC"
+  
+  # Concurrency policy
+  concurrencyPolicy: Forbid  # Don't start new job if previous is still running
+  # Options: Allow, Forbid, Replace
+  
+  # Job history limits
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  
+  # Deadline for starting job (5 minutes)
+  startingDeadlineSeconds: 300
+  
+  # Suspend/resume
+  suspend: false  # Set to true to temporarily disable
+  
+  # Job template
+  jobTemplate:
+    metadata:
+      labels:
+        app: fl-orchestrator
+        job-type: fl-training
+        
+    spec:
+      # Job completion timeout (6 hours)
+      activeDeadlineSeconds: 21600
+      
+      # Backoff policy
+      backoffLimit: 2
+      
+      # Pod template
+      template:
+        metadata:
+          labels:
+            app: fl-orchestrator
+            component: training-trigger
+            
+        spec:
+          # Service account with permissions to create Argo Workflows
+          serviceAccountName: fl-orchestrator
+          
+          # Don't restart on failure (let CronJob handle retries)
+          restartPolicy: Never
+          
+          # Init containers (optional pre-checks)
+          initContainers:
+            - name: check-prerequisites
+              image: fl-orchestrator:latest
+              command: ["python"]
+              args:
+                - "/app/pre_flight_checks.py"
+                - "--min-eligible-clients"
+                - "10"
+                - "--check-infrastructure"
+                - "true"
+              env:
+                - name: JOB_SPEC_PATH
+                  value: "/mnt/config/job.yaml"
+              volumeMounts:
+                - name: job-specs
+                  mountPath: /mnt/config
+                  readOnly: true
+                  
+          # Main container
+          containers:
+            - name: trigger-workflow
+              image: fl-orchestrator:latest
+              command: ["python"]
+              args:
+                - "/app/trigger_workflow.py"
+                - "--job-spec"
+                - "/mnt/config/job.yaml"
+                - "--selector"
+                - "/mnt/config/selector.yaml"
+                - "--rollout"
+                - "/mnt/config/rollout.yaml"
+                - "--schedule"
+                - "/mnt/config/schedule.yaml"
+                - "--workflow-template"
+                - "fl-training-round"
+                - "--namespace"
+                - "federated-learning"
+                
+              env:
+                # Job metadata
+                - name: JOB_ID
+                  value: "fl-pm-engine-oil-2024q4"
+                - name: MODEL_VERSION
+                  value: "1.0.0"
+                  
+                # Orchestrator configuration
+                - name: ARGO_SERVER
+                  value: "argo-server.federated-learning.svc:2746"
+                - name: MODEL_REGISTRY_URL
+                  value: "http://model-registry:8080"
+                  
+                # Monitoring
+                - name: METRICS_ENDPOINT
+                  value: "http://prometheus-pushgateway:9091"
+                - name: ALERTS_WEBHOOK
+                  valueFrom:
+                    secretKeyRef:
+                      name: fl-notifications
+                      key: slack-webhook-url
+                      
+              # Resource limits
+              resources:
+                requests:
+                  memory: "256Mi"
+                  cpu: "250m"
+                limits:
+                  memory: "512Mi"
+                  cpu: "500m"
+                  
+              # Volume mounts
+              volumeMounts:
+                - name: job-specs
+                  mountPath: /mnt/config
+                  readOnly: true
+                - name: logs
+                  mountPath: /var/log/fl
+                  
+              # Liveness probe
+              livenessProbe:
+                exec:
+                  command:
+                    - /bin/sh
+                    - -c
+                    - "ps aux | grep trigger_workflow.py"
+                initialDelaySeconds: 30
+                periodSeconds: 60
+                timeoutSeconds: 10
+                
+          # Volumes
+          volumes:
+            - name: job-specs
+              configMap:
+                name: fl-job-specs-config
+                items:
+                  - key: job.yaml
+                    path: job.yaml
+                  - key: selector.yaml
+                    path: selector.yaml
+                  - key: rollout.yaml
+                    path: rollout.yaml
+                  - key: schedule.yaml
+                    path: schedule.yaml
+                    
+            - name: logs
+              emptyDir: {}
+              
+          # Node selector (optional - for specific node types)
+          nodeSelector:
+            workload-type: orchestrator
+            
+          # Tolerations (optional)
+          tolerations:
+            - key: "federated-learning"
+              operator: "Equal"
+              value: "orchestrator"
+              effect: "NoSchedule"
+              
+          # Affinity (optional - prefer certain nodes)
+          affinity:
+            nodeAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  preference:
+                    matchExpressions:
+                      - key: zone
+                        operator: In
+                        values:
+                          - orchestrator-zone
+
+---
+# ConfigMap with job specifications
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fl-job-specs-config
+  namespace: federated-learning
+  labels:
+    app: fl-orchestrator
+    
+data:
+  job.yaml: |
+    # Reference to actual job spec file
+    # In practice, this would be loaded from EXAMPLES/aircraft_accel_v1/job.yaml
+    # or generated dynamically
+    
+  selector.yaml: |
+    # Reference to client selector config
+    
+  rollout.yaml: |
+    # Reference to rollout policy
+    
+  schedule.yaml: |
+    # Reference to schedule config
+
+---
+# ServiceAccount for FL orchestrator
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fl-orchestrator
+  namespace: federated-learning
+
+---
+# Role with permissions to create Argo Workflows
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: fl-orchestrator-role
+  namespace: federated-learning
+rules:
+  - apiGroups: ["argoproj.io"]
+    resources: ["workflows", "workflowtemplates"]
+    verbs: ["get", "list", "create", "update", "watch"]
+  - apiGroups: [""]
+    resources: ["configmaps", "secrets"]
+    verbs: ["get", "list"]
+  - apiGroups: [""]
+    resources: ["pods", "pods/log"]
+    verbs: ["get", "list", "watch"]
+
+---
+# RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: fl-orchestrator-binding
+  namespace: federated-learning
+subjects:
+  - kind: ServiceAccount
+    name: fl-orchestrator
+    namespace: federated-learning
+roleRef:
+  kind: Role
+  name: fl-orchestrator-role
+  apiGroup: rbac.authorization.k8s.io

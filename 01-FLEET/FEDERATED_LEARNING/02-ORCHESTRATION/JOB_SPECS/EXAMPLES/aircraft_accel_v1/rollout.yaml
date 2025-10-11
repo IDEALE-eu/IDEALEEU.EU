@@ -1,0 +1,230 @@
+# Rollout Policy for Accelerometer Drift Model
+#
+# Progressive rollout with extended canary phase for safety-critical sensor monitoring.
+
+rollout_metadata:
+  rollout_id: "rollout-accel-drift-v1"
+  name: "Accelerometer Drift Model Rollout"
+  description: |
+    Conservative rollout for IMU drift detection model.
+    Extended canary and validation phases due to safety implications.
+  version: "1.0.0"
+  created_at: "2024-11-15T00:00:00Z"
+  job_ref: "fl-accel-drift-v1-2024q4"
+  model_version: "1.0.0"
+
+strategy: "progressive"
+
+phases:
+  # Phase 1: Extended Canary (10 diverse aircraft)
+  - phase_name: "Extended Canary"
+    phase_number: 1
+    target_percentage: 1  # ~10 aircraft for typical fleet
+    target_count: 10
+    duration: "7 days"  # Longer than typical due to safety criticality
+    
+    specific_clients:
+      - "aircraft-imu-test-001"  # A320, EU, mature IMU
+      - "aircraft-imu-test-002"  # A320, US, aging IMU
+      - "aircraft-imu-test-003"  # A350, EU, new IMU
+      - "aircraft-imu-test-004"  # A350, APAC, mature IMU
+      - "aircraft-imu-test-005"  # B787, US, aging IMU
+      - "aircraft-imu-canary-001"  # Mixed fleet test aircraft
+      - "aircraft-imu-canary-002"
+      - "aircraft-imu-canary-003"
+      - "aircraft-imu-canary-004"
+      - "aircraft-imu-canary-005"
+      
+    selection_criteria:
+      diversity_required: true
+      
+    success_criteria:
+      - metric: "auc"
+        threshold: 0.90
+        comparison: "greater_than_or_equal"
+        
+      - metric: "recall"
+        threshold: 0.93
+        comparison: "greater_than_or_equal"
+        
+      - metric: "false_negative_rate"
+        threshold: 0.07
+        comparison: "less_than"
+        
+      - metric: "latency_p95"
+        threshold: 200  # ms - must be real-time capable
+        comparison: "less_than"
+        
+    monitoring_period: "7 days"
+    auto_proceed: false
+    require_manual_approval: true
+    
+  # Phase 2: Ring 1 (5% of fleet)
+  - phase_name: "Ring 1 - Initial Expansion"
+    phase_number: 2
+    target_percentage: 5
+    duration: "14 days"
+    
+    success_criteria:
+      - metric: "auc"
+        threshold: 0.88
+        comparison: "greater_than_or_equal"
+        
+      - metric: "recall"
+        threshold: 0.92
+        comparison: "greater_than_or_equal"
+        
+      - metric: "drift_psi"
+        threshold: 0.15
+        comparison: "less_than"
+        
+    monitoring_period: "7 days"
+    auto_proceed: false
+    require_manual_approval: true
+    
+  # Phase 3: Ring 2 (15% of fleet)
+  - phase_name: "Ring 2"
+    phase_number: 3
+    target_percentage: 15
+    duration: "14 days"
+    
+    success_criteria:
+      - metric: "auc"
+        threshold: 0.87
+        comparison: "greater_than_or_equal"
+        
+      - metric: "recall"
+        threshold: 0.90
+        comparison: "greater_than_or_equal"
+        
+    monitoring_period: "7 days"
+    auto_proceed: true
+    require_manual_approval: false
+    
+  # Phase 4: Ring 3 (35% of fleet)
+  - phase_name: "Ring 3"
+    phase_number: 4
+    target_percentage: 35
+    duration: "14 days"
+    
+    success_criteria:
+      - metric: "auc"
+        threshold: 0.85
+        comparison: "greater_than_or_equal"
+        
+    monitoring_period: "7 days"
+    auto_proceed: true
+    require_manual_approval: false
+    
+  # Phase 5: Full Rollout (100%)
+  - phase_name: "Full Fleet"
+    phase_number: 5
+    target_percentage: 100
+    duration: "365 days"  # One year monitoring period
+    
+    monitoring_period: "30 days"
+    auto_proceed: false
+    require_manual_approval: true
+
+rollback_policy:
+  auto_rollback: true
+  
+  conditions:
+    - metric: "recall"
+      threshold: 0.85
+      comparison: "less_than"
+      window: "2 hours"
+      
+    - metric: "false_negative_rate"
+      threshold: 0.15
+      comparison: "greater_than"
+      window: "2 hours"
+      
+    - metric: "drift_psi"
+      threshold: 0.25
+      comparison: "greater_than"
+      window: "6 hours"
+      
+  rollback_target: "previous_version"
+  
+  notification_channels:
+    - "email"
+    - "slack"
+    - "pagerduty"
+    
+  max_auto_rollbacks: 2
+
+safety_gates:
+  enabled: true
+  
+  pre_rollout_checks:
+    - check_name: "Schema Validation"
+      check_type: "schema_validation"
+      required: true
+      blocking: true
+      
+    - check_name: "Safety Review - IMU Critical"
+      check_type: "safety_review"
+      required: true
+      blocking: true
+      
+    - check_name: "Performance Benchmark"
+      check_type: "performance_benchmark"
+      required: true
+      blocking: true
+      
+  per_phase_checks:
+    - check_name: "Safety Engineer Approval"
+      run_after: "phase_1"
+      required: true
+
+monitoring:
+  dashboards:
+    - "Grafana: IMU Drift Detection Performance"
+    - "Grafana: Rollout Progress - Accel Drift v1"
+    - "Grafana: Safety Metrics Dashboard"
+    
+  metrics_collection_interval: "2 minutes"
+  
+  alerts:
+    - name: "Critical - High False Negative Rate"
+      condition: "false_negative_rate > 0.10"
+      severity: "critical"
+      channels: ["pagerduty", "slack", "email"]
+      
+    - name: "Warning - Performance Degradation"
+      condition: "auc < 0.88"
+      severity: "warning"
+      channels: ["slack", "email"]
+      
+    - name: "Warning - Model Drift"
+      condition: "drift_psi > 0.20"
+      severity: "warning"
+      channels: ["slack"]
+      
+  real_time_tracking: true
+
+approval_workflow:
+  enabled: true
+  
+  approvers:
+    - role: "AI/ML Lead"
+      email: "ml-lead@ideale.eu"
+      required_for_phases: [1, 2, 5]
+      
+    - role: "Safety Engineer - Sensors"
+      email: "safety-sensors@ideale.eu"
+      required_for_phases: [1, 2, 5]
+      
+    - role: "Fleet Operations Manager"
+      email: "fleet-ops@ideale.eu"
+      required_for_phases: [1, 5]
+      
+  approval_timeout: "48 hours"
+  require_all_approvers: true
+
+compliance:
+  audit_trail: true
+  certification_required: true
+  ccb_approval_required: true
+  mal_fe_approval_required: true

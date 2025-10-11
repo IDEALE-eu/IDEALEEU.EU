@@ -1,0 +1,139 @@
+# TRAINING JOB TEMPLATE
+#
+# This template defines a standard federated learning training job.
+# Use this as a starting point for creating new FL training experiments.
+#
+# Schema Reference: ../SCHEMAS/job_spec.schema.json
+# Documentation: ../00-README.md
+
+job_metadata:
+  job_id: "fl-train-example-2024q4"
+  name: "Training Job - Example Template"
+  description: |
+    Template for federated learning training jobs. Replace with your specific
+    use case details (e.g., "Predict engine anomalies using vibration data").
+  owner: "AI/ML Team"
+  contact: "ml-team@ideale.eu"
+  created_at: "2024-11-15T00:00:00Z"
+  updated_at: "2024-11-15T00:00:00Z"
+  status: "draft"
+  priority: "medium"
+
+model_config:
+  architecture: "LSTM"  # Options: LSTM, GRU, Transformer, CNN, Autoencoder, MLP
+  framework: "PyTorch"  # Options: PyTorch, TensorFlow, JAX
+  version: "1.0.0"
+  
+  input_schema:
+    reference: "01-ARCHITECTURE/DATA_CONTRACTS/TELEMETRY_SCHEMA.yaml"
+    signals:
+      - signal_name_1  # Replace with actual signal names
+      - signal_name_2
+      - signal_name_3
+    window_size: 600  # Time series window (e.g., 600 samples = 10 min at 1 Hz)
+    sampling_rate: 1  # Hz
+    
+  output_schema:
+    type: "binary_classification"  # Options: binary_classification, multi_class, regression
+    labels:
+      - 0  # Normal
+      - 1  # Anomaly
+    threshold: 0.5
+    
+  model_hyperparameters:
+    input_dim: 3
+    hidden_dim: 64
+    num_layers: 2
+    dropout: 0.2
+    sequence_length: 600
+
+training_config:
+  algorithm: "FedAvg"  # Options: FedAvg, FedProx, FedOpt, FedYogi, FedAdam, SCAFFOLD
+  
+  hyperparameters:
+    learning_rate: 0.001
+    optimizer: "Adam"  # Options: Adam, SGD, AdaGrad, RMSprop
+    optimizer_kwargs:
+      beta1: 0.9
+      beta2: 0.999
+      weight_decay: 1e-5
+    loss_function: "BCEWithLogitsLoss"
+    
+  local_epochs: 5
+  batch_size: 32
+  
+  global_training:
+    num_rounds: 50
+    early_stopping:
+      enabled: true
+      patience: 5
+      metric: "val_auc"
+      threshold: 0.90
+
+orchestration_config:
+  schedule:
+    type: "weekly"  # Options: weekly, bi_weekly, on_demand, cron
+    launch_day: "Sunday"
+    launch_time: "00:00 UTC"
+    
+  client_selection:
+    algorithm: "random"  # Options: random, importance_sampling, active_learning
+    
+  min_clients: 10
+  max_clients: 50
+  
+  aggregation:
+    weights: "num_samples"  # Options: num_samples, uniform, custom
+    timeout: 30  # minutes
+    min_quorum: 10
+    staleness_threshold: 2
+
+privacy_config:
+  differential_privacy:
+    enabled: true
+    mechanism: "DP-SGD"
+    epsilon: 1.0  # Privacy budget (lower = more private)
+    delta: 0.00001
+    noise_multiplier: 1.1
+    max_grad_norm: 1.0
+    
+  secure_aggregation:
+    enabled: false  # Enable for high-sensitivity use cases
+    protocol: "threshold_paillier"
+    threshold: 5
+
+deployment_config:
+  rollout_strategy: "canary"  # Options: canary, blue_green, progressive
+  canary_clients:
+    - "client-hash-001"
+    - "client-hash-002"
+    - "client-hash-003"
+    - "client-hash-004"
+    - "client-hash-005"
+
+validation_config:
+  holdout_dataset:
+    source: "01-FLEET/OPERATIONAL_DATA_HUB/holdout_2024q4"
+    size: 1000
+    stratified: true
+    
+  metrics:
+    - name: "auc"
+      target: 0.90
+    - name: "precision"
+      target: 0.85
+    - name: "recall"
+      target: 0.90
+    - name: "f1_score"
+      target: 0.87
+
+compliance_config:
+  certification_level: "DO-178C Level C"
+  audit_trail: true
+  export_control: "EAR"
+
+# Related Documents
+# - Data Contract: 01-ARCHITECTURE/DATA_CONTRACTS/
+# - Algorithm Specs: 04-ALGORITHMS/FEDAVG.md
+# - Privacy Policy: 05-PRIVACY_SECURITY/DP_SGD.md
+# - Deployment Strategy: 09-DEPLOYMENT/ROLLOUT_STRATEGY.md

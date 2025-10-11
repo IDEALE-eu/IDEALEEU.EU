@@ -1,0 +1,120 @@
+# CLIENT SELECTOR TEMPLATE
+#
+# This template defines client selection criteria and algorithms for FL.
+# Use this to specify which aircraft/clients participate in each training round.
+#
+# Schema Reference: ../SCHEMAS/client_selector.schema.json
+# Documentation: ../CLIENT_SELECTION.md
+
+selector_metadata:
+  selector_id: "selector-random-stratified-v1"
+  name: "Random Stratified Client Selection"
+  description: |
+    Random selection with stratification by aircraft type and flight phase.
+    Ensures diverse representation across the fleet while maintaining fairness.
+  version: "1.0.0"
+  created_at: "2024-11-15T00:00:00Z"
+
+# Eligibility criteria - which clients CAN participate
+eligibility_criteria:
+  min_data_samples: 100  # Minimum samples required for participation
+  min_flight_hours: 10  # Total flight hours
+  min_flight_hours_since_last_round: 50  # Avoid over-sampling same clients
+  
+  data_quality_threshold: 0.95  # Data quality score (0-1)
+  hardware_health_check: true  # Check system health
+  connectivity_requirement: "any"  # Options: any, ground_only, satellite_only, hybrid
+  
+  no_open_ncrs: true  # Exclude aircraft with open non-conformance reports
+  no_active_alerts: true  # Exclude aircraft with active system alerts
+  
+  # Aircraft type filter (empty = all types eligible)
+  aircraft_types: []  # Examples: ["A320", "A350", "B787"]
+  
+  # Aircraft age range
+  aircraft_age_range:
+    min_years: 0
+    max_years: 30
+    
+  # Geographic regions (empty = all regions)
+  geographic_region: []  # Examples: ["EU", "US", "APAC"]
+
+# Selection algorithm - HOW to select from eligible clients
+selection_algorithm:
+  algorithm: "random"  # Options: random, importance_sampling, active_learning, weighted_random
+  
+  num_clients: 30  # Target number of clients
+  min_clients: 10  # Minimum to proceed
+  max_clients: 50  # Maximum to select
+  
+  # Stratification ensures diversity
+  stratify_by:
+    - "aircraft_type"
+    - "flight_phase"
+    # Other options: aircraft_age, geographic_region, operator
+    
+  # Sampling weights (optional - for weighted_random)
+  sampling_weights:
+    aircraft_type:
+      A320: 0.4
+      A350: 0.3
+      B787: 0.3
+      
+  # For importance_sampling algorithm
+  importance_metric: "data_volume"  # Options: data_volume, data_diversity, model_contribution, loss_gradient
+  
+  # For active_learning algorithm
+  exploration_rate: 0.1  # 10% random exploration (epsilon-greedy)
+
+# Fairness policy - ensure equitable participation
+fairness_policy:
+  enabled: true
+  
+  min_participation_per_period: 1  # Each client participates at least once per period
+  period: "quarter"  # Options: week, month, quarter, year
+  
+  max_participation_per_period: 10  # Prevent over-sampling
+  
+  ensure_tail_participation: true  # Ensure underrepresented clients get chances
+  tail_participation_rate: 0.2  # 20% of slots reserved for tail clients
+  
+  # Group parity - ensure balanced representation
+  group_parity:
+    enabled: true
+    dimensions:
+      - "aircraft_type"
+      - "geographic_region"
+    tolerance: 0.15  # Allow up to 15% deviation from equal representation
+
+# Blacklist - clients permanently excluded
+blacklist:
+  enabled: true
+  client_ids: []
+    # Example: ["aircraft-hash-bad-001", "aircraft-hash-bad-002"]
+  reasons: {}
+    # Example: {"aircraft-hash-bad-001": "Data poisoning detected"}
+    
+  auto_blacklist_criteria:
+    consecutive_failures: 5  # Auto-blacklist after 5 consecutive failures
+    data_poisoning_detected: true
+    byzantine_behavior_detected: true
+
+# Greylist - clients with lower priority
+greylist:
+  enabled: true
+  client_ids: []
+    # Example: ["aircraft-hash-unreliable-001"]
+  deprioritization_factor: 0.5  # 50% sampling probability
+
+# Monitoring and alerting
+monitoring:
+  log_selection_decisions: true  # Log why each client was selected/excluded
+  track_participation_history: true  # Track participation over time
+  
+  alert_on_low_eligibility: true
+  eligibility_threshold: 20  # Alert if fewer than 20 eligible clients
+
+# Related Documents
+# - Client Types: 01-ARCHITECTURE/CLIENT_TYPES.md
+# - Selection Algorithms: 02-ORCHESTRATION/CLIENT_SELECTION.md
+# - Fairness Policies: 10-GOVERNANCE/FAIRNESS_POLICY.md

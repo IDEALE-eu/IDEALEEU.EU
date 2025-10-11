@@ -1,0 +1,332 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://ideale-eu.eu/schemas/fl/rollout.schema.json",
+  "title": "Federated Learning Rollout Policy",
+  "description": "Schema for model deployment rollout configurations",
+  "type": "object",
+  "required": ["rollout_metadata", "strategy", "phases"],
+  "properties": {
+    "rollout_metadata": {
+      "type": "object",
+      "required": ["rollout_id", "name", "version"],
+      "properties": {
+        "rollout_id": {
+          "type": "string",
+          "pattern": "^rollout-[a-z0-9-]+$",
+          "description": "Unique rollout policy identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable rollout name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Rollout strategy description"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Semantic version"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp"
+        },
+        "job_ref": {
+          "type": "string",
+          "description": "Reference to associated FL job"
+        },
+        "model_version": {
+          "type": "string",
+          "description": "Model version being deployed"
+        }
+      }
+    },
+    "strategy": {
+      "type": "string",
+      "enum": ["canary", "blue_green", "progressive", "immediate"],
+      "description": "Rollout strategy type"
+    },
+    "phases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["phase_name", "target_percentage"],
+        "properties": {
+          "phase_name": {
+            "type": "string",
+            "description": "Name of the rollout phase (e.g., 'Canary', 'Ring 1')"
+          },
+          "phase_number": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Sequential phase number"
+          },
+          "target_percentage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Target percentage of fleet for this phase"
+          },
+          "target_count": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Absolute number of clients (overrides percentage if set)"
+          },
+          "duration": {
+            "type": "string",
+            "pattern": "^\\d+\\s+(hours?|days?|weeks?)$",
+            "description": "Duration of this phase (e.g., '24 hours', '3 days')"
+          },
+          "specific_clients": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Specific client IDs for this phase (for canary)"
+          },
+          "selection_criteria": {
+            "type": "object",
+            "properties": {
+              "aircraft_types": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "geographic_regions": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "operators": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "diversity_required": {
+                "type": "boolean",
+                "description": "Ensure diverse fleet selection"
+              }
+            }
+          },
+          "success_criteria": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["metric", "threshold"],
+              "properties": {
+                "metric": {
+                  "type": "string",
+                  "enum": ["accuracy", "auc", "precision", "recall", "f1_score", "latency_p50", "latency_p95", "latency_p99", "error_rate", "drift_psi", "false_positive_rate", "false_negative_rate"],
+                  "description": "Metric name"
+                },
+                "threshold": {
+                  "type": "number",
+                  "description": "Threshold value for success"
+                },
+                "comparison": {
+                  "type": "string",
+                  "enum": ["greater_than", "greater_than_or_equal", "less_than", "less_than_or_equal", "equal"],
+                  "description": "Comparison operator"
+                }
+              }
+            },
+            "description": "Criteria that must be met to proceed to next phase"
+          },
+          "monitoring_period": {
+            "type": "string",
+            "pattern": "^\\d+\\s+(minutes?|hours?|days?)$",
+            "description": "How long to monitor before evaluating success criteria"
+          },
+          "auto_proceed": {
+            "type": "boolean",
+            "description": "Automatically proceed to next phase if success criteria met"
+          },
+          "require_manual_approval": {
+            "type": "boolean",
+            "description": "Require manual approval before proceeding"
+          }
+        }
+      },
+      "description": "Ordered list of rollout phases"
+    },
+    "rollback_policy": {
+      "type": "object",
+      "required": ["auto_rollback", "conditions"],
+      "properties": {
+        "auto_rollback": {
+          "type": "boolean",
+          "description": "Enable automatic rollback on failure"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["metric", "threshold", "comparison"],
+            "properties": {
+              "metric": {
+                "type": "string",
+                "description": "Metric to monitor for rollback"
+              },
+              "threshold": {
+                "type": "number",
+                "description": "Threshold that triggers rollback"
+              },
+              "comparison": {
+                "type": "string",
+                "enum": ["greater_than", "less_than", "equal"],
+                "description": "Comparison operator"
+              },
+              "window": {
+                "type": "string",
+                "pattern": "^\\d+\\s+(minutes?|hours?)$",
+                "description": "Time window for metric evaluation"
+              }
+            }
+          },
+          "description": "Conditions that trigger automatic rollback"
+        },
+        "rollback_target": {
+          "type": "string",
+          "enum": ["previous_version", "baseline", "safe_version"],
+          "description": "Target version to rollback to"
+        },
+        "notification_channels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["email", "slack", "pagerduty", "webhook"]
+          },
+          "description": "Channels to notify on rollback"
+        },
+        "max_auto_rollbacks": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum number of automatic rollbacks allowed"
+        }
+      }
+    },
+    "safety_gates": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable safety gate checks"
+        },
+        "pre_rollout_checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "check_name": {"type": "string"},
+              "check_type": {
+                "type": "string",
+                "enum": ["schema_validation", "performance_benchmark", "safety_review", "security_scan", "compliance_check"]
+              },
+              "required": {"type": "boolean"},
+              "blocking": {"type": "boolean"}
+            }
+          }
+        },
+        "per_phase_checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "check_name": {"type": "string"},
+              "run_after": {"type": "string"},
+              "required": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    "monitoring": {
+      "type": "object",
+      "properties": {
+        "dashboards": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Monitoring dashboard URLs or references"
+        },
+        "metrics_collection_interval": {
+          "type": "string",
+          "pattern": "^\\d+\\s+(seconds?|minutes?)$",
+          "description": "How often to collect metrics"
+        },
+        "alerts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "condition": {"type": "string"},
+              "severity": {
+                "type": "string",
+                "enum": ["info", "warning", "critical"]
+              },
+              "channels": {
+                "type": "array",
+                "items": {"type": "string"}
+              }
+            }
+          }
+        },
+        "real_time_tracking": {
+          "type": "boolean",
+          "description": "Enable real-time rollout progress tracking"
+        }
+      }
+    },
+    "approval_workflow": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable approval workflow"
+        },
+        "approvers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": {"type": "string"},
+              "email": {"type": "string", "format": "email"},
+              "required_for_phases": {
+                "type": "array",
+                "items": {"type": "integer"}
+              }
+            }
+          }
+        },
+        "approval_timeout": {
+          "type": "string",
+          "pattern": "^\\d+\\s+(hours?|days?)$",
+          "description": "Time limit for approval decisions"
+        },
+        "require_all_approvers": {
+          "type": "boolean",
+          "description": "Require approval from all approvers or just one"
+        }
+      }
+    },
+    "compliance": {
+      "type": "object",
+      "properties": {
+        "audit_trail": {
+          "type": "boolean",
+          "description": "Enable audit trail for all rollout decisions"
+        },
+        "certification_required": {
+          "type": "boolean",
+          "description": "Require certification approval"
+        },
+        "ccb_approval_required": {
+          "type": "boolean",
+          "description": "Require Configuration Control Board approval"
+        },
+        "mal_fe_approval_required": {
+          "type": "boolean",
+          "description": "Require MAL-FE policy approval"
+        }
+      }
+    }
+  }
+}

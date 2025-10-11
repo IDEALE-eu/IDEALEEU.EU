@@ -1,0 +1,290 @@
+# Argo Workflow Example for Federated Learning Job
+#
+# This workflow orchestrates a complete FL training round:
+# 1. Client selection
+# 2. Model distribution
+# 3. Local training (parallel)
+# 4. Model aggregation
+# 5. Validation
+#
+# Documentation: https://argoproj.github.io/workflows
+
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: fl-training-round-
+  namespace: federated-learning
+  labels:
+    job-type: fl-training
+    job-id: fl-pm-engine-oil-2024q4
+    version: "1.0.0"
+  annotations:
+    description: "Federated learning training round workflow"
+    owner: "AI/ML Team"
+    
+spec:
+  entrypoint: fl-training-pipeline
+  
+  # Workflow parameters
+  arguments:
+    parameters:
+      - name: job-spec
+        value: "/mnt/job-specs/job.yaml"
+      - name: client-selector
+        value: "/mnt/job-specs/selector.yaml"
+      - name: model-version
+        value: "1.0.0"
+      - name: round-number
+        value: "1"
+        
+  # Service account with necessary permissions
+  serviceAccountName: fl-orchestrator
+  
+  # Storage for artifacts
+  volumeClaimTemplates:
+    - metadata:
+        name: workspace
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
+            
+  # Workflow steps
+  templates:
+    # Main pipeline
+    - name: fl-training-pipeline
+      steps:
+        # Step 1: Validate job specification
+        - - name: validate-job-spec
+            template: validate-spec
+            
+        # Step 2: Select clients
+        - - name: select-clients
+            template: client-selection
+            
+        # Step 3: Distribute model to clients (parallel)
+        - - name: distribute-model
+            template: model-distribution
+            arguments:
+              parameters:
+                - name: client-list
+                  value: "{{steps.select-clients.outputs.result}}"
+                  
+        # Step 4: Local training on clients (parallel)
+        - - name: local-training
+            template: client-training
+            arguments:
+              parameters:
+                - name: client-list
+                  value: "{{steps.select-clients.outputs.result}}"
+            withParam: "{{steps.select-clients.outputs.result}}"
+            
+        # Step 5: Collect and aggregate model updates
+        - - name: aggregate-models
+            template: model-aggregation
+            arguments:
+              parameters:
+                - name: trained-models
+                  value: "{{steps.local-training.outputs.parameters}}"
+                  
+        # Step 6: Validate aggregated model
+        - - name: validate-model
+            template: model-validation
+            arguments:
+              parameters:
+                - name: model-path
+                  value: "{{steps.aggregate-models.outputs.parameters.model-path}}"
+                  
+        # Step 7: Save to registry
+        - - name: save-model
+            template: model-registry-upload
+            arguments:
+              parameters:
+                - name: model-path
+                  value: "{{steps.aggregate-models.outputs.parameters.model-path}}"
+                - name: validation-results
+                  value: "{{steps.validate-model.outputs.result}}"
+    
+    # Template: Validate job spec
+    - name: validate-spec
+      container:
+        image: fl-orchestrator:latest
+        command: ["python"]
+        args:
+          - "/app/validate_job_specs.py"
+          - "--job-spec"
+          - "{{workflow.parameters.job-spec}}"
+        volumeMounts:
+          - name: workspace
+            mountPath: /workspace
+            
+    # Template: Client selection
+    - name: client-selection
+      container:
+        image: fl-orchestrator:latest
+        command: ["python"]
+        args:
+          - "/app/select_clients.py"
+          - "--selector"
+          - "{{workflow.parameters.client-selector}}"
+          - "--output"
+          - "/workspace/selected-clients.json"
+        volumeMounts:
+          - name: workspace
+            mountPath: /workspace
+      outputs:
+        parameters:
+          - name: client-list
+            valueFrom:
+              path: /workspace/selected-clients.json
+              
+    # Template: Model distribution
+    - name: model-distribution
+      inputs:
+        parameters:
+          - name: client-list
+      container:
+        image: fl-orchestrator:latest
+        command: ["python"]
+        args:
+          - "/app/distribute_model.py"
+          - "--model-version"
+          - "{{workflow.parameters.model-version}}"
+          - "--clients"
+          - "{{inputs.parameters.client-list}}"
+        volumeMounts:
+          - name: workspace
+            mountPath: /workspace
+            
+    # Template: Client training (runs on edge)
+    - name: client-training
+      inputs:
+        parameters:
+          - name: client-id
+      container:
+        image: fl-client:latest
+        command: ["python"]
+        args:
+          - "/app/train_local.py"
+          - "--client-id"
+          - "{{inputs.parameters.client-id}}"
+          - "--model-version"
+          - "{{workflow.parameters.model-version}}"
+          - "--output"
+          - "/workspace/updates/{{inputs.parameters.client-id}}.pt"
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1"
+          limits:
+            memory: "4Gi"
+            cpu: "2"
+        volumeMounts:
+          - name: workspace
+            mountPath: /workspace
+      outputs:
+        parameters:
+          - name: update-path
+            value: "/workspace/updates/{{inputs.parameters.client-id}}.pt"
+            
+    # Template: Model aggregation
+    - name: model-aggregation
+      inputs:
+        parameters:
+          - name: trained-models
+      container:
+        image: fl-aggregator:latest
+        command: ["python"]
+        args:
+          - "/app/aggregate.py"
+          - "--job-spec"
+          - "{{workflow.parameters.job-spec}}"
+          - "--round"
+          - "{{workflow.parameters.round-number}}"
+          - "--output"
+          - "/workspace/aggregated-model-r{{workflow.parameters.round-number}}.pt"
+        resources:
+          requests:
+            memory: "8Gi"
+            cpu: "4"
+          limits:
+            memory: "16Gi"
+            cpu: "8"
+        volumeMounts:
+          - name: workspace
+            mountPath: /workspace
+      outputs:
+        parameters:
+          - name: model-path
+            value: "/workspace/aggregated-model-r{{workflow.parameters.round-number}}.pt"
+            
+    # Template: Model validation
+    - name: model-validation
+      inputs:
+        parameters:
+          - name: model-path
+      container:
+        image: fl-validator:latest
+        command: ["python"]
+        args:
+          - "/app/validate_model.py"
+          - "--model"
+          - "{{inputs.parameters.model-path}}"
+          - "--holdout-data"
+          - "/data/holdout-dataset"
+          - "--output"
+          - "/workspace/validation-results.json"
+        volumeMounts:
+          - name: workspace
+            mountPath: /workspace
+      outputs:
+        parameters:
+          - name: validation-results
+            valueFrom:
+              path: /workspace/validation-results.json
+              
+    # Template: Upload to model registry
+    - name: model-registry-upload
+      inputs:
+        parameters:
+          - name: model-path
+          - name: validation-results
+      container:
+        image: fl-orchestrator:latest
+        command: ["python"]
+        args:
+          - "/app/upload_model.py"
+          - "--model"
+          - "{{inputs.parameters.model-path}}"
+          - "--validation"
+          - "{{inputs.parameters.validation-results}}"
+          - "--registry"
+          - "http://model-registry:8080"
+        volumeMounts:
+          - name: workspace
+            mountPath: /workspace
+            
+  # Failure handling
+  onExit: cleanup-workflow
+  
+  # Retry strategy
+  retryStrategy:
+    limit: 2
+    backoff:
+      duration: "10m"
+      factor: 2
+      
+  # Timeout
+  activeDeadlineSeconds: 21600  # 6 hours
+  
+  # Cleanup template
+  templates:
+    - name: cleanup-workflow
+      container:
+        image: fl-orchestrator:latest
+        command: ["python"]
+        args:
+          - "/app/cleanup.py"
+          - "--workspace"
+          - "/workspace"

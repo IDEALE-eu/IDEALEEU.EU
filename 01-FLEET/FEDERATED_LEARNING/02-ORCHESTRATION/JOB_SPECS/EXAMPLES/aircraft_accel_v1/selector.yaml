@@ -1,0 +1,96 @@
+# Client Selector for Accelerometer Drift Detection
+#
+# Selects aircraft with sufficient IMU data for training.
+
+selector_metadata:
+  selector_id: "selector-accel-drift-v1"
+  name: "Accelerometer Drift Client Selector"
+  description: |
+    Selects aircraft with:
+    - At least 100 flight hours of IMU data
+    - Recent calibration data available
+    - No known IMU hardware failures
+    - Diverse aircraft types and ages
+  version: "1.0.0"
+  created_at: "2024-11-15T00:00:00Z"
+
+eligibility_criteria:
+  min_data_samples: 500  # At least 500 hours of IMU telemetry
+  min_flight_hours: 100
+  min_flight_hours_since_last_round: 25
+  
+  data_quality_threshold: 0.98  # High quality required for sensor data
+  hardware_health_check: true
+  connectivity_requirement: "any"
+  
+  no_open_ncrs: true
+  no_active_alerts: false  # Allow aircraft with minor alerts
+  
+  # IMU-specific criteria
+  custom_criteria:
+    imu_calibration_available: true
+    imu_age_months_min: 1  # At least 1 month old (some drift history)
+    imu_age_months_max: 120  # Max 10 years old
+    no_recent_imu_replacement: true  # Exclude recently replaced IMUs
+    
+  aircraft_types: []  # All types - IMU drift is universal
+  
+  aircraft_age_range:
+    min_years: 0.5  # At least 6 months in service
+    max_years: 30
+    
+  geographic_region: []  # All regions
+
+selection_algorithm:
+  algorithm: "importance_sampling"
+  
+  num_clients: 50
+  min_clients: 15
+  max_clients: 75
+  
+  stratify_by:
+    - "aircraft_type"
+    - "aircraft_age"
+    
+  importance_metric: "data_diversity"  # Prioritize diverse IMU behavior
+  
+  exploration_rate: 0.15  # 15% exploration to ensure tail coverage
+
+fairness_policy:
+  enabled: true
+  
+  min_participation_per_period: 2
+  period: "quarter"
+  
+  max_participation_per_period: 15
+  
+  ensure_tail_participation: true
+  tail_participation_rate: 0.25
+  
+  group_parity:
+    enabled: true
+    dimensions:
+      - "aircraft_type"
+      - "operator"
+    tolerance: 0.20
+
+blacklist:
+  enabled: true
+  client_ids: []
+  
+  auto_blacklist_criteria:
+    consecutive_failures: 5
+    data_poisoning_detected: true
+    byzantine_behavior_detected: true
+
+greylist:
+  enabled: true
+  client_ids: []
+  deprioritization_factor: 0.5
+
+monitoring:
+  log_selection_decisions: true
+  track_participation_history: true
+  
+  alert_on_low_eligibility: true
+  eligibility_threshold: 15

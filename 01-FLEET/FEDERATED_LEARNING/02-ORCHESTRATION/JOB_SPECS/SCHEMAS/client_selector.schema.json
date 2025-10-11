@@ -1,0 +1,270 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://ideale-eu.eu/schemas/fl/client_selector.schema.json",
+  "title": "Federated Learning Client Selector",
+  "description": "Schema for client selection configurations in federated learning",
+  "type": "object",
+  "required": ["selector_metadata", "eligibility_criteria", "selection_algorithm", "fairness_policy"],
+  "properties": {
+    "selector_metadata": {
+      "type": "object",
+      "required": ["selector_id", "name", "version"],
+      "properties": {
+        "selector_id": {
+          "type": "string",
+          "pattern": "^selector-[a-z0-9-]+$",
+          "description": "Unique selector identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable selector name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Selector purpose and strategy description"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Semantic version"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp"
+        }
+      }
+    },
+    "eligibility_criteria": {
+      "type": "object",
+      "required": ["min_data_samples"],
+      "properties": {
+        "min_data_samples": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Minimum number of data samples required"
+        },
+        "min_flight_hours": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Minimum flight hours accumulated"
+        },
+        "min_flight_hours_since_last_round": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Minimum hours since last training participation"
+        },
+        "data_quality_threshold": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Minimum data quality score (0-1)"
+        },
+        "hardware_health_check": {
+          "type": "boolean",
+          "description": "Require hardware health verification"
+        },
+        "connectivity_requirement": {
+          "type": "string",
+          "enum": ["any", "ground_only", "satellite_only", "hybrid"],
+          "description": "Network connectivity requirement"
+        },
+        "no_open_ncrs": {
+          "type": "boolean",
+          "description": "Exclude clients with open non-conformance reports"
+        },
+        "no_active_alerts": {
+          "type": "boolean",
+          "description": "Exclude clients with active system alerts"
+        },
+        "aircraft_types": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Allowed aircraft types (empty = all)"
+        },
+        "aircraft_age_range": {
+          "type": "object",
+          "properties": {
+            "min_years": {"type": "number", "minimum": 0},
+            "max_years": {"type": "number", "minimum": 0}
+          },
+          "description": "Aircraft age range in years"
+        },
+        "geographic_region": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Geographic regions (e.g., EU, US, APAC)"
+        }
+      }
+    },
+    "selection_algorithm": {
+      "type": "object",
+      "required": ["algorithm", "num_clients"],
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": ["random", "importance_sampling", "active_learning", "weighted_random"],
+          "description": "Client selection algorithm"
+        },
+        "num_clients": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Target number of clients to select"
+        },
+        "min_clients": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Minimum clients required to proceed"
+        },
+        "max_clients": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum clients to select"
+        },
+        "stratify_by": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["aircraft_type", "aircraft_age", "flight_phase", "geographic_region", "operator"]
+          },
+          "description": "Stratification dimensions"
+        },
+        "sampling_weights": {
+          "type": "object",
+          "description": "Custom sampling weights by dimension"
+        },
+        "importance_metric": {
+          "type": "string",
+          "enum": ["data_volume", "data_diversity", "model_contribution", "loss_gradient"],
+          "description": "Metric for importance sampling"
+        },
+        "exploration_rate": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Exploration rate for epsilon-greedy selection (0-1)"
+        }
+      }
+    },
+    "fairness_policy": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable fairness constraints"
+        },
+        "min_participation_per_period": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Minimum participation count per time period"
+        },
+        "period": {
+          "type": "string",
+          "enum": ["week", "month", "quarter", "year"],
+          "description": "Time period for fairness tracking"
+        },
+        "max_participation_per_period": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum participation count per time period"
+        },
+        "ensure_tail_participation": {
+          "type": "boolean",
+          "description": "Ensure underrepresented clients get opportunities"
+        },
+        "tail_participation_rate": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Target participation rate for tail clients"
+        },
+        "group_parity": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean"},
+            "dimensions": {
+              "type": "array",
+              "items": {"type": "string"}
+            },
+            "tolerance": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "description": "Allowed deviation from equal representation"
+            }
+          }
+        }
+      }
+    },
+    "blacklist": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Enable blacklist checking"
+        },
+        "client_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Blacklisted client IDs"
+        },
+        "reasons": {
+          "type": "object",
+          "description": "Blacklist reasons by client ID"
+        },
+        "auto_blacklist_criteria": {
+          "type": "object",
+          "properties": {
+            "consecutive_failures": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Auto-blacklist after N consecutive failures"
+            },
+            "data_poisoning_detected": {"type": "boolean"},
+            "byzantine_behavior_detected": {"type": "boolean"}
+          }
+        }
+      }
+    },
+    "greylist": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"},
+        "client_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Greylisted client IDs (lower priority)"
+        },
+        "deprioritization_factor": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Sampling probability multiplier for greylisted clients"
+        }
+      }
+    },
+    "monitoring": {
+      "type": "object",
+      "properties": {
+        "log_selection_decisions": {
+          "type": "boolean",
+          "description": "Log detailed selection decisions"
+        },
+        "track_participation_history": {
+          "type": "boolean",
+          "description": "Track client participation over time"
+        },
+        "alert_on_low_eligibility": {
+          "type": "boolean",
+          "description": "Alert when eligible client count is low"
+        },
+        "eligibility_threshold": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Minimum eligible clients to avoid alert"
+        }
+      }
+    }
+  }
+}

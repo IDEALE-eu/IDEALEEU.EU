@@ -1,0 +1,153 @@
+# JOB REGISTRY INDEX
+#
+# Central registry of all federated learning jobs in the system.
+# This index provides a single source of truth for job definitions, their status,
+# and their lifecycle metadata.
+#
+# Version: 1.0.0
+# Last Updated: 2024-Q4
+
+version: "1.0.0"
+registry_metadata:
+  description: "Federated Learning Job Registry"
+  owner: "AI/ML Team"
+  contact: "ml-team@ideale.eu"
+  created_at: "2024-11-01T00:00:00Z"
+  updated_at: "2024-11-15T00:00:00Z"
+
+# Active Jobs
+active_jobs:
+  - job_id: "fl-pm-engine-oil-2024q4"
+    name: "Predictive Maintenance - Engine Oil Pressure Anomaly"
+    version: "1.0.0"
+    status: "active"
+    owner: "AI/ML Team - Predictive Maintenance"
+    created_at: "2024-11-15T10:30:00Z"
+    spec_location: "EXAMPLES/aircraft_accel_v1/job.yaml"
+    model_registry_ref: "06-MODELS/REGISTRY.md#pm-engine-oil-v1"
+    data_contract_ref: "01-ARCHITECTURE/DATA_CONTRACTS/TELEMETRY_SCHEMA.yaml"
+    priority: "high"
+    tags:
+      - "predictive-maintenance"
+      - "engine"
+      - "oil-pressure"
+    
+  - job_id: "fl-ad-sensor-drift-2024q4"
+    name: "Anomaly Detection - Sensor Drift"
+    version: "1.0.0"
+    status: "active"
+    owner: "AI/ML Team - Safety Systems"
+    created_at: "2024-11-01T00:00:00Z"
+    spec_location: "../EXAMPLE_JOB.yaml"
+    model_registry_ref: "06-MODELS/REGISTRY.md#ad-sensor-drift-v1"
+    data_contract_ref: "01-ARCHITECTURE/DATA_CONTRACTS/TELEMETRY_SCHEMA.yaml"
+    priority: "critical"
+    tags:
+      - "anomaly-detection"
+      - "sensor-drift"
+      - "safety"
+
+# Draft Jobs (under development)
+draft_jobs:
+  - job_id: "fl-eval-model-performance-2024q4"
+    name: "Model Evaluation - Performance Benchmarking"
+    version: "0.1.0"
+    status: "draft"
+    owner: "AI/ML Team - Model Validation"
+    created_at: "2024-11-10T00:00:00Z"
+    spec_location: "TEMPLATES/eval_job.example.yaml"
+    tags:
+      - "evaluation"
+      - "benchmarking"
+
+# Completed Jobs (archived)
+completed_jobs:
+  - job_id: "fl-pm-engine-bearing-2024q3"
+    name: "Predictive Maintenance - Engine Bearing Wear"
+    version: "1.0.0"
+    status: "completed"
+    owner: "AI/ML Team - Predictive Maintenance"
+    created_at: "2024-09-01T00:00:00Z"
+    completed_at: "2024-10-31T00:00:00Z"
+    spec_location: "archived/2024q3/engine-bearing-job.yaml"
+    model_registry_ref: "06-MODELS/REGISTRY.md#pm-engine-bearing-v1"
+    tags:
+      - "predictive-maintenance"
+      - "engine"
+      - "archived"
+
+# Failed Jobs (retained for postmortem analysis)
+failed_jobs:
+  - job_id: "fl-test-distributed-training-2024q3"
+    name: "Test - Distributed Training"
+    version: "0.1.0"
+    status: "failed"
+    owner: "AI/ML Team - Infrastructure"
+    created_at: "2024-09-15T00:00:00Z"
+    failed_at: "2024-09-16T12:00:00Z"
+    failure_reason: "Insufficient client participation (<10 clients)"
+    spec_location: "archived/2024q3/test-distributed-training.yaml"
+    tags:
+      - "test"
+      - "failed"
+      - "infrastructure"
+
+# Job Templates
+templates:
+  - template_id: "train_job_template"
+    name: "Training Job Template"
+    description: "Standard template for federated learning training jobs"
+    location: "TEMPLATES/train_job.example.yaml"
+    schema_ref: "SCHEMAS/job_spec.schema.json"
+    
+  - template_id: "eval_job_template"
+    name: "Evaluation Job Template"
+    description: "Template for model evaluation jobs"
+    location: "TEMPLATES/eval_job.example.yaml"
+    schema_ref: "SCHEMAS/job_spec.schema.json"
+    
+  - template_id: "aggregate_job_template"
+    name: "Aggregation Job Template"
+    description: "Template for model aggregation jobs"
+    location: "TEMPLATES/aggregate_job.example.yaml"
+    schema_ref: "SCHEMAS/job_spec.schema.json"
+
+# Client Selectors
+client_selectors:
+  - selector_id: "random_stratified"
+    name: "Random Stratified Selection"
+    description: "Random selection with stratification by aircraft type and flight phase"
+    location: "TEMPLATES/client_selector.example.yaml"
+    schema_ref: "SCHEMAS/client_selector.schema.json"
+    
+# Rollout Policies
+rollout_policies:
+  - policy_id: "canary_progressive"
+    name: "Canary with Progressive Rollout"
+    description: "5 canary clients, then progressive rollout to 100%"
+    location: "TEMPLATES/rollout_policy.example.yaml"
+    schema_ref: "SCHEMAS/rollout.schema.json"
+
+# Schema Versions
+schemas:
+  - schema_id: "job_spec"
+    version: "1.0.0"
+    location: "SCHEMAS/job_spec.schema.json"
+    description: "JSON schema for federated learning job specifications"
+    
+  - schema_id: "client_selector"
+    version: "1.0.0"
+    location: "SCHEMAS/client_selector.schema.json"
+    description: "JSON schema for client selection configurations"
+    
+  - schema_id: "rollout"
+    version: "1.0.0"
+    location: "SCHEMAS/rollout.schema.json"
+    description: "JSON schema for rollout policy configurations"
+
+# Change History
+change_history:
+  - version: "1.0.0"
+    date: "2024-11-15"
+    author: "AI/ML Team"
+    changes: "Initial job registry with active, draft, completed, and failed jobs"
