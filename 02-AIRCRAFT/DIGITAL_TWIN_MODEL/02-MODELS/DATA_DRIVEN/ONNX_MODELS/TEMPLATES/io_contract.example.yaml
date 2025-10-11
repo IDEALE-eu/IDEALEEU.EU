@@ -1,0 +1,205 @@
+# I/O Contract - Ice Detector Pitot Model
+# Defines data transformations, scaling, and preprocessing requirements
+
+version: 1.0.0
+model_id: ice_detector_pitot
+model_version: 1.0.0
+
+# Input Contract
+inputs:
+  sensor_readings:
+    # Data source configuration
+    source:
+      type: telemetry_stream
+      ata_chapter: ATA-34-12
+      sample_rate: 10 Hz
+      ebom_refs:
+        - ATA-34-12-001  # Pitot tube
+        - ATA-34-11-002  # Static pressure sensor
+        - ATA-34-51-001  # OAT sensor
+    
+    # Feature extraction
+    features:
+      - name: airspeed_indicated
+        unit: knots
+        range: [0, 350]
+        dtype: float32
+        source_signal: airspeed_indicated
+        
+      - name: static_pressure
+        unit: hPa
+        range: [100, 1100]
+        dtype: float32
+        source_signal: static_pressure
+        
+      - name: total_pressure
+        unit: hPa
+        range: [100, 1200]
+        dtype: float32
+        source_signal: total_pressure
+        
+      - name: outside_air_temperature
+        unit: celsius
+        range: [-70, 60]
+        dtype: float32
+        source_signal: outside_air_temperature
+        
+      - name: altitude_pressure
+        unit: feet
+        range: [0, 50000]
+        dtype: float32
+        source_signal: altitude_pressure
+        
+      - name: rate_of_climb
+        unit: feet/min
+        range: [-6000, 6000]
+        dtype: float32
+        source_signal: vertical_speed
+        
+      - name: differential_pressure
+        unit: hPa
+        range: [0, 200]
+        dtype: float32
+        source_signal: differential_pressure
+        derived: true
+        formula: total_pressure - static_pressure
+        
+      - name: pitot_heater_current
+        unit: amperes
+        range: [0, 5]
+        dtype: float32
+        source_signal: pitot_heater_current
+        
+      - name: pitot_temperature
+        unit: celsius
+        range: [-70, 100]
+        dtype: float32
+        source_signal: pitot_temperature
+        
+      - name: vibration_sensor
+        unit: g-force
+        range: [0, 2]
+        dtype: float32
+        source_signal: pitot_vibration
+    
+    # Windowing (time-series preprocessing)
+    windowing:
+      window_size: 50  # Number of samples
+      stride: 1        # Samples between windows
+      padding: zero    # Padding strategy for incomplete windows
+      
+    # Normalization (applied AFTER windowing)
+    normalization:
+      method: standard_scaler
+      scaler_path: artifacts/scaler.pkl
+      fit_on_training: true
+      per_feature: true
+      clipping:
+        enabled: true
+        n_sigma: 5  # Clip outliers beyond 5 standard deviations
+    
+    # Data validation
+    validation:
+      check_range: true
+      check_nan: true
+      nan_handling: interpolate  # interpolate, drop, or raise
+      max_interpolation_gap: 10  # samples
+      
+    # Channel order (for multi-dimensional inputs)
+    channel_order: features_last  # (batch, time, features)
+
+# Output Contract
+outputs:
+  reconstruction:
+    unit: normalized
+    dtype: float32
+    postprocessing:
+      - denormalize:
+          scaler_path: artifacts/scaler.pkl
+      - clip:
+          method: range
+          per_feature: true
+    
+  anomaly_score:
+    unit: mse
+    dtype: float32
+    interpretation:
+      threshold_normal: 0.05
+      threshold_warning: 0.05
+      threshold_critical: 0.15
+      
+    # Alert generation
+    alerts:
+      - condition: anomaly_score > 0.05
+        severity: warning
+        message: "Potential ice formation detected on pitot sensor"
+        action: notify_crew
+        
+      - condition: anomaly_score > 0.15
+        severity: critical
+        message: "High confidence ice formation on pitot sensor"
+        action: activate_pitot_heater_boost
+    
+    # Persistence (debouncing)
+    persistence:
+      enabled: true
+      min_consecutive_violations: 3  # Require 3 consecutive violations before alerting
+      reset_after_normal: 5          # Reset counter after 5 normal readings
+
+# Data Quality Requirements
+data_quality:
+  completeness:
+    min_valid_samples: 0.95  # 95% of samples must be valid
+    
+  timeliness:
+    max_latency_ms: 200  # Maximum acceptable latency from sensor to inference
+    
+  consistency:
+    check_monotonic: false
+    check_sudden_jumps: true
+    max_jump_threshold: 5.0  # sigma units
+
+# Integration with Flight Software
+integration:
+  # How this model is called from flight control software
+  interface_type: shared_memory  # or message_queue, function_call
+  update_rate: 10 Hz
+  
+  # Input buffer
+  input_buffer:
+    type: ring_buffer
+    size: 100  # samples
+    
+  # Output publication
+  output_publication:
+    topic: /sensors/pitot/ice_detection
+    message_format: ros2_msg
+    qos: reliable
+
+# Hardware-specific optimizations
+hardware:
+  cpu:
+    num_threads: 2
+    intra_op_parallelism: 2
+    
+  gpu:
+    enabled: false  # Ice detector runs on CPU for determinism
+    
+  edge:
+    quantization: int8
+    quantized_model_path: model.int8.onnx
+    memory_limit_mb: 10
+
+# Deployment metadata
+deployment:
+  target_environment: edge_compute
+  real_time_capable: true
+  max_inference_time_ms: 50
+  certification_level: DO-178C_Level_D
+
+# Change history
+change_history:
+  - version: 1.0.0
+    date: 2024-12-01
+    changes: Initial release
+    author: AI/ML Team

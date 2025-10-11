@@ -1,0 +1,25 @@
+# I/O Contract - Ice Detector Pitot Model
+
+version: 1.0.0
+model_id: ice_detector_pitot
+
+inputs:
+  sensor_readings:
+    source:
+      ata_chapter: ATA-34-12
+      sample_rate: 10 Hz
+    
+    windowing:
+      window_size: 50
+      stride: 1
+      
+    normalization:
+      method: standard_scaler
+      scaler_path: artifacts/scaler.pkl
+
+outputs:
+  anomaly_score:
+    unit: mse
+    interpretation:
+      threshold_warning: 0.05
+      threshold_critical: 0.15

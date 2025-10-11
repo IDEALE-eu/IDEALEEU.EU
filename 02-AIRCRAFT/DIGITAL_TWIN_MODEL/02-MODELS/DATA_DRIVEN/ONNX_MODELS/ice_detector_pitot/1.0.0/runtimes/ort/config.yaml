@@ -1,0 +1,25 @@
+# ONNX Runtime Configuration
+
+execution_mode: sequential
+inter_op_num_threads: 2
+intra_op_num_threads: 2
+
+graph_optimization_level: ORT_ENABLE_ALL
+
+session_config:
+  enable_cpu_mem_arena: true
+  enable_mem_pattern: true
+  enable_profiling: false
+  
+providers:
+  - name: CPUExecutionProvider
+    options:
+      arena_extend_strategy: kSameAsRequested
+      
+# Optimizations
+optimizations:
+  constant_folding: true
+  redundant_node_elimination: true
+  
+# For production deployment
+log_severity_level: 2  # Warning

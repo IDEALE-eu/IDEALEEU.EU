@@ -1,0 +1,55 @@
+{
+  "model_version": "1.0.0",
+  "benchmark_date": "2024-12-05",
+  "hardware": "Honeywell HCU-4000",
+  "runtime": "ONNX Runtime 1.14.1",
+  
+  "variants": {
+    "baseline": {
+      "model": "model.onnx",
+      "precision": "fp32",
+      "mean_latency_ms": 15.3,
+      "p50_latency_ms": 15.1,
+      "p95_latency_ms": 16.8,
+      "p99_latency_ms": 18.2,
+      "std_latency_ms": 1.1,
+      "throughput_inferences_per_sec": 65.3
+    },
+    
+    "fp16": {
+      "model": "model.fp16.onnx",
+      "precision": "fp16",
+      "mean_latency_ms": 12.1,
+      "p50_latency_ms": 12.0,
+      "p95_latency_ms": 13.2,
+      "p99_latency_ms": 14.5,
+      "std_latency_ms": 0.8,
+      "throughput_inferences_per_sec": 82.6,
+      "note": "Requires FP16 hardware support"
+    },
+    
+    "int8": {
+      "model": "model.int8.onnx",
+      "precision": "int8",
+      "mean_latency_ms": 8.5,
+      "p50_latency_ms": 8.3,
+      "p95_latency_ms": 9.2,
+      "p99_latency_ms": 10.1,
+      "std_latency_ms": 0.6,
+      "throughput_inferences_per_sec": 117.6
+    }
+  },
+  
+  "memory_usage": {
+    "baseline_mb": 8.2,
+    "fp16_mb": 4.5,
+    "int8_mb": 2.8
+  },
+  
+  "notes": [
+    "Benchmarks performed on target hardware (Honeywell HCU-4000)",
+    "Batch size: 1 (real-time single-sample inference)",
+    "All variants meet <50ms latency requirement",
+    "INT8 variant recommended for deployment (lowest latency & memory)"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "scaler_type": "StandardScaler",
+  "fitted_on": "training_data_v1.2",
+  "num_features": 10,
+  "mean": [175.3, 850.1, 900.2, -15.4, 12500.0, 0.0, 50.1, 2.1, -10.2, 0.15],
+  "std": [45.2, 150.8, 155.3, 20.3, 8500.0, 1500.0, 30.2, 0.8, 18.5, 0.12],
+  "note": "This is a placeholder. Actual scaler would be a pickled scikit-learn object."
+}

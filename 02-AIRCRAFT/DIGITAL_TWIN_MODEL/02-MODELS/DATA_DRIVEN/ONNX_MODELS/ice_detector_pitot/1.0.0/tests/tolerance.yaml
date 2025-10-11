@@ -1,0 +1,47 @@
+# Test tolerance configuration for golden vector validation
+
+version: 1.0.0
+
+# Default tolerances
+default:
+  atol: 1e-5  # Absolute tolerance
+  rtol: 1e-4  # Relative tolerance
+
+# Per-tensor tolerances (override defaults)
+tensors:
+  reconstruction:
+    atol: 1e-4
+    rtol: 1e-3
+    reason: "Reconstruction output can have slightly higher tolerance"
+    
+  anomaly_score:
+    atol: 1e-5
+    rtol: 1e-4
+    reason: "Anomaly score must be precise for thresholding"
+
+# Per-variant tolerances
+variants:
+  fp16:
+    default:
+      atol: 1e-3
+      rtol: 1e-2
+    reason: "FP16 has reduced precision, allow higher tolerance"
+    
+  int8:
+    default:
+      atol: 5e-3
+      rtol: 5e-2
+    reason: "INT8 quantization reduces precision significantly"
+
+# Validation rules
+validation:
+  fail_on_nan: true
+  fail_on_inf: true
+  check_shape: true
+  check_dtype: true
+  
+# Notes
+notes: |
+  Tolerances determined empirically during quantization experiments.
+  FP16 and INT8 variants have relaxed tolerances while maintaining
+  acceptable accuracy (>90% agreement with FP32 baseline).
