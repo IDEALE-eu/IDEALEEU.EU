@@ -1,0 +1,220 @@
+# Training Pipeline Configuration
+# Model: Engine Vibration Anomaly Detector
+# Version: 1.0.0
+# Owner: Data Science Team
+
+experiment_name: engine_vibration_anomaly_detector
+version: 1.0.0
+created_date: 2025-10-11
+
+# Data Configuration
+data:
+  contract: ../../DATA/contracts/signals_engine_vibration.yaml
+  
+  sources:
+    raw_data_path: ../../DATA/raw/engine_vibration/
+    interim_data_path: ../../DATA/interim/engine_vibration/
+    processed_data_path: ../../DATA/processed/engine_vibration/
+    features_path: ../../DATA/features/engine_vibration/
+    labels_path: ../../DATA/labels/engine_vibration/
+  
+  train_test_split:
+    train_ratio: 0.75
+    validation_ratio: 0.167
+    test_ratio: 0.083
+    stratify_by: anomaly_label
+    random_seed: 42
+  
+  preprocessing:
+    window_size_seconds: 10
+    window_overlap_seconds: 5
+    min_coverage: 0.95
+    interpolation_method: linear
+    outlier_removal_sigma: 3
+    
+  feature_engineering:
+    vibration_features:
+      - rms
+      - peak
+      - fft_1p_ratio
+    operational_context:
+      - n1
+      - n2
+      - egt
+      - oil_pressure
+      - oil_temperature
+      - flight_phase
+    temporal_features:
+      - n1_rate_of_change
+
+# Model Configuration
+model:
+  type: autoencoder
+  architecture:
+    encoder_layers: [9, 16, 8, 4]
+    decoder_layers: [4, 8, 16, 9]
+    activation: relu
+    output_activation: linear
+    
+  loss_function: mse
+  anomaly_score_metric: reconstruction_error
+  
+  hyperparameters:
+    learning_rate: 0.001
+    batch_size: 128
+    epochs: 100
+    optimizer: adam
+    early_stopping_patience: 10
+    reduce_lr_patience: 5
+    
+  regularization:
+    dropout: 0.1
+    l2_lambda: 0.0001
+    
+  normalization:
+    method: standard_scaler
+    per_feature: true
+
+# Training Configuration
+training:
+  framework: tensorflow
+  version: 2.14
+  
+  hardware:
+    device: cpu
+    num_workers: 8
+    
+  checkpointing:
+    save_best_only: true
+    monitor: val_loss
+    mode: min
+    
+  logging:
+    tensorboard: true
+    mlflow: true
+    log_frequency_steps: 100
+
+# Evaluation Configuration
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - specificity
+    - f1_score
+    - auc_roc
+    - auc_pr
+    - false_alarm_rate
+    
+  threshold_tuning:
+    method: percentile
+    percentile: 97
+    optimize_for: f1_score
+    
+  cross_validation:
+    method: stratified_kfold
+    n_splits: 5
+    
+  performance_breakdown:
+    - by_flight_phase
+    - by_anomaly_type
+    - by_aircraft_variant
+
+# Export Configuration
+export:
+  formats:
+    - onnx
+  onnx_opset_version: 14
+  
+  artifacts:
+    - model
+    - scaler
+    - signature
+    - thresholds
+    - metrics
+    - model_card
+    
+  output_path: ../../MODELS/engine_vibration_detector/{version}/
+  
+  validation:
+    numerical_tolerance: 1e-5
+    test_inference: true
+
+# Quality Gates
+quality_gates:
+  minimum_auc: 0.90
+  minimum_precision: 0.85
+  minimum_recall: 0.85
+  maximum_far: 0.05
+  maximum_latency_ms: 50
+  
+  blocking: true
+  description: "Training fails if quality gates not met"
+
+# Reproducibility
+reproducibility:
+  random_seed: 42
+  deterministic_ops: true
+  gpu_determinism: false
+  version_control_required: true
+  
+  tracked_artifacts:
+    - data_contract
+    - raw_data_manifest
+    - preprocessing_script
+    - feature_engineering_script
+    - training_script
+    - model_architecture
+    - hyperparameters
+    - training_logs
+    - evaluation_metrics
+
+# Monitoring Setup
+monitoring:
+  drift_detection:
+    data_drift:
+      method: psi
+      threshold: 0.25
+      frequency: daily
+      
+    concept_drift:
+      method: adwin
+      delta: 0.002
+      
+  performance_tracking:
+    metrics:
+      - auc
+      - far
+      - recall
+    frequency: weekly
+    alert_threshold: 0.85
+    
+  resource_tracking:
+    - inference_latency
+    - cpu_usage
+    - memory_usage
+
+# Compliance
+compliance:
+  standards:
+    - ARP4754A
+    - DO-178C
+    - DO-326A
+    
+  documentation_required:
+    - data_quality_report
+    - training_report
+    - validation_report
+    - model_card
+    - safety_assessment
+    
+  traceability:
+    requirements: REQ-ANOMALY-ENGINE-001
+    hazards: HAZ-ENGINE-001
+    certification: CERT-ML-ENGINE-VIB-001
+
+# Contacts
+contacts:
+  owner: Data Science Team <datascience@ideale.eu>
+  reviewer: Engine Systems Team <enginesystems@ideale.eu>
+  approver: Configuration Control Board <ccb@ideale.eu>

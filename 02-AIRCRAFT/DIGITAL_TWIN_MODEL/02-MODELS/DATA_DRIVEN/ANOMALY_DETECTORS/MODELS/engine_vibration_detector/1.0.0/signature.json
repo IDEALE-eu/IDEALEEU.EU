@@ -1,0 +1,120 @@
+# Model Signature
+
+**Model ID**: ANOMALY_DETECTOR_ENGINE_VIB_V1.0.0  
+**Version**: 1.0.0  
+**Format**: ONNX 1.14
+
+## Input Signature
+
+| Feature Name | Type | Shape | Description |
+|-------------|------|-------|-------------|
+| `vib_fan_rms` | float32 | (batch, 1) | RMS fan bearing vibration (mils) |
+| `vib_fan_peak` | float32 | (batch, 1) | Peak fan bearing vibration (mils) |
+| `vib_compressor_rms` | float32 | (batch, 1) | RMS compressor bearing vibration (mils) |
+| `vib_turbine_rms` | float32 | (batch, 1) | RMS turbine bearing vibration (mils) |
+| `vib_imbalance_score` | float32 | (batch, 1) | FFT 1P component ratio |
+| `n1` | float32 | (batch, 1) | Engine N1 speed (%) |
+| `n2` | float32 | (batch, 1) | Engine N2 speed (%) |
+| `egt` | float32 | (batch, 1) | Exhaust gas temperature (°C) |
+| `n1_rate_of_change` | float32 | (batch, 1) | N1 derivative (%/s) |
+
+**Input Tensor**: `input_features` (float32, shape: [batch, 9])
+
+**Preprocessing Required**: 
+- Standard scaling (z-score normalization) using `scaler.pkl`
+- Input range: [-5.0, 5.0] (after scaling)
+
+## Output Signature
+
+| Output Name | Type | Shape | Description |
+|------------|------|-------|-------------|
+| `reconstruction` | float32 | (batch, 9) | Reconstructed input features |
+| `anomaly_score` | float32 | (batch, 1) | MSE reconstruction error |
+
+**Anomaly Threshold**: 3.5 (values > 3.5 indicate anomaly)
+
+## Model Metadata
+
+```json
+{
+  "model_id": "ANOMALY_DETECTOR_ENGINE_VIB_V1.0.0",
+  "version": "1.0.0",
+  "framework": "TensorFlow 2.14",
+  "export_format": "ONNX 1.14",
+  "architecture": "Autoencoder",
+  "input_features": 9,
+  "latent_dim": 4,
+  "parameters": 1248,
+  "model_size_kb": 23,
+  "inference_latency_ms": 12,
+  "threshold": 3.5,
+  "created_date": "2025-10-11",
+  "created_by": "Data Science Team"
+}
+```
+
+## Scaler Parameters
+
+**Type**: StandardScaler (scikit-learn 1.3)  
+**File**: `scaler.pkl`
+
+Per-feature mean and standard deviation used for normalization:
+
+| Feature | Mean | Std Dev |
+|---------|------|---------|
+| `vib_fan_rms` | 2.35 | 0.82 |
+| `vib_fan_peak` | 3.12 | 1.05 |
+| `vib_compressor_rms` | 1.89 | 0.65 |
+| `vib_turbine_rms` | 1.45 | 0.52 |
+| `vib_imbalance_score` | 0.08 | 0.03 |
+| `n1` | 68.5 | 18.2 |
+| `n2` | 72.3 | 16.8 |
+| `egt` | 485.0 | 125.0 |
+| `n1_rate_of_change` | 0.12 | 2.45 |
+
+## Usage Example (Python)
+
+```python
+import onnxruntime as ort
+import numpy as np
+import pickle
+
+# Load model and scaler
+session = ort.InferenceSession("model.onnx")
+with open("scaler.pkl", "rb") as f:
+    scaler = pickle.load(f)
+
+# Prepare input (raw sensor values)
+raw_input = np.array([[
+    2.8,   # vib_fan_rms
+    3.5,   # vib_fan_peak
+    2.1,   # vib_compressor_rms
+    1.6,   # vib_turbine_rms
+    0.09,  # vib_imbalance_score
+    75.0,  # n1
+    80.0,  # n2
+    520.0, # egt
+    0.5    # n1_rate_of_change
+]], dtype=np.float32)
+
+# Preprocess (scale)
+scaled_input = scaler.transform(raw_input)
+
+# Inference
+outputs = session.run(None, {"input_features": scaled_input})
+reconstruction = outputs[0]
+anomaly_score = outputs[1]
+
+# Decision
+is_anomaly = anomaly_score[0] > 3.5
+print(f"Anomaly Score: {anomaly_score[0]:.2f}")
+print(f"Anomaly Detected: {is_anomaly}")
+```
+
+## Integration Notes
+
+- **Batch Inference**: Model supports batch processing (batch size: 1-1024)
+- **Threading**: Model is thread-safe
+- **Hardware**: CPU-optimized (no GPU required)
+- **Latency**: ~12ms per inference (single sample on Intel Xeon 2.4 GHz)
+- **Memory**: ~10 MB runtime memory footprint
