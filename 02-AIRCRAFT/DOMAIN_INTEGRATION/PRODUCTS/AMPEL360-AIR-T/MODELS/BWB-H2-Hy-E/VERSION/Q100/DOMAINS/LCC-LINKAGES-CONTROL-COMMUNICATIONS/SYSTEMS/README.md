@@ -1,0 +1,13 @@
+# LCC-LINKAGES-CONTROL-COMMUNICATIONS — SYSTEMS
+
+This directory contains all systems under the LCC domain following ATA chapter conventions.
+
+## Systems
+
+- 08-LEVELING_WEIGHING
+- 22-AUTO_FLIGHT  
+- 23-COMMUNICATIONS
+- 44-CABIN_CONTROL
+- 45-CENTRAL_MAINTENANCE
+- 76-ENGINE_CONTROLS
+- 93-CENTRAL_CONTROL_SYSTEMS
