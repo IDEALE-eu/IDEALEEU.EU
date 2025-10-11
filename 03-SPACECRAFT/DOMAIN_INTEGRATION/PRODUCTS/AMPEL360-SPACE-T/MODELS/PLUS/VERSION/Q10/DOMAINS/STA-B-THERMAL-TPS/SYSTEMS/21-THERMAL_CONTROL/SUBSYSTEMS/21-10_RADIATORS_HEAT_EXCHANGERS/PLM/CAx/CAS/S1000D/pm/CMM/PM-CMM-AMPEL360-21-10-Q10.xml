@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Publication Module — Component Maintenance Manual (CMM) for 21-10 -->
+<pm xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <pmAddress>
+      <pmIdent>
+        <pmCode modelIdentCode="AMPEL360" pmIssuer="IDEALE" pmNumber="21-10-CMM" pmVolume="01"/>
+        <language countryIsoCode="US" languageIsoCode="en"/>
+        <issueInfo issueNumber="01" inWork="00"/>
+      </pmIdent>
+      <pmAddressItems>
+        <issueDate year="2025" month="10" day="11"/>
+        <pmTitle>Radiators &amp; Heat Exchangers - Component Maintenance Manual (CMM)</pmTitle>
+      </pmAddressItems>
+    </pmAddress>
+    <pmStatus>
+      <security securityClassification="01"/>
+      <responsiblePartnerCompany>
+        <enterpriseName>IDEALE Consortium</enterpriseName>
+      </responsiblePartnerCompany>
+      <originator>
+        <enterpriseName>Thermal Control Team</enterpriseName>
+      </originator>
+      <applic>
+        <displayText>
+          <simplePara>Applicable to AMPEL360-SPACE-T, Q10 and later.</simplePara>
+        </displayText>
+      </applic>
+      <qualityAssurance>
+        <unverified/>
+      </qualityAssurance>
+    </pmStatus>
+  </identAndStatusSection>
+  <content>
+    <pmEntry>
+      <pmEntryTitle>21-10 Component Maintenance Procedures</pmEntryTitle>
+      <dmRef>
+        <dmRefIdent>
+          <dmCode modelIdentCode="AMPEL360" systemDiffCode="0"
+                  systemCode="2110" subSystemCode="00" subSubSystemCode="00"
+                  disassyCode="00" disassyCodeVariant="A"
+                  infoCode="600" infoCodeVariant="A" itemLocationCode="A"/>
+        </dmRefIdent>
+      </dmRef>
+    </pmEntry>
+  </content>
+</pm>
