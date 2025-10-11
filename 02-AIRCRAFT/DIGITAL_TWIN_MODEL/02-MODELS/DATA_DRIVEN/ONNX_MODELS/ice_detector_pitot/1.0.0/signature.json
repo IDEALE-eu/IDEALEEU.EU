@@ -1,0 +1,38 @@
+{
+  "model_id": "ice_detector_pitot",
+  "version": "1.0.0",
+  "framework": "tensorflow",
+  "opset_version": 17,
+  "description": "Autoencoder-based anomaly detector for ice formation on pitot tube sensors",
+  "ata_chapter": "ATA-34-12",
+  
+  "inputs": [
+    {
+      "name": "sensor_readings",
+      "dtype": "float32",
+      "shape": [null, 50],
+      "description": "Time-windowed sensor readings (batch_size x 50 features)"
+    }
+  ],
+  
+  "outputs": [
+    {
+      "name": "reconstruction",
+      "dtype": "float32",
+      "shape": [null, 50],
+      "description": "Reconstructed sensor readings"
+    },
+    {
+      "name": "anomaly_score",
+      "dtype": "float32", 
+      "shape": [null, 1],
+      "description": "Reconstruction error (MSE)"
+    }
+  ],
+  
+  "metadata": {
+    "author": "AI/ML Team - Sensor Health",
+    "created_date": "2024-12-01",
+    "validation_accuracy": 0.94
+  }
+}

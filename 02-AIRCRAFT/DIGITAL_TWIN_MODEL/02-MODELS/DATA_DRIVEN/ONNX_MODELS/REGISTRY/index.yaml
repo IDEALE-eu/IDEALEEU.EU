@@ -1,0 +1,90 @@
+# ONNX Model Registry
+# Central catalog for all ONNX models deployed in the Digital Twin
+
+version: 1.0.0
+last_updated: 2025-01-15
+
+models:
+  # Ice Detection Model - Sensor anomaly detection
+  - model_id: ice_detector_pitot
+    name: Ice Detection - Pitot Sensor
+    description: Autoencoder-based anomaly detector for ice formation on pitot tube sensors
+    ata_chapter: ATA-34-12
+    versions:
+      - semver: 1.0.0
+        status: validated
+        created: 2024-12-01
+        variants:
+          - baseline: model.onnx
+            fp16: model.fp16.onnx
+            int8: model.int8.onnx
+        deployed_to:
+          - environment: edge
+            aircraft: ["AC001", "AC002"]
+            deployed_date: 2025-01-10
+        performance:
+          accuracy: 0.94
+          latency_ms: 15
+          memory_mb: 8
+      - semver: 0.9.0
+        status: deprecated
+        created: 2024-10-15
+        notes: Replaced by v1.0.0 with improved false positive rate
+  
+  # H2 Leak Detection Model
+  - model_id: h2_leak_detector
+    name: Hydrogen Leak Detector
+    description: Autoencoder for detecting H₂ leaks in fuel system
+    ata_chapter: ATA-28-30
+    versions:
+      - semver: 1.2.3
+        status: deployed
+        created: 2024-11-20
+        variants:
+          - baseline: model.onnx
+            fp16: model.fp16.onnx
+        deployed_to:
+          - environment: edge
+            aircraft: ["AC003", "AC004", "AC005"]
+            deployed_date: 2024-12-05
+        performance:
+          accuracy: 0.96
+          latency_ms: 25
+          memory_mb: 12
+      - semver: 1.2.2
+        status: canary
+        created: 2024-11-01
+        notes: Shadow deployment for A/B testing
+  
+  # Engine Vibration Surrogate Model
+  - model_id: engine_vib_surrogate
+    name: Engine Vibration Surrogate
+    description: Neural network surrogate for engine vibration physics model
+    ata_chapter: ATA-77-11
+    versions:
+      - semver: 2.0.0
+        status: validated
+        created: 2025-01-05
+        variants:
+          - baseline: model.onnx
+            int8: model.int8.onnx
+            trt: model.trt
+        deployed_to: []
+        performance:
+          accuracy: 0.98
+          latency_ms: 8
+          memory_mb: 5
+        notes: Awaiting certification approval
+
+# Model States
+# - draft: Initial export, not validated
+# - validated: Passed validation tests (golden vectors, tolerance checks)
+# - canary: Shadow deployment for testing
+# - deployed: Active in production
+# - deprecated: Replaced by newer version
+# - archived: No longer in use, kept for audit trail
+
+# Deployment Environments
+# - edge: Onboard aircraft computer
+# - ground: Ground station / MRO facility
+# - cloud: Cloud-based digital twin simulation

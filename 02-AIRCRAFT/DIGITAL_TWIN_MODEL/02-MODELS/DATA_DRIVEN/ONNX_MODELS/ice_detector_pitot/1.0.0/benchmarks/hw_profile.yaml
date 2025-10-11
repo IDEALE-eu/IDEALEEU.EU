@@ -1,0 +1,30 @@
+# Hardware Profile
+
+## Target Platform
+platform: Aircraft Edge Compute Unit (ECU)
+manufacturer: Honeywell
+model: HCU-4000
+cpu: ARM Cortex-A72 @ 1.5 GHz
+cores: 4
+ram: 8 GB
+os: Linux RT (Real-Time)
+
+## Deployment Environment
+environment: edge
+real_time: true
+certification: DO-178C Level D
+
+## Resource Constraints
+max_memory_mb: 10
+max_inference_time_ms: 50
+max_cpu_usage_percent: 20
+temperature_range: [-40, 85]  # celsius
+
+## Software Stack
+onnxruntime_version: 1.14.1
+compiler: gcc 9.4.0
+optimization_flags: -O3 -march=armv8-a
+
+## Power Budget
+typical_power_mw: 500
+peak_power_mw: 800

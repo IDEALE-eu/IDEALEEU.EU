@@ -1,0 +1,43 @@
+# Preprocessing Configuration
+
+## Windowing Strategy
+window_size: 50  # samples
+stride: 1
+overlap: 49  # samples
+
+## Feature Extraction
+features:
+  - airspeed_indicated
+  - static_pressure
+  - total_pressure
+  - outside_air_temperature
+  - altitude_pressure
+  - rate_of_climb
+  - differential_pressure
+  - pitot_heater_current
+  - pitot_temperature
+  - vibration_sensor
+
+## Normalization
+method: StandardScaler
+scaler_artifact: artifacts/scaler.pkl
+fit_on_training: true
+
+# Mean and std from training data (for reference)
+statistics:
+  airspeed_indicated:
+    mean: 175.3
+    std: 45.2
+  static_pressure:
+    mean: 850.1
+    std: 150.8
+  # ... (other features)
+
+## Data Validation
+validation:
+  check_range: true
+  check_nan: true
+  nan_handling: interpolate
+  max_interpolation_gap: 10  # samples
+  clip_outliers: true
+  n_sigma: 5

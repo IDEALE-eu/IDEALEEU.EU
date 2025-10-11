@@ -1,0 +1,88 @@
+{
+  "model_id": "ice_detector_pitot",
+  "version": "1.0.0",
+  "framework": "tensorflow",
+  "opset_version": 17,
+  "description": "Autoencoder-based anomaly detector for ice formation on pitot tube sensors",
+  "ata_chapter": "ATA-34-12",
+  
+  "inputs": [
+    {
+      "name": "sensor_readings",
+      "dtype": "float32",
+      "shape": [null, 50],
+      "description": "Time-windowed sensor readings (batch_size x 50 features)",
+      "features": [
+        "airspeed_indicated",
+        "static_pressure", 
+        "total_pressure",
+        "outside_air_temperature",
+        "altitude_pressure",
+        "rate_of_climb",
+        "differential_pressure",
+        "pitot_heater_current",
+        "pitot_temperature",
+        "vibration_sensor"
+      ],
+      "normalization": {
+        "method": "standard_scaler",
+        "scaler_artifact": "artifacts/scaler.pkl"
+      }
+    }
+  ],
+  
+  "outputs": [
+    {
+      "name": "reconstruction",
+      "dtype": "float32",
+      "shape": [null, 50],
+      "description": "Reconstructed sensor readings (same shape as input)"
+    },
+    {
+      "name": "anomaly_score",
+      "dtype": "float32", 
+      "shape": [null, 1],
+      "description": "Reconstruction error (MSE) - higher values indicate potential ice formation",
+      "interpretation": {
+        "normal_range": [0.0, 0.05],
+        "warning_threshold": 0.05,
+        "critical_threshold": 0.15,
+        "unit": "mse"
+      }
+    }
+  ],
+  
+  "dynamic_axes": {
+    "sensor_readings": {
+      "0": "batch_size"
+    },
+    "reconstruction": {
+      "0": "batch_size"
+    },
+    "anomaly_score": {
+      "0": "batch_size"
+    }
+  },
+  
+  "metadata": {
+    "author": "AI/ML Team - Sensor Health",
+    "created_date": "2024-12-01",
+    "training_data_version": "1.2",
+    "training_samples": 125000,
+    "validation_accuracy": 0.94,
+    "inference_hardware": ["CPU", "GPU", "Edge_TPU"],
+    "license": "Proprietary - IDEALE-EU"
+  },
+  
+  "dependencies": {
+    "onnxruntime": ">=1.14.0",
+    "numpy": ">=1.21.0"
+  },
+  
+  "notes": [
+    "Model expects normalized inputs using StandardScaler fitted on training data",
+    "Anomaly score > 0.05 indicates potential ice formation",
+    "False positive rate: ~5% (validated on test set)",
+    "Model does NOT localize ice, only detects presence"
+  ]
+}

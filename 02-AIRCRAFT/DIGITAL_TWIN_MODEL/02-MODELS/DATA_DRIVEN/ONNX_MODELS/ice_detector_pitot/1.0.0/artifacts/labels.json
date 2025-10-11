@@ -1,0 +1,19 @@
+{
+  "anomaly_classes": {
+    "0": "NORMAL",
+    "1": "ICE_FORMATION",
+    "2": "SENSOR_FAULT"
+  },
+  "features": [
+    "airspeed_indicated",
+    "static_pressure",
+    "total_pressure",
+    "outside_air_temperature",
+    "altitude_pressure",
+    "rate_of_climb",
+    "differential_pressure",
+    "pitot_heater_current",
+    "pitot_temperature",
+    "vibration_sensor"
+  ]
+}

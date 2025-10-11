@@ -1,0 +1,16 @@
+# OpenVINO Configuration
+
+## Model Optimizer Parameters
+input_shape: [1, 50]
+data_type: FP32
+mean_values: []
+scale_values: []
+
+## Inference Engine
+device: CPU
+num_streams: 1
+num_threads: 2
+
+## Performance Hints
+performance_hint: LATENCY  # or THROUGHPUT
+execution_mode: SYNC
