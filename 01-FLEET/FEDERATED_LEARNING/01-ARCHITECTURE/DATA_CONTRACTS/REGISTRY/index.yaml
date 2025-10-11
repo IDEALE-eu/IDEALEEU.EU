@@ -1,0 +1,128 @@
+# Data Contract Registry
+# 
+# Central registry of all data contracts for federated learning.
+# Each contract defines schema, quality constraints, privacy policies, and SLAs
+# for data streams used in FL training.
+
+registry_metadata:
+  version: "1.0.0"
+  last_updated: "2025-10-11"
+  owner: "AI/ML Team - Data Engineering"
+  status: "active"
+
+# Registered Contracts
+contracts:
+  - contract_id: "aircraft_telemetry_v1"
+    version: "1.0.0"
+    status: "active"
+    description: "Aircraft telemetry data contract for federated learning"
+    owner: "AI/ML Team - Data Engineering"
+    created_date: "2025-10-11"
+    updated_date: "2025-10-11"
+    path: "../CONTRACTS/aircraft_telemetry_v1/1.0.0/"
+    
+    # Contract Components
+    components:
+      data_contract: "data_contract.yaml"
+      schema: "schema.avsc"
+      constraints: "constraints.yaml"
+      pii_map: "pii_map.yaml"
+      dp_policy: "dp_policy.yaml"
+      slas: "slas.yaml"
+      examples: "examples/telemetry_sample.jsonl"
+      tests: "tests/contract_test.py"
+    
+    # Data Sources
+    data_sources:
+      - "01-FLEET/OPERATIONAL_DATA_HUB/02-DATA_INGESTION/INGESTION_PIPELINES/REAL_TIME_STREAM/"
+      - "Aircraft avionics data buses (ARINC 429, MIL-STD-1553)"
+    
+    # Consumers
+    consumers:
+      - "03-CLIENTS/ - Edge FL clients on aircraft"
+      - "04-ALGORITHMS/ - FL training algorithms"
+      - "06-MODELS/ - Model training pipelines"
+    
+    # Validation Status
+    validation:
+      schema_validated: true
+      constraints_tested: true
+      privacy_reviewed: true
+      compliance_approved: true
+    
+    # Change Control
+    approval:
+      ccb_approved: true
+      ccb_approval_date: "2025-10-11"
+      ecr_number: "ECR-2025-001"
+
+# Contract Lifecycle States
+lifecycle_states:
+  draft: "Contract in development, not yet approved for use"
+  active: "Contract approved and in production use"
+  deprecated: "Contract superseded by newer version, still supported"
+  archived: "Contract no longer supported or used"
+
+# Governance
+governance:
+  approval_process:
+    - step: "Draft contract using TEMPLATES/"
+    - step: "Implement validation tests"
+    - step: "Submit to CCB for review"
+    - step: "Security and privacy review"
+    - step: "CCB approval and registration"
+  
+  versioning_policy:
+    major: "Breaking changes (schema incompatibility, removed fields)"
+    minor: "Backward-compatible changes (new optional fields)"
+    patch: "Non-functional changes (documentation, examples)"
+  
+  review_cycle: "Quarterly or upon significant system changes"
+  
+  deprecation_policy:
+    notice_period: "6 months minimum before deprecation"
+    migration_support: "12 months after deprecation"
+    archive_after: "24 months post-deprecation"
+
+# Contract Quality Gates
+quality_gates:
+  - name: "Schema Validation"
+    description: "YAML/Avro/Protobuf syntax and semantic validation"
+    automated: true
+    
+  - name: "Backward Compatibility"
+    description: "Ensure new versions maintain compatibility"
+    automated: true
+    
+  - name: "Privacy Review"
+    description: "PII mapping and DP policy validation"
+    automated: false
+    reviewer: "Privacy Officer"
+    
+  - name: "Security Review"
+    description: "Data classification and access control validation"
+    automated: false
+    reviewer: "Security Team"
+    
+  - name: "CCB Approval"
+    description: "Configuration Control Board final approval"
+    automated: false
+    reviewer: "CCB Chair"
+
+# Related Documents
+related_documents:
+  - path: "../00-README.md"
+    description: "Data contracts overview and principles"
+  - path: "../TEMPLATES/"
+    description: "Contract templates for creating new contracts"
+  - path: "../../02-ORCHESTRATION/JOB_SPECS/"
+    description: "FL job specifications referencing data contracts"
+  - path: "../../../05-PRIVACY_SECURITY/"
+    description: "Privacy and security policies for FL"
+
+# Change History
+change_history:
+  - version: "1.0.0"
+    date: "2025-10-11"
+    author: "AI/ML Team"
+    changes: "Initial registry with aircraft_telemetry_v1 contract"

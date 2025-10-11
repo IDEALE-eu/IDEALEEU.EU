@@ -1,0 +1,276 @@
+# PII Mapping and Anonymization Configuration
+#
+# Defines personally identifiable information (PII) in telemetry data
+# and specifies anonymization/pseudonymization techniques for GDPR compliance.
+
+pii_metadata:
+  version: "1.0.0"
+  owner: "Data Protection Officer"
+  gdpr_compliance: true
+  last_reviewed: "2025-10-11"
+
+# PII Classification
+# Identifies fields containing PII and their sensitivity level
+pii_fields:
+  - field_name: "tail_number"
+    pii_type: "indirect_identifier"
+    sensitivity: "high"
+    description: "Aircraft registration number (can identify operator/owner)"
+    present_in_contract: false  # Should NOT be in FL data
+    action: "MUST_PSEUDONYMIZE"
+  
+  - field_name: "platform_id"
+    pii_type: "pseudonym"
+    sensitivity: "medium"
+    description: "Pseudonymized aircraft identifier (SHA-256 hash)"
+    present_in_contract: true
+    action: "ALREADY_PSEUDONYMIZED"
+  
+  - field_name: "pilot_id"
+    pii_type: "direct_identifier"
+    sensitivity: "critical"
+    description: "Pilot identifier"
+    present_in_contract: false  # Should NOT be in FL data
+    action: "MUST_EXCLUDE"
+  
+  - field_name: "crew_id"
+    pii_type: "direct_identifier"
+    sensitivity: "critical"
+    description: "Crew member identifier"
+    present_in_contract: false  # Should NOT be in FL data
+    action: "MUST_EXCLUDE"
+  
+  - field_name: "flight_number"
+    pii_type: "indirect_identifier"
+    sensitivity: "medium"
+    description: "Commercial flight number (can identify route/operator)"
+    present_in_contract: false
+    action: "MUST_PSEUDONYMIZE"
+  
+  - field_name: "flight_id"
+    pii_type: "pseudonym"
+    sensitivity: "low"
+    description: "Pseudonymized flight identifier"
+    present_in_contract: true
+    action: "ALREADY_PSEUDONYMIZED"
+  
+  - field_name: "gps_coordinates"
+    pii_type: "location_data"
+    sensitivity: "high"
+    description: "Precise GPS location (can identify origin/destination)"
+    present_in_contract: false  # Use coarse-grained location if needed
+    action: "MUST_EXCLUDE_OR_COARSEN"
+  
+  - field_name: "maintenance_technician_id"
+    pii_type: "direct_identifier"
+    sensitivity: "critical"
+    description: "Maintenance technician identifier"
+    present_in_contract: false
+    action: "MUST_EXCLUDE"
+
+# Non-PII Fields
+# Fields confirmed to NOT contain PII
+non_pii_fields:
+  - "timestamp"
+  - "signal_name"
+  - "value"
+  - "unit"
+  - "quality"
+  - "ebom_ref"
+  - "flight_phase"
+  - "engine_parameters"
+  - "environmental_conditions"
+  - "system_health_metrics"
+
+# Pseudonymization Configuration
+pseudonymization:
+  algorithm: "SHA-256"
+  salt_management:
+    rotation_frequency: "annual"
+    storage: "Hardware Security Module (HSM)"
+    access_control: "DPO and authorized personnel only"
+  
+  # Mapping for specific fields
+  mappings:
+    platform_id:
+      input: "tail_number"
+      function: "sha256_with_salt"
+      salt_id: "aircraft_salt_2025"
+      irreversible: false  # Mapping table exists for erasure requests
+      mapping_table: "encrypted_mapping_db"
+    
+    flight_id:
+      input: "flight_number + date"
+      function: "sha256_with_salt"
+      salt_id: "flight_salt_2025"
+      irreversible: false
+      mapping_table: "encrypted_mapping_db"
+
+# Anonymization Techniques
+anonymization:
+  - technique: "Generalization"
+    description: "Replace precise values with ranges"
+    examples:
+      - field: "gps_coordinates"
+        original: "lat: 48.8566, lon: 2.3522"
+        generalized: "region: Western_Europe"
+      - field: "timestamp"
+        original: "2025-10-11T14:32:15Z"
+        generalized: "hour: 2025-10-11T14:00:00Z"
+  
+  - technique: "Suppression"
+    description: "Remove fields entirely"
+    fields:
+      - "pilot_id"
+      - "crew_id"
+      - "passenger_manifest"
+      - "maintenance_technician_id"
+  
+  - technique: "Noise Addition"
+    description: "Add statistical noise (via Differential Privacy)"
+    method: "See dp_policy.yaml for DP configuration"
+
+# Data Minimization
+data_minimization:
+  principle: "Collect only data necessary for FL training"
+  
+  excluded_categories:
+    - "Passenger data (names, seat assignments, meal preferences)"
+    - "Crew personal information (names, contact details, schedules)"
+    - "Precise location data (GPS coordinates, waypoints)"
+    - "Commercial information (ticket prices, cargo manifests)"
+    - "Communications (voice recordings, text messages)"
+  
+  included_categories:
+    - "Aircraft telemetry (sensor readings, system status)"
+    - "Flight parameters (altitude, speed, attitude)"
+    - "Environmental conditions (temperature, pressure)"
+    - "System health metrics (CPU, memory, network)"
+
+# Retention Policy
+retention:
+  raw_telemetry:
+    duration: "90 days"
+    justification: "Sufficient for FL training and short-term analysis"
+    disposal_method: "Secure deletion (DoD 5220.22-M 3-pass wipe)"
+  
+  aggregated_metrics:
+    duration: "2 years"
+    justification: "Long-term trend analysis, model retraining"
+    disposal_method: "Secure deletion"
+  
+  model_gradients:
+    duration: "30 days"
+    justification: "FL round completion and validation"
+    disposal_method: "Secure deletion"
+  
+  pseudonym_mapping:
+    duration: "5 years"
+    justification: "GDPR erasure request handling, audit trail"
+    disposal_method: "Secure deletion after retention period"
+
+# GDPR Rights Implementation
+gdpr_rights:
+  right_to_access:
+    process: "Individual requests mapping via DPO"
+    response_time: "30 days"
+    
+  right_to_erasure:
+    process: |
+      1. Receive erasure request
+      2. Identify pseudonym in mapping table
+      3. Delete mapping entry (data becomes anonymized)
+      4. Retain anonymized telemetry per retention policy
+      5. Confirm erasure to data subject
+    response_time: "30 days"
+    
+  right_to_data_portability:
+    process: "Export individual's telemetry data in JSON format"
+    response_time: "30 days"
+    
+  right_to_object:
+    process: "Exclude platform_id from future FL training rounds"
+    response_time: "immediate (next training round)"
+
+# Privacy Impact Assessment
+privacy_impact_assessment:
+  reference: "DPIA-2025-FL-001"
+  date: "2025-10-01"
+  conclusion: "Low residual risk after pseudonymization and DP"
+  
+  risks_identified:
+    - risk: "Re-identification via timing analysis"
+      mitigation: "Timestamp generalization to hourly buckets"
+      residual_risk: "low"
+    
+    - risk: "Model inversion attacks"
+      mitigation: "Differential privacy (ε=1.0, δ=1e-5)"
+      residual_risk: "low"
+    
+    - risk: "Inference attacks on small subgroups"
+      mitigation: "Minimum group size of 10 aircraft"
+      residual_risk: "low"
+
+# Compliance Monitoring
+compliance_monitoring:
+  automated_checks:
+    - "PII detection in ingested data"
+    - "Pseudonymization verification"
+    - "Retention policy enforcement"
+  
+  frequency: "continuous"
+  
+  alerts:
+    - condition: "PII detected in cleartext"
+      severity: "critical"
+      action: "Block ingestion, alert DPO"
+    
+    - condition: "Pseudonymization failure"
+      severity: "critical"
+      action: "Block ingestion, alert DPO"
+    
+    - condition: "Retention policy violation"
+      severity: "high"
+      action: "Auto-delete, alert DPO"
+
+# Legal Basis
+legal_basis:
+  gdpr_article: "Art. 6(1)(f) - Legitimate Interest"
+  justification: |
+    Processing is necessary for legitimate interests of:
+    - Aviation safety (predictive maintenance, anomaly detection)
+    - Operational efficiency (fuel optimization, route planning)
+    - Regulatory compliance (airworthiness, incident prevention)
+    
+    Legitimate interests outweigh data subjects' rights and freedoms,
+    as data is pseudonymized and DP is applied, minimizing privacy impact.
+  
+  balancing_test:
+    reference: "Balancing-Test-2025-FL-001"
+    date: "2025-10-01"
+    conclusion: "Legitimate interest is valid legal basis"
+
+# Contact Information
+data_protection:
+  dpo_name: "Data Protection Officer"
+  dpo_email: "dpo@ideale.eu"
+  dpo_phone: "+XX XXX XXX XXXX"
+  privacy_policy: "https://ideale.eu/privacy"
+
+# Related Documents
+related_documents:
+  - path: "../data_contract.yaml"
+    description: "Parent data contract"
+  - path: "dp_policy.yaml"
+    description: "Differential privacy configuration"
+  - path: "../../../11-COMPLIANCE/PRIVACY.md"
+    description: "GDPR compliance policy"
+  - path: "../../../05-PRIVACY_SECURITY/PSEUDONYMISATION.md"
+    description: "Pseudonymization implementation"
+
+# Change History
+change_history:
+  - version: "1.0.0"
+    date: "2025-10-11"
+    author: "Data Protection Officer"
+    changes: "Initial PII mapping and anonymization configuration"

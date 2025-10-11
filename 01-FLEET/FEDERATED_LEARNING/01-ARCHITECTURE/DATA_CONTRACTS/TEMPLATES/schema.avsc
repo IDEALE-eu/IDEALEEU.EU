@@ -1,0 +1,99 @@
+{
+  "type": "record",
+  "name": "TelemetryMessage",
+  "namespace": "ideale.fleet.federated_learning",
+  "doc": "Telemetry message schema for federated learning data contracts",
+  "fields": [
+    {
+      "name": "timestamp",
+      "type": "long",
+      "doc": "UTC timestamp (milliseconds since epoch)",
+      "logicalType": "timestamp-millis"
+    },
+    {
+      "name": "platform_id",
+      "type": "string",
+      "doc": "Pseudonymized aircraft/spacecraft identifier (SHA-256 hash)"
+    },
+    {
+      "name": "signal_name",
+      "type": "string",
+      "doc": "Signal identifier matching EBOM reference (e.g., 'engine_1_egt', 'h2_tank_pressure_fwd')"
+    },
+    {
+      "name": "value",
+      "type": [
+        "null",
+        "double",
+        "long",
+        "string",
+        "boolean"
+      ],
+      "doc": "Measured value (type depends on signal)"
+    },
+    {
+      "name": "unit",
+      "type": "string",
+      "doc": "Unit of measurement (SI or aviation standard, e.g., 'celsius', 'bar', 'knots')"
+    },
+    {
+      "name": "quality",
+      "type": "int",
+      "doc": "Quality indicator: 0=good, 1=suspect, 2=bad",
+      "default": 0
+    },
+    {
+      "name": "source",
+      "type": "string",
+      "doc": "Data source identifier (sensor ID, system name)",
+      "default": "unknown"
+    },
+    {
+      "name": "ebom_ref",
+      "type": ["null", "string"],
+      "doc": "Reference to Engineering Bill of Materials (ATA chapter)",
+      "default": null
+    },
+    {
+      "name": "metadata",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "Metadata",
+          "fields": [
+            {
+              "name": "flight_phase",
+              "type": ["null", "string"],
+              "doc": "Flight phase: ground, taxi, takeoff, climb, cruise, descent, approach, landing",
+              "default": null
+            },
+            {
+              "name": "mission_elapsed_time",
+              "type": ["null", "long"],
+              "doc": "Time since flight/mission start (seconds)",
+              "default": null
+            },
+            {
+              "name": "sample_rate",
+              "type": ["null", "double"],
+              "doc": "Actual sampling frequency (Hz)",
+              "default": null
+            },
+            {
+              "name": "validation_flags",
+              "type": {
+                "type": "array",
+                "items": "string"
+              },
+              "doc": "List of validation flags (e.g., 'out_of_range', 'rate_of_change_exceeded')",
+              "default": []
+            }
+          ]
+        }
+      ],
+      "doc": "Additional metadata about the measurement",
+      "default": null
+    }
+  ]
+}

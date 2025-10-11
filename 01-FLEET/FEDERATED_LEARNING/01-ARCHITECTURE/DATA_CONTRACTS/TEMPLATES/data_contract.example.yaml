@@ -1,0 +1,181 @@
+# Data Contract Template for Federated Learning
+# 
+# This template defines the structure for data contracts used in FL training.
+# Copy and customize this template for each new data stream.
+
+# Contract Metadata
+contract_metadata:
+  contract_id: "example_contract_v1"
+  version: "1.0.0"
+  status: "draft"  # draft | active | deprecated | archived
+  description: |
+    Brief description of the data stream, including:
+    - Purpose and use cases in FL
+    - Data sources
+    - Known limitations
+  owner: "Team Name"
+  contact: "team@ideale.eu"
+  created_date: "YYYY-MM-DD"
+  updated_date: "YYYY-MM-DD"
+
+# Schema Reference
+schema:
+  format: "avro"  # avro | protobuf | json
+  file: "schema.avsc"
+  version: "1.0.0"
+  
+  # Alternative inline schema (for simple cases)
+  inline_fields:
+    - name: "timestamp"
+      type: "long"
+      description: "UTC timestamp (milliseconds since epoch)"
+      required: true
+    
+    - name: "platform_id"
+      type: "string"
+      description: "Pseudonymized aircraft/spacecraft ID"
+      required: true
+    
+    - name: "signal_name"
+      type: "string"
+      description: "Signal identifier (matches EBOM)"
+      required: true
+    
+    - name: "value"
+      type: ["double", "long", "string", "boolean"]
+      description: "Measured value"
+      required: true
+    
+    - name: "quality"
+      type: "int"
+      description: "Quality indicator (0=good, 1=suspect, 2=bad)"
+      required: true
+
+# Data Quality Constraints
+constraints:
+  file: "constraints.yaml"
+  summary:
+    - "Range validation for all numeric signals"
+    - "Rate-of-change limits"
+    - "Completeness thresholds (max 5% missing per signal)"
+    - "Temporal consistency checks"
+
+# Privacy Policy
+privacy:
+  pii_map_file: "pii_map.yaml"
+  dp_policy_file: "dp_policy.yaml"
+  
+  pseudonymisation:
+    platform_id: "sha256(tail_number + salt)"
+    flight_id: "sha256(flight_number + date + salt)"
+  
+  data_minimization:
+    only_required_signals: true
+    no_crew_pii: true
+    no_passenger_data: true
+  
+  retention:
+    raw_data: "90 days"
+    aggregated_metrics: "2 years"
+    model_gradients: "30 days"
+
+# Service Level Agreements
+slas:
+  file: "slas.yaml"
+  
+  availability:
+    target: "99.5%"
+    measurement_window: "monthly"
+  
+  latency:
+    max_ingestion_latency: "10 seconds"
+    max_validation_latency: "5 seconds"
+  
+  data_quality:
+    completeness: "> 95%"
+    accuracy: "Sensor calibration within 6 months"
+    timeliness: "Timestamp accuracy ± 1 second"
+
+# Validation and Testing
+validation:
+  test_file: "tests/contract_test.py"
+  
+  test_cases:
+    - "Schema compliance validation"
+    - "Constraint validation (range, rate-of-change)"
+    - "Privacy policy enforcement (PII detection)"
+    - "Sample data validation"
+  
+  automated_checks:
+    pre_deployment: true
+    continuous_validation: true
+    alert_on_failure: true
+
+# Examples and Documentation
+examples:
+  sample_data: "examples/telemetry_sample.jsonl"
+  sample_format: "json_lines"
+  sample_size: "1000 records"
+
+# Integration Points
+integration:
+  upstream_sources:
+    - "01-FLEET/OPERATIONAL_DATA_HUB/02-DATA_INGESTION/"
+    - "Aircraft avionics data buses"
+  
+  downstream_consumers:
+    - "03-CLIENTS/ - FL edge clients"
+    - "04-ALGORITHMS/ - FL training algorithms"
+    - "06-MODELS/ - Model training"
+  
+  compatibility:
+    backward_compatible: true
+    forward_compatible: false
+    deprecation_notice_days: 180
+
+# Compliance
+compliance:
+  gdpr:
+    compliant: true
+    legal_basis: "Legitimate interest (Art. 6(1)(f))"
+    data_protection_impact_assessment: "DPIA-2025-001"
+  
+  export_control:
+    classification: "EAR99"  # ITAR | EAR99 | none
+    approved_jurisdictions: ["EU", "US", "UK"]
+  
+  safety_certification:
+    level: "DO-178C Level C"
+    scope: "Advisory system only (no flight-critical actuation)"
+
+# Change Control
+change_control:
+  ecr_number: "ECR-YYYY-NNN"
+  ccb_approval: false
+  ccb_approval_date: null
+  approvers:
+    - role: "Data Engineering Lead"
+      name: ""
+      approved: false
+    - role: "Privacy Officer"
+      name: ""
+      approved: false
+    - role: "Security Team"
+      name: ""
+      approved: false
+    - role: "CCB Chair"
+      name: ""
+      approved: false
+
+# Related Contracts
+related_contracts:
+  - contract_id: "labels_events_v1"
+    relationship: "complementary"
+    description: "Event labels for supervised learning"
+
+# Change History
+change_history:
+  - version: "1.0.0"
+    date: "YYYY-MM-DD"
+    author: "Team Name"
+    changes: "Initial contract definition"

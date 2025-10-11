@@ -1,0 +1,232 @@
+// Protocol Buffers Schema for Federated Learning Telemetry
+// 
+// Alternative to Avro for data serialization in FL data contracts.
+// Used for efficient binary serialization of telemetry messages.
+
+syntax = "proto3";
+
+package ideale.fleet.federated_learning;
+
+option java_package = "eu.ideale.fleet.federated_learning";
+option java_outer_classname = "TelemetryProto";
+option go_package = "github.com/ideale-eu/fleet/federated_learning";
+
+// Main telemetry message
+message TelemetryMessage {
+  // Required fields
+  int64 timestamp = 1;                // UTC timestamp (milliseconds since epoch)
+  string platform_id = 2;             // Pseudonymized aircraft/spacecraft ID
+  string signal_name = 3;             // Signal identifier (EBOM reference)
+  
+  // Value can be one of multiple types
+  oneof value {
+    double double_value = 4;
+    int64 int_value = 5;
+    string string_value = 6;
+    bool bool_value = 7;
+  }
+  
+  string unit = 8;                    // Unit of measurement
+  int32 quality = 9;                  // Quality indicator (0=good, 1=suspect, 2=bad)
+  string source = 10;                 // Data source identifier
+  string ebom_ref = 11;               // Engineering BOM reference
+  
+  // Optional metadata
+  Metadata metadata = 12;
+}
+
+// Metadata about the measurement
+message Metadata {
+  string flight_phase = 1;            // ground, taxi, takeoff, climb, cruise, descent, approach, landing
+  int64 mission_elapsed_time = 2;     // Time since flight start (seconds)
+  double sample_rate = 3;             // Actual sampling frequency (Hz)
+  repeated string validation_flags = 4; // Validation warnings/errors
+  
+  // Additional context
+  EnvironmentalContext environmental = 5;
+  SystemContext system = 6;
+}
+
+// Environmental conditions
+message EnvironmentalContext {
+  double outside_air_temperature = 1;  // Celsius
+  double static_pressure = 2;          // hPa
+  double altitude_pressure = 3;        // feet
+  string weather_condition = 4;        // VFR, IMC, turbulence
+}
+
+// System health context
+message SystemContext {
+  double cpu_usage = 1;                // Percent
+  double memory_usage = 2;             // Percent
+  double network_latency = 3;          // Milliseconds
+  string system_health = 4;            // healthy, degraded, critical
+}
+
+// Batch message for efficient transmission
+message TelemetryBatch {
+  repeated TelemetryMessage messages = 1;
+  int64 batch_timestamp = 2;           // Batch creation time
+  string batch_id = 3;                 // Unique batch identifier
+  int32 sequence_number = 4;           // For ordering
+  Compression compression = 5;         // Compression method used
+}
+
+// Compression method
+enum Compression {
+  NONE = 0;
+  GZIP = 1;
+  SNAPPY = 2;
+  LZ4 = 3;
+  ZSTD = 4;
+}
+
+// Validation result message
+message ValidationResult {
+  string message_id = 1;               // Reference to original message
+  bool valid = 2;                      // Overall validation result
+  repeated ConstraintViolation violations = 3;
+  int64 validation_timestamp = 4;
+}
+
+// Constraint violation details
+message ConstraintViolation {
+  string constraint_type = 1;          // range, rate_of_change, consistency, etc.
+  string constraint_name = 2;          // Specific constraint identifier
+  string description = 3;              // Human-readable description
+  Severity severity = 4;               // Severity level
+  string action_taken = 5;             // REJECT, ALERT, WARNING
+}
+
+// Severity levels
+enum Severity {
+  INFO = 0;
+  WARNING = 1;
+  ERROR = 2;
+  CRITICAL = 3;
+}
+
+// Aggregated telemetry for privacy-preserving FL
+message AggregatedTelemetry {
+  string signal_name = 1;
+  int64 window_start = 2;              // Aggregation window start (ms)
+  int64 window_end = 3;                // Aggregation window end (ms)
+  int32 sample_count = 4;              // Number of samples aggregated
+  
+  Statistics stats = 5;                // Statistical summary
+  bool dp_applied = 6;                 // Differential privacy applied
+  double epsilon_consumed = 7;         // Privacy budget consumed
+}
+
+// Statistical summary
+message Statistics {
+  double mean = 1;
+  double std_dev = 2;
+  double min = 3;
+  double max = 4;
+  double median = 5;
+  double p25 = 6;                      // 25th percentile
+  double p75 = 7;                      // 75th percentile
+}
+
+// Model gradient message (for FL updates)
+message ModelGradient {
+  string client_id = 1;                // Pseudonymized client ID
+  string model_version = 2;            // Global model version
+  int32 round_number = 3;              // FL round number
+  int64 timestamp = 4;                 // Gradient computation time
+  
+  repeated Tensor gradients = 5;       // Model gradients
+  int32 num_samples = 6;               // Training samples used
+  
+  PrivacyGuarantee privacy = 7;        // DP parameters applied
+  Signature signature = 8;             // Client signature for authenticity
+}
+
+// Tensor representation
+message Tensor {
+  string name = 1;                     // Layer/parameter name
+  repeated int32 shape = 2;            // Tensor dimensions
+  repeated float values = 3;           // Flattened tensor values
+  DataType dtype = 4;                  // Data type
+}
+
+// Tensor data types
+enum DataType {
+  FLOAT32 = 0;
+  FLOAT64 = 1;
+  INT32 = 2;
+  INT64 = 3;
+}
+
+// Privacy guarantee metadata
+message PrivacyGuarantee {
+  double epsilon = 1;                  // Privacy budget consumed
+  double delta = 2;                    // Failure probability
+  string mechanism = 3;                // DP-SGD, DP-FedAvg, etc.
+  double noise_multiplier = 4;         // Noise scale applied
+  double max_grad_norm = 5;            // Gradient clipping bound
+}
+
+// Digital signature for authenticity
+message Signature {
+  string algorithm = 1;                // RSA, ECDSA, etc.
+  bytes signature_bytes = 2;           // Signature value
+  string public_key_id = 3;            // Key identifier
+  int64 signed_timestamp = 4;          // Signature creation time
+}
+
+// Health check message
+message HealthCheck {
+  string client_id = 1;
+  int64 timestamp = 2;
+  ClientStatus status = 3;
+  SystemMetrics metrics = 4;
+}
+
+// Client status
+enum ClientStatus {
+  HEALTHY = 0;
+  DEGRADED = 1;
+  UNAVAILABLE = 2;
+  MAINTENANCE = 3;
+}
+
+// System metrics for monitoring
+message SystemMetrics {
+  double cpu_usage = 1;                // Percent
+  double memory_usage = 2;             // Percent
+  double disk_usage = 3;               // Percent
+  double network_bandwidth = 4;        // Mbps
+  int32 active_connections = 5;        // Count
+  int64 uptime = 6;                    // Seconds
+}
+
+// Error message
+message ErrorMessage {
+  string error_id = 1;                 // Unique error identifier
+  int64 timestamp = 2;
+  ErrorCode code = 3;
+  string message = 4;                  // Human-readable error
+  string stack_trace = 5;              // Stack trace (if available)
+  map<string, string> context = 6;    // Additional context
+}
+
+// Error codes
+enum ErrorCode {
+  UNKNOWN = 0;
+  VALIDATION_FAILED = 1;
+  AUTHENTICATION_FAILED = 2;
+  AUTHORIZATION_FAILED = 3;
+  RATE_LIMIT_EXCEEDED = 4;
+  INTERNAL_ERROR = 5;
+  SERVICE_UNAVAILABLE = 6;
+}
+
+// Configuration message for dynamic updates
+message Configuration {
+  string config_id = 1;
+  int64 version = 2;
+  map<string, string> parameters = 3;  // Key-value configuration
+  int64 effective_timestamp = 4;       // When config becomes active
+}
