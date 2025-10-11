@@ -1,0 +1,146 @@
+# Domain of Validity for Thermal Avionics Temperature Surrogate
+
+metadata:
+  surrogate_id: thermal_avionics_temp
+  version: 1.0.0
+  last_updated: 2024-11-20
+
+# Valid input ranges
+input_ranges:
+  T_ambient:
+    min: -20.0
+    max: 70.0
+    unit: degC
+    recommended_min: -15.0
+    recommended_max: 65.0
+    description: Ambient temperature in avionics bay
+  
+  P_load:
+    min: 5.0
+    max: 120.0
+    unit: W
+    recommended_min: 10.0
+    recommended_max: 110.0
+    description: Component power dissipation
+  
+  airflow:
+    min: 0.5
+    max: 8.0
+    unit: m3/min
+    recommended_min: 0.8
+    recommended_max: 7.5
+    description: Cooling air flow rate
+
+# Combined constraints
+combined_constraints:
+  - name: minimum_cooling_for_high_power
+    description: High power loads require adequate cooling
+    expression: "(P_load <= 100) OR (airflow >= 2.0)"
+    severity: warning
+  
+  - name: thermal_runaway_prevention
+    description: Prevent conditions that could lead to thermal runaway
+    expression: "(T_ambient < 60) OR (P_load < 80) OR (airflow > 3.0)"
+    severity: error
+
+# Out-of-domain behavior
+out_of_domain_policy:
+  action: flag_and_extrapolate
+  warning_margin: 0.05  # Warn if within 5% of boundary
+  
+  penalties:
+    confidence:
+      method: exponential_decay
+      parameters:
+        decay_rate: 2.0
+    
+    uncertainty:
+      method: linear_increase
+      parameters:
+        increase_rate: 1.5
+
+# Validation coverage
+validation_coverage:
+  description: Training data coverage of operational envelope
+  
+  coverage_map:
+    # Percentage of input space covered by training data
+    overall_coverage: 95.0
+    
+    by_region:
+      - region: Normal operation (20-50°C, 20-80W, 2-5 m3/min)
+        coverage: 98.0
+        samples: 1200
+      
+      - region: High temperature (50-70°C)
+        coverage: 92.0
+        samples: 400
+      
+      - region: Low temperature (-20-0°C)
+        coverage: 88.0
+        samples: 300
+      
+      - region: High power (80-120W)
+        coverage: 90.0
+        samples: 350
+      
+      - region: Low airflow (0.5-1.5 m3/min)
+        coverage: 85.0
+        samples: 250
+
+# Known limitations and exclusions
+limitations:
+  - description: Transient thermal response not modeled
+    impact: Model predicts steady-state temperature only
+    mitigation: Use dynamic thermal model for transient analysis
+  
+  - description: Component thermal properties assumed constant
+    impact: Accuracy may degrade at temperature extremes
+    mitigation: Model retraining recommended if component specs change
+  
+  - description: Radiation heat transfer neglected
+    impact: Slight underestimation at very low airflow (<1 m3/min)
+    mitigation: Add 2-5°C margin in low-airflow regime
+
+# Physical validity checks
+validity_checks:
+  - name: positive_temperature_gradient
+    description: Component temperature should exceed ambient
+    check: "T_component >= T_ambient"
+    action: flag_error
+  
+  - name: reasonable_temperature_rise
+    description: Temperature rise should be physically reasonable
+    check: "(T_component - T_ambient) <= (P_load / 0.5)"
+    action: flag_warning
+  
+  - name: cooling_effectiveness
+    description: Higher airflow should reduce temperature
+    check: "derivative(T_component, airflow) < 0"
+    action: flag_warning
+
+# Monitoring and alerts
+monitoring:
+  ood_detection:
+    enabled: true
+    log_all_queries: true
+    alert_on_ood: true
+    
+  drift_detection:
+    enabled: true
+    check_frequency: daily
+    statistical_test: kolmogorov_smirnov
+    p_value_threshold: 0.05
+  
+  performance_degradation:
+    enabled: true
+    metrics:
+      - rmse
+      - mae
+    alert_threshold_multiplier: 1.5
+
+# Version and approval
+approval:
+  reviewed_by: Thermal Systems Team
+  approved_by: Dr. Maria Santos
+  approval_date: 2024-11-20
