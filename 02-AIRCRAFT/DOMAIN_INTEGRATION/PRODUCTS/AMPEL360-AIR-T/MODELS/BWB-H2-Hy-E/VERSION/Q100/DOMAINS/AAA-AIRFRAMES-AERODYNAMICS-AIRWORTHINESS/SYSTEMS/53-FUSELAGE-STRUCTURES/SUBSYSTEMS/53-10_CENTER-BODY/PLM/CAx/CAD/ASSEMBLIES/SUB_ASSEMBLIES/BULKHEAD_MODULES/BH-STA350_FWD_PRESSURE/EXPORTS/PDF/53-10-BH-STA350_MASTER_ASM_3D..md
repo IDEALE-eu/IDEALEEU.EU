@@ -17,3 +17,5 @@
 ! - Metadata and properties
 !
 ! To be replaced with actual 3D PDF export
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/fb87e258-a366-4d83-a204-8a34e05b3672" />
+
