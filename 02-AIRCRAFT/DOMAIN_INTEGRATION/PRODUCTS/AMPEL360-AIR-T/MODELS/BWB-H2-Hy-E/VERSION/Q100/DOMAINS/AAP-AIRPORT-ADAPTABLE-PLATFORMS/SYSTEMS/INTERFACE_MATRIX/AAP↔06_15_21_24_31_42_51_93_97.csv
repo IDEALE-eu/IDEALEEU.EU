@@ -1,0 +1,10 @@
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+AAP,06,Geometric,N/A,Coordinate reference,0,N/A,Airport stand positioning and aircraft mooring coordinates
+AAP,15,Signal,Analog/Digital,Wind sensor protocol,5,100 Hz,Wind monitoring for safe mooring operations
+AAP,21,Thermal/Fluid,LH2 transfer,Cryogenic umbilical spec,TBD,N/A,Ground-to-aircraft H2 refueling interface
+AAP,24,Electrical,AC/DC power,Ground power interface,50000,N/A,Ground power unit (GPU) connection
+AAP,31,Data,Ethernet,AGL protocol,10,1 Gbps,Airport Ground Link communications
+AAP,42,Logic/Signal,Discrete,Safety interlock protocol,2,1 Hz,Safe-to-operate inhibit signals
+AAP,51,Structural,Mechanical,Load transfer,0,N/A,Mooring hardpoint structural interface
+AAP,93,Data,Fiber/Ethernet,ARINC 664/AGL,15,100 Mbps,Airport databus communications
+AAP,97,Electrical,Wire harness,MIL-STD-1760,50,N/A,Umbilical harness distribution
