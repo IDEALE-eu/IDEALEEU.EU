@@ -1,0 +1,345 @@
+# PITCH RESPONSE TEST VECTOR
+# Test Case: PITCH-RESP-001
+# Validates: REQ-FCC-070 (Pitch response to step input)
+
+test_metadata:
+  test_id: PITCH-RESP-001
+  name: Pitch Axis Step Response - Normal Law
+  description: Validate pitch response to step load factor command
+  requirement: REQ-FCC-070
+  spec_reference: ../SPEC/control_modes.md
+  dal_level: DAL-A
+  test_type: functional
+  author: Flight Controls Test Team
+  date_created: 2025-01-15
+  status: approved
+
+# Test Configuration
+configuration:
+  control_law_mode: NORMAL_LAW
+  flight_condition:
+    altitude_ft: 10000
+    airspeed_kts: 250
+    mach: 0.38
+    weight_lb: 140000
+    cg_position: 25% MAC
+    configuration: CLEAN  # No flaps/slats
+    
+  environmental_conditions:
+    temperature_degC: 15
+    pressure_altitude_ft: 10000
+    turbulence: NONE
+    
+  initial_trim_state:
+    pitch_angle_deg: 2.5
+    bank_angle_deg: 0.0
+    heading_deg: 0.0
+    climb_rate_fpm: 0
+    load_factor_g: 1.0
+
+# Input Signals (from signals.yaml)
+inputs:
+  
+  # Step input at t=1.0 seconds
+  - signal: pilot_stick_pitch_cmd
+    signal_id: FCC_IN_001
+    profile:
+      - time_sec: 0.0
+        value_deg: 0.0        # Trimmed position
+      - time_sec: 1.0
+        value_deg: 0.0
+      - time_sec: 1.001
+        value_deg: 5.0        # Step input (pull back)
+      - time_sec: 10.0
+        value_deg: 5.0        # Hold input
+        
+  - signal: pilot_stick_roll_cmd
+    signal_id: FCC_IN_002
+    profile:
+      - time_sec: 0.0
+        value_deg: 0.0        # Wings level
+      - time_sec: 10.0
+        value_deg: 0.0
+        
+  - signal: pilot_rudder_pedal_cmd
+    signal_id: FCC_IN_003
+    profile:
+      - time_sec: 0.0
+        value_deg: 0.0        # Neutral
+      - time_sec: 10.0
+        value_deg: 0.0
+        
+  - signal: autopilot_engage_discrete
+    signal_id: FCC_IN_022
+    profile:
+      - time_sec: 0.0
+        value: DISENGAGED    # Manual control
+      - time_sec: 10.0
+        value: DISENGAGED
+        
+  # Air Data (constant for this test)
+  - signal: airspeed_indicated
+    signal_id: FCC_IN_010
+    profile:
+      - time_sec: 0.0
+        value_kts: 250
+      - time_sec: 10.0
+        value_kts: 250
+        
+  - signal: altitude_pressure
+    signal_id: FCC_IN_011
+    profile:
+      - time_sec: 0.0
+        value_ft: 10000
+      - time_sec: 10.0
+        value_ft: 10000
+        
+  - signal: angle_of_attack
+    signal_id: FCC_IN_012
+    profile:
+      - time_sec: 0.0
+        value_deg: 3.5       # Initial trim AoA
+      - time_sec: 10.0
+        value_deg: '[computed]'  # Dynamic response
+
+# Expected Outputs
+expected_outputs:
+  
+  - signal: elevator_cmd_left
+    signal_id: FCC_OUT_001
+    requirements:
+      # Initial condition (trimmed)
+      - time_sec: 0.5
+        value_deg: '[near 0.0]'
+        tolerance_deg: 1.0
+        
+      # Response starts
+      - time_sec: 1.05
+        condition: value > 0  # Elevator deflection starts
+        
+      # Peak response (within 1 second)
+      - time_range_sec: [1.2, 2.0]
+        condition: value reaches maximum
+        expected_max_deg: 8.0
+        tolerance_deg: 2.0
+        
+      # Settling to steady state
+      - time_sec: 3.0
+        condition: within 10% of steady_state
+        
+      # Steady state
+      - time_sec: 8.0
+        value_deg: '[computed steady state]'
+        tolerance_percent: 5
+        
+  - signal: control_law_mode
+    signal_id: FCC_OUT_011
+    requirements:
+      - time_sec: 0.0
+        value: NORMAL_LAW
+      - time_sec: 10.0
+        value: NORMAL_LAW     # Should remain in Normal Law
+
+# Performance Metrics (to validate REQ-FCC-070)
+performance_metrics:
+  
+  load_factor_response:
+    description: Validate load factor command tracking
+    
+    target_load_factor_g: 1.5  # Derived from 5 deg stick input
+    
+    rise_time:
+      requirement: Time to reach 90% of commanded load factor
+      limit_sec: 2.0
+      measured: '[to be filled by test execution]'
+      status: '[PASS/FAIL]'
+      
+    overshoot:
+      requirement: Overshoot relative to commanded load factor
+      limit_percent: 10
+      measured: '[to be filled]'
+      status: '[PASS/FAIL]'
+      
+    settling_time:
+      requirement: Time to settle within ±5% of final value
+      limit_sec: 3.0
+      measured: '[to be filled]'
+      status: '[PASS/FAIL]'
+      
+    steady_state_error:
+      requirement: Steady state error in load factor
+      limit_g: 0.1
+      measured: '[to be filled]'
+      status: '[PASS/FAIL]'
+      
+  pitch_rate_response:
+    description: Check for excessive pitch rate during maneuver
+    
+    peak_pitch_rate:
+      limit_deg_per_sec: 5.0
+      measured: '[to be filled]'
+      status: '[PASS/FAIL]'
+
+# Acceptance Criteria
+acceptance_criteria:
+  - criterion: Rise time < 2.0 seconds
+    requirement: REQ-FCC-070
+    
+  - criterion: Overshoot < 10%
+    requirement: REQ-FCC-070
+    
+  - criterion: Steady state error < 0.1 g
+    requirement: REQ-FCC-070
+    
+  - criterion: No mode transitions during test
+    requirement: REQ-FCC-060
+    
+  - criterion: All signals within valid ranges
+    requirement: signals.yaml validation rules
+
+# Test Execution Parameters
+execution:
+  simulation_time_sec: 10.0
+  time_step_sec: 0.001          # 1 ms for integration
+  control_loop_rate_hz: 50       # FCC update rate
+  data_logging_rate_hz: 100      # High rate for analysis
+  
+  test_environment: SIL          # Software-in-the-Loop
+  model_version: FCC_v2.1.0
+  test_harness: ../SIM/harness/fcc_sil_harness.py
+  
+# Data Logging
+data_logging:
+  signals_to_log:
+    # Inputs
+    - pilot_stick_pitch_cmd
+    - airspeed_indicated
+    - altitude_pressure
+    - angle_of_attack
+    
+    # Outputs
+    - elevator_cmd_left
+    - elevator_cmd_right
+    - control_law_mode
+    
+    # Internal states
+    - pitch_rate_estimate
+    - load_factor_estimate
+    - dynamic_pressure
+    
+  output_format: CSV
+  output_file: '../EVIDENCE/test_results/PITCH-RESP-001_{{timestamp}}.csv'
+
+# Post-Processing
+post_processing:
+  plots_to_generate:
+    - title: "Load Factor Response"
+      x_axis: time_sec
+      y_axis: 
+        - load_factor_estimate
+        - load_factor_commanded
+      filename: "load_factor_response.png"
+      
+    - title: "Elevator Command"
+      x_axis: time_sec
+      y_axis:
+        - elevator_cmd_left
+        - elevator_cmd_right
+      filename: "elevator_command.png"
+      
+    - title: "Pitch Rate"
+      x_axis: time_sec
+      y_axis: pitch_rate_estimate
+      filename: "pitch_rate.png"
+      
+  report_template: '../EVIDENCE/test_report_template.md'
+  report_output: '../EVIDENCE/test_reports/PITCH-RESP-001_report.md'
+
+# Corner Cases
+corner_cases:
+  description: Additional test variations to cover edge conditions
+  
+  variations:
+    - name: High altitude
+      changes:
+        altitude_ft: 35000
+        airspeed_kts: 280
+        mach: 0.78
+      expected_behavior: Gain scheduling adjusts for lower dynamic pressure
+      
+    - name: Low speed
+      changes:
+        altitude_ft: 5000
+        airspeed_kts: 150
+        mach: 0.23
+      expected_behavior: Lower control authority, slower response
+      
+    - name: Aft CG
+      changes:
+        cg_position: 35% MAC
+      expected_behavior: Increased pitch sensitivity, adjusted gains
+      
+    - name: With turbulence
+      changes:
+        turbulence: MODERATE
+      expected_behavior: Response should be robust to disturbances
+
+# Failure Cases
+failure_scenarios:
+  description: Test behavior under component failures
+  
+  scenarios:
+    - name: Single AoA sensor failure
+      failure_time_sec: 0.5
+      failed_signal: angle_of_attack (channel 1)
+      expected_behavior: 
+        - Cross-channel comparison detects failure
+        - Failed channel isolated
+        - Normal Law continues with remaining sensors
+        
+    - name: Elevator position feedback loss
+      failure_time_sec: 2.0
+      failed_signal: elevator_position_left
+      expected_behavior:
+        - FCC uses model-based position estimate
+        - Warning to flight crew
+        - Normal Law degraded if redundancy lost
+
+# Regression Testing
+regression:
+  baseline_test_date: 2025-01-10
+  baseline_results_file: '../EVIDENCE/baseline/PITCH-RESP-001_baseline.csv'
+  tolerance_for_regression:
+    load_factor_profile: 5%    # Allow 5% deviation from baseline
+    elevator_command: 10%       # Allow 10% deviation
+  action_on_regression: Flag for engineering review
+
+# Traceability
+traceability:
+  requirements:
+    - REQ-FCC-001  # Normal Law architecture
+    - REQ-FCC-010  # Pitch control in load factor mode
+    - REQ-FCC-011  # Pitch control law equation
+    - REQ-FCC-070  # Pitch response performance
+    - REQ-FCC-080  # Stability margins
+    
+  signals:
+    - FCC_IN_001   # pilot_stick_pitch_cmd
+    - FCC_IN_010   # airspeed_indicated
+    - FCC_IN_012   # angle_of_attack
+    - FCC_OUT_001  # elevator_cmd_left
+    - FCC_OUT_002  # elevator_cmd_right
+    - FCC_OUT_011  # control_law_mode
+    
+  related_test_cases:
+    - ROLL-RESP-001      # Roll response test
+    - YAW-COORD-001      # Yaw coordination test
+    - ALPHA-PROT-001     # Alpha protection corner case
+
+# Change History
+change_log:
+  - version: 1.0
+    date: 2025-01-15
+    author: Flight Controls Test Team
+    description: Initial test vector definition
+    ecr_reference: ECR-2025-001
