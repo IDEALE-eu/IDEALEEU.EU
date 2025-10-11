@@ -1,0 +1,35 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+EDI-31,EEE-24,Avionics Power,28VDC/115VAC,MIL-STD-704,Power distribution to displays and recorders
+EDI-31,EDI-34,Navigation Data,Digital,ARINC 429/AFDX,Navigation parameters for display
+EDI-31,LCC-39,Hydraulic Status,Digital,ARINC 429,Hydraulic system status for display
+EDI-31,EDI-42,IMA Data Bus,Digital,AFDX (ARINC 664p7),Core avionics data network
+EDI-31,CCC-44,Cabin Status,Digital,ARINC 429,Cabin pressure and environment data
+EDI-31,IIS-45,Maintenance Data,Digital,ARINC 429/Ethernet,Central maintenance computer interface
+EDI-31,PPP-71,Engine Data,Digital,ARINC 429,Engine parameters for display
+EDI-31,PPP-72,Engine Control,Digital,AFDX,Engine control interface
+EDI-31,AAA-92,EWIS Connectivity,Physical,Wiring/Connectors,Electrical wiring interconnections
+EDI-31,AAA-93,Fuel System Data,Digital,ARINC 429,Fuel quantity and distribution data
+EDI-31,EDI-94,EE Bay Cooling,Environmental,Airflow,Cooling requirements for avionics racks
+EDI-34,LCC-22,Auto-Flight Control,Digital,ARINC 429/AFDX,Flight director and autopilot interfaces
+EDI-34,EEE-24,Navigation Power,28VDC,MIL-STD-704,Power for navigation sensors
+EDI-34,EDI-31,Display Data,Digital,AFDX,Navigation data to flight deck displays
+EDI-34,EDI-42,IMA Integration,Digital,AFDX (ARINC 664p7),Navigation data processing
+EDI-34,IIS-45,Nav Health Monitoring,Digital,ARINC 429,Navigation system health data
+EDI-34,AAA-92,EWIS Connectivity,Physical,Wiring/Connectors,Navigation sensor wiring
+EDI-42,EEE-24,IMA Power,28VDC/115VAC,MIL-STD-704,Power for core processing modules
+EDI-42,EDI-31,Display Processing,Digital,AFDX,Display processing and management
+EDI-42,EDI-34,Nav Data Processing,Digital,AFDX,Navigation data integration
+EDI-42,IIS-45,Central Maint Computer,Digital,AFDX/Ethernet,Maintenance data collection
+EDI-42,AAA-92,EWIS Connectivity,Physical,Wiring/Connectors,IMA network wiring
+EDI-42,AAA-93,Fuel Computer Interface,Digital,AFDX,Fuel management computer interface
+EDI-77,EEE-24,Engine Indicating Power,28VDC,MIL-STD-704,Power for engine sensors and EIU
+EDI-77,EDI-31,EICAS Display,Digital,AFDX,Engine parameter display on EICAS/ECAM
+EDI-77,EDI-42,Engine Data Processing,Digital,AFDX,Engine data through IMA network
+EDI-77,PPP-73,FADEC Interface,Digital,ARINC 429,Full Authority Digital Engine Control data
+EDI-77,AAA-92,EWIS Connectivity,Physical,Wiring/Connectors,Engine sensor wiring
+EDI-94,EER-21,Bay Cooling Supply,Environmental,Airflow/Ducts,Air conditioning supply to E&E bays
+EDI-94,EEE-24,Bay Power Distribution,28VDC/115VAC,MIL-STD-704,Power distribution in racks
+EDI-94,EER-26,Fire Detection,Discrete/Analog,Fire Loop,Fire detection and suppression interface
+EDI-94,EDI-31,Bay Environment Monitoring,Digital,ARINC 429,Temperature and pressure monitoring
+EDI-94,EDI-42,Rack Installation,Physical/Digital,ARINC 600,IMA rack mounting and connectivity
+EDI-94,AAA-92,EWIS Connectivity,Physical,Wiring/Connectors,E&E bay wiring infrastructure
