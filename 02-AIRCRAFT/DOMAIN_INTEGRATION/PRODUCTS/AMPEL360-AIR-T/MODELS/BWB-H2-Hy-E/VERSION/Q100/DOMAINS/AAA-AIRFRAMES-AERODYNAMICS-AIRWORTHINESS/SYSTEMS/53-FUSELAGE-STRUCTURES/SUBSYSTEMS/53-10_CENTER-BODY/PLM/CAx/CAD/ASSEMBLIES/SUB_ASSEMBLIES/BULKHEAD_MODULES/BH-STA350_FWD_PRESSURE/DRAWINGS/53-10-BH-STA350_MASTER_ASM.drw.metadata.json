@@ -1,0 +1,43 @@
+{
+  "doc_id": "53-10-BH-STA350_MASTER_ASM.drw",
+  "title": "Center-Body Bulkhead STA350 — Master Assembly",
+  "product": "AMPEL360-AIR-T",
+  "model": "BWB-H2-Hy-E",
+  "domain": "AAA-53-10",
+  "baseline": "Q100",
+  "units": "mm",
+  "scale": "1:5",
+  "sheet_size": "A1",
+  "format": "PDF (vector, embedded fonts)",
+  "pmi": false,
+  "projection": "ISO E",
+  "general_tol": "ISO 2768-mH",
+  "weld_std": "ISO 2553",
+  "gdandt_std": "ISO 1101",
+  "material_spec": "AA 2024-T3 / CFRP per 51-10",
+  "finish_spec": "Alclad; sealant per 53-40",
+  "notes_ref": "../IFC/SEAL_SURFACES/",
+  "datums": ["FS","BL","WL"],
+  "datums_source": "../../../../../06-DIMENSIONS-STATIONS/",
+  "refs": {
+    "materials_allowables": "../../../../../../SYSTEMS/51-STRUCTURES-GENERAL/SUBSYSTEMS/51-10_MATERIALS_ALLOWABLES/",
+    "fasteners": "../../../../../../SYSTEMS/51-STRUCTURES-GENERAL/SUBSYSTEMS/51-30_FASTENERS_JOINTS_BONDING/",
+    "doors_cutouts": "../../../../../../SYSTEMS/52-DOORS/"
+  },
+  "export_of": "../53-10-BH-STA350_MASTER_ASM.asm",
+  "derived_artifacts": {
+    "step_ap242": "../EXPORTS/STEP/53-10-BH-STA350_MASTER_ASM.stp",
+    "jt": "../EXPORTS/JT/53-10-BH-STA350_MASTER_ASM.jt",
+    "pdf_3d": "../EXPORTS/PDF/53-10-BH-STA350_MASTER_ASM_3D.pdf"
+  },
+  "security": "Company-Confidential",
+  "release": {
+    "state": "REL",
+    "tag": "Q100-R0",
+    "date": "2025-10-11",
+    "signoff": ["Checker AAA-53","Lead Stress AAA-51","CCB Chair"]
+  },
+  "hash": {
+    "sha256": "<fill-after-export>"
+  }
+}

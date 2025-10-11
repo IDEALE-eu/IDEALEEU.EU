@@ -1,0 +1,15 @@
+item,criterion,status,owner,notes
+TITLE,Title matches module and station,TBD,AAA-53-10,
+UNITS,Units mm and scale per metadata,TBD,AAA-53-10,
+DATUMS,FS/BL/WL called out and located,TBD,AAA-53-10,
+TOL,ISO 2768-mH noted,TBD,AAA-53-10,
+GD&T,ISO 1101 frame syntax valid,TBD,AAA-53-10,
+MATERIAL,51-10 reference present,TBD,AAA-53-10,
+FASTENERS,51-30 reference present,TBD,AAA-53-10,
+NOTES,No process steps on drawing,TBD,AAA-53-10,
+VIEWS,Min orthographic + key sections,TBD,AAA-53-10,
+DIMensions,No over-dimensioning; fits clear,TBD,AAA-53-10,
+IFC,Interface edges match IFC exports,TBD,AAA-53-10,
+EXPORTS,STEP/JT/PDF-3D regenerated,TBD,AAA-53-10,
+HASH,PDF sha256 recorded in metadata,TBD,AAA-53-10,
+SIGNOFF,Checker/Lead/CCB signatures,TBD,AAA-53-10
