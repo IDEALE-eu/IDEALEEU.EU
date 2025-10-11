@@ -1,0 +1,197 @@
+# AGGREGATION JOB TEMPLATE
+#
+# This template defines model aggregation logic for federated learning.
+# Specifies how local model updates are combined into a global model.
+#
+# Schema Reference: ../SCHEMAS/job_spec.schema.json
+
+job_metadata:
+  job_id: "fl-aggregate-example-2024q4"
+  name: "Aggregation Job - Federated Model Combination"
+  description: |
+    Defines how local client model updates are aggregated into a global model.
+    Includes Byzantine-resilient aggregation strategies and quality checks.
+  owner: "AI/ML Team - FL Infrastructure"
+  contact: "ml-team@ideale.eu"
+  created_at: "2024-11-15T00:00:00Z"
+  status: "draft"
+  priority: "high"
+
+model_config:
+  architecture: "LSTM"
+  framework: "PyTorch"
+  version: "1.0.0"
+  
+  input_schema:
+    reference: "01-ARCHITECTURE/DATA_CONTRACTS/TELEMETRY_SCHEMA.yaml"
+  
+  output_schema:
+    type: "binary_classification"
+
+# Training config (required by schema, minimal for aggregation)
+training_config:
+  algorithm: "FedAvg"
+  
+  hyperparameters:
+    learning_rate: 0.001
+    optimizer: "Adam"
+    
+  local_epochs: 1
+  batch_size: 32
+  
+aggregation_config:
+  # Base aggregation algorithm
+  algorithm: "FedAvg"  # Options: FedAvg, FedProx, FedOpt, Krum, Median, TrimmedMean
+  
+  # Weighting strategy
+  weighting:
+    strategy: "num_samples"  # Options: num_samples, uniform, loss_based, contribution
+    normalize: true
+    clip_weights:
+      enabled: true
+      min_weight: 0.01
+      max_weight: 0.5  # Prevent single client dominance
+      
+  # Byzantine-resilient aggregation
+  byzantine_robust:
+    enabled: true
+    method: "krum"  # Options: krum, median, trimmed_mean, bulyan
+    
+    krum_config:
+      num_closest: 10  # Number of closest updates to consider
+      exclude_furthest: 3  # Number of furthest updates to exclude
+      
+    trimmed_mean_config:
+      trim_ratio: 0.1  # Trim 10% from each tail
+      
+  # Quality filtering
+  quality_checks:
+    enabled: true
+    
+    # Gradient/parameter checks
+    checks:
+      - name: "gradient_norm"
+        threshold: 10.0
+        action: "exclude"  # Options: exclude, clip, flag
+        
+      - name: "parameter_distance"
+        metric: "l2"
+        threshold: 5.0
+        action: "flag"
+        
+      - name: "loss_improvement"
+        min_improvement: -1.0  # Allow some degradation
+        action: "flag"
+        
+      - name: "data_poisoning_score"
+        threshold: 0.8
+        action: "exclude"
+        
+    # Staleness handling
+    staleness:
+      max_rounds_stale: 2
+      action: "exclude"  # Don't use stale updates
+      
+  # Differential privacy (applied during aggregation)
+  differential_privacy:
+    enabled: true
+    mechanism: "DP-FedAvg"
+    epsilon: 1.0
+    delta: 1e-5
+    noise_multiplier: 1.1
+    sensitivity: 1.0  # L2 sensitivity bound
+    
+  # Secure aggregation
+  secure_aggregation:
+    enabled: false
+    protocol: "threshold_paillier"
+    threshold: 5
+    dropout_tolerance: 2  # Can aggregate with up to 2 missing clients
+
+orchestration_config:
+  # Aggregation timing
+  timing:
+    trigger: "after_client_updates"  # Options: after_client_updates, scheduled, manual
+    wait_for_min_clients: true
+    min_clients: 10
+    max_wait_time: 30  # minutes
+  
+  schedule:
+    type: "on_demand"  # Triggered after client updates
+    
+  client_selection:
+    algorithm: "random"  # Not used for aggregation
+    
+  min_clients: 10
+  max_clients: 100
+  
+  # Resource allocation
+  resources:
+    cpu_cores: 8
+    memory_gb: 32
+    gpu: false  # Aggregation typically CPU-bound
+    timeout: 10  # minutes
+
+  aggregation:
+    weights: "num_samples"
+    timeout: 30
+    min_quorum: 10
+    staleness_threshold: 2
+
+privacy_config:
+  differential_privacy:
+    enabled: true
+    mechanism: "DP-FedAvg"
+    epsilon: 1.0
+    delta: 0.00001
+    
+  secure_aggregation:
+    enabled: false
+
+# Model versioning
+versioning:
+  auto_version: true
+  version_format: "semantic"  # Major.Minor.Patch
+  increment: "minor"  # Increment minor version on successful aggregation
+  
+# Output configuration
+output:
+  save_aggregated_model: true
+  destination: "06-MODELS/REGISTRY/"
+  format: "pytorch"  # Options: pytorch, tensorflow, onnx
+  
+  save_metadata: true
+  metadata_includes:
+    - client_participation
+    - aggregation_weights
+    - quality_check_results
+    - byzantine_exclusions
+    - convergence_metrics
+    
+# Monitoring
+monitoring:
+  log_aggregation_details: true
+  track_convergence: true
+  
+  alerts:
+    - name: "Low Client Participation"
+      condition: "num_clients < min_clients"
+      severity: "critical"
+      
+    - name: "High Byzantine Detection"
+      condition: "excluded_clients > 20%"
+      severity: "warning"
+      
+    - name: "Poor Convergence"
+      condition: "loss_improvement < 0.01 for 3 rounds"
+      severity: "warning"
+
+compliance_config:
+  audit_trail: true
+  export_control: "EAR"
+
+# Related Documents
+# - FL Algorithms: 04-ALGORITHMS/FEDAVG.md
+# - Byzantine Robustness: 04-ALGORITHMS/ROBUST_AGGREGATION.md
+# - Privacy Implementation: 05-PRIVACY_SECURITY/DP_SGD.md
+# - Model Registry: 06-MODELS/REGISTRY.md

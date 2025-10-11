@@ -1,0 +1,148 @@
+# Schedule for Accelerometer Drift Detection Training
+#
+# Weekly training schedule with pre-execution checks
+
+schedule_metadata:
+  schedule_id: "schedule-accel-drift-weekly"
+  name: "Weekly IMU Drift Training"
+  description: |
+    Triggers accelerometer drift model training every Sunday at 02:00 UTC.
+    Runs during low-traffic period to minimize operational impact.
+  version: "1.0.0"
+  created_at: "2024-11-15T00:00:00Z"
+  job_ref: "fl-accel-drift-v1-2024q4"
+
+schedule_type: "cron"
+
+cron_schedule:
+  expression: "0 2 * * 0"  # Every Sunday at 02:00 UTC
+  timezone: "UTC"
+  enabled: true
+  start_date: "2024-11-15T00:00:00Z"
+  end_date: null
+
+pre_execution_checks:
+  enabled: true
+  
+  checks:
+    - name: "Client Availability"
+      type: "eligibility_count"
+      min_eligible_clients: 15
+      action_on_fail: "skip_round"
+      
+    - name: "IMU Data Quality"
+      type: "data_quality_check"
+      min_quality_score: 0.95
+      action_on_fail: "alert_and_retry"
+      
+    - name: "System Health"
+      type: "infrastructure_health"
+      required_services:
+        - "orchestrator"
+        - "aggregation_server"
+        - "model_registry"
+        - "metrics_collector"
+      action_on_fail: "alert_and_retry"
+      
+    - name: "Resource Availability"
+      type: "resource_check"
+      required_resources:
+        cpu_cores: 16
+        memory_gb: 64
+        storage_gb: 200
+      action_on_fail: "delay"
+      
+    - name: "No Concurrent Training"
+      type: "concurrency_check"
+      max_concurrent_jobs: 1
+      action_on_fail: "queue"
+
+execution_constraints:
+  allowed_windows:
+    - days: ["Saturday", "Sunday"]
+      start_time: "00:00"
+      end_time: "08:00"
+      timezone: "UTC"
+      
+  blackout_periods:
+    - name: "Holiday Maintenance"
+      start: "2024-12-24T00:00:00Z"
+      end: "2025-01-02T00:00:00Z"
+      reason: "Year-end maintenance window"
+      
+    - name: "Summer Maintenance"
+      start: "2025-08-01T00:00:00Z"
+      end: "2025-08-15T00:00:00Z"
+      reason: "Annual summer maintenance"
+      
+  max_duration: "8 hours"
+  
+  retry_policy:
+    enabled: true
+    max_retries: 2
+    retry_delay: "1 hours"
+    backoff_multiplier: 2
+
+notifications:
+  on_schedule:
+    enabled: true
+    channels: ["slack"]
+    recipients: ["ml-team@ideale.eu"]
+    
+  on_start:
+    enabled: true
+    channels: ["slack"]
+    message_template: "IMU drift training started - Round {round_number}"
+    
+  on_completion:
+    enabled: true
+    channels: ["email", "slack"]
+    message_template: |
+      IMU drift training completed successfully.
+      AUC: {metrics.auc}
+      Recall: {metrics.recall}
+      Clients: {num_clients}
+    
+  on_failure:
+    enabled: true
+    channels: ["pagerduty", "email", "slack"]
+    severity: "critical"
+    message_template: "CRITICAL: IMU drift training failed - {failure_reason}"
+    
+  on_skip:
+    enabled: true
+    channels: ["email", "slack"]
+    message_template: "Training round skipped - {skip_reason}"
+
+resource_allocation:
+  priority: "high"
+  
+  compute:
+    cpu_cores: 16
+    memory_gb: 64
+    gpu: false
+    
+  storage:
+    workspace_gb: 100
+    artifacts_gb: 50
+    
+  network:
+    bandwidth_mbps: 200
+
+monitoring:
+  track_schedule_adherence: true
+  track_execution_duration: true
+  track_resource_usage: true
+  
+  alerts:
+    - name: "Schedule Drift"
+      condition: "execution_delay > 30 minutes"
+      severity: "warning"
+      
+    - name: "Frequent Skips"
+      condition: "skips > 2 in last 4 weeks"
+      severity: "warning"
+      
+    - name: "Execution Timeout"
+      condition: "duration > max_duration"
+      severity: "critical"

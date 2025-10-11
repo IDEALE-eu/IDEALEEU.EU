@@ -1,0 +1,125 @@
+# EVALUATION JOB TEMPLATE
+#
+# This template defines a federated learning model evaluation job.
+# Used to assess model performance on distributed validation data.
+#
+# Schema Reference: ../SCHEMAS/job_spec.schema.json
+
+job_metadata:
+  job_id: "fl-eval-example-2024q4"
+  name: "Evaluation Job - Model Performance Assessment"
+  description: |
+    Evaluation job to assess trained model performance across the fleet.
+    Collects validation metrics without updating model parameters.
+  owner: "AI/ML Team - Model Validation"
+  contact: "ml-team@ideale.eu"
+  created_at: "2024-11-15T00:00:00Z"
+  status: "draft"
+  priority: "medium"
+
+model_config:
+  architecture: "LSTM"
+  framework: "PyTorch"
+  version: "1.0.0"
+  
+  # Reference to trained model
+  model_source: "06-MODELS/REGISTRY.md#trained-model-v1-0-0"
+  
+  input_schema:
+    reference: "01-ARCHITECTURE/DATA_CONTRACTS/TELEMETRY_SCHEMA.yaml"
+    signals:
+      - signal_name_1
+      - signal_name_2
+    window_size: 600
+    sampling_rate: 1
+    
+  output_schema:
+    type: "binary_classification"
+    labels: [0, 1]
+
+training_config:
+  algorithm: "FedAvg"  # Algorithm used for aggregating metrics
+  
+  hyperparameters:
+    learning_rate: 0.001  # Not used for evaluation but required by schema
+    optimizer: "Adam"
+    
+  local_epochs: 1  # Evaluation pass (schema requires >= 1)
+  batch_size: 32  # Batch size for evaluation
+  
+  global_training:
+    num_rounds: 1  # Single evaluation round
+
+orchestration_config:
+  schedule:
+    type: "on_demand"  # Typically triggered after training completion
+    
+  client_selection:
+    algorithm: "random"
+    
+  min_clients: 20  # Higher client count for robust evaluation
+  max_clients: 100
+  
+  aggregation:
+    weights: "uniform"  # Equal weight for all clients in evaluation
+    timeout: 20
+    min_quorum: 20
+
+privacy_config:
+  differential_privacy:
+    enabled: false  # Typically not needed for evaluation
+    
+  secure_aggregation:
+    enabled: false
+
+validation_config:
+  # Evaluation-specific configuration
+  evaluation_mode: true
+  
+  metrics:
+    - name: "accuracy"
+      aggregation: "weighted_average"
+    - name: "auc"
+      aggregation: "weighted_average"
+    - name: "precision"
+      aggregation: "weighted_average"
+    - name: "recall"
+      aggregation: "weighted_average"
+    - name: "f1_score"
+      aggregation: "weighted_average"
+    - name: "false_positive_rate"
+      aggregation: "weighted_average"
+    - name: "false_negative_rate"
+      aggregation: "weighted_average"
+      
+  # Disaggregated metrics for fairness analysis
+  disaggregate_by:
+    - aircraft_type
+    - aircraft_age
+    - geographic_region
+    - flight_phase
+    
+  # Drift detection
+  drift_detection:
+    enabled: true
+    method: "PSI"  # Population Stability Index
+    baseline_distribution: "06-MODELS/BASELINE/distribution.json"
+    alert_threshold: 0.2
+
+compliance_config:
+  certification_level: "DO-178C Level C"
+  audit_trail: true
+  export_control: "EAR"
+
+# Output Configuration
+output:
+  report_format: "json"
+  report_destination: "07-EXPERIMENTS/EVALUATIONS/"
+  generate_confusion_matrix: true
+  generate_roc_curve: true
+  generate_calibration_plot: true
+  
+# Related Documents
+# - Model Registry: 06-MODELS/REGISTRY.md
+# - Validation Framework: 08-VALIDATION_VVP/
+# - Metrics Definitions: 12-METRICS/KPI_DEFINITIONS.md

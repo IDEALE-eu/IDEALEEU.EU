@@ -1,0 +1,193 @@
+# CRON SCHEDULE TEMPLATE
+#
+# This template defines scheduling policies for federated learning jobs.
+# Supports various scheduling strategies including cron expressions.
+#
+# Documentation: 02-ORCHESTRATION/SCHEDULER.md
+
+schedule_metadata:
+  schedule_id: "schedule-weekly-sunday-v1"
+  name: "Weekly Sunday Night Schedule"
+  description: |
+    Triggers FL training every Sunday at midnight UTC.
+    Chosen to minimize impact on operational systems during low-traffic period.
+  version: "1.0.0"
+  created_at: "2024-11-15T00:00:00Z"
+  job_ref: "fl-pm-engine-oil-2024q4"
+
+# Schedule type
+schedule_type: "cron"  # Options: cron, periodic, on_demand, event_driven
+
+# Cron configuration
+cron_schedule:
+  expression: "0 0 * * 0"  # Every Sunday at 00:00 UTC
+  # Format: minute hour day-of-month month day-of-week
+  # Examples:
+  #   "0 0 * * 0"     - Weekly on Sunday at midnight
+  #   "0 2 * * 1"     - Weekly on Monday at 2 AM
+  #   "0 0 1 * *"     - Monthly on the 1st at midnight
+  #   "0 0 1,15 * *"  - Bi-monthly on 1st and 15th
+  #   "*/30 * * * *"  - Every 30 minutes
+  
+  timezone: "UTC"
+  
+  # Enable/disable schedule
+  enabled: true
+  
+  # Start and end dates (optional)
+  start_date: "2024-11-01T00:00:00Z"
+  end_date: null  # null = indefinite
+
+# Alternative: Periodic schedule (simpler than cron)
+periodic_schedule:
+  interval: "weekly"  # Options: hourly, daily, weekly, bi_weekly, monthly
+  day_of_week: "Sunday"  # For weekly/bi_weekly
+  time: "00:00 UTC"
+  
+# Alternative: Event-driven schedule
+event_driven_schedule:
+  trigger_events:
+    - event_type: "data_availability"
+      condition: "min_samples_reached"
+      threshold: 1000
+      
+    - event_type: "model_drift"
+      condition: "drift_psi > 0.3"
+      
+    - event_type: "performance_degradation"
+      condition: "auc < 0.85"
+
+# Pre-execution checks
+pre_execution_checks:
+  enabled: true
+  
+  checks:
+    - name: "Client Availability"
+      type: "eligibility_count"
+      min_eligible_clients: 10
+      action_on_fail: "skip_round"  # Options: skip_round, delay, alert
+      
+    - name: "System Health"
+      type: "infrastructure_health"
+      required_services:
+        - "orchestrator"
+        - "aggregation_server"
+        - "model_registry"
+      action_on_fail: "alert_and_retry"
+      
+    - name: "Resource Availability"
+      type: "resource_check"
+      required_resources:
+        cpu_cores: 8
+        memory_gb: 32
+        storage_gb: 100
+      action_on_fail: "delay"
+      
+    - name: "Concurrent Jobs"
+      type: "concurrency_check"
+      max_concurrent_jobs: 2
+      action_on_fail: "queue"
+
+# Execution constraints
+execution_constraints:
+  # Time windows when execution is allowed
+  allowed_windows:
+    - days: ["Saturday", "Sunday"]
+      start_time: "00:00"
+      end_time: "06:00"
+      timezone: "UTC"
+      
+  # Blackout periods (maintenance windows, etc.)
+  blackout_periods:
+    - name: "Year-end Maintenance"
+      start: "2024-12-24T00:00:00Z"
+      end: "2025-01-02T00:00:00Z"
+      reason: "Holiday maintenance window"
+      
+  # Maximum execution duration
+  max_duration: "6 hours"
+  
+  # Retry policy
+  retry_policy:
+    enabled: true
+    max_retries: 3
+    retry_delay: "30 minutes"
+    backoff_multiplier: 2
+
+# Notifications
+notifications:
+  on_schedule:
+    enabled: true
+    channels: ["slack"]
+    recipients: ["ml-team@ideale.eu"]
+    
+  on_start:
+    enabled: true
+    channels: ["slack"]
+    message_template: "FL job {job_id} started at {timestamp}"
+    
+  on_completion:
+    enabled: true
+    channels: ["email", "slack"]
+    message_template: "FL job {job_id} completed. Metrics: {metrics_summary}"
+    
+  on_failure:
+    enabled: true
+    channels: ["pagerduty", "email", "slack"]
+    severity: "critical"
+    message_template: "FL job {job_id} failed. Reason: {failure_reason}"
+    
+  on_skip:
+    enabled: true
+    channels: ["email"]
+    message_template: "FL job {job_id} skipped. Reason: {skip_reason}"
+
+# Resource allocation
+resource_allocation:
+  priority: "normal"  # Options: low, normal, high, critical
+  
+  compute:
+    cpu_cores: 8
+    memory_gb: 32
+    gpu: false
+    
+  storage:
+    workspace_gb: 50
+    artifacts_gb: 20
+    
+  network:
+    bandwidth_mbps: 100
+
+# Monitoring
+monitoring:
+  track_schedule_adherence: true
+  track_execution_duration: true
+  track_resource_usage: true
+  
+  alerts:
+    - name: "Schedule Drift"
+      condition: "execution_delay > 1 hour"
+      severity: "warning"
+      
+    - name: "Frequent Skips"
+      condition: "skips > 3 in last 7 days"
+      severity: "warning"
+      
+    - name: "Execution Timeout"
+      condition: "duration > max_duration"
+      severity: "critical"
+
+# Related Documents
+# - Scheduler: 02-ORCHESTRATION/SCHEDULER.md
+# - Job Specs: 02-ORCHESTRATION/JOB_SPECS/
+# - Resource Management: 02-ORCHESTRATION/RESOURCE_ALLOCATION.md
+
+# Common Cron Expression Examples:
+#
+# Every hour:         "0 * * * *"
+# Every day at 2 AM:  "0 2 * * *"
+# Every Monday:       "0 0 * * 1"
+# Every weekday:      "0 0 * * 1-5"
+# First of month:     "0 0 1 * *"
+# Every 15 minutes:   "*/15 * * * *"
+# Twice daily:        "0 0,12 * * *"

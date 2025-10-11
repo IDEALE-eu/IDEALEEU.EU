@@ -1,0 +1,243 @@
+# ROLLOUT POLICY TEMPLATE
+#
+# This template defines deployment rollout strategy for FL models.
+# Controls how models are progressively deployed to the fleet.
+#
+# Schema Reference: ../SCHEMAS/rollout.schema.json
+# Documentation: 09-DEPLOYMENT/ROLLOUT_STRATEGY.md
+
+rollout_metadata:
+  rollout_id: "rollout-canary-progressive-v1"
+  name: "Canary with Progressive Rollout"
+  description: |
+    Multi-phase rollout starting with 5 canary aircraft, then progressively
+    expanding to 10%, 25%, 50%, and 100% of fleet with quality gates.
+  version: "1.0.0"
+  created_at: "2024-11-15T00:00:00Z"
+  job_ref: "fl-pm-engine-oil-2024q4"
+  model_version: "1.0.0"
+
+# Rollout strategy
+strategy: "progressive"  # Options: canary, blue_green, progressive, immediate
+
+# Rollout phases
+phases:
+  # Phase 1: Canary (5 specific aircraft)
+  - phase_name: "Canary"
+    phase_number: 1
+    target_percentage: 1  # ~5 aircraft for typical fleet
+    target_count: 5  # Specific count overrides percentage
+    duration: "24 hours"
+    
+    specific_clients:
+      - "aircraft-hash-001"  # A320, EU, high utilization
+      - "aircraft-hash-002"  # A350, US, medium utilization
+      - "aircraft-hash-003"  # B787, APAC, high utilization
+      - "aircraft-hash-004"  # A320, US, low utilization
+      - "aircraft-hash-005"  # A350, EU, medium utilization
+      
+    selection_criteria:
+      diversity_required: true  # Ensure diverse selection
+      
+    success_criteria:
+      - metric: "auc"
+        threshold: 0.90
+        comparison: "greater_than_or_equal"
+        
+      - metric: "latency_p95"
+        threshold: 500  # ms
+        comparison: "less_than"
+        
+      - metric: "error_rate"
+        threshold: 0.01  # 1%
+        comparison: "less_than"
+        
+    monitoring_period: "24 hours"
+    auto_proceed: false  # Require manual approval
+    require_manual_approval: true
+    
+  # Phase 2: Ring 1 (10% of fleet)
+  - phase_name: "Ring 1"
+    phase_number: 2
+    target_percentage: 10
+    duration: "48 hours"
+    
+    selection_criteria:
+      aircraft_types: []  # All types
+      geographic_regions: []  # All regions
+      diversity_required: true
+      
+    success_criteria:
+      - metric: "auc"
+        threshold: 0.88
+        comparison: "greater_than_or_equal"
+        
+      - metric: "drift_psi"
+        threshold: 0.2
+        comparison: "less_than"
+        
+    monitoring_period: "24 hours"
+    auto_proceed: true
+    require_manual_approval: false
+    
+  # Phase 3: Ring 2 (25% of fleet)
+  - phase_name: "Ring 2"
+    phase_number: 3
+    target_percentage: 25
+    duration: "72 hours"
+    
+    success_criteria:
+      - metric: "auc"
+        threshold: 0.87
+        comparison: "greater_than_or_equal"
+        
+      - metric: "false_positive_rate"
+        threshold: 0.05
+        comparison: "less_than"
+        
+    monitoring_period: "48 hours"
+    auto_proceed: true
+    require_manual_approval: false
+    
+  # Phase 4: Ring 3 (50% of fleet)
+  - phase_name: "Ring 3"
+    phase_number: 4
+    target_percentage: 50
+    duration: "72 hours"
+    
+    success_criteria:
+      - metric: "auc"
+        threshold: 0.85
+        comparison: "greater_than_or_equal"
+        
+    monitoring_period: "48 hours"
+    auto_proceed: true
+    require_manual_approval: false
+    
+  # Phase 5: Full Rollout (100%)
+  - phase_name: "Full Rollout"
+    phase_number: 5
+    target_percentage: 100
+    duration: "365 days"  # One year monitoring period
+    
+    monitoring_period: "7 days"
+    auto_proceed: false
+    require_manual_approval: false
+
+# Rollback policy
+rollback_policy:
+  auto_rollback: true
+  
+  conditions:
+    - metric: "auc"
+      threshold: 0.80
+      comparison: "less_than"
+      window: "1 hours"
+      
+    - metric: "drift_psi"
+      threshold: 0.3
+      comparison: "greater_than"
+      window: "6 hours"
+      
+    - metric: "error_rate"
+      threshold: 0.05
+      comparison: "greater_than"
+      window: "30 minutes"
+      
+  rollback_target: "previous_version"  # Options: previous_version, baseline, safe_version
+  
+  notification_channels:
+    - "email"
+    - "slack"
+    - "pagerduty"
+    
+  max_auto_rollbacks: 3  # After 3 rollbacks, require manual intervention
+
+# Safety gates
+safety_gates:
+  enabled: true
+  
+  pre_rollout_checks:
+    - check_name: "Schema Validation"
+      check_type: "schema_validation"
+      required: true
+      blocking: true
+      
+    - check_name: "Performance Benchmark"
+      check_type: "performance_benchmark"
+      required: true
+      blocking: true
+      
+    - check_name: "Safety Review"
+      check_type: "safety_review"
+      required: true
+      blocking: true
+      
+    - check_name: "Security Scan"
+      check_type: "security_scan"
+      required: true
+      blocking: true
+      
+  per_phase_checks:
+    - check_name: "Phase Success Validation"
+      run_after: "each_phase"
+      required: true
+
+# Monitoring
+monitoring:
+  dashboards:
+    - "Grafana: Model Performance Dashboard"
+    - "Grafana: Rollout Progress Tracker"
+    - "Grafana: Drift Detection Dashboard"
+    
+  metrics_collection_interval: "5 minutes"
+  
+  alerts:
+    - name: "Performance Degradation"
+      condition: "auc < 0.85"
+      severity: "critical"
+      channels: ["pagerduty", "slack"]
+      
+    - name: "Drift Detected"
+      condition: "drift_psi > 0.2"
+      severity: "warning"
+      channels: ["slack", "email"]
+      
+    - name: "High Error Rate"
+      condition: "error_rate > 0.03"
+      severity: "warning"
+      channels: ["slack"]
+      
+  real_time_tracking: true
+
+# Approval workflow
+approval_workflow:
+  enabled: true
+  
+  approvers:
+    - role: "AI/ML Lead"
+      email: "ml-lead@ideale.eu"
+      required_for_phases: [1]  # Canary phase only
+      
+    - role: "Fleet Operations Manager"
+      email: "fleet-ops@ideale.eu"
+      required_for_phases: [1]
+      
+    - role: "Safety Engineer"
+      email: "safety@ideale.eu"
+      required_for_phases: [1, 5]  # Canary and full rollout
+      
+  approval_timeout: "24 hours"
+  require_all_approvers: true  # All approvers must approve
+
+# Compliance
+compliance:
+  audit_trail: true
+  certification_required: true
+  ccb_approval_required: true  # Configuration Control Board
+  mal_fe_approval_required: true  # Fleet Experiments Policy
+
+# Related Documents
+# - Rollout Strategy: 09-DEPLOYMENT/ROLLOUT_STRATEGY.md
+# - Canary Procedures: 09-DEPLOYMENT/CANARY_ROLLOUTS.md
+# - Rollback Procedures: 09-DEPLOYMENT/ROLLBACK_PROCEDURE.md

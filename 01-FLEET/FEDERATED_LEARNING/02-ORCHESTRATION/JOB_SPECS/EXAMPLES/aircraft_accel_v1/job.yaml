@@ -1,0 +1,154 @@
+# Aircraft Accelerometer Drift Prediction - Training Job
+#
+# This job trains a model to predict accelerometer sensor drift in aircraft.
+# Use case: Early detection of IMU calibration issues.
+#
+# Related: aircraft_accel_v1 example
+
+job_metadata:
+  job_id: "fl-accel-drift-v1-2024q4"
+  name: "Accelerometer Drift Prediction v1"
+  description: |
+    LSTM-based model to predict accelerometer drift 50 flight hours in advance.
+    Uses historical IMU data, temperature, and vibration patterns.
+    Target: Detect calibration drift before it affects navigation accuracy.
+  owner: "AI/ML Team - Sensor Health"
+  contact: "ml-team@ideale.eu"
+  created_at: "2024-11-15T00:00:00Z"
+  updated_at: "2024-11-15T00:00:00Z"
+  status: "active"
+  priority: "high"
+
+model_config:
+  architecture: "LSTM"
+  framework: "PyTorch"
+  version: "1.0.0"
+  
+  input_schema:
+    reference: "01-ARCHITECTURE/DATA_CONTRACTS/TELEMETRY_SCHEMA.yaml"
+    signals:
+      - accel_x_imu1
+      - accel_y_imu1
+      - accel_z_imu1
+      - gyro_x_imu1
+      - gyro_y_imu1
+      - gyro_z_imu1
+      - imu_temperature
+      - airframe_vibration_fwd
+      - airframe_vibration_aft
+    window_size: 3600  # 1 hour at 1 Hz
+    sampling_rate: 1  # Hz
+    
+  output_schema:
+    type: "binary_classification"
+    labels:
+      - 0  # Normal - no drift
+      - 1  # Drift detected - recalibration needed
+    threshold: 0.7  # Conservative threshold for safety
+    
+  model_hyperparameters:
+    input_dim: 9
+    hidden_dim: 128
+    num_layers: 3
+    dropout: 0.3
+    sequence_length: 3600
+    bidirectional: true
+
+training_config:
+  algorithm: "FedAvg"
+  
+  hyperparameters:
+    learning_rate: 0.0005
+    optimizer: "Adam"
+    optimizer_kwargs:
+      beta1: 0.9
+      beta2: 0.999
+      weight_decay: 1e-4
+    loss_function: "BCEWithLogitsLoss"
+    class_weights: [1.0, 3.0]  # Weight rare drift events more heavily
+    
+  local_epochs: 10
+  batch_size: 16  # Smaller batch for long sequences
+  
+  global_training:
+    num_rounds: 100
+    early_stopping:
+      enabled: true
+      patience: 10
+      metric: "val_auc"
+      threshold: 0.92
+
+orchestration_config:
+  schedule:
+    type: "weekly"
+    launch_day: "Sunday"
+    launch_time: "02:00 UTC"
+    
+  client_selection:
+    algorithm: "importance_sampling"  # Prioritize aircraft with recent IMU data
+    
+  min_clients: 15
+  max_clients: 75
+  
+  aggregation:
+    weights: "num_samples"
+    timeout: 45
+    min_quorum: 15
+    staleness_threshold: 2
+
+privacy_config:
+  differential_privacy:
+    enabled: true
+    mechanism: "DP-SGD"
+    epsilon: 2.0  # Higher budget for sensor data (less sensitive than operational)
+    delta: 0.00001
+    noise_multiplier: 0.8
+    max_grad_norm: 1.5
+    
+  secure_aggregation:
+    enabled: false
+
+deployment_config:
+  rollout_strategy: "progressive"
+  canary_clients:
+    - "aircraft-imu-test-001"
+    - "aircraft-imu-test-002"
+    - "aircraft-imu-test-003"
+
+validation_config:
+  holdout_dataset:
+    source: "01-FLEET/OPERATIONAL_DATA_HUB/imu_validation_2024q3"
+    size: 2000
+    stratified: true
+    stratify_by: ["aircraft_type", "imu_age"]
+    
+  metrics:
+    - name: "auc"
+      target: 0.92
+    - name: "precision"
+      target: 0.88
+    - name: "recall"
+      target: 0.95  # High recall critical - don't miss drift
+    - name: "f1_score"
+      target: 0.91
+    - name: "false_negative_rate"
+      target: 0.05  # Very low tolerance for missing drift
+
+compliance_config:
+  certification_level: "DO-178C Level C"
+  audit_trail: true
+  export_control: "EAR"
+
+# Additional metadata
+tags:
+  - "sensor-health"
+  - "imu"
+  - "accelerometer"
+  - "drift-detection"
+  - "predictive-maintenance"
+  
+related_documents:
+  - "01-ARCHITECTURE/DATA_CONTRACTS/TELEMETRY_SCHEMA.yaml"
+  - "04-ALGORITHMS/FEDAVG.md"
+  - "05-PRIVACY_SECURITY/DP_SGD.md"
+  - "06-MODELS/REGISTRY.md#accel-drift-v1"
