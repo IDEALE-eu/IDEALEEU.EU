@@ -1,0 +1,19 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+11,ALL,Placards,Visual,Regulatory,Safety markings and instructions
+25,ALL,Equipment,Physical,Installation,Cabin equipment and furnishings
+35,24,Oxygen_Power,Electrical,28VDC,Power for oxygen monitoring
+35,31,Oxygen_Data,Digital,ARINC429,Oxygen system status
+35,42,Oxygen_Monitor,Digital,ARINC664,Oxygen monitoring data
+43,24,Cabin_Power,Electrical,115VAC/28VDC,IFE and cabin systems power
+43,31,Cabin_Data,Digital,ARINC664,Cabin system data
+43,42,IFE_Network,Ethernet,ARINC664,In-flight entertainment network
+43,44,Cabin_Control,Digital,ARINC664,Cabin management system control
+44,24,CMS_Power,Electrical,28VDC,Cabin management system power
+44,31,CMS_Data,Digital,ARINC664,Cabin management data
+44,42,CMS_Compute,Ethernet,IMA,Cabin management compute platform
+44,43,Control_Bus,Digital,ARINC664,Cabin systems control
+50,24,Cargo_Power,Electrical,28VDC,Cargo system power
+50,31,Cargo_Data,Digital,ARINC429,Cargo system data
+50,91,Weight_Data,Analog,4-20mA,Weight and CG sensing
+58,ALL,FlightComp_Equip,Physical,Installation,Flight compartment equipment
+59,ALL,FlightComp_Furnish,Physical,Installation,Flight compartment furnishings
