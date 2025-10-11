@@ -1,0 +1,16 @@
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+24,31,data_bus,ARINC-429,ARINC-429,N/A,100kbps,Power status to indicators
+24,33,power_supply,electrical,DC-28V,500,N/A,Power to lighting systems
+24,39,power_distribution,electrical,DC/AC,5000,N/A,Primary power distribution
+24,42,data_bus,ARINC-664,AFDX,N/A,100Mbps,FADEC interface
+24,44,power_supply,electrical,DC-28V,200,N/A,Cabin systems power
+24,71,power_supply,electrical,DC-270V,50000,N/A,High-voltage engine start
+24,72,data_bus,CAN,CAN-FD,N/A,5Mbps,Engine control data
+24,80,power_supply,electrical,DC-270V,50000,N/A,Starter-generator power
+24,92,harness_reference,electrical,Various,N/A,N/A,All wiring in ATA 92
+24,93,data_bus,ARINC-664,AFDX,N/A,100Mbps,Fuel system monitoring
+24,94,data_bus,ARINC-429,ARINC-429,N/A,100kbps,Gear status interface
+24,26,power_supply,electrical,DC-28V,100,N/A,Fire detection/suppression
+33,24,power_req,electrical,DC-28V,500,N/A,Lighting power requirement
+39,24,power_req,electrical,DC/AC,5000,N/A,Distribution power requirement
+80,24,power_req,electrical,DC-270V,50000,N/A,Starting power requirement

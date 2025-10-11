@@ -1,0 +1,28 @@
+NOTA: Sin EWIS aquí; todo cableado va en ATA 92 (EEE, autoridad 92).
+
+El dominio EEE (Electrical-Endotransponders-Circulation) es responsable de:
+- ATA 24: Electrical Power (generación, almacenamiento, distribución de energía eléctrica)
+- ATA 33: Lights (sistemas de iluminación)
+- ATA 39: Electrical Panels (paneles y cajas de distribución eléctrica)
+- ATA 80: Starting (sistemas de arranque del motor)
+
+Sin embargo, todos los ARNESES ELÉCTRICOS (EWIS - Electrical Wiring Interconnection System)
+están bajo la autoridad del ATA 92, NO en el dominio EEE.
+
+El ATA 92 incluye:
+- Cables, conectores y arneses
+- Rutas de cableado
+- Protección de cables
+- Documentación de instalación de EWIS
+
+Esta separación garantiza:
+1. Gestión centralizada de todo el cableado de la aeronave
+2. Trazabilidad completa del EWIS
+3. Coordinación eficiente entre sistemas
+4. Cumplimiento de regulaciones EWIS (FAR/EASA)
+5. Facilita el mantenimiento y modificaciones
+
+Referencias:
+- ATA 92: Electrical Wiring Interconnection System (EWIS)
+- FAA AC 120-94: Electrical Wire Interconnection System (EWIS) Best Practices
+- EASA CS-25 Appendix H: Instructions for Continued Airworthiness (EWIS)
