@@ -1,0 +1,9 @@
+{
+  "scope": "instance",
+  "subsystem": "100-20_ICD_TEMPLATES_CHECKLISTS",
+  "domain": "OOO-OS-ONTOLOGIES-OFFICE",
+  "architecture": "AIR-T",
+  "owner": "Domain Lead",
+  "status": "scaffold",
+  "created": "2025-10-11"
+}

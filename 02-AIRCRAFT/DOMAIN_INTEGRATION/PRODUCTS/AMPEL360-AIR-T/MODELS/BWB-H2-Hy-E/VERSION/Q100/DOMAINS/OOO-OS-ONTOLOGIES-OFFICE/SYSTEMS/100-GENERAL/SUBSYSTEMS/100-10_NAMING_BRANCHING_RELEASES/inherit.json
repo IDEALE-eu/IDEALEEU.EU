@@ -1,0 +1,9 @@
+{
+  "templates": [
+    "../../../DELs/TEMPLATES/",
+    "../../../PAx/STANDARDS/"
+  ],
+  "policies": [
+    "../../../policy/"
+  ]
+}

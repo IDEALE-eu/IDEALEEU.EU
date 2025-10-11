@@ -1,0 +1,9 @@
+{
+  "scope": "instance",
+  "subsystem": "40-30_TIME_SYNC_STDS_PTP_IRIG",
+  "domain": "OOO-OS-ONTOLOGIES-OFFICE",
+  "architecture": "AIR-T",
+  "owner": "Domain Lead",
+  "status": "scaffold",
+  "created": "2025-10-11"
+}
