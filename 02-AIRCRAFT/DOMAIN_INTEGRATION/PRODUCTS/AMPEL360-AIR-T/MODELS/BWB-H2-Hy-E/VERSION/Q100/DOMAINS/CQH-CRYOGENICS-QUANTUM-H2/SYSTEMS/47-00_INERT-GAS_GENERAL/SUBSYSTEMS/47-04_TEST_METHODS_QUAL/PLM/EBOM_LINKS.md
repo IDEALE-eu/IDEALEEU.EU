@@ -1,4 +1,4 @@
-# Engineering BOM Links - 47-10_NGS
+# Engineering BOM Links - 47-04_TEST_METHODS_QUAL
 
 ## Purpose
 

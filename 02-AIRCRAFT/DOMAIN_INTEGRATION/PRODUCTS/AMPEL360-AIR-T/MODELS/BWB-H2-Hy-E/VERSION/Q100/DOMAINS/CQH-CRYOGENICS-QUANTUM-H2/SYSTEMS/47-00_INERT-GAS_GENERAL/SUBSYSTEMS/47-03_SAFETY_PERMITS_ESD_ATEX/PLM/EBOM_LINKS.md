@@ -1,4 +1,4 @@
-# Engineering BOM Links - 47-10_NGS
+# Engineering BOM Links - 47-03_SAFETY_PERMITS_ESD_ATEX
 
 ## Purpose
 

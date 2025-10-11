@@ -1,4 +1,4 @@
-# Engineering BOM Links - 47-10_NGS
+# Engineering BOM Links - 47-62_PURGE_LOGIC_PERMITS_ESD
 
 ## Purpose
 
