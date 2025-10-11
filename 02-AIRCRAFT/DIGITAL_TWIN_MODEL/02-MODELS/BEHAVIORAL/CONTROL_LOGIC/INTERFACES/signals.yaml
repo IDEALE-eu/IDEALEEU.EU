@@ -431,7 +431,7 @@ safety:
   dal_level: DAL-A
   standard: DO-178C
   redundancy_architecture: Triple-modular redundancy with voting
-  fault_detection_coverage: >99%
+  fault_detection_coverage: ">99%"
   common_mode_failure_protection: Dissimilar software versions
   
 certification:
