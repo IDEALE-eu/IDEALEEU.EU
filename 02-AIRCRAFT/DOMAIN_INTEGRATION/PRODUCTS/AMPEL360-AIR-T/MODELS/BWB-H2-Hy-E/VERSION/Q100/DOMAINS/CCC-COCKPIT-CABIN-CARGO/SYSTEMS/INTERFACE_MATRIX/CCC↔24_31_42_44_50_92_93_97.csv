@@ -1,0 +1,14 @@
+Source_System,Target_System,Interface_Type,Description,Criticality
+CCC-11,24,Physical,Placard mounting on airframe,Low
+CCC-11,31,Information,Instrument markings,Medium
+CCC-25,42,Electrical,Galley power distribution,Medium
+CCC-25,44,Control,Seat control interfaces,Medium
+CCC-35,31,Information,Oxygen pressure indication,High
+CCC-35,42,Electrical,Oxygen system power,High
+CCC-43,44,Control,Cabin systems control,Medium
+CCC-43,50,Physical,Cargo cabin interface,Medium
+CCC-44,92,Electrical,Cabin control wiring,Medium
+CCC-44,93,Information,Cabin management data,Medium
+CCC-50,24,Physical,Cargo door mechanisms,High
+CCC-50,92,Electrical,Cargo system power,Medium
+CCC-50,97,Information,Cargo weight data,High
