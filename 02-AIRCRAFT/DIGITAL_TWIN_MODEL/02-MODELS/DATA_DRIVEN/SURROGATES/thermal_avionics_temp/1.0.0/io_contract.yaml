@@ -1,0 +1,173 @@
+# I/O Contract for Thermal Avionics Temperature Surrogate
+
+metadata:
+  surrogate_id: thermal_avionics_temp
+  version: 1.0.0
+  created_date: 2024-11-20T09:15:00Z
+  updated_date: 2024-11-20T09:15:00Z
+  author: Thermal Analysis Team
+  description: Predicts temperature of avionics bay electronic component based on ambient temperature, power load, and cooling airflow
+
+# Input specification
+inputs:
+  - name: T_ambient
+    description: Ambient temperature in avionics bay
+    unit: degC
+    type: float
+    physical_range:
+      min: -40.0
+      max: 85.0
+    training_range:
+      min: -20.0
+      max: 70.0
+    scaling:
+      method: standardization
+      params:
+        mean: 25.0
+        std: 20.0
+    
+  - name: P_load
+    description: Electrical power dissipated by component
+    unit: W
+    type: float
+    physical_range:
+      min: 0.0
+      max: 150.0
+    training_range:
+      min: 5.0
+      max: 120.0
+    scaling:
+      method: standardization
+      params:
+        mean: 50.0
+        std: 30.0
+  
+  - name: airflow
+    description: Cooling air flow rate
+    unit: m3/min
+    type: float
+    physical_range:
+      min: 0.0
+      max: 10.0
+    training_range:
+      min: 0.5
+      max: 8.0
+    scaling:
+      method: standardization
+      params:
+        mean: 3.0
+        std: 2.0
+
+# Output specification
+outputs:
+  - name: T_component
+    description: Steady-state temperature of the electronic component
+    unit: degC
+    type: float
+    expected_range:
+      min: -30.0
+      max: 150.0
+    scaling:
+      method: standardization
+      params:
+        mean: 55.0
+        std: 25.0
+    uncertainty:
+      quantified: true
+      method: gaussian_process_variance
+      confidence_level: 0.95
+
+# Domain of validity
+domain_of_validity:
+  description: >
+    The surrogate is valid for typical avionics bay operating conditions.
+    Component is a standard IMA module with natural and forced convection cooling.
+  
+  input_bounds:
+    T_ambient: [-20.0, 70.0]
+    P_load: [5.0, 120.0]
+    airflow: [0.5, 8.0]
+  
+  combined_constraints:
+    - description: Ensure minimum cooling for high power loads
+      expression: "P_load <= 100 OR airflow >= 2.0"
+  
+  out_of_domain_policy:
+    action: flag_and_extrapolate
+    warning_margin: 0.05
+    logging: true
+
+# Reference frames
+reference_frames:
+  inputs:
+    description: All inputs are scalar quantities, no coordinate frame required
+  outputs:
+    description: Temperature at component hotspot (junction temperature estimate)
+
+# Dependencies and compatibility
+dependencies:
+  runtime_libraries:
+    - name: scikit-learn
+      version: ">=1.2.0"
+    - name: numpy
+      version: ">=1.24.0"
+    - name: joblib
+      version: ">=1.2.0"
+  
+  preprocessing_models: []
+  
+  postprocessing:
+    - name: unit_check
+      description: Verify output temperature is physically reasonable
+
+# Performance guarantees
+performance:
+  inference_time:
+    target_ms: 10.0
+    measured_mean_ms: 3.5
+    measured_p95_ms: 5.2
+    measured_p99_ms: 6.8
+  
+  accuracy:
+    metric: RMSE
+    target_value: 3.0  # degC
+    achieved_value: 2.1  # degC
+  
+  memory_footprint:
+    model_size_mb: 1.2
+    runtime_memory_mb: 50.0
+
+# Validation and testing
+validation:
+  test_dataset_size: 500
+  test_coverage_percent: 95
+  validation_date: 2024-11-18
+  validation_report: validation/validation_report.json
+
+# Usage notes
+usage_notes:
+  - Model trained on FEM steady-state thermal simulations
+  - Does not account for transient thermal effects
+  - Assumes standard IMA module thermal properties
+  - Cooling airflow must be positive for validity
+
+# Version history
+version_history:
+  - version: 1.0.0
+    date: 2024-11-20
+    changes:
+      - Initial production version
+      - Trained on 2000 FEM simulations using Latin Hypercube sampling
+      - Validated against independent test dataset
+    author: Thermal Analysis Team
+
+# Compliance and traceability
+compliance:
+  certification_level: DO-178C Level D
+  traceability:
+    requirements: [REQ-THM-001, REQ-THM-015, REQ-DT-042]
+    verification_tests: [TEST-THM-VAL-001, TEST-THM-VAL-002]
+  approval:
+    approved_by: Dr. Maria Santos
+    approval_date: 2024-11-20
+    approval_authority: Thermal Systems Lead Engineer

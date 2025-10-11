@@ -1,0 +1,202 @@
+# Training Configuration for Thermal Avionics Temperature Surrogate
+
+metadata:
+  surrogate_id: thermal_avionics_temp
+  version: 1.0.0
+  training_date: 2024-11-18T14:30:00Z
+  trained_by: Thermal Analysis Team
+  description: GP regression model trained on FEM thermal simulations
+  
+# Data sources
+data:
+  training:
+    source: /data/thermal_fem_simulations/training_set_v1.npz
+    format: npz
+    size_samples: 2000
+    hash: 3f7a9b2c1d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a
+    doe_type: Latin Hypercube Sampling
+    
+  validation:
+    source: /data/thermal_fem_simulations/validation_set_v1.npz
+    format: npz
+    size_samples: 500
+    hash: 1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
+    split_method: holdout
+    split_ratio: 0.2
+    
+  preprocessing:
+    scaling: true
+    feature_engineering: false
+    outlier_removal:
+      enabled: true
+      method: iqr
+      threshold: 3.0
+    missing_data_handling: none
+
+# Model algorithm and architecture
+algorithm:
+  type: gaussian_process
+  
+  framework: scikit-learn
+  
+  version: 1.2.0
+  
+  hyperparameters:
+    kernel: Matern
+    length_scale: auto
+    nu: 1.5  # Matern smoothness parameter
+    noise_level: 0.01
+    optimizer: fmin_l_bfgs_b
+    n_restarts_optimizer: 15
+
+# Training process
+training:
+  random_seed: 42
+  
+  cross_validation:
+    enabled: true
+    folds: 5
+    metric: rmse
+  
+  early_stopping:
+    enabled: false
+  
+  hyperparameter_tuning:
+    enabled: true
+    method: grid_search
+    search_space:
+      kernel: [RBF, Matern]
+      nu: [0.5, 1.5, 2.5]
+      length_scale: [auto]
+  
+  computational_resources:
+    cpu_cores: 8
+    gpu: false
+    max_memory_gb: 16.0
+    estimated_training_time: 45 minutes
+
+# Model selection and evaluation
+evaluation:
+  metrics:
+    - name: rmse
+      target: 3.0
+      weight: 1.0
+    - name: mae
+      target: 2.0
+      weight: 0.8
+    - name: r2_score
+      target: 0.95
+      weight: 0.6
+    - name: max_error
+      target: 10.0
+      weight: 0.4
+  
+  validation_strategy:
+    holdout_test: true
+    test_size: 0.15
+    
+  slice_performance:
+    enabled: true
+    slices:
+      - description: High power loads (P > 80W)
+        bounds:
+          P_load: [80.0, 120.0]
+        target_metric: rmse
+        target_value: 3.5
+      - description: Low airflow conditions (< 2 m3/min)
+        bounds:
+          airflow: [0.5, 2.0]
+        target_metric: rmse
+        target_value: 4.0
+      - description: Extreme ambient temp (< 0°C or > 60°C)
+        bounds:
+          T_ambient: [-20.0, 0.0]
+        target_metric: rmse
+        target_value: 3.0
+
+# Uncertainty quantification
+uncertainty:
+  method: gp_variance
+  
+  parameters:
+    confidence_level: 0.95
+  
+  validation:
+    calibration_check: true
+    expected_coverage: 0.95
+    measured_coverage: 0.94
+
+# Domain of validity
+domain_validity:
+  training_envelope:
+    T_ambient: [-20.0, 70.0]
+    P_load: [5.0, 120.0]
+    airflow: [0.5, 8.0]
+  
+  extrapolation_policy:
+    allow_extrapolation: true
+    max_extrapolation_distance: 0.1
+    confidence_penalty: exponential
+
+# Optimization and regularization
+regularization:
+  enabled: false
+
+# Output artifacts
+artifacts:
+  model_file: model.joblib
+  scaler_file: scaler.joblib
+  metadata_file: train_config.yaml
+  training_logs: training/logs/
+  checkpoints: training/checkpoints/
+
+# Reproducibility
+reproducibility:
+  environment:
+    python_version: 3.10.8
+    packages:
+      - numpy==1.24.0
+      - scikit-learn==1.2.0
+      - joblib==1.2.0
+      - scipy==1.10.0
+  
+  docker_image: ideale/surrogate-training:v1.0
+  
+  hardware:
+    cpu_model: Intel Xeon E5-2680 v4
+    gpu_model: null
+
+# Quality checks
+quality_gates:
+  - check: training_converged
+    passed: true
+  - check: validation_rmse_below_threshold
+    threshold: 3.0
+    passed: true
+  - check: no_overfitting
+    max_train_val_gap: 0.1
+    passed: true
+  - check: coverage_envelope
+    min_coverage_percent: 95
+    passed: true
+
+# Version control and traceability
+traceability:
+  requirements: [REQ-THM-001, REQ-THM-015, REQ-DT-042]
+  high_fidelity_model: ANSYS Mechanical - Thermal Steady State Analysis
+  doe_plan: DOE-THM-2024-11
+  git_commit: abc123def456
+  training_job_id: TRN-THM-20241118-001
+
+# Notes and comments
+notes:
+  - Training performed on HPC cluster (node: compute-07)
+  - Matern kernel selected based on hyperparameter tuning
+  - GP model provides well-calibrated uncertainty estimates
+  - Model validated against 10 physical bench tests (average error: 2.8°C)
+
+# Approval and sign-off
+approval:
+  reviewed_by: Dr. Maria Santos
+  review_date: 2024-11-19
+  approved_for_production: true
