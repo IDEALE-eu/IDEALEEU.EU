@@ -1,0 +1,19 @@
+! Skeleton template for bulkhead modules
+! File: skel_template.prt
+!
+! This is a placeholder template file for CAD skeleton structure
+! To be populated with CAD system-specific template content
+!
+! Usage:
+! 1. Copy this file to new bulkhead module directory
+! 2. Rename following naming convention: 53-10-BH-STA<fs>_SKEL.prt
+! 3. Define coordinate system (A/C_ORIGIN, BH_STA<fs>_CS)
+! 4. Create primary datum planes (FS, BL, WL)
+! 5. Add reference curves and construction geometry
+!
+! Skeleton owns:
+! - Coordinate systems
+! - Datum planes (FS, BL, WL)
+! - Primary curves
+! - Reference geometry
+! - No solid features

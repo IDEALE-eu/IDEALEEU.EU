@@ -1,0 +1,6 @@
+material_code,material_name,spec,density_kg_m3,yield_mpa,ultimate_mpa,description
+AL-2024-T3,Aluminum Alloy 2024-T3,AMS-QQ-A-250/4,2780,345,483,Standard sheet material
+AL-7075-T6,Aluminum Alloy 7075-T6,AMS-QQ-A-250/12,2810,503,572,High-strength plate material
+AL-2219-T87,Aluminum Alloy 2219-T87,AMS-QQ-A-250/30,2840,393,476,Weldable aluminum alloy
+TI-6AL-4V,Titanium 6Al-4V,AMS 4911,4430,880,950,Titanium alloy for high-temp areas
+CFRP-UD,Carbon Fiber Unidirectional,AMS 3905,1600,2000,2500,Composite laminate material

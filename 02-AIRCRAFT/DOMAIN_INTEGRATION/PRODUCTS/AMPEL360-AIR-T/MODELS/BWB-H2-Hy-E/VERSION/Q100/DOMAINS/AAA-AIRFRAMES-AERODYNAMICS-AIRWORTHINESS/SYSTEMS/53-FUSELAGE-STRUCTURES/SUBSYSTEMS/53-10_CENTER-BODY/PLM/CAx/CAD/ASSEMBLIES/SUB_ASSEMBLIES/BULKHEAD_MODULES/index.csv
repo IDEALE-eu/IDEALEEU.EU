@@ -1,0 +1,4 @@
+fs,tag,variant,rev,status,rel,notes
+350,FWD_PRESSURE,A,01,draft,,first layout
+500,AFT_PRESSURE,A,01,review,Q100-R0,with service hole pattern
+700,AFT_BULKHEAD,A,00,draft,,skeleton only

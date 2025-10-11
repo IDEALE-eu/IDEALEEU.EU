@@ -1,0 +1,19 @@
+# JT Export - BH-STA350 Master Assembly
+! File: 53-10-BH-STA350_MASTER_ASM.jt
+!
+! This is a placeholder for the JT (Jupiter Tessellation) format export
+!
+! Export Settings:
+! - Format: JT (ISO 14306)
+! - LOD: High (detailed geometry)
+! - Compression: Standard
+! - Include: Geometry, assembly structure, metadata
+!
+! Contents:
+! - Lightweight 3D model
+! - Assembly hierarchy
+! - Material properties
+! - Coordinate systems
+! - Viewable in JT viewers
+!
+! To be replaced with actual JT file export
