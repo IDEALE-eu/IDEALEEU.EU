@@ -31,8 +31,8 @@ This document serves as a placeholder for the forthcoming 3D PDF export of the B
 > This placeholder will be replaced with the actual 3D PDF export upon completion of the assembly and verification process.
 
 ---
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/e173abac-e6d8-4601-9bd1-f5fb438e3a26" />
 
-<img width="1024" height="1024" alt="BH-STA350 Master Assembly Preview" src="https://github.com/user-attachments/assets/fb87e258-a366-4d83-a204-8a34e05b3672" />
 
 
 
