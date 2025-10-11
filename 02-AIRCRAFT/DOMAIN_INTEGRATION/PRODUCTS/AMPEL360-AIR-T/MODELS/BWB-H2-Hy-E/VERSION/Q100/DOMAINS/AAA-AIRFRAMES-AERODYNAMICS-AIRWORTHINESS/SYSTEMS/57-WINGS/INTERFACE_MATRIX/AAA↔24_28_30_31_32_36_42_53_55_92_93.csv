@@ -1,0 +1,12 @@
+from_ata,to_ata,interface,signal_or_medium,protocol/spec,notes
+57,24,Electrical routing provisions,Cables/Conduits,ATA-24,Mounting brackets and routing paths for electrical power distribution
+57,28,Fuel tank structure,Fuel/Structure,ATA-28/53,Structural aspects of integral fuel tanks in wings
+57,30,Ice protection integration,Hot air/Electrical,ATA-30,Leading edge ice protection system structural provisions
+57,31,Sensor mounting provisions,Sensors/Probes,ATA-31,Mounting brackets for angle of attack sensors and probes
+57,32,Landing gear integration,Structure/Loads,ATA-32,Wing-mounted landing gear structural interface (if applicable)
+57,36,Pneumatic routing,Pneumatic lines,ATA-36,Routing provisions for pneumatic systems
+57,42,Avionics mounting,LRU/Structure,ATA-42,Mounting provisions for avionics units in wing structures
+57,53,Wing-body junction,Structure/Loads,ATA-53/57,Critical structural interface for BWB configuration
+57,55,Wing-stabilizer integration,Structure/Aerodynamics,ATA-55/57,Interface between wing and stabilizer structures
+57,92,EWIS provisions,Wiring/Cables,ATA-92,Electrical wiring interconnection system provisions and routing
+57,93,LRU mounting,Structure/Access,ATA-93,Line Replaceable Unit mounting brackets and access provisions
