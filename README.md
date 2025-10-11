@@ -1,4 +1,7 @@
 # IDEALEEU.EU
+[![Structure](https://img.shields.io/badge/CI-Structure-blue)](#)
+[![Links](https://img.shields.io/badge/CI-Links-blue)](#)
+[![UTCS](https://img.shields.io/badge/UTCS-QS→FWD→UE→FE→CB→QB-grey)](#)
 
 https://www.idealeeu.eu
 
