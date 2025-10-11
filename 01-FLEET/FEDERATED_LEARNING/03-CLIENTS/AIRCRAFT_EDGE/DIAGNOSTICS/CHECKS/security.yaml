@@ -1,0 +1,75 @@
+# Security Check Configuration
+# Monitors certificates, permissions, and security policies
+
+description: "Security monitoring for FL client"
+enabled: true
+
+certificates:
+  - name: client_cert
+    path: "/etc/fl-client/certs/client.crt"
+    type: x509
+    required: true
+    min_validity_days: 30
+  
+  - name: client_key
+    path: "/etc/fl-client/certs/client.key"
+    type: private_key
+    required: true
+    required_permissions: "600"
+  
+  - name: ca_cert
+    path: "/etc/fl-client/certs/ca.crt"
+    type: x509
+    required: true
+    min_validity_days: 90
+
+checks:
+  - name: certificate_validity
+    type: certificate_expiry
+    target: certificates
+    warning_threshold_days: 30
+    critical_threshold_days: 7
+    interval_seconds: 86400
+  
+  - name: certificate_permissions
+    type: file_permissions
+    target: certificates
+    expected_permissions:
+      cert: ["644", "600"]
+      key: ["600", "400"]
+    interval_seconds: 3600
+  
+  - name: tls_version
+    type: protocol_version
+    min_version: "TLS1.2"
+    preferred_version: "TLS1.3"
+    interval_seconds: 86400
+  
+  - name: secure_channels
+    type: encryption
+    enforce_encryption: true
+    allowed_ciphers: ["AES256-GCM", "CHACHA20-POLY1305"]
+    interval_seconds: 86400
+
+security_policies:
+  enforce_mutual_tls: true
+  allow_plaintext: false
+  require_signature_verification: true
+  min_key_size_bits: 2048
+
+alerting:
+  critical:
+    action: suspend_all_operations
+    notify: ["security_team", "fl_orchestrator"]
+    message: "Security violation detected"
+  
+  warning:
+    action: log_and_alert
+    notify: ["security_team"]
+    message: "Security warning - review required"
+
+# Related documents
+references:
+  - ../../05-PRIVACY_SECURITY/THREAT_MODEL.md
+  - ../../05-PRIVACY_SECURITY/SECURE_AGGREGATION.md
+  - ../../11-COMPLIANCE/SECURITY_CONTROLS.md

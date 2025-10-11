@@ -1,0 +1,68 @@
+# Network Check Configuration
+# Monitors network connectivity, latency, and bandwidth
+
+description: "Network connectivity and performance monitoring"
+enabled: true
+
+central_server:
+  host: "fl-server.ideale-eu.eu"
+  port: 443
+  protocol: "https"
+
+thresholds:
+  max_latency_ms: 500
+  max_packet_loss_percent: 5
+  min_bandwidth_mbps: 5
+  connection_timeout_seconds: 10
+
+checks:
+  - name: central_server_reachability
+    type: connectivity
+    target: central_server
+    interval_seconds: 300
+    timeout_seconds: 5
+    critical: true
+  
+  - name: latency_test
+    type: latency
+    target: central_server
+    warning_threshold_ms: 300
+    critical_threshold_ms: 500
+    interval_seconds: 3600
+  
+  - name: bandwidth_test
+    type: bandwidth
+    target: central_server
+    min_download_mbps: 10
+    min_upload_mbps: 5
+    interval_seconds: 3600
+    optional: true
+  
+  - name: packet_loss
+    type: packet_loss
+    target: central_server
+    warning_threshold_percent: 2
+    critical_threshold_percent: 5
+    interval_seconds: 3600
+    optional: true
+
+network_constraints:
+  max_upload_bandwidth_mbps: 10
+  max_download_bandwidth_mbps: 20
+  description: "Bandwidth constraints per RUNTIME_CONSTRAINTS.md"
+
+alerting:
+  critical:
+    action: defer_training
+    notify: ["fl_orchestrator"]
+    message: "Network connectivity lost or severely degraded"
+  
+  warning:
+    action: log_and_continue
+    notify: ["system_health_monitor"]
+    message: "Network performance degraded"
+
+# Related documents
+references:
+  - ../RUNTIME_CONSTRAINTS.md
+  - ../../02-ORCHESTRATION/SCHEDULER.md

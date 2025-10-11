@@ -1,0 +1,75 @@
+# Storage Check Configuration
+# Monitors disk space, I/O performance, and data integrity
+
+description: "Storage health and capacity monitoring"
+enabled: true
+
+fl_data_directory: "/var/fl-client"
+
+thresholds:
+  max_directory_size_gb: 10
+  min_free_space_gb: 2
+  max_io_throughput_mbps: 10
+  description: "Storage constraints per RUNTIME_CONSTRAINTS.md"
+
+checks:
+  - name: data_directory_exists
+    type: existence
+    path: "/var/fl-client"
+    critical: true
+    interval_seconds: 300
+  
+  - name: data_directory_size
+    type: size
+    path: "/var/fl-client"
+    warning_threshold_gb: 8
+    critical_threshold_gb: 10
+    interval_seconds: 3600
+  
+  - name: root_disk_space
+    type: disk_usage
+    mount_point: "/"
+    warning_threshold_percent: 75
+    critical_threshold_percent: 90
+    interval_seconds: 300
+  
+  - name: model_files_integrity
+    type: checksum
+    path: "/var/fl-client/models"
+    interval_seconds: 86400
+    optional: true
+  
+  - name: log_rotation
+    type: file_count
+    path: "/var/fl-client/logs"
+    max_file_count: 100
+    max_total_size_gb: 1
+    interval_seconds: 86400
+
+storage_layout:
+  models: "/var/fl-client/models"
+  gradients: "/var/fl-client/gradients"
+  logs: "/var/fl-client/logs"
+  reports: "/var/fl-client/reports"
+  cache: "/var/fl-client/cache"
+
+alerting:
+  critical:
+    action: suspend_training_and_cleanup
+    notify: ["fl_orchestrator", "system_health_monitor"]
+    message: "Storage capacity critical"
+  
+  warning:
+    action: trigger_cleanup
+    notify: ["system_health_monitor"]
+    message: "Storage capacity warning - cleanup recommended"
+
+cleanup_policy:
+  old_gradients_days: 7
+  old_logs_days: 30
+  old_reports_days: 90
+
+# Related documents
+references:
+  - ../RUNTIME_CONSTRAINTS.md
+  - ../../09-DEPLOYMENT/STORAGE_LAYOUT.md
