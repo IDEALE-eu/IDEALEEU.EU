@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "subsystem_id": "90-01",
+  "subsystem_name": "SOPS_CHECKLISTS",
+  "parent_system": "IIF-90_PROCEDURES_TRAINING",
+  "last_updated": "2025-10-11"
+}

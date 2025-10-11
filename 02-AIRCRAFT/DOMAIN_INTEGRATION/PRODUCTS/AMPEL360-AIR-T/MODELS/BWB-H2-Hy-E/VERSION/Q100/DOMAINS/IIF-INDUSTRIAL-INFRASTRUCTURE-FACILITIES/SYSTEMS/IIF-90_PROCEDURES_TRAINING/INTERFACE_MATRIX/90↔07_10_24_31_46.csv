@@ -1,0 +1,6 @@
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+90,07,documentation,reference,DOC-90-07,0,N/A,Procedures reference lifting/shoring equipment specs
+90,10,documentation,reference,DOC-90-10,0,N/A,Parking and mooring coordination procedures
+90,24,documentation,reference,DOC-90-24,0,N/A,Ground power operation procedures
+90,31,documentation,reference,DOC-90-31,0,N/A,Monitoring system operation training materials
+90,46,data,LMS_interface,ICD-90-46,100,100Mbps,Learning Management System integration

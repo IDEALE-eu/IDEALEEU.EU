@@ -1,0 +1,4 @@
+{
+  "inherits": ["../../domain-config.yaml"],
+  "local_overrides": {}
+}

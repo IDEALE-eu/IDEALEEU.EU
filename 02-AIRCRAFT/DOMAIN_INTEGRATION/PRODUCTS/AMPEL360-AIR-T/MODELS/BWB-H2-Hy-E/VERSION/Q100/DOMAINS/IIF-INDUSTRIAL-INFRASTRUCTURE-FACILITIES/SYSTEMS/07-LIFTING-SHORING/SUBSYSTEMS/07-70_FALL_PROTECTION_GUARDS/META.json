@@ -1,0 +1,7 @@
+{
+  "scope": "instance",
+  "subsystem_id": "07-70",
+  "subsystem_name": "FALL_PROTECTION_GUARDS",
+  "parent_system": "07-LIFTING-SHORING",
+  "last_updated": "2025-10-11"
+}
