@@ -1,0 +1,10 @@
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+10,06,Geometric,N/A,Coordinate reference,0,N/A,Mooring point coordinates and keep-out zones
+10,15,Signal,Analog/Digital,Wind sensor protocol,5,100 Hz,Wind speed and gust alerts for mooring safety
+10,21,Thermal/Fluid,LH2 transfer,Cryogenic umbilical spec,TBD,N/A,Cryo-H2 umbilical thermal management during refueling
+10,24,Electrical,AC/DC power,Ground power interface,50000,N/A,Ground power unit (GPU) connection up to 50kW
+10,31,Data,Ethernet,AGL protocol,10,1 Gbps,Mooring status telemetry and system health data
+10,42,Logic/Signal,Discrete,Safety interlock protocol,2,1 Hz,Safe-to-move and safe-to-power inhibit signals
+10,51,Structural,Mechanical,Load transfer,0,N/A,Mooring hardpoint structural loads and fatigue analysis
+10,93,Data,Fiber/Ethernet,ARINC 664/AGL,15,100 Mbps,Airport Ground Link (AGL) communications databus
+10,97,Electrical,Wire harness,MIL-STD-1760,50,N/A,Umbilical signal and power distribution harness
