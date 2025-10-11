@@ -1,4 +1,4 @@
-from_ata,to_ata,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
+from_sta,to_sta,interface_type,signal_medium,protocol_spec,power_W,data_rate,notes
 08,21,Data,ARINC429,ARINC429-18,2,100kbps,Weight data to ECS
 08,22,Data,ARINC429,ARINC429-18,2,100kbps,Weight/CG to autopilot
 22,23,Control,ARINC429,ARINC429-18,2,100kbps,Autopilot mode annunciations
