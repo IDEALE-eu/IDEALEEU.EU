@@ -1,0 +1,327 @@
+# FMI Specifications and Configuration
+# Version: 1.0
+# Last Updated: 2025-10-11
+
+version: "1.0"
+description: "FMI 2.0/3.0 specifications for co-simulation configuration"
+
+# =============================================================================
+# FMI VERSION SELECTION
+# =============================================================================
+
+fmi_version:
+  primary: "3.0"
+  fallback: "2.0"
+  rationale: "FMI 3.0 provides enhanced features for event handling and co-simulation"
+  
+fmi_type:
+  selected: "co-simulation"
+  alternatives: ["model-exchange"]
+  rationale: "Co-simulation allows independent integration by each FMU"
+
+# =============================================================================
+# TIME INTEGRATION PARAMETERS
+# =============================================================================
+
+integration:
+  # Master algorithm time step
+  master_step_size:
+    default: 0.01 s  # 10 ms, 100 Hz
+    min: 0.001 s     # 1 ms, 1 kHz
+    max: 0.1 s       # 100 ms, 10 Hz
+    adaptive: true
+    rationale: "10 ms suitable for flight control dynamics"
+  
+  # Individual FMU step sizes (can be different from master)
+  fmu_step_sizes:
+    Control_FMU: 0.02 s    # 50 Hz - control law update rate
+    Aero_FMU: 0.01 s       # 100 Hz - aerodynamic coefficient update
+    Struct_FMU: 0.01 s     # 100 Hz - structural dynamics
+    Propulsion_FMU: 0.1 s  # 10 Hz - propulsion dynamics
+    H2_FMU: 1.0 s          # 1 Hz - thermal/fuel system dynamics
+    Thermal_FMU: 1.0 s     # 1 Hz - thermal dynamics
+  
+  # Solver configuration
+  solver:
+    type: "fixed-step"  # or "variable-step"
+    method: "forward-euler"  # or "rk4", "heun"
+    order: 1
+    
+  # Variable-step solver options (if adaptive = true)
+  adaptive_solver:
+    method: "CVODE"  # or "DOPRI5"
+    relative_tolerance: 1.0e-6
+    absolute_tolerance: 1.0e-8
+    max_step: 0.1 s
+    min_step: 1.0e-6 s
+
+# =============================================================================
+# CO-SIMULATION CONFIGURATION
+# =============================================================================
+
+co_simulation:
+  # Communication strategy
+  communication:
+    scheme: "jacobi"  # parallel evaluation, or "gauss-seidel" for sequential
+    extrapolation: "linear"  # or "constant", "quadratic"
+    interpolation: "linear"  # for output sampling between steps
+  
+  # Algebraic loop handling
+  algebraic_loops:
+    detection: true
+    solver: "fixed-point"
+    max_iterations: 10
+    convergence_tolerance: 1.0e-6
+  
+  # Initialization
+  initialization:
+    mode: "initialization-mode"  # FMI 3.0 initialization
+    max_time: 10.0 s
+    steady_state_check: true
+    
+  # Synchronization
+  synchronization:
+    time_unit: "s"
+    clock_sync_tolerance: 1.0e-9 s
+    real_time_factor: 1.0  # 1.0 = real-time, >1 = faster, <1 = slower
+
+# =============================================================================
+# TOLERANCES
+# =============================================================================
+
+tolerances:
+  # Numerical tolerances
+  numerical:
+    relative_tolerance: 1.0e-6
+    absolute_tolerance: 1.0e-8
+    zero_crossing_tolerance: 1.0e-10
+  
+  # Signal-specific tolerances (for validation)
+  signal_tolerances:
+    control_surfaces:
+      position_error_deg: 0.1
+      rate_error_deg_per_s: 1.0
+    
+    aerodynamic_coefficients:
+      cl_error: 0.01
+      cd_error: 0.001
+      cm_error: 0.01
+    
+    air_data:
+      alpha_error_deg: 0.5
+      beta_error_deg: 0.5
+      mach_error: 0.01
+      altitude_error_ft: 50
+    
+    actuator_feedback:
+      position_feedback_error_deg: 0.5
+      force_feedback_error_N: 50
+
+# =============================================================================
+# EVENT HANDLING (FMI 3.0)
+# =============================================================================
+
+event_handling:
+  enabled: true
+  
+  # Discrete events
+  discrete_events:
+    - name: "mode_change"
+      description: "FCC mode transition (NORMAL → DIRECT → ALTERNATE)"
+      fmu: Control_FMU
+      priority: high
+      
+    - name: "actuator_fault"
+      description: "Actuator failure detection"
+      fmu: Struct_FMU
+      priority: critical
+      
+    - name: "gear_extension"
+      description: "Landing gear extension/retraction"
+      fmu: Aero_FMU
+      priority: medium
+      
+    - name: "flap_position_change"
+      description: "Flap setting change"
+      fmu: Aero_FMU
+      priority: medium
+  
+  # Event iteration
+  event_iteration:
+    max_iterations: 5
+    convergence_check: true
+
+# =============================================================================
+# CONTINUOUS OUTPUTS (FMI 3.0)
+# =============================================================================
+
+continuous_outputs:
+  enabled: true
+  interpolation_method: "linear"  # or "hermite"
+  
+  # Signals requiring continuous output
+  signals:
+    - elevator_cmd
+    - aileron_left_cmd
+    - aileron_right_cmd
+    - rudder_cmd
+    - lift_coefficient
+    - drag_coefficient
+
+# =============================================================================
+# ERROR HANDLING
+# =============================================================================
+
+error_handling:
+  # Action on error
+  on_fmu_error:
+    action: "terminate"  # or "continue", "fallback"
+    log_level: "error"
+    
+  # Error budget
+  error_budget:
+    max_global_error_percent: 1.0
+    max_local_error_percent: 0.1
+    
+  # Retry strategy
+  retry:
+    enabled: true
+    max_retries: 3
+    backoff_factor: 2.0
+
+# =============================================================================
+# LOGGING AND DEBUGGING
+# =============================================================================
+
+logging:
+  # Logging levels
+  log_level: "info"  # debug, info, warning, error, critical
+  
+  # Log categories
+  categories:
+    initialization: true
+    time_stepping: false  # set to true for detailed debugging
+    event_handling: true
+    fmu_calls: false
+    variable_exchange: false
+    error_conditions: true
+  
+  # Output
+  log_file: "logs/co_simulation.log"
+  console_output: true
+  timestamp_format: "ISO8601"
+
+# =============================================================================
+# PERFORMANCE OPTIMIZATION
+# =============================================================================
+
+performance:
+  # Parallel execution
+  parallel_fmu_evaluation:
+    enabled: true
+    max_threads: 4
+    
+  # Caching
+  cache_fmu_outputs:
+    enabled: true
+    max_cache_size_mb: 1024
+    
+  # Memory management
+  memory:
+    preallocate_buffers: true
+    buffer_size_mb: 256
+
+# =============================================================================
+# VALIDATION AND VERIFICATION
+# =============================================================================
+
+validation:
+  # Pre-simulation checks
+  pre_simulation:
+    check_fmu_versions: true
+    validate_connections: true
+    check_algebraic_loops: true
+    verify_causality: true
+    
+  # During simulation
+  runtime_checks:
+    range_checking: true
+    rate_of_change_checking: true
+    consistency_checking: true
+    
+  # Post-simulation
+  post_simulation:
+    generate_report: true
+    compare_with_reference: false
+    reference_data_file: "reference/baseline.csv"
+
+# =============================================================================
+# FMI 3.0 SPECIFIC FEATURES
+# =============================================================================
+
+fmi3_features:
+  # Clocks (for hybrid co-simulation)
+  clocks:
+    enabled: true
+    periodic_clocks:
+      - name: "control_clock"
+        period: 0.02 s  # 50 Hz
+        fmus: [Control_FMU]
+      - name: "aero_clock"
+        period: 0.01 s  # 100 Hz
+        fmus: [Aero_FMU, Struct_FMU]
+  
+  # Terminals and icons (for visualization)
+  terminals:
+    enabled: true
+    
+  # Building blocks
+  building_blocks:
+    enabled: false  # advanced feature
+
+# =============================================================================
+# COMPATIBILITY
+# =============================================================================
+
+compatibility:
+  # FMI 2.0 fallback
+  fmi2_mode:
+    enabled: true
+    missing_features_handling: "degrade_gracefully"
+    
+  # Tool-specific workarounds
+  tool_workarounds:
+    enable_simulink_adapter: true
+    enable_fmpy_adapter: true
+    enable_openmodelica_adapter: false
+
+# =============================================================================
+# REFERENCES
+# =============================================================================
+
+references:
+  standards:
+    - name: "FMI 3.0 Specification"
+      url: "https://fmi-standard.org/docs/3.0/"
+      
+    - name: "FMI 2.0 Specification"
+      url: "https://fmi-standard.org/docs/2.0.4/"
+      
+  tools:
+    - name: "FMPy"
+      description: "Python FMU simulator and validation tool"
+      url: "https://github.com/CATIA-Systems/FMPy"
+      
+    - name: "FMI Compliance Checker"
+      description: "Tool for checking FMU compliance with FMI standard"
+      url: "https://github.com/modelica-tools/FMUComplianceChecker"
+
+# =============================================================================
+# CHANGE HISTORY
+# =============================================================================
+
+change_history:
+  - version: "1.0"
+    date: "2025-10-11"
+    author: "Digital Twin Team"
+    description: "Initial FMI configuration for co-simulation"

@@ -1,0 +1,244 @@
+# Scenario: Cruise Flight with Control Input
+# Version: 1.0
+# Description: Steady cruise flight at FL350 with pilot control inputs
+
+scenario:
+  id: SCENARIO-001
+  name: "Cruise Flight - ATA-27 Control Validation"
+  description: "Validate flight control response during cruise flight"
+  duration: 300.0 s  # 5 minutes
+  master_step_size: 0.01 s  # 10 ms, 100 Hz
+  
+  # Flight conditions
+  initial_conditions:
+    altitude: 35000 ft
+    airspeed: 250 kt
+    mach_number: 0.75
+    outside_air_temperature: -55 degC
+    angle_of_attack: 2.5 deg
+    flight_path_angle: 0.0 deg
+    bank_angle: 0.0 deg
+    heading: 90.0 deg
+    
+    # Control surface positions
+    elevator_position: 0.0 deg
+    aileron_left_position: 0.0 deg
+    aileron_right_position: 0.0 deg
+    rudder_position: 0.0 deg
+    
+    # System configuration
+    fcc_mode: NORMAL
+    autopilot: OFF
+    
+    # Propulsion
+    throttle: 0.75
+    thrust: 120.0 kN
+    
+    # Fuel
+    h2_mass: 3500 kg
+    tank_pressure: 350 bar
+
+# FMU Configuration
+fmus:
+  - name: Control_FMU
+    path: "../COMPONENTS/Control_FMU/fmu/Control_FMU_cs_v1.0.0.fmu"
+    step_size: 0.02 s  # 50 Hz
+    description: "Flight Control Computer - control laws and mode logic"
+    
+  - name: Aero_FMU
+    path: "../COMPONENTS/Aero_FMU/fmu/Aero_FMU_cs_v1.0.0.fmu"
+    step_size: 0.01 s  # 100 Hz
+    description: "Aerodynamics - forces and moments"
+    
+  - name: Struct_FMU
+    path: "../COMPONENTS/Struct_FMU/fmu/Struct_FMU_cs_v1.0.0.fmu"
+    step_size: 0.01 s  # 100 Hz
+    description: "Structures and actuators - deflections and feedback"
+    
+  - name: Propulsion_FMU
+    path: "../COMPONENTS/Propulsion_FMU/fmu/Propulsion_FMU_cs_v1.0.0.fmu"
+    step_size: 0.1 s  # 10 Hz
+    description: "Propulsion system - thrust and fuel consumption"
+    
+  - name: H2_FMU
+    path: "../COMPONENTS/H2_FMU/fmu/H2_FMU_cs_v1.0.0.fmu"
+    step_size: 1.0 s  # 1 Hz
+    description: "Hydrogen system - storage and fuel cell"
+
+# Signal Connections (per INTERFACES/mapping.csv)
+connections:
+  # Pilot inputs to control
+  - source: pilot_input.stick_pitch
+    destination: Control_FMU.pilot_stick_pitch
+    
+  - source: pilot_input.stick_roll
+    destination: Control_FMU.pilot_stick_roll
+    
+  - source: pilot_input.rudder_pedal
+    destination: Control_FMU.pilot_rudder_pedal
+  
+  # Control to actuators (via Aero and Struct)
+  - source: Control_FMU.elevator_cmd
+    destination: [Aero_FMU.elevator_deflection, Struct_FMU.elevator_input]
+    
+  - source: Control_FMU.aileron_left_cmd
+    destination: [Aero_FMU.aileron_left_deflection, Struct_FMU.aileron_left_input]
+    
+  - source: Control_FMU.aileron_right_cmd
+    destination: [Aero_FMU.aileron_right_deflection, Struct_FMU.aileron_right_input]
+    
+  - source: Control_FMU.rudder_cmd
+    destination: [Aero_FMU.rudder_deflection, Struct_FMU.rudder_input]
+  
+  # Air data to aero
+  - source: Control_FMU.angle_of_attack
+    destination: Aero_FMU.alpha
+    
+  - source: Control_FMU.sideslip_angle
+    destination: Aero_FMU.beta
+    
+  - source: Control_FMU.mach_number
+    destination: [Aero_FMU.mach, Propulsion_FMU.mach]
+  
+  # Aero to structures
+  - source: Aero_FMU.lift_coefficient
+    destination: Struct_FMU.aerodynamic_lift
+    
+  - source: Aero_FMU.drag_coefficient
+    destination: Propulsion_FMU.drag_input
+    
+  - source: Aero_FMU.pitch_moment_coefficient
+    destination: Struct_FMU.pitch_moment
+  
+  # Feedback from structures to control
+  - source: Struct_FMU.elevator_position_fb
+    destination: Control_FMU.elevator_sensor
+    
+  - source: Struct_FMU.aileron_left_position_fb
+    destination: Control_FMU.aileron_left_sensor
+    
+  - source: Struct_FMU.rudder_position_fb
+    destination: Control_FMU.rudder_sensor
+  
+  # Propulsion
+  - source: Propulsion_FMU.thrust_output
+    destination: Aero_FMU.thrust_input
+    
+  - source: H2_FMU.fuel_flow
+    destination: Propulsion_FMU.fuel_available
+
+# Input Sequence (pilot commands)
+input_sequence:
+  - time: 0.0 s
+    description: "Initial steady cruise"
+    pilot_stick_pitch: 0.0 deg
+    pilot_stick_roll: 0.0 deg
+    pilot_rudder_pedal: 0.0 deg
+    
+  - time: 10.0 s
+    description: "Small pitch up input"
+    pilot_stick_pitch: 2.0 deg
+    
+  - time: 20.0 s
+    description: "Return to neutral"
+    pilot_stick_pitch: 0.0 deg
+    
+  - time: 40.0 s
+    description: "Roll left"
+    pilot_stick_roll: -5.0 deg
+    
+  - time: 50.0 s
+    description: "Return to wings level"
+    pilot_stick_roll: 0.0 deg
+    
+  - time: 70.0 s
+    description: "Coordinated turn left"
+    pilot_stick_roll: -10.0 deg
+    pilot_rudder_pedal: -3.0 deg
+    
+  - time: 90.0 s
+    description: "Return to straight flight"
+    pilot_stick_roll: 0.0 deg
+    pilot_rudder_pedal: 0.0 deg
+
+# Logging Configuration
+logging:
+  sample_rate: 100 Hz
+  
+  signals:
+    # Pilot inputs
+    - pilot_stick_pitch
+    - pilot_stick_roll
+    - pilot_rudder_pedal
+    
+    # Control commands
+    - Control_FMU.elevator_cmd
+    - Control_FMU.aileron_left_cmd
+    - Control_FMU.aileron_right_cmd
+    - Control_FMU.rudder_cmd
+    
+    # Actuator feedback
+    - Struct_FMU.elevator_position_fb
+    - Struct_FMU.aileron_left_position_fb
+    - Struct_FMU.rudder_position_fb
+    
+    # Aerodynamics
+    - Aero_FMU.lift_coefficient
+    - Aero_FMU.drag_coefficient
+    - Aero_FMU.pitch_moment_coefficient
+    
+    # Air data
+    - Control_FMU.angle_of_attack
+    - Control_FMU.mach_number
+    - Control_FMU.altitude_pressure
+    
+    # System status
+    - Control_FMU.fcc_mode
+    - Control_FMU.fcc_health_status
+
+# Output Configuration
+output:
+  directory: "../SIM/results/"
+  filename_prefix: "SCENARIO-001_cruise_flight"
+  formats:
+    - csv
+    - mat
+  
+  plots:
+    - type: time_series
+      signals: [pilot_stick_pitch, Control_FMU.elevator_cmd, Struct_FMU.elevator_position_fb]
+      title: "Pitch Control Response"
+      
+    - type: time_series
+      signals: [pilot_stick_roll, Control_FMU.aileron_left_cmd, Struct_FMU.aileron_left_position_fb]
+      title: "Roll Control Response"
+      
+    - type: xy_plot
+      x_signal: Aero_FMU.drag_coefficient
+      y_signal: Aero_FMU.lift_coefficient
+      title: "Drag Polar"
+
+# Validation Criteria
+validation:
+  checks:
+    - name: "Control authority"
+      condition: "max(abs(elevator_cmd)) < 25 deg"
+      
+    - name: "Rate limits"
+      condition: "max(abs(d/dt elevator_cmd)) <= 30 deg/s"
+      
+    - name: "Steady state error"
+      condition: "abs(elevator_cmd - elevator_position_fb) < 0.5 deg"
+      
+    - name: "FCC health"
+      condition: "fcc_health_status == HEALTHY"
+
+# References
+references:
+  requirements:
+    - REQ-FC-001: "Flight control shall maintain stability in cruise"
+    - REQ-FC-010: "Control surface commands shall respect rate limits"
+  
+  test_vectors:
+    - TV-ATA27-001: "Elevator step response"
+    - TV-ATA27-002: "Aileron step response"

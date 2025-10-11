@@ -1,0 +1,154 @@
+# C:/02-AIRCRAFT/DIGITAL_TWIN_MODEL/02-MODELS/CO_SIMULATION/FMU_FMI/INTERFACES/battery_thermal_fmu.yaml
+#
+# Manifiesto de Interfaz para el FMU del Modelo Térmico de Batería.
+# Version: 1.0.0
+# Last Updated: 2025-10-11
+# Owner: Thermal Systems Team
+
+meta:
+  version: "1.0.0"
+  description: "FMU battery_thermal.fmu"
+  fmu_ref: "../COMPONENTS/Battery_Thermal_FMU/fmu/battery_thermal.fmu"
+  fmi_version: "3.0"
+  kind: "Co-Simulation"
+  communication_step_default_s: 0.01
+  communication_step_min_s: 0.001
+  communication_step_max_s: 0.1
+  supports_variable_step: false
+  input_interpolation: "hold"
+  relative_tolerance: 1e-4
+  capabilities:
+    canGetSetFMUState: false
+    providesDirectionalDerivative: false
+    needsExecutionTool: false
+
+parameters:
+  - name: "cell_mass_kg"
+    variable_name: "thermal.cell.mass"
+    value_reference: 1001
+    description: "Masa de una celda."
+    dtype: "float64"
+    unit: "kg"
+    default: 0.45
+    causality: "parameter"
+    variability: "fixed"
+    initial: "exact"
+
+  - name: "cell_specific_heat_j_per_kg_k"
+    variable_name: "thermal.cell.specific_heat"
+    value_reference: 1002
+    description: "Cp celda."
+    dtype: "float64"
+    unit: "J/(kg*K)"
+    default: 900.0
+    causality: "parameter"
+    variability: "fixed"
+    initial: "exact"
+
+  - name: "num_cells_in_series"
+    variable_name: "config.cells_series"
+    value_reference: 1003
+    description: "Celdas en serie."
+    dtype: "int32"
+    unit: "1"
+    default: 96
+    causality: "parameter"
+    variability: "fixed"
+    initial: "exact"
+
+inputs:
+  - name: "power_draw_w"
+    variable_name: "elec.load.power"
+    value_reference: 2001
+    description: "Potencia demandada."
+    dtype: "float64"
+    unit: "W"
+    range: [0.0, 50000.0]
+    start: 0.0
+    causality: "input"
+    variability: "continuous"
+    initial: "exact"
+    freshness_ms: 10
+
+  - name: "ambient_temp_k"
+    variable_name: "env.ambient_temp"
+    value_reference: 2002
+    description: "Temperatura ambiente."
+    dtype: "float64"
+    unit: "K"
+    range: [223.15, 323.15]
+    start: 298.15
+    causality: "input"
+    variability: "continuous"
+    initial: "exact"
+
+  - name: "coolant_flow_rate_lpm"
+    variable_name: "cooling.flow_rate"
+    value_reference: 2003
+    description: "Caudal refrigerante."
+    dtype: "float64"
+    unit: "L/min"
+    range: [0.0, 20.0]
+    start: 0.0
+    causality: "input"
+    variability: "continuous"
+    initial: "exact"
+
+outputs:
+  - name: "avg_cell_temp_k"
+    variable_name: "thermal.pack.avg_temp"
+    value_reference: 3001
+    description: "Temperatura promedio."
+    dtype: "float64"
+    unit: "K"
+    start: 298.15
+    causality: "output"
+    variability: "continuous"
+    initial: "calculated"
+
+  - name: "max_cell_temp_k"
+    variable_name: "thermal.pack.max_temp"
+    value_reference: 3002
+    description: "Temperatura máxima."
+    dtype: "float64"
+    unit: "K"
+    start: 298.15
+    causality: "output"
+    variability: "continuous"
+    initial: "calculated"
+
+  - name: "heat_rejection_w"
+    variable_name: "cooling.heat_rejection"
+    value_reference: 3003
+    description: "Calor disipado."
+    dtype: "float64"
+    unit: "W"
+    start: 0.0
+    causality: "output"
+    variability: "continuous"
+    initial: "calculated"
+
+safety_limits:
+  max_cell_temp_k:
+    warn: 323.15  # 50°C
+    fault: 333.15 # 60°C
+  max_temp_rise_k_per_s:
+    warn: 0.5
+    fault: 1.0
+
+units_map:
+  - from: "L/min"
+    to: "m^3/s"
+    scale: 1.6667e-5
+    note: "Convierte a SI si el maestro lo requiere."
+
+dependencies:
+  avg_cell_temp_k: ["power_draw_w", "ambient_temp_k", "coolant_flow_rate_lpm"]
+  max_cell_temp_k: ["power_draw_w", "ambient_temp_k", "coolant_flow_rate_lpm"]
+  heat_rejection_w: ["power_draw_w", "coolant_flow_rate_lpm"]
+
+ci_checks:
+  unique_value_references: true
+  ranges_within_physics: true
+  units_si_preferred: true
+  fmi_required_fields_present: ["causality","variability","initial"]

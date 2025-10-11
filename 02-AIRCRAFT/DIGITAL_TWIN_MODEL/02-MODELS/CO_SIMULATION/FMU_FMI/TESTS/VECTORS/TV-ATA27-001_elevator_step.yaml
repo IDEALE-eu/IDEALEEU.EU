@@ -1,0 +1,252 @@
+# Test Vector: ATA-27 Flight Control - Elevator Step Response
+# Version: 1.0
+# Requirement: REQ-FC-ELEVATOR-001
+# Description: Validate elevator response to step input command
+# Related Spec: SPECS/fmi_config.yaml - control surface tolerances
+
+test_vector:
+  id: TV-ATA27-001
+  name: "Elevator Step Response"
+  description: "Validate elevator actuator response to step command input"
+  system: ATA-27 Flight Controls
+  subsystem: Primary Flight Controls - Elevator
+  requirement_id: REQ-FC-ELEVATOR-001
+  dal_level: A
+  
+  # Test metadata
+  metadata:
+    created_date: "2025-10-11"
+    author: "Flight Controls Test Team"
+    review_status: "approved"
+    test_type: "compliance"
+    simulation_environment: "FMU co-simulation"
+    
+  # Initial conditions
+  initial_conditions:
+    time: 0.0 s
+    altitude: 35000 ft
+    airspeed: 250 kt
+    mach_number: 0.75
+    angle_of_attack: 2.5 deg
+    fcc_mode: NORMAL
+    
+    # Initial control surface positions
+    elevator_position: 0.0 deg
+    aileron_left_position: 0.0 deg
+    aileron_right_position: 0.0 deg
+    rudder_position: 0.0 deg
+    
+    # Initial pilot inputs
+    pilot_stick_pitch: 0.0 deg
+    pilot_stick_roll: 0.0 deg
+    pilot_rudder_pedal: 0.0 deg
+
+  # Test sequence
+  test_sequence:
+    - time: 0.0 s
+      action: "Initialize FMUs"
+      pilot_stick_pitch: 0.0 deg
+      expected_elevator_cmd: 0.0 deg
+      
+    - time: 1.0 s
+      action: "Step input - nose up command"
+      pilot_stick_pitch: 5.0 deg
+      expected_elevator_cmd: -3.5 deg  # trailing edge up (negative)
+      tolerance: 0.1 deg
+      
+    - time: 1.1 s
+      action: "Check rate limit"
+      expected_elevator_rate: -30.0 deg/s  # max rate limit
+      tolerance: 1.0 deg/s
+      
+    - time: 2.0 s
+      action: "Hold steady state"
+      pilot_stick_pitch: 5.0 deg
+      expected_elevator_cmd: -3.5 deg
+      tolerance: 0.1 deg
+      
+    - time: 3.0 s
+      action: "Return to neutral"
+      pilot_stick_pitch: 0.0 deg
+      expected_elevator_cmd: 0.0 deg
+      tolerance: 0.1 deg
+      
+    - time: 4.0 s
+      action: "Step input - nose down command"
+      pilot_stick_pitch: -5.0 deg
+      expected_elevator_cmd: 3.5 deg  # trailing edge down (positive)
+      tolerance: 0.1 deg
+      
+    - time: 5.0 s
+      action: "End test"
+
+  # Expected outputs (time series)
+  expected_outputs:
+    time_vector: [0.0, 1.0, 1.1, 1.2, 2.0, 3.0, 4.0, 5.0]  # s
+    
+    elevator_cmd: [0.0, -3.5, -3.5, -3.5, -3.5, 0.0, 3.5, 3.5]  # deg
+    
+    elevator_position_fb: [0.0, -3.45, -3.48, -3.50, -3.50, 0.0, 3.48, 3.50]  # deg (with lag)
+    
+    pitch_moment_coefficient: [0.0, 0.015, 0.016, 0.016, 0.016, 0.0, -0.015, -0.015]  # dimensionless
+
+  # Pass/fail criteria
+  pass_criteria:
+    - criterion: "Command follows input within tolerance"
+      check: "abs(elevator_cmd - expected_elevator_cmd) < 0.1 deg"
+      
+    - criterion: "Rate limit not exceeded"
+      check: "abs(elevator_rate) <= 30.0 deg/s"
+      
+    - criterion: "Steady-state error within tolerance"
+      check: "abs(elevator_position_fb - elevator_cmd) < 0.5 deg at t > 2.0 s"
+      
+    - criterion: "Position feedback tracks command"
+      check: "correlation(elevator_cmd, elevator_position_fb) > 0.99"
+      
+    - criterion: "No overshoot or oscillation"
+      check: "damping_ratio > 0.7"
+
+  # Validation against SPEC
+  spec_validation:
+    spec_file: "../SPECS/fmi_config.yaml"
+    spec_section: "tolerances.signal_tolerances.control_surfaces"
+    
+    checks:
+      - parameter: "position_error_deg"
+        spec_value: 0.1
+        test_value: 0.1
+        status: "compliant"
+        
+      - parameter: "rate_error_deg_per_s"
+        spec_value: 1.0
+        test_value: 1.0
+        status: "compliant"
+
+  # FMU configuration for test
+  fmu_configuration:
+    active_fmus: [Control_FMU, Aero_FMU, Struct_FMU]
+    
+    step_sizes:
+      Control_FMU: 0.02 s  # 50 Hz
+      Aero_FMU: 0.01 s     # 100 Hz
+      Struct_FMU: 0.01 s   # 100 Hz
+      
+    signal_connections:
+      - source: Control_FMU.elevator_cmd
+        destination: Struct_FMU.elevator_cmd_input
+      - source: Struct_FMU.elevator_position_fb
+        destination: Control_FMU.elevator_sensor
+      - source: Control_FMU.elevator_cmd
+        destination: Aero_FMU.elevator_deflection
+
+  # Data logging
+  logged_signals:
+    - signal: pilot_stick_pitch
+      fmu: Control_FMU
+      unit: deg
+      sample_rate: 50 Hz
+      
+    - signal: elevator_cmd
+      fmu: Control_FMU
+      unit: deg
+      sample_rate: 50 Hz
+      
+    - signal: elevator_position_fb
+      fmu: Struct_FMU
+      unit: deg
+      sample_rate: 100 Hz
+      
+    - signal: elevator_force_fb
+      fmu: Struct_FMU
+      unit: N
+      sample_rate: 100 Hz
+      
+    - signal: pitch_moment_coefficient
+      fmu: Aero_FMU
+      unit: dimensionless
+      sample_rate: 100 Hz
+
+  # Analysis methods
+  analysis:
+    methods:
+      - name: "Rise time"
+        description: "Time to reach 90% of commanded value"
+        target: "< 200 ms"
+        
+      - name: "Settling time"
+        description: "Time to settle within ±2% of final value"
+        target: "< 500 ms"
+        
+      - name: "Overshoot"
+        description: "Maximum overshoot percentage"
+        target: "< 5%"
+        
+      - name: "Steady-state error"
+        description: "Final position error"
+        target: "< 0.1 deg"
+        
+      - name: "Damping ratio"
+        description: "System damping (from step response)"
+        target: "> 0.7"
+
+  # Traceability
+  traceability:
+    requirements:
+      - req_id: REQ-FC-ELEVATOR-001
+        description: "Elevator shall respond to pilot input within 200 ms"
+        source_doc: "SYS-SPEC-ATA27-v2.1"
+        
+      - req_id: REQ-FC-ELEVATOR-002
+        description: "Elevator rate shall not exceed 30 deg/s"
+        source_doc: "SYS-SPEC-ATA27-v2.1"
+        
+      - req_id: REQ-FC-ELEVATOR-003
+        description: "Elevator position error shall be < 0.5 deg in steady state"
+        source_doc: "SYS-SPEC-ATA27-v2.1"
+        
+    ebom_references:
+      - ATA-27-21-001: "Elevator actuator command"
+      - ATA-27-21-101: "Elevator position feedback"
+      - ATA-27-30-003: "Pitch moment coefficient"
+
+  # Related test vectors
+  related_tests:
+    - TV-ATA27-002: "Aileron Step Response"
+    - TV-ATA27-003: "Rudder Step Response"
+    - TV-ATA27-010: "Multi-axis Control Input"
+    - TV-ATA27-020: "Failure Mode - Elevator Jam"
+
+# =============================================================================
+# EXPECTED OUTPUT FILE FORMAT (CSV)
+# =============================================================================
+
+output_format:
+  file: "results/TV-ATA27-001_results.csv"
+  columns:
+    - time_s
+    - pilot_stick_pitch_deg
+    - elevator_cmd_deg
+    - elevator_position_fb_deg
+    - elevator_force_fb_N
+    - pitch_moment_coefficient
+    - pass_fail
+
+# =============================================================================
+# EXECUTION SCRIPT
+# =============================================================================
+
+execution:
+  script: "../TOOLS/scripts/run_test_vector.py"
+  command: "python run_test_vector.py --test-vector TV-ATA27-001.yaml --output results/"
+  
+  environment:
+    fmu_path: "../COMPONENTS/"
+    orchestration_config: "../ORCHESTRATION/configs/flight_controls.yaml"
+    
+  options:
+    real_time: false
+    visualization: true
+    generate_plots: true
+    compare_with_reference: true
+    reference_file: "reference/TV-ATA27-001_baseline.csv"

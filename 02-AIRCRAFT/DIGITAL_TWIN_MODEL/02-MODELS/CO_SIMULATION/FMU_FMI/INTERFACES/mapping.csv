@@ -1,0 +1,39 @@
+source_fmu,signal_name,destination_fmu,signal_type,unit,sample_rate_hz,safety_critical,ebom_ref,notes
+Control_FMU,pilot_stick_pitch,Aero_FMU,continuous,deg,50,false,ATA-27-10-001,Pilot longitudinal stick input
+Control_FMU,pilot_stick_roll,Aero_FMU,continuous,deg,50,false,ATA-27-10-002,Pilot lateral stick input
+Control_FMU,pilot_rudder_pedal,Aero_FMU,continuous,deg,50,false,ATA-27-10-003,Pilot rudder pedal input
+Control_FMU,elevator_cmd,Aero_FMU,continuous,deg,50,true,ATA-27-21-001,Elevator deflection command
+Control_FMU,elevator_cmd,Struct_FMU,continuous,deg,50,true,ATA-27-21-001,Elevator deflection command (also to structures)
+Control_FMU,aileron_left_cmd,Aero_FMU,continuous,deg,50,true,ATA-27-22-001,Left aileron deflection command
+Control_FMU,aileron_left_cmd,Struct_FMU,continuous,deg,50,true,ATA-27-22-001,Left aileron deflection command (also to structures)
+Control_FMU,aileron_right_cmd,Aero_FMU,continuous,deg,50,true,ATA-27-22-002,Right aileron deflection command
+Control_FMU,aileron_right_cmd,Struct_FMU,continuous,deg,50,true,ATA-27-22-002,Right aileron deflection command (also to structures)
+Control_FMU,rudder_cmd,Aero_FMU,continuous,deg,50,true,ATA-27-23-001,Rudder deflection command
+Control_FMU,rudder_cmd,Struct_FMU,continuous,deg,50,true,ATA-27-23-001,Rudder deflection command (also to structures)
+Control_FMU,spoiler_left_cmd,Aero_FMU,continuous,deg,50,true,ATA-27-24-001,Left spoiler deflection command
+Control_FMU,spoiler_left_cmd,Struct_FMU,continuous,deg,50,true,ATA-27-24-001,Left spoiler deflection command (also to structures)
+Control_FMU,spoiler_right_cmd,Aero_FMU,continuous,deg,50,true,ATA-27-24-002,Right spoiler deflection command
+Control_FMU,spoiler_right_cmd,Struct_FMU,continuous,deg,50,true,ATA-27-24-002,Right spoiler deflection command (also to structures)
+Struct_FMU,elevator_position_fb,Control_FMU,continuous,deg,100,false,ATA-27-21-101,Measured elevator position feedback
+Struct_FMU,elevator_force_fb,Control_FMU,continuous,N,100,false,ATA-27-21-102,Measured hinge moment on elevator
+Struct_FMU,aileron_left_position_fb,Control_FMU,continuous,deg,100,false,ATA-27-22-101,Measured left aileron position
+Struct_FMU,rudder_position_fb,Control_FMU,continuous,deg,100,false,ATA-27-23-101,Measured rudder position
+Aero_FMU,lift_coefficient,Struct_FMU,continuous,dimensionless,100,false,ATA-27-30-001,Total aircraft lift coefficient (CL)
+Aero_FMU,drag_coefficient,Propulsion_FMU,continuous,dimensionless,100,false,ATA-27-30-002,Total aircraft drag coefficient (CD)
+Aero_FMU,pitch_moment_coefficient,Struct_FMU,continuous,dimensionless,100,false,ATA-27-30-003,Pitching moment coefficient (CM)
+Aero_FMU,roll_moment_coefficient,Struct_FMU,continuous,dimensionless,100,false,ATA-27-30-004,Rolling moment coefficient (Cl)
+Aero_FMU,yaw_moment_coefficient,Struct_FMU,continuous,dimensionless,100,false,ATA-27-30-005,Yawing moment coefficient (Cn)
+Control_FMU,angle_of_attack,Aero_FMU,continuous,deg,50,false,ATA-34-12-001,Angle of attack (alpha) from air data
+Control_FMU,sideslip_angle,Aero_FMU,continuous,deg,50,false,ATA-34-12-002,Sideslip angle (beta) from air data
+Control_FMU,mach_number,Aero_FMU,continuous,dimensionless,10,false,ATA-34-13-001,Aircraft Mach number
+Control_FMU,mach_number,Propulsion_FMU,continuous,dimensionless,10,false,ATA-34-13-001,Aircraft Mach number (also to propulsion)
+Control_FMU,calibrated_airspeed,Aero_FMU,continuous,kt,10,false,ATA-34-13-002,Calibrated airspeed
+Control_FMU,altitude_pressure,Aero_FMU,continuous,ft,10,false,ATA-34-14-001,Pressure altitude
+Control_FMU,altitude_pressure,Propulsion_FMU,continuous,ft,10,false,ATA-34-14-001,Pressure altitude (also to propulsion)
+Control_FMU,altitude_pressure,H2_FMU,continuous,ft,10,false,ATA-34-14-001,Pressure altitude (also to H2 system)
+Control_FMU,fcc_mode,Aero_FMU,discrete,enum,10,true,ATA-27-40-001,Flight Control Computer operating mode
+Control_FMU,fcc_mode,Struct_FMU,discrete,enum,10,true,ATA-27-40-001,Flight Control Computer operating mode (also to structures)
+Control_FMU,fcc_health_status,Control_FMU,discrete,enum,10,true,ATA-27-40-002,Overall FCC health status (self-monitoring)
+Struct_FMU,actuator_fault_flags,Control_FMU,discrete,bitfield,10,true,ATA-27-40-003,Fault flags for each actuator
+Propulsion_FMU,thrust_output,Aero_FMU,continuous,kN,10,false,ATA-28-10-001,Total thrust output from propulsion system
+H2_FMU,fuel_flow,Propulsion_FMU,continuous,kg/h,1,false,ATA-28-42-001,Hydrogen fuel flow to propulsion
