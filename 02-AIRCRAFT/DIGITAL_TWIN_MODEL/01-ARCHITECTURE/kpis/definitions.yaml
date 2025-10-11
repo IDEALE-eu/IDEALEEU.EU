@@ -1,0 +1,75 @@
+# KPI Definitions
+
+version: 1.0
+last_updated: 2025-01-XX
+
+kpis:
+  - id: KPI-001
+    name: Fuel Consumption Prediction Accuracy
+    description: Root mean squared error of H2 fuel consumption predictions
+    category: Prediction Accuracy
+    formula: "sqrt(mean((predicted - actual)^2))"
+    unit: kg
+    target: "<2.0 kg"
+    measurement_frequency: per_flight
+    data_source: telemetry + predictions
+    
+  - id: KPI-002
+    name: Battery SOC Prediction Error
+    description: Mean absolute error of battery state of charge
+    category: Prediction Accuracy
+    formula: "mean(abs(predicted_soc - actual_soc))"
+    unit: percent
+    target: "<3.0%"
+    measurement_frequency: continuous
+    data_source: telemetry + predictions
+    
+  - id: KPI-003
+    name: Model Execution Latency
+    description: Time to execute one simulation step
+    category: Performance
+    formula: "execution_end_time - execution_start_time"
+    unit: milliseconds
+    target: "<100 ms"
+    measurement_frequency: per_step
+    data_source: runtime_logs
+    
+  - id: KPI-004
+    name: Anomaly Detection False Positive Rate
+    description: Fraction of false alarms in anomaly detection
+    category: Reliability
+    formula: "false_positives / total_predictions"
+    unit: percent
+    target: "<1.0%"
+    measurement_frequency: daily
+    data_source: anomaly_logs + validation
+    
+  - id: KPI-005
+    name: System Uptime
+    description: Percentage of time twin is operational
+    category: Reliability
+    formula: "(total_time - downtime) / total_time * 100"
+    unit: percent
+    target: ">99.5%"
+    measurement_frequency: monthly
+    data_source: uptime_monitoring
+    
+  - id: KPI-006
+    name: Model Drift (PSI)
+    description: Population Stability Index for model drift detection
+    category: Reliability
+    formula: "sum((actual_pct - expected_pct) * log(actual_pct / expected_pct))"
+    unit: dimensionless
+    target: "<0.25"
+    measurement_frequency: weekly
+    data_source: drift_monitor
+    
+  - id: KPI-007
+    name: Operational Envelope Coverage
+    description: Percentage of envelope covered by validation tests
+    category: Coverage
+    formula: "tested_combinations / total_combinations * 100"
+    unit: percent
+    target: ">95%"
+    measurement_frequency: per_release
+    data_source: test_reports

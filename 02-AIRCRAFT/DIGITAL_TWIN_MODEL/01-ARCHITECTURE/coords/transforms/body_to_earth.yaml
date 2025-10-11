@@ -1,0 +1,133 @@
+# Body to Earth (NED) Frame Transformation
+
+description: Transformation from aircraft body frame to local NED (North-East-Down) frame
+version: 1.0
+last_updated: 2025-01-XX
+
+# Transformation Definition
+
+transformation:
+  from_frame: Body
+  to_frame: Earth_NED
+  type: Rotation
+  depends_on:
+    - phi    # Roll angle (deg)
+    - theta  # Pitch angle (deg)
+    - psi    # Yaw angle / heading (deg)
+
+# Euler Angle Rotation Sequence: ZYX (Yaw-Pitch-Roll)
+
+rotation_matrix:
+  description: R_NED_body = R_z(psi) * R_y(theta) * R_x(phi)
+  formula: |
+    R = [cos(theta)*cos(psi),  sin(phi)*sin(theta)*cos(psi)-cos(phi)*sin(psi),  cos(phi)*sin(theta)*cos(psi)+sin(phi)*sin(psi)]
+        [cos(theta)*sin(psi),  sin(phi)*sin(theta)*sin(psi)+cos(phi)*cos(psi),  cos(phi)*sin(theta)*sin(psi)-sin(phi)*cos(psi)]
+        [-sin(theta),          sin(phi)*cos(theta),                             cos(phi)*cos(theta)]
+  
+  implementation:
+    python: |
+      import numpy as np
+      def body_to_ned(phi_deg, theta_deg, psi_deg):
+          phi = np.radians(phi_deg)
+          theta = np.radians(theta_deg)
+          psi = np.radians(psi_deg)
+          
+          cphi, sphi = np.cos(phi), np.sin(phi)
+          ctheta, stheta = np.cos(theta), np.sin(theta)
+          cpsi, spsi = np.cos(psi), np.sin(psi)
+          
+          R = np.array([
+              [ctheta*cpsi, sphi*stheta*cpsi-cphi*spsi, cphi*stheta*cpsi+sphi*spsi],
+              [ctheta*spsi, sphi*stheta*spsi+cphi*cpsi, cphi*stheta*spsi-sphi*cpsi],
+              [-stheta,     sphi*ctheta,                cphi*ctheta]
+          ])
+          return R
+
+# Quaternion Representation
+
+quaternion:
+  description: Alternative to Euler angles, avoids gimbal lock
+  formula: |
+    q = [q0, q1, q2, q3]
+    where:
+    q0 = cos(phi/2)*cos(theta/2)*cos(psi/2) + sin(phi/2)*sin(theta/2)*sin(psi/2)
+    q1 = sin(phi/2)*cos(theta/2)*cos(psi/2) - cos(phi/2)*sin(theta/2)*sin(psi/2)
+    q2 = cos(phi/2)*sin(theta/2)*cos(psi/2) + sin(phi/2)*cos(theta/2)*sin(psi/2)
+    q3 = cos(phi/2)*cos(theta/2)*sin(psi/2) - sin(phi/2)*sin(theta/2)*cos(psi/2)
+  
+  implementation:
+    python: |
+      import numpy as np
+      def euler_to_quaternion(phi_deg, theta_deg, psi_deg):
+          phi = np.radians(phi_deg) / 2
+          theta = np.radians(theta_deg) / 2
+          psi = np.radians(psi_deg) / 2
+          
+          cphi, sphi = np.cos(phi), np.sin(phi)
+          ctheta, stheta = np.cos(theta), np.sin(theta)
+          cpsi, spsi = np.cos(psi), np.sin(psi)
+          
+          q = np.array([
+              cphi*ctheta*cpsi + sphi*stheta*spsi,
+              sphi*ctheta*cpsi - cphi*stheta*spsi,
+              cphi*stheta*cpsi + sphi*ctheta*spsi,
+              cphi*ctheta*spsi - sphi*stheta*cpsi
+          ])
+          return q
+
+# Operating Ranges
+
+operating_ranges:
+  phi:
+    min_deg: -30
+    max_deg: 30
+    normal_cruise_deg: 0
+  theta:
+    min_deg: -10
+    max_deg: 20
+    normal_cruise_deg: 3
+  psi:
+    min_deg: 0
+    max_deg: 360
+    periodic: true
+
+# Example Transformations
+
+examples:
+  - condition: Level flight, heading north
+    phi_deg: 0.0
+    theta_deg: 3.0
+    psi_deg: 0.0
+    rotation_matrix:
+      - [0.9986, 0.0000, 0.0523]
+      - [0.0000, 1.0000, 0.0000]
+      - [-0.0523, 0.0000, 0.9986]
+    quaternion: [0.9993, 0.0000, 0.0262, 0.0000]
+    
+  - condition: 15° right bank, heading east
+    phi_deg: 15.0
+    theta_deg: 0.0
+    psi_deg: 90.0
+    rotation_matrix:
+      - [0.0000, -1.0000, 0.0000]
+      - [0.9659, 0.0000, 0.2588]
+      - [-0.2588, 0.0000, 0.9659]
+    quaternion: [0.6533, 0.2706, 0.0000, 0.7034]
+    
+  - condition: 10° pitch up, 20° right bank, heading 270°
+    phi_deg: 20.0
+    theta_deg: 10.0
+    psi_deg: 270.0
+    rotation_matrix:
+      - [0.0000, 0.9848, -0.1736]
+      - [-0.9254, 0.0594, 0.3747]
+      - [0.3792, 0.1632, 0.9106]
+    quaternion: [0.6304, -0.3420, 0.1710, -0.6745]
+
+# Usage in Digital Twin
+
+usage:
+  navigation: Transform GPS velocities from NED to body frame
+  guidance: Convert waypoint coordinates to body-relative positions
+  control_laws: Attitude reference for autopilot
+  visualization: Render aircraft orientation in world frame

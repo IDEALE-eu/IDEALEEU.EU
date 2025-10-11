@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: Digital Twin REST API
+  version: 1.0.0
+  description: REST API for aircraft digital twin operations
+  contact:
+    name: Digital Twin Team
+    email: dt-team@ideale-eu.eu
+
+servers:
+  - url: https://api.digitaltwin.ideale-eu.eu/v1
+    description: Production
+  - url: http://localhost:8080/v1
+    description: Development
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: Service is healthy
+          
+  /aircraft/{aircraft_id}/kpis:
+    get:
+      summary: Get KPIs for aircraft
+      parameters:
+        - name: aircraft_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: start_time
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: end_time
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: KPIs retrieved successfully
+        '404':
+          description: Aircraft not found
+          
+  /predictions:
+    post:
+      summary: Request prediction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                aircraft_id:
+                  type: string
+                scenario:
+                  type: object
+      responses:
+        '200':
+          description: Prediction computed
+        '400':
+          description: Invalid request

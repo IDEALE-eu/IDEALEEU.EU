@@ -1,0 +1,176 @@
+# Coordinate Frame Definitions
+
+version: 1.0
+last_updated: 2025-01-XX
+standard: ISO 1151 (Flight dynamics) + ARP4754A
+
+# Reference Frames
+
+frames:
+  - name: Body
+    id: BODY
+    origin: Aircraft center of gravity (CG)
+    axes:
+      x:
+        direction: Forward (parallel to fuselage reference line)
+        positive: Toward nose
+        unit: m
+      y:
+        direction: Lateral
+        positive: Toward right wing tip
+        unit: m
+      z:
+        direction: Vertical
+        positive: Downward
+        unit: m
+    handedness: right-handed
+    notes: Primary aircraft reference frame; origin may shift with CG location
+    
+  - name: Wind
+    id: WIND
+    origin: Aircraft CG (coincident with body frame)
+    axes:
+      x:
+        direction: Along relative wind vector (airspeed)
+        positive: Toward nose (aligned with airspeed)
+        unit: m
+      y:
+        direction: Lateral (perpendicular to relative wind)
+        positive: Toward right
+        unit: m
+      z:
+        direction: Perpendicular to x-y plane
+        positive: Downward
+        unit: m
+    handedness: right-handed
+    transformation_from_body: Rotate by angle of attack (alpha) and sideslip (beta)
+    notes: Used for aerodynamic force and moment calculations
+    
+  - name: Stability
+    id: STABILITY
+    origin: Aircraft CG
+    axes:
+      x:
+        direction: In body x-z plane, rotated by alpha from body x
+        positive: Forward
+        unit: m
+      y:
+        direction: Same as body y-axis
+        positive: Toward right wing
+        unit: m
+      z:
+        direction: Perpendicular to x-y plane
+        positive: Downward
+        unit: m
+    handedness: right-handed
+    transformation_from_body: Rotate by angle of attack (alpha) about y-axis
+    notes: Intermediate frame for aerodynamic calculations
+    
+  - name: Earth_NED
+    id: NED
+    origin: Local reference point on Earth surface
+    axes:
+      x:
+        direction: North
+        positive: Geographic north
+        unit: m
+      y:
+        direction: East
+        positive: Geographic east
+        unit: m
+      z:
+        direction: Down
+        positive: Toward Earth center
+        unit: m
+    handedness: right-handed
+    notes: Local tangent plane; origin typically at takeoff point or airport reference
+    
+  - name: ECEF
+    id: ECEF
+    origin: Earth center of mass
+    axes:
+      x:
+        direction: Through equator at prime meridian
+        positive: Toward 0° lat, 0° lon
+        unit: m
+      y:
+        direction: Through equator at 90° east
+        positive: Toward 0° lat, 90° lon
+        unit: m
+      z:
+        direction: Through rotation axis
+        positive: Toward North Pole
+        unit: m
+    handedness: right-handed
+    datum: WGS84
+    notes: Earth-Centered, Earth-Fixed; used for GPS and global positioning
+    
+  - name: Geodetic
+    id: LLA
+    origin: Earth center of mass
+    coordinates:
+      latitude:
+        symbol: φ
+        range: [-90, 90]
+        unit: deg
+        positive: North
+      longitude:
+        symbol: λ
+        range: [-180, 180]
+        unit: deg
+        positive: East
+      altitude:
+        symbol: h
+        range: [0, unlimited]
+        unit: m
+        positive: Above WGS84 ellipsoid
+    datum: WGS84
+    notes: Latitude-Longitude-Altitude; standard for GPS
+    
+# Sensor-specific frames
+
+sensor_frames:
+  - name: GPS_Antenna
+    parent: Body
+    offset: [0.5, 0.0, 1.2]  # [x, y, z] in meters
+    rotation: [0, 0, 0]  # [roll, pitch, yaw] in degrees
+    notes: GPS antenna on upper fuselage
+    
+  - name: IMU
+    parent: Body
+    offset: [-0.1, 0.0, -0.05]  # Near CG
+    rotation: [0, 0, 0]
+    notes: Inertial measurement unit location
+    
+  - name: Air_Data_Sensor
+    parent: Body
+    offset: [2.5, 0.0, 0.3]  # Forward nose
+    rotation: [0, 0, 0]
+    notes: Pitot-static probe
+    
+  - name: AOA_Vane_Left
+    parent: Body
+    offset: [1.8, -2.5, 0.2]
+    rotation: [0, 0, 0]
+    notes: Port side angle of attack vane
+    
+  - name: AOA_Vane_Right
+    parent: Body
+    offset: [1.8, 2.5, 0.2]
+    rotation: [0, 0, 0]
+    notes: Starboard side angle of attack vane
+
+# Transformation conventions
+
+transformation_conventions:
+  rotation_order: ZYX  # Yaw-Pitch-Roll (aerospace standard)
+  angle_units: degrees
+  angle_sign_convention: Right-hand rule (positive = counterclockwise when looking down axis)
+  translation_units: meters
+  
+# Validation
+
+validation:
+  orthogonality_tolerance: 1.0e-6  # Transformation matrices must be orthogonal
+  determinant_tolerance: 1.0e-6  # Determinant must equal 1 (proper rotation)
+  coordinate_system_check: Verify right-handedness of all frames

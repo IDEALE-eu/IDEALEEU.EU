@@ -1,0 +1,11 @@
+Standard,Version,Section,Requirement,Digital Twin Artifact,Status,Notes
+ISO 23247-1,2021,5.2,Digital twin architecture,REFERENCE_ARCHITECTURE.md,Compliant,Four-layer architecture
+ISO 23247-2,2021,6.1,Data exchange requirements,data_contracts/,Compliant,Schemas and contracts defined
+ARP4754A,2010,5.3,Requirements management,requirements/traceability.yaml,Compliant,Full traceability matrix
+DO-178C,2012,11.10,Verification testing,validation/tests/,Partial,MIL tests complete; HIL in progress
+ISO 27001,2022,A.9,Access control,security/access_control.yaml,Compliant,RBAC implemented
+ISO 27001,2022,A.10,Cryptography,security/encryption.md,Compliant,TLS 1.3 + AES-256
+ECSS-E-ST-10C,2009,6.2,Requirements traceability,requirements/,Compliant,RTM maintained
+NASA-STD-7009,2016,4.1,Model credibility,validation/reports/,In Progress,Correlation study ongoing
+GDPR,2018,Art 32,Security measures,security/,Compliant,Encryption and access control
+FIPS 140-2,2001,All,Cryptographic modules,security/encryption.md,Compliant,Validated modules used

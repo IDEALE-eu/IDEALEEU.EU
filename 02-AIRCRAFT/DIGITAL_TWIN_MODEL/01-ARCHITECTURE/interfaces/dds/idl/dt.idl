@@ -1,0 +1,30 @@
+// Digital Twin DDS Interface Definition Language (IDL)
+
+module DigitalTwin {
+  
+  struct TelemetryMessage {
+    string timestamp;
+    string aircraft_id;
+    string flight_id;
+    double fc_voltage;
+    double fc_current;
+    double battery_soc;
+    double altitude_ft;
+    double tas_kts;
+  };
+  
+  struct KPIMessage {
+    string timestamp;
+    string aircraft_id;
+    string kpi_name;
+    double value;
+    string unit;
+  };
+  
+  struct CommandMessage {
+    string command_id;
+    string command_type;
+    string parameters;
+  };
+  
+};

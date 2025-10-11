@@ -1,0 +1,169 @@
+# Sensor Calibration Parameters
+
+version: 1.0
+last_updated: 2025-01-XX
+applicable_variants: [baseline_v1.0, advanced_v1.1]
+calibration_date: 2024-12-15
+next_calibration_due: 2025-12-15
+
+# Temperature Sensors
+
+temperature_sensors:
+  - sensor_id: TEMP_ENG_01
+    location: Engine bay - port side
+    type: RTD_PT100
+    calibration:
+      offset_degC: -0.15
+      scale_factor: 1.002
+      accuracy_degC: 0.5
+      range_min_degC: -40
+      range_max_degC: 200
+    validation:
+      reference_standard: NIST_traceable_RTD
+      calibration_points: [-20, 0, 25, 100, 150]
+      max_error_degC: 0.3
+      
+  - sensor_id: TEMP_FUEL_CELL_01
+    location: H2 fuel cell stack
+    type: Thermocouple_K
+    calibration:
+      offset_degC: 0.08
+      scale_factor: 0.998
+      accuracy_degC: 1.0
+      range_min_degC: -50
+      range_max_degC: 300
+    validation:
+      reference_standard: NIST_traceable_TC
+      calibration_points: [-20, 0, 50, 150, 250]
+      max_error_degC: 0.8
+
+# Pressure Sensors
+
+pressure_sensors:
+  - sensor_id: PRESS_H2_TANK_01
+    location: H2 storage tank 1
+    type: Piezoresistive
+    calibration:
+      offset_bar: 0.05
+      scale_factor: 1.001
+      accuracy_bar: 0.5
+      range_min_bar: 0
+      range_max_bar: 700
+    validation:
+      reference_standard: Deadweight_tester
+      calibration_points: [0, 100, 350, 500, 700]
+      max_error_bar: 0.3
+      
+  - sensor_id: PRESS_CABIN_01
+    location: Cabin altitude sensor
+    type: Capacitive
+    calibration:
+      offset_mbar: -0.8
+      scale_factor: 1.0005
+      accuracy_mbar: 1.0
+      range_min_mbar: 500
+      range_max_mbar: 1100
+    validation:
+      reference_standard: Reference_barometer
+      calibration_points: [600, 800, 1000, 1050]
+      max_error_mbar: 0.5
+
+# Flow Sensors
+
+flow_sensors:
+  - sensor_id: FLOW_H2_01
+    location: H2 fuel line to fuel cell
+    type: Mass_flow_meter
+    calibration:
+      offset_kg_per_h: 0.02
+      scale_factor: 0.999
+      accuracy_kg_per_h: 0.1
+      range_min_kg_per_h: 0
+      range_max_kg_per_h: 50
+    validation:
+      reference_standard: Gravimetric_flow_standard
+      calibration_points: [1, 10, 25, 40, 50]
+      max_error_kg_per_h: 0.08
+
+# Accelerometers
+
+accelerometers:
+  - sensor_id: ACCEL_WING_01
+    location: Port wing tip
+    type: MEMS_3axis
+    calibration:
+      offset_x_g: 0.001
+      offset_y_g: -0.002
+      offset_z_g: 0.003
+      scale_x: 1.0001
+      scale_y: 0.9998
+      scale_z: 1.0002
+      accuracy_g: 0.01
+      range_g: [-10, 10]
+    validation:
+      reference_standard: Precision_centrifuge
+      calibration_points: [-5, -2, 0, 2, 5]
+      max_error_g: 0.005
+
+# Voltage and Current Sensors
+
+electrical_sensors:
+  - sensor_id: VOLT_BUS_MAIN
+    location: Main electrical bus
+    type: Differential_amplifier
+    calibration:
+      offset_V: 0.05
+      scale_factor: 1.0001
+      accuracy_V: 0.5
+      range_min_V: 0
+      range_max_V: 300
+    validation:
+      reference_standard: Precision_DMM
+      calibration_points: [28, 115, 230, 270]
+      max_error_V: 0.3
+      
+  - sensor_id: CURR_FUEL_CELL_01
+    location: Fuel cell output
+    type: Hall_effect
+    calibration:
+      offset_A: 0.1
+      scale_factor: 0.9995
+      accuracy_A: 1.0
+      range_min_A: 0
+      range_max_A: 500
+    validation:
+      reference_standard: Precision_shunt
+      calibration_points: [50, 150, 300, 450]
+      max_error_A: 0.8
+
+# GPS/INS
+
+navigation_sensors:
+  - sensor_id: GPS_PRIMARY
+    location: Upper fuselage centerline
+    type: Multi_constellation_GNSS
+    calibration:
+      position_bias_m: [0.05, -0.03, 0.08]
+      velocity_bias_m_per_s: [0.01, 0.02, -0.01]
+      accuracy_m: 0.5
+    validation:
+      reference_standard: Surveyed_position
+      test_duration_hours: 24
+      max_error_m: 0.3
+
+# Calibration Procedure
+
+calibration_procedure:
+  frequency: Annual or after 500 flight hours (whichever first)
+  authority: Qualified calibration technician
+  equipment: NIST-traceable reference standards
+  environment: Controlled temperature (20±2°C), humidity (<60% RH)
+  documentation: Calibration certificate filed in aircraft records
+  
+# Drift Monitoring
+
+drift_monitoring:
+  enabled: true
+  check_frequency: Pre-flight
+  threshold_action: Flag for re-calibration if drift >50% of accuracy spec
+  logging: All sensor readings logged for trend analysis

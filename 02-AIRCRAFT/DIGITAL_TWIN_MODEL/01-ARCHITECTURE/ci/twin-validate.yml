@@ -1,0 +1,35 @@
+name: Digital Twin Validation
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2 AM
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: Run MIL tests
+        run: |
+          pytest validation/tests/mil/ --junit-xml=results/mil.xml
+      
+      - name: Generate coverage report
+        run: |
+          python analysis/scripts/coverage_report.py --test-dir validation/tests/ --output coverage.html
+      
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: results/

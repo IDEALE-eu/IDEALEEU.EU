@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ideale-eu.eu/schemas/ief-manifest.schema.json",
+  "title": "Industrial Ecosystem Framework Manifest",
+  "description": "Schema for IEF digital twin manifest",
+  "type": "object",
+  "required": ["id", "name", "version", "type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for digital twin"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic version"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["aircraft", "component", "system"],
+      "description": "Type of digital twin"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created": {"type": "string", "format": "date-time"},
+        "updated": {"type": "string", "format": "date-time"},
+        "owner": {"type": "string"}
+      }
+    },
+    "interfaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "protocol": {"type": "string"},
+          "endpoint": {"type": "string"}
+        }
+      }
+    }
+  }
+}

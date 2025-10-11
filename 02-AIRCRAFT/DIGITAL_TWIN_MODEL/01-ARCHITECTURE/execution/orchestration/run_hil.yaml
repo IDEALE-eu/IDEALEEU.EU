@@ -1,0 +1,54 @@
+# Hardware-in-the-Loop (HIL) Execution Configuration
+
+name: digital-twin-hil
+description: HIL execution with real avionics hardware
+
+environment:
+  type: hil
+  compute:
+    cpu_cores: 8
+    memory_gb: 32
+    gpu: true
+    realtime: true
+
+models:
+  - name: fuel_cell
+    type: fmu
+    path: ../../models/fmu/fuel_cell.fmu
+    realtime_priority: high
+    
+  - name: flight_dynamics
+    type: fmu
+    path: ../../models/fmu/flight_dynamics.fmu
+    realtime_priority: critical
+
+hardware_interfaces:
+  - name: avionics_bus
+    type: can
+    port: can0
+    bitrate: 500000
+    
+  - name: arinc_429
+    type: arinc429
+    port: /dev/arinc0
+    rate_hz: 100
+
+synchronization:
+  method: external_clock
+  source: gps_pps
+  jitter_tolerance_us: 100
+
+outputs:
+  - name: test_results
+    type: json
+    path: /var/hil/results/
+
+logging:
+  level: INFO
+  file: /var/hil/logs/twin_hil.log
+  syslog: true
+
+safety:
+  watchdog_timeout_ms: 100
+  emergency_stop_enabled: true
+  redundancy: dual_channel

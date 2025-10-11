@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package digitaltwin.v1;
+
+service DigitalTwinService {
+  rpc StreamTelemetry(stream TelemetryData) returns (TelemetryAck);
+  rpc QueryKPIs(KPIRequest) returns (KPIResponse);
+  rpc ExecuteCommand(Command) returns (CommandResult);
+}
+
+message TelemetryData {
+  string timestamp = 1;
+  string aircraft_id = 2;
+  string flight_id = 3;
+  PropulsionData propulsion = 4;
+  ElectricalData electrical = 5;
+}
+
+message PropulsionData {
+  double fc_voltage = 1;
+  double fc_current = 2;
+  double h2_flow_rate = 3;
+}
+
+message ElectricalData {
+  double battery_soc_percent = 1;
+  double battery_voltage = 2;
+}
+
+message TelemetryAck {
+  string status = 1;
+  string message = 2;
+}
+
+message KPIRequest {
+  string aircraft_id = 1;
+  string start_time = 2;
+  string end_time = 3;
+}
+
+message KPIResponse {
+  repeated KPI kpis = 1;
+}
+
+message KPI {
+  string name = 1;
+  double value = 2;
+  string unit = 3;
+}
+
+message Command {
+  string command_id = 1;
+  string command_type = 2;
+  string parameters = 3;
+}
+
+message CommandResult {
+  string status = 1;
+  string result = 2;
+}
