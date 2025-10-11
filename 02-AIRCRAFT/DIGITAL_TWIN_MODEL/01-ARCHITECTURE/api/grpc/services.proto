@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package digitaltwin.v1;
+
+// Digital Twin gRPC Services
+service DigitalTwinService {
+  // Stream telemetry data to twin
+  rpc StreamTelemetry(stream TelemetryMessage) returns (AckMessage);
+  
+  // Subscribe to real-time KPIs
+  rpc SubscribeKPIs(KPISubscription) returns (stream KPIMessage);
+  
+  // Execute simulation
+  rpc ExecuteSimulation(SimulationRequest) returns (SimulationResult);
+}
+
+message TelemetryMessage {
+  string timestamp = 1;
+  string aircraft_id = 2;
+  map<string, double> data = 3;
+}
+
+message AckMessage {
+  string status = 1;
+}
+
+message KPISubscription {
+  string aircraft_id = 1;
+  repeated string kpi_names = 2;
+}
+
+message KPIMessage {
+  string timestamp = 1;
+  string kpi_name = 2;
+  double value = 3;
+  string unit = 4;
+}
+
+message SimulationRequest {
+  string aircraft_id = 1;
+  double duration_seconds = 2;
+  map<string, string> parameters = 3;
+}
+
+message SimulationResult {
+  string status = 1;
+  map<string, double> results = 2;
+}

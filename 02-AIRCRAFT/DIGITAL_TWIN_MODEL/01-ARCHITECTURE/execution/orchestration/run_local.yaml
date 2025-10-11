@@ -1,0 +1,51 @@
+# Local Development Execution Configuration
+
+name: digital-twin-local
+description: Local development execution for testing and debugging
+
+environment:
+  type: local
+  compute:
+    cpu_cores: 4
+    memory_gb: 16
+    gpu: false
+
+models:
+  - name: fuel_cell
+    type: fmu
+    path: ../../models/fmu/fuel_cell.fmu
+    parameters:
+      max_power_kw: 500
+      efficiency: 0.6
+    sample_rate_hz: 100
+    
+  - name: battery
+    type: fmu
+    path: ../../models/fmu/battery.fmu
+    parameters:
+      capacity_kwh: 100
+      max_charge_rate_kw: 200
+    sample_rate_hz: 10
+
+data_sources:
+  - name: telemetry_replay
+    type: csv
+    path: ../validation/tests/data/flight_001.csv
+    rate_multiplier: 1.0  # Real-time replay
+
+outputs:
+  - name: kpi_log
+    type: csv
+    path: ./results/kpis.csv
+  - name: state_log
+    type: parquet
+    path: ./results/states.parquet
+
+logging:
+  level: DEBUG
+  file: ./logs/twin_local.log
+
+execution:
+  duration_seconds: 600
+  timestep_seconds: 0.01
+  realtime: false

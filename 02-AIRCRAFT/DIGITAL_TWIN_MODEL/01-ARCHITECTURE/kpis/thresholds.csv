@@ -1,0 +1,8 @@
+KPI ID,KPI Name,Unit,Target,Warning Threshold,Critical Threshold,Measurement Frequency,Notes
+KPI-001,Fuel Consumption RMSE,kg,<2.0,2.0,3.0,per_flight,Based on validation studies
+KPI-002,Battery SOC MAE,percent,<3.0,3.0,5.0,continuous,Real-time monitoring
+KPI-003,Model Latency,ms,<100,100,150,per_step,Real-time requirement
+KPI-004,False Positive Rate,percent,<1.0,1.0,2.0,daily,Minimize alert fatigue
+KPI-005,System Uptime,percent,>99.5,99.5,99.0,monthly,SLA requirement
+KPI-006,Model Drift PSI,dimensionless,<0.25,0.25,0.40,weekly,Triggers recalibration
+KPI-007,Envelope Coverage,percent,>95,95,90,per_release,V&V requirement

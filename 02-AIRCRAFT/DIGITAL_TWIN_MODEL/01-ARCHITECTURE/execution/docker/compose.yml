@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  twin-runtime:
+    build:
+      context: ../../..
+      dockerfile: 01-ARCHITECTURE/execution/docker/Dockerfile
+    container_name: digital-twin-runtime
+    ports:
+      - "8080:8080"   # REST API
+      - "50051:50051" # gRPC
+    environment:
+      - TWIN_ENV=production
+      - LOG_LEVEL=INFO
+      - DB_HOST=postgres
+      - TIMESERIES_HOST=influxdb
+    depends_on:
+      - postgres
+      - influxdb
+      - redis
+    networks:
+      - twin-network
+    volumes:
+      - ./config:/app/config
+      - ./models:/app/models
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:14
+    container_name: twin-postgres
+    environment:
+      - POSTGRES_DB=digitaltwin
+      - POSTGRES_USER=twin
+      - POSTGRES_PASSWORD=changeme
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - twin-network
+    restart: unless-stopped
+
+  influxdb:
+    image: influxdb:2.6
+    container_name: twin-influxdb
+    environment:
+      - INFLUXDB_DB=telemetry
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=changeme
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+    networks:
+      - twin-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: twin-redis
+    volumes:
+      - redis-data:/data
+    networks:
+      - twin-network
+    restart: unless-stopped
+
+networks:
+  twin-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  influxdb-data:
+  redis-data:

@@ -1,0 +1,55 @@
+{
+  "id": "dt-aircraft-ac-h2-001",
+  "name": "Aircraft AC-H2-001 Digital Twin",
+  "version": "1.0.0",
+  "type": "aircraft",
+  "metadata": {
+    "created": "2025-01-15T10:00:00Z",
+    "updated": "2025-01-20T14:30:00Z",
+    "owner": "IDEALE-EU Digital Twin Team",
+    "description": "Digital twin for hydrogen-powered aircraft AC-H2-001"
+  },
+  "interfaces": [
+    {
+      "name": "REST API",
+      "protocol": "https",
+      "endpoint": "https://api.digitaltwin.ideale-eu.eu/v1/aircraft/AC-H2-001"
+    },
+    {
+      "name": "gRPC Streaming",
+      "protocol": "grpc",
+      "endpoint": "grpc://api.digitaltwin.ideale-eu.eu:50051"
+    },
+    {
+      "name": "DDS Telemetry",
+      "protocol": "dds",
+      "endpoint": "dds://telemetry.digitaltwin.ideale-eu.eu"
+    }
+  ],
+  "capabilities": [
+    "real-time-simulation",
+    "predictive-maintenance",
+    "fuel-consumption-prediction",
+    "anomaly-detection"
+  ],
+  "models": [
+    {
+      "name": "Fuel Cell Model",
+      "type": "physics-based",
+      "format": "fmu",
+      "version": "2.1.0"
+    },
+    {
+      "name": "Battery Model",
+      "type": "physics-based",
+      "format": "fmu",
+      "version": "1.5.0"
+    },
+    {
+      "name": "Anomaly Detector",
+      "type": "data-driven",
+      "format": "onnx",
+      "version": "3.0.0"
+    }
+  ]
+}

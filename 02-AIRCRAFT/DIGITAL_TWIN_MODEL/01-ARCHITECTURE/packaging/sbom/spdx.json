@@ -1,0 +1,26 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "Digital Twin Software Bill of Materials",
+  "documentNamespace": "https://ideale-eu.eu/spdx/digitaltwin-1.0",
+  "creationInfo": {
+    "created": "2025-01-XX",
+    "creators": ["Organization: IDEALE-EU"],
+    "licenseListVersion": "3.20"
+  },
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-Package-DigitalTwin",
+      "name": "Aircraft Digital Twin",
+      "versionInfo": "1.0.0",
+      "supplier": "Organization: IDEALE-EU",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "Copyright (c) 2025 IDEALE-EU"
+    }
+  ],
+  "relationships": []
+}

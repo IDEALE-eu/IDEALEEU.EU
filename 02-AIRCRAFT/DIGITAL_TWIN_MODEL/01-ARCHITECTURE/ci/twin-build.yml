@@ -1,0 +1,38 @@
+name: Digital Twin Build
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: Lint code
+        run: |
+          pylint src/
+      
+      - name: Run unit tests
+        run: |
+          pytest tests/unit/
+      
+      - name: Build Docker image
+        run: |
+          docker build -t digital-twin:latest .
+      
+      - name: Package models
+        run: |
+          python packaging/fmu_packager.py --model models/fuel_cell --output dist/fuel_cell.fmu

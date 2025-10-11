@@ -1,0 +1,60 @@
+# Role-Based Access Control (RBAC) Policy
+
+version: 1.0
+last_updated: 2025-01-XX
+
+roles:
+  - name: admin
+    description: Full administrative access
+    permissions:
+      - twin:*
+      - config:*
+      - users:*
+    
+  - name: engineer
+    description: Engineering team access
+    permissions:
+      - twin:read
+      - twin:execute_simulation
+      - models:read
+      - models:write
+      - data:read
+    
+  - name: operator
+    description: Operations center staff
+    permissions:
+      - twin:read
+      - kpis:read
+      - telemetry:read
+      - alerts:read
+    
+  - name: analyst
+    description: Data analysis team
+    permissions:
+      - data:read
+      - kpis:read
+      - reports:read
+      - reports:write
+    
+  - name: viewer
+    description: Read-only access
+    permissions:
+      - twin:read
+      - kpis:read
+      - reports:read
+
+users:
+  - username: john.doe@ideale-eu.eu
+    role: engineer
+    
+  - username: jane.smith@ideale-eu.eu
+    role: operator
+    
+  - username: api_service
+    role: admin
+    type: service_account
+
+audit:
+  log_all_access: true
+  retention_days: 365
+  alert_on_unauthorized: true
