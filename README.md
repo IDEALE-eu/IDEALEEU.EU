@@ -29,7 +29,7 @@ https://www.idealeeu.eu
 
 ## Core Architectures
 
-### AIR-T (Aircraft • ATA-aligned)
+### AIR-T Air Transport (Airborne)
 
 * **Common pattern (AIR-T & STA):**  
   `DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT>/MODELS/<MODEL>/VERSION/<Qn>/SYSTEMS/…`
@@ -47,7 +47,7 @@ https://www.idealeeu.eu
   EER(15,26,38,85) · DDD(09,21,30,41) · CCC(11,25,35,43,50) · IIS(16,46,91) ·  
   LIB(01,04–05,12) · AAP(10) · CQH(47) · IIF(07) · OOO(13,20,+reserved)
 
-### STA (Spacecraft • Space-chapter aligned)
+### STA Space Transport Architecture
 
 * **Same product/model/version pattern** as AIR-T.
 
