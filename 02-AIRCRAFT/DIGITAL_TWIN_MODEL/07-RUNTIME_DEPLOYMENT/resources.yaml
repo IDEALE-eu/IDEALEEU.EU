@@ -1,0 +1,38 @@
+resources:
+  edge:
+    profile: "edge"
+    description: "On-aircraft edge computing"
+    cpu_limit: "1500m"
+    memory_limit: "2Gi"
+    storage: "10Gi"
+    network: "limited"
+    constraints:
+      max_latency_ms: 50
+      update_policy: "no_inflight_updates"
+      safety_level: "A"
+    
+  ground:
+    profile: "ground"
+    description: "Ground-based simulation and analysis"
+    cpu_limit: "8000m"
+    memory_limit: "32Gi"
+    storage: "1Ti"
+    network: "high_bandwidth"
+    constraints:
+      max_latency_ms: 500
+      update_policy: "rolling_restart"
+      safety_level: "D"
+    
+  cloud:
+    profile: "cloud"
+    description: "Cloud-based fleet analytics"
+    cpu_request: "2000m"
+    cpu_limit: "16000m"
+    memory_request: "8Gi"
+    memory_limit: "64Gi"
+    storage: "elastic"
+    network: "internet"
+    scaling:
+      min_replicas: 3
+      max_replicas: 20
+      target_cpu_utilization: 70

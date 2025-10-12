@@ -1,0 +1,6 @@
+Test_ID,Category,Objective,Input,Expected,Metric,Pass_Criteria,Status
+VV-001,Stability,Phase margin check,controllers.yaml,>60deg,PM,PM>=60,PASS
+VV-002,Load,Bus sag @ peak,profile_01.json,<2V,Voltage_Drop,Drop<2V,PASS
+VV-003,Transient,MPPT convergence,step_input.json,<5s,Settling_Time,T_settle<5s,PENDING
+VV-004,Accuracy,State estimation error,kalman.yaml,<5%,RMSE,RMSE<0.05,PASS
+VV-005,Robustness,Parameter sensitivity,Monte_Carlo.json,Stable,Pole_Locations,All_LHP,PASS
