@@ -1,4 +1,4 @@
-# CAS — Continuous Acquisition and Sustainment (S1000D CSDB)
+# CAS — Continuous Airworthiness and Sustainment (S1000D CSDB)
 
 ## Purpose
 
