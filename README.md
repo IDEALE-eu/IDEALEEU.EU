@@ -47,14 +47,12 @@ https://www.idealeeu.eu
   EER(15,26,38,85) · DDD(09,21,30,41) · CCC(11,25,35,43,50) · IIS(16,46,91) ·  
   LIB(01,04–05,12) · AAP(10) · CQH(47) · IIF(07) · OOO(13,20,+reserved)
 
-### STA Space Transport Architecture
+### STA Space/Orbital Transport Architecture
 
 * **Same product/model/version pattern** as AIR-T.
 
 * **Examples**
   * Spacecraft DI: **[03-SPACECRAFT/DOMAIN_INTEGRATION](./03-SPACECRAFT/DOMAIN_INTEGRATION/)**
-  * Satellites DI: **[04-SATELLITES/DOMAIN_INTEGRATION](./04-SATELLITES/DOMAIN_INTEGRATION/)**
-  * Telescopes DI: **[05-TELESCOPES/DOMAIN_INTEGRATION](./05-TELESCOPES/DOMAIN_INTEGRATION/)**
 
 * **Key STA groupings (condensed)**  
   Structures & Mechanisms (06,50–57,66,94) · Thermal/TPS (21,30) · Power/EPS/Harness (24,39,49,97) ·  
