@@ -1,0 +1,11 @@
+{
+  "model_id": "EPS-PLANT-01",
+  "version": "1.0.0",
+  "utcs_mi": "UTCS-MI-XXXX",
+  "files": {
+    "plant": ["M.json","C.json","K.json","B.json"],
+    "state_space": ["A.json","Bmat.json","Cmat.json","Dmat.json"],
+    "control": ["Gs.tf.json","controllers.yaml"],
+    "fmu": ["fmu/modelDescription.xml"]
+  }
+}

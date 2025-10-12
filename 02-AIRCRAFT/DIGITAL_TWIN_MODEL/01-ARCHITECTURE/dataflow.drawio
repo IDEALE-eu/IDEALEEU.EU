@@ -1,0 +1,39 @@
+# Dataflow Diagram
+
+This file is a placeholder for the dataflow diagram.
+
+Use draw.io or another diagram tool to create a visual representation of data flows through the digital twin architecture.
+
+## Suggested Diagram Content
+
+1. **Data Sources**
+   - Sensors (aircraft systems)
+   - PLM/PDM systems
+   - Flight test data
+   - Operational telemetry
+
+2. **Data Processing**
+   - Data ingestion and validation
+   - State estimation (Kalman filters)
+   - Model execution
+   - Analytics and predictions
+
+3. **Data Consumers**
+   - Engineering tools
+   - MES/Operations systems
+   - Dashboards and visualization
+   - Maintenance systems
+
+4. **Data Flows**
+   - Real-time streams (arrows with frequency/bandwidth)
+   - Batch transfers (scheduled intervals)
+   - Event-driven updates (triggers)
+
+5. **Data Stores**
+   - Time-series databases
+   - Model artifacts repository
+   - Configuration management
+   - Historical archives
+
+## File Format
+Save as: `dataflow.drawio` or `dataflow.png`/`dataflow.svg` for static images.

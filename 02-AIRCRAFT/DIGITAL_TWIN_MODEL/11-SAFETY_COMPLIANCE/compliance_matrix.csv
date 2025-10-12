@@ -1,0 +1,14 @@
+Standard,Requirement_ID,Requirement_Description,Implementation,Evidence,Status,Owner
+ARP4754A,ARP-001,System development lifecycle,SDLC documented in 00-README.md,Process doc,COMPLIANT,Digital Twin Lead
+ARP4754A,ARP-002,Safety assessment process,Safety plan in safety_plan.md,Safety plan,COMPLIANT,Safety Engineer
+DO-178C,DO178-001,Software planning process,CI/CD pipeline in 12-CODE/,Build logs,COMPLIANT,SW Engineer
+DO-178C,DO178-002,Software requirements,Requirements in 01-ARCHITECTURE/requirements/,Trace matrix,COMPLIANT,Systems Engineer
+DO-178C,DO178-003,Software design,Design docs in 01-ARCHITECTURE/,Design review,COMPLIANT,SW Engineer
+DO-178C,DO178-004,Software testing,Test matrix in 06-VALIDATION_VERIFICATION/,Test reports,COMPLIANT,Test Engineer
+DO-326A,DO326-001,Security risk assessment,Cybersecurity.md,Risk assessment,IN_PROGRESS,Security Engineer
+DO-326A,DO326-002,Security assurance,Encryption + auth implemented,Security audit,COMPLIANT,Security Engineer
+ISO 23247,ISO-001,Digital twin definition,TWIN_SCOPE.md in 01-ARCHITECTURE/,Scope doc,COMPLIANT,Digital Twin Lead
+ISO 23247,ISO-002,Interfaces specification,openapi.yaml in 03-INTERFACES_APIS/,API spec,COMPLIANT,SW Engineer
+ISO 23247,ISO-003,Data management,config.yaml in 04-VERSIONING_CONFIG/,Config docs,COMPLIANT,Config Manager
+ECSS-E-ST-40C,ECSS-001,Software requirements,Requirements trace,Trace matrix,PARTIAL,Systems Engineer
+ECSS-E-ST-40C,ECSS-002,Software validation,V&V plan in 06-VALIDATION_VERIFICATION/,V&V report,IN_PROGRESS,Test Engineer

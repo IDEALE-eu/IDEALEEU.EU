@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  digitaltwin:
+    build: .
+    image: digitaltwin-runtime:1.0.0
+    container_name: dt_runtime
+    ports:
+      - "8080:8080"
+    environment:
+      - MODEL_PATH=/app/models
+      - LOG_LEVEL=INFO
+      - MAX_WORKERS=4
+    volumes:
+      - ./config:/app/config:ro
+      - ./logs:/app/logs
+    networks:
+      - dt_network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: dt_metrics
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    networks:
+      - dt_network
+
+networks:
+  dt_network:
+    driver: bridge

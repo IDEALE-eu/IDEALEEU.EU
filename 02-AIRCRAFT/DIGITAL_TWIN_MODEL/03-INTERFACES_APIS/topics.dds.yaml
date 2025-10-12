@@ -1,0 +1,50 @@
+dds_topics:
+  - name: "DigitalTwin/StateUpdate"
+    type: "StateUpdateMsg"
+    qos:
+      reliability: "RELIABLE"
+      durability: "TRANSIENT_LOCAL"
+      history: "KEEP_LAST"
+      depth: 10
+    
+  - name: "DigitalTwin/Command"
+    type: "CommandMsg"
+    qos:
+      reliability: "RELIABLE"
+      durability: "VOLATILE"
+      history: "KEEP_LAST"
+      depth: 5
+
+  - name: "DigitalTwin/Telemetry"
+    type: "TelemetryMsg"
+    qos:
+      reliability: "BEST_EFFORT"
+      durability: "VOLATILE"
+      history: "KEEP_LAST"
+      depth: 100
+
+message_types:
+  StateUpdateMsg:
+    fields:
+      - name: "model_id"
+        type: "string"
+      - name: "timestamp"
+        type: "double"
+      - name: "state_vector"
+        type: "double[]"
+  
+  CommandMsg:
+    fields:
+      - name: "command_id"
+        type: "string"
+      - name: "input_vector"
+        type: "double[]"
+  
+  TelemetryMsg:
+    fields:
+      - name: "sensor_id"
+        type: "string"
+      - name: "value"
+        type: "double"
+      - name: "timestamp"
+        type: "double"

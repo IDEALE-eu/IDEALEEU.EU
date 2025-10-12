@@ -1,0 +1,6 @@
+context:
+  data_layer: [mdm, timeseries, plm_pdm]
+  model_layer: [plant_models, control_models, observers, digital_twin]
+  service_layer: [validation, simulation, analytics]
+  application_layer: [eng_tools, mes, dashboards]
+cross_cutting: [security, data_quality, interoperability]

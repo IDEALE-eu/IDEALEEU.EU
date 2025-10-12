@@ -1,0 +1,11 @@
+semver: 1.0.0
+sot:
+  plm_item: "PLM://EPS_TOP"
+  utcs_index: "../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/INDEX.csv"
+hashes:
+  A.json: "sha256-placeholder"
+  controllers.yaml: "sha256-placeholder"
+  M.json: "sha256-placeholder"
+  C.json: "sha256-placeholder"
+  K.json: "sha256-placeholder"
+  B.json: "sha256-placeholder"

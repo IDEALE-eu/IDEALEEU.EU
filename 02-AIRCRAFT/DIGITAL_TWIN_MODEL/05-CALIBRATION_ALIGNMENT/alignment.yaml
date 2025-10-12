@@ -1,0 +1,14 @@
+procedure: identify_MCK_from_FRF
+inputs: [M.json, C.json, K.json]
+dataset_ref: "../../01-FLEET/OPERATIONAL_DATA_HUB/FRF/EPS_2025Q1"
+tolerances:
+  nat_freq_pct: 2.0
+  damping_pct: 10.0
+  mode_shape_corr: 0.95
+outputs:
+  - calibrated_M.json
+  - calibrated_C.json
+  - calibrated_K.json
+validation:
+  - correlation_report.pdf
+  - residual_plots.png

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmiModelDescription
+  fmiVersion="2.0"
+  modelName="EPS_PLANT_PLACEHOLDER"
+  guid="{placeholder-guid}"
+  description="Placeholder FMU model description"
+  generationTool="Manual"
+  generationDateAndTime="2025-10-12T14:00:00Z"
+  variableNamingConvention="structured">
+  <CoSimulation
+    modelIdentifier="EPS_PLANT"
+    canHandleVariableCommunicationStepSize="true"
+    canInterpolateInputs="false"
+    maxOutputDerivativeOrder="0"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"/>
+  <ModelVariables>
+    <ScalarVariable name="input_u" valueReference="0" causality="input" variability="continuous">
+      <Real start="0.0"/>
+    </ScalarVariable>
+    <ScalarVariable name="output_y" valueReference="1" causality="output" variability="continuous">
+      <Real/>
+    </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Outputs>
+      <Unknown index="2"/>
+    </Outputs>
+  </ModelStructure>
+</fmiModelDescription>

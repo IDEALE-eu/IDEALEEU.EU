@@ -1,0 +1,11 @@
+KPI_ID,KPI_Name,Description,Unit,Target,Warning,Critical,Frequency,Owner
+KPI-001,Prediction RMSE,Root mean square error of model predictions,%,<5,5-10,>10,Daily,Model Owner
+KPI-002,Computation Time,Time to execute one simulation step,ms,<50,50-100,>100,Real-time,SW Engineer
+KPI-003,Model Drift,Statistical drift from baseline,%,<2,2-5,>5,Weekly,Data Scientist
+KPI-004,Availability,Model runtime availability,%,>99.9,99-99.9,<99,Continuous,DevOps
+KPI-005,Calibration Accuracy,Accuracy of calibrated parameters vs. test data,%,>95,90-95,<90,Quarterly,Test Engineer
+KPI-006,Response Time,API response time (95th percentile),ms,<200,200-500,>500,Continuous,SW Engineer
+KPI-007,Memory Usage,Runtime memory consumption,GB,<2,2-3,>3,Continuous,SW Engineer
+KPI-008,Throughput,Simulation steps per second,steps/s,>100,50-100,<50,Real-time,SW Engineer
+KPI-009,Error Rate,Percentage of failed simulations,%,<0.1,0.1-1,>1,Continuous,Model Owner
+KPI-010,Validation Correlation,Correlation with flight test data,R²,>0.95,0.9-0.95,<0.9,Quarterly,Test Engineer

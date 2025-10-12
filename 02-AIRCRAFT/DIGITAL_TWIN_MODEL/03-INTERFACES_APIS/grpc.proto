@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package digitaltwin;
+
+service DigitalTwinService {
+  rpc Simulate(SimulationRequest) returns (SimulationResponse);
+  rpc GetState(StateRequest) returns (StateResponse);
+}
+
+message SimulationRequest {
+  repeated double inputs = 1;
+  double timestep = 2;
+}
+
+message SimulationResponse {
+  repeated double outputs = 1;
+  repeated double states = 2;
+}
+
+message StateRequest {
+  string model_id = 1;
+}
+
+message StateResponse {
+  repeated double current_state = 1;
+  double timestamp = 2;
+}

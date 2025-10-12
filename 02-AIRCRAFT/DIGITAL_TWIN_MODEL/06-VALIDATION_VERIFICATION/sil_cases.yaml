@@ -1,0 +1,44 @@
+sil_test_cases:
+  - case_id: "SIL-001"
+    description: "Nominal MPPT operation"
+    model: "EPS-PLANT-01"
+    scenario: "steady_state_solar_input"
+    inputs:
+      solar_irradiance: 1000  # W/m^2
+      temperature: 25  # °C
+    expected_outputs:
+      voltage: 28.0  # V
+      current: 50.0  # A
+      efficiency: 0.95
+    pass_criteria:
+      voltage_tolerance: 0.5  # V
+      efficiency_min: 0.93
+    
+  - case_id: "SIL-002"
+    description: "Transient cloud cover"
+    model: "EPS-PLANT-01"
+    scenario: "irradiance_step_down"
+    inputs:
+      initial_irradiance: 1000
+      final_irradiance: 400
+      step_time: 1.0
+    expected_outputs:
+      settling_time: 5.0  # seconds
+      no_oscillation: true
+    pass_criteria:
+      settling_time_max: 5.0
+      overshoot_max: 0.05
+    
+  - case_id: "SIL-003"
+    description: "Load transient rejection"
+    model: "EPS-PLANT-01"
+    scenario: "load_step"
+    inputs:
+      load_step_amplitude: 20  # A
+      step_time: 0.5
+    expected_outputs:
+      voltage_sag_max: 2.0  # V
+      recovery_time: 1.0  # seconds
+    pass_criteria:
+      voltage_sag_max: 2.5
+      recovery_time_max: 1.5
