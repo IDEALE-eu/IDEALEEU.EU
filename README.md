@@ -5,6 +5,154 @@
 
 https://www.idealeeu.eu
 
+# Math Foundation: Lagrangian Mechanics + Laplace
+
+## 1) Lagrangian core
+
+**Action**
+[
+S[q]=\int_{t_0}^{t_1}L(q,\dot q,t),dt,\qquad \delta S=0
+]
+**Euler–Lagrange with nonconservative forces**
+[
+\frac{d}{dt}\big(\partial_{\dot q_i}L\big)-\partial_{q_i}L=Q_i,\quad L=T-V
+]
+
+**Constraints**
+
+* Holonomic (g(q,t)=0):
+  [
+  \frac{d}{dt}(\partial_{\dot q}L)-\partial_qL=\Phi^{!\top}\lambda,\quad \Phi=\partial g/\partial q
+  ]
+* Nonholonomic (A(q,t)\dot q=b(q,t)): multipliers at velocity level.
+
+**Dissipation**
+Rayleigh (R(\dot q)\Rightarrow) add (\partial_{\dot q}R).
+
+**Linear small-signal**
+[
+M\ddot q+C\dot q+Kq=B,u
+]
+
+## 2) Laplace transform
+
+[
+\mathcal L{f}(s)=\int_{0}^{\infty}e^{-st}f(t),dt
+]
+Rules: (\mathcal L{f'}=sF-f(0)), (\mathcal L{f*g}=FG).
+
+Initial value: (\lim_{t\to0^+}f(t)=\lim_{s\to\infty}sF(s)).
+Final value (stable; no RHP poles of (sF)): (\lim_{t\to\infty}f(t)=\lim_{s\to0}sF(s)).
+
+Pairs: (1!\leftrightarrow!1/s), (t!\leftrightarrow!1/s^2), (\delta!\leftrightarrow!1),
+(\sin\omega t!\leftrightarrow!\omega/(s^2+\omega^2)), (e^{-a t}u!\leftrightarrow!1/(s+a)).
+
+## 3) Bridge to (G(s))
+
+State (x=[q^\top\ \dot q^\top]^\top).
+[
+A=\begin{bmatrix}0&I\-M^{-1}K&-M^{-1}C\end{bmatrix},;
+B=\begin{bmatrix}0\M^{-1}B\end{bmatrix}
+]
+[
+G(s)=C(sI-A)^{-1}B+D
+]
+
+## 4) 1-DOF example
+
+(m\ddot x+c\dot x+kx=u\Rightarrow G(s)=X/U=1/(ms^2+cs+k)).
+Poles solve (ms^2+cs+k=0). Natural frequency ( \omega_n=\sqrt{k/m}), (f_n=\omega_n/(2\pi)).
+
+## 5) Control and discretization
+
+Loop shaping on (G(s)). Routh–Hurwitz or Nyquist for stability.
+Tustin: (s\approx \tfrac{2}{T_s}\tfrac{1-z^{-1}}{1+z^{-1}}).
+
+---
+
+# Capture & Harvest Control Foundation
+
+## 1) Domains
+
+Solar, thermal, vibration/piezo, fluidic micro-turbine, hybrid nodes with storage.
+
+## 2) Lagrangian electromechanics
+
+[
+m\ddot q+c\dot q+kq+\lambda v=F_{\text{aero}},\qquad
+C_p\dot v+Gv-\lambda \dot q=0
+]
+Linearize at trim to get (M,C,K,\Lambda).
+
+## 3) Converter + MPPT (Laplace domain)
+
+Design (G_{\text{conv}}(s)=V_o/I_{\text{harv}}).
+PI/PR for regulation and MPPT. Verify phase margin and bandwidth.
+
+## 4) State-space and TF
+
+(x=[q\ \dot q\ v]^\top). Build (A,B,C,D).
+[
+G_{vF}(s)=C(sI-A)^{-1}B
+]
+
+## 5) Architecture
+
+* Local: MPPT and bus regulation per node.
+* Node controller: source arbitration and buffer control.
+* Network manager: TBUS distribution, demand response, FDIR.
+* Gate logic: JT_ID health and performance badges.
+
+## 6) Digital-twin pipeline
+
+Symbolic (L)(\rightarrow) auto-linearize ((M,C,K,\Lambda))(\rightarrow) state-space ((A,B,C,D))(\rightarrow) (G(s))(\rightarrow) controller synthesis(\rightarrow) SIL checks(\rightarrow) deploy.
+
+## 7) CSV schemas
+
+**Harvest nodes**
+
+```
+Harvest_ID,Domain,Sensor_In,Converter_Out,Controller_ID,λ,QoS,Notes
+PV-WING-01,Solar,I_V curve,DC-28V,CTRL-MPPT-01,,Q2,Wing-tip panels
+TH-CORE-02,Thermal,DeltaT,DC-12V,CTRL-TEC-02,,Q3,Exhaust heat
+PE-WING-03,Vib/Piezo,q;qdot,AC-Rectified,CTRL-MPPT-03,0.015,Q1,Mode #1
+```
+
+**Worked piezo TF (zero ICs)**
+[
+\frac{V(s)}{F_{\text{aero}}(s)}=\frac{\lambda s}{C_p s+G},\Big/ms^2+\frac{c}{m}s+\frac{k}{m}+\frac{\lambda^2 s}{m(C_p s+G)}\Big.
+]
+
+## 8) Acceptance gates
+
+E–L residuals near zero, converter gain accuracy, MPPT convergence, margins ≥ target, JT_ID issuance.
+
+---
+
+# 10) Event Encapsulation: UTCS-MI anchors
+
+Each capture event is a signed package bound to a material passport and the grid.
+
+**CSV header**
+
+```
+Event_ID,Passport_ID,Initial_State,Transformed_State,Federation_Node,JT_ID,Timestamp,Integrity,Security,Size_Desc,Notes
+```
+
+**Example**
+
+```
+EV-CAP-001,UTCS-MI-ANCH-1234,"psi0","E=4.8 J @ 28 V",GRID-A1-B4,JT-105,2025-10-12T14:50:00Z,sha3-256:9a1b...,"AES-GCM-256",512B,"piezo wing mode #1"
+```
+
+**Rules**
+
+* `Passport_ID` is a UTCS-MI anchor. Immutable.
+* `Integrity` is a full-package hash or MAC.
+* `Security` declares crypto. Example: AES-GCM-256.
+* Validate package before badge issuance.
+
+
 > **Mission:** Design, certify, manufacture, and industrialise next-gen **aircraft**, **spacecraft**, and **aerospace full assets** with a closed-loop digital thread—from concept to fleet ops.
 
 ---
