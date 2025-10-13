@@ -118,9 +118,9 @@ CUSTOMER/
 
 Customer configurations integrate with:
 - **Base Configuration** - `CONF/BASELINE/` or `CONF/VARIANT/`
-- **Effectivity System** - `VERSION/Q100/01-EFFECTIVITY/`
+- **Effectivity System** - `BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/`
 - **Contract Management** - Customer contract database
-- **Modification System** - `VERSION/Q100/01-EFFECTIVITY/MODS/`
+- **Modification System** - `BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/MODS/`
 
 ## Change Control
 
@@ -162,7 +162,7 @@ The placeholder structure `<CUST_ID>/...<CNTRCT_ID>/...<range>/` serves as a tem
 
 - **Base Configuration** - [CONF/BASELINE/](../BASELINE/)
 - **Configuration Management** - [00-PROGRAM/CONFIG_MGMT/](../../../../../../00-PROGRAM/CONFIG_MGMT/)
-- **Effectivity** - [VERSION/Q100/01-EFFECTIVITY/](../../VERSION/Q100/01-EFFECTIVITY/)
+- **Effectivity** - [BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/](../BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/)
 - **Contract Management** - Customer contract system
 
 ---
