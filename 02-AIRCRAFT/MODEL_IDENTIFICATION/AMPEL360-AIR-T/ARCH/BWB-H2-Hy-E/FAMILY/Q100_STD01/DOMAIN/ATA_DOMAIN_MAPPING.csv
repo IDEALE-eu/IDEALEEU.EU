@@ -1,0 +1,101 @@
+ATA,Name,PrimaryDomain,SecondaryDomains,Notes
+01,Introduction,LIB,,Program/admin records
+02,Operations,OOO,,Platform/reserved (templates only)
+03,Support,OOO,,Platform/reserved (templates only)
+04,Airworthiness Limitations,LIB,,Limits & compliance records
+05,Time Limits,LIB,,Servicing/intervals
+06,Dimensions/Stations,AAA,,Geometry refs
+07,Lifting/Shoring,IIF,,Industrial infra & facilities
+08,Leveling/Weighing,LCC,,Ground control/measure
+09,Surface Protection,DDD,,Drainage/anti-corrosion
+10,Parking/Mooring,AAP,,Airport ops
+11,Placards/Markings,CCC,,Cabin/cockpit labeling
+12,Servicing,LIB,,Ground servicing policies
+13,General Hardware,OOO,,Common practices/templates
+14,Hardware (Fasteners),AAA,,Structural hardware
+15,Noise/Vibration,EER,,Env conditions
+16,Ground Support Equipment,IIS,,EGSE/MGSE specs
+17,Propeller Installation,OOO,,Reserved if N/A
+18,Vibration (Propeller),OOO,,Reserved if N/A
+19,Electrical (Propeller),OOO,,Reserved if N/A
+20,Standard Practices (Airframe),OOO,AAA,Templates; chapters keep own standards
+21,Air Conditioning,DDD,"CCC, EER",Environmental control
+22,Auto Flight,LCC,EDI,Autopilot/AFCS
+23,Communications,LCC,EDI,Internal/external comms
+24,Electrical Power,EEE,"LCC, EDI, MEC",Gen/storage/distribution
+25,Equipment & Furnishings,CCC,"DDD, EEE",Cabin & monuments
+26,Fire Protection,EER,"EEE, LCC",Sensing/suppression/interlocks
+27,Flight Controls,MEC,LCC,Mechanical primary
+28,Fuel (incl. H₂),PPP,"EEE, DDD, EER",H₂ under 28 per rules
+29,Hydraulic Power,MEC,EEE,Pumps/actuation
+30,Ice & Rain Protection,DDD,"EEE, CCC",Anti-ice/de-ice
+31,Indicating/Recording,EDI,"LCC, EEE",Displays/recorders
+32,Landing Gear Systems,MEC,"EEE, LCC, EER",LG + braking
+33,Lights,EEE,CCC,External/internal lights
+34,Navigation (Avionics),EDI,"LCC, EEE",Nav sensors & processing
+35,Oxygen,CCC,"EER, EEE",ECLSS oxygen
+36,Pneumatic,MEC,"DDD, EEE",Bleed/pneumatic
+37,Vacuum,MEC,,If applicable
+38,Water & Waste,EER,"CCC, EEE",Circular systems (water loop)
+39,Electrical Panels,EEE,,Distribution panels
+40,Avionics Std/General,OOO,EDI,Platform templates
+41,Water Ballast,DDD,,If applicable
+42,Integrated Modular Avionics,EDI,"LCC, EEE",ARINC 653/IMA platform
+43,Cabin Systems,CCC,"LCC, EEE","IFE, seats control"
+44,Cabin Control,LCC,CCC,Control layer
+45,Central Maintenance,LCC,"EDI, EEE",CMS/ACMS/health
+46,Information Systems,IIS,"EDI, EEE",IT/ground links
+47,Inert Gas/Cryo (NGS/H₂ aux),CQH,"PPP, EEE",NGS & cryo adjuncts
+48,Optical/Video (Platform),OOO,EDI,Templates; spacecraft uses
+49,APU,PPP,"EEE, MEC, DDD",Aux power
+50,Cargo & Load Systems,CCC,AAA,Freighter/combi hardware
+51,Structures—General,AAA,,Std practices—structures
+52,Doors,AAA,"MEC, EEE",All doors/hatches
+53,Fuselage Structures,AAA,,Primary structure
+54,Nacelles & Pylons,AAA,PPP,AAA for structure; PPP for internals
+55,Stabilizers,AAA,,H/V tails
+56,Windows,AAA,,Cockpit/cabin
+57,Wings,AAA,,Primary structure
+58,Flight Compartment Equipment,OOO,CCC,Reserved/templates (spacecraft docking uses 58)
+59,Flight Compartment Furnishings,OOO,CCC,Reserved/templates (space robotics uses 59)
+60,Propeller—Practices,PPP,,If applicable
+61,Propellers,PPP,,If applicable
+62,Main Rotor,AAA,MEC,Rotary-wing
+63,Main Rotor Drive,MEC,AAA,Rotary-wing
+64,Tail Rotor,AAA,MEC,Rotary-wing
+65,Tail Rotor Drive,AAA,MEC,Rotary-wing
+66,Folding Blades/Supports,AAA,,Rotary-wing
+67,Rotors Flight Control,MEC,LCC,Rotary-wing
+68,Reserved (Rotorcraft),OOO,,Reserved/templates
+69,Reserved (Rotorcraft),OOO,,Reserved/templates
+70,Powerplant Practices,PPP,,General powerplant
+71,Power Plant,PPP,"EEE, MEC",Engine installation
+72,Engine,PPP,EEE,Core/fan/EM
+73,Engine Fuel & Control,PPP,"EEE, LCC",FADEC software WITH 73
+74,Ignition,EEE,PPP,Igniters/exciters
+75,Engine Bleed Air,PPP,"DDD, MEC",Bleed interfaces
+76,Engine Controls,LCC,PPP,Command/distribution
+77,Engine Indicating,EDI,PPP,EIU/EICAS
+78,Exhaust,PPP,EER,Noise/emissions interface
+79,Oil (Lubrication),MEC,PPP,Oil systems
+80,Starting,EEE,PPP,Start & SGs
+81,Turbines (Aux),PPP,,If applicable
+82,Water Injection,PPP,,If applicable
+83,Accessory Gearboxes,MEC,PPP,Accessories drive
+84,Propulsion Augmentation,EDI,PPP,FADEC adj/elec prop (if used)
+85,Emissions/Environmental,EER,PPP,Non-propulsion EMC/EMI here; propulsion EMC with PPP(78)
+86,Planetary Protection/Env,OOO,EER,Spacecraft use
+87,Radiation Effects/Shielding,OOO,"EDI, EER",Spacecraft use
+88,Reserved,OOO,,Reserved/templates
+89,Reserved,OOO,,Reserved/templates
+90,Space Traffic/Conjunction,OOO,IIS,Spacecraft use
+91,Charts/Performance,IIS,EDI,Perf data
+92,EWIS (Wiring),EEE,ALL,**Only wiring here** (authoritative)
+93,Central Control Systems,LCC,EDI,Supervisory/coord
+94,E/E Compartments,EDI,EEE,Racks/bays
+95,Reserved,OOO,,Reserved/templates
+96,Reserved,OOO,,Reserved/templates
+97,Reserved (Wiring aux),OOO,EEE,Keep empty; wiring stays in 92
+98,Reserved,OOO,,Reserved/templates
+99,Reserved,OOO,,Reserved/templates
+100,General,OOO,,Repository/meta templates
