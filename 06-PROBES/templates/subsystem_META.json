@@ -1,0 +1,10 @@
+{
+  "sta_code": "06-01",
+  "name": "PRIMARY_STRUCT",
+  "tfa_flow": "QS→FWD→UE→FE→CB→QB",
+  "utcs_anchor": "utcs://PROBES/<PRODUCT-ID>/<MODEL-ID>/<TAG>/STA-06/06-01",
+  "owner": "STRUCT",
+  "status": "InWork",
+  "ecss": ["ECSS-E-ST-32", "ECSS-E-HB-32-20", "ECSS-Q-ST-20"],
+  "interfaces": ["06↔21", "06↔24", "06↔28"]
+}
