@@ -1,0 +1,56 @@
+{
+  "finance_token_integration": {
+    "version": "1.0.0",
+    "description": "Configuration for Teknia Token integration with Program Finance",
+    "reward_framework": {
+      "cost_performance": {
+        "sustained_cpi_excellence": {
+          "threshold": 1.05,
+          "periods_required": 2,
+          "token_reward": 100,
+          "merit_multiplier": 1.5,
+          "verification_required": true
+        },
+        "significant_cost_reduction": {
+          "threshold_tiers": [
+            {"savings": 100000, "token_reward": 50, "merit_percentage": 0.05},
+            {"savings": 250000, "token_reward": 125, "merit_percentage": 0.06},
+            {"savings": 500000, "token_reward": 250, "merit_percentage": 0.07}
+          ]
+        }
+      },
+      "schedule_performance": {
+        "sustained_spi_excellence": {
+          "threshold": 1.03,
+          "periods_required": 2,
+          "token_reward": 75,
+          "merit_multiplier": 1.2
+        },
+        "schedule_acceleration": {
+          "threshold": 0.10,
+          "token_reward": 50,
+          "merit_multiplier": 0.8
+        }
+      },
+      "forecasting_accuracy": {
+        "sustained_accuracy": {
+          "threshold": 0.98,
+          "periods_required": 3,
+          "token_reward": 60,
+          "merit_multiplier": 1.0
+        }
+      }
+    },
+    "verification_process": {
+      "automated_checks": ["data_validation", "threshold_verification", "period_consistency"],
+      "manual_approval_required": ["achievements_over_100_tokens", "cross_domain_impacts"],
+      "approval_authorities": ["finance_director", "program_manager", "token_governance_board"]
+    },
+    "integration_settings": {
+      "reporting_frequency": "monthly",
+      "auto_minting_enabled": true,
+      "real_time_monitoring": true,
+      "audit_trail_required": true
+    }
+  }
+}

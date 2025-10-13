@@ -5,3 +5,4 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+10-BUSINESS/FINANCE/06-REPORTING/rewardIT_LOG.csv
