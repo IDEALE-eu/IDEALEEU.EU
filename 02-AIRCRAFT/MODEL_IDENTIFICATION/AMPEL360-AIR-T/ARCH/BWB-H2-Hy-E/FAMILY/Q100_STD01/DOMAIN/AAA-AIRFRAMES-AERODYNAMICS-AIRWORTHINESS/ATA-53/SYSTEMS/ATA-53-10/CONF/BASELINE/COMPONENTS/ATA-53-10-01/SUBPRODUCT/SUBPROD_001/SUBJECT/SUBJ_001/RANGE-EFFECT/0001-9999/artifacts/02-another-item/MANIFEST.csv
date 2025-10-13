@@ -1,3 +1,0 @@
-file_name,file_type,file_size,checksum,created_date,created_by,status
-structural_analysis.pdf,document,4194304,sha256:xyz789abc123,2025-10-13,Analysis Team,draft
-calculation_sheet.xlsx,spreadsheet,1048576,sha256:def456ghi789,2025-10-13,Structural Engineer,draft

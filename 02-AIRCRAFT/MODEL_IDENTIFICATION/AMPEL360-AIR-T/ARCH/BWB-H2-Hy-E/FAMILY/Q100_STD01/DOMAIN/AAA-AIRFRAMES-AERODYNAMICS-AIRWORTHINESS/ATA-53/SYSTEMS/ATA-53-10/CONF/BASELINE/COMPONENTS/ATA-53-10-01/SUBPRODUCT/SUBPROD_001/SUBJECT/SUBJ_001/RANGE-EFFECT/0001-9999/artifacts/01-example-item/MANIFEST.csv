@@ -1,4 +1,0 @@
-file_name,file_type,file_size,checksum,created_date,created_by,status
-design_specification.pdf,document,2048576,sha256:abc123def456,2025-10-13,Design Team,approved
-requirements_trace.xlsx,spreadsheet,524288,sha256:789ghi012jkl,2025-10-13,Systems Engineer,approved
-review_notes.txt,text,4096,sha256:345mno678pqr,2025-10-13,Chief Engineer,final
