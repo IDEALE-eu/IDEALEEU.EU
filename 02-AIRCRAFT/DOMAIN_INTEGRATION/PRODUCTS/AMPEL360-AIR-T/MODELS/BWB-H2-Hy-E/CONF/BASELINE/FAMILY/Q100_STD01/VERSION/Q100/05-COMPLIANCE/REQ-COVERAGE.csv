@@ -1,6 +1,0 @@
-requirement_id,source_doc,verification_method,test_id,status,coverage_level,notes
-REQ-001,SYS-SPEC-001,Test,TEST-001,Verified,100%,Structural load requirements
-REQ-002,SYS-SPEC-001,Analysis,ANA-001,Verified,100%,Aerodynamic performance
-REQ-003,SYS-SPEC-002,Inspection,INSP-001,In Progress,75%,Material specifications
-REQ-004,DO-160G Section 4,Test,ENV-001,Verified,100%,Temperature qualification
-REQ-005,DO-160G Section 5,Test,ENV-002,Verified,100%,Altitude qualification

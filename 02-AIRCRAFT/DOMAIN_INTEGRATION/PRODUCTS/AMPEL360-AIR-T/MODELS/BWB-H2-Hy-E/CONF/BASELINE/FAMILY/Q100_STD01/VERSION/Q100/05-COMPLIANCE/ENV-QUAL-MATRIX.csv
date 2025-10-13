@@ -1,6 +1,0 @@
-component_id,component_name,do160_section,ecss_standard,test_condition,status,test_date,report_ref
-COMP-001,Flight Control Computer,DO-160G Section 4,ECSS-E-ST-10-03C,Temperature: -55°C to +85°C,Passed,2025-08-15,TR-FCC-001
-COMP-002,Navigation System,DO-160G Section 5,ECSS-E-ST-10-03C,Altitude: 0 to 55000 ft,Passed,2025-08-20,TR-NAV-001
-COMP-003,Hydraulic Actuator,DO-160G Section 8,ECSS-E-ST-32C,Vibration: 5-2000 Hz,Passed,2025-09-01,TR-HYD-001
-COMP-004,Fuel System Controller,DO-160G Section 4,ECSS-E-ST-10-03C,Temperature: -40°C to +70°C,In Progress,2025-10-01,TR-FSC-001
-COMP-005,Avionics Display,DO-160G Section 16,ECSS-Q-ST-70C,Power Quality,Planned,2025-11-01,TR-AVD-001
