@@ -1,0 +1,17 @@
+{
+  "artifact_id": "01-example-item",
+  "title": "Example Design Item",
+  "description": "Example artifact demonstrating the new structure",
+  "type": "design_document",
+  "version": "1.0",
+  "status": "approved",
+  "created_date": "2025-10-13",
+  "modified_date": "2025-10-13",
+  "owner": "Design Team",
+  "reviewers": [
+    "Chief Engineer",
+    "Quality Manager"
+  ],
+  "classification": "internal",
+  "retention_period": "10_years"
+}

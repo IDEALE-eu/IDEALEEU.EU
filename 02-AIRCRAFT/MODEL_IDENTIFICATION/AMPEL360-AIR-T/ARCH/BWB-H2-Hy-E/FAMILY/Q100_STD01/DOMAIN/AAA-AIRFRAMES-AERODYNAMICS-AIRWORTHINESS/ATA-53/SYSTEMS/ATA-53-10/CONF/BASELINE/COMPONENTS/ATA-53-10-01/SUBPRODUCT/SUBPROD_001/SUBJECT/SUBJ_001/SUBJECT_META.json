@@ -1,0 +1,19 @@
+{
+  "subject_id": "SUBJ_001",
+  "title": "Example Subject",
+  "description": "Example subject for the new TFA template structure",
+  "version": "1.0",
+  "status": "active",
+  "owner": "Engineering Team",
+  "created_date": "2025-10-13",
+  "modified_date": "2025-10-13",
+  "tags": [
+    "aircraft",
+    "fuselage",
+    "structure"
+  ],
+  "compliance": {
+    "standards": ["AS9100", "ISO9001"],
+    "certifications": ["EASA", "FAA"]
+  }
+}
