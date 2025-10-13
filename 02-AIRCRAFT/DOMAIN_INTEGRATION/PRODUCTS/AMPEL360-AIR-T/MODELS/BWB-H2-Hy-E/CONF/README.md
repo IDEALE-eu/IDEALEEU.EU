@@ -5,29 +5,36 @@ This directory contains the configuration management structure for the BWB-H2-Hy
 ## Purpose
 
 The CONF directory provides a hierarchical structure for managing different types of configurations:
-- **BASELINE** - Standard production configurations
+- **BASELINE** - Standard production configurations (includes Q100 configuration management data)
 - **VARIANT** - Configuration variants and derivatives
 - **CUSTOMER** - Customer-specific configurations
 - **TEST** - Test and development configurations
-- **VERSION** - Version-specific configuration sets and management data
 
 ## Directory Structure
 
 ```
 CONF/
 ├── BASELINE/           # Standard production configurations
+│   └── FAMILY/
+│       └── Q100_STD01/              # Q100 family standard configuration
+│           └── VERSION/
+│               ├── HEAD/            # Development version
+│               │   └── EFFECTIVITY/
+│               │       └── 0001-9999/
+│               ├── R01/             # Release 01 (frozen)
+│               │   └── EFFECTIVITY/
+│               │       └── 0001-9999/
+│               └── Q100/           # Q100 family configuration data
+│                   ├── 00-CONFIG/          # Configuration sets and blocks
+│                   ├── 01-EFFECTIVITY/     # MSN effectivity and modifications
+│                   ├── 02-RELEASE_TAGS/    # Release tags (PROD, HOTFIX, EXP)
+│                   ├── 03-TRACEABILITY/    # Traceability matrices
+│                   ├── 04-ICD_LINKS/       # Interface control document links
+│                   ├── 05-COMPLIANCE/      # DO-160/ECSS compliance matrices
+│                   └── 06-CI/              # CI validation schemas and checks
 ├── VARIANT/            # Configuration variants
 ├── CUSTOMER/           # Customer-specific configurations
-├── TEST/               # Test configurations
-└── VERSION/            # Version-specific configuration management
-    └── Q100/           # Q100 family configuration data
-        ├── 00-CONFIG/          # Configuration sets and blocks
-        ├── 01-EFFECTIVITY/     # MSN effectivity and modifications
-        ├── 02-RELEASE_TAGS/    # Release tags (PROD, HOTFIX, EXP)
-        ├── 03-TRACEABILITY/    # Traceability matrices
-        ├── 04-ICD_LINKS/       # Interface control document links
-        ├── 05-COMPLIANCE/      # DO-160/ECSS compliance matrices
-        └── 06-CI/              # CI validation schemas and checks
+└── TEST/               # Test configurations
 ```
 
 ## Configuration Types
@@ -81,7 +88,7 @@ Path pattern: `TEST/FAMILY/<FAMILY_ID>/<TEST_TYPE>/MODE/<MODE>/VERSION/<VERSION_
 2. Navigate to the appropriate directory hierarchy
 3. Create configuration files at the EFFECTIVITY level
 4. Document the configuration in the appropriate README
-5. Link to relevant effectivity data in `VERSION/Q100/01-EFFECTIVITY/`
+5. Link to relevant effectivity data in `BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/`
 
 ### Version Management
 
@@ -102,13 +109,13 @@ Effectivity ranges specify which serial numbers or test articles the configurati
 - **HEAD** - Mutable development version (changes allowed with approval)
 - **R01-R99** - Immutable release versions (frozen, no modifications)
 
-### Release Tags (in VERSION/Q100/02-RELEASE_TAGS)
+### Release Tags (in BASELINE/FAMILY/Q100_STD01/VERSION/Q100/02-RELEASE_TAGS)
 - **PROD** - Production release (only from BASELINE configurations)
 - **HOTFIX-YYYYMMDD** - Hotfix release with date stamp
 - **EXP** - Experimental or test release
 
 ### Effectivity Ranges
-Format in VERSION/Q100/01-EFFECTIVITY/MSN_EFFECTIVITY.csv:
+Format in BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/MSN_EFFECTIVITY.csv:
 ```csv
 MSN,FROM,TO,CONF_ID
 Q100-0001,0001,9999,CFG-Q100-BASE
@@ -116,7 +123,7 @@ Q100-0001,0001,9999,CFG-Q100-BASE
 
 ## Guardrails
 
-The following rules are enforced through CI validation (VERSION/Q100/06-CI/):
+The following rules are enforced through CI validation (BASELINE/FAMILY/Q100_STD01/VERSION/Q100/06-CI/):
 
 1. **Only BASELINE feeds PROD** - Production releases must originate from BASELINE configurations
 2. **Test inheritance** - FTI and SIM configurations must inherit from BASELINE or VARIANT via 00-CONFIG/BLOCKS
@@ -127,11 +134,11 @@ The following rules are enforced through CI validation (VERSION/Q100/06-CI/):
 ## Integration
 
 This structure integrates with:
-- **Effectivity System** - [VERSION/Q100/01-EFFECTIVITY/](./VERSION/Q100/01-EFFECTIVITY/) - Master effectivity definitions
-- **Configuration Sets** - [VERSION/Q100/00-CONFIG/](./VERSION/Q100/00-CONFIG/) - Configuration sets and blocks
-- **Release Management** - [VERSION/Q100/02-RELEASE_TAGS/](./VERSION/Q100/02-RELEASE_TAGS/) - Release tags and versions
-- **Compliance Tracking** - [VERSION/Q100/05-COMPLIANCE/](./VERSION/Q100/05-COMPLIANCE/) - DO-160/ECSS matrices
-- **CI Validation** - [VERSION/Q100/06-CI/](./VERSION/Q100/06-CI/) - Automated validation checks
+- **Effectivity System** - [BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/](./BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/) - Master effectivity definitions
+- **Configuration Sets** - [BASELINE/FAMILY/Q100_STD01/VERSION/Q100/00-CONFIG/](./BASELINE/FAMILY/Q100_STD01/VERSION/Q100/00-CONFIG/) - Configuration sets and blocks
+- **Release Management** - [BASELINE/FAMILY/Q100_STD01/VERSION/Q100/02-RELEASE_TAGS/](./BASELINE/FAMILY/Q100_STD01/VERSION/Q100/02-RELEASE_TAGS/) - Release tags and versions
+- **Compliance Tracking** - [BASELINE/FAMILY/Q100_STD01/VERSION/Q100/05-COMPLIANCE/](./BASELINE/FAMILY/Q100_STD01/VERSION/Q100/05-COMPLIANCE/) - DO-160/ECSS matrices
+- **CI Validation** - [BASELINE/FAMILY/Q100_STD01/VERSION/Q100/06-CI/](./BASELINE/FAMILY/Q100_STD01/VERSION/Q100/06-CI/) - Automated validation checks
 
 ## Configuration Control
 
@@ -145,7 +152,7 @@ All configurations must:
 ## References
 
 - **Configuration Management Plan** - [00-PROGRAM/CONFIG_MGMT/](../../../../../00-PROGRAM/CONFIG_MGMT/)
-- **Effectivity Management** - [VERSION/Q100/01-EFFECTIVITY/](../VERSION/Q100/01-EFFECTIVITY/)
+- **Effectivity Management** - [BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/](./BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/)
 - **Baselines** - [00-PROGRAM/CONFIG_MGMT/04-BASELINES/](../../../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/)
 
 ---

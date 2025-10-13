@@ -105,8 +105,8 @@ At the EFFECTIVITY level, include:
 
 Variants integrate with:
 - **Base BASELINE** - `CONF/BASELINE/FAMILY/Q100_STD01/`
-- **Effectivity System** - `VERSION/Q100/01-EFFECTIVITY/`
-- **Modification System** - `VERSION/Q100/01-EFFECTIVITY/MODS/`
+- **Effectivity System** - `BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/`
+- **Modification System** - `BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/MODS/`
 
 ## Change Control
 
@@ -143,7 +143,7 @@ VARIANT/FAMILY/Q100_STD01/V001/
 
 - **Base Configuration** - [CONF/BASELINE/](../BASELINE/)
 - **Configuration Management** - [00-PROGRAM/CONFIG_MGMT/](../../../../../../00-PROGRAM/CONFIG_MGMT/)
-- **Effectivity** - [VERSION/Q100/01-EFFECTIVITY/](../../VERSION/Q100/01-EFFECTIVITY/)
+- **Effectivity** - [BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/](../BASELINE/FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/)
 
 ---
 

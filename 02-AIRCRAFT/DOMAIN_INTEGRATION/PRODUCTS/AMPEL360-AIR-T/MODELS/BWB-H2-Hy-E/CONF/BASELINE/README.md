@@ -45,7 +45,7 @@ BASELINE/
 - **0001-9999** - Serial number range
   - Defines which aircraft serial numbers this configuration applies to
   - Coordinated with production planning
-  - Links to `VERSION/Q100/01-EFFECTIVITY/MSN_EFFECTIVITY.csv`
+  - Links to `../Q100/01-EFFECTIVITY/MSN_EFFECTIVITY.csv`
 
 ## Usage
 
@@ -55,7 +55,7 @@ BASELINE/
 2. Check effectivity range to confirm applicability
 3. Select appropriate VERSION (HEAD for development, Rxx for production)
 4. Reference configuration data at the EFFECTIVITY level
-5. Cross-reference with `VERSION/Q100/01-EFFECTIVITY/` for detailed effectivity
+5. Cross-reference with `FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/` for detailed effectivity
 
 ### Creating a New Baseline Version
 
@@ -74,7 +74,7 @@ At the EFFECTIVITY level, include:
 - Installation specifications
 - Interface definitions
 - Certification basis
-- Links to detailed configuration in `VERSION/Q100/00-CONFIG/`
+- Links to detailed configuration in `../Q100/00-CONFIG/`
 
 ## Integration with Effectivity System
 
@@ -85,8 +85,8 @@ MSN Q100-0001 → Config Set CFG-Q100-BASE → BASELINE/FAMILY/Q100_STD01/VERSIO
 ```
 
 Reference:
-- **[VERSION/Q100/01-EFFECTIVITY/MSN_EFFECTIVITY.csv](../../VERSION/Q100/01-EFFECTIVITY/MSN_EFFECTIVITY.csv)** - MSN to configuration mapping
-- **[VERSION/Q100/00-CONFIG/CONFIG_SETS/](../../VERSION/Q100/00-CONFIG/CONFIG_SETS/)** - Configuration set definitions
+- **[FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/MSN_EFFECTIVITY.csv](../FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/MSN_EFFECTIVITY.csv)** - MSN to configuration mapping
+- **[FAMILY/Q100_STD01/VERSION/Q100/00-CONFIG/CONFIG_SETS/](../FAMILY/Q100_STD01/VERSION/Q100/00-CONFIG/CONFIG_SETS/)** - Configuration set definitions
 
 ## Change Control
 
@@ -110,7 +110,7 @@ Each released baseline version must:
 
 - **Configuration Management Plan** - [00-PROGRAM/CONFIG_MGMT/00-README.md](../../../../../../00-PROGRAM/CONFIG_MGMT/00-README.md)
 - **Baseline Process** - [00-PROGRAM/CONFIG_MGMT/04-BASELINES/](../../../../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/)
-- **Effectivity Management** - [VERSION/Q100/01-EFFECTIVITY/](../../VERSION/Q100/01-EFFECTIVITY/)
+- **Effectivity Management** - [FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/](../FAMILY/Q100_STD01/VERSION/Q100/01-EFFECTIVITY/)
 
 ---
 

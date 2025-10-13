@@ -31,5 +31,5 @@ Configuration Management
 
 ## Release Information
 - **Release Date:** [To be set at release]
-- **Release Tag:** Links to VERSION/Q100/02-RELEASE_TAGS/
+- **Release Tag:** Links to ../../Q100/02-RELEASE_TAGS/
 - **CCB Approval:** Required
