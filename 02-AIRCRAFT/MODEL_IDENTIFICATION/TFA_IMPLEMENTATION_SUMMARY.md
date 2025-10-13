@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document summarizes the implementation of the new Technical Framework Architecture (TFA) for the 02-AIRCRAFT directory.
+This document summarizes the implementation of the new Threading Functional Architecture/Artifact (TFA) for the 02-AIRCRAFT directory.
 
 ## Structure Comparison
 

@@ -1,6 +1,6 @@
 # TFA Automation Tools
 
-This directory contains automation tools for managing the TFA (Technical Framework Architecture) structure.
+This directory contains automation tools for managing the TFA (Threading Functional Architecture/Artifact) structure.
 
 ## 📋 Contents
 

@@ -9,7 +9,7 @@ This section contains all aircraft-related design, integration, and systems engi
 ## Contents
 
 - **00-README.md** - This file
-- **[MODEL_IDENTIFICATION/](./MODEL_IDENTIFICATION/)** - Product model identification and TFA (Technical Framework Architecture)
+- **[MODEL_IDENTIFICATION/](./MODEL_IDENTIFICATION/)** - Product model identification and TFA (Threading Functional Architecture/Artifact)
   - 🧭 **[Interactive Navigation Index →](./MODEL_IDENTIFICATION/NAVIGATION_INDEX.md)** - Complete clickable site map
   - 📚 [TFA Documentation Hub →](./MODEL_IDENTIFICATION/README.md)
 - **CONFIGURATION_BASE/** - Baseline configuration management
@@ -79,9 +79,9 @@ The aircraft is designed using a top-down integration approach:
 4. Digital twin validates complete system behavior
 5. Final assembly executes the physical integration
 
-## Technical Framework Architecture (TFA)
+## Threading Functional Architecture/Artifact (TFA)
 
-The new **[MODEL_IDENTIFICATION/](./MODEL_IDENTIFICATION/)** structure implements the Technical Framework Architecture (TFA) that organizes aircraft configurations by:
+The new **[MODEL_IDENTIFICATION/](./MODEL_IDENTIFICATION/)** structure implements the Threading Functional Architecture/Artifact (TFA) that organizes aircraft configurations by:
 
 - **Product**: Aircraft product line (e.g., AMPEL360-AIR-T)
 - **Architecture**: Configuration variant (e.g., BWB-H2-Hy-E)

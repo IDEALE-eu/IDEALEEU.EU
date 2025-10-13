@@ -1,6 +1,6 @@
 # TFA Navigation Index
 
-**Interactive navigation for the Technical Framework Architecture**
+**Interactive navigation for the Threading Functional Architecture/Artifact**
 
 ---
 

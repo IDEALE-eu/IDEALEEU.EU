@@ -2,7 +2,7 @@
 """
 TFA Structure Validator
 =======================
-Validates the TFA (Technical Framework Architecture) directory structure
+Validates the TFA (Threading Functional Architecture/Artifact) directory structure
 and ensures all required files and metadata are present and valid.
 
 Usage:

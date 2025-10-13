@@ -1,6 +1,6 @@
 # MODEL_IDENTIFICATION
 
-This directory contains the aircraft model identification and technical framework architecture (TFA).
+This directory contains the aircraft model identification and threading functional architecture/artifact (TFA).
 
 ## Quick Navigation
 
