@@ -1,4 +1,6 @@
-# IdealeEu.eu (IDEALE.eu)
+# IDEALEEU
+
+https://www.idealeeu.eu
 
 Tamper-proof digital passports for aerospace components.  
 Clean H₂ systems with measured energy harvesting and verifiable evidence.
