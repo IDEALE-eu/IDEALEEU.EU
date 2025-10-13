@@ -1,0 +1,73 @@
+block_id: "BLK-2026B"
+description: "Second production block for Q100 aircraft (Q3-Q4 2026)"
+production_period:
+  start_date: "2026-07-01"
+  end_date: "2026-12-31"
+  quarter: "Q3-Q4 2026"
+
+manufacturing:
+  location: "Final Assembly Line 2, Hamburg, Germany"
+  rate: "3 aircraft per month"
+  serial_range:
+    start: "ACFT-Q100-007"
+    end: "ACFT-Q100-018"
+
+characteristics:
+  - "Production rate increased to 3/month"
+  - "Second assembly line activated"
+  - "Mature production processes"
+  - "Enhanced cabin options available"
+  - "MOD-M1 available from factory"
+
+certification:
+  status: "Type Certificate (TC) awarded"
+  tc_number: "EASA.A.123 / FAA TC A00012AC"
+  basis: "CS-25 Amendment 27 / FAR Part 25 Amendment 150"
+  special_conditions:
+    - "H2 fuel system safety (approved)"
+    - "BWB structure substantiation (approved)"
+    - "Electric propulsion certification (approved)"
+
+standard_equipment:
+  - "Enhanced avionics suite v1.2 (ATA 34)"
+  - "Standard or premium cabin interior (ATA 25)"
+  - "Fuel cell propulsion v1.1 with efficiency improvements (ATA 71)"
+  - "Dual electrical distribution with improved BITE (ATA 24)"
+
+quality_gates:
+  - "Conformity inspection per TC"
+  - "Production acceptance testing"
+  - "Customer acceptance inspection"
+  - "Export Certificate of Airworthiness"
+
+improvements_from_block_a:
+  - "Avionics software v1.2 with improved diagnostics"
+  - "Cabin installation time reduced by 15%"
+  - "Enhanced thermal management for fuel cells"
+  - "Improved build quality and fit/finish"
+  - "Second assembly line for increased rate"
+
+modifications_available:
+  - "MOD-BASE (standard)"
+  - "MOD-M1 (optional factory fit)"
+
+supplier_readiness:
+  - "All Tier-1 suppliers qualified and at rate"
+  - "Fuel cell production capacity: 6 units/month"
+  - "H2 tank production: 4 units/month"
+  - "Landing gear production: 4 shipsets/month"
+
+notes: |
+  Second production block with mature production processes and increased rate.
+  Type Certificate awarded, enabling customer deliveries to commence.
+  Second assembly line activated to support 3 aircraft/month rate.
+  MOD-M1 (avionics and cabin upgrade) available as factory-installed option.
+  Serial numbers 007-018 with improved production efficiency and quality.
+
+traceability:
+  baseline_ref: "../00-CONFIG/CONFIG_SETS/BASELINE-Q100.yaml"
+  change_records:
+    - "ECN-2026-015: Software v1.2 update"
+    - "ECN-2026-023: Cabin installation process improvements"
+    - "ECN-2026-031: Fuel cell thermal management enhancement"
+    - "ECN-2026-045: Second assembly line activation"

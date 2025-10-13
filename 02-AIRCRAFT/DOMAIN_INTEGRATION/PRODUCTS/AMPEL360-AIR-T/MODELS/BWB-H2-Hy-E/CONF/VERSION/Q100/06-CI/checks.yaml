@@ -1,0 +1,89 @@
+---
+# CI Validation Checks for CONF Structure
+version: "1.0"
+description: "Automated validation checks for BWB-H2-Hy-E CONF directory structure"
+
+checks:
+  - name: "version_naming"
+    description: "Verify version names follow HEAD or R01-R99 pattern"
+    type: "regex"
+    pattern: "^(HEAD|R[0-9]{2})$"
+    target: "*/VERSION/*"
+    
+  - name: "effectivity_format"
+    description: "Verify effectivity ranges follow correct format"
+    type: "regex"
+    pattern: "^([0-9]{4}-[0-9]{4}|(FT|SIM)-[A-Z0-9-]+)$"
+    target: "*/EFFECTIVITY/*"
+    
+  - name: "baseline_to_prod"
+    description: "Verify only BASELINE feeds PROD release tag"
+    type: "rule"
+    rule: "BASELINE configurations must reference PROD tag in 02-RELEASE_TAGS"
+    
+  - name: "test_inheritance"
+    description: "Verify FTI and SIM inherit from BASELINE or VARIANT via 00-CONFIG/BLOCKS"
+    type: "dependency"
+    requires: ["00-CONFIG/BLOCKS/BLK-*.yaml"]
+    
+  - name: "no_artifacts_outside_conf"
+    description: "Verify no artifacts exist outside CONF/VERSION/"
+    type: "location"
+    allowed_paths: ["CONF/VERSION/**"]
+    
+  - name: "readme_in_leaf_dirs"
+    description: "Verify each leaf directory has a README.md"
+    type: "file_presence"
+    required_file: "README.md"
+    target: "leaf_directories"
+    
+  - name: "msn_effectivity_format"
+    description: "Verify MSN_EFFECTIVITY.csv has required columns"
+    type: "csv_schema"
+    file: "01-EFFECTIVITY/MSN_EFFECTIVITY.csv"
+    required_columns: ["MSN", "FROM", "TO", "CONF_ID"]
+    
+  - name: "compliance_coverage"
+    description: "Verify REQ-COVERAGE.csv exists and is valid"
+    type: "file_presence"
+    required_file: "05-COMPLIANCE/REQ-COVERAGE.csv"
+    
+  - name: "env_qual_matrix"
+    description: "Verify ENV-QUAL-MATRIX.csv exists for DO-160/ECSS compliance"
+    type: "file_presence"
+    required_file: "05-COMPLIANCE/ENV-QUAL-MATRIX.csv"
+
+guardrails:
+  - rule: "Only BASELINE configurations can reference PROD release tag"
+    enforcement: "blocking"
+    
+  - rule: "FTI and SIM configurations must inherit from BASELINE or VARIANT via BLOCKS"
+    enforcement: "blocking"
+    
+  - rule: "No artifacts outside CONF/VERSION/ directory"
+    enforcement: "blocking"
+    
+  - rule: "Version tags R01-R99 are immutable once created"
+    enforcement: "blocking"
+    
+  - rule: "HEAD version is mutable for development"
+    enforcement: "informational"
+
+validation_workflow:
+  on_commit:
+    - run: "version_naming"
+    - run: "effectivity_format"
+    - run: "readme_in_leaf_dirs"
+    
+  on_merge:
+    - run: "baseline_to_prod"
+    - run: "test_inheritance"
+    - run: "no_artifacts_outside_conf"
+    - run: "msn_effectivity_format"
+    - run: "compliance_coverage"
+    - run: "env_qual_matrix"
+    
+  scheduled:
+    cron: "0 0 * * *"  # Daily at midnight
+    runs:
+      - "all_checks"
