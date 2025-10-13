@@ -1,0 +1,184 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 5,
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3",
+      "language": "python"
+    },
+    "language_info": {
+      "name": "python",
+      "version": "3.11"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Digital Twin KPI Sanity Check (Interactive)\n",
+        "\n",
+        "**Purpose:** Validate digital twin KPI predictions against generated sample data.\n",
+        "\n",
+        "**Generated:** 2025-10-13\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "import matplotlib.pyplot as plt\n",
+        "from ipywidgets import interact, FloatSlider\n",
+        "\n",
+        "# Deterministic seed\n",
+        "np.random.seed(42)\n",
+        "\n",
+        "# Generate sample data\n",
+        "n_samples = 1000\n",
+        "timestamps = pd.date_range('2024-01-01', periods=n_samples, freq='H')\n",
+        "flight_ids = np.random.choice(['FL001','FL002','FL003','FL004','FL005'], n_samples)\n",
+        "actual_fuel = np.clip(np.random.normal(500, 50, n_samples), 300, 700)\n",
+        "prediction_error = np.random.normal(0, 30, n_samples)\n",
+        "predicted_fuel = actual_fuel + prediction_error\n",
+        "\n",
+        "df = pd.DataFrame({\n",
+        "    'timestamp': timestamps,\n",
+        "    'flight_id': flight_ids,\n",
+        "    'h2_fuel_kg_actual': actual_fuel,\n",
+        "    'h2_fuel_kg_pred': predicted_fuel,\n",
+        "})\n",
+        "df.head()"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Interactive Accuracy Check"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def metrics(y_true, y_pred):\n",
+        "    y_true = np.asarray(y_true)\n",
+        "    y_pred = np.asarray(y_pred)\n",
+        "    rmse = np.sqrt(np.mean((y_true - y_pred)**2))\n",
+        "    mae = np.mean(np.abs(y_true - y_pred))\n",
+        "    # R^2 with explicit formula\n",
+        "    ss_res = np.sum((y_true - y_pred)**2)\n",
+        "    ss_tot = np.sum((y_true - np.mean(y_true))**2)\n",
+        "    r2 = 1 - ss_res/ss_tot if ss_tot != 0 else float('nan')\n",
+        "    mape = np.mean(np.abs((y_true - y_pred) / np.clip(y_true, 1e-9, None))) * 100\n",
+        "    return rmse, mae, r2, mape\n",
+        "\n",
+        "def analyze_fuel(threshold=5.0):\n",
+        "    fuel_pred = df['h2_fuel_kg_pred']\n",
+        "    fuel_act  = df['h2_fuel_kg_actual']\n",
+        "    rmse, mae, r2, mape = metrics(fuel_act, fuel_pred)\n",
+        "    \n",
+        "    print(f\"RMSE: {rmse:.2f} kg  |  MAE: {mae:.2f} kg  |  R²: {r2:.4f}  |  MAPE: {mape:.2f}%\")\n",
+        "    print(\"PASS\" if mape < threshold else \"FAIL\")\n",
+        "    \n",
+        "    fig, ax = plt.subplots(figsize=(6,5))\n",
+        "    ax.scatter(fuel_act, fuel_pred, s=8, alpha=0.5)\n",
+        "    mn, mx = float(np.min(fuel_act)), float(np.max(fuel_act))\n",
+        "    ax.plot([mn, mx], [mn, mx])\n",
+        "    ax.set_xlabel('Actual H2 Fuel (kg)')\n",
+        "    ax.set_ylabel('Predicted H2 Fuel (kg)')\n",
+        "    ax.set_title('Predicted vs Actual')\n",
+        "    plt.show()\n",
+        "\n",
+        "interact(analyze_fuel, threshold=FloatSlider(min=0, max=20, step=0.5, value=5.0, description='MAPE %'));"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Residuals"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "residuals = df['h2_fuel_kg_pred'] - df['h2_fuel_kg_actual']\n",
+        "fig = plt.figure(figsize=(12,4))\n",
+        "plt.hist(residuals, bins=50)\n",
+        "plt.xlabel('Residual (kg)')\n",
+        "plt.ylabel('Count')\n",
+        "plt.title('Residual Distribution')\n",
+        "plt.show()\n",
+        "\n",
+        "fig = plt.figure(figsize=(12,4))\n",
+        "plt.scatter(df['h2_fuel_kg_pred'], residuals, s=8, alpha=0.5)\n",
+        "plt.axhline(0)\n",
+        "plt.xlabel('Predicted H2 Fuel (kg)')\n",
+        "plt.ylabel('Residual (kg)')\n",
+        "plt.title('Residual vs Predicted')\n",
+        "plt.show()"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Daily MAPE Trend"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df['date'] = pd.to_datetime(df['timestamp']).dt.date\n",
+        "daily = df.groupby('date').apply(lambda x: np.mean(np.abs((x['h2_fuel_kg_actual']-x['h2_fuel_kg_pred'])/np.clip(x['h2_fuel_kg_actual'],1e-9,None)))*100)\n",
+        "fig = plt.figure(figsize=(10,4))\n",
+        "plt.plot(daily.index, daily.values)\n",
+        "plt.xticks(rotation=45)\n",
+        "plt.ylabel('MAPE (%)')\n",
+        "plt.title('Daily Prediction Error Trend')\n",
+        "plt.tight_layout()\n",
+        "plt.show()"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Summary"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "rmse, mae, r2, mape = metrics(df['h2_fuel_kg_actual'], df['h2_fuel_kg_pred'])\n",
+        "summary = pd.DataFrame([{\n",
+        "    'Total Samples': len(df),\n",
+        "    'RMSE (kg)': rmse,\n",
+        "    'MAE (kg)': mae,\n",
+        "    'R2': r2,\n",
+        "    'MAPE (%)': mape,\n",
+        "    'Requirement': '<5% MAPE',\n",
+        "    'Status': 'PASS' if mape < 5.0 else 'FAIL'\n",
+        "}])\n",
+        "summary"
+      ],
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
