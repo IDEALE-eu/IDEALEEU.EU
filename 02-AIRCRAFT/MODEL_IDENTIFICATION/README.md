@@ -5,6 +5,7 @@ This directory contains the aircraft model identification and technical framewor
 ## Quick Navigation
 
 - 🧭 **[Interactive Navigation Index →](./NAVIGATION_INDEX.md)** - Complete clickable site map
+- 🤖 **[Automation Tools →](./AUTOMATION_README.md)** - Makefile, scripts, and validators
 - 📚 [TFA Implementation Summary](./TFA_IMPLEMENTATION_SUMMARY.md) - Detailed before/after comparison
 - 🚀 [Quick Reference Guide](./TFA_QUICK_REFERENCE.md) - Common tasks and commands
 - 🗺️ [Structure Diagram](./TFA_STRUCTURE_DIAGRAM.md) - Visual hierarchy reference
