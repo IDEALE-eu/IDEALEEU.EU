@@ -1,0 +1,32 @@
+# Artifact Configuration
+artifact:
+  id: 01-example-item
+  name: Example Design Item
+  type: design_document
+  version: "1.0"
+  
+access_control:
+  read: [engineering, quality, management]
+  write: [engineering]
+  approve: [chief_engineer, quality_manager]
+  
+workflow:
+  state: approved
+  approval_date: 2025-10-13
+  approvers:
+    - name: Chief Engineer
+      date: 2025-10-13
+    - name: Quality Manager
+      date: 2025-10-13
+      
+versioning:
+  major: 1
+  minor: 0
+  patch: 0
+  previous_version: null
+  change_summary: Initial release
+  
+links:
+  related_artifacts: []
+  parent_requirements: [REQ_001, REQ_002]
+  dependent_artifacts: []

@@ -1,0 +1,4 @@
+artifact_id,artifact_name,artifact_type,file_path,checksum,version,created_date,status
+ART_001,Example Design Document,document,DOC/design_spec.pdf,sha256:abc123,1.0,2025-10-13,approved
+ART_002,CAD Model,model,PLM/CAx/CAD/model_v1.step,sha256:def456,1.0,2025-10-13,approved
+ART_003,Analysis Report,report,DOC/analysis.pdf,sha256:ghi789,1.0,2025-10-13,draft
