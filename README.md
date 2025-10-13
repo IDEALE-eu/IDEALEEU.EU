@@ -5,6 +5,22 @@ https://www.idealeeu.eu
 Tamper-proof digital passports for aerospace components.  
 Clean H₂ systems with measured energy harvesting and verifiable evidence.
 
+---
+
+## Table of Contents
+
+- [What it does](#what-it-does)
+- [Why it matters](#why-it-matters)
+- [Core ideas](#core-ideas)
+- [Architecture](#architecture)
+- [Primary folders](#primary-folders)
+- [Ways of working](#ways-of-working)
+- [Get started](#get-started)
+- [Glossary](#glossary-scoped)
+- **[📑 Repository Index & Navigation](#repository-index-and-navigation)** ← Complete directory index
+
+---
+
 ## What it does
 - Issues **digital certificates** that follow each part from design to fleet ops.
 - Logs events to **UTCS-MI** (hash, time, signer). Tamper-evident.
@@ -161,9 +177,97 @@ GitHub: **Robbbo-T** · Site: **[https://www.idealeeu.eu](https://www.idealeeu.e
 **Program site:** https://www.idealeeu.eu  
 **Ownership:** Program & Configuration Management (see [CCB](./00-PROGRAM/CONFIG_MGMT/05-CCB/))
 
-# IDELAEEU · Repository Index
+# Repository Index and Navigation
 
-Top: [00-PROGRAM](#00-program) · [01-FLEET](#01-fleet) · [02-AIRCRAFT](#02-aircraft)
+## Purpose
+
+This index provides comprehensive navigation and quick access to all major directories, systems, and components in the IDEALEEU repository. Use this as your starting point to explore program governance, product structures, digital threads, and operational data.
+
+## Quick Navigation
+
+### Top-Level Directories
+- [00-PROGRAM](#00-program) — Program governance, configuration management, quality
+- [01-FLEET](#01-fleet) — Operational data hub, federated learning, MRO strategy
+- [02-AIRCRAFT](#02-aircraft) — Aircraft product structures (AIR-T architecture)
+- [03-SPACECRAFT](#03-spacecraft) — Spacecraft product structures (STA architecture)
+- [04-SATELLITES](#04-satellites) — Satellite systems and subsystems
+- [05-TELESCOPES](#05-telescopes) — Observatory and telescope systems
+- [06-PROBES](#06-probes) — Deep-space probe architectures
+- [07-DRONES](#07-drones) — UAS/UAM systems
+- [08-LAUNCHERS](#08-launchers) — Launch vehicle systems
+- [09-STM-SPACE-STATION-MODULES](#09-stm-space-station-modules) — Space station modules
+- [10-BUSINESS](#10-business) — Market analysis, partnerships, finance
+
+### Key Reference Points
+- **Governance & Policy**: [00-PROGRAM/GOVERNANCE](./00-PROGRAM/GOVERNANCE/) | [CONFIG_MGMT](./00-PROGRAM/CONFIG_MGMT/)
+- **Change Management**: [ECR](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/05-ECR/) | [ECO](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/06-ECO/) | [CCB](./00-PROGRAM/CONFIG_MGMT/05-CCB/)
+- **Standards & Compliance**: [STANDARDS](./00-PROGRAM/STANDARDS/) | [COMPLIANCE](./00-PROGRAM/COMPLIANCE/)
+- **Digital Thread**: [MBSE Models](./00-PROGRAM/DIGITAL_THREAD/04-MBSE/) | [Digital Twin](./00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/)
+- **Traceability**: [UTCS Registry](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/) | [Interfaces](./00-PROGRAM/CONFIG_MGMT/09-INTERFACES/)
+
+## Index Types
+
+This repository uses multiple index types for different purposes:
+
+### Master Repository Index (This Document)
+Complete catalog of all top-level directories and major subsystems with:
+- Directory paths and links
+- Organizational hierarchy
+- Quick access navigation
+- Cross-references between domains
+
+### Domain-Specific Indices
+Each major system may contain its own INDEX/ directory with:
+- Detailed component catalogs
+- File inventories and metadata
+- Version tracking and revision history
+- BOM and assembly cross-references
+
+Examples:
+- [UTCS Index](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/INDEX/) — UTCS passport tracking
+- Assembly indices in PLM/CAx structures — Component and file catalogs
+
+## How to Use This Index
+
+### Finding Information
+1. **By Domain**: Use the Quick Navigation section above
+2. **By System**: Navigate to product folders (02-AIRCRAFT, 03-SPACECRAFT, etc.)
+3. **By Function**: Use the Key Reference Points for governance, changes, standards
+
+### Quick Lookup
+- **Configuration items**: Start at [ITEM_MASTER](./00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/)
+- **Baselines**: Check [BASELINES](./00-PROGRAM/CONFIG_MGMT/04-BASELINES/)
+- **Interfaces**: See [INTERFACES](./00-PROGRAM/CONFIG_MGMT/09-INTERFACES/) and [ICDs](./02-AIRCRAFT/CROSS_SYSTEM_INTEGRATION/10-ICD_LINKS/)
+- **Templates**: Find at [TEMPLATES](./00-PROGRAM/TEMPLATES/) or [CONFIG_MGMT/13-TEMPLATES](./00-PROGRAM/CONFIG_MGMT/13-TEMPLATES/)
+
+### Navigation Patterns
+Common navigation paths follow this structure:
+```
+DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT>/MODELS/<MODEL>/VERSION/<Qn>/DOMAINS/<DOMAIN>/SYSTEMS/<SYSTEM>/SUBSYSTEMS/<SUBSYSTEM>/PLM/CAx/
+```
+
+Example:
+```
+02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/MODELS/BWB-H2-Hy-E/VERSION/Q100/
+```
+
+## Index Maintenance
+
+### Update Frequency
+- **Automated**: Index maintained alongside directory structure
+- **Manual review**: Verify quarterly or before major releases
+- **Baseline snapshots**: Captured at each program milestone
+
+### Validation
+- [ ] All top-level directories listed
+- [ ] Links verified and functional
+- [ ] Cross-references accurate
+- [ ] New systems documented
+- [ ] Obsolete entries removed
+
+---
+
+## Detailed Directory Index
 
 ---
 
@@ -609,11 +713,118 @@ Top: [00-PROGRAM](#00-program) · [01-FLEET](#01-fleet) · [02-AIRCRAFT](#02-air
 
 ### 10-BUSINESS
 - [10-BUSINESS](./10-BUSINESS/)
+  - Market analysis and business development
+  - Partnership agreements
+  - Financial models and projections
 
 ### scripts
 - [scripts](./scripts/)
+  - Automation and utility scripts
+  - Index generation tools
+  - Validation and reporting scripts
 
 ### tools
 - [tools](./tools/)
+  - Development and analysis tools
+  - Configuration utilities
+  - Documentation generators
 
+---
+
+## Index Usage Guidelines
+
+### For New Users
+1. **Start here**: Review this index to understand repository structure
+2. **Check governance**: Read [GOVERNANCE.md](./00-PROGRAM/GOVERNANCE.md) for policies
+3. **Review CM plan**: See [CM Plan](./00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md) for processes
+4. **Find templates**: Use [TEMPLATES](./00-PROGRAM/TEMPLATES/) for standard documents
+
+### For Contributors
+1. **File changes**: Start with [ECR process](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/05-ECR/)
+2. **Check interfaces**: Review [ICD templates](./00-PROGRAM/CONFIG_MGMT/09-INTERFACES/)
+3. **Follow standards**: Consult [STANDARDS](./00-PROGRAM/STANDARDS/) register
+4. **Track traceability**: Use [UTCS](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/) for passports
+
+### For System Engineers
+1. **MBSE models**: Access at [DIGITAL_THREAD/MBSE](./00-PROGRAM/DIGITAL_THREAD/04-MBSE/)
+2. **Digital twins**: See [DIGITAL_TWIN](./00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/)
+3. **Integration**: Check [CROSS_SYSTEM_INTEGRATION](./02-AIRCRAFT/CROSS_SYSTEM_INTEGRATION/)
+4. **Baselines**: Track at [BASELINES](./00-PROGRAM/CONFIG_MGMT/04-BASELINES/)
+
+### For Auditors
+1. **Audit logs**: Check [AUDITS](./00-PROGRAM/CONFIG_MGMT/11-AUDITS/)
+2. **Compliance records**: See [COMPLIANCE](./00-PROGRAM/COMPLIANCE/)
+3. **Change history**: Review [CHANGE_LOG](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/03-REGISTERS/)
+4. **Traceability**: Verify [TRACEABILITY](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/)
+
+## Search and Query
+
+### Common Searches
+- **Find a system**: Use Ctrl+F with ATA/STA chapter number (e.g., "ATA-24", "STA-A")
+- **Locate documents**: Search by document type (ICD, ECR, BOM, etc.)
+- **Check domains**: Look for domain abbreviations (AAA, CCC, EDI, etc.)
+- **Find subsystems**: Search by subsystem code (e.g., "53-10", "24-30")
+
+### Path Patterns
+- **Program-level**: `00-PROGRAM/<functional-area>/`
+- **Fleet ops**: `01-FLEET/<capability>/`
+- **Aircraft**: `02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/<product>/MODELS/<model>/VERSION/<Qn>/`
+- **Spacecraft**: `03-SPACECRAFT/DOMAIN_INTEGRATION/PRODUCTS/<product>/MODELS/<model>/VERSION/<Qn>/`
+
+## Integration with Other Systems
+
+### PLM/PDM
+- Assembly indices available in PLM/CAx/ASSEMBLIES/INDEX/
+- Part master data in [ITEM_MASTER](./00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/)
+- BOM structures in PLM/CAx/ASSEMBLIES/DOCS/BOM/
+
+### Version Control
+- Git repository provides version history
+- Baselines tracked in [BASELINES](./00-PROGRAM/CONFIG_MGMT/04-BASELINES/)
+- Releases managed in [RELEASES](./00-PROGRAM/CONFIG_MGMT/07-RELEASES/)
+
+### UTCS Integration
+- Each system declares UTCS namespace: `utcs://<PRODUCT>/<SYSTEM>/<Qn>`
+- Registry maintained at [UTCS](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/)
+- Schemas and threads tracked in UTCS subdirectories
+
+## Best Practices
+
+### Index Maintenance
+- Update index when adding new top-level directories
+- Verify links during quarterly reviews
+- Document major structural changes in change logs
+- Keep deprecated paths for reference with clear markings
+
+### Navigation
+- Use bookmark/favorites for frequently accessed areas
+- Leverage IDE/editor navigation features for local searches
+- Keep this index open as reference during navigation
+- Use relative links when creating cross-references
+
+### Documentation
+- Each major directory should contain a README.md
+- INDEX/ directories for complex subsystems
+- Link to parent and sibling directories
+- Include purpose, contents, and usage guidelines
+
+## Related Documentation
+
+- [GOVERNANCE.md](./00-PROGRAM/GOVERNANCE.md) — Program governance framework
+- [CM Plan](./00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md) — Configuration management plan
+- [Standards Register](./00-PROGRAM/STANDARDS/01-REGISTER/) — Applicable standards catalog
+- [Glossary](#glossary-scoped) — Key terms and abbreviations (see above)
+
+## Index Metadata
+
+- **Index Type**: Master Repository Index
+- **Coverage**: Complete top-level and major subsystem directories
+- **Maintenance**: Manual with quarterly review
+- **Last Updated**: Maintained continuously
+- **Owner**: Program & Configuration Management
+- **Status**: Current
+
+---
+
+**Back to top**: [↑ Repository Index](#repository-index-and-navigation)
 
