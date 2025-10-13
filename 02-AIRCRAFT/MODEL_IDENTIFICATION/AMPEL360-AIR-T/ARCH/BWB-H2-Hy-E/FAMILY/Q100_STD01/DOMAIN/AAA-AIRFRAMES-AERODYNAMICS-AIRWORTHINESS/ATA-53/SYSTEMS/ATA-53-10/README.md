@@ -1,5 +1,30 @@
 # ATA-53-10: Center Body
 
+## Navigation
+
+- ⬆️ [Back to ATA-53 (Fuselage)](../../README.md)
+- 🌐 [Back to AAA Domain](../../../../README.md)
+- 🏠 [Back to MODEL_IDENTIFICATION](../../../../../../../../../../README.md)
+- 🧭 [Navigation Index](../../../../../../../../../../NAVIGATION_INDEX.md)
+- 📚 [Quick Reference](../../../../../../../../../../TFA_QUICK_REFERENCE.md)
+
+## Quick Access
+
+### PLM/CAx Categories
+- 📐 [CAD - Design](./PLM/CAx/CAD/README.md)
+- 🔬 [CAE - Engineering](./PLM/CAx/CAE/README.md)
+- 🏭 [CAM - Manufacturing](./PLM/CAx/CAM/README.md)
+- 🔗 [CAI - Integration](./PLM/CAx/CAI/README.md)
+- 📊 [CAO - Optimization](./PLM/CAx/CAO/README.md)
+- 🏗️ [CAP - Production](./PLM/CAx/CAP/README.md)
+- 🔧 [CAS - Service](./PLM/CAx/CAS/README.md)
+- ✅ [CAV - Verification](./PLM/CAx/CAV/README.md)
+- 📅 [CMP - Management](./PLM/CAx/CMP/README.md)
+
+### Configuration
+- 📦 [Configuration Root](./CONF/README.md)
+- 🗂️ [Components](./CONF/BASELINE/COMPONENTS/)
+
 ## System Overview
 
 The center body is the primary load-carrying structure at the center of the BWB aircraft, integrating:

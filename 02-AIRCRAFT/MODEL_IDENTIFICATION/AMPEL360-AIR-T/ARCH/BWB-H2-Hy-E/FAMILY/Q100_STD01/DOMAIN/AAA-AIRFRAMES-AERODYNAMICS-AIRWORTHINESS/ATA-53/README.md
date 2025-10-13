@@ -1,5 +1,12 @@
 # ATA-53: Fuselage Structures
 
+## Navigation
+
+- ⬆️ [Back to AAA Domain](../../README.md)
+- 🏠 [Back to MODEL_IDENTIFICATION](../../../../../../../../README.md)
+- 🧭 [Navigation Index](../../../../../../../../NAVIGATION_INDEX.md)
+- 📚 [Quick Reference](../../../../../../../../TFA_QUICK_REFERENCE.md)
+
 ## Overview
 
 ATA Chapter 53 covers fuselage structural systems and components.
@@ -19,16 +26,18 @@ This chapter includes:
 
 ### Available Systems
 
-- **[ATA-53-10/](./SYSTEMS/ATA-53-10/)** - Center Body (Example System)
+- **[ATA-53-10: Center Body →](./SYSTEMS/ATA-53-10/README.md)** ⭐ *Complete example system with PLM & CONF*
+  - [PLM/CAx Directory →](./SYSTEMS/ATA-53-10/PLM/CAx/README.md)
+  - [Configuration Management →](./SYSTEMS/ATA-53-10/CONF/README.md)
 
 ### Additional Systems (To Be Populated)
 
-- **ATA-53-20** - Forward Fuselage
-- **ATA-53-30** - Aft Fuselage
-- **ATA-53-40** - Pressure Bulkheads
-- **ATA-53-50** - Floor Structures
-- **ATA-53-60** - Keel Beam
-- **ATA-53-90** - Qualification Tests
+- **ATA-53-20** - Forward Fuselage *(To be added)*
+- **ATA-53-30** - Aft Fuselage *(To be added)*
+- **ATA-53-40** - Pressure Bulkheads *(To be added)*
+- **ATA-53-50** - Floor Structures *(To be added)*
+- **ATA-53-60** - Keel Beam *(To be added)*
+- **ATA-53-90** - Qualification Tests *(To be added)*
 
 ## BWB-Specific Considerations
 

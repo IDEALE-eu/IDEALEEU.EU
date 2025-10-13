@@ -2,6 +2,12 @@
 
 Blended Wing Body with Hydrogen Hybrid Electric Propulsion
 
+## Navigation
+
+- ⬆️ [Back to AMPEL360-AIR-T](../../README.md)
+- 🏠 [Back to MODEL_IDENTIFICATION](../../../README.md)
+- 🧭 [Navigation Index](../../../NAVIGATION_INDEX.md)
+
 ## Architecture Overview
 
 The BWB-H2-Hy-E represents a revolutionary aircraft architecture combining:
@@ -14,7 +20,7 @@ The BWB-H2-Hy-E represents a revolutionary aircraft architecture combining:
 
 This architecture supports multiple product families:
 
-- **[Q100_STD01/](./FAMILY/Q100_STD01/)** - Q100 Standard Configuration 01
+- **[Q100_STD01 →](./FAMILY/Q100_STD01/README.md)** - Q100 Standard Configuration 01
 
 ## Key Features
 

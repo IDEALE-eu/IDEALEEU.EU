@@ -10,6 +10,8 @@ This section contains all aircraft-related design, integration, and systems engi
 
 - **00-README.md** - This file
 - **[MODEL_IDENTIFICATION/](./MODEL_IDENTIFICATION/)** - Product model identification and TFA (Technical Framework Architecture)
+  - 🧭 **[Interactive Navigation Index →](./MODEL_IDENTIFICATION/NAVIGATION_INDEX.md)** - Complete clickable site map
+  - 📚 [TFA Documentation Hub →](./MODEL_IDENTIFICATION/README.md)
 - **CONFIGURATION_BASE/** - Baseline configuration management
 - **FINAL_ASSEMBLY_OPS/** - Final assembly line operations and procedures
 - **CROSS_SYSTEM_INTEGRATION/** - Inter-system interfaces and integration

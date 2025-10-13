@@ -2,6 +2,19 @@
 
 This directory contains the aircraft model identification and technical framework architecture (TFA).
 
+## Quick Navigation
+
+- 🧭 **[Interactive Navigation Index →](./NAVIGATION_INDEX.md)** - Complete clickable site map
+- 📚 [TFA Implementation Summary](./TFA_IMPLEMENTATION_SUMMARY.md) - Detailed before/after comparison
+- 🚀 [Quick Reference Guide](./TFA_QUICK_REFERENCE.md) - Common tasks and commands
+- 🗺️ [Structure Diagram](./TFA_STRUCTURE_DIAGRAM.md) - Visual hierarchy reference
+- 🏢 [AMPEL360-AIR-T Product →](./AMPEL360-AIR-T/README.md)
+  - ✈️ [BWB-H2-Hy-E Architecture →](./AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/README.md)
+    - 🔧 [Q100_STD01 Family →](./AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/README.md)
+      - 🌐 [AAA Domain (Airframes) →](./AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/DOMAIN/AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/README.md)
+        - 📋 [ATA-53 (Fuselage) →](./AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/DOMAIN/AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/ATA-53/README.md)
+          - ⚙️ [ATA-53-10 (Center Body) - Example System →](./AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/DOMAIN/AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/ATA-53/SYSTEMS/ATA-53-10/README.md)
+
 ## Purpose
 
 MODEL_IDENTIFICATION organizes aircraft models, architectures, families, and configurations in a structured hierarchy that supports:
@@ -81,12 +94,12 @@ MODEL_IDENTIFICATION/
 ## Usage
 
 Navigate to the appropriate level based on your needs:
-1. Select the **Product** (e.g., AMPEL360-AIR-T)
-2. Choose the **Architecture** variant (e.g., BWB-H2-Hy-E)
-3. Select the **Family** configuration (e.g., Q100_STD01)
-4. Navigate to the **Domain** of interest
-5. Select the **ATA chapter**
-6. Access the specific **System**
+1. Select the **[Product](./AMPEL360-AIR-T/README.md)** (e.g., AMPEL360-AIR-T)
+2. Choose the **[Architecture](./AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/README.md)** variant (e.g., BWB-H2-Hy-E)
+3. Select the **[Family](./AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/README.md)** configuration (e.g., Q100_STD01)
+4. Navigate to the **Domain** of interest (see [available domains](./AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/README.md#available-domains))
+5. Select the **ATA chapter** (e.g., [ATA-53](./AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/DOMAIN/AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/ATA-53/README.md))
+6. Access the specific **[System](./AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/DOMAIN/AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/ATA-53/SYSTEMS/ATA-53-10/README.md)** (e.g., ATA-53-10)
 
 ## Compliance
 
