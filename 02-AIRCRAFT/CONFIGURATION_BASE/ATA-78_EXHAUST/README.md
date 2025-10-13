@@ -1,48 +1,32 @@
+---
+ata_chapter: "78"
+title: "EXHAUST"
+owner_system: "Systems Engineering"
+owner_configuration: "Configuration Management"
+status: "InWork"
+utcs_anchor: "utcs://AIRCRAFT/Q100/ATA-78"
+tfa_flow: "QS→FWD→UE→FE→CB→QB"
+effectivity_default: "0001-9999"
+---
+
 # ATA-78 EXHAUST
 
 Exhaust system configuration.
 
-## Overview
-
-This chapter contains the complete configuration for the aircraft exhaust system.
-
-## Directory Contents
-
-### PARAMS/
-System parameters and operating limits.
-
-### BASELINE/
-Baseline configuration data including component lists and system architecture definitions.
-
-### HW_CONFIG/
-Hardware configuration data including LRU configurations and installation specifications.
-
-### SW_BASELINE/
-Software baseline information including versions and load configurations.
-
-### ICD/
-Interface Control Documents defining system interfaces and data bus specifications.
-
-### VERIFICATION/
-Verification and validation artifacts including test plans, procedures, and results.
-
-### CHANGE_LOG/
-Chapter-specific change history.
+## Contents
+- `PARAMS/` — system parameters and operating limits
+- `BASELINE/` — baseline components and architecture
+- `HW_CONFIG/` — LRU configs and installation specs
+- `SW_BASELINE/` — software baselines, versions and loads
+- `ICD/` — interface control and data bus specs
+- `VERIFICATION/` — test plans, procedures, results
+- `CHANGE_LOG/` — chapter change history
 
 ## Key Interfaces
+- **ATA-92** EWIS (wiring)
 
-- **ATA-92**: EWIS (all wiring)
+## Related
+- `../00-COMMON/RULES.md`
+- `../00-COMMON/GLOBAL_CHANGE_LOG.csv`
 
-## Related Documents
-
-- [Configuration Rules](../00-COMMON/RULES.md)
-- [Global Change Log](../00-COMMON/GLOBAL_CHANGE_LOG.csv)
-
-## Contacts
-
-- **System Owner**: Systems Engineering
-- **Configuration Owner**: Configuration Management
-
----
-
-**Last Updated**: 2024-01-15
+_Last reviewed: YYYY-MM-DD_
