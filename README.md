@@ -1,64 +1,57 @@
-# IDEALE.eu
+# IdealeEu.eu (IDEALE.eu)
 
-Tamper-proof digital passports for aerospace components.
+Tamper-proof digital passports for aerospace components.  
 Clean H₂ systems with measured energy harvesting and verifiable evidence.
 
 ## What it does
-
-* Issues **digital certificates** that follow each part from design to fleet ops.
-* Logs events to **UTCS-MI** (hash, time, signer). Tamper-evident.
-* Harvests onboard energy where net gain is positive.
-* Manages H₂ **water byproduct** with safe capture, use, and controlled venting.
+- Issues **digital certificates** that follow each part from design to fleet ops.
+- Logs events to **UTCS-MI** (hash, time, signer). Tamper-evident.
+- Harvests onboard energy where net gain is positive.
+- Manages H₂ **water byproduct** with safe capture, use, and controlled venting.
 
 ## Why it matters
-
-* Faster certification. Evidence is automatic and audit-ready.
-* Lower cost. Predictive maintenance and closed-loop data.
-* Climate impact. Zero carbon exhaust and contrail-aware water handling.
+- Faster certification with audit-ready evidence.
+- Lower cost via predictive maintenance and closed-loop data.
+- Climate impact from zero-carbon exhaust and contrail-aware water handling.
 
 ## Core ideas
-
-* **Physics first:** simple Lagrange models → transfer functions (G(s)) → stable control.
-* **Digital twin:** predicts loads and energy. Validates before deploy.
-* **Evidence by default:** every event gets a signed record.
+- **Physics first:** Lagrange models → transfer functions \(G(s)\) → stable control.
+- **Digital twin:** predict loads and energy, validate before deploy.
+- **Evidence by default:** every event is a signed record.
 
 ## Architecture
-
-1. **Local harvesters** (solar, thermal, piezo, micro-turbine) with MPPT.
-2. **Node controllers** route power and buffer storage.
-3. **Network manager** optimizes system state.
-4. **UTCS-MI ledger** records artifacts and events.
+1. **Local harvesters** (solar, thermal, piezo, micro-turbine) with MPPT  
+2. **Node controllers** route power and buffer storage  
+3. **Network manager** optimizes system state  
+4. **UTCS-MI ledger** records artifacts and events
 
 ```
+
 Design → Simulate → Test → Fly → Log → Audit
-```
+
+````
 
 ## Energy harvesting (conservative)
-
-* Piezo: 5–10% device efficiency typical for broadband wing modes.
-* Use only modules with positive **aircraft-level** net power after drag and mass.
-* Target v1 net gain: **1–2%**. Validate with LCA.
+- Piezo: 5–10% device efficiency typical for broadband wing modes.
+- Only deploy with positive **aircraft-level** net after drag and mass.
+- Target v1 net gain: **1–2%**. Verify with LCA.
 
 ## H₂ water management (simplified)
-
-* Reaction: 1 kg H₂ → **~9 kg H₂O**.
-* In flight: capture **small fraction** for potable, humidity, cooling, and ballast.
-* Vent the rest as clean vapor using **contrail-aware** profiles.
-* On descent/ground: increase capture for **reuse** and **airport circular water**.
+- Reaction: **1 kg H₂ → ~9 kg H₂O**.
+- In flight: capture a **small fraction** for potable, humidity, cooling, ballast. Vent the rest as clean vapor with contrail-aware profiles.
+- On descent/ground: increase capture for reuse and airport circular water.
 
 ## Data and trust
-
-* **UTCS-MI passport** (minimal)
-
+**UTCS-MI passport (minimal):**
 ```json
 {
   "passportId": "utcs:AMPEL360:ATA-38:Q100",
   "anchors": [{"algo": "SHA3-256", "value": "9a1b..."}],
   "events": [{"id": "EV-001", "ts": "2025-10-12T14:50:00Z", "type": "EnergyCapture"}]
 }
-```
+````
 
-* Optional **ZKP**: prove limits (e.g., fatigue < 0.5%) without sharing raw data.
+Optional **ZKP**: prove limits (e.g., fatigue < 0.5%) without sharing raw data.
 
 ## Interfaces (examples)
 
@@ -68,135 +61,86 @@ Design → Simulate → Test → Fly → Log → Audit
 
 ## Quality gates
 
-* Model error < **5%** vs test data.
-* Control stability > **45°** phase margin.
-* MPPT tracking > **95%**.
-* Evidence chain **100% traceable**.
+* Model error < **5%** vs test data
+* Control stability > **45°** phase margin
+* MPPT tracking > **95%**
+* Evidence chain **100%** traceable
 
 ## Safety and compliance
 
-* CS-25.1309 system safety.
-* CS-25.23 load distribution with water ballast.
-* ARINC 646 water quality telemetry.
-* DO-357 cybersecurity for keys and logs.
-* ICAO CAEP contrail mitigation practices.
-
-## Roadmap
-
-1. Prototype sensors and harvesters.
-2. Twin + water mass model and CG trim.
-3. UTCS pilot (100 flight hours).
-4. Airport water reuse partners.
-5. Type-cert evidence package.
-
-## Sponsors
-
-**TFSA** model. Each technical milestone grows value.
-Token uses a **maximum divisor** to limit issuance and reduce dilution.
-
-## License
-
-Apache-2.0 (proposed). Adjust as needed.
-
-## Contact
-
-GitHub: **Robbbo-T** · Site: **idealeeu.eu**
+* CS-25.1309 system safety
+* CS-25.23 load distribution with water ballast
+* ARINC 646 water telemetry
+* DO-357 cybersecurity for keys and logs
+* ICAO CAEP contrail mitigation
 
 ---
 
+## Primary folders
 
-## Primary Folders
+* **00-PROGRAM/** — Governance, CM, QMS, standards, supply chain
+* **01-FLEET/** — Operational data hub, MRO, federated learning
+* **02-AIRCRAFT/** — AIR-T (ATA) baselines, domain integration, twin
+* **03-SPACECRAFT/** — STA baselines, domain integration, AIT/mission
+* **04-SATELLITES/** — Satellite product structures
+* **05-TELESCOPES/** — Observatory payload/domain structures
+* **06-PROBES/** — Deep-space probes
+* **07-DRONES/** — UAS/UAM product lines
+* **08-LAUNCHERS/** — Launch vehicles
+* **09-STM-SPACE-STATION-MODULES/** — Station modules/segments
+* **10-BUSINESS/** — Market, partnerships, finance
 
-* **[00-PROGRAM](./00-PROGRAM/)** — Governance, CM, QMS, standards, supply chain
-* **[01-FLEET](./01-FLEET/)** — Operational Data Hub, MRO strategy, federated learning
-* **[02-AIRCRAFT](./02-AIRCRAFT/)** — AIR-T (ATA) baselines, domain integration, twin
-* **[03-SPACECRAFT](./03-SPACECRAFT/)** — STA baselines, domain integration, AIT/mission
-* **[04-SATELLITES](./04-SATELLITES/)** — STA-aligned satellite product structures
-* **[05-TELESCOPES](./05-TELESCOPES/)** — Observatory payload/domain structures
-* **[06-PROBES](./06-PROBES/)** — Deep-space probes (STA)
-* **[07-DRONES](./07-DRONES/)** — UAS/UAM product lines
-* **[08-LAUNCHERS](./08-LAUNCHERS/)** — Launch vehicles (stages, GSE, range)
-* **[09-STM-SPACE-STATION-MODULES](./09-STM-SPACE-STATION-MODULES/)** — Station modules/segments
-* **[10-BUSINESS](./10-BUSINESS/)** — Market, partnerships, finance
+> Note: **02–09 are TFA product stacks** (Top Final Assembly).
 
-> **Note:** **02–09 are TFA product stacks** (Top Final Assembly, where products live).
+### Core patterns
 
----
+Common path (AIR-T and STA):
 
-## Core Architectures
+```
+DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT>/MODELS/<MODEL>/VERSION/<Qn>/SYSTEMS/…
+```
 
-### AIR-T (Aircraft • ATA-aligned)
+Example reference product:
 
-* **Common pattern (AIR-T & STA):**  
-  `DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT>/MODELS/<MODEL>/VERSION/<Qn>/SYSTEMS/…`
-
-* **Examples**
-  * Config baselines: **[02-AIRCRAFT/CONFIGURATION_BASE](./02-AIRCRAFT/CONFIGURATION_BASE/)**
-  * Domain integration (15 domains): **[02-AIRCRAFT/DOMAIN_INTEGRATION](./02-AIRCRAFT/DOMAIN_INTEGRATION/)**
-  * Cross-system integration: **[02-AIRCRAFT/CROSS_SYSTEM_INTEGRATION](./02-AIRCRAFT/CROSS_SYSTEM_INTEGRATION/)**
-  * Digital twin: **[02-AIRCRAFT/DIGITAL_TWIN_MODEL](./02-AIRCRAFT/DIGITAL_TWIN_MODEL/)**
-  * Reference product: `AMPEL360-AIR-T / MODELS / BWB-H2-Hy-E / VERSION / Q100`
-
-* **Aircraft 15 Domains (primary ATA)**  
-  AAA(06,50–57) · PPP(28,49,54,60–61,70–73,75,78,81–82) · MEC(27,29,32,36–37,63,67,79,83) ·  
-  LCC(08,22–23,44–45,76,93) · EDI(31,34,42,77,84,94) · EEE(24,33,39,74,80,97) ·  
-  EER(15,26,38,85) · DDD(09,21,30,41) · CCC(11,25,35,43,50) · IIS(16,46,91) ·  
-  LIB(01,04–05,12) · AAP(10) · CQH(47) · IIF(07) · OOO(13,20,+reserved)
-
-### STA (Spacecraft • Space-chapter aligned)
-
-* **Same product/model/version pattern** as AIR-T.
-
-* **Examples**
-  * Spacecraft DI: **[03-SPACECRAFT/DOMAIN_INTEGRATION](./03-SPACECRAFT/DOMAIN_INTEGRATION/)**
-  * Satellites DI: **[04-SATELLITES/DOMAIN_INTEGRATION](./04-SATELLITES/DOMAIN_INTEGRATION/)**
-  * Telescopes DI: **[05-TELESCOPES/DOMAIN_INTEGRATION](./05-TELESCOPES/DOMAIN_INTEGRATION/)**
-
-* **Key STA groupings (condensed)**  
-  Structures & Mechanisms (06,50–57,66,94) · Thermal/TPS (21,30) · Power/EPS/Harness (24,39,49,97) ·  
-  **Comms/TT&C (23,33,48)** · Nav/Time/C&DH (31,34,41) · **Avionics/FSW/Databus (40,42,93)** ·  
-  Control/Autonomy/FDIR (22,44,45) · ECLSS/Crew/Payload (25,35–38) ·  
-  Propulsion/Fluids (28–29,47,60–61,70–85) · Docking/Sampling/Robotics (58–59) ·  
-  Environment/Safety/Traffic (15,26,86–87,90) · Ground/Integration/Ops (07,10,16,32,46,92) ·  
-  Program/Compliance (01,04–05,11–14,17–20,98–99)
+```
+02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/
+  MODELS/BWB-H2-Hy-E/VERSION/Q100/
+```
 
 ---
 
-## Ways of Working
+## Ways of working
 
-* **Baselines & releases:**  
-  [04-BASELINES](./00-PROGRAM/CONFIG_MGMT/04-BASELINES/) · [07-RELEASES](./00-PROGRAM/CONFIG_MGMT/07-RELEASES/)
-
-* **Changes (ECR/ECO + CCB):**  
-  [06-CHANGES](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/) · [05-CCB](./00-PROGRAM/CONFIG_MGMT/05-CCB/)
-
-* **Traceability & ICDs:**  
-  [10-TRACEABILITY](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/) · [09-INTERFACES](./00-PROGRAM/CONFIG_MGMT/09-INTERFACES/)  
-  • **UTCS Registry:** [10-TRACEABILITY/UTCS/](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/)  
-  • **IEF Manifests:** each Q10 system ships `PLM/.ief/<system>.ief.json`  
-  • **UTCS anchors:** each system declares `utcs://<PRODUCT>/<SYS>/<Qn>`
-
-* **Compliance & security:**  
-  **Badge Registry:** [11-BADGES/](./00-PROGRAM/CONFIG_MGMT/11-BADGES/) · **Ethical ML (MAL-EEM):** [13-GOVERNANCE/MAL-EEM/](./00-PROGRAM/13-GOVERNANCE/MAL-EEM/)
-
-* **Contribution & reviews:**  
-  **CI validators:** [12-CI/validate-structure.sh](./00-PROGRAM/CONFIG_MGMT/12-CI/validate-structure.sh)
-
----
+* Baselines & releases: `00-PROGRAM/CONFIG_MGMT/04-BASELINES/` · `07-RELEASES/`
+* Changes: ECR/ECO + CCB under `00-PROGRAM/CONFIG_MGMT/06-CHANGES/`
+* Traceability & ICDs: `00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/` · `09-INTERFACES/`
+  • UTCS registry under `10-TRACEABILITY/UTCS/`
+  • Each system declares `utcs://<PRODUCT>/<SYS>/<Qn>`
 
 ## Metrics
 
-Coverage ≥ 99% · Defect escape ≤ target · Mass within margins · Schedule variance ≤ target · Unit cost ≤ target · Dispatch reliability / mission success ≥ target.  
-Dashboards: [Program metrics](./00-PROGRAM/DIGITAL_THREAD/10-METRICS/) · [Fleet KPIs](./01-FLEET/ANALYTICS_AND_AI/DASHBOARD_SPECS/)
+Coverage ≥ 99% · Defect escape ≤ target · Mass within margins · Schedule variance ≤ target · Dispatch reliability ≥ target.
+Dashboards live under `00-PROGRAM/DIGITAL_THREAD/10-METRICS/` and `01-FLEET/ANALYTICS_AND_AI/`.
 
----
+## Get started
 
-## Get Started
+1. Read **Governance** → `00-PROGRAM/GOVERNANCE.md`
+2. Review **CM Plan** → `00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md`
+3. Use **ICD template** → `00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-XXXX.md`
+4. File an **ECR** → `00-PROGRAM/CONFIG_MGMT/06-CHANGES/05-ECR/`
 
-1. Read **Governance** → [00-PROGRAM/GOVERNANCE.md](./00-PROGRAM/GOVERNANCE.md)
-2. Review **CM Plan** → [01-CM_PLAN.md](./00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md)
-3. Use **ICD template** → [ICD-XXXX.md](./00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-XXXX.md)
-4. File **ECR** → [06-CHANGES/05-ECR](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/05-ECR/)
+## Sponsors
+
+**TFSA** model. Value accrues as projects mature.
+Token uses a **maximum divisor** to cap issuance and reduce dilution.
+
+## License
+
+Apache-2.0 (proposed).
+
+## Contact
+
+GitHub: **Robbbo-T** · Site: **[https://www.idealeeu.eu](https://www.idealeeu.eu)**
 
 ---
 
