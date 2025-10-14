@@ -1,0 +1,18 @@
+{
+  "domain_id": "PPP-PNEUMATIC-POWER-SYSTEMS",
+  "domain_name": "Pneumatic Power Systems",
+  "description": "Pneumatic power systems including fuel system integration",
+  "version": "1.0",
+  "status": "active",
+  "owner": "Domain Lead",
+  "created_date": "2025-10-14",
+  "modified_date": "2025-10-14",
+  "ata_chapters": [
+    "ATA-28"
+  ],
+  "integration_domains": [
+    "PPP-PROPULSION-FUEL-SYSTEMS",
+    "MEC-MECHANICAL-SYSTEMS-MODULES",
+    "EEE-ELECTRICAL-ENDOTRANSPONDERS-CIRCULATION"
+  ]
+}
