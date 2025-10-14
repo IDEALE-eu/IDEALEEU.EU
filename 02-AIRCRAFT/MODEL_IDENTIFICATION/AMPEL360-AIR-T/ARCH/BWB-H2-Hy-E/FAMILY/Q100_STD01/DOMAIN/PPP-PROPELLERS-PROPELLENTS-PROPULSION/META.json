@@ -1,0 +1,22 @@
+{
+  "domain_id": "PPP-PROPELLERS-PROPELLENTS-PROPULSION",
+  "description": "Propellers, propellents, propulsion, and aircraft fuel systems",
+  "allowed_ata": [
+    "ATA-28",
+    "ATA-49",
+    "ATA-61",
+    "ATA-70",
+    "ATA-71",
+    "ATA-72",
+    "ATA-73",
+    "ATA-74",
+    "ATA-75",
+    "ATA-76",
+    "ATA-77",
+    "ATA-78",
+    "ATA-79",
+    "ATA-80"
+  ],
+  "owners": ["DomainBoard-PPP"],
+  "status": "InWork"
+}
