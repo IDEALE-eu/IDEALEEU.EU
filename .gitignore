@@ -6,3 +6,4 @@ __pycache__/
 dist/
 build/
 10-BUSINESS/FINANCE/06-REPORTING/rewardIT_LOG.csv
+/out/
