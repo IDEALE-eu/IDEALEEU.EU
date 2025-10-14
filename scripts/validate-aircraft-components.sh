@@ -100,7 +100,7 @@ for domain_path in "$ROOT"/*; do
       # Check for CAx subdirectories
       for cax_dir in "${CAX_DIRS[@]}"; do
         if [[ -d "$cax_path/$cax_dir" ]]; then
-          : $((cax_found++))
+          ((cax_found++))
           success "Found $cax_dir in $domain/$system/$subsystem"
           
           # Check for README.md in CAx subdirectory
