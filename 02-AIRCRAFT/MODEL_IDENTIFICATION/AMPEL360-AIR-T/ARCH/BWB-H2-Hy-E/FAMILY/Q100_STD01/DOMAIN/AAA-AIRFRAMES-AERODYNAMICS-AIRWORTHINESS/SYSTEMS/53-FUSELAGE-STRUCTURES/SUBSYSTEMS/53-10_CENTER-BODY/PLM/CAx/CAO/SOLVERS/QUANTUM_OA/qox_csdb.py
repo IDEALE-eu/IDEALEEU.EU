@@ -1,6 +1,6 @@
 """
 QOx-CSDB · UiX — Reference Stub
-QOx-CSDB: Quantum Optimization - Centralized Source DataBase
+QOx-CSDB: Quantum Optimization - Common Source DataBase
 Canon TFA path: QS → FWD → UE → FE → CB → QB
 SSoT: UTCS v5.0 metadata on all public outputs
 
