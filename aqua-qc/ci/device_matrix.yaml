@@ -1,0 +1,82 @@
+# Device Matrix for CI Testing
+# Defines simulation backends and hardware configurations
+
+backends:
+  # Simulation backends
+  - name: aer_simulator_density_matrix
+    type: simulation
+    description: "Aer density matrix simulator"
+    enabled: true
+    config:
+      method: density_matrix
+      shots: 4096
+      noise_model: null
+  
+  - name: aer_simulator_noisy
+    type: simulation
+    description: "Aer simulator with realistic noise model"
+    enabled: true
+    config:
+      method: statevector
+      shots: 4096
+      noise_model:
+        t1: 50e-6  # 50 microseconds
+        t2: 70e-6  # 70 microseconds
+        readout_error: [[0.98, 0.02], [0.03, 0.97]]
+        gate_error_1q: 0.001
+        gate_error_2q: 0.01
+  
+  - name: fake_jakarta
+    type: simulation
+    description: "Fake backend mimicking IBM Jakarta"
+    enabled: true
+    config:
+      n_qubits: 7
+      basis_gates: ["id", "rz", "sx", "x", "cx"]
+      coupling_map: [[0,1], [1,2], [1,3], [3,4], [3,5], [4,6]]
+  
+  # Hardware slot (optional, nightly only)
+  - name: ibm_hardware_slot
+    type: hardware
+    description: "Reserved slot for real hardware testing"
+    enabled: false
+    schedule: nightly
+    config:
+      provider: "IBM Quantum"
+      hub: "ibm-q"
+      group: "open"
+      project: "main"
+      device_selection: "least_busy"
+      max_qubits: 7
+
+# Test matrix
+test_matrix:
+  backends: 
+    - aer_simulator_density_matrix
+    - aer_simulator_noisy
+  
+  benchmarks:
+    - vqe_h2_sto3g
+    - qaoa_maxcut_erdos
+  
+  shots: [2048, 4096, 8192]
+  
+  fold_scales: [1, 3, 5]
+
+# Resource budgets
+budgets:
+  max_depth_ratio: 3.0
+  max_walltime_ratio: 1.5
+  max_shots: 8192
+  
+# Drift detection policy
+drift_policy:
+  enabled: true
+  recalibration_triggers:
+    ro_delta_threshold: 0.05
+    t1_delta_threshold: 0.10
+    check_interval_minutes: 60
+  
+  actions:
+    on_drift_detected: "recalibrate"  # or "abort"
+    max_recals_per_run: 3
