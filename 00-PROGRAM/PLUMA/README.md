@@ -51,11 +51,14 @@ PLUMA/
 
 ## Quick Links
 
+- **[Quick Start Guide](./QUICK_START.md)** — Get started in 5 minutes
 - [Master Architecture Document](./01-ARCHITECTURE/MASTER_ARCHITECTURE_V1.1.md)
+- [Core Components](./02-COMPONENTS/README.md)
 - [9-Phase CAx Model](./03-CAX_PHASES/README.md)
 - [Scalability Pillars](./04-SCALABILITY/README.md)
 - [Metabuilders](./05-METABUILDERS/README.md)
 - [Success Metrics](./06-METRICS/README.md)
+- [Integration Guide](./07-INTEGRATION/README.md)
 
 ## Version
 
