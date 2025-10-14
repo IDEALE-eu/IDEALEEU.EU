@@ -1,5 +1,7 @@
 # QOx-CSDB — Quantum Optimization with UTCS Traceability
 
+> **QOx-CSDB**: Quantum Optimization - Centralized Source DataBase
+
 ## Purpose
 
 Reference implementation of quantum-assisted optimization with full UTCS (Universal Traceability and Configuration System) metadata tracking for aerospace optimization problems.
