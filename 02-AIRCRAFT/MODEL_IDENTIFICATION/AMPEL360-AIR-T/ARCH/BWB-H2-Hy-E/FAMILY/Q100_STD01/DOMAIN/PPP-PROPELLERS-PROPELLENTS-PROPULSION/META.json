@@ -1,6 +1,6 @@
 {
-  "domain_id": "PPP-PROPELLERS-PROPELLENTS-PROPULSION",
-  "description": "Propellers, propellents, propulsion, and aircraft fuel systems",
+  "domain_id": "PPP-PROPELLERS-PROPELLANTS-PROPULSION",
+  "description": "Propellers, propellants, propulsion, and aircraft fuel systems",
   "allowed_ata": [
     "ATA-28",
     "ATA-49",
