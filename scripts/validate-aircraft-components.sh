@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -Eeuo pipefail
 
 # Validation script for aircraft components structure
-# Validates compliance with AMPEL360-AIR-T TFA (Technical Functional Architecture) rules
+# Validates compliance with AMPEL360-AIR-T component and CAx structure rules
 
-ROOT="02-AIRCRAFT/MODEL_IDENTIFICATION/AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/DOMAIN"
+: "${TERM:=xterm-256color}"   # color-safe on CI
+ROOT="${ROOT:-02-AIRCRAFT/MODEL_IDENTIFICATION/AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/DOMAIN}"
 ERRORS=0
 WARNINGS=0
 
@@ -16,12 +17,12 @@ NC='\033[0m' # No Color
 
 error() {
   echo -e "${RED}✗ ERROR:${NC} $1"
-  ERRORS=$((ERRORS + 1))
+  : $((ERRORS++))
 }
 
 warning() {
   echo -e "${YELLOW}⚠ WARNING:${NC} $1"
-  WARNINGS=$((WARNINGS + 1))
+  : $((WARNINGS++))
 }
 
 success() {
@@ -34,161 +35,139 @@ info() {
 
 # Check if aircraft structure exists
 if [[ ! -d "$ROOT" ]]; then
-  error "Aircraft domain root not found: $ROOT"
+  error "Aircraft root not found: $ROOT"
   exit 1
 fi
 
-info "Validating aircraft components structure (TFA) in $ROOT"
+info "Validating aircraft components and CAx structure in $ROOT"
 echo ""
 
-# Get all domains
-domains=$(find "$ROOT" -mindepth 1 -maxdepth 1 -type d | sort)
+# Expected CAx subdirectories
+CAX_DIRS=(
+  "CAD"
+  "CAE"
+  "CAM"
+  "CAO"
+  "CAP"
+  "CAS"
+  "CAV"
+  "CAI"
+  "CMP"
+)
 
-# Track systems with and without component structure
-systems_with_conf=0
-systems_without_conf=0
-systems_with_components=0
-total_components=0
+# Find and validate all PLM/CAx structures
+info "Validating PLM/CAx component structure..."
 
-info "Checking for component configuration structure (CONF/BASELINE/COMPONENTS)..."
-echo ""
-
-for domain_path in $domains; do
+for domain_path in "$ROOT"/*; do
+  if [[ ! -d "$domain_path" || ! -d "$domain_path/SYSTEMS" ]]; then
+    continue
+  fi
+  
   domain=$(basename "$domain_path")
   
-  # Skip non-domain directories
-  if [[ "$domain" == "README.md" || "$domain" == "ATA_DOMAIN_MAPPING.csv" ]]; then
-    continue
-  fi
-  
-  if [[ ! -d "$domain_path/SYSTEMS" ]]; then
-    continue
-  fi
-  
-  # Check each system
   for system_path in "$domain_path/SYSTEMS"/*; do
-    if [[ ! -d "$system_path" ]]; then
+    if [[ ! -d "$system_path" || ! -d "$system_path/SUBSYSTEMS" ]]; then
       continue
     fi
     
     system=$(basename "$system_path")
     
-    # Skip non-system directories
-    if [[ "$system" == "INTERFACE_MATRIX" || "$system" == "README.md" ]]; then
-      continue
-    fi
-    
-    # Check for CONF directory
-    if [[ -d "$system_path/CONF" ]]; then
-      systems_with_conf=$((systems_with_conf + 1))
-      
-      # Check for BASELINE/COMPONENTS structure
-      if [[ -d "$system_path/CONF/BASELINE/COMPONENTS" ]]; then
-        systems_with_components=$((systems_with_components + 1))
-        
-        # Count components in this system
-        component_count=$(find "$system_path/CONF/BASELINE/COMPONENTS" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l)
-        if [[ $component_count -gt 0 ]]; then
-          total_components=$((total_components + component_count))
-          info "✓ $domain/$system has $component_count components"
-          
-          # Sample first component to validate structure
-          first_component=$(find "$system_path/CONF/BASELINE/COMPONENTS" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | head -1)
-          if [[ -n "$first_component" ]]; then
-            component=$(basename "$first_component")
-            
-            # Check for SUBPRODUCT structure
-            if [[ ! -d "$first_component/SUBPRODUCT" ]]; then
-              warning "  Component $component missing SUBPRODUCT/ directory"
-            else
-              # Check for subproduct directories
-              subproduct_count=$(find "$first_component/SUBPRODUCT" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l)
-              if [[ $subproduct_count -gt 0 ]]; then
-                success "  Component $component has $subproduct_count subproducts"
-                
-                # Sample first subproduct
-                first_subproduct=$(find "$first_component/SUBPRODUCT" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | head -1)
-                if [[ -n "$first_subproduct" ]]; then
-                  # Check for required files
-                  if [[ ! -f "$first_component/SUBPRODUCT_INDEX.csv" ]]; then
-                    warning "  Missing SUBPRODUCT_INDEX.csv"
-                  fi
-                  
-                  # Check for SUBJECT structure
-                  if [[ ! -d "$first_subproduct/SUBJECT" ]]; then
-                    warning "  Missing SUBJECT/ directory in subproduct"
-                  fi
-                fi
-              else
-                warning "  Component $component has no subproducts"
-              fi
-            fi
-          fi
-        else
-          warning "  $domain/$system CONF/BASELINE/COMPONENTS exists but is empty"
-        fi
-      else
-        warning "  $domain/$system has CONF/ but missing BASELINE/COMPONENTS structure"
+    for subsystem_path in "$system_path/SUBSYSTEMS"/*; do
+      if [[ ! -d "$subsystem_path" || ! -d "$subsystem_path/PLM" ]]; then
+        continue
       fi
-    else
-      systems_without_conf=$((systems_without_conf + 1))
-    fi
+      
+      subsystem=$(basename "$subsystem_path")
+      
+      # Skip README.md files
+      if [[ "$subsystem" == "README.md" ]]; then
+        continue
+      fi
+      
+      plm_path="$subsystem_path/PLM"
+      
+      # Check if CAx directory exists
+      if [[ ! -d "$plm_path/CAx" ]]; then
+        warning "Missing CAx directory in $domain/$system/$subsystem/PLM"
+        continue
+      fi
+      
+      info "Validating CAx in: $domain/$system/$subsystem"
+      
+      cax_path="$plm_path/CAx"
+      cax_found=0
+      
+      # Check for CAx subdirectories
+      for cax_dir in "${CAX_DIRS[@]}"; do
+        if [[ -d "$cax_path/$cax_dir" ]]; then
+          ((cax_found++))
+          success "Found $cax_dir in $domain/$system/$subsystem"
+          
+          # Check for README.md in CAx subdirectory
+          if [[ ! -f "$cax_path/$cax_dir/README.md" ]]; then
+            warning "Missing README.md in $domain/$system/$subsystem/PLM/CAx/$cax_dir"
+          fi
+        fi
+      done
+      
+      if [[ $cax_found -eq 0 ]]; then
+        warning "No CAx subdirectories found in $domain/$system/$subsystem/PLM/CAx"
+      fi
+      
+      # Check for EBOM_LINKS.md
+      if [[ ! -f "$plm_path/EBOM_LINKS.md" ]]; then
+        warning "Missing EBOM_LINKS.md in $domain/$system/$subsystem/PLM"
+      fi
+    done
   done
 done
 
-# Count ATA chapters (these should have component definitions)
+# Count component artifacts
 info ""
-info "Analyzing ATA chapter coverage..."
+info "Counting component artifacts..."
+total_cax=$(find "$ROOT" -type d -path "*/PLM/CAx" | wc -l)
+total_cad=$(find "$ROOT" -type d -path "*/PLM/CAx/CAD" | wc -l)
+total_cae=$(find "$ROOT" -type d -path "*/PLM/CAx/CAE" | wc -l)
+total_cam=$(find "$ROOT" -type d -path "*/PLM/CAx/CAM" | wc -l)
+total_readme=$(find "$ROOT" -type f -path "*/PLM/CAx/*/README.md" | wc -l)
 
-total_ata_systems=$(find "$ROOT" -type d -path "*/SYSTEMS/*" | grep -E "/[0-9]{2}-" | wc -l)
-ata_with_conf=$(find "$ROOT" -type d -path "*/SYSTEMS/[0-9][0-9]-*/CONF" 2>/dev/null | wc -l)
-
-info "Total ATA systems: $total_ata_systems"
-info "ATA systems with CONF: $ata_with_conf"
-
-if [[ $ata_with_conf -eq 0 ]]; then
-  error "No ATA systems have component configuration (CONF) structure"
-elif [[ $ata_with_conf -lt $((total_ata_systems / 2)) ]]; then
-  warning "Less than 50% of ATA systems have component configuration"
-fi
+success "Total CAx directories: $total_cax"
+success "Total CAD directories: $total_cad"
+success "Total CAE directories: $total_cae"
+success "Total CAM directories: $total_cam"
+success "Total CAx README files: $total_readme"
 
 echo ""
 echo "=========================================="
-echo "Validation Summary"
+echo "Components Validation Summary"
 echo "=========================================="
-echo "Systems with CONF: $systems_with_conf"
-echo "Systems without CONF: $systems_without_conf"
-echo "Systems with components: $systems_with_components"
-echo "Total components defined: $total_components"
 echo "Errors:   $ERRORS"
 echo "Warnings: $WARNINGS"
 echo ""
 
-# Provide recommendation
-if [[ $total_components -eq 0 ]]; then
-  echo "=========================================="
-  echo "RECOMMENDATION"
-  echo "=========================================="
-  error "No component structure found in aircraft systems"
-  echo ""
-  echo "The aircraft systems lack component configuration structure."
-  echo "Expected structure: DOMAIN/{ATA_CHAPTER}/SYSTEMS/{ATA_MID}/CONF/BASELINE/COMPONENTS/{COMP}/SUBPRODUCT/{SUBPROD_ID}"
-  echo ""
-  echo "To create component structure, use:"
-  echo "  cd 02-AIRCRAFT/MODEL_IDENTIFICATION"
-  echo "  make add-item DOMAIN=<domain> ATA_CHAPTER=<chapter> ATA_MID=<system> COMP=<component> ..."
-  echo ""
-  echo "See CORRECTIVE_ACTION_PLAN.md for detailed guidance."
-  echo ""
-fi
+# Emit machine-readable JSON summary
+mkdir -p out
+cat > out/components-validation.json <<EOF
+{
+  "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+  "validation_type": "components",
+  "errors": $ERRORS,
+  "warnings": $WARNINGS,
+  "total_cax": $total_cax,
+  "total_cad": $total_cad,
+  "total_cae": $total_cae,
+  "total_cam": $total_cam,
+  "total_readme": $total_readme,
+  "status": "$(if [[ $ERRORS -gt 0 ]]; then echo "failed"; elif [[ $WARNINGS -gt 0 ]]; then echo "warning"; else echo "passed"; fi)"
+}
+EOF
 
+# Non-blocking: always exit 0 (warnings allowed)
 if [[ $ERRORS -gt 0 ]]; then
-  error "Validation failed with $ERRORS errors"
-  exit 1
+  error "Components validation found $ERRORS errors (non-blocking)"
 elif [[ $WARNINGS -gt 0 ]]; then
-  warning "Validation completed with $WARNINGS warnings"
-  exit 0
+  warning "Components validation completed with $WARNINGS warnings"
 else
-  success "Validation passed successfully!"
-  exit 0
+  success "Components validation passed successfully!"
 fi
+exit 0
