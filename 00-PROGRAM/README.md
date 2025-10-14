@@ -1,6 +1,6 @@
 # 00-PROGRAM
 
-Program-level governance, standards, and management systems.
+Program-level governance, standards, and management systems across all media-environments (air, space, ground and sea, cross) and standard products.
 
 ## Contents
 - **[README.md](./README.md)** — This file  
