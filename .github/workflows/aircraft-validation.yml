@@ -1,6 +1,7 @@
+---
 name: Aircraft Structure Validation
 
-on:
+'on':
   push:
     branches:
       - main
@@ -11,30 +12,30 @@ on:
 jobs:
   validate-aircraft-structure:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Validate Aircraft Systems
         run: |
           chmod +x ./scripts/validate-aircraft-systems.sh
           ./scripts/validate-aircraft-systems.sh
-      
+
       - name: Validate Aircraft Subsystems
         if: always()
         continue-on-error: true
         run: |
           chmod +x ./scripts/validate-aircraft-subsystems.sh
           ./scripts/validate-aircraft-subsystems.sh
-      
+
       - name: Validate Aircraft Components
         if: always()
         continue-on-error: true
         run: |
           chmod +x ./scripts/validate-aircraft-components.sh
           ./scripts/validate-aircraft-components.sh
-      
+
       - name: Validation Summary
         if: always()
         run: |
