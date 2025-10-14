@@ -1,6 +1,6 @@
 # QOx-CSDB — Quantum Optimization with UTCS Traceability
 
-> **QOx-CSDB**: Quantum Optimization - Centralized Source DataBase
+> **QOx-CSDB**: Quantum Optimization - Common Source DataBase
 
 ## Purpose
 
