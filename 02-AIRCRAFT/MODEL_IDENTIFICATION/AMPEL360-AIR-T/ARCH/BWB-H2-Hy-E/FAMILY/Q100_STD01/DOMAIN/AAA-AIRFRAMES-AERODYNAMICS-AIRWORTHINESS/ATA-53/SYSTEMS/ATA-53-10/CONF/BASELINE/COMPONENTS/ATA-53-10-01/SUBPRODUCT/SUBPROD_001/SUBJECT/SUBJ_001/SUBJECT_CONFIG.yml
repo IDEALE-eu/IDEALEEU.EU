@@ -1,0 +1,32 @@
+# Subject Configuration
+subject:
+  id: SUBJ_001
+  name: Subject for ATA-53-10-01
+  version: "1.0"
+  
+effectivity:
+  range: "0001-9999"
+  applicability: "Aircraft in Q100_STD01 family"
+  
+configuration:
+  baseline: BASELINE
+  approval_required: true
+  change_control: true
+  
+traceability:
+  requirements:
+    - REQ_001: "System requirements"
+    - REQ_002: "Component specifications"
+  interfaces:
+    - INT_001: "System interfaces"
+    
+validation:
+  analysis_required: true
+  testing_required: true
+  simulation_required: true
+  
+metadata:
+  owner: StructuralTeam
+  created: 2025-10-14
+  modified: 2025-10-14
+  status: active
