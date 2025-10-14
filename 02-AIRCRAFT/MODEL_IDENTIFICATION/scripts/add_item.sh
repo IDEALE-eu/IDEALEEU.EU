@@ -273,7 +273,7 @@ Place your documentation files here:
 {document_type}_{item_id}_{version}_{date}.{ext}
 \`\`\`
 
-Example: \`design_spec_$COMP_v1.0_$DATE.pdf\`
+Example: \`design_spec_${COMP}_v1.0_${DATE}.pdf\`
 
 ## Metadata
 
