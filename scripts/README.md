@@ -1,321 +1,182 @@
-# Validation Scripts
+# Validation and Management Scripts
 
-This directory contains validation scripts for verifying the structural integrity and compliance of various system architectures in the IDEALE repository.
-
----
+This directory contains automation scripts for managing and validating the IDEALE-EU repository structure.
 
 ## Aircraft Validation Scripts
 
 ### validate-aircraft-systems.sh
+Validates the aircraft systems-level structure for the AMPEL360-AIR-T model.
 
-Validates domain and system-level structure for aircraft systems following TFA (Threading Functional Architecture) rules.
+**Purpose**: Ensures all aircraft domains, ATA chapters, and systems follow the proper directory structure with required files and subdirectories.
 
-**Validates:**
-- Domain existence and structure (15 domains)
-- System-level mandatory files (INTEGRATION_VIEW.md, INTERFACE_MATRIX/, SUBSYSTEMS/)
-- Domain-level metadata (META.json, domain-config.yaml, README.md)
-- Prohibition of PLM/CAx at domain level
-- System counts and completeness
-
-**Usage:**
+**Usage**:
 ```bash
+cd /path/to/IDEALEEU.EU
 ./scripts/validate-aircraft-systems.sh
 ```
 
-**Exit Codes:**
-- 0: Validation passed (or warnings only)
-- 1: Validation failed with errors
+**Checks**:
+- Domain directories exist and have SYSTEMS subdirectories
+- Systems have INTEGRATION_VIEW.md, README.md, INTERFACE_MATRIX, and SUBSYSTEMS
+- ATA naming conventions (hyphens in system names)
+- System and subsystem counts
 
-**Output:** Color-coded with errors (red), warnings (yellow), success (green), and info (blue)
-
----
+**Exit Codes**:
+- `0`: Validation passed (warnings allowed)
+- `1`: Validation failed with errors
 
 ### validate-aircraft-subsystems.sh
+Validates the aircraft subsystems-level structure including PLM and CAx directories.
 
-Validates subsystem-level structure across all aircraft domains.
+**Purpose**: Ensures subsystems have proper PLM (Product Lifecycle Management) structure with CAx tool integration directories.
 
-**Validates:**
-- Subsystem mandatory files (README.md, META.json, inherit.json)
-- PLM directory structure
-- PLM/CAx directory with all 9 subdirectories (CAD, CAE, CAO, CAM, CAI, CAV, CAP, CAS, CMP)
-- PLM/EBOM_LINKS.md presence
-- META.json scope field validation
-
-**Usage:**
+**Usage**:
 ```bash
+cd /path/to/IDEALEEU.EU
 ./scripts/validate-aircraft-subsystems.sh
 ```
 
-**Exit Codes:**
-- 0: Validation passed (or warnings only)
-- 1: Validation failed with errors
+**Checks**:
+- PLM directory structure
+- PLM/CAx subdirectories (CAD, CAE, CAO, CAM, CAI, CAV, CAS, CMP)
+- EBOM_LINKS.md files
+- TRACE directories
+- PLM/CAx/EBOM coverage percentages
 
-**Metrics Provided:**
-- Total subsystems count
-- Subsystems with complete PLM structure
-- Subsystems with complete CAx structure
-- Coverage percentages
-
----
+**Exit Codes**:
+- `0`: Validation passed (warnings allowed)
+- `1`: Validation failed with errors
 
 ### validate-aircraft-components.sh
+Validates the aircraft components-level structure (TFA - Technical Functional Architecture).
 
-Validates component-level CAx structure and identifies pilot systems.
+**Purpose**: Ensures components have proper configuration management structure with subproducts, subjects, and artifacts.
 
-**Validates:**
-- PLM/CAx directory completeness (all 9 subdirectories)
-- CAx README.md presence
-- Individual CAx subdirectory counts
-- Pilot system identification
-
-**Usage:**
+**Usage**:
 ```bash
+cd /path/to/IDEALEEU.EU
 ./scripts/validate-aircraft-components.sh
 ```
 
-**Exit Codes:**
-- 0: Validation passed (or warnings only)
-- 1: Validation failed with errors
+**Checks**:
+- CONF/BASELINE/COMPONENTS directory structure
+- Component definitions
+- SUBPRODUCT and SUBJECT structures
+- Artifact management capability
 
-**Special Features:**
-- Identifies and reports pilot systems (systems with complete CAx structures)
-- Provides completion percentage
-- Breaks down CAx subdirectory statistics
+**Exit Codes**:
+- `0`: Validation passed (warnings allowed)
+- `1`: Validation failed with errors
 
----
+**Note**: As of 2025-10-14, no component structure exists yet. See the [Aircraft Corrective Action Plan](../02-AIRCRAFT/CORRECTIVE_ACTION_PLAN.md) for implementation guidance.
 
 ## Spacecraft Validation Scripts
 
 ### validate-spacecraft-systems.sh
+Validates the spacecraft systems structure for AMPEL360-SPACE-T.
 
-Validates spacecraft systems structure for AMPEL360-SPACE-T architecture.
+**Purpose**: Similar to aircraft validation but for spacecraft systems with different naming conventions (underscores instead of hyphens).
 
-**Validates:**
-- SYSTEMS directory existence
-- System structure (INTEGRATION_VIEW.md, INTERFACE_MATRIX/, SUBSYSTEMS/)
-- Subsystem PLM/CAx structure
-- Naming conventions (underscores vs hyphens)
-- EBOM_LINKS.md presence
-
-**Usage:**
+**Usage**:
 ```bash
+cd /path/to/IDEALEEU.EU
 ./scripts/validate-spacecraft-systems.sh
 ```
-
----
 
 ## Telescope Validation Scripts
 
 ### validate-telescope-systems.sh
+Validates the telescope systems structure for AMPEL360-TELESCOPE-T.
 
-Validates telescope systems structure following STA chapters.
-
-**Validates:**
-- SYSTEMS directory with STA chapter structure
-- System-level files and directories
-- EWIS special rules (centralized wiring location)
-- Subsystem PLM/CAx structure
-- INTERFACE_MATRIX CSV files
-
-**Usage:**
+**Usage**:
 ```bash
+cd /path/to/IDEALEEU.EU
 ./scripts/validate-telescope-systems.sh
 ```
 
----
-
-## General Structure Validation
+## General Validation Scripts
 
 ### validate-structure.sh
+General repository structure validation.
 
-Validates domain integration structure for aircraft TFA architecture.
-
-**Validates:**
-- Domain-level structure and policies
-- System-level mandatory elements
-- Subsystem PLM/CAx structure
-- Prohibition of PLM/CAx at domain level
-- domain-config.yaml validation rules
-
-**Usage:**
+**Usage**:
 ```bash
+cd /path/to/IDEALEEU.EU
 ./scripts/validate-structure.sh
 ```
 
----
+## Creation Scripts
 
-## Common Validation Rules
+### create-domains.sh
+Script to create new domain structures.
 
-All validation scripts follow these common patterns:
+### create-probe-systems.sh
+Script to create probe system structures.
 
-### Color Coding
+### create-satellite-domains.sh
+Script to create satellite domain structures.
 
-- **Red (✗)**: Errors - critical issues that must be fixed
-- **Yellow (⚠)**: Warnings - should be addressed but not blocking
-- **Green (✓)**: Success - validation passed
-- **Blue (ℹ)**: Info - informational messages
-
-### Exit Codes
-
-- **0**: Validation passed successfully (no errors, warnings allowed)
-- **1**: Validation failed (errors found)
-
-### Output Format
-
-Each script provides:
-1. Initial validation context
-2. Progressive validation steps with real-time feedback
-3. Summary statistics
-4. Final validation summary with error and warning counts
-
----
+### create-telescope-systems.sh
+Script to create telescope system structures.
 
 ## Integration with CI/CD
 
-These scripts are designed for CI/CD pipeline integration:
-
-### GitLab CI Example
+These validation scripts can be integrated into GitHub Actions workflows for continuous validation:
 
 ```yaml
-aircraft-validation:
-  stage: validate
-  script:
-    - chmod +x scripts/validate-aircraft-*.sh
-    - ./scripts/validate-aircraft-systems.sh
-    - ./scripts/validate-aircraft-subsystems.sh
-    - ./scripts/validate-aircraft-components.sh
-  artifacts:
-    when: always
-    paths:
-      - "*.txt"
-  allow_failure: false
-```
+# Example .github/workflows/validate.yml
+name: Structure Validation
 
-### GitHub Actions Example
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-```yaml
-name: Validate Aircraft Structure
-on: [push, pull_request]
 jobs:
-  validate:
+  validate-aircraft:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Run Aircraft Validations
-        run: |
-          chmod +x scripts/validate-aircraft-*.sh
-          ./scripts/validate-aircraft-systems.sh
-          ./scripts/validate-aircraft-subsystems.sh
-          ./scripts/validate-aircraft-components.sh
+      - name: Validate Aircraft Systems
+        run: ./scripts/validate-aircraft-systems.sh
+      - name: Validate Aircraft Subsystems
+        run: ./scripts/validate-aircraft-subsystems.sh
+      - name: Validate Aircraft Components
+        run: ./scripts/validate-aircraft-components.sh
 ```
-
----
-
-## Validation Reports
-
-Validation results are documented in domain-specific validation reports:
-
-- **Aircraft:** `02-AIRCRAFT/VALIDATION_REPORT.md`
-- **Spacecraft:** (To be created)
-- **Telescopes:** (To be created)
-
----
-
-## Requirements
-
-### System Dependencies
-
-- Bash 4.0 or higher
-- `find` command
-- `jq` (optional, for JSON validation)
-- `grep` command
-
-### File System
-
-Scripts assume execution from repository root:
-```bash
-cd /path/to/repository
-./scripts/validate-*.sh
-```
-
----
-
-## Script Development Guidelines
-
-When creating new validation scripts:
-
-1. **Use consistent error/warning/success functions**
-   ```bash
-   error() {
-     echo -e "${RED}✗ ERROR:${NC} $1"
-     ERRORS=$((ERRORS + 1))
-   }
-   ```
-
-2. **Provide comprehensive summary**
-   - Count errors and warnings separately
-   - Show statistics for validated elements
-   - Use clear exit codes
-
-3. **Enable CI/CD integration**
-   - Non-interactive execution
-   - Predictable exit codes
-   - Machine-parseable output option
-
-4. **Document thoroughly**
-   - Script header with description
-   - Usage examples
-   - Exit code meanings
-
----
 
 ## Troubleshooting
 
-### Script Won't Execute
-
-```bash
-chmod +x scripts/validate-*.sh
-```
-
-### jq Not Found Warnings
-
-Install jq for enhanced JSON validation:
-```bash
-# Ubuntu/Debian
-apt-get install jq
-
-# macOS
-brew install jq
-
-# Or continue without jq (warnings will be shown but not fatal)
-```
-
 ### Permission Denied
+If you get "Permission denied" errors, make scripts executable:
+```bash
+chmod +x scripts/*.sh
+```
 
-Ensure you have read permissions on all directories being validated.
+### Path Issues
+Always run scripts from the repository root directory:
+```bash
+cd /path/to/IDEALEEU.EU
+./scripts/validate-aircraft-systems.sh
+```
 
----
+### Exit Code 1 with Warnings
+Some scripts exit with code 0 even with warnings. Only errors cause exit code 1.
 
 ## Contributing
 
 When adding new validation scripts:
+1. Follow the existing naming convention: `validate-{domain}-{level}.sh`
+2. Use consistent color codes (RED for errors, YELLOW for warnings, GREEN for success)
+3. Include proper error counting and summary reporting
+4. Handle edge cases (empty directories, missing files, etc.)
+5. Use `set -euo pipefail` for robust error handling
+6. Avoid `((VAR++))` which returns 0 on first increment; use `VAR=$((VAR + 1))` instead
+7. Document the script in this README
 
-1. Follow the existing naming convention: `validate-<domain>-<level>.sh`
-2. Update this README with script documentation
-3. Add corresponding validation report template
-4. Test with CI/CD pipeline before merging
-5. Include example output in documentation
+## References
 
----
-
-## See Also
-
-- [Aircraft Validation Report](../02-AIRCRAFT/VALIDATION_REPORT.md)
-- [TFA Quick Reference](../02-AIRCRAFT/MODEL_IDENTIFICATION/TFA_QUICK_REFERENCE.md)
-- [Automation Guide](../02-AIRCRAFT/MODEL_IDENTIFICATION/AUTOMATION_README.md)
-- [Digital Thread Validation](../00-PROGRAM/DIGITAL_THREAD/08-AUTOMATION/VALIDATION_SCRIPTS/README.md)
-
----
-
-**Last Updated:** 2025-10-14  
-**Maintained By:** IDEALE Repository Team
+- [Aircraft Corrective Action Plan](../02-AIRCRAFT/CORRECTIVE_ACTION_PLAN.md)
+- [ATA iSpec 2200](https://www.ata.org) - Aviation technical publication standard
+- [S1000D](http://www.s1000d.org) - International technical publication specification
