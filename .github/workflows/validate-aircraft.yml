@@ -1,0 +1,100 @@
+- name: Upload validation results
+  uses: actions/upload-artifact@v4n
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - '02-AIRCRAFT/**'
+      - 'scripts/validate-aircraft-*.sh'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - '02-AIRCRAFT/**'
+      - 'scripts/validate-aircraft-*.sh'
+  workflow_dispatch:
+
+jobs:
+  validate-aircraft:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Verify script permissions
+        run: |
+          chmod +x scripts/validate-aircraft-*.sh
+          ls -la scripts/validate-aircraft-*.sh
+      
+      - name: Run aircraft systems validation
+        id: systems
+        continue-on-error: true
+        run: |
+          echo "::group::Systems Validation"
+          ./scripts/validate-aircraft-systems.sh | tee systems-validation.txt
+          echo "::endgroup::"
+        
+      - name: Run aircraft subsystems validation
+        id: subsystems
+        continue-on-error: true
+        run: |
+          echo "::group::Subsystems Validation"
+          ./scripts/validate-aircraft-subsystems.sh | tee subsystems-validation.txt
+          echo "::endgroup::"
+      
+      - name: Run aircraft components validation
+        id: components
+        continue-on-error: true
+        run: |
+          echo "::group::Components Validation"
+          ./scripts/validate-aircraft-components.sh | tee components-validation.txt
+          echo "::endgroup::"
+      
+      - name: Upload validation results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: validation-results
+          path: |
+            systems-validation.txt
+            subsystems-validation.txt
+            components-validation.txt
+            02-AIRCRAFT/VALIDATION_REPORT.md
+          retention-days: 30
+      
+      - name: Check validation status
+        if: always()
+        run: |
+          echo "## Validation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Script | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|--------|" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.systems.outcome }}" == "success" ]; then
+            echo "| Systems | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Systems | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ steps.subsystems.outcome }}" == "success" ]; then
+            echo "| Subsystems | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Subsystems | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ "${{ steps.components.outcome }}" == "success" ]; then
+            echo "| Components | ✅ Passed |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Components | ❌ Failed |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Full validation report: [VALIDATION_REPORT.md](02-AIRCRAFT/VALIDATION_REPORT.md)" >> $GITHUB_STEP_SUMMARY
+      
+      # Fail the job if components validation fails (critical)
+      - name: Fail on critical errors
+        if: steps.components.outcome == 'failure'
+        run: |
+          echo "❌ Component validation failed - this is critical!"
+          exit 1
