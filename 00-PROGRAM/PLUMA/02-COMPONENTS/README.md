@@ -78,6 +78,26 @@ GET /api/v1/templates/search
 
 Orchestrate phase transitions and gate approvals at scale with parallel processing.
 
+### API Specification
+
+Complete API specification available: [Interphase API Spec (OpenAPI 3.1)](./INTERPHASE_API_SPEC.yaml)
+
+**Quick Links**:
+- [Event Contracts](./INTERPHASE_EVENT_CONTRACTS.md) - Kafka topics and webhook schemas
+- [cURL Examples](./INTERPHASE_CURL_EXAMPLES.md) - Practical API usage examples
+- [Data Model](./INTERPHASE_DATA_MODEL.sql) - PostgreSQL schema
+
+**API Base URL**: `https://api.interphase.ap-aero.portfolio/v1`
+
+**Authentication**: OIDC (Bearer tokens) + mTLS for service-to-service
+
+**Key Operations**:
+- Freeze contexts: `POST /programs/{programId}/contexts/freeze`
+- Gate decisions: `POST /programs/{programId}/phases/{phaseId}/gates/{gateId}/decision`
+- Transitions: `POST /transitions`
+- Validations: `POST /validations/run`
+- Cloning: `POST /clones`
+
 ### Key Features
 
 - **Phase Gate Workflows**: Automated approval chains
