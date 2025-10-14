@@ -4,7 +4,7 @@
 
 ## Purpose
 
-This domain manages propellers, propellents, propulsion systems, and aircraft fuel systems. It encompasses all aspects of aircraft propulsion from fuel storage and distribution to engine systems and propeller operations.
+This domain manages propellers, propellants, propulsion systems, and aircraft fuel systems. It encompasses all aspects of aircraft propulsion from fuel storage and distribution to engine systems and propeller operations.
 
 ## Structure
 
