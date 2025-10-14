@@ -1,5 +1,7 @@
 ---
 name: Aircraft Structure Validation
+permissions:
+  contents: read
 
 'on':
   push:
