@@ -85,6 +85,11 @@ for domain in "${DOMAINS[@]}"; do
           if [[ -d "$system_path" ]]; then
             system=$(basename "$system_path")
             
+            # Skip non-system directories
+            if [[ "$system" == "INTERFACE_MATRIX" || "$system" == "README.md" ]]; then
+              continue
+            fi
+            
             # Check mandatory system files/directories
             if [[ ! -f "$system_path/INTEGRATION_VIEW.md" ]]; then
               error "Missing INTEGRATION_VIEW.md in $domain/SYSTEMS/$system"
