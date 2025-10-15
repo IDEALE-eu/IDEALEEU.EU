@@ -1,0 +1,54 @@
+{
+  "teknia_tokenomics": {
+    "version": "1.0.0",
+    "description": "Teknia Token integration configuration for Program Finance",
+    "token_system": {
+      "name": "Teknia Token",
+      "symbol": "TEKNIA",
+      "base_unit": "token",
+      "merit_currency": "$MERIT"
+    },
+    "reward_multipliers": {
+      "maturity_factor": {
+        "min": 0.5,
+        "max": 2.0,
+        "description": "Multiplier based on process maturity and data quality"
+      },
+      "evidence_quality": {
+        "min": 0.8,
+        "max": 1.2,
+        "description": "Multiplier based on supporting evidence quality"
+      }
+    },
+    "achievement_thresholds": {
+      "cost_performance": {
+        "excellent": 1.05,
+        "good": 1.02,
+        "target": 1.00,
+        "acceptable": 0.98
+      },
+      "schedule_performance": {
+        "excellent": 1.05,
+        "good": 1.02,
+        "target": 1.00,
+        "acceptable": 0.98
+      },
+      "forecast_accuracy": {
+        "excellent": 0.98,
+        "good": 0.95,
+        "acceptable": 0.90
+      }
+    },
+    "merit_distribution": {
+      "innovation_treasury": 0.7,
+      "team_allocation": 0.2,
+      "individual_contributors": 0.1
+    },
+    "verification_requirements": {
+      "automated_validation": true,
+      "board_approval_threshold": 50,
+      "audit_trail_required": true,
+      "supporting_docs_required": true
+    }
+  }
+}

@@ -1,0 +1,48 @@
+openapi: 3.0.3
+info:
+  title: DT Runtime API
+  version: 1.0.0
+  description: Digital Twin Runtime API for simulation and state queries
+paths:
+  /simulate:
+    post:
+      summary: Run simulation step
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimInput'
+      responses:
+        '200':
+          description: Simulation output
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimOutput'
+components:
+  schemas:
+    SimInput:
+      type: object
+      properties:
+        u:
+          type: array
+          items:
+            type: number
+          description: Input vector
+        ts:
+          type: number
+          description: Time step (seconds)
+    SimOutput:
+      type: object
+      properties:
+        y:
+          type: array
+          items:
+            type: number
+          description: Output vector
+        states:
+          type: array
+          items:
+            type: number
+          description: State vector

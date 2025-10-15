@@ -17,11 +17,11 @@ This directory defines the technical architecture for the Digital Thread, includ
 
 ### Layer 1: Data Layer
 
-- Schemas
+- **Schemas**
   - [UTCS Schemas](../../CONFIG_MGMT/10-TRACEABILITY/UTCS/SCHEMAS)
   - [Operational Data Hub · Schema Registry](../../../01-FLEET/OPERATIONAL_DATA_HUB/02-DATA_INGESTION/SCHEMA_REGISTRY)
 
-- Source of Truth (SoT)
+- **Source of Truth (SoT)**
   - [UTCS Index](../../CONFIG_MGMT/10-TRACEABILITY/UTCS/INDEX)
 
 - Master data management (MDM)

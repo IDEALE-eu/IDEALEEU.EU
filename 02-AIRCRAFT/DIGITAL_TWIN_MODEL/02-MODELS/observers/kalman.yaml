@@ -1,0 +1,7 @@
+kalman_filters:
+  - name: State_Observer
+    type: Extended_Kalman_Filter
+    states: []
+    process_noise: 0.0
+    measurement_noise: 0.0
+    description: "Placeholder Kalman filter for state estimation"

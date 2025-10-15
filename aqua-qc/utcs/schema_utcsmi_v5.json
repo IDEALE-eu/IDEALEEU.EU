@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://idealeeu.eu/schemas/utcs-mi-v5.json",
+  "title": "UTCS-MI v5.0 Metadata Schema",
+  "description": "Universal Traceability and Configuration System - Metadata Interface version 5.0",
+  "type": "object",
+  "required": ["uid", "utcs_id13", "hash", "inputs_sig", "calib_sig", "bench_case", "kpi"],
+  "properties": {
+    "uid": {
+      "type": "string",
+      "description": "Unique identifier for the algorithm run",
+      "pattern": "^Qiskit_[0-9]{3}_[0-9]{8}_[A-Z]+$"
+    },
+    "utcs_id13": {
+      "type": "string",
+      "description": "13-character UTCS identifier",
+      "pattern": "^[A-Z0-9]{13}$"
+    },
+    "hash": {
+      "type": "string",
+      "description": "SHA256 hash of the complete run configuration",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "inputs_sig": {
+      "type": "string",
+      "description": "SHA256 signature of input circuits or dataset split",
+      "pattern": "^sha256\\([a-f0-9]{64}\\)$"
+    },
+    "calib_sig": {
+      "type": "string",
+      "description": "SHA256 signature of calibration data (T1/T2, RO matrix, timestamp)",
+      "pattern": "^sha256\\([a-f0-9]{64}\\)$"
+    },
+    "bench_case": {
+      "type": "string",
+      "description": "Benchmark case identifier",
+      "enum": ["H2", "MaxCut", "SST", "PM25", "Discharge"]
+    },
+    "kpi": {
+      "type": "object",
+      "description": "Key Performance Indicators for the run",
+      "properties": {
+        "infidelity_drop": {
+          "type": "number",
+          "minimum": 0
+        },
+        "vqe_energy_err_drop": {
+          "type": "number"
+        },
+        "overhead_depth": {
+          "type": "number",
+          "minimum": 0
+        },
+        "wall_time_ratio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "F1_anomaly": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "RMSE_drop": {
+          "type": "number"
+        },
+        "Energy_per_inf_drop": {
+          "type": "number"
+        }
+      }
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "backend": {
+      "type": "string",
+      "description": "Backend identifier"
+    },
+    "version": {
+      "type": "string",
+      "description": "Algorithm version"
+    }
+  }
+}

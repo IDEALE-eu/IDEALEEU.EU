@@ -1,0 +1,39 @@
+sync_jobs:
+  - job_id: "SYNC-001"
+    name: "Daily Model Sync"
+    schedule: "0 2 * * *"  # 2 AM daily
+    source: "PLM/PDM"
+    destination: "Digital Twin Runtime"
+    artifacts:
+      - M.json
+      - C.json
+      - K.json
+      - controllers.yaml
+    validation:
+      - hash_check
+      - schema_validation
+      - version_compatibility
+    
+  - job_id: "SYNC-002"
+    name: "Weekly Calibration Update"
+    schedule: "0 3 * * 0"  # 3 AM Sunday
+    source: "Fleet Data Hub"
+    destination: "Calibration Dataset"
+    artifacts:
+      - FRF_data.csv
+      - telemetry_archive.parquet
+    validation:
+      - completeness_check
+      - quality_metrics
+    
+  - job_id: "SYNC-003"
+    name: "Hourly State Snapshot"
+    schedule: "0 * * * *"  # Every hour
+    source: "Runtime Instance"
+    destination: "State Archive"
+    artifacts:
+      - state_vector.json
+      - performance_metrics.json
+    validation:
+      - timestamp_monotonicity
+      - bounds_check

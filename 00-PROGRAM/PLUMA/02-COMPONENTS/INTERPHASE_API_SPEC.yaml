@@ -1,0 +1,806 @@
+openapi: 3.1.0
+info:
+  title: AP-API · Interphase (Amedeo Pelliccia Aerospace Portfolio)
+  version: 1.0.0
+  summary: Phase orchestration, gate control, frozen contexts, cloning.
+  description: |
+    Interphase API for PLUMA platform - handles phase transitions, gate approvals,
+    frozen context management, and program cloning operations.
+    
+    ## Authentication
+    - OIDC (service accounts, scopes `pluma.interphase.*`)
+    - mTLS between services
+    
+    ## Idempotency
+    - Header `Idempotency-Key` on POST operations
+    - 24-hour window
+    
+    ## Rate Limits
+    - 200 requests/second per tenant
+    - Burst: 1,000 requests
+    
+    ## SLOs
+    - p99 API latency: <300ms
+    - Federation sync p99: <2s
+    - Durability: 99.999% over 30 days
+    
+  contact:
+    name: PLUMA Support
+    email: pluma-support@ideale.eu
+  license:
+    name: Proprietary
+
+servers:
+  - url: https://api.interphase.ap-aero.portfolio/v1
+    description: Production
+  - url: https://api-staging.interphase.ap-aero.portfolio/v1
+    description: Staging
+
+security:
+  - oidc: [pluma.interphase.*]
+  - mtls: []
+
+components:
+  securitySchemes:
+    oidc:
+      type: openIdConnect
+      openIdConnectUrl: https://auth.ap-aero.portfolio/.well-known/openid-configuration
+    mtls:
+      type: mutualTLS
+      description: Client certificate authentication for service-to-service communication
+      
+  parameters:
+    ProgramId:
+      name: programId
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[a-z0-9-]{3,64}$'
+        example: ampel360-bwb-q100
+      description: Unique program identifier
+      
+    PhaseId:
+      name: phaseId
+      in: path
+      required: true
+      schema:
+        type: string
+        enum: [CAD, CAE, CAI, CAO, CAM, CAP, CAV, CMP, CAS]
+      description: CAx phase identifier
+      
+    GateId:
+      name: gateId
+      in: path
+      required: true
+      schema:
+        type: string
+        enum: [QS, FWD, UE, FE, CB, QB]
+      description: MAL service gate identifier
+      
+    TransitionId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Transition unique identifier
+      
+    ValidationId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: Validation run unique identifier
+      
+  schemas:
+    Program:
+      type: object
+      required: [id, name, utcs, tenant, status]
+      properties:
+        id:
+          type: string
+          pattern: '^[a-z0-9-]{3,64}$'
+          example: ampel360-bwb-q100
+        name:
+          type: string
+          example: AMPEL360 BWB Q100
+        utcs:
+          type: string
+          pattern: '^utcs://'
+          example: utcs://AIRCRAFT/AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01
+        tenant:
+          type: string
+          example: ampel-aerospace
+        status:
+          type: string
+          enum: [Active, Frozen, Archived]
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+          
+    ContextSnapshot:
+      type: object
+      required: [id, programId, phase, gate, checksum, utcs, frozenAt]
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: c9c1b4f0-5e0a-4b8c-9a21-6f6b0b3b5b5a
+        programId:
+          type: string
+          example: ampel360-bwb-q100
+        phase:
+          type: string
+          enum: [CAD, CAE, CAI, CAO, CAM, CAP, CAV, CMP, CAS]
+          example: CAD
+        gate:
+          type: string
+          enum: [QS, FWD, UE, FE, CB, QB]
+          example: CB
+        utcs:
+          type: string
+          pattern: '^utcs://'
+          example: utcs://AIRCRAFT/AMPEL360-AIR-T/.../CAD/FROZEN/20251014
+        checksum:
+          type: string
+          example: sha256:abc123def456...
+        frozenAt:
+          type: string
+          format: date-time
+          example: '2025-10-14T12:00:00Z'
+        manifestPath:
+          type: string
+          example: PLM/CAx/CAD/MANIFEST.csv
+        artifactCount:
+          type: integer
+          example: 1247
+        sizeBytes:
+          type: integer
+          format: int64
+          example: 5368709120
+          
+    GateDecision:
+      type: object
+      required: [decision, decidedBy, evidence]
+      properties:
+        decision:
+          type: string
+          enum: [Approve, Reject, Hold]
+          example: Approve
+        decidedBy:
+          type: string
+          example: ccb-179
+          description: CCB board or user ID
+        evidence:
+          type: array
+          items:
+            type: string
+          example:
+            - utcs://AIRCRAFT/AMPEL360-AIR-T/.../reports/structure.json
+            - utcs://AIRCRAFT/AMPEL360-AIR-T/.../reports/kpis.json
+          description: UTCS links to evidence artifacts
+        comment:
+          type: string
+          example: All validation checks passed. Design review completed.
+        decidedAt:
+          type: string
+          format: date-time
+          example: '2025-10-14T14:30:00Z'
+          
+    Transition:
+      type: object
+      required: [id, from, to, snapshotId, status]
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 8d2c8e71-1f0d-4c02-8e7d-9a2ab2a7e3b1
+        from:
+          type: object
+          required: [phase, gate]
+          properties:
+            phase:
+              type: string
+              enum: [CAD, CAE, CAI, CAO, CAM, CAP, CAV, CMP, CAS]
+            gate:
+              type: string
+              enum: [QS, FWD, UE, FE, CB, QB]
+          example:
+            phase: CAD
+            gate: CB
+        to:
+          type: object
+          required: [phase, gate]
+          properties:
+            phase:
+              type: string
+              enum: [CAD, CAE, CAI, CAO, CAM, CAP, CAV, CMP, CAS]
+            gate:
+              type: string
+              enum: [QS, FWD, UE, FE, CB, QB]
+          example:
+            phase: CAE
+            gate: CB
+        snapshotId:
+          type: string
+          format: uuid
+          example: c9c1b4f0-5e0a-4b8c-9a21-6f6b0b3b5b5a
+        status:
+          type: string
+          enum: [Planned, Running, Succeeded, Failed]
+          example: Running
+        startedAt:
+          type: string
+          format: date-time
+          example: '2025-10-14T15:00:00Z'
+        finishedAt:
+          type: string
+          format: date-time
+          example: '2025-10-14T15:05:00Z'
+        validationResults:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationRun'
+            
+    ValidationRun:
+      type: object
+      required: [id, target, status]
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: f7e8d9c0-1a2b-3c4d-5e6f-7a8b9c0d1e2f
+        target:
+          type: string
+          enum: [Structure, Links, Schema, KPIs]
+          example: Structure
+        status:
+          type: string
+          enum: [Queued, Running, Passed, Failed]
+          example: Passed
+        reportUrl:
+          type: string
+          format: uri
+          example: https://reports.interphase.ap-aero.portfolio/validations/f7e8d9c0-1a2b-3c4d-5e6f-7a8b9c0d1e2f
+        startedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              path:
+                type: string
+                
+    CloneRequest:
+      type: object
+      required: [snapshotId, targetName, params]
+      properties:
+        snapshotId:
+          type: string
+          format: uuid
+          example: c9c1b4f0-5e0a-4b8c-9a21-6f6b0b3b5b5a
+        targetName:
+          type: string
+          example: ampel360-bwb-q200
+        params:
+          type: object
+          additionalProperties: true
+          example:
+            wing_span_m: 45
+            passenger_capacity: 350
+            mtow_kg: 240000
+        tenant:
+          type: string
+          example: ampel-aerospace
+          
+    WebhookEndpoint:
+      type: object
+      required: [url, events]
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        url:
+          type: string
+          format: uri
+          example: https://webhook.example.com/pluma/events
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+              - context.frozen
+              - gate.decision
+              - transition.started
+              - transition.succeeded
+              - transition.failed
+              - validation.passed
+              - validation.failed
+          example:
+            - context.frozen
+            - gate.decision
+        secret:
+          type: string
+          writeOnly: true
+          description: Webhook signature secret
+        active:
+          type: boolean
+          default: true
+          
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          enum:
+            - schema_violation
+            - unauthorized
+            - forbidden
+            - not_found
+            - conflict
+            - validation_failed
+            - internal_error
+          example: validation_failed
+        message:
+          type: string
+          example: Phase gate validation failed
+        details:
+          type: object
+          additionalProperties: true
+        timestamp:
+          type: string
+          format: date-time
+        requestId:
+          type: string
+          format: uuid
+
+paths:
+  /programs:
+    post:
+      summary: Create program
+      description: Initialize a new program in the PLUMA platform
+      operationId: createProgram
+      tags: [Programs]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, utcs, tenant]
+              properties:
+                name:
+                  type: string
+                  example: AMPEL360 BWB Q100
+                utcs:
+                  type: string
+                  pattern: '^utcs://'
+                  example: utcs://AIRCRAFT/AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01
+                tenant:
+                  type: string
+                  example: ampel-aerospace
+      responses:
+        '201':
+          description: Program created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Program already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /programs/{programId}:
+    get:
+      summary: Get program details
+      description: Retrieve detailed information about a specific program
+      operationId: getProgram
+      tags: [Programs]
+      parameters:
+        - $ref: '#/components/parameters/ProgramId'
+      responses:
+        '200':
+          description: Program details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Program'
+        '404':
+          description: Program not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /programs/{programId}/contexts/freeze:
+    post:
+      summary: Freeze current context
+      description: |
+        Create an immutable snapshot of the current program state at a specific phase/gate.
+        This operation captures all artifacts, configurations, and metadata into a frozen context
+        that can be used for phase transitions, cloning, and auditing.
+      operationId: freezeContext
+      tags: [Contexts]
+      parameters:
+        - $ref: '#/components/parameters/ProgramId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [phase, gate]
+              properties:
+                phase:
+                  type: string
+                  enum: [CAD, CAE, CAI, CAO, CAM, CAP, CAV, CMP, CAS]
+                  example: CAD
+                gate:
+                  type: string
+                  enum: [QS, FWD, UE, FE, CB, QB]
+                  example: CB
+                manifestPath:
+                  type: string
+                  example: PLM/CAx/CAD/MANIFEST.csv
+                comment:
+                  type: string
+                  example: Design review v3 approved
+      responses:
+        '201':
+          description: Context frozen successfully
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: URI of the created snapshot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContextSnapshot'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Snapshot already exists for this phase/gate
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /programs/{programId}/phases/{phaseId}/gates/{gateId}/decision:
+    post:
+      summary: Record gate decision
+      description: |
+        Record an approval, rejection, or hold decision for a phase gate.
+        This operation requires appropriate CCB permissions and includes evidence links.
+      operationId: recordGateDecision
+      tags: [Gates]
+      parameters:
+        - $ref: '#/components/parameters/ProgramId'
+        - $ref: '#/components/parameters/PhaseId'
+        - $ref: '#/components/parameters/GateId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GateDecision'
+      responses:
+        '200':
+          description: Decision recorded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GateDecision'
+        '400':
+          description: Invalid decision data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Gate decision already recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /transitions:
+    post:
+      summary: Execute phase/gate transition
+      description: |
+        Initiate a transition from one phase/gate to another using a frozen context snapshot.
+        This operation triggers validation checks, resource provisioning, and artifact migration.
+      operationId: executeTransition
+      tags: [Transitions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [snapshotId, to]
+              properties:
+                snapshotId:
+                  type: string
+                  format: uuid
+                  example: c9c1b4f0-5e0a-4b8c-9a21-6f6b0b3b5b5a
+                to:
+                  type: object
+                  required: [phase, gate]
+                  properties:
+                    phase:
+                      type: string
+                      enum: [CAD, CAE, CAI, CAO, CAM, CAP, CAV, CMP, CAS]
+                    gate:
+                      type: string
+                      enum: [QS, FWD, UE, FE, CB, QB]
+                  example:
+                    phase: CAE
+                    gate: CB
+      responses:
+        '202':
+          description: Transition started
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: URI to track transition status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transition'
+        '400':
+          description: Invalid transition request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /transitions/{id}:
+    get:
+      summary: Get transition status
+      description: Retrieve the current status and details of a transition operation
+      operationId: getTransition
+      tags: [Transitions]
+      parameters:
+        - $ref: '#/components/parameters/TransitionId'
+      responses:
+        '200':
+          description: Transition details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transition'
+        '404':
+          description: Transition not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /validations/run:
+    post:
+      summary: Run validations on a UTCS bundle
+      description: |
+        Execute validation checks on a UTCS bundle to verify structure, links, schema compliance,
+        and KPI thresholds.
+      operationId: runValidation
+      tags: [Validations]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [utcs, checks]
+              properties:
+                utcs:
+                  type: string
+                  pattern: '^utcs://'
+                  example: utcs://AIRCRAFT/AMPEL360-AIR-T/.../CAD
+                checks:
+                  type: array
+                  items:
+                    type: string
+                    enum: [Structure, Links, Schema, KPIs]
+                  example: [Structure, Links, KPIs]
+      responses:
+        '202':
+          description: Validation queued
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: URI to retrieve validation results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationRun'
+        '400':
+          description: Invalid validation request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /validations/{id}:
+    get:
+      summary: Get validation result
+      description: Retrieve the status and results of a validation run
+      operationId: getValidation
+      tags: [Validations]
+      parameters:
+        - $ref: '#/components/parameters/ValidationId'
+      responses:
+        '200':
+          description: Validation results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationRun'
+        '404':
+          description: Validation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /clones:
+    post:
+      summary: Clone program from snapshot
+      description: |
+        Create a new program by cloning a frozen context snapshot with parametric overrides.
+        This operation enables rapid program instantiation with customized parameters.
+      operationId: cloneProgram
+      tags: [Clones]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloneRequest'
+      responses:
+        '202':
+          description: Clone operation started
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: URI to track clone operation status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  status:
+                    type: string
+                    enum: [Queued, Running, Succeeded, Failed]
+                  targetProgramId:
+                    type: string
+        '400':
+          description: Invalid clone request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /webhooks/endpoints:
+    get:
+      summary: List webhook endpoints
+      description: Retrieve all registered webhook endpoints for the authenticated tenant
+      operationId: listWebhooks
+      tags: [Webhooks]
+      responses:
+        '200':
+          description: List of webhook endpoints
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WebhookEndpoint'
+    post:
+      summary: Register webhook
+      description: Register a new webhook endpoint to receive event notifications
+      operationId: registerWebhook
+      tags: [Webhooks]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookEndpoint'
+      responses:
+        '201':
+          description: Webhook registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookEndpoint'
+        '400':
+          description: Invalid webhook configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+                
+  /healthz:
+    get:
+      summary: Health check (liveness)
+      description: Check if the API service is alive and responding
+      operationId: healthCheck
+      tags: [Health]
+      security: []
+      responses:
+        '204':
+          description: Service is healthy
+        '503':
+          description: Service unavailable
+
+tags:
+  - name: Programs
+    description: Program lifecycle management
+  - name: Contexts
+    description: Frozen context snapshots
+  - name: Gates
+    description: Phase gate decisions
+  - name: Transitions
+    description: Phase/gate transitions
+  - name: Validations
+    description: Validation operations
+  - name: Clones
+    description: Program cloning
+  - name: Webhooks
+    description: Event notifications
+  - name: Health
+    description: Health and status checks

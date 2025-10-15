@@ -147,8 +147,8 @@ See layout under **CAx/**:
 - **CAI**: Installation drawings
 - **CAV**: Validation models
 - **CAP**: Procurement specs
-- **CAS**: Simulation models
-- **CMP**: Composite materials
+- **CAS**: Service (operational) models
+- **CMP**: Compliance and Certification post Operation caused Modifications (CoMPost)
 
 ## Rules
 

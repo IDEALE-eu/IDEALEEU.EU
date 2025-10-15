@@ -1,0 +1,12 @@
+controllers:
+  - name: MPPT_Controller
+    type: PI
+    kp: 0.0
+    ki: 0.0
+    description: "Placeholder MPPT controller"
+  - name: Bus_Regulator
+    type: PR
+    kp: 0.0
+    ki: 0.0
+    kr: 0.0
+    description: "Placeholder bus voltage regulator"

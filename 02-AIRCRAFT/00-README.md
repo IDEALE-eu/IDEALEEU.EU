@@ -9,11 +9,15 @@ This section contains all aircraft-related design, integration, and systems engi
 ## Contents
 
 - **00-README.md** - This file
+- **[ARCHITECTURE_OVERVIEW.md](./ARCHITECTURE_OVERVIEW.md)** - 📊 Visual architecture diagram and system overview
+- **[MODEL_IDENTIFICATION/](./MODEL_IDENTIFICATION/)** - Product model identification and TFA (Threading Functional Architecture/Artifact)
+  - 🧭 **[Interactive Navigation Index →](./MODEL_IDENTIFICATION/NAVIGATION_INDEX.md)** - Complete clickable site map
+  - 📚 [TFA Documentation Hub →](./MODEL_IDENTIFICATION/README.md)
 - **CONFIGURATION_BASE/** - Baseline configuration management
 - **FINAL_ASSEMBLY_OPS/** - Final assembly line operations and procedures
 - **CROSS_SYSTEM_INTEGRATION/** - Inter-system interfaces and integration
 - **DIGITAL_TWIN_MODEL/** - Digital twin implementation for aircraft
-- **DOMAIN_INTEGRATION/** - Domain-specific systems and components
+- **DOMAIN_INTEGRATION/** - Domain-specific systems and components (legacy structure)
 
 ## Domain Integration Areas
 
@@ -75,3 +79,25 @@ The aircraft is designed using a top-down integration approach:
 3. Cross-system integration ensures compatibility
 4. Digital twin validates complete system behavior
 5. Final assembly executes the physical integration
+
+## Threading Functional Architecture/Artifact (TFA)
+
+The new **[MODEL_IDENTIFICATION/](./MODEL_IDENTIFICATION/)** structure implements the Threading Functional Architecture/Artifact (TFA) that organizes aircraft configurations by:
+
+- **Product**: Aircraft product line (e.g., AMPEL360-AIR-T)
+- **Architecture**: Configuration variant (e.g., BWB-H2-Hy-E)
+- **Family**: Product family (e.g., Q100_STD01)
+- **Domain**: Engineering domain (e.g., AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS)
+- **ATA Chapter**: ATA Spec 100 chapters (e.g., ATA-53 Fuselage)
+- **Systems**: Specific systems (e.g., ATA-53-10 Center Body)
+
+Each system contains:
+- **PLM/CAx**: Product Lifecycle Management artifacts (CAD, CAE, CAM, etc.)
+- **CONF/BASELINE**: Configuration management with component tracking, subproducts, subjects, and artifacts
+
+This structure enables:
+- ATA Spec 100 / iSpec 2200 compliance
+- Traceability from requirements to artifacts
+- Configuration control and baseline management
+- Multi-domain system integration
+- Effectivity range management

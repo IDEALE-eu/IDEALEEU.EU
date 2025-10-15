@@ -1,0 +1,153 @@
+# Model Card Template
+
+## Model Information
+- **Model Name**: [model_name]
+- **Model ID**: [MODEL-XXX-YYY]
+- **Version**: [X.Y.Z]
+- **Date**: [YYYY-MM-DD]
+- **Owner**: [Team or individual]
+- **UTCS Anchor**: [utcs://path/to/model]
+
+## Model Description
+
+### Purpose
+[What is this model for? What problem does it solve?]
+
+### Model Type
+- [ ] Physics-based (equations of motion, thermodynamics, etc.)
+- [ ] Data-driven (ML, regression, neural network)
+- [ ] Hybrid (combination of physics and data)
+- [ ] Behavioral (state machine, logic)
+
+### Domain
+[e.g., Structural dynamics, Thermal management, Power systems, Control, etc.]
+
+## Model Formulation
+
+### Inputs
+| Name | Symbol | Unit | Range | Description |
+|------|--------|------|-------|-------------|
+| [input_1] | [u₁] | [unit] | [min–max] | [description] |
+| [input_2] | [u₂] | [unit] | [min–max] | [description] |
+
+### Outputs
+| Name | Symbol | Unit | Range | Description |
+|------|--------|------|-------|-------------|
+| [output_1] | [y₁] | [unit] | [min–max] | [description] |
+| [output_2] | [y₂] | [unit] | [min–max] | [description] |
+
+### States (if applicable)
+| Name | Symbol | Unit | Initial Value | Description |
+|------|--------|------|---------------|-------------|
+| [state_1] | [x₁] | [unit] | [x₁₀] | [description] |
+| [state_2] | [x₂] | [unit] | [x₂₀] | [description] |
+
+### Parameters
+| Name | Symbol | Value | Unit | Uncertainty | Source |
+|------|--------|-------|------|-------------|--------|
+| [param_1] | [p₁] | [value] | [unit] | [±X%] | [test data, literature, etc.] |
+| [param_2] | [p₂] | [value] | [unit] | [±X%] | [test data, literature, etc.] |
+
+### Equations
+[Mathematical formulation, e.g., differential equations, transfer functions, etc.]
+
+```
+[Equations in LaTeX or plain text format]
+```
+
+## Training Data (for data-driven models)
+
+### Dataset
+- **Source**: [description of data source]
+- **Size**: [N samples, M features]
+- **Time Period**: [YYYY-MM-DD to YYYY-MM-DD]
+- **Sampling Rate**: [frequency]
+
+### Preprocessing
+- [Preprocessing step 1]
+- [Preprocessing step 2]
+
+### Train/Validation/Test Split
+- **Training**: [X]%
+- **Validation**: [Y]%
+- **Test**: [Z]%
+
+## Performance
+
+### Metrics
+| Metric | Value | Target | Status |
+|--------|-------|--------|--------|
+| RMSE | [value] [unit] | <[target] | [PASS/FAIL] |
+| R² | [value] | >[target] | [PASS/FAIL] |
+| Max Error | [value] [unit] | <[target] | [PASS/FAIL] |
+
+### Validation
+- **Method**: [e.g., cross-validation, test set, flight test comparison]
+- **Results**: [summary of validation results]
+- **Correlation**: [R² or other correlation metric with reference data]
+
+## Limitations
+
+### Operational Envelope
+- [Limitation 1, e.g., valid only for altitude < 10,000 ft]
+- [Limitation 2, e.g., assumes steady-state conditions]
+- [Limitation 3, e.g., temperature range 20–350 K]
+
+### Assumptions
+- [Assumption 1]
+- [Assumption 2]
+- [Assumption 3]
+
+### Known Issues
+- [Issue 1]
+- [Issue 2]
+
+## Safety Classification
+- **Level**: [A | B | C | D]
+- **Criticality**: [Catastrophic | Hazardous | Major | Minor]
+- **Assurance**: [DO-178C Level or equivalent]
+
+## Usage Guidelines
+
+### Intended Use
+[Describe how this model should be used]
+
+### Prohibited Use
+[Describe scenarios where this model should NOT be used]
+
+### Update Policy
+- **Frequency**: [e.g., quarterly calibration, annual review]
+- **Triggers**: [e.g., drift detection, new flight test data]
+- **Approval**: [who must approve updates]
+
+## Dependencies
+- **Software**: [libraries, frameworks, versions]
+- **Hardware**: [computational requirements]
+- **Other Models**: [models this depends on]
+
+## Files
+- **Model Artifact**: `path/to/model.json`
+- **Calibration Data**: `path/to/calibration.csv`
+- **Validation Report**: `path/to/validation.pdf`
+- **Code**: `path/to/code/`
+
+## Traceability
+- **Requirements**: [REQ-XXX, REQ-YYY]
+- **Test Cases**: [TC-XXX, TC-YYY]
+- **Hazards**: [HAZ-XXX]
+- **Standards**: [ARP4754A, DO-178C, etc.]
+
+## Change History
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 1.0 | YYYY-MM-DD | [Name] | Initial model card |
+
+## Approval
+- **Model Owner**: [Name, Date]
+- **Technical Lead**: [Name, Date]
+- **Safety Engineer**: [Name, Date] (if Level A/B)
+
+---
+
+**Status**: [Draft | Under Review | Approved | Deprecated]
+**Next Review**: [YYYY-MM-DD]

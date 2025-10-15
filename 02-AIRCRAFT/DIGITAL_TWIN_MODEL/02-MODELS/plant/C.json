@@ -1,0 +1,5 @@
+{
+  "damping_matrix": "placeholder",
+  "units": "kg/s",
+  "dimension": "NxN"
+}

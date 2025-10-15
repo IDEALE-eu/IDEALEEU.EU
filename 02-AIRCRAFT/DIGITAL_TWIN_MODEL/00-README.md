@@ -1,8 +1,6 @@
-# DIGITAL_TWIN_MODEL
-
-**📍 [IDEALE-EU](../../) > [02-AIRCRAFT](../) > DIGITAL_TWIN_MODEL**
-
-Aircraft digital twin model implementation, including physics-based models, behavioral models, data-driven ML models, and co-simulation orchestration.
+# Digital Twin Model
+Scope: models, interfaces, config, V&V, deployment. Sources of truth: PLM/PDM, UTCS Index, schema registry.
+Layers: Data · Models · Services · Apps. Cross-cutting: Security · Data Quality · Interoperability.
 
 ## Purpose
 

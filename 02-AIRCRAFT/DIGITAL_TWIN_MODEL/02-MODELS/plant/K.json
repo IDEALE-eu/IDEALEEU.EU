@@ -1,0 +1,5 @@
+{
+  "stiffness_matrix": "placeholder",
+  "units": "N/m",
+  "dimension": "NxN"
+}
