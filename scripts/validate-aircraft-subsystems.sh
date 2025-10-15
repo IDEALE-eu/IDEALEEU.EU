@@ -17,7 +17,7 @@ NC='\033[0m' # No Color
 
 error() {
   echo -e "${RED}✗ ERROR:${NC} $1"
-  ((ERRORS++))
+  : $((ERRORS++))
 }
 
 warning() {
