@@ -3,6 +3,13 @@
 Program governance, compliance, and decision rights for **AMPEL360** (Q-baselines).
 
 > **Canon**: TFA flow = **QS → FWD → UE → FE → CB → QB**  
+> * **QS** (Quantum Superposition): Pre-event state capture with multiple potential outcomes
+> * **FWD** (Future/Waves Dynamics): Predictive/retrodictive modeling
+> * **UE** (Unit Element): Classical fundamental units
+> * **FE** (Federation Entanglement): Distributed multi-party coordination
+> * **CB** (Classical Bit): Post-event deterministic reality anchoring
+> * **QB** (Qubit): Quantum computation strategies
+>
 > **UTCS** = UiX Threading Context/Content/Cache and Structure/Style/Sheet
 
 ---

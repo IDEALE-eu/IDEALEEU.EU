@@ -174,6 +174,17 @@ GitHub: **Robbbo-T** · Site: **[https://www.idealeeu.eu](https://www.idealeeu.e
 * **PLM / CAx** — Product Lifecycle Mgmt; CAD · CAE · CAM · **CAI (Integration)** · **CAV (Validation)** · **CAP (Process planning/industrialisation)** · **CAS (Service & sustainment)** · **CMP (Compliance & certification)** artifacts (under **SUBSYSTEMS/PLM/**)
 * **ECR / ECO / CCB** — Change Request, Change Order, Config Control Board
 
+### TFA Flow (Canon Architecture)
+
+**QS → FWD → UE → FE → CB → QB** — The canonical IDEALE-EU traceability and evidence flow:
+
+* **QS** — Quantum Superposition: Pre-event state capture with multiple potential outcomes in superposition before crystallization
+* **FWD** — Future/Waves Dynamics: Predictive/retrodictive modeling and wave propagation through time
+* **UE** — Unit Element: Classical fundamental units and base computational elements
+* **FE** — Federation Entanglement: Distributed multi-party coordination and federated learning
+* **CB** — Classical Bit: Post-event deterministic reality anchoring and actual outcome recording
+* **QB** — Qubit: Quantum computation strategies and optimization
+
 ---
 
 **Program site:** https://www.idealeeu.eu  
