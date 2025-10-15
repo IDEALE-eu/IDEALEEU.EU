@@ -64,8 +64,8 @@ Expected output: `✓ All validations passed`
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/IDEALE-eu/IDEALEEU.EU
-cd IDEALEEU.EU
+git clone https://github.com/[ORG_NAME]/[REPO_NAME]
+cd [REPO_NAME]
 
 # 2. Navigate to baseline directory
 cd 00-PROGRAM/CONFIG_MGMT/04-BASELINES/GenSTD/[TIER]/[BASELINE-ID]
