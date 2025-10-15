@@ -58,13 +58,22 @@ DMC-<ModelIdent>-<SysDiff>-<SysCode>-<SubSysCode>-<SubSubSysCode>-<AssyCode>-<Di
 ```
 
 ### AMPEL360 Standard Values
-- **ModelIdent**: AMP360
-- **SysDiff**: AAA (Airframes-Aerodynamics-Airworthiness)
+- **ModelIdent**: AMP360 (or Q100 for version-specific modules)
+- **SysDiff**: AAA (Airframes-Aerodynamics-Airworthiness) or system-specific code (e.g., 53)
 - **SysCode**: 53 (Fuselage Structures)
 - **SubSysCode**: 10 (Center Body)
-- **AssyCode**: 00A
+- **AssyCode**: 00A (for AMP360) or 00 (for Q100)
 - **ItemLoc**: A
-- **LangCode-CountryCode**: en-US
+- **LangCode-CountryCode**: en-US (or es-ES for Spanish variants)
+
+### Q100 Variant
+
+Some Data Modules use **Q100** as the `modelIdentCode` to represent version-specific content:
+- **Purpose**: Version/family-specific technical documentation
+- **Example**: `DMC-Q100-53-10-00-00-00-0-000-0-A_es-ES_001-00.xml`
+- **Language**: Typically es-ES (Spanish) for Q100 modules
+- **Documentation**: See `Descriptive/00_GENERAL/DMC/README_Q100.md` for details
+- **BREX**: Uses `DMC-Q100-BREX-AAA-STRUCTURES-00-00-0-0-000-A-A_es-ES_001-00.xml`
 
 ## Creating New Data Modules
 

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Data Module: General Description - Center Body (Fuselage Structures)
+  DMC: DMC-Q100-53-10-00-00-00-0-000-0-A_es-ES_001-00
+  Program: 02-AIR-TRANSPORT
+  Segment: PAX_AIRBORNE
+  Model: AMPEL360-AIR-T
+  Configuration: BWB-H2-Hy-E
+  Version: Q100
+  Domain: AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS
+  System: 53-FUSELAGE-STRUCTURES
+  Subsystem: 53-10_CENTER-BODY
+  InfoCode: 000 (General Description)
+  Document Type: SUBPRODUCT-MANUAL
+  Configuration Item: CONFIGURATION_ITEM
+  Status: Released
+-->
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <dmCode modelIdentCode="Q100" 
+                systemDiffCode="53"
+                systemCode="10" 
+                subSystemCode="00" 
+                subSubSystemCode="00"
+                assyCode="00" 
+                disassyCode="0" 
+                disassyCodeVariant="0"
+                infoCode="000" 
+                infoCodeVariant="0" 
+                itemLocationCode="A"/>
+        <language languageIsoCode="es" countryIsoCode="ES"/>
+        <issueInfo issueNumber="001" inWork="00"/>
+        <extension>
+          <utcs id="UTCS-Q100-AAA-53-10-DMC-001"/>
+        </extension>
+      </dmIdent>
+      <dmAddressItems>
+        <issueDate year="2025" month="10" day="15"/>
+        <dmTitle>
+          <techName>Cuerpo Central - Estructuras del Fuselaje</techName>
+          <infoName>Descripción General</infoName>
+        </dmTitle>
+        <responsiblePartnerCompany enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Publicaciones Técnicas</enterpriseName>
+        </responsiblePartnerCompany>
+        <originator enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Ingeniería</enterpriseName>
+        </originator>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus>
+      <security securityClassification="01" commercialExportControl="false"/>
+      <qualityAssurance qaResponsiblePartnerCompany="AAA" qaReviewed="false"/>
+      <applicability>
+        <applic>
+          <assert applicPropertyIdent="PRODUCT" applicPropertyType="prodattr" applicPropertyValues="AMPEL360-AIR-T"/>
+          <assert applicPropertyIdent="CONFIG_BASE" applicPropertyType="prodattr" applicPropertyValues="BWB-H2-Hy-E"/>
+          <assert applicPropertyIdent="VERSION" applicPropertyType="prodattr" applicPropertyValues="Q100"/>
+          <assert applicPropertyIdent="DOMAIN" applicPropertyType="prodattr" applicPropertyValues="AAA"/>
+          <assert applicPropertyIdent="SYSTEM" applicPropertyType="prodattr" applicPropertyValues="53"/>
+          <assert applicPropertyIdent="SUBSYSTEM" applicPropertyType="prodattr" applicPropertyValues="53-10"/>
+          <assert applicPropertyIdent="CI" applicPropertyType="prodattr" applicPropertyValues="CONFIGURATION_ITEM"/>
+          <assert applicPropertyIdent="DOCTYPE" applicPropertyType="prodattr" applicPropertyValues="SUBPRODUCT-MANUAL"/>
+        </applic>
+      </applicability>
+      <brexDmRef>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode modelIdentCode="Q100" 
+                    systemDiffCode="BREX"
+                    systemCode="AAA" 
+                    subSystemCode="STRUCTURES" 
+                    subSubSystemCode="00"
+                    assyCode="00" 
+                    disassyCode="0" 
+                    disassyCodeVariant="0"
+                    infoCode="000" 
+                    infoCodeVariant="A" 
+                    itemLocationCode="A"/>
+          </dmRefIdent>
+        </dmRef>
+      </brexDmRef>
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <description>
+      <levelledPara>
+        <title>Descripción General del Cuerpo Central</title>
+        
+        <levelledPara>
+          <title>Resumen</title>
+          <para>
+            El Cuerpo Central es el componente estructural principal del fuselaje del 
+            AMPEL360 AIR-T con configuración de Ala Integrada (BWB - Blended Wing Body). 
+            Proporciona la estructura portante principal y aloja sistemas críticos 
+            incluyendo la cabina de pasajeros, áreas de carga y sistemas de control de vuelo.
+          </para>
+          <para>
+            Este módulo de datos pertenece al programa 02-AIR-TRANSPORT, segmento PAX_AIRBORNE, 
+            y está identificado bajo la configuración BWB-H2-Hy-E versión Q100.
+          </para>
+        </levelledPara>
+        
+        <levelledPara>
+          <title>Características Principales</title>
+          <para>
+            El Cuerpo Central se integra perfectamente con las estructuras del ala para 
+            crear el perfil aerodinámico distintivo de la configuración BWB. Está 
+            construido con materiales compuestos avanzados con refuerzos de aleación 
+            de aluminio en puntos de carga críticos.
+          </para>
+        </levelledPara>
+        
+        <levelledPara>
+          <title>Identificación del Sistema</title>
+          <para>
+            Sistema ATA 53 - Estructuras del Fuselaje, Subsistema 53-10 - Cuerpo Central.
+          </para>
+          <para>
+            Elemento de Configuración (CI): CONFIGURATION_ITEM
+          </para>
+          <para>
+            Tipo de Documento: SUBPRODUCT-MANUAL
+          </para>
+        </levelledPara>
+        
+        <levelledPara>
+          <title>Dominio y Trazabilidad CSDB</title>
+          <para>
+            Dominio: AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS
+          </para>
+          <para>
+            Producto: AMPEL360-AIR-T
+          </para>
+          <para>
+            Línea Base de Configuración: BWB-H2-Hy-E
+          </para>
+          <para>
+            Versión: Q100
+          </para>
+          <para>
+            Proceso PLM: COMPUTER_AIDED-TIMECYCLE_PROCESS
+          </para>
+          <para>
+            Sistema CAx: CAS (Computer-Aided Systems)
+          </para>
+        </levelledPara>
+        
+        <levelledPara>
+          <title>Normativa de Referencia</title>
+          <para>
+            Este módulo de datos sigue el estándar S1000D v5.x y cumple con las 
+            reglas de negocio definidas en el BREX Q100-BREX-AAA-STRUCTURES.xml.
+          </para>
+          <para>
+            La codificación de sistemas sigue la especificación ATA iSpec 2200 
+            para el Capítulo 53 (Estructuras del Fuselaje).
+          </para>
+        </levelledPara>
+        
+        <levelledPara>
+          <title>Notas sobre Codificación</title>
+          <para>
+            Código del Módulo de Datos (DMC): Q100-53-10-00-00-00-0-000-0-A
+          </para>
+          <para>
+            - modelIdentCode: Q100 (identificador de versión/familia)
+          </para>
+          <para>
+            - systemDiffCode: 53 (Sistema ATA 53 - Fuselaje)
+          </para>
+          <para>
+            - subSystemDiffCode: 10 (Subsistema 53-10 - Cuerpo Central)
+          </para>
+          <para>
+            - infoCode: 000 (Descripción general)
+          </para>
+          <para>
+            - itemLocationCode: A (ubicación estándar)
+          </para>
+          <para>
+            - Idioma: es-ES (Español - España)
+          </para>
+          <para>
+            - Número de Emisión: 001 (primera emisión)
+          </para>
+          <para>
+            - En Trabajo: 00 (liberado)
+          </para>
+        </levelledPara>
+      </levelledPara>
+    </description>
+  </content>
+</dmodule>

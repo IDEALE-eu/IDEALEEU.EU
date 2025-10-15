@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Business Rules Exchange (BREX) Data Module
+  DMC: DMC-Q100-BREX-AAA-STRUCTURES-00-00-0-0-000-A-A_es-ES_001-00
+  Domain: AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS
+  Purpose: Business rules for Q100 Structures domain
+  Status: Released
+-->
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <dmCode modelIdentCode="Q100" 
+                systemDiffCode="BREX"
+                systemCode="AAA" 
+                subSystemCode="STRUCTURES" 
+                subSubSystemCode="00"
+                assyCode="00" 
+                disassyCode="0" 
+                disassyCodeVariant="0"
+                infoCode="000" 
+                infoCodeVariant="A" 
+                itemLocationCode="A"/>
+        <language languageIsoCode="es" countryIsoCode="ES"/>
+        <issueInfo issueNumber="001" inWork="00"/>
+        <extension>
+          <utcs id="UTCS-Q100-BREX-AAA-STRUCTURES-001"/>
+        </extension>
+      </dmIdent>
+      <dmAddressItems>
+        <issueDate year="2025" month="10" day="15"/>
+        <dmTitle>
+          <techName>Reglas de Negocio - Estructuras AAA</techName>
+          <infoName>BREX para Q100 Estructuras</infoName>
+        </dmTitle>
+        <responsiblePartnerCompany enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Publicaciones Técnicas</enterpriseName>
+        </responsiblePartnerCompany>
+        <originator enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Gestión de Configuración</enterpriseName>
+        </originator>
+      </dmAddressItems>
+    </dmAddress>
+    <dmStatus>
+      <security securityClassification="01" commercialExportControl="false"/>
+      <qualityAssurance qaResponsiblePartnerCompany="AAA" qaReviewed="true"/>
+      <reasonForUpdate>Liberación inicial de BREX para dominio Q100 AAA-STRUCTURES</reasonForUpdate>
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <brex>
+      <contextRules>
+
+        <!-- ===== Reglas de Identificación y Metadatos ===== -->
+        <structureObjectRuleGroup>
+          <title>Identificación y Metadatos</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmIdent/dmCode)]</objectPath>
+            <objectUse>[Q100-BREX-001] [ERROR] El DM debe contener &lt;dmCode&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmIdent/language)]</objectPath>
+            <objectUse>[Q100-BREX-002] [ERROR] El DM debe contener &lt;language&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmIdent/issueInfo)]</objectPath>
+            <objectUse>[Q100-BREX-003] [ERROR] El DM debe contener &lt;issueInfo&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmAddressItems/issueDate)]</objectPath>
+            <objectUse>[Q100-BREX-004] [ERROR] El DM debe contener &lt;issueDate&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmAddress/dmAddressItems/responsiblePartnerCompany)]</objectPath>
+            <objectUse>[Q100-BREX-005] [ERROR] El DM debe contener &lt;responsiblePartnerCompany&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmStatus/security)]</objectPath>
+            <objectUse>[Q100-BREX-006] [ERROR] El DM debe contener &lt;security&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//identAndStatusSection[not(dmStatus/qualityAssurance)]</objectPath>
+            <objectUse>[Q100-BREX-007] [ERROR] El DM debe contener &lt;qualityAssurance&gt;.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//content[not(node())]</objectPath>
+            <objectUse>[Q100-BREX-008] [ERROR] &lt;content&gt; no debe estar vacío.</objectUse>
+          </structureObjectRule>
+
+        </structureObjectRuleGroup>
+
+        <!-- ===== Reglas de Codificación DMC ===== -->
+        <structureObjectRuleGroup>
+          <title>Codificación DMC para Q100</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmCode[@modelIdentCode!='Q100' and @modelIdentCode!='AMP360']</objectPath>
+            <objectUse>[Q100-BREX-010] [ERROR] modelIdentCode debe ser 'Q100' o 'AMP360'.</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmCode[@systemCode='53' and @subSystemCode='10' and not(@itemLocationCode='A')]</objectPath>
+            <objectUse>[Q100-BREX-011] [WARN] itemLocationCode recomendado 'A' para sistema 53-10.</objectUse>
+          </structureObjectRule>
+
+        </structureObjectRuleGroup>
+
+        <!-- ===== Reglas de Idioma ===== -->
+        <structureObjectRuleGroup>
+          <title>Idioma y Localización</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmCode[@modelIdentCode='Q100']/language[@languageIsoCode!='es']</objectPath>
+            <objectUse>[Q100-BREX-020] [WARN] Para Q100, se recomienda idioma español (es-ES).</objectUse>
+          </structureObjectRule>
+
+        </structureObjectRuleGroup>
+
+        <!-- ===== Reglas de Aplicabilidad ===== -->
+        <structureObjectRuleGroup>
+          <title>Aplicabilidad y Configuración</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmStatus[not(applicability)]</objectPath>
+            <objectUse>[Q100-BREX-030] [WARN] Se recomienda incluir &lt;applicability&gt; para trazabilidad.</objectUse>
+          </structureObjectRule>
+
+        </structureObjectRuleGroup>
+
+        <!-- ===== Reglas de Referencia BREX ===== -->
+        <structureObjectRuleGroup>
+          <title>Referencias BREX</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmStatus[not(brexDmRef)]</objectPath>
+            <objectUse>[Q100-BREX-040] [WARN] Se recomienda incluir &lt;brexDmRef&gt; para validación.</objectUse>
+          </structureObjectRule>
+
+        </structureObjectRuleGroup>
+
+        <!-- ===== Reglas de Contenido ===== -->
+        <structureObjectRuleGroup>
+          <title>Contenido y Texto</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//*[contains(text(),'PLACEHOLDER') or contains(text(),'TBD') or contains(text(),'???')]</objectPath>
+            <objectUse>[Q100-BREX-050] [ERROR] Prohibido texto de marcador de posición (PLACEHOLDER/TBD/???).</objectUse>
+          </structureObjectRule>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//para[string-length(normalize-space(.)) = 0]</objectPath>
+            <objectUse>[Q100-BREX-051] [ERROR] Los párrafos no deben estar vacíos.</objectUse>
+          </structureObjectRule>
+
+        </structureObjectRuleGroup>
+
+        <!-- ===== Reglas Específicas de Estructuras ===== -->
+        <structureObjectRuleGroup>
+          <title>Dominio de Estructuras (ATA 53)</title>
+
+          <structureObjectRule>
+            <objectPath allowedObjectFlag="0">//dmCode[@systemCode='53' and @modelIdentCode='Q100' and not(@systemDiffCode='53' or @systemDiffCode='AAA')]</objectPath>
+            <objectUse>[Q100-BREX-060] [ERROR] Para sistema 53 con Q100, systemDiffCode debe ser '53' o 'AAA'.</objectUse>
+          </structureObjectRule>
+
+        </structureObjectRuleGroup>
+
+      </contextRules>
+    </brex>
+  </content>
+</dmodule>
