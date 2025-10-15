@@ -9,6 +9,7 @@ Clean H₂ systems with measured energy harvesting and verifiable evidence.
 
 ## Table of Contents
 
+- **[📚 Documentation Portal](/docs/)** ← Complete IDEALE-EU documentation
 - [What it does](#what-it-does)
 - [Why it matters](#why-it-matters)
 - [Core ideas](#core-ideas)
@@ -18,6 +19,22 @@ Clean H₂ systems with measured energy harvesting and verifiable evidence.
 - [Get started](#get-started)
 - [Glossary](#glossary-scoped)
 - **[📑 Repository Index & Navigation](#repository-index-and-navigation)** ← Complete directory index
+
+---
+
+## 📚 Documentation
+
+IDEALE-EU provides comprehensive documentation for all users:
+
+- **[Documentation Portal](/docs/)** - Complete documentation hub
+- **[Quick Start Guide](/docs/quick-start/)** - Get started in minutes
+- **[TFA Domains Reference](/docs/tfa-domains/)** - 15 canonical aerospace domains
+- **[CAx Lifecycle Overview](/docs/cax-lifecycle/)** - 9-phase lifecycle methodology
+- **[QS Technical Specification](/docs/technical/qs-specification/)** - Mathematical formalization
+- **[Glossary](/docs/glossary/)** - Complete terminology reference
+- **[API Documentation](/docs/api/)** - REST API and SDK reference
+
+Whether you're an engineer, program manager, auditor, or supplier, you'll find role-specific guides and workflows.
 
 ---
 
