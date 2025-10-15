@@ -169,7 +169,7 @@ toc: true
 5. **CAM** – Computer-Aided Manufacturing
 6. **CAP** – Computer-Aided Planning (assembly, scheduling)
 7. **CAV** – Computer-Aided Validation (testing, certification)
-8. **CMP** – Compliance Management Process
+8. **CMP** – Compliance Management Program
 9. **CAS** – Computer-Aided Services and Operational Sustainment
 
 **"To Scale" Methodology**: Each phase re-validated when scaling from prototype to production, addressing non-linear physics.
@@ -358,7 +358,7 @@ toc: true
 | CB | Classical Bit (Post-Event Reality) | Architecture |
 | CCB | Configuration Control Board | Process |
 | CFD | Computational Fluid Dynamics | Engineering |
-| CMP | Compliance Management Process | CAx |
+| CMP | Compliance Management Program | CAx |
 | CSDB | Centralized Source Database | Standards |
 | DFM | Design for Manufacturing | Engineering |
 | EASA | European Union Aviation Safety Agency | Regulatory |
