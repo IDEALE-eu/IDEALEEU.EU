@@ -141,7 +141,7 @@ def validate_summary(baseline_dir: Path) -> Tuple[bool, int, float]:
     # Calculate readability (Flesch-Kincaid Grade Level)
     try:
         fk_score = textstat.flesch_kincaid_grade(summary_text)
-    except:
+    except Exception:
         fk_score = 0.0
     
     # Check word count (≤150)
