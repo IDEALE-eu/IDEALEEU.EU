@@ -36,6 +36,7 @@ Clean H₂ systems with measured energy harvesting and verifiable evidence.
 - **Physics first:** Lagrange models → transfer functions \(G(s)\) → stable control.
 - **Digital twin:** predict loads and energy, validate before deploy.
 - **Evidence by default:** every event is a signed record.
+- **Mathematical foundations:** IDEALE-EU applies ring theory and ideal algebra to ensure operational closure and federated verifiability. See [FORMAL_FOUNDATIONS.md](00-PROGRAM/GOVERNANCE/FORMAL_FOUNDATIONS.md) for details.
 
 ## Architecture
 1. **Local harvesters** (solar, thermal, piezo, micro-turbine) with MPPT  
@@ -143,9 +144,10 @@ Dashboards live under `00-PROGRAM/DIGITAL_THREAD/10-METRICS/` and `01-FLEET/ANAL
 ## Get started
 
 1. Read **Governance** → `00-PROGRAM/GOVERNANCE.md`
-2. Review **CM Plan** → `00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md`
-3. Use **ICD template** → `00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-XXXX.md`
-4. File an **ECR** → `00-PROGRAM/CONFIG_MGMT/06-CHANGES/05-ECR/`
+2. Review **Formal Foundations** → `00-PROGRAM/GOVERNANCE/FORMAL_FOUNDATIONS.md` (mathematical basis)
+3. Review **CM Plan** → `00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md`
+4. Use **ICD template** → `00-PROGRAM/CONFIG_MGMT/09-INTERFACES/ICD-XXXX.md`
+5. File an **ECR** → `00-PROGRAM/CONFIG_MGMT/06-CHANGES/05-ECR/`
 
 ## Sponsors
 
