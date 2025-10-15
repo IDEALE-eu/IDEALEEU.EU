@@ -274,7 +274,7 @@ git commit -m "Update baseline: [description]"
 
 - **Documentation**: [GenSTD README](../README.md)
 - **Issues**: [GitHub Issues](https://github.com/IDEALE-eu/IDEALEEU.EU/issues)
-- **Contact**: Configuration Management team
+- **Contact**: [Contact Name or Email]
 
 ---
 
