@@ -118,7 +118,7 @@ toc: true
 11. LCC – Linkages-Control-Communications
 12. LIB – Logistics-Inventory-Blockchain
 13. MMM – Mechanical-Material-Modules
-14. OOO – Operations-Optimization-Outcomes
+14. OOO – Operating-Ontological-Offimatics
 15. PPP – Propulsion-Power-Plants
 
 **Threading**: Data and control flow following deterministic paths through domains and bridge layers (QS→FWD→UE→FE→CB→QB)
@@ -164,13 +164,13 @@ toc: true
 **9 Phases**:
 1. **CAD** – Computer-Aided Design
 2. **CAE** – Computer-Aided Engineering (simulation)
-3. **CAI** – Computer-Aided Innovation (TRIZ, ideation)
+3. **CAI** – Computer-Aided Integration
 4. **CAO** – Computer-Aided Optimization
 5. **CAM** – Computer-Aided Manufacturing
 6. **CAP** – Computer-Aided Planning (assembly, scheduling)
 7. **CAV** – Computer-Aided Validation (testing, certification)
-8. **CMP** – Component Management Process (configuration control)
-9. **CAS** – Computer-Aided Styling (industrial design)
+8. **CMP** – Compliance Management Process
+9. **CAS** – Computer-Aided Services and Operational Sustainment
 
 **"To Scale" Methodology**: Each phase re-validated when scaling from prototype to production, addressing non-linear physics.
 
@@ -349,16 +349,16 @@ toc: true
 | ATA | Air Transport Association | Standards |
 | CAD | Computer-Aided Design | CAx |
 | CAE | Computer-Aided Engineering | CAx |
-| CAI | Computer-Aided Innovation | CAx |
+| CAI | Computer-Aided Integration | CAx |
 | CAM | Computer-Aided Manufacturing | CAx |
 | CAO | Computer-Aided Optimization | CAx |
 | CAP | Computer-Aided Planning | CAx |
-| CAS | Computer-Aided Styling | CAx |
+| CAS | Computer-Aided Services and Operational Sustainment | CAx |
 | CAV | Computer-Aided Validation | CAx |
 | CB | Classical Bit (Post-Event Reality) | Architecture |
 | CCB | Configuration Control Board | Process |
 | CFD | Computational Fluid Dynamics | Engineering |
-| CMP | Component Management Process | CAx |
+| CMP | Compliance Management Process | CAx |
 | CSDB | Centralized Source Database | Standards |
 | DFM | Design for Manufacturing | Engineering |
 | EASA | European Union Aviation Safety Agency | Regulatory |
