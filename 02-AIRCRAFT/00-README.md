@@ -9,6 +9,7 @@ This section contains all aircraft-related design, integration, and systems engi
 ## Contents
 
 - **00-README.md** - This file
+- **[ARCHITECTURE_OVERVIEW.md](./ARCHITECTURE_OVERVIEW.md)** - 📊 Visual architecture diagram and system overview
 - **[MODEL_IDENTIFICATION/](./MODEL_IDENTIFICATION/)** - Product model identification and TFA (Threading Functional Architecture/Artifact)
   - 🧭 **[Interactive Navigation Index →](./MODEL_IDENTIFICATION/NAVIGATION_INDEX.md)** - Complete clickable site map
   - 📚 [TFA Documentation Hub →](./MODEL_IDENTIFICATION/README.md)
