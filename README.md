@@ -1,97 +1,128 @@
-# IDEALEEU
+# IDEALE-EU: Aerospace Digital Passport Platform
 
-https://www.idealeeu.eu
+[![docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://idealeeu.github.io)
+[![AS9100](https://img.shields.io/badge/AS9100-Rev%20D-green)](https://www.sae.org/standards/content/as9100d/)
+[![TFA](https://img.shields.io/badge/TFA-Threading%20Functional%20Architecture-purple)](https://idealeeu.github.io/docs/tfa-domains/)
+![license](https://img.shields.io/badge/license-See%20LICENSE-red)
 
-Tamper-proof digital passports for aerospace components.  
-Clean H₂ systems with measured energy harvesting and verifiable evidence.
+Evidence-first platform for aerospace component traceability using **UTCS manifests**, **QS anchoring**, **TFA (Threading Functional Architecture)**, and PLUMA automation.
 
----
+## 🚀 Features
 
-## Table of Contents
+- **QS-Anchored Digital Passports**: Immutable component provenance from design to retirement
+- **UTCS Integration**: **UiX Threading Context/Content/Cache and Structure/Style/Sheet** for evidence framework
+- **TFA**: **Threading Functional Architecture** with 15 canonical domains
+- **9-Phase CAx Lifecycle**: Complete capture from CAD through CAS with "to scale" methodology
+- **PLUMA Automation**: Product Lifecycle UiX Management Automation
+- **H2 Systems Support**: Specialized tracking for hydrogen propulsion systems
+- **Federated Learning**: Privacy-preserving fleet-wide intelligence
+- **Energy Harvesting Integration**: Self-powered sensor networks for 30+ year lifecycles
+- **Flow**: **QS→FWD→UE→FE→CB→QB** for:
+  - Pre-event superposition capture (QS - all possible outcomes)
+  - Predictive wave dynamics (FWD)
+  - Classical unit elements (UE)
+  - Federated coordination (FE)
+  - Post-event reality anchoring (CB)
+  - Quantum optimization (QB)
 
-- [What it does](#what-it-does)
-- [Why it matters](#why-it-matters)
-- [Core ideas](#core-ideas)
-- [Architecture](#architecture)
-- [Primary folders](#primary-folders)
-- [Ways of working](#ways-of-working)
-- [Get started](#get-started)
-- [Glossary](#glossary-scoped)
-- **[📑 Repository Index & Navigation](#repository-index-and-navigation)** ← Complete directory index
+## 📚 Documentation
 
----
+Visit our [documentation site](https://idealeeu.github.io/docs/) for comprehensive guides:
 
-## What it does
-- Issues **digital certificates** that follow each part from design to fleet ops.
-- Logs events to **UTCS-MI** (hash, time, signer). Tamper-evident.
-- Harvests onboard energy where net gain is positive.
-- Manages H₂ **water byproduct** with safe capture, use, and controlled venting.
+- [Quick Start Guide](https://idealeeu.github.io/docs/quick-start/)
+- [TFA Domains Reference](https://idealeeu.github.io/docs/tfa-domains/)
+- [CAx Lifecycle Overview](https://idealeeu.github.io/docs/cax-lifecycle/)
+- [API Reference](https://idealeeu.github.io/api/)
 
-## Why it matters
-- Faster certification with audit-ready evidence.
-- Lower cost via predictive maintenance and closed-loop data.
-- Climate impact from zero-carbon exhaust and contrail-aware water handling.
-
-## Core ideas
-- **Physics first:** Lagrange models → transfer functions \(G(s)\) → stable control.
-- **Digital twin:** predict loads and energy, validate before deploy.
-- **Evidence by default:** every event is a signed record.
-- **Mathematical foundations:** IDEALE-EU applies ring theory and ideal algebra to ensure operational closure and federated verifiability. See [FORMAL_FOUNDATIONS.md](00-PROGRAM/GOVERNANCE/FORMAL_FOUNDATIONS.md) for details.
-
-## Architecture
-1. **Local harvesters** (solar, thermal, piezo, micro-turbine) with MPPT  
-2. **Node controllers** route power and buffer storage  
-3. **Network manager** optimizes system state  
-4. **UTCS-MI ledger** records artifacts and events
+## 🏗️ Architecture
 
 ```
+IDEALE-EU Platform
+├── QS Anchoring Layer (Evidence Registry, Policy/Verify, Optional Chain Bridge)
+├── PLUMA Automation (Workflow Engine, Compliance Checking, Document Generation)
+├── Integration Layer (PLM, ERP, MES, IoT Sensors)
+├── TFA Domains (15 canonical aerospace domains)
+└── Applications (Engineer Portal, Auditor Dashboard, Supplier Portal)
+```
 
-Design → Simulate → Test → Fly → Log → Audit
+## 🎯 Use Cases
 
-````
+- **OEMs**: Complete product lifecycle management with QS-anchored provenance
+- **Suppliers**: Streamlined component registration and certification
+- **MRO Providers**: Instant access to complete maintenance history
+- **Certification Authorities**: Automated compliance verification and audit trails
+- **Airlines**: Fleet-wide insights through federated learning
 
-## Energy harvesting (conservative)
-- Piezo: 5–10% device efficiency typical for broadband wing modes.
-- Only deploy with positive **aircraft-level** net after drag and mass.
-- Target v1 net gain: **1–2%**. Verify with LCA.
+## 🔧 Technology Stack
 
-## H₂ water management (simplified)
-- Reaction: **1 kg H₂ → ~9 kg H₂O**.
-- In flight: capture a **small fraction** for potable, humidity, cooling, ballast. Vent the rest as clean vapor with contrail-aware profiles.
-- On descent/ground: increase capture for reuse and airport circular water.
+- **Evidence Framework**: UTCS (UiX Threading Context/Content/Cache and Structure/Style/Sheet)
+- **Anchoring**: QS (Quantum State) with optional blockchain bridges
+- **Policy Automation**: Smart contracts for compliance and workflow orchestration
+- **Integration**: REST APIs, GraphQL, EDI
+- **Standards**: AS9100, ATA iSpec 2200, S1000D (**Centralized Source Database, CSDB**), ISO 9001
+- **Security**: Quantum-resistant cryptography, multi-signature validation
 
-## Data and trust
-**UTCS-MI passport (minimal):**
-```json
-{
-  "passportId": "utcs:AMPEL360:ATA-38:Q100",
-  "anchors": [{"algo": "SHA3-256", "value": "9a1b..."}],
-  "events": [{"id": "EV-001", "ts": "2025-10-12T14:50:00Z", "type": "EnergyCapture"}]
-}
-````
+## 📖 Quick Start
 
-Optional **ZKP**: prove limits (e.g., fatigue < 0.5%) without sharing raw data.
+```bash
+# Clone repository
+git clone https://github.com/IDEALE-eu/IDEALEEU.EU.git
 
-## Interfaces (examples)
+# Install dependencies
+bundle install
 
-* `GET /api/passport/{id}` → passport summary
-* `POST /api/event` → append signed event
-* `GET /api/energy/harvested` → per-node totals
+# Run local development server
+bundle exec jekyll serve
 
-## Quality gates
+# Visit http://localhost:4000
+```
 
-* Model error < **5%** vs test data
-* Control stability > **45°** phase margin
-* MPPT tracking > **95%**
-* Evidence chain **100%** traceable
+## 🌐 TFA Canonical Domains
 
-## Safety and compliance
+**Threading Functional Architecture** organizes aerospace lifecycle across 15 domains:
 
-* CS-25.1309 system safety
-* CS-25.23 load distribution with water ballast
-* ARINC 646 water telemetry
-* DO-357 cybersecurity for keys and logs
-* ICAO CAEP contrail mitigation
+| Code | Domain | Focus |
+|------|--------|-------|
+| AAA | Airframes-Aerodynamics-Airworthiness | Structure, aero, certification |
+| AAP | Airport-Adaptable-Platforms | Ground ops, GSE |
+| CCC | Cockpit-Cabin-Cargo | Flight deck, passenger, freight |
+| CQH | Cryogenics-Quantum-H2 | H2 systems, quantum tech |
+| DDD | Drainage-Dehumidification-Drying | Moisture control |
+| EDI | Electronics-Digital-Instruments | Avionics, sensors |
+| EEE | Electrical-Endocircular-Energization | Power, energy harvesting |
+| EER | Environmental-Emissions-Remediation | Fire, pollution, sustainability |
+| IIF | Industrial-Infrastructure-Facilities | Manufacturing, tooling |
+| IIS | Information-Intelligence-Systems | Software, AI, cybersecurity |
+| LCC | Linkages-Control-Communications | Flight controls, datalinks |
+| LIB | Logistics-Inventory-Blockchain | Supply chain, QS anchoring |
+| MMM | Mechanical-Material-Modules | Materials, mechanical, MRO |
+| OOO | Operations-Optimization-Outcomes | Fleet ops, analytics |
+| PPP | Propulsion-Power-Plants | Engines, thrust, fuel |
+
+## 🤝 Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+Key principles:
+- Follow **QS→FWD→UE→FE→CB→QB** flow architecture
+- Respect TFA domain boundaries
+- Use proper UTCS terminology
+- Maintain CSDB compatibility for S1000D
+
+## 📧 Contact
+
+- **Enterprise**: contact@ideale-eu.aero
+- **Support**: support@ideale-eu.aero
+- **Partnerships**: partners@ideale-eu.aero
+- **Regulatory**: regulatory@ideale-eu.aero
+
+## 📄 License
+
+See [LICENSE](LICENSE) file for details.
+
+---
+
+**Built on UTCS Manifests | Powered by PLUMA Automation | QS Evidence Anchoring | Trusted by Aerospace Innovators**
 
 ---
 
