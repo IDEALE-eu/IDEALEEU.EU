@@ -8,7 +8,11 @@ Este documento describe el Módulo de Datos (Data Module) creado con el código 
 
 ### Identificación Completa
 
-**Código DMC**: `DMC-Q100-53-10-00-00-00-0-000-0-A_es-ES_001-00.xml`
+El módulo de datos Q100 está disponible en dos versiones de idioma:
+
+**Versión en Español**: `DMC-Q100-53-10-00-00-00-0-000-0-A_es-ES_001-00.xml`
+
+**Versión en Inglés STE**: `DMC-Q100-53-10-00-00-00-0-000-0-A_en-US_001-00.xml`
 
 **Ubicación**: 
 ```
@@ -30,10 +34,33 @@ Este documento describe el Módulo de Datos (Data Module) creado con el código 
 | **infoCode** | 000 | Descripción general |
 | **infoCodeVariant** | 0 | Variante de información |
 | **itemLocationCode** | A | Ubicación del elemento |
-| **languageIsoCode** | es | Idioma: Español |
-| **countryIsoCode** | ES | País: España |
+| **languageIsoCode** | es / en | Idioma: Español o Inglés |
+| **countryIsoCode** | ES / US | País: España o Estados Unidos |
 | **issueNumber** | 001 | Primera emisión |
 | **inWork** | 00 | Liberado (no en trabajo) |
+
+## Versiones de Idioma
+
+### Versión en Español (es-ES)
+
+- **Archivo**: DMC-Q100-53-10-00-00-00-0-000-0-A_es-ES_001-00.xml
+- **Idioma**: Español (España)
+- **Contenido**: Texto completo en español
+- **Uso**: Documentación técnica para usuarios de habla hispana
+
+### Versión en Inglés STE (en-US)
+
+- **Archivo**: DMC-Q100-53-10-00-00-00-0-000-0-A_en-US_001-00.xml
+- **Idioma**: Inglés (Estados Unidos)
+- **Estándar**: ASD-STE-100 (Simplified Technical English)
+- **Contenido**: Traducción siguiendo las reglas de STE:
+  - Oraciones cortas (≤ 25 palabras para descripciones)
+  - Voz activa
+  - Tiempo presente
+  - Palabras simples y aprobadas del diccionario STE
+  - Una idea por oración
+  - Términos técnicos usados consistentemente
+- **Uso**: Documentación técnica internacional estándar
 
 ## Contexto del Programa
 

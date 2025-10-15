@@ -19,7 +19,11 @@ The problem statement requested creation of a Data Module following S1000D v5.x 
 
 ## Implementation
 
-### 1. Data Module Created
+### 1. Data Modules Created
+
+The Q100 Data Module is available in two language versions:
+
+#### Spanish Version (es-ES)
 
 **File**: `DMC-Q100-53-10-00-00-00-0-000-0-A_es-ES_001-00.xml`
 
@@ -30,7 +34,30 @@ DOMAIN/AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/SYSTEMS/53-FUSELAGE-STRUCTURES/
 SUBSYSTEMS/53-10_CENTER-BODY/PLM/CAx/CAS/CSDB/DataModules/Descriptive/00_GENERAL/DMC/
 ```
 
-**DMC Structure** (as requested):
+- **Size**: 7,458 bytes
+- **Language**: Spanish (es-ES)
+- **Content**: Full technical description in Spanish
+- **Status**: Released (inWork=00)
+
+#### STE English Version (en-US)
+
+**File**: `DMC-Q100-53-10-00-00-00-0-000-0-A_en-US_001-00.xml`
+
+**Location**: Same as Spanish version
+
+- **Size**: 7,912 bytes
+- **Language**: English (en-US)
+- **Standard**: ASD-STE-100 (Simplified Technical English)
+- **Content**: STE-compliant translation with:
+  - Sentences ≤ 25 words (descriptive)
+  - Active voice throughout
+  - Present tense for descriptions
+  - Simple, approved words from STE dictionary
+  - One idea per sentence
+  - Technical terms used consistently
+- **Status**: Released (inWork=00)
+
+**DMC Structure** (both versions):
 ```
 Q100-53-10-00-00-00-0-000-0-A
 ```
@@ -161,12 +188,14 @@ Documentation of BREX files:
 
 ### Validation Checks
 
-✅ **XML Well-formed**: Validated with lxml  
+✅ **XML Well-formed**: Both versions validated with lxml  
 ✅ **S1000D Structure**: Follows S1000D v6.0 namespace and structure  
 ✅ **Metadata Complete**: All required elements present  
 ✅ **Applicability**: 8 assertions for traceability  
 ✅ **BREX Reference**: Correctly links to Q100 BREX file  
-✅ **Content**: 7 levelled paragraphs with Spanish text  
+✅ **Content - Spanish**: 7 levelled paragraphs with Spanish text  
+✅ **Content - English**: 38 paragraphs with STE-compliant English text  
+✅ **STE Compliance**: All English sentences ≤ 25 words, active voice, present tense  
 
 ## S1000D Compliance
 
@@ -175,50 +204,64 @@ The implementation follows:
 - ✅ **Namespace**: http://www.s1000d.org/S1000D_6-0/xml_schema_flat
 - ✅ **Schema**: descript.xsd (descriptive module)
 - ✅ **BREX**: Business Rules Exchange implemented
-- ✅ **Language**: es-ES (Spanish) as specified
+- ✅ **Language**: es-ES (Spanish) and en-US (English STE)
+- ✅ **ASD-STE-100**: Simplified Technical English compliance in English version
 - ✅ **Metadata**: Complete dmAddressItems and dmStatus
 
 ## Files Summary
 
-### Created Files (5 total)
+### Created Files (6 total)
 
 1. **DMC-Q100-53-10-00-00-00-0-000-0-A_es-ES_001-00.xml** (7,458 bytes)
    - Main Data Module in Spanish
    - Contains complete metadata and content
 
-2. **DMC-Q100-BREX-AAA-STRUCTURES-00-00-0-0-000-A-A_es-ES_001-00.xml** (8,011 bytes)
+2. **DMC-Q100-53-10-00-00-00-0-000-0-A_en-US_001-00.xml** (7,912 bytes)
+   - Main Data Module in STE English
+   - ASD-STE-100 compliant content
+   - Same DMC code, different language
+
+3. **DMC-Q100-BREX-AAA-STRUCTURES-00-00-0-0-000-A-A_es-ES_001-00.xml** (8,011 bytes)
    - BREX validation rules for Q100
    - Spanish language variant
 
-3. **README_Q100.md** (5,872 bytes)
+4. **README_Q100.md** (updated with language versions)
    - Comprehensive documentation
    - Maps all problem statement requirements
+   - Documents both language versions
 
-4. **BREX/README.md** (5,208 bytes)
+5. **BREX/README.md** (5,208 bytes)
    - Documents both BREX files (AMP360 and Q100)
    - Usage instructions
 
-5. **DataModules/README.md** (updated)
+6. **DataModules/README.md** (updated)
    - Added Q100 variant section
    - Cross-references to Q100 documentation
 
 ## Usage
 
-### Viewing the Data Module
+### Viewing the Data Modules
 
 ```bash
-# View the Data Module
+# View the Spanish version
 cat 02-AIRCRAFT/MODEL_IDENTIFICATION/AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/\
 DOMAIN/AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/SYSTEMS/53-FUSELAGE-STRUCTURES/\
 SUBSYSTEMS/53-10_CENTER-BODY/PLM/CAx/CAS/CSDB/DataModules/Descriptive/00_GENERAL/DMC/\
 DMC-Q100-53-10-00-00-00-0-000-0-A_es-ES_001-00.xml
+
+# View the English STE version
+cat 02-AIRCRAFT/MODEL_IDENTIFICATION/AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/\
+DOMAIN/AAA-AIRFRAMES-AERODYNAMICS-AIRWORTHINESS/SYSTEMS/53-FUSELAGE-STRUCTURES/\
+SUBSYSTEMS/53-10_CENTER-BODY/PLM/CAx/CAS/CSDB/DataModules/Descriptive/00_GENERAL/DMC/\
+DMC-Q100-53-10-00-00-00-0-000-0-A_en-US_001-00.xml
 ```
 
 ### Validating
 
 ```bash
-# Validate XML syntax
+# Validate XML syntax for both versions
 python3 -c "from lxml import etree; etree.parse('DMC-Q100-53-10-00-00-00-0-000-0-A_es-ES_001-00.xml')"
+python3 -c "from lxml import etree; etree.parse('DMC-Q100-53-10-00-00-00-0-000-0-A_en-US_001-00.xml')"
 
 # Validate against BREX (will show warnings about AMP360 vs Q100)
 python VALIDATION/BREX/validate_brex.py DataModules/Descriptive/00_GENERAL/DMC/DMC-Q100-*.xml
@@ -242,11 +285,12 @@ cat ../README.md
 | Aspect | AMP360 | Q100 |
 |--------|--------|------|
 | **modelIdentCode** | AMP360 | Q100 |
-| **Language** | en-US | es-ES |
+| **Language** | en-US | es-ES (Spanish) / en-US (STE) |
 | **systemDiffCode** | AAA | 53 (system-specific) |
 | **assyCode** | 00A | 00 |
 | **Purpose** | General project docs | Version-specific docs |
 | **BREX** | 120 comprehensive rules | Focused subset |
+| **STE Compliance** | Standard English | ASD-STE-100 in en-US version |
 
 Both conventions are valid S1000D implementations serving different documentation needs.
 
@@ -256,17 +300,23 @@ The implementation successfully addresses all requirements from the problem stat
 
 ✅ Created Data Module with exact code structure requested  
 ✅ Implemented in Spanish (es-ES) as specified  
+✅ **Added STE English version (en-US) per user request**  
 ✅ All metadata fields populated correctly  
 ✅ BREX file created and referenced  
 ✅ Trazabilidad CSDB (traceability) fully implemented  
 ✅ Complete documentation provided  
 ✅ All checks performed and passed  
+✅ **ASD-STE-100 compliance verified for English version**  
 
 The Q100 Data Module is ready for use in the AMPEL360 AIR-T program for version Q100 specific documentation of the 53-10 Center Body subsystem.
+
+Both language versions are available:
+- **Spanish (es-ES)**: For Spanish-speaking users
+- **English (en-US)**: STE-compliant for international users
 
 ---
 
 **Implementation Date**: 2025-10-15  
 **Status**: Complete and Released (inWork=00)  
 **S1000D Version**: 5.x/6.0  
-**Language**: Spanish (es-ES)
+**Languages**: Spanish (es-ES) and English STE (en-US)
