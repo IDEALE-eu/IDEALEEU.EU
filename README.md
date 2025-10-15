@@ -1,9 +1,9 @@
 # IDEALE-EU: Aerospace Digital Passport Platform
 
-[![docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://idealeeu.github.io)
-[![AS9100](https://img.shields.io/badge/AS9100-Rev%20D-green)](https://www.sae.org/standards/content/as9100d/)
+[![GitHub Pages](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://idealeeu.github.io)
+[![AS9100D](https://img.shields.io/badge/AS9100-Rev%20D-green)](https://www.sae.org/standards/content/as9100d/)
 [![TFA](https://img.shields.io/badge/TFA-Threading%20Functional%20Architecture-purple)](https://idealeeu.github.io/docs/tfa-domains/)
-![license](https://img.shields.io/badge/license-See%20LICENSE-red)
+[![License](https://img.shields.io/badge/license-See%20LICENSE-red)](LICENSE)
 
 Evidence-first platform for aerospace component traceability using **UTCS manifests**, **QS anchoring**, **TFA (Threading Functional Architecture)**, and PLUMA automation.
 
@@ -22,19 +22,10 @@ Evidence-first platform for aerospace component traceability using **UTCS manife
   - Predictive wave dynamics (FWD)
   - Classical unit elements (UE)
   - Federated coordination (FE)
-  - Post-event reality anchoring (CB - Classical Bit)
+  - Post-event reality anchoring (CB)
   - Quantum optimization (QB)
 
-- **[🚀 Quick Start Guide](QUICK_START.md)** ← New to IDEALE-EU? Start here!
-- [What it does](#what-it-does)
-- [Why it matters](#why-it-matters)
-- [Core ideas](#core-ideas)
-- [Architecture](#architecture)
-- [Primary folders](#primary-folders)
-- [Ways of working](#ways-of-working)
-- [Get started](#get-started)
-- [Glossary](#glossary-scoped)
-- **[📑 Repository Index & Navigation](#repository-index-and-navigation)** ← Complete directory index
+## 📚 Documentation
 
 Visit our [documentation site](https://idealeeu.github.io/docs/) for comprehensive guides:
 
@@ -75,7 +66,7 @@ IDEALE-EU Platform
 
 ```bash
 # Clone repository
-git clone https://github.com/IDEALE-eu/IDEALEEU.EU.git
+git clone https://github.com/idealeeu/idealeeu.git
 
 # Install dependencies
 bundle install
@@ -120,15 +111,18 @@ Key principles:
 
 ## 📧 Contact
 
-- **Enterprise**: contact@ideale-eu.aero
-- **Support**: support@ideale-eu.aero
-- **Partnerships**: partners@ideale-eu.aero
-- **Regulatory**: regulatory@ideale-eu.aero
+- **Enterprise**: contact@idealeeu.eu
+- **Support**: support@idealeeu.eu
+- **Partnerships**: partners@idealeeu.eu
+- **Regulatory**: regulatory@idealeeu.eu
 
 ## 📄 License
 
 See [LICENSE](LICENSE) file for details.
 
+---
+
+**Built on UTCS Manifests | Powered by PLUMA Automation | QS Evidence Anchoring | Trusted by Aerospace Innovators**
 ---
 
 **Built on UTCS Manifests | Powered by PLUMA Automation | QS Evidence Anchoring | Trusted by Aerospace Innovators**
