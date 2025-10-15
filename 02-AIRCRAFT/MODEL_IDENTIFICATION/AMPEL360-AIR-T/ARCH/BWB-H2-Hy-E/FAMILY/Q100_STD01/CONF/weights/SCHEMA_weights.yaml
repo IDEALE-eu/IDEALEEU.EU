@@ -135,7 +135,7 @@ example:
   measurement_method: "PHYSICAL_WEIGHED"
   confidence_level: 0.99
   measured_date: "2025-09-15"
-  measured_by: "M. Dubois"
+  measured_by: "PPP Domain Lead"
 
 # Traceability
 traceability:

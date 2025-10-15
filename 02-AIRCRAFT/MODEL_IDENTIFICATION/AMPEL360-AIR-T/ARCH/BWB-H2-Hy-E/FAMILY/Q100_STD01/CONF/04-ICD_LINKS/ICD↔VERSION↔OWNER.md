@@ -6,14 +6,14 @@
 
 | ICD ID | Version | Domain(s) | Owner | Status | Verification |
 |--------|---------|-----------|-------|--------|-------------|
-| ICD-CQH-001 | 2.1 | CQH | H. Müller | ✅ Active | Physical test |
-| ICD-EEE-003 | 1.8 | EEE | S. Chen | ✅ Active | Electrical test |
-| ICD-PPP-005 | 2.0 | PPP | M. Dubois | ✅ Active | System test |
-| ICD-AAA-007 | 1.5 | AAA | R. García | ✅ Active | FEA + test |
-| ICD-IIS-012 | 3.2 | IIS | K. Andersson | ✅ Active | Protocol test |
-| ICD-CQH-AAA-002 | 1.3 | CQH, AAA | H. Müller, R. García | ✅ Active | Design + test |
-| ICD-EEE-IIS-004 | 2.5 | EEE, IIS | S. Chen, K. Andersson | ✅ Active | Integration test |
-| ICD-PPP-EEE-006 | 1.9 | PPP, EEE | M. Dubois, S. Chen | ✅ Active | Functional test |
+| ICD-CQH-001 | 2.1 | CQH | CQH Domain Lead | ✅ Active | Physical test |
+| ICD-EEE-003 | 1.8 | EEE | EEE Domain Lead | ✅ Active | Electrical test |
+| ICD-PPP-005 | 2.0 | PPP | PPP Domain Lead | ✅ Active | System test |
+| ICD-AAA-007 | 1.5 | AAA | AAA Domain Lead | ✅ Active | FEA + test |
+| ICD-IIS-012 | 3.2 | IIS | IIS Domain Lead | ✅ Active | Protocol test |
+| ICD-CQH-AAA-002 | 1.3 | CQH, AAA | CQH/AAA Domain Leads | ✅ Active | Design + test |
+| ICD-EEE-IIS-004 | 2.5 | EEE, IIS | EEE/IIS Domain Leads | ✅ Active | Integration test |
+| ICD-PPP-EEE-006 | 1.9 | PPP, EEE | PPP/EEE Domain Leads | ✅ Active | Functional test |
 
 ## Version History
 
@@ -61,11 +61,11 @@
 
 | Owner | Email | Domain Role | Phone |
 |-------|-------|------------|-------|
-| H. Müller | h.mueller@idealeeu.eu | CQH Domain Steward | +49-89-xxx-xxxx |
-| S. Chen | s.chen@idealeeu.eu | EEE Domain Steward | +46-8-xxx-xxxx |
-| M. Dubois | m.dubois@idealeeu.eu | PPP Domain Steward | +33-1-xxx-xxxx |
-| R. García | r.garcia@idealeeu.eu | AAA Domain Steward | +34-91-xxx-xxxx |
-| K. Andersson | k.andersson@idealeeu.eu | IIS Domain Steward | +46-31-xxx-xxxx |
+| CQH Domain Lead | cqh-steward@idealeeu.eu | CQH Domain Steward | +XX-XX-xxx-xxxx |
+| EEE Domain Lead | eee-steward@idealeeu.eu | EEE Domain Steward | +XX-XX-xxx-xxxx |
+| PPP Domain Lead | ppp-steward@idealeeu.eu | PPP Domain Steward | +XX-XX-xxx-xxxx |
+| AAA Domain Lead | aaa-steward@idealeeu.eu | AAA Domain Steward | +XX-XX-xxx-xxxx |
+| IIS Domain Lead | iis-steward@idealeeu.eu | IIS Domain Steward | +XX-XX-xxx-xxxx |
 
 ## Change Request Process
 
