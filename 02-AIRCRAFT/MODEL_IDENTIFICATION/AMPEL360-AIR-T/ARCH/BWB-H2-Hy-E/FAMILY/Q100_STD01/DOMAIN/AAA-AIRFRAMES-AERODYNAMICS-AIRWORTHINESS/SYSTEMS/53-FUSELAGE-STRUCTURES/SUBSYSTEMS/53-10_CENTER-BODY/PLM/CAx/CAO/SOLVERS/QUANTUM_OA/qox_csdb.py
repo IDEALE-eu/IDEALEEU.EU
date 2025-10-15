@@ -2,6 +2,8 @@
 QOx-CSDB · UiX — Reference Stub
 QOx-CSDB: Quantum Optimization - Common Source DataBase
 Canon TFA path: QS → FWD → UE → FE → CB → QB
+  QS: Quantum Superposition (pre-event state capture)
+  CB: Classical Bit (post-event deterministic reality)
 SSoT: UTCS v5.0 metadata on all public outputs
 
 This module implements `solve_qox(...)` with deterministic compile chain
