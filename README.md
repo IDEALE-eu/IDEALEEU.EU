@@ -9,6 +9,7 @@ Clean H₂ systems with measured energy harvesting and verifiable evidence.
 
 ## Table of Contents
 
+- **[🚀 Quick Start Guide](QUICK_START.md)** ← New to IDEALE-EU? Start here!
 - [What it does](#what-it-does)
 - [Why it matters](#why-it-matters)
 - [Core ideas](#core-ideas)
@@ -143,6 +144,9 @@ Dashboards live under `00-PROGRAM/DIGITAL_THREAD/10-METRICS/` and `01-FLEET/ANAL
 
 ## Get started
 
+**New Users**: See the **[Quick Start Guide](QUICK_START.md)** for step-by-step onboarding and platform orientation.
+
+**Existing Users**:
 1. Read **Governance** → `00-PROGRAM/GOVERNANCE.md`
 2. Review **Formal Foundations** → `00-PROGRAM/GOVERNANCE/FORMAL_FOUNDATIONS.md` (mathematical basis)
 3. Review **CM Plan** → `00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md`
