@@ -4,6 +4,18 @@
 
 PLUMA orchestrates aerospace programs through 9 phases, each explicitly designed for industrial scalability. The "x" in CAx means "to scale" — emphasizing automation, parallelization, and replicability.
 
+### MAL Services
+
+Each phase leverages MAL (PLUMA Architecture Layer) services that align with the canonical TFA flow:
+- **QS** (Quantum Superposition): Pre-event state capture and scheduling
+- **FWD** (Future/Waves Dynamics): Predictive modeling and forward propagation
+- **UE** (Unit Element): Classical fundamental units and unified engines
+- **FE** (Federation Entanglement): Distributed multi-party coordination
+- **CB** (Classical Bit): Post-event reality anchoring and cognitive bridging
+- **QB** (Qubit): Quantum computation strategies
+
+> **Note**: MAL service names reflect both canonical TFA meanings and PLUMA-specific implementations (e.g., CB as "Cognitive Bridge" for AI services, QS as scheduling orchestration of quantum superposition states).
+
 ## Phase Definitions
 
 ### CAD — Computer-Aided Design
