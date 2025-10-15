@@ -12,5 +12,5 @@ from_system,from_item,to_system,to_item,signal_or_media,interface_type,doc_ref,c
 52-10_MECHANISMS_LATCHES_LOCKS,hydraulic_supply,29-HYDRAULIC,sys_a,hydraulic_fluid,Fluid,ICD-xxxx,Standard,3000psi nominal
 52-40_SERVICE_ACCESS_HATCHES,panel_mounting,57-WINGS,wing_structure,mechanical,Mechanical,ICD-xxxx,Design,Wing access panels
 52-80_SENSORS_INDICATION_SWITCHES,proximity_sensor,42-IMA,sensor_input,discrete,Data,ICD-xxxx,Standard,Door position sensing
-52-70_LG_DOORS_IF,door_sequence,32-LANDING_GEAR,gear_extension,discrete,Data,ICD-xxxx,Safety,Owned by ATA-32 (MEC domain)
+52-70_LG_DOORS_IF,door_sequence,32-LANDING_GEAR,gear_extension,discrete,Data,ICD-xxxx,Safety,Owned by ATA-32 (MMM domain)
 52-90_COMPLIANCE_EVIDENCE,test_results,00-PROGRAM,certification,document,Admin,DOC-xxxx,Regulatory,Airworthiness evidence

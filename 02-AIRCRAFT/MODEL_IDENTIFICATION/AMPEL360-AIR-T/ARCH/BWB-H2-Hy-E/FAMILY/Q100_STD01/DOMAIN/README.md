@@ -146,7 +146,7 @@ Responsible for:
 - Time-limited parts management
 - Blockchain-based traceability
 
-### 13. MEC - Mechanical, Systems, Modules
+### 13. MMM - Mechanical, Material, Modules
 **Primary ATA Chapters**: 27, 29, 32, 36, 37, 63, 67, 79, 83
 
 Responsible for:
@@ -155,6 +155,8 @@ Responsible for:
 - Landing gear systems
 - Pneumatic actuation
 - Lubrication systems
+- Materials specifications
+- MRO procedures
 - Rotorcraft systems (if applicable)
 
 ### 14. OOO - OS, Ontologies, Office

@@ -35,7 +35,7 @@ Examples:
 - [EWIS Routing](../EWIS/README.md) — For separation requirements
 - [Access Clearances](../../ACCESS_CLEARANCES/)
 - [Mounting Provisions](../../MOUNTING/)
-- [ATA-29 Hydraulic Power](../../../../../../../MEC-MECHANICAL-SYSTEMS-MODULES/SYSTEMS/29-HYDRAULIC-POWER/)
+- [ATA-29 Hydraulic Power](../../../../../../../MMM-MECHANICAL-MATERIAL-MODULES/SYSTEMS/29-HYDRAULIC-POWER/)
 
 ## Hydraulic System Specifications
 

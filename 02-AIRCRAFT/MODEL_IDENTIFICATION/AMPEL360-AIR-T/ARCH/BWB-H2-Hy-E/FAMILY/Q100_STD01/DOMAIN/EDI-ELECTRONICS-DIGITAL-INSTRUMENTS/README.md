@@ -141,7 +141,7 @@ Key cross-domain interfaces:
 - **EDI ↔ LCC (22)**: Auto-flight integration
 - **EDI ↔ PPP (73)**: FADEC/engine control data
 - **EDI ↔ AAA (92)**: EWIS connectivity
-- **EDI ↔ MEC (27)**: Flight control actuation data
+- **EDI ↔ MMM (27)**: Flight control actuation data
 
 ### Certification & Safety
 - DO-178C for airborne software
