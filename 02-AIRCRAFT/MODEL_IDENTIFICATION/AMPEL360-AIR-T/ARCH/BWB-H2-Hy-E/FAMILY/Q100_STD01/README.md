@@ -17,6 +17,10 @@ Q100_STD01 represents the standard configuration for the Q100 family variant of 
 - **Baseline**: Production baseline
 - **Status**: Active development
 
+### Configuration Management
+
+- **[CONF - Configuration Management →](./CONF/README.md)** - Family-level configuration and baseline management
+
 ## Engineering Domains
 
 This family configuration is organized by engineering domains:
