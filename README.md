@@ -22,7 +22,7 @@ Evidence-first platform for aerospace component traceability using **UTCS manife
   - Predictive wave dynamics (FWD)
   - Classical unit elements (UE)
   - Federated coordination (FE)
-  - Post-event reality anchoring (CB)
+  - Post-event reality anchoring (CB - Classical Bit)
   - Quantum optimization (QB)
 
 - **[🚀 Quick Start Guide](QUICK_START.md)** ← New to IDEALE-EU? Start here!
