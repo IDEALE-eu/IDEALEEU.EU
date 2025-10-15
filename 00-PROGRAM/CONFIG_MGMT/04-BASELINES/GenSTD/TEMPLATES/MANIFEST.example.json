@@ -1,0 +1,74 @@
+{
+  "id": "GenSTD-III-2025-0012",
+  "source_otc": "OtC-δ-2025-0007",
+  "tier": "III",
+  "summary_150w": "This baseline establishes the hydrogen storage and handling standard for cryogenic systems operating at -253°C. It consolidates design requirements, safety protocols, and material specifications from multiple OtC iterations. Impact: Enables standardized LH2 tank design across all aircraft variants. Risk: Material embrittlement at cryogenic temperatures requires rigorous quality control. Compliance addresses EASA SC-H2.EA certification requirements and ISO 14687 hydrogen fuel quality standards.",
+  "owner": {
+    "name": "Dr. Maria Santos",
+    "role": "Cryogenics Lead Engineer",
+    "email": "m.santos@ideale.eu"
+  },
+  "audience": ["Engineering", "QA", "Compliance", "Safety"],
+  "acronyms_link": "GLOSSARY.md",
+  "repro_time_min": 12,
+  "docs": [
+    "SUMMARY.md",
+    "RUNBOOK.md",
+    "DECISIONS.md",
+    "RISKS.md",
+    "GLOSSARY.md"
+  ],
+  "diagram": "DIAGRAM.svg",
+  "hash": "sha256:a1b2c3d4e5f6789012345678901234567890123456789012345678901234abcd",
+  "rfc_ids": ["RFC-2025-103", "RFC-2025-108"],
+  "cab_approval": "2025-10-15",
+  "cab_minutes": "../../05-CCB/MINUTES/2025-10-15-CAB.md",
+  "otc_override": false,
+  "created_date": "2025-10-10",
+  "frozen_date": "2025-10-15",
+  "compliance": [
+    "EASA SC-H2.EA",
+    "ISO 14687:2019",
+    "ARP4754A Section 5.2",
+    "DO-160G Section 4.5"
+  ],
+  "ci_items": [
+    {
+      "pn": "STD-LH2-TANK-001",
+      "rev": "A",
+      "ci_type": "STANDARD",
+      "path": "../standards/LH2-TANK-DESIGN.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "pn": "ICD-0045",
+      "rev": "2.1",
+      "ci_type": "ICD",
+      "path": "../../09-INTERFACES/ICD-0045.md",
+      "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    }
+  ],
+  "interfaces": ["ICD-0045@2.1", "ICD-0047@1.0"],
+  "changes_from_otc": [
+    {
+      "description": "Added safety margin factor 1.5 for material stress calculations",
+      "rationale": "Regulatory requirement from EASA feedback during Phase 1 review",
+      "eco_ref": "ECO-2025-0089"
+    },
+    {
+      "description": "Incorporated ISO 14687 hydrogen purity requirements",
+      "rationale": "Compliance baseline needed for certification",
+      "eco_ref": "ECO-2025-0091"
+    }
+  ],
+  "validation": {
+    "ehc_compliant": true,
+    "readability_score": 11.2,
+    "word_count": 148,
+    "diagram_present": true,
+    "runbook_tested": true,
+    "validated_date": "2025-10-14",
+    "validator": "Configuration Management Team"
+  },
+  "tags": ["hydrogen", "cryogenics", "LH2", "safety-critical", "EASA", "CQH-domain"]
+}
