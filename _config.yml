@@ -1,0 +1,101 @@
+# Site settings
+title: "IDEALE-EU"
+tagline: "Aerospace Digital Passport Platform"
+description: >-
+  Evidence-first platform for aerospace component traceability using UTCS manifests,
+  QS pre-event superposition anchoring, and TFA (Threading Functional Architecture). 
+  Capturing potential states before events occur, enabling predictive maintenance and 
+  outcome validation with PLUMA automation.
+
+# URLs
+baseurl: "" # subpath of your site, e.g. /blog
+url: "https://idealeeu.eu" # the base hostname & protocol
+repository: "IDEALE-eu/IDEALEEU.EU"
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Kramdown settings
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+  - .sass-cache/
+  - .jekyll-cache/
+  - README.md
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /docs/:path/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "page"
+      toc: true
+
+# SEO
+logo: /assets/images/logo.png
+twitter:
+  username: ideale_eu
+  card: summary_large_image
+
+social:
+  name: "IDEALE-EU"
+  links:
+    - https://github.com/IDEALE-eu
+
+author:
+  name: "IDEALE-EU Team"
+  email: "contact@ideale-eu.aero"
+
+# Navigation
+navigation:
+  - title: "Documentation"
+    url: /docs/
+  - title: "TFA Domains"
+    url: /docs/tfa-domains/
+  - title: "CAx Lifecycle"
+    url: /docs/cax-lifecycle/
+  - title: "Quick Start"
+    url: /docs/quick-start/
+  - title: "API Reference"
+    url: /api/
+  - title: "About"
+    url: /about/
+
+# Footer
+footer_links:
+  - title: "GitHub"
+    url: "https://github.com/IDEALE-eu"
+    icon: "github"
+  - title: "Documentation"
+    url: "/docs/"
+    icon: "book"
+  - title: "Contact"
+    url: "mailto:contact@ideale-eu.aero"
+    icon: "email"

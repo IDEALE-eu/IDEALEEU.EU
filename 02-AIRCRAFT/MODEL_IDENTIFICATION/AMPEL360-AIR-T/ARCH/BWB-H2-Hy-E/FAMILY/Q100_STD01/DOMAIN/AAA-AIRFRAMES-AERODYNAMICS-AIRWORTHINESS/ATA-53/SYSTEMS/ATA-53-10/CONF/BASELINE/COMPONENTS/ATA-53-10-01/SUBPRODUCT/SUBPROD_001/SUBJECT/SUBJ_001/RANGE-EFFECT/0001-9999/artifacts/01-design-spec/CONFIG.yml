@@ -1,0 +1,27 @@
+# Artifact Configuration
+artifact:
+  id: 01-design-spec
+  name: design-spec
+  type: document
+  version: "1.0"
+  
+access_control:
+  read: [engineering, quality, management]
+  write: [engineering]
+  approve: [chief_engineer, quality_manager]
+  
+workflow:
+  state: draft
+  submitted_date: 2025-10-14
+  
+versioning:
+  major: 1
+  minor: 0
+  patch: 0
+  previous_version: null
+  change_summary: Initial creation
+  
+links:
+  related_artifacts: []
+  parent_requirements: []
+  dependent_artifacts: []
