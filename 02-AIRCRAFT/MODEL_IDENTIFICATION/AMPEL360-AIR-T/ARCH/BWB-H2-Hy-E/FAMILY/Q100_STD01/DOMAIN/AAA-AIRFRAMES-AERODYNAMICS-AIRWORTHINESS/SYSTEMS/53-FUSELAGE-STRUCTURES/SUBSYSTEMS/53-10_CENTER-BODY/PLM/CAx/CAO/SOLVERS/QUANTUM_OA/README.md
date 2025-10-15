@@ -11,12 +11,29 @@ Reference implementation of quantum-assisted optimization with full UTCS (Univer
 ### Canon TFA Path
 **QS → FWD → UE → FE → CB → QB**
 
-- **QS**: Query Statistics / Workload characterization
-- **FWD**: Forward propagation / Problem formulation
-- **UE**: Unified Encoding / QUBO construction
-- **FE**: Frontend Execution / Hybrid solving
-- **CB**: Classical Backend / Local refinement
-- **QB**: Quantum Backend / UTCS emission
+- **QS**: Quantum Superposition / Pre-event state capture (workload characterization before optimization crystallizes)
+- **FWD**: Forward propagation / Problem formulation (predictive modeling)
+- **UE**: Unified Encoding / QUBO construction (classical unit elements)
+- **FE**: Frontend Execution / Hybrid solving (federated execution coordination)
+- **CB**: Classical Backend / Local refinement (post-event deterministic reality)
+- **QB**: Quantum Backend / UTCS emission (quantum computation strategies)
+
+### QS Pre-Event Architecture
+
+**Quantum Superposition in Optimization Context**:
+- **QS captures pre-event state**: Workload statistics and system conditions *before* optimization decision crystallizes
+- **Multiple potential outcomes**: Each possible query plan, index configuration, or schedule exists in superposition
+- **Probabilities assigned**: QUBO formulation assigns costs/probabilities to each branch
+- **Crystallization**: Optimization solver collapses superposition to classical solution (CB)
+- **Validation loop**: Actual performance (CB) validates predicted QS state, enabling learning
+
+**Example Workflow**:
+1. **QS Anchor**: Capture workload statistics (query patterns, table cardinalities, resource state)
+2. **Superposition**: QUBO represents all possible solutions with assigned costs
+3. **FWD**: Problem formulation propagates constraints through solution space
+4. **Solver**: Quantum/hybrid sampling explores superposition
+5. **CB Anchor**: Actual deployed solution and performance recorded
+6. **Delta Analysis**: Compare predicted (QS) vs actual (CB) to improve future models
 
 ### Features
 
@@ -24,6 +41,7 @@ Reference implementation of quantum-assisted optimization with full UTCS (Univer
 - **UTCS v5.0 compliant**: All outputs include 13-field traceability IDs and cryptographic signatures
 - **Testable hooks**: Instrumentation points for monitoring compilation, sampling, refinement, and results
 - **Multi-problem support**: JOO (Join Order Optimization), IS (Index Selection), JSSP-ETL (Job Shop Scheduling), RL (Representation Learning)
+- **Pre-event anchoring**: QS captures system state before optimization, CB records actual outcome
 
 ## API
 
