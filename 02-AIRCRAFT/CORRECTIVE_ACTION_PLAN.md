@@ -143,7 +143,7 @@ DOMAIN/{DOMAIN_ID}/{ATA_CHAPTER}/SYSTEMS/{ATA_MID}/
 **Phase 1 - Pilot Systems** (Week 1-2):
 1. Select 5 representative ATA systems from different domains:
    - ATA-53 (Fuselage Structures) - AAA domain
-   - ATA-27 (Flight Controls) - MEC domain  
+   - ATA-27 (Flight Controls) - MMM domain  
    - ATA-24 (Electrical Power) - EEE domain
    - ATA-28 (Fuel System) - PPP domain
    - ATA-21 (Air Conditioning) - DDD domain
@@ -176,7 +176,7 @@ DOMAIN/{DOMAIN_ID}/{ATA_CHAPTER}/SYSTEMS/{ATA_MID}/
 
 **Phase 2 - Domain Rollout** (Week 3-6):
 1. Apply to all systems in AAA domain (airframes) - highest priority
-2. Apply to MEC domain (mechanical systems)
+2. Apply to MMM domain (mechanical systems)
 3. Apply to EEE domain (electrical systems)
 4. Apply to remaining domains
 
@@ -342,7 +342,7 @@ done
 
 ### Month 2 (Weeks 5-8)
 - **Week 5**: Complete AAA domain TFA
-- **Week 6**: Begin MEC and EEE domains TFA
+- **Week 6**: Begin MMM and EEE domains TFA
 - **Week 7**: CAx bulk creation phase 1
 - **Week 8**: TRACE structure implementation
 

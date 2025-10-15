@@ -2,12 +2,12 @@
 
 ## Overview
 
-Successfully implemented the TFA (Technical File Architecture) component structure for the pilot system ATA-27 (Flight Controls) in the MEC-MECHANICAL-SYSTEMS domain.
+Successfully implemented the TFA (Technical File Architecture) component structure for the pilot system ATA-27 (Flight Controls) in the MMM-MECHANICAL-MATERIAL-MODULES domain.
 
 ## Implementation Details
 
 ### Domain Information
-- **Domain**: MEC-MECHANICAL-SYSTEMS
+- **Domain**: MMM-MECHANICAL-MATERIAL-MODULES
 - **ATA Chapter**: ATA-27 (Flight Controls)
 - **System ID**: ATA-27-10 (Primary Flight Control Surfaces and Actuators)
 - **Component ID**: ATA-27-10-01
@@ -22,7 +22,7 @@ Successfully implemented the TFA (Technical File Architecture) component structu
 The following hierarchy was created as specified:
 
 ```
-DOMAIN/MEC-MECHANICAL-SYSTEMS/
+DOMAIN/MMM-MECHANICAL-MATERIAL-MODULES/
 ├── META.json                    # Domain metadata
 ├── README.md                    # Domain documentation
 ├── domain-config.yaml           # Domain configuration rules
@@ -70,7 +70,7 @@ DOMAIN/MEC-MECHANICAL-SYSTEMS/
 1. **Create TFA Structure**:
    ```bash
    make add-item \
-     DOMAIN=MEC-MECHANICAL-SYSTEMS \
+     DOMAIN=MMM-MECHANICAL-MATERIAL-MODULES \
      ATA_CHAPTER=ATA-27 \
      ATA_MID=ATA-27-10 \
      COMP=ATA-27-10-01 \
@@ -84,7 +84,7 @@ DOMAIN/MEC-MECHANICAL-SYSTEMS/
 2. **Initialize PLM Structure**:
    ```bash
    make init \
-     DOMAIN=MEC-MECHANICAL-SYSTEMS \
+     DOMAIN=MMM-MECHANICAL-MATERIAL-MODULES \
      ATA_CHAPTER=ATA-27 \
      ATA_MID=ATA-27-10 \
      COMP=ATA-27-10-01
@@ -93,7 +93,7 @@ DOMAIN/MEC-MECHANICAL-SYSTEMS/
 3. **Validate Structure**:
    ```bash
    make validate \
-     DOMAIN=MEC-MECHANICAL-SYSTEMS \
+     DOMAIN=MMM-MECHANICAL-MATERIAL-MODULES \
      ATA_CHAPTER=ATA-27 \
      ATA_MID=ATA-27-10 \
      COMP=ATA-27-10-01
@@ -156,7 +156,7 @@ DOMAIN/{ATA_CHAPTER}/SYSTEMS/{ATA_MID}/CONF/BASELINE/COMPONENTS/{COMP}/SUBPRODUC
 
 **Created Pattern**:
 ```
-MEC-MECHANICAL-SYSTEMS/ATA-27/SYSTEMS/ATA-27-10/CONF/BASELINE/COMPONENTS/ATA-27-10-01/SUBPRODUCT/SUBPROD_001/SUBJECT/SUBJ_001/RANGE-EFFECT/0001-9999/artifacts/
+MMM-MECHANICAL-MATERIAL-MODULES/ATA-27/SYSTEMS/ATA-27-10/CONF/BASELINE/COMPONENTS/ATA-27-10-01/SUBPRODUCT/SUBPROD_001/SUBJECT/SUBJ_001/RANGE-EFFECT/0001-9999/artifacts/
 ```
 
 ✅ **Pattern Match: 100%**
@@ -194,12 +194,12 @@ The structure is now ready for:
 To view the created structure:
 ```bash
 cd 02-AIRCRAFT/MODEL_IDENTIFICATION
-tree AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/DOMAIN/MEC-MECHANICAL-SYSTEMS/
+tree AMPEL360-AIR-T/ARCH/BWB-H2-Hy-E/FAMILY/Q100_STD01/DOMAIN/MMM-MECHANICAL-MATERIAL-MODULES/
 ```
 
 To add more items to this component:
 ```bash
-make add-item DOMAIN=MEC-MECHANICAL-SYSTEMS ATA_CHAPTER=ATA-27 \
+make add-item DOMAIN=MMM-MECHANICAL-MATERIAL-MODULES ATA_CHAPTER=ATA-27 \
   ATA_MID=ATA-27-10 COMP=ATA-27-10-01 EFFECT=0001-9999 \
   SUBPROD_ID=SUBPROD_001 SUBJECT_ID=SUBJ_001 \
   ITEM_DESC=<new-item-name> OWNER=FlightControlsTeam
@@ -207,6 +207,6 @@ make add-item DOMAIN=MEC-MECHANICAL-SYSTEMS ATA_CHAPTER=ATA-27 \
 
 To validate the structure:
 ```bash
-make validate DOMAIN=MEC-MECHANICAL-SYSTEMS ATA_CHAPTER=ATA-27 \
+make validate DOMAIN=MMM-MECHANICAL-MATERIAL-MODULES ATA_CHAPTER=ATA-27 \
   ATA_MID=ATA-27-10 COMP=ATA-27-10-01
 ```

@@ -41,7 +41,7 @@ All 15 engineering domains are now available:
 - **[IIS - Information, Intelligence, Systems →](./DOMAIN/IIS-INFORMATION-INTELLIGENCE-SYSTEMS/README.md)** - Information systems and data management
 - **[LCC - Linkages, Control, Communications →](./DOMAIN/LCC-LINKAGES-CONTROL-COMMUNICATIONS/README.md)** - Control systems and communications
 - **[LIB - Logistics, Inventory, Blockchain →](./DOMAIN/LIB-LOGISTICS-INVENTORY-BLOCKCHAIN/README.md)** - Documentation and logistics management
-- **[MEC - Mechanical, Systems, Modules →](./DOMAIN/MEC-MECHANICAL-SYSTEMS-MODULES/README.md)** - Mechanical systems and actuation
+- **[MMM - Mechanical, Material, Modules →](./DOMAIN/MMM-MECHANICAL-MATERIAL-MODULES/README.md)** - Mechanical systems and materials
 - **[OOO - OS, Ontologies, Office →](./DOMAIN/OOO-OS-ONTOLOGIES-OFFICE/README.md)** - Platform standards and templates
 - **[PPP - Propulsion →](./DOMAIN/PPP-PROPULSION/README.md)** - Propulsion and power generation systems
 
