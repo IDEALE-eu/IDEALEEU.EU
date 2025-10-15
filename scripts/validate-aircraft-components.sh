@@ -164,7 +164,7 @@ EOF
 
 # Non-blocking: always exit 0 (warnings allowed)
 if [[ $ERRORS -gt 0 ]]; then
-  error "Components validation found $ERRORS errors (non-blocking)"
+  error "Components validation found $ERRORS errors; validation completed with errors but process continues"
 elif [[ $WARNINGS -gt 0 ]]; then
   warning "Components validation completed with $WARNINGS warnings"
 else
