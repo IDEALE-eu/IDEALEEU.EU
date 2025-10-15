@@ -314,7 +314,7 @@ graph LR
 
 - [TFA Domains Reference](/docs/tfa-domains/) - Domain responsibilities
 - [Quick Start Guide](/docs/quick-start/) - Begin using the platform
-- [API Reference](/api/) - Programmatic access to CAx data
+- API Reference (coming soon) - Programmatic access to CAx data
 
 ---
 
