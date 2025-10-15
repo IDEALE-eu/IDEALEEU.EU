@@ -3,6 +3,8 @@
 ## Overview
 This document defines the governance structure for the IDEALE EU aerospace program, including cross-functional accountability for engineering, quality, compliance, and **supply chain**.
 
+For the **formal mathematical foundations** of the IDEALE-EU framework, see [GOVERNANCE/FORMAL_FOUNDATIONS.md](./GOVERNANCE/FORMAL_FOUNDATIONS.md), which establishes the algebraic basis using ring theory and ideal theory.
+
 ## Stage Gates & Supply Chain Deliverables
 
 The program follows a rigorous stage-gate process. At each gate, **Supply Chain must certify readiness** based on defined criteria:
