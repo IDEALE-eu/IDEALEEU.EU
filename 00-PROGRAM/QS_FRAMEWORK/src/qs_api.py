@@ -71,7 +71,9 @@ class QSAPI:
             >>> qs_field = api.create(design_space, evidence, constraints)
         """
         if version is None:
-            timestamp = datetime.utcnow().strftime("%Y_Q%m")
+            now = datetime.utcnow()
+            quarter = (now.month - 1) // 3 + 1
+            timestamp = f"{now.year}_Q{quarter}"
             version = f"QS_{timestamp}_v1"
         
         if metadata is None:
