@@ -33,7 +33,10 @@ jobs:
 
       - name: Build JupyterLite site
         run: |
-          jupyter lite build             --contents notebooks             --output-dir _site             --lite-dir lite
+          jupyter lite build \
+            --contents notebooks \
+            --output-dir _site \
+            --lite-dir lite
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
