@@ -22,17 +22,15 @@ import sys
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-try:
-    import jsonschema
-except ImportError:
-    print("Error: jsonschema not installed. Run: pip install jsonschema")
-    sys.exit(1)
+def _import_or_exit(module_name: str, install_hint: str):
+    try:
+        return __import__(module_name)
+    except ImportError:
+        print(f"Error: {module_name} not installed. Run: pip install {install_hint}")
+        sys.exit(1)
 
-try:
-    import textstat
-except ImportError:
-    print("Error: textstat not installed. Run: pip install textstat")
-    sys.exit(1)
+jsonschema = _import_or_exit("jsonschema", "jsonschema")
+textstat = _import_or_exit("textstat", "textstat")
 
 
 class Colors:
