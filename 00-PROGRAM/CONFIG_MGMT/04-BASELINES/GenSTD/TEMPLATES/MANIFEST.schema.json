@@ -1,0 +1,255 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GenSTD Baseline Manifest",
+  "description": "Schema for GenSTD (Generalized Standardization Directive) baseline manifests with EHC compliance",
+  "type": "object",
+  "required": [
+    "id",
+    "source_otc",
+    "summary_150w",
+    "owner",
+    "audience",
+    "acronyms_link",
+    "repro_time_min",
+    "docs",
+    "diagram",
+    "hash",
+    "rfc_ids",
+    "cab_approval",
+    "otc_override"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique GenSTD baseline identifier",
+      "pattern": "^GenSTD-(I|II|III|IV)-[0-9]{4}-[0-9]{4}$",
+      "examples": ["GenSTD-III-2025-0012", "GenSTD-I-2025-0001"]
+    },
+    "source_otc": {
+      "type": "string",
+      "description": "Source OtC baseline identifier",
+      "pattern": "^OtC-[α-ωΩ]-[0-9]{4}-[0-9]{4}$",
+      "examples": ["OtC-δ-2025-0007", "OtC-Ω-2025-0015"]
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["I", "II", "III", "IV"],
+      "description": "GenSTD tier level"
+    },
+    "summary_150w": {
+      "type": "string",
+      "description": "Executive summary in 150 words or less, answering: what, why, impact, risk",
+      "maxLength": 1000
+    },
+    "owner": {
+      "type": "object",
+      "required": ["name", "role"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Baseline owner name"
+        },
+        "role": {
+          "type": "string",
+          "description": "Baseline owner role",
+          "examples": ["Configuration Manager", "Chief Engineer", "System Architect"]
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email"
+        }
+      }
+    },
+    "audience": {
+      "type": "array",
+      "description": "Target audiences for this baseline",
+      "items": {
+        "type": "string",
+        "enum": ["CM", "QA", "Ops", "Engineering", "Security", "Compliance", "Management"]
+      },
+      "minItems": 1
+    },
+    "acronyms_link": {
+      "type": "string",
+      "description": "Path to local GLOSSARY.md that maps terms to Org Glossary",
+      "examples": ["GLOSSARY.md", "./GLOSSARY.md"]
+    },
+    "repro_time_min": {
+      "type": "integer",
+      "description": "Time in minutes to reproduce from clean machine",
+      "minimum": 1,
+      "maximum": 15
+    },
+    "docs": {
+      "type": "array",
+      "description": "Required EHC documentation artifacts",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 4,
+      "examples": [["SUMMARY.md", "RUNBOOK.md", "DECISIONS.md", "RISKS.md"]]
+    },
+    "diagram": {
+      "type": "string",
+      "description": "Path to single-page explanatory diagram (PNG or SVG)",
+      "pattern": "^DIAGRAM\\.(png|svg)$",
+      "examples": ["DIAGRAM.svg", "DIAGRAM.png"]
+    },
+    "hash": {
+      "type": "string",
+      "description": "SHA-256 hash of the baseline content",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "examples": ["sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"]
+    },
+    "rfc_ids": {
+      "type": "array",
+      "description": "Request for Change identifiers that led to this baseline",
+      "items": {
+        "type": "string",
+        "pattern": "^RFC-[0-9]{4}-[0-9]{3,4}$"
+      },
+      "minItems": 1,
+      "examples": [["RFC-2025-103", "RFC-2025-104"]]
+    },
+    "cab_approval": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of CAB approval (YYYY-MM-DD)"
+    },
+    "cab_minutes": {
+      "type": "string",
+      "description": "Link to CAB meeting minutes",
+      "examples": ["../../05-CCB/MINUTES/2025-10-15-CAB.md"]
+    },
+    "otc_override": {
+      "type": "boolean",
+      "description": "Whether this GenSTD can override OtC baselines (false for most cases)"
+    },
+    "created_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date baseline was created (YYYY-MM-DD)"
+    },
+    "frozen_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date baseline was frozen (YYYY-MM-DD)"
+    },
+    "compliance": {
+      "type": "array",
+      "description": "Standards and compliance references this baseline addresses",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["ISO 9001:2015 Clause 7.5", "ARP4754A Section 5.2"]]
+    },
+    "ci_items": {
+      "type": "array",
+      "description": "Configuration items included in this baseline",
+      "items": {
+        "type": "object",
+        "required": ["pn", "rev", "ci_type", "sha256"],
+        "properties": {
+          "pn": {
+            "type": "string",
+            "description": "Part number or identifier"
+          },
+          "rev": {
+            "type": "string",
+            "description": "Revision"
+          },
+          "ci_type": {
+            "type": "string",
+            "enum": ["EBOM", "MBOM", "SW", "ICD", "PROC", "DOC", "MODEL", "STANDARD"],
+            "description": "Configuration item type"
+          },
+          "path": {
+            "type": "string",
+            "description": "Relative path to artifact"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "SHA-256 hash"
+          }
+        }
+      }
+    },
+    "interfaces": {
+      "type": "array",
+      "description": "Interface Control Documents referenced",
+      "items": {
+        "type": "string",
+        "pattern": "^ICD-[0-9]{4}@[0-9]+\\.[0-9]+$"
+      }
+    },
+    "changes_from_otc": {
+      "type": "array",
+      "description": "List of changes made from OtC source to this GenSTD baseline",
+      "items": {
+        "type": "object",
+        "required": ["description", "rationale"],
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Brief description of change"
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Why this change was necessary"
+          },
+          "eco_ref": {
+            "type": "string",
+            "description": "ECO reference if applicable"
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "description": "EHC validation results",
+      "properties": {
+        "ehc_compliant": {
+          "type": "boolean",
+          "description": "Whether baseline passes EHC validation"
+        },
+        "readability_score": {
+          "type": "number",
+          "description": "Flesch-Kincaid readability score (target: 10-12)",
+          "minimum": 0,
+          "maximum": 20
+        },
+        "word_count": {
+          "type": "integer",
+          "description": "Word count of SUMMARY.md (target: ≤150)"
+        },
+        "diagram_present": {
+          "type": "boolean",
+          "description": "Whether diagram file exists"
+        },
+        "runbook_tested": {
+          "type": "boolean",
+          "description": "Whether RUNBOOK.md has been tested"
+        },
+        "validated_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of validation"
+        },
+        "validator": {
+          "type": "string",
+          "description": "Name of person who validated"
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Searchable tags for this baseline",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["hydrogen", "cryogenics", "safety-critical"]]
+    }
+  }
+}
