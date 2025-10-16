@@ -1,4 +1,6 @@
-# MLQP for GENCMS + CSDB (starter)
+# MLQP for GenCMS + CSDB (starter)
+
+**GenCMS** = **Gen**erative **C**ontent and **M**anagement **S**ystem (LLM-powered with agent workflows)
 
 Scope: qualify DM/PM/IETP through agents, dual control, audit, and evidence.
 

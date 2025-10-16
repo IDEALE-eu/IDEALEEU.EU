@@ -9,9 +9,23 @@ owner: "Certification Manager"
 
 ## Overview
 
-This Multi-Layer Qualification Plan (MLQP) starter kit provides a comprehensive framework for qualifying Data Modules (DM), Publication Modules (PM), and Interactive Electronic Technical Publications (IETP) within the GENCMS (Generic Content Management System) and CSDB (Common Source Database) environment.
+This Multi-Layer Qualification Plan (MLQP) starter kit provides a comprehensive framework for qualifying Data Modules (DM), Publication Modules (PM), and Interactive Electronic Technical Publications (IETP) within the **GenCMS** (**Gen**erative **C**ontent and **M**anagement **S**ystem) and CSDB (Common Source Database) environment.
+
+**GenCMS** is an LLM-powered system with agent workflows and third-party integrations governed by SLAs. This MLQP framework provides the necessary qualification controls, audit trails, and governance mechanisms to ensure AI-generated and human-curated technical content meets aerospace certification standards.
 
 The kit implements a defense-in-depth approach with automated validation, human oversight, security controls, audit trails, and evidence collection to ensure data quality and compliance with S1000D standards.
+
+## GenCMS Architecture
+
+GenCMS leverages Large Language Models (LLMs) and agent workflows to automate technical publication generation while maintaining aerospace-grade quality:
+
+- **LLM-Powered Content Generation**: AI assists in creating and maintaining technical documentation
+- **Agent Workflows**: Automated validation agents (Schema, BREX, DMRL, RefIntegrity) ensure compliance
+- **Third-Party Integrations**: External validators and tools integrated via defined endpoints
+- **SLA Governance**: Review deadlines, approval requirements, and escalation paths ensure timely quality control
+- **Human-in-the-Loop**: Dual approval and separation of duties maintain oversight of AI-generated content
+
+This MLQP framework provides the necessary governance to qualify GenCMS outputs for aerospace certification.
 
 ## Purpose
 
