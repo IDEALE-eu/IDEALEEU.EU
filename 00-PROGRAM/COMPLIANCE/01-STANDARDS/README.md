@@ -22,6 +22,7 @@ Maintain current, controlled versions of all standards applicable to aircraft an
 - **Quality Standards**: AS9100, ISO 9001, ISO 10007 (Configuration Management)
 - **Security Standards**: ISO 27001, DO-326A/355A/356A (Cybersecurity)
 - **Safety Standards**: ISO 14971, ARP4761, MIL-STD-882E
+- **Environmental Standards**: ISO 14001 (Environmental Management Systems), ISO 14040/14044 (Life Cycle Assessment), REACH, RoHS, WEEE
 
 ### Applicability Matrix
 Document which standards apply to which:
@@ -62,6 +63,7 @@ Controlled copies organized by:
 - `QUALITY/` - AS9100, ISO standards
 - `SAFETY/` - Safety and risk standards
 - `SECURITY/` - Cybersecurity and data protection
+- `ENVIRONMENTAL/` - Environmental management and compliance standards
 
 ## Standard Access Control
 
