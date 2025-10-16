@@ -18,3 +18,6 @@ export * from './network';
 
 // Export all integration types
 export * from './integration';
+
+// Export all CAS (CAx Services) types
+export * from './cas';

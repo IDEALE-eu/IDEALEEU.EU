@@ -67,6 +67,15 @@ SEALING bridges the gap between:
 - SLOs/SLIs with error budgets
 - Promotion gates between environments
 
+### 8. CAS - CAx Services (`types/cas.ts`)
+- CAx change event detection and classification
+- Automated work order generation
+- Technical publication real-time updates
+- Maintenance workflow automation
+- Change propagation and impact analysis
+- Repository impact analysis
+- CAS automation engine with rules
+
 ## Integration with IDEALE-EU
 
 ### Connection to PRDs
