@@ -23,12 +23,6 @@ The Telescopes product line encompasses the design, development, and operation o
 - Enable multi-wavelength observation capabilities
 - Achieve scientific performance targets with mission requirements
 
-### 2.1 Purpose and Scope
-- Design advanced optical and sensor systems for space observation
-- Support astronomical research and Earth observation
-- Enable multi-wavelength observation capabilities
-- Achieve scientific performance targets with mission requirements
-
 ### 2.2 Product Context
 - Position: Specialized optical spacecraft product line
 - Integration: Spacecraft bus, ground data systems, science teams
