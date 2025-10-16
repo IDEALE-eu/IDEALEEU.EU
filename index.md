@@ -112,13 +112,13 @@ IDEALE-EU captures complete engineering evolution across all Computer-Aided phas
 ```mermaid
 graph LR
     A[CAD Design] --> B[CAE Analysis]
-    B --> C[CAI Innovation]
+    B --> C[CAI Integration]
     C --> D[CAO Optimization]
     D --> E[CAM Manufacturing]
     E --> F[CAP Planning]
     F --> G[CAV Validation]
     G --> H[CMP Management]
-    H --> I[CAS Styling]
+    H --> I[CAS Services]
     I -.Feedback.-> A
     
     style A fill:#3B82F6
@@ -128,9 +128,9 @@ graph LR
 
 **Design phases**: **CAD** (Computer-Aided Design) creates 3D models with parametric design capture and version control. **CAE** (Computer-Aided Engineering) performs FEA, CFD, and MDO with simulation results QS-anchored. **CAI** (Computer-Aided Innovation) applies TRIZ and creative problem-solving with ideation provenance tracked. **CAO** (Computer-Aided Optimization) executes automated design space exploration with optimization iterations recorded.
 
-**Manufacturing phases**: **CAM** (Computer-Aided Manufacturing) generates CNC toolpaths and additive manufacturing strategies. **CAP** (Computer-Aided Planning) defines assembly sequences and resource allocation. **CMP** (Component Management Process) tracks configuration across production lifecycle.
+**Manufacturing phases**: **CAM** (Computer-Aided Manufacturing) generates CNC toolpaths and additive manufacturing strategies. **CAP** (Computer-Aided Planning) defines assembly sequences and resource allocation. **CMP** (Compliance Management Process) aids in evidence and product lifecycle certification.
 
-**Validation phases**: **CAV** (Computer-Aided Validation) conducts virtual and physical testing with certification evidence captured. **CAS** (Computer-Aided Styling) performs industrial design and human factors engineering.
+**Validation phases**: **CAV** (Computer-Aided Validation) conducts virtual and physical testing with certification evidence captured. **CAS** (Computer-Aided Services) performs industrial customer service and operational support 
 
 **"To scale" methodology**: Addresses non-linear scaling physics where turbulent mixing, combustion dynamics, and aerodynamic effects don't simply multiply with size. Each phase re-validated when scaling prototype designs to production aircraft. Digital twin predictions verified against actual performance data. Federated learning captures fleet-wide scaling insights. Configuration management ensures traceability across scale transitions.
 
