@@ -217,7 +217,7 @@ export function addCertificate(
   const validFromDate = new Date(validFrom)
   const validUntilDate = new Date(validUntil)
 
-  const status: 'VALID' | 'EXPIRED' | 'REVOKED' | 'PENDING' =
+  const status: 'VALID' | 'EXPIRED' | 'PENDING' =
     now < validFromDate ? 'PENDING' :
     now > validUntilDate ? 'EXPIRED' :
     'VALID'
