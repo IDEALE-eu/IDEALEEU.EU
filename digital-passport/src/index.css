@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  /* OKLCH Color System - Aerospace Authority */
+  --color-aerospace-blue: oklch(0.35 0.12 250);
+  --color-aerospace-blue-deep: oklch(0.25 0.12 250);
+  --color-titanium-gray: oklch(0.55 0.01 260);
+  --color-quantum-violet: oklch(0.45 0.15 300);
+  --color-verification-green: oklch(0.65 0.15 145);
+  --color-white: oklch(0.98 0 0);
+  --color-card-surface: oklch(0.96 0.01 260);
+  --color-muted-bg: oklch(0.94 0.005 260);
+  --color-muted-fg: oklch(0.45 0.01 260);
+
+  /* Domain Colors - 15 TFA Domains */
+  --color-domain-aaa: oklch(0.55 0.15 250); /* Airframes - Blue */
+  --color-domain-aap: oklch(0.60 0.12 280); /* Airport - Blue-Violet */
+  --color-domain-ccc: oklch(0.50 0.18 320); /* Cockpit - Violet */
+  --color-domain-cqh: oklch(0.45 0.20 300); /* Cryogenics - Purple */
+  --color-domain-ddd: oklch(0.58 0.14 200); /* Drainage - Cyan */
+  --color-domain-edi: oklch(0.52 0.16 260); /* Electronics - Blue */
+  --color-domain-eee: oklch(0.62 0.17 95); /* Electrical - Yellow */
+  --color-domain-eer: oklch(0.56 0.18 145); /* Environmental - Green */
+  --color-domain-iif: oklch(0.48 0.12 240); /* Industrial - Dark Blue */
+  --color-domain-iis: oklch(0.54 0.15 290); /* Information - Violet */
+  --color-domain-lcc: oklch(0.60 0.16 50); /* Linkages - Orange */
+  --color-domain-lib: oklch(0.50 0.14 310); /* Logistics - Purple */
+  --color-domain-mmm: oklch(0.52 0.12 220); /* Mechanical - Blue */
+  --color-domain-ooo: oklch(0.58 0.15 180); /* Operations - Teal */
+  --color-domain-ppp: oklch(0.56 0.19 25); /* Propulsion - Red-Orange */
+
+  /* Verification Status Colors */
+  --color-status-verified: oklch(0.65 0.15 145);
+  --color-status-pending: oklch(0.72 0.14 95);
+  --color-status-failed: oklch(0.55 0.20 25);
+  --color-status-expired: oklch(0.60 0.02 260);
+  --color-status-drift: oklch(0.68 0.18 65);
+
+  /* Spacing based on PRD */
+  --spacing-card-padding: 1.5rem; /* 24px */
+  --spacing-card-compact: 1rem; /* 16px */
+  --spacing-section-gap: 2rem; /* 32px */
+  --spacing-content-gap: 1rem; /* 16px */
+  --spacing-badge-gap: 0.5rem; /* 8px */
+
+  /* Typography */
+  --font-family-sans: Inter, system-ui, -apple-system, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-[oklch(0.25_0.12_250)];
+    font-family: var(--font-family-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+    @apply font-bold text-[32px] tracking-[-0.02em] leading-[1.2];
+  }
+
+  h2 {
+    @apply font-semibold text-[24px] tracking-[-0.01em] leading-[1.3];
+  }
+
+  h3 {
+    @apply font-semibold text-[18px] tracking-[0em] leading-[1.4];
+  }
+
+  code, pre {
+    font-family: var(--font-family-mono);
+  }
+}

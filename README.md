@@ -9,6 +9,7 @@ Evidence-first platform for aerospace component traceability using **UTCS manife
 
 ## 🚀 Features
 
+- **Digital Passport Dashboard**: Interactive web application for browsing and managing aerospace component digital passports [View Demo](https://aerospace-digital-pa--Robbbo-T.github.app)
 - **QS-Anchored Digital Passports**: Immutable component provenance from design to retirement
 - **UTCS Integration**: **UiX Threading Context/Content/Cache and Structure/Style/Sheet** for evidence framework
 - **TFA**: **Threading Functional Architecture** with 15 canonical domains
@@ -29,6 +30,7 @@ Evidence-first platform for aerospace component traceability using **UTCS manife
 
 Visit our [documentation site](https://idealeeu.github.io/docs/) for comprehensive guides:
 
+- [Digital Passport Dashboard](https://idealeeu.github.io/digital-passport/) - Interactive demo application
 - [Quick Start Guide](https://idealeeu.github.io/docs/quick-start/)
 - [TFA Domains Reference](https://idealeeu.github.io/docs/tfa-domains/)
 - [CAx Lifecycle Overview](https://idealeeu.github.io/docs/cax-lifecycle/)
@@ -64,6 +66,8 @@ IDEALE-EU Platform
 
 ## 📖 Quick Start
 
+### Jekyll Documentation Site
+
 ```bash
 # Clone repository
 git clone https://github.com/idealeeu/idealeeu.git
@@ -76,6 +80,33 @@ bundle exec jekyll serve
 
 # Visit http://localhost:4000
 ```
+
+### Digital Passport Dashboard
+
+The interactive Digital Passport Dashboard is a React application that demonstrates the platform's capabilities:
+
+```bash
+# Navigate to the dashboard directory
+cd digital-passport
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Visit http://localhost:5173/digital-passport/
+```
+
+**Features:**
+- Browse aerospace component digital passports
+- Multi-faceted filtering (domain, phase, status)
+- Real-time statistics dashboard
+- UTCS manifest viewer
+- QS/CB anchoring indicators
+- Templates library (coming soon)
+
+See [digital-passport/README.md](./digital-passport/README.md) for more details.
 
 ## 🌐 TFA Canonical Domains
 
