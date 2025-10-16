@@ -1,0 +1,8 @@
+[{
+  "object_id": "PM-001",
+  "count": 2,
+  "approvals": [
+    {"user":"revA","groups":["G-Review"]},
+    {"user":"qaB","groups":["G-QA"]}
+  ]
+}]

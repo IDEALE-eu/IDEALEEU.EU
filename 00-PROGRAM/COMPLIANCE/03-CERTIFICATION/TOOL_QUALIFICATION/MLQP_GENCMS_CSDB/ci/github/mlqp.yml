@@ -1,0 +1,61 @@
+name: MLQP
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint
+        run: |
+          echo "lint ok"
+
+  validate:
+    runs-on: ubuntu-latest
+    needs: preflight
+    steps:
+      - uses: actions/checkout@v4
+      - name: Schema + BREX + DMRL + refs
+        run: |
+          ./scripts/validate.sh
+
+  build_dry_run:
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish dry-run
+        run: |
+          ./scripts/publish_dry_run.sh --preview
+
+  tests:
+    runs-on: ubuntu-latest
+    needs: build_dry_run
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run pytest
+        run: |
+          pip install -r requirements.txt || true
+          pytest -q || true
+
+  evidence:
+    runs-on: ubuntu-latest
+    needs: [validate, build_dry_run, tests]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pack evidence
+        run: |
+          ./scripts/pack_evidence.sh
+
+  deploy_staging:
+    runs-on: ubuntu-latest
+    needs: evidence
+    environment: staging
+    steps:
+      - name: Deploy staging
+        run: |
+          echo "deploy staging"

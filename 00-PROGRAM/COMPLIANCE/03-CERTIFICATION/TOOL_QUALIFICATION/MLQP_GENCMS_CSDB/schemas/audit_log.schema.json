@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/audit_log.schema.json",
+  "title": "GENCMS Audit Log Entry",
+  "type": "object",
+  "required": ["ts","request_id","actor","action","object","outcome"],
+  "properties": {
+    "ts": {"type": "string", "format": "date-time"},
+    "request_id": {"type": "string"},
+    "actor": {
+      "type": "object",
+      "required": ["id","type","roles","groups"],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"type": "string", "enum": ["user","service"]},
+        "roles": {"type": "array", "items": {"type": "string"}},
+        "groups": {"type": "array", "items": {"type": "string"}},
+        "clearance": {"type": "integer", "minimum": 0}
+      }
+    },
+    "action": {"type": "string"},
+    "object": {
+      "type": "object",
+      "required": ["id","type","state","audience","classification"],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"type": "string", "enum": ["DM","PM","ICN","IETP"]},
+        "state": {"type": "string"},
+        "audience": {"type": "array", "items": {"type": "string"}},
+        "classification": {"type": "integer", "minimum": 0},
+        "owner": {"type": "string"}
+      }
+    },
+    "outcome": {"type": "string", "enum": ["allow","deny","success","failure"]},
+    "reason": {"type": "string"},
+    "findings": {"type": "array", "items": {"type": "string"}},
+    "signature": {"type": "string"},
+    "extras": {"type": "object"}
+  }
+}

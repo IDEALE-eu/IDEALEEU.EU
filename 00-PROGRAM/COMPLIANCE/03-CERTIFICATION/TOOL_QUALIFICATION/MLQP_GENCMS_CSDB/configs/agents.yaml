@@ -1,0 +1,32 @@
+version: 1
+agents:
+  - name: SchemaValidator
+    endpoint: http://validator.local/schema/validate
+    timeout_s: 60
+    hard_fail: true
+  - name: BREXAgent
+    endpoint: http://validator.local/brex/check
+    timeout_s: 120
+    hard_fail: false
+  - name: DMRLChecker
+    endpoint: http://validator.local/dmrl/check
+    timeout_s: 60
+    hard_fail: true
+  - name: RefIntegrityAgent
+    endpoint: http://validator.local/refs/check
+    timeout_s: 60
+    hard_fail: true
+  - name: ApplicabilityAgent
+    endpoint: http://validator.local/apply/preview
+    timeout_s: 120
+    hard_fail: false
+  - name: EvidencePacker
+    endpoint: http://validator.local/evidence/pack
+    timeout_s: 60
+    hard_fail: true
+rbac:
+  engine: opa
+  policy: policies/rbac.rego
+sla:
+  review_due_days: 7
+  approvals_required: 2

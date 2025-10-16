@@ -1,1 +1,11 @@
 Tool_ID,Tool_Name,Tool_Version,Tool_Vendor,Qualification_Level,Usage_Description,TQL_Status,TOR_Reference,TQD_Reference,TQS_Reference,Qualified_Date,Review_Date,Owner,Notes
+TOOL-001,GCC Compiler,12.2.0,GNU,TQL-1,Compiles C/C++ source code to executable object code,Planned,,,,,2025-10-16,Software Team,"Development tool - generates airborne code"
+TOOL-002,LDRA Testbed,9.7.1,LDRA,TQL-3,Static code analysis and structural coverage analysis,Planned,,,,,2025-10-16,Verification Team,"Verification tool - determines test coverage"
+TOOL-003,Vivado Design Suite,2023.2,Xilinx/AMD,TQL-1,HDL synthesis and FPGA implementation,Planned,,,,,2025-10-16,Hardware Team,"Development tool - generates FPGA bitstream"
+TOOL-004,ModelSim,2023.1,Siemens,TQL-4,HDL simulation and functional verification,Assessment,,,,,2025-10-16,Verification Team,"Simulation outputs manually verified"
+TOOL-005,VectorCAST,23.0,Vector Software,TQL-2,Automated unit testing and coverage analysis,Planned,,,,,2025-10-16,Verification Team,"Generates test results for certification"
+TOOL-006,Polyspace,R2023b,MathWorks,TQL-3,Static code analysis - runtime error detection,Planned,,,,,2025-10-16,Quality Team,"Detects potential runtime errors"
+TOOL-007,Git,2.40.0,Open Source,TQL-5,Version control system,Assessment,,,,,2025-10-16,CM Team,"Configuration management - no qualification needed"
+TOOL-008,DOORS,9.7,IBM,TQL-5,Requirements management,Assessment,,,,,2025-10-16,Systems Team,"Requirements traceability - outputs verified manually"
+TOOL-009,Questa Formal,2023.1,Siemens,TQL-3,Formal property verification for HDL,Planned,,,,,2025-10-16,Verification Team,"Formal verification tool"
+TOOL-010,PrimeTime,2023.12,Synopsys,TQL-2,Static timing analysis,Planned,,,,,2025-10-16,Hardware Team,"Timing verification for ASIC/FPGA"

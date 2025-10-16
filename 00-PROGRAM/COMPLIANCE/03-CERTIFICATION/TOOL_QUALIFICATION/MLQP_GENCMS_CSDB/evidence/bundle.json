@@ -1,0 +1,28 @@
+{
+  "build_id": "example-20251016211607",
+  "timestamp": "2025-10-16T21:16:07Z",
+  "policy_version": "v1",
+  "inputs": {
+    "dm_list": ["DMC-AAA-BBB-CCC-00-10-10-01A-040A-A_en-US_001-00"],
+    "pm_id": "PM-001",
+    "brex_id": "BREX-001",
+    "dmrl_id": "DMRL-001",
+    "schemas_pack": "S1000D_Issue_6.0",
+    "containers": {"publish": "registry/publish@sha256:deadbeef"}
+  },
+  "validators": [
+    {"name": "SchemaValidator", "version": "1.0.0", "result": "pass", "findings": []},
+    {"name": "BREXAgent", "version": "1.0.0", "result": "advisory", "findings": []},
+    {"name": "DMRLChecker", "version": "1.0.0", "result": "pass", "findings": []},
+    {"name": "RefIntegrityAgent", "version": "1.0.0", "result": "pass", "findings": []}
+  ],
+  "artifacts": [
+    {"path": "out/ietp.zip", "type": "IETP", "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+    {"path": "out/report.log", "type": "LOG", "sha256": "1111111111111111111111111111111111111111111111111111111111111111"}
+  ],
+  "digests": {
+    "inputs_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+    "container_digests": {"publish": "sha256:deadbeef"}
+  },
+  "flags": []
+}

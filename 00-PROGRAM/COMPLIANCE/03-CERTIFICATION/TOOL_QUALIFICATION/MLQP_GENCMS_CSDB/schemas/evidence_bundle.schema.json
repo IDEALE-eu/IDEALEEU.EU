@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/schemas/evidence_bundle.schema.json",
+  "title": "GENCMS Evidence Bundle",
+  "type": "object",
+  "required": ["build_id","inputs","validators","artifacts","digests"],
+  "properties": {
+    "build_id": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "policy_version": {"type": "string"},
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "dm_list": {"type": "array", "items": {"type": "string"}},
+        "pm_id": {"type": "string"},
+        "brex_id": {"type": "string"},
+        "dmrl_id": {"type": "string"},
+        "schemas_pack": {"type": "string"},
+        "containers": {"type": "object"}
+      }
+    },
+    "validators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name","version","result"],
+        "properties": {
+          "name": {"type": "string"},
+          "version": {"type": "string"},
+          "result": {"type": "string", "enum": ["pass","fail","advisory"]},
+          "findings": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path","type","sha256"],
+        "properties": {
+          "path": {"type": "string"},
+          "type": {"type": "string", "enum": ["IETP","PDF","LOG","REPORT"]},
+          "sha256": {"type": "string"}
+        }
+      }
+    },
+    "digests": {
+      "type": "object",
+      "properties": {
+        "inputs_sha256": {"type": "string"},
+        "container_digests": {"type": "object"}
+      }
+    }
+  }
+}
