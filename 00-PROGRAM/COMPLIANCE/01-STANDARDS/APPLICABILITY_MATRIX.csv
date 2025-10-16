@@ -1,0 +1,28 @@
+Standard_ID,Standard_Title,Aircraft_AMPEL360,Spacecraft_Generic,Space_Telescopes,Satellites,Probes,Drones,Subsystem_Avionics,Subsystem_Structures,Subsystem_Propulsion,Subsystem_Power,Subsystem_Thermal,Phase_A_Concept,Phase_B_Preliminary,Phase_C_Detailed,Phase_D_Production,Phase_E_Operations,Phase_F_Disposal,Certification_EASA,Certification_FAA,Certification_ESA,Tailoring_Applied,Tailoring_Justification,Mandatory_Compliance
+DO-178C,Software Considerations in Airborne Systems,Yes,No,No,No,No,Yes,Yes,No,No,Yes,No,No,Yes,Yes,Yes,No,No,Yes,Yes,No,No,,Yes
+DO-254,Design Assurance Hardware,Yes,No,No,No,No,Yes,Yes,No,No,Yes,No,No,Yes,Yes,Yes,No,No,Yes,Yes,No,No,,Yes
+DO-160,Environmental Conditions Testing,Yes,No,No,No,No,Yes,Yes,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,No,Yes,Yes,No,No,,Yes
+ARP4754A,Aircraft System Development,Yes,No,No,No,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,Yes,Yes,No,No,,Yes
+ARP4761,Safety Assessment Process,Yes,Ref,Ref,Ref,Ref,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,Yes,Yes,Ref,No,,Yes
+CS-25,Large Aeroplanes Certification,Yes,No,No,No,No,No,Yes,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,,Yes
+Part-21,Product Certification Procedures,Yes,No,No,No,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,,Yes
+Part-145,Maintenance Organizations,Yes,No,No,No,No,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,No,Yes,Yes,Yes,Yes,No,No,,No
+ECSS-E-ST-10C,Space Engineering Systems,No,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,Yes,No,,Yes
+ECSS-M-ST-10C,Space Project Management,No,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,Yes,No,,Yes
+ECSS-Q-ST-10C,Space Product Assurance,No,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,Yes,No,,Yes
+ECSS-S-ST-00C,Space Systems Glossary,No,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,Yes,No,,No
+AS9100,Quality Management Aviation Space,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,,Yes
+ISO-9001,Quality Management Systems,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,,Yes
+ISO-10007,Configuration Management,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,,Yes
+ISO-14971,Risk Management,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,,Yes
+MIL-STD-882E,System Safety,Ref,Ref,Ref,Ref,Ref,Ref,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,Yes,Tailored for commercial aviation,No
+ISO-27001,Information Security Management,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,,Yes
+DO-326A,Airworthiness Security Process,Yes,No,No,No,No,Yes,Yes,No,No,Yes,No,No,Yes,Yes,Yes,Yes,No,Yes,Yes,No,No,,Yes
+DO-355A,Security Continuing Airworthiness,Yes,No,No,No,No,Yes,Yes,No,No,Yes,No,No,No,No,No,Yes,Yes,Yes,Yes,No,No,,No
+DO-356A,Airworthiness Security Methods,Yes,No,No,No,No,Yes,Yes,No,No,Yes,No,No,Yes,Yes,Yes,No,No,Yes,Yes,No,No,,Yes
+ISO-14001,Environmental Management Systems,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,,Yes
+ISO-14040,LCA Principles,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No,,No
+ISO-14044,LCA Requirements,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No,,No
+REACH,Chemical Compliance,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,,Yes
+RoHS,Hazardous Substances Restriction,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,,Yes
+WEEE,Waste Electrical Equipment,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,No,Yes,Yes,Yes,Yes,Yes,Yes,Yes,No,,Yes
