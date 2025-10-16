@@ -1,0 +1,5 @@
+[{
+  "actor": {"id":"user-low","clearance":1},
+  "object": {"classification":2},
+  "outcome": "deny"
+}]

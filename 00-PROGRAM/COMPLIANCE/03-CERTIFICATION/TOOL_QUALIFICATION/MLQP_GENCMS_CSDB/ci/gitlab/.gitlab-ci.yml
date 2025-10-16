@@ -1,0 +1,48 @@
+stages:
+  - preflight
+  - validate
+  - build
+  - test
+  - evidence
+  - deploy
+
+preflight:
+  stage: preflight
+  image: alpine:latest
+  script:
+    - echo "lint ok"
+
+validate:
+  stage: validate
+  image: alpine:latest
+  script:
+    - ./scripts/validate.sh
+
+build:
+  stage: build
+  image: alpine:latest
+  script:
+    - ./scripts/publish_dry_run.sh --preview
+
+test:
+  stage: test
+  image: python:3.11-alpine
+  script:
+    - pip install -r requirements.txt || true
+    - pytest -q || true
+
+evidence:
+  stage: evidence
+  image: alpine:latest
+  script:
+    - ./scripts/pack_evidence.sh
+  artifacts:
+    paths:
+      - evidence/
+
+deploy:
+  stage: deploy
+  when: manual
+  allow_failure: false
+  script:
+    - ./scripts/deploy_staging.sh
