@@ -291,38 +291,3 @@ Baselines capture certification states, requirement sets, design configurations,
 Semantic search with aerospace terminology, multilingual support, and faceted filtering by TFA domain, CAx phase, ATA chapter, program, certification status, supplier, dates, and component type.
 
 ```
-```
-
-
-**Advanced features** include full-text search across technical documents, CAD model search by geometry similarity, federated search across PLM, ERP, and IDEALE-EU, saved searches and alerts for new matching content, and API access for programmatic queries. Search index updated in real-time, respects access permissions (users only see authorized content), and provides relevance ranking with explanations.
-
-**Visual exploration** offers interactive architecture diagrams navigable to component details, timeline views showing program evolution, dependency graphs showing component relationships, and geographic views for distributed supply chains.
-
-## Join the aerospace digital transformation
-
-### Community and contribution
-
-IDEALE-EU thrives through aerospace industry collaboration. **Open integration** provides published APIs following OpenAPI 3.0 specification, SDK libraries in Python, Java, JavaScript, C++, example integrations with major PLM systems, and developer sandbox for testing. **Standards participation** includes active membership in Digital Standards Alliance, contributions to S1000D evolution with CSDB architecture, collaboration with IAQG for AS9100 digital compliance, and engagement with FAA/EASA on evidence anchoring acceptance.
-
-**Research partnerships** span university collaborations on federated learning, joint development with hydrogen propulsion programs, energy harvesting sensor integration projects, and quantum-resistant cryptography for long-term security. **Contributing** welcomes documentation improvements, integration examples and use cases, translation to additional languages, and security audits and vulnerability disclosure.
-
-### Contact and support
-
-**Enterprise inquiries**: contact@ideale-eu.aero for platform licensing, custom integration services, and training programs.  
-**Technical support**: support@ideale-eu.aero for implementation assistance and troubleshooting.  
-**Partnership opportunities**: partners@ideale-eu.aero for supplier integration, technology partnerships, and research collaboration.  
-**Regulatory liaison**: regulatory@ideale-eu.aero for certification authority engagement.
-
-**Resources**: Developer portal at `/developers`, technical documentation at `/docs`, API reference at `/api`, community forum at `/community`, webinar series on aerospace evidence anchoring, quarterly newsletter with industry updates, and annual user conference connecting the ecosystem.
-
-### Roadmap and innovation
-
-**2025 Focus**: Enhanced federated learning across 500+ aircraft fleet, quantum-resistant cryptography implementation, expanded H2 systems tracking for hydrogen demonstrators, energy harvesting sensor marketplace, and AI-powered compliance assistant. **2026 Goals**: Autonomous maintenance authorization via policy contracts, cross-OEM interoperability with common digital passport format, urban air mobility (UAM) platform support, space systems extension for satellite tracking, and regulatory approval for QS-anchored legal records.
-
-**Long-term vision**: Complete elimination of paper aerospace records, real-time global aerospace supply chain transparency, autonomous certification processes with AI and evidence anchoring, democratized access to aerospace innovation through open standards, and sustainable aviation enabled by provenance and traceability.
-
----
-
-**IDEALE-EU**: Securing aerospace's future, one digital passport at a time.
-
-*Built on UTCS manifests | Powered by PLUMA automation | QS evidence anchoring | Trusted by aerospace innovators worldwide*
