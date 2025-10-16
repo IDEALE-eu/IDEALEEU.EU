@@ -463,9 +463,10 @@ export function validateSafetyRequirements(system: EmbeddedSystem): {
   })
 
   // Check fault detection
-  const requiredMechanisms = ['CRC', 'WATCHDOG']
-  const hasRequired = requiredMechanisms.every(m => 
-    system.safety.fault_detection.mechanisms.includes(m as any)
+  const requiredMechanisms = ['CRC', 'WATCHDOG'] as const
+  type Mechanism = typeof requiredMechanisms[number]
+  const hasRequired = requiredMechanisms.every((m: Mechanism) => 
+    system.safety.fault_detection.mechanisms.includes(m)
   )
   checks.push({
     requirement: 'Fault Detection Mechanisms',
