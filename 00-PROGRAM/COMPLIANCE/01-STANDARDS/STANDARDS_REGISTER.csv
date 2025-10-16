@@ -1,0 +1,28 @@
+Standard_ID,Title,Version,Effective_Date,Issuing_Body,Category,Applicability_Scope,Status,Supersedes,Superseded_By,Procurement_Source,Access_Method,Notes
+DO-178C,Software Considerations in Airborne Systems and Equipment Certification,C,2012-01-13,RTCA,Aviation,Aircraft software development,Active,DO-178B,,RTCA Store,Controlled copy,Core software standard for airborne systems
+DO-254,Design Assurance Guidance for Airborne Electronic Hardware,A,2000-04-19,RTCA,Aviation,Aircraft hardware development,Active,,,RTCA Store,Controlled copy,Hardware development standard
+DO-160,Environmental Conditions and Test Procedures for Airborne Equipment,G,2010-12-08,RTCA,Aviation,Aircraft equipment testing,Active,DO-160F,,RTCA Store,Controlled copy,Environmental qualification standard
+ARP4754A,Guidelines for Development of Civil Aircraft and Systems,A,2010-12-21,SAE,Aviation,Aircraft system development,Active,ARP4754,,SAE Store,Controlled copy,System-level development process
+ARP4761,Guidelines and Methods for Conducting the Safety Assessment Process,1996,1996-12-01,SAE,Aviation/Safety,Aircraft safety analysis,Active,,,SAE Store,Controlled copy,Safety assessment methodology
+CS-25,Certification Specifications for Large Aeroplanes,Amendment 27,2023-07-01,EASA,Aviation,Large aircraft certification,Active,CS-25 Amd 26,,EASA website,Public access,European certification basis
+Part-21,Certification Procedures for Products and Parts,Amendment 15,2023-10-19,EASA,Aviation,Product certification,Active,Part-21 Amd 14,,EASA website,Public access,Design organization approval
+Part-145,Approved Maintenance Organizations,Amendment 14,2023-03-21,EASA,Aviation,Maintenance organizations,Active,Part-145 Amd 13,,EASA website,Public access,Maintenance approval
+ECSS-E-ST-10C,Space Engineering - System Engineering General Requirements,Rev 1,2017-03-15,ECSS,Space,Spacecraft system engineering,Active,ECSS-E-ST-10C,,ECSS website,Public access,Core space systems engineering
+ECSS-M-ST-10C,Space Project Management - Project Planning and Implementation,Rev 1,2009-03-06,ECSS,Space,Space project management,Active,ECSS-M-10B,,ECSS website,Public access,Project management framework
+ECSS-Q-ST-10C,Space Product Assurance - Product Assurance Management,Rev 1,2017-03-15,ECSS,Space,Space quality assurance,Active,ECSS-Q-ST-10C,,ECSS website,Public access,Product assurance requirements
+ECSS-S-ST-00C,Space Systems - Glossary of Terms,Rev 1,2019-07-15,ECSS,Space,Space systems terminology,Active,ECSS-S-ST-00C,,ECSS website,Public access,Standard terminology
+AS9100,Quality Management Systems - Requirements for Aviation Space and Defense Organizations,Rev D,2016-09-15,IAQG,Quality,Quality management,Active,AS9100 Rev C,,SAE Store,Controlled copy,Aerospace quality standard
+ISO-9001,Quality Management Systems - Requirements,2015,2015-09-15,ISO,Quality,Quality management,Active,ISO 9001:2008,,ISO Store,Controlled copy,General quality standard
+ISO-10007,Quality Management - Guidelines for Configuration Management,2017,2017-09-01,ISO,Quality,Configuration management,Active,ISO 10007:2003,,ISO Store,Controlled copy,CM guidelines
+ISO-14971,Medical Devices - Application of Risk Management,2019,2019-12-01,ISO,Safety,Risk management,Active,ISO 14971:2007,,ISO Store,Controlled copy,Risk management framework
+MIL-STD-882E,Department of Defense Standard Practice - System Safety,E,2012-05-11,DoD,Safety,System safety,Active,MIL-STD-882D,,ASSIST website,Public access,Military system safety
+ISO-27001,Information Security Management Systems - Requirements,2013,2013-10-01,ISO,Security,Information security,Active,ISO 27001:2005,,ISO Store,Controlled copy,ISMS standard
+DO-326A,Airworthiness Security Process Specification,A,2014-12-04,RTCA,Security,Airworthiness security,Active,,,RTCA Store,Controlled copy,Security process specification
+DO-355A,Information Security Guidance for Continuing Airworthiness,A,2019-03-29,RTCA,Security,Security in maintenance,Active,,,RTCA Store,Controlled copy,Continuing airworthiness security
+DO-356A,Airworthiness Security Methods and Considerations,A,2018-08-17,RTCA,Security,Security methods,Active,,,RTCA Store,Controlled copy,Security implementation guidance
+ISO-14001,Environmental Management Systems - Requirements,2015,2015-09-15,ISO,Environmental,Environmental management,Active,ISO 14001:2004,,ISO Store,Controlled copy,EMS standard
+ISO-14040,Environmental Management - Life Cycle Assessment - Principles,2006,2006-07-01,ISO,Environmental,Life cycle assessment,Active,ISO 14040:1997,,ISO Store,Controlled copy,LCA principles
+ISO-14044,Environmental Management - Life Cycle Assessment - Requirements,2006,2006-07-01,ISO,Environmental,Life cycle assessment,Active,ISO 14041/42/43:1998,,ISO Store,Controlled copy,LCA requirements
+REACH,Registration Evaluation Authorization of Chemicals,Regulation 1907/2006,2007-06-01,EU,Environmental,Chemical compliance,Active,,,EUR-Lex,Public access,EU chemical regulation
+RoHS,Restriction of Hazardous Substances,Directive 2011/65/EU,2011-07-21,EU,Environmental,Hazardous substances,Active,Directive 2002/95/EC,,EUR-Lex,Public access,RoHS Directive
+WEEE,Waste Electrical and Electronic Equipment,Directive 2012/19/EU,2014-02-14,EU,Environmental,Waste management,Active,Directive 2002/96/EC,,EUR-Lex,Public access,WEEE Directive
