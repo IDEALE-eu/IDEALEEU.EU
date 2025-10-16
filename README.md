@@ -9,7 +9,7 @@ Evidence-first platform for aerospace component traceability using **UTCS manife
 
 ## 🚀 Features
 
-- **Digital Passport Dashboard**: Interactive web application for browsing and managing aerospace component digital passports ([View Demo](https://idealeeu.github.io/digital-passport/))
+- **Digital Passport Dashboard**: Interactive web application for browsing and managing aerospace component digital passports [View Demo](https://aerospace-digital-pa--Robbbo-T.github.app)
 - **QS-Anchored Digital Passports**: Immutable component provenance from design to retirement
 - **UTCS Integration**: **UiX Threading Context/Content/Cache and Structure/Style/Sheet** for evidence framework
 - **TFA**: **Threading Functional Architecture** with 15 canonical domains
