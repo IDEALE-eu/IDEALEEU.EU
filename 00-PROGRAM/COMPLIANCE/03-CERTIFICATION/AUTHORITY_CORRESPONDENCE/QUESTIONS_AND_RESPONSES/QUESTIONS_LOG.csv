@@ -1,1 +1,3 @@
 Question_ID,Date,Originator,Authority,Category,Question_Summary,Response_Summary,Response_Date,Status,Impact,Supporting_References,Disposition,Notes
+QR-001,2025-10-16,Applicant,EASA,Software,Request clarification on use of vendor-qualified compiler,Response pending,,Open,Medium,PSAC Section 5,Pending,"Submitted to EASA certification team"
+QR-002,2025-10-16,Applicant,FAA,Hardware,Alternative means of compliance for thermal testing,Response pending,,Open,High,PHAC Section 13,Pending,"Requires FAA ACO approval"
