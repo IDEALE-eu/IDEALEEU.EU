@@ -12,7 +12,7 @@ mermaid: true
 
 ## Revolutionary platform delivering
 
-**Immutable provenance** through **QS anchoring of UTCS manifests** ensures every component's history is cryptographically secured and instantly verifiable. **Complete lifecycle visibility** across all 9 CAx phases—from CAD design through CAS styling—provides unprecedented transparency. **TFA (Threading Functional Architecture)** with 15 canonical domains structures complex aerospace data for efficient management and retrieval. **PLUMA integration** automates lifecycle UiX workflows, reducing manual overhead by 80% while maintaining certification compliance.
+**Immutable provenance** through **QS anchoring of UTCS manifests** ensures every component's history is cryptographically secured and instantly verifiable. **Complete lifecycle visibility** across all 9 CAx phases—from CAD design through CAS sustainment and end or life—provides unprecedented transparency. **TFA (Threading Functional Architecture)** with 15 canonical domains structures complex aerospace data for efficient management and retrieval. **PLUMA integration** automates lifecycle UiX workflows, reducing manual overhead by 80% while maintaining certification compliance.
 
 The platform addresses aerospace's most critical challenges: counterfeit prevention saving the industry $1+ billion annually, instant certification verification reducing audit cycles from weeks to seconds, predictive maintenance through federated fleet learning, and sustainable technologies including H2 systems tracking and energy harvesting sensor integration.
 
