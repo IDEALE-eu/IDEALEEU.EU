@@ -7,3 +7,9 @@ dist/
 build/
 10-BUSINESS/FINANCE/06-REPORTING/rewardIT_LOG.csv
 /out/
+
+# Digital Passport App
+digital-passport/node_modules/
+digital-passport/dist/
+digital-passport/.env
+digital-passport/.env.local
