@@ -1,0 +1,304 @@
+{
+  "gpt_catalog": {
+    "version": "1.0",
+    "last_updated": "2025-10-17",
+    "total_gpts": 6,
+    "metadata": {
+      "registry_url": "https://esg.ideale-eu.aero/gpt-registry",
+      "certification_authority": "IDEALE-EU ESG Sustainability Team",
+      "standards": ["ISO 14001", "SA 8000", "GRI Standards"]
+    },
+    "tools": [
+      {
+        "gpt_id": "GPT-001",
+        "name": "Sustainable CAD Design Optimizer",
+        "category": "Design Tools",
+        "lifecycle_phase": "CAD",
+        "tfa_domains": ["AAA"],
+        "status": "Active",
+        "certification_date": "2025-01-15",
+        "next_review": "2026-01-15",
+        "supplier": {
+          "name": "GreenCAD Systems GmbH",
+          "country": "Germany",
+          "contact": "info@greencad-systems.de"
+        },
+        "integration": ["CATIA V6", "Siemens NX", "SolidWorks"],
+        "utcs_reference": "utcs://GPT/GPT-001/CAD-OPTIMIZER",
+        "key_indicators": {
+          "carbon_footprint_reduction": 32,
+          "material_efficiency": 28,
+          "energy_efficiency": 15,
+          "recyclability_index": 85,
+          "social_impact_score": 82,
+          "governance_transparency": 95
+        },
+        "transformation_value_annual": {
+          "economic": {
+            "cost_savings": 2500000,
+            "currency": "EUR"
+          },
+          "environmental": {
+            "co2e_avoided": 450,
+            "unit": "tonnes"
+          },
+          "social": {
+            "jobs_created": 15,
+            "job_type": "green engineering"
+          },
+          "innovation": {
+            "patents_filed": 3,
+            "description": "AI-powered material optimization algorithms"
+          }
+        },
+        "description": "AI-powered CAD tool that optimizes aircraft component designs for material efficiency, weight reduction, and recyclability while maintaining structural performance."
+      },
+      {
+        "gpt_id": "GPT-002",
+        "name": "Zero-Waste Manufacturing Process",
+        "category": "Manufacturing Process",
+        "lifecycle_phase": "CAM",
+        "tfa_domains": ["MMM", "IIF"],
+        "status": "Active",
+        "certification_date": "2025-02-20",
+        "next_review": "2026-02-20",
+        "supplier": {
+          "name": "EcoManufacturing Solutions AB",
+          "country": "Sweden",
+          "contact": "contact@ecomanufacturing.se"
+        },
+        "integration": ["Siemens PLM", "PTC Windchill"],
+        "utcs_reference": "utcs://GPT/GPT-002/ZERO-WASTE-MFG",
+        "key_indicators": {
+          "carbon_footprint_reduction": 45,
+          "material_efficiency": 92,
+          "energy_efficiency": 38,
+          "recyclability_index": 95,
+          "social_impact_score": 88,
+          "governance_transparency": 93
+        },
+        "transformation_value_annual": {
+          "economic": {
+            "cost_savings": 4800000,
+            "currency": "EUR"
+          },
+          "environmental": {
+            "co2e_avoided": 820,
+            "material_saved": 150,
+            "unit": "tonnes"
+          },
+          "social": {
+            "jobs_created": 28,
+            "job_type": "skilled manufacturing"
+          },
+          "innovation": {
+            "patents_filed": 0,
+            "description": "Industry 4.0 best practice implementation"
+          }
+        },
+        "description": "Advanced manufacturing process combining additive manufacturing, precision machining, and closed-loop material recycling to achieve near-zero waste production."
+      },
+      {
+        "gpt_id": "GPT-003",
+        "name": "Green Hydrogen System Analyzer",
+        "category": "Analysis Tool",
+        "lifecycle_phase": "CAE",
+        "tfa_domains": ["CQH", "PPP"],
+        "status": "Active",
+        "certification_date": "2025-03-10",
+        "next_review": "2026-03-10",
+        "supplier": {
+          "name": "HydroAero Technologies SA",
+          "country": "France",
+          "contact": "info@hydroaero.fr"
+        },
+        "integration": ["ANSYS Fluent", "MATLAB/Simulink"],
+        "utcs_reference": "utcs://GPT/GPT-003/H2-ANALYZER",
+        "key_indicators": {
+          "carbon_footprint_reduction": 95,
+          "material_efficiency": 22,
+          "energy_efficiency": 58,
+          "recyclability_index": 78,
+          "social_impact_score": 90,
+          "governance_transparency": 96
+        },
+        "transformation_value_per_program": {
+          "economic": {
+            "fuel_savings_20yr": 12000000,
+            "currency": "EUR"
+          },
+          "environmental": {
+            "co2e_avoided_annual": 15000,
+            "unit": "tonnes"
+          },
+          "social": {
+            "jobs_created": 45,
+            "job_type": "hydrogen technology specialists"
+          },
+          "innovation": {
+            "patents_filed": 5,
+            "description": "Green aviation pioneer status"
+          }
+        },
+        "description": "Comprehensive simulation and analysis tool for green hydrogen propulsion and storage systems, optimizing performance, safety, and environmental impact."
+      },
+      {
+        "gpt_id": "GPT-004",
+        "name": "Circular Economy Material Selector",
+        "category": "Design Support Tool",
+        "lifecycle_phase": "CAD",
+        "tfa_domains": ["MMM", "AAA"],
+        "status": "Active",
+        "certification_date": "2025-04-05",
+        "next_review": "2026-04-05",
+        "supplier": {
+          "name": "CircularAero Materials BV",
+          "country": "Netherlands",
+          "contact": "info@circulaero.nl"
+        },
+        "integration": ["PLM systems", "CAD plugins"],
+        "utcs_reference": "utcs://GPT/GPT-004/CIRCULAR-MATERIALS",
+        "key_indicators": {
+          "carbon_footprint_reduction": 38,
+          "material_efficiency": 35,
+          "energy_efficiency": 20,
+          "recyclability_index": 90,
+          "social_impact_score": 85,
+          "governance_transparency": 94
+        },
+        "transformation_value_annual": {
+          "economic": {
+            "cost_savings": 1800000,
+            "currency": "EUR"
+          },
+          "environmental": {
+            "co2e_avoided": 350,
+            "recycled_content": 280,
+            "unit": "tonnes"
+          },
+          "social": {
+            "jobs_created": 12,
+            "job_type": "circular economy specialists"
+          },
+          "innovation": {
+            "patents_filed": 0,
+            "description": "Certified sustainable material database"
+          }
+        },
+        "description": "AI-driven material selection tool that prioritizes recycled, bio-based, and circular economy materials while meeting aerospace certification requirements."
+      },
+      {
+        "gpt_id": "GPT-005",
+        "name": "Federated ESG Analytics Platform",
+        "category": "Analytics and Reporting",
+        "lifecycle_phase": "Data Systems",
+        "tfa_domains": ["IIS", "OOO"],
+        "status": "Active",
+        "certification_date": "2025-05-12",
+        "next_review": "2026-05-12",
+        "supplier": {
+          "name": "IDEALE-EU Internal Development",
+          "country": "EU",
+          "contact": "analytics@ideale-eu.aero"
+        },
+        "integration": ["Digital Passport Platform", "PLUMA"],
+        "utcs_reference": "utcs://GPT/GPT-005/FED-ESG-ANALYTICS",
+        "key_indicators": {
+          "carbon_footprint_reduction": 15,
+          "material_efficiency": 18,
+          "energy_efficiency": 42,
+          "recyclability_index": 65,
+          "social_impact_score": 92,
+          "governance_transparency": 98
+        },
+        "transformation_value_annual": {
+          "economic": {
+            "optimization_savings": 3200000,
+            "currency": "EUR"
+          },
+          "environmental": {
+            "co2e_avoided": 520,
+            "unit": "tonnes"
+          },
+          "social": {
+            "jobs_created": 35,
+            "job_type": "data science and ESG transparency"
+          },
+          "innovation": {
+            "patents_filed": 2,
+            "description": "Federated learning ESG benchmark"
+          }
+        },
+        "description": "Privacy-preserving federated learning platform for ESG data analytics, enabling fleet-wide sustainability insights without exposing proprietary data."
+      },
+      {
+        "gpt_id": "GPT-006",
+        "name": "Sustainable Supply Chain Tracker",
+        "category": "Logistics and Traceability",
+        "lifecycle_phase": "Supply Chain",
+        "tfa_domains": ["LIB", "MMM"],
+        "status": "Active",
+        "certification_date": "2025-06-18",
+        "next_review": "2026-06-18",
+        "supplier": {
+          "name": "ChainTrace Logistics AG",
+          "country": "Switzerland",
+          "contact": "info@chaintrace.ch"
+        },
+        "integration": ["SAP", "Oracle ERP", "IDEALE-EU Digital Passports"],
+        "utcs_reference": "utcs://GPT/GPT-006/SUPPLY-CHAIN-TRACKER",
+        "key_indicators": {
+          "carbon_footprint_reduction": 25,
+          "material_efficiency": 30,
+          "energy_efficiency": 35,
+          "recyclability_index": 72,
+          "social_impact_score": 95,
+          "governance_transparency": 99
+        },
+        "transformation_value_annual": {
+          "economic": {
+            "logistics_savings": 2100000,
+            "currency": "EUR"
+          },
+          "environmental": {
+            "co2e_avoided": 410,
+            "unit": "tonnes"
+          },
+          "social": {
+            "suppliers_verified": 500,
+            "fair_labor_enforced": true,
+            "description": "Fair labor standards for 500+ suppliers"
+          },
+          "innovation": {
+            "patents_filed": 1,
+            "description": "Blockchain ESG compliance standard"
+          }
+        },
+        "description": "Blockchain-enhanced supply chain tracking system with ESG compliance verification, ensuring ethical sourcing and environmental accountability."
+      }
+    ],
+    "aggregate_metrics": {
+      "total_carbon_reduction_avg": 41.7,
+      "total_annual_economic_value": 26400000,
+      "total_annual_co2e_avoided": 17040,
+      "total_jobs_created": 135,
+      "total_patents_filed": 11,
+      "currency": "EUR",
+      "unit_emissions": "tonnes CO2e"
+    },
+    "certification_criteria": {
+      "environmental": {
+        "min_carbon_reduction": 20,
+        "min_material_efficiency": 15,
+        "min_energy_efficiency": 25,
+        "min_recyclability": 60
+      },
+      "social": {
+        "min_impact_score": 75
+      },
+      "governance": {
+        "min_transparency": 90
+      }
+    }
+  }
+}

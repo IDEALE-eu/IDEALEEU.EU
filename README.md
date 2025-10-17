@@ -12,9 +12,11 @@ This is an AAMMPP Aerospace Assets Management, Maintenance and Procurement Platf
 - **Digital Passport Dashboard**: Interactive web application for browsing and managing aerospace component digital passports [View Demo](https://aerospace-digital-pa--Robbbo-T.github.app)
 - **9-Phase CAx Lifecycle**: Complete capture from CAD through CAS with "to scale" methodology. Computer Accelerated Process
 - **PLUMA Automation**: Product Lifecycle UiX Management Automation
+- **ESG Compliance Framework**: Green Performant Tools (GPT) with key indications for Produced Transformation Value
 - **H2 Systems Support**: Specialized tracking for hydrogen propulsion systems
 - **Federated Learning**: Privacy-preserving fleet-wide intelligence
 - **Energy Harvesting Integration**: Self-powered sensor networks for 30+ year lifecycles
+- **Sustainability Metrics**: Environmental, Social, and Governance (ESG) KPIs and transformation value tracking
 - **Flow**: **QS→FWD→UE→FE→CB→QB** for:
   - Pre-event superposition capture (QS - all possible outcomes)
   - Predictive wave dynamics (FWD)
@@ -46,11 +48,12 @@ IDEALE-EU Platform
 
 ## 🎯 Use Cases
 
-- **OEMs**: Complete product lifecycle management with QS-anchored provenance
-- **Suppliers**: Streamlined component registration and certification
-- **MRO Providers**: Instant access to complete maintenance history
-- **Certification Authorities**: Automated compliance verification and audit trails
-- **Airlines**: Fleet-wide insights through federated learning
+- **OEMs**: Complete product lifecycle management with QS-anchored provenance and ESG compliance tracking
+- **Suppliers**: Streamlined component registration, certification, and ESG verification
+- **MRO Providers**: Instant access to complete maintenance history and sustainability metrics
+- **Certification Authorities**: Automated compliance verification, audit trails, and ESG reporting
+- **Airlines**: Fleet-wide insights through federated learning and transformation value optimization
+- **Investors**: ESG performance data and Produced Transformation Value metrics for decision-making
 
 ## 🔧 Technology Stack
 
@@ -187,6 +190,22 @@ Example reference product:
 02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/
   MODELS/BWB-H2-Hy-E/VERSION/Q100/
 ```
+
+### ESG and Green Performant Tools (GPT)
+
+ESG compliance and sustainability framework:
+
+```
+00-PROGRAM/COMPLIANCE/12-ESG_SUSTAINABILITY/
+  ├── 01-ESG_FRAMEWORK/          # Policy, standards, governance
+  ├── 02-GREEN_PERFORMANT_TOOLS/ # GPT registry and catalog
+  ├── 03-KEY_INDICATORS/         # Environmental, social, governance KPIs
+  ├── 04-TRANSFORMATION_VALUE/   # Value metrics and ROI
+  ├── 05-REPORTING/              # ESG reports and dashboards
+  └── 06-CERTIFICATIONS/         # ISO 14001, SA 8000, GRI
+```
+
+**Green Performant Tools (GPT)**: Tools, processes, and methodologies qualified for ESG compliance with measurable transformation value across economic, environmental, social, and innovation dimensions.
 
 ---
 
