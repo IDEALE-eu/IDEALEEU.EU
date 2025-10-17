@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://idealeeu.eu/schemas/a360/asset.schema.json",
+  "title": "A360 Asset",
+  "description": "Asset definition for replaceable aerospace components in the A360 exchange network",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique asset identifier"
+    },
+    "partNo": {
+      "type": "string",
+      "description": "Part number from EBOM",
+      "pattern": "^[A-Z0-9-]+$"
+    },
+    "rev": {
+      "type": "string",
+      "description": "Revision level",
+      "pattern": "^[A-Z0-9.]+$"
+    },
+    "DPP_id": {
+      "type": "string",
+      "description": "Digital Product Passport identifier"
+    },
+    "SBOM_uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI to Software Bill of Materials (CRA compliance)"
+    },
+    "WEEE_cat": {
+      "type": "string",
+      "enum": [
+        "CAT-1",
+        "CAT-2",
+        "CAT-3",
+        "CAT-4",
+        "CAT-5",
+        "CAT-6",
+        "CAT-7"
+      ],
+      "description": "WEEE category classification"
+    },
+    "specs": {
+      "type": "object",
+      "description": "Technical specifications",
+      "properties": {
+        "mass_kg": {
+          "type": "number",
+          "minimum": 0
+        },
+        "dimensions_mm": {
+          "type": "object",
+          "properties": {
+            "length": { "type": "number" },
+            "width": { "type": "number" },
+            "height": { "type": "number" }
+          }
+        },
+        "power_W": {
+          "type": "number",
+          "minimum": 0
+        },
+        "voltage_V": {
+          "type": "number"
+        },
+        "operating_temp_C": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" }
+          }
+        },
+        "mtbf_hours": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Mean Time Between Failures"
+        }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "description": "Operating limits and thresholds",
+      "properties": {
+        "max_hours": {
+          "type": "number",
+          "description": "Maximum operating hours before replacement"
+        },
+        "max_cycles": {
+          "type": "number",
+          "description": "Maximum operational cycles"
+        },
+        "max_kWh": {
+          "type": "number",
+          "description": "Maximum energy consumption"
+        },
+        "calendar_life_months": {
+          "type": "number",
+          "description": "Calendar life from manufacturing"
+        }
+      }
+    },
+    "SoH": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "State of Health (0 = failed, 1 = new)"
+    },
+    "custody": {
+      "type": "array",
+      "description": "Custody chain history",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "custodian": {
+            "type": "string",
+            "description": "Organization holding custody"
+          },
+          "location": {
+            "type": "string",
+            "description": "Physical location"
+          },
+          "action": {
+            "type": "string",
+            "enum": ["received", "transferred", "installed", "removed", "inspected", "repaired"]
+          },
+          "proof": {
+            "type": "string",
+            "description": "Hash or signature proving custody transfer"
+          }
+        },
+        "required": ["timestamp", "custodian", "action"]
+      }
+    },
+    "utcs_anchor": {
+      "type": "string",
+      "pattern": "^utcs://",
+      "description": "UTCS traceability anchor"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata"
+    }
+  },
+  "required": [
+    "uuid",
+    "partNo",
+    "rev",
+    "DPP_id",
+    "WEEE_cat",
+    "specs",
+    "limits",
+    "SoH",
+    "custody"
+  ],
+  "additionalProperties": false
+}

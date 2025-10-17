@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://idealeeu.eu/schemas/a360/listing.schema.json",
+  "title": "A360 Listing",
+  "description": "Marketplace listing for component exchange",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique listing identifier"
+    },
+    "asset_uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Referenced asset"
+    },
+    "serial": {
+      "type": "string",
+      "description": "Unit serial number (if listing specific unit)"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Asking price in EUR"
+    },
+    "lot": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Quantity available"
+    },
+    "reserve": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Reserve price in EUR (for auctions)"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "active",
+        "reserved",
+        "sold",
+        "expired",
+        "cancelled"
+      ],
+      "description": "Current listing state"
+    },
+    "listing_type": {
+      "type": "string",
+      "enum": [
+        "fixed_price",
+        "auction",
+        "dutch_auction",
+        "request_for_quote"
+      ],
+      "description": "Type of listing"
+    },
+    "auction_end": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Auction end time (if applicable)"
+    },
+    "seller": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "verified": {
+          "type": "boolean"
+        }
+      },
+      "required": ["id", "name"]
+    },
+    "DPP_snapshot": {
+      "type": "object",
+      "description": "Snapshot of Digital Product Passport at listing time",
+      "properties": {
+        "DPP_id": {
+          "type": "string"
+        },
+        "completeness_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "compliance_status": {
+          "type": "string",
+          "enum": ["compliant", "partial", "non_compliant"]
+        }
+      }
+    },
+    "condition": {
+      "type": "object",
+      "properties": {
+        "SoH": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "hours_remaining": {
+          "type": "number",
+          "minimum": 0
+        },
+        "last_inspection": {
+          "type": "string",
+          "format": "date"
+        },
+        "warranty_until": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "shipping": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "available_from": {
+          "type": "string",
+          "format": "date"
+        },
+        "lead_time_days": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "incoterm": {
+          "type": "string",
+          "enum": ["EXW", "FCA", "CPT", "CIP", "DAP", "DPU", "DDP"]
+        }
+      }
+    },
+    "bids": {
+      "type": "array",
+      "description": "Current bids (for auctions)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "bidder_id": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "accepted", "rejected", "withdrawn"]
+          }
+        },
+        "required": ["bidder_id", "amount", "timestamp", "status"]
+      }
+    },
+    "fees": {
+      "type": "object",
+      "properties": {
+        "maker_fee_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "taker_fee_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "escrow_fee_eur": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "asset_uuid",
+    "price",
+    "lot",
+    "state",
+    "listing_type",
+    "seller",
+    "DPP_snapshot"
+  ],
+  "additionalProperties": false
+}

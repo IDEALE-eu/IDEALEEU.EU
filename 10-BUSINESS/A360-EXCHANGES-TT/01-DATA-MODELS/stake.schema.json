@@ -1,0 +1,183 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://idealeeu.eu/schemas/a360/stake.schema.json",
+  "title": "A360 Stake",
+  "description": "Teknia Token staking position",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique stake identifier"
+    },
+    "actor": {
+      "type": "string",
+      "description": "Staker identifier (organization or individual)"
+    },
+    "amount_TT": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Amount of Teknia Tokens staked"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "market_maker",
+        "service_provider",
+        "oracle",
+        "governance"
+      ],
+      "description": "Staking role"
+    },
+    "lock_until": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Lock-up period end date"
+    },
+    "slashing_rules": {
+      "type": "object",
+      "description": "Rules for slashing this stake",
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "violation": {
+                "type": "string",
+                "description": "Type of violation"
+              },
+              "slash_pct": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100,
+                "description": "Percentage of stake to slash"
+              },
+              "severity": {
+                "type": "string",
+                "enum": ["minor", "major", "critical"]
+              }
+            },
+            "required": ["violation", "slash_pct", "severity"]
+          }
+        },
+        "appeal_period_days": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Days allowed for appeal before slashing"
+        }
+      }
+    },
+    "rewards": {
+      "type": "object",
+      "description": "Accumulated rewards",
+      "properties": {
+        "trading_fees_TT": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Trading fees earned (market makers)"
+        },
+        "service_fees_TT": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Service fees earned (service providers)"
+        },
+        "attestation_fees_TT": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Attestation fees earned (oracles)"
+        },
+        "last_distribution": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "performance_metrics": {
+      "type": "object",
+      "description": "Performance tracking for the stake",
+      "properties": {
+        "uptime_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Service uptime percentage"
+        },
+        "sla_breaches": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of SLA breaches"
+        },
+        "quality_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Quality score (0-100)"
+        },
+        "response_time_ms": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Average response time"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "locked",
+        "unstaking",
+        "slashed",
+        "withdrawn"
+      ]
+    },
+    "slashing_events": {
+      "type": "array",
+      "description": "History of slashing events",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "violation": {
+            "type": "string"
+          },
+          "amount_slashed_TT": {
+            "type": "number"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "Reference to evidence"
+          },
+          "appealed": {
+            "type": "boolean"
+          },
+          "appeal_result": {
+            "type": "string",
+            "enum": ["upheld", "overturned", "pending"]
+          }
+        },
+        "required": ["timestamp", "violation", "amount_slashed_TT"]
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "actor",
+    "amount_TT",
+    "role",
+    "lock_until",
+    "slashing_rules",
+    "status"
+  ],
+  "additionalProperties": false
+}
