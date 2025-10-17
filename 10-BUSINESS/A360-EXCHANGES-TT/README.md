@@ -128,11 +128,13 @@ Utility + staking credit token
 **Total Supply:** S = 1,000,000,000 TT (1 billion tokens)
 
 **Distribution:**
-- 30% Ecosystem reserve
-- 20% Risk fund
-- 15% Market-maker reserve
-- 25% Incentives pool
-- 10% Team allocation
+- 28% Ecosystem reserve
+- 18% Risk fund
+- 14% Market-maker reserve
+- 22% Incentives pool
+- 18% Team & Contributors
+  - 10% Core team fixed allocation
+  - 8% Merit-based contribution pool (evaluated quarterly on effort, innovation, value, and fairness)
 
 ### Unit of Account
 - **Primary:** EUR (Euro)

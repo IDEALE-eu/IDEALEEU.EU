@@ -164,6 +164,7 @@ The A360exchanges-TT platform operates under a multi-stakeholder governance mode
 - Manage staking parameters
 - Oversee rewards distribution
 - Coordinate with exchanges
+- **Evaluate team merit-based contributions**
 
 **Decision Making:**
 - Quorum: 3 of 5 members
@@ -176,12 +177,54 @@ The A360exchanges-TT platform operates under a multi-stakeholder governance mode
 - Discount threshold tuning
 - Velocity management mechanisms
 - Token burn proposals
+- **Merit pool distribution approval**
 
 **Token Metrics Targets:**
 - Staking ratio: 20-30%
 - Velocity: 4-6 tx/token/quarter
 - Fee revenue coverage: ≥100% of operational costs
 - Liquidity depth: ≥€10M equivalent
+
+### 6. Contribution Evaluation Panel
+
+**Composition:**
+- 3 Technical Council members
+- 2 Strategic Board members
+- 1 Independent evaluator
+- Term: 1 year, renewable
+
+**Responsibilities:**
+- **Quarterly evaluation of team contributions**
+- Score contributors on effort, innovation, value, and fairness
+- Approve merit pool distributions
+- Review innovation bonus applications
+- Investigate contribution disputes
+
+**Decision Making:**
+- Quorum: 4 of 6 members
+- Approval: Simple majority (4 votes)
+- Appeals reviewed by full Strategic Board
+
+**Evaluation Process:**
+1. Collect contribution evidence (logs, code, deliverables)
+2. Conduct peer review (anonymous)
+3. Technical assessment by experts
+4. Fairness audit by independent evaluator
+5. Final scoring and distribution calculation
+6. 15-day appeal period
+7. Distribution execution
+
+**Key Metrics Evaluated:**
+- **Effort Dedication (30%)**: Hours, consistency, milestone completion
+- **Innovation Quality (35%)**: Novel solutions, patents, improvements
+- **Value Creation (25%)**: Code quality, adoption, revenue impact
+- **Decision-Making Fairness (10%)**: Transparency, collaboration, ethics
+
+**Distribution Formula:**
+```
+Individual Share = (Individual Score / Total Scores) × Quarterly Merit Pool
+Top 10% Bonus = Individual Share × 1.5 (for scores ≥90)
+```
 
 ## Token Holder Governance
 
@@ -400,19 +443,91 @@ Governance members must recuse from decisions where:
 4. <24 hours: Remediation plan
 5. <7 days: Post-mortem report
 
+## Decision-Making Fairness Framework
+
+### Principles
+
+**Core Values:**
+1. **Transparency**: All decisions publicly documented with rationale
+2. **Equity**: Equal opportunity for contribution recognition
+3. **Meritocracy**: Rewards based on demonstrated value, not seniority
+4. **Inclusivity**: Diverse perspectives actively sought and valued
+5. **Accountability**: Clear responsibility and consequences for decisions
+
+### Fairness Evaluation Metrics
+
+**Evaluated Quarterly:**
+
+**1. Decision Transparency Score (0-100)**
+- Documentation completeness: All decisions recorded (30 points)
+- Rationale clarity: Clear explanation of reasoning (30 points)
+- Stakeholder communication: Timely notification (20 points)
+- Data availability: Supporting evidence accessible (20 points)
+
+**2. Participation Equity Index (0-100)**
+- Voice distribution: Speaking time in meetings (25 points)
+- Idea attribution: Credit given to originators (25 points)
+- Access to information: Equal distribution (25 points)
+- Decision influence: Correlation between input and outcome (25 points)
+
+**3. Conflict Resolution Effectiveness (0-100)**
+- Time to resolution: Average days to resolve disputes (30 points)
+- Satisfaction rate: Post-resolution surveys (30 points)
+- Recurrence rate: Repeat conflicts (low = good) (20 points)
+- Appeal rate: Decisions appealed (low = good) (20 points)
+
+**4. Innovation Encouragement Score (0-100)**
+- Ideas solicited per member: Active seeking of input (25 points)
+- Implementation rate: Ideas actually adopted (30 points)
+- Risk tolerance: Support for experimental approaches (25 points)
+- Recognition given: Public acknowledgment of contributions (20 points)
+
+### Accountability Mechanisms
+
+**Performance Reviews:**
+- All governance members evaluated annually
+- 360-degree feedback from peers, team, community
+- Scores published in quarterly transparency reports
+- Underperformance triggers remediation plan
+
+**Consequence Framework:**
+
+| Fairness Score | Action |
+|----------------|--------|
+| 90-100 | Exemplary - bonus consideration |
+| 70-89 | Acceptable - continue monitoring |
+| 50-69 | Needs improvement - 90-day plan |
+| 30-49 | Serious concerns - probation |
+| 0-29 | Unacceptable - removal proceedings |
+
+**Removal Process:**
+- Two consecutive quarters <50 score
+- Single quarter <30 score
+- Sustained community feedback (petition by 10% TT holders)
+- Ethics violation substantiated by investigation
+
 ## Governance Compensation
 
 ### Strategic Board
-- €50,000/year per member
+- €50,000/year per member (base)
 - Paid 50% in EUR, 50% in TT (2-year vest)
+- **Fairness bonus**: +€10,000 for scores ≥90
 
 ### Committee Members
-- €30,000/year per member
+- €30,000/year per member (base)
 - Paid 50% in EUR, 50% in TT (1-year vest)
+- **Fairness bonus**: +€6,000 for scores ≥90
+
+### Team Contributors
+- **Fixed allocation**: Guaranteed minimum based on role
+- **Merit-based**: Quarterly distribution from 8% merit pool
+- **Innovation bonus**: Up to 5M TT for breakthrough contributions
+- All subject to fairness evaluation scoring
 
 ### Performance Bonuses
 - Up to 20% bonus based on platform KPIs
 - Paid annually in TT (2-year vest)
+- Weighted by individual fairness score
 
 ## Key Performance Indicators
 

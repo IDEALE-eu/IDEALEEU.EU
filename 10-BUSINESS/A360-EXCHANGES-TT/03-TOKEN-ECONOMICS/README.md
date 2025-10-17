@@ -19,11 +19,121 @@ This directory contains the Teknia Token (TT) economic model configuration for t
 
 | Allocation | Percentage | Amount (TT) | Lock Period | Purpose |
 |------------|-----------|-------------|-------------|---------|
-| Ecosystem Reserve | 30% | 300,000,000 | Rolling 2yr | Long-term ecosystem development |
-| Risk Fund | 20% | 200,000,000 | 4yr vest | Counterparty default coverage |
-| Market Maker Reserve | 15% | 150,000,000 | 1yr | Liquidity provision |
-| Incentives Pool | 25% | 250,000,000 | 3yr vest | User rewards and growth |
-| Team | 10% | 100,000,000 | 4yr vest | Core team allocation |
+| Ecosystem Reserve | 28% | 280,000,000 | Rolling 2yr | Long-term ecosystem development |
+| Risk Fund | 18% | 180,000,000 | 4yr vest | Counterparty default coverage |
+| Market Maker Reserve | 14% | 140,000,000 | 1yr | Liquidity provision |
+| Incentives Pool | 22% | 220,000,000 | 3yr vest | User rewards and growth |
+| Team & Contributors | 18% | 180,000,000 | 4yr vest | Core team + merit-based contribution rewards |
+
+**Team & Contributors Breakdown:**
+- 10% (100M TT): Core team fixed allocation (4yr vest)
+- 8% (80M TT): Merit-based contribution pool (evaluated quarterly)
+
+## Merit-Based Contribution System
+
+### Overview
+
+The 8% (80M TT) merit-based contribution pool recognizes and rewards team members based on:
+- **Effort Dedication**: Time and energy invested in platform development
+- **Innovation Quality**: Novel solutions and creative problem-solving
+- **Value Creation**: Measurable impact on platform success
+- **Decision-Making Fairness**: Equitable and transparent contribution to governance
+
+### Contribution Evaluation Framework
+
+#### Key Performance Indicators (KPIs)
+
+**1. Effort Dedication Metrics (30% weight)**
+- Hours committed to project (logged and verified)
+- Consistency of participation (attendance, responsiveness)
+- Project milestone completion rate
+- On-time delivery percentage
+
+**2. Innovation Scoring (35% weight)**
+- Novel technical solutions implemented
+- Patent-worthy contributions identified
+- Process improvements suggested and adopted
+- Research and development initiatives led
+- Creative problem-solving instances
+
+**3. Value Creation Metrics (25% weight)**
+- Code quality and maintainability scores
+- User adoption of features developed
+- Cost savings achieved through optimization
+- Revenue generated from contributions
+- Platform stability and performance improvements
+
+**4. Decision-Making Fairness (10% weight)**
+- Transparent communication practices
+- Collaborative approach in team decisions
+- Equitable treatment of all stakeholders
+- Ethical considerations in technical choices
+- Conflict resolution effectiveness
+
+### Evaluation Process
+
+**Quarterly Assessment:**
+1. **Self-reporting**: Team members log contributions with evidence
+2. **Peer review**: Anonymous peer evaluation (20% of score)
+3. **Technical Council review**: Expert assessment (40% of score)
+4. **Strategic Board approval**: Final validation (40% of score)
+
+**Scoring System:**
+- Each contributor receives a score: 0-100 points per quarter
+- Total pool distributed proportionally to scores
+- Minimum threshold: 60 points to qualify for distribution
+- Top 10% contributors receive 1.5x multiplier bonus
+
+**Distribution Schedule:**
+- Quarterly evaluation: March, June, September, December
+- Distribution: Within 30 days of evaluation completion
+- Vesting: 25% immediate, 75% over 12 months (quarterly)
+
+### Innovation Bonus Pool
+
+**Additional Incentive:** 10M TT from merit pool reserved for exceptional innovations:
+
+**Criteria for Innovation Bonus:**
+- **Game-changing feature**: Significant competitive advantage (5M TT)
+- **Patent filed**: Intellectual property creation (2M TT)
+- **Major efficiency gain**: >30% cost or time reduction (1M TT)
+- **Industry recognition**: Award or publication (1M TT)
+- **Security enhancement**: Critical vulnerability prevention (1M TT)
+
+**Payout Structure:**
+- 50% immediate upon validation
+- 50% vested over 24 months
+
+### Fairness Mechanisms
+
+**Transparency Requirements:**
+- All evaluation criteria published in advance
+- Scores and rationale shared with contributors
+- Appeals process available (15-day window)
+- Public dashboard showing aggregate statistics
+
+**Anti-Bias Measures:**
+- Anonymous peer review component
+- Multiple evaluator perspectives
+- Regular audits of evaluation fairness
+- Diversity and inclusion metrics tracked
+
+**Conflict Resolution:**
+- Dedicated ombudsperson role
+- Independent review panel for disputes
+- Binding arbitration as final resort
+
+### Fixed Effort Guarantees
+
+**Base Allocation (from 10% core team pool):**
+- Full-time contributors: Minimum 2M TT over 4 years (guaranteed)
+- Part-time contributors: Prorated based on commitment level
+- Contractors: Project-based allocation with clear milestones
+
+**Additional Merit-Based (from 8% merit pool):**
+- Variable based on quarterly performance
+- No guaranteed minimum from merit pool
+- Opportunity to earn 2-5x base allocation for top performers
 
 ## Fee Structure
 
