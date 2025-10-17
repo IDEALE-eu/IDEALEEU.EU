@@ -190,7 +190,7 @@ graph TB
 | **DDD** | Drainage-Dehumidification-Drying     | Moisture control, environmental conditioning          |
 | **EDI** | Electronics-Digital-Instruments      | Avionics, sensors, data acquisition                   |
 | **EEE** | Electrical-Endocircular-Energization | Power generation and distribution, energy harvesting  |
-| **EER** | Environmental-Emissions-Remediation  | Fire protection, pollution control, sustainability    |
+| **EER** | Environmental-Emissions-Remediation  | **Fire protection, pollution control, ESG sustainability** |
 | **IIF** | Industrial-Infrastructure-Facilities | Manufacturing, tooling, ground facilities             |
 | **IIS** | Information-Intelligence-Systems     | Software, AI, data analytics, cybersecurity           |
 | **LCC** | Linkages-Control-Communications      | Flight controls, datalinks, autonomy                  |
@@ -199,7 +199,7 @@ graph TB
 | **OOO** | Operations-Optimization-Outcomes     | Fleet operations, performance analytics               |
 | **PPP** | Propellers-Propellents-Propulsion    | Propulsion systems and fuel management                |
 
-Each domain aligns to ATA iSpec 2200. Publications integrate with **Centralized Source Database (CSDB)**.
+Each domain aligns to ATA iSpec 2200. Publications integrate with **Centralized Source Database (CSDB)**. ESG considerations are integrated across all domains, with **EER** serving as the primary ESG domain.
 
 ### CAx lifecycle: 9 phases “to scale”
 
