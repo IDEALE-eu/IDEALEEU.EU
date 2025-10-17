@@ -1,0 +1,179 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://idealeeu.eu/schemas/a360/unit.schema.json",
+  "title": "A360 Unit",
+  "description": "Individual serialized unit tracking for aerospace components",
+  "type": "object",
+  "properties": {
+    "serial": {
+      "type": "string",
+      "description": "Serial number",
+      "pattern": "^[A-Z0-9-]+$"
+    },
+    "asset_uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to parent asset definition"
+    },
+    "firmware_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "SHA-256 hash of current firmware (CRA compliance)"
+    },
+    "hours": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total operating hours"
+    },
+    "kWh": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total energy consumption in kilowatt-hours"
+    },
+    "cycles": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total operational cycles"
+    },
+    "errors": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Cumulative error count"
+    },
+    "thermals": {
+      "type": "array",
+      "description": "Thermal excursion history",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "temp_C": {
+            "type": "number",
+            "description": "Temperature in Celsius"
+          },
+          "duration_sec": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Duration of thermal event"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["nominal", "warning", "critical"]
+          }
+        },
+        "required": ["timestamp", "temp_C", "severity"]
+      }
+    },
+    "battery_SoH": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Battery State of Health (if applicable)"
+    },
+    "manufacture_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Manufacturing date"
+    },
+    "last_maintenance": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last maintenance event timestamp"
+    },
+    "next_maintenance_due": {
+      "type": "string",
+      "format": "date",
+      "description": "Next scheduled maintenance date"
+    },
+    "certifications": {
+      "type": "array",
+      "description": "Current certifications and approvals",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Certification type (e.g., FAI, ATP, recert)"
+          },
+          "authority": {
+            "type": "string",
+            "description": "Certifying authority"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "expires": {
+            "type": "string",
+            "format": "date"
+          },
+          "reference": {
+            "type": "string",
+            "description": "Certificate reference number"
+          }
+        },
+        "required": ["type", "authority", "date"]
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "in_service",
+        "maintenance",
+        "repair",
+        "storage",
+        "retired",
+        "scrapped"
+      ],
+      "description": "Current operational status"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Current owner organization"
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "facility": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "lat": { "type": "number" },
+            "lon": { "type": "number" }
+          }
+        }
+      }
+    },
+    "telemetry_uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI to real-time telemetry feed"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "serial",
+    "asset_uuid",
+    "hours",
+    "errors",
+    "status",
+    "manufacture_date"
+  ],
+  "additionalProperties": false
+}

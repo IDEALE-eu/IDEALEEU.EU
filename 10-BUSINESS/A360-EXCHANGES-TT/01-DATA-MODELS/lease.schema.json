@@ -1,0 +1,216 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://idealeeu.eu/schemas/a360/lease.schema.json",
+  "title": "A360 Lease",
+  "description": "Usage-metered lease contract for aerospace components",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique lease identifier"
+    },
+    "serial": {
+      "type": "string",
+      "description": "Unit serial number under lease"
+    },
+    "asset_uuid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "lessor": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "contact": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "lessee": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "contact": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Lease start date/time"
+    },
+    "end": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Lease end date/time"
+    },
+    "usage_caps": {
+      "type": "object",
+      "description": "Usage limits during lease period",
+      "properties": {
+        "max_hours": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_cycles": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_kWh": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "rates": {
+      "type": "object",
+      "description": "Pricing rates",
+      "properties": {
+        "base_rate_eur_per_day": {
+          "type": "number",
+          "minimum": 0
+        },
+        "usage_rate_eur_per_hour": {
+          "type": "number",
+          "minimum": 0
+        },
+        "overage_multiplier": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Multiplier for exceeding caps"
+        }
+      },
+      "required": ["base_rate_eur_per_day"]
+    },
+    "update_SLA": {
+      "type": "object",
+      "description": "Software/firmware update service level agreement",
+      "properties": {
+        "critical_update_hours": {
+          "type": "integer",
+          "description": "Max hours to apply critical updates"
+        },
+        "routine_update_days": {
+          "type": "integer",
+          "description": "Max days to apply routine updates"
+        },
+        "maintenance_window": {
+          "type": "string",
+          "description": "Scheduled maintenance window"
+        }
+      }
+    },
+    "battery_swap_rules": {
+      "type": "object",
+      "description": "Rules for battery replacement (if applicable)",
+      "properties": {
+        "swap_threshold_soh": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "SoH threshold triggering swap"
+        },
+        "responsibility": {
+          "type": "string",
+          "enum": ["lessor", "lessee", "shared"]
+        },
+        "cost_eur": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "collateral": {
+      "type": "object",
+      "description": "Collateral posted for lease",
+      "properties": {
+        "EUR": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Euro collateral amount"
+        },
+        "TT": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Teknia Token collateral amount"
+        },
+        "haircut_pct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Haircut applied to TT collateral"
+        }
+      },
+      "required": ["EUR", "TT"]
+    },
+    "insurance": {
+      "type": "object",
+      "properties": {
+        "policy_number": { "type": "string" },
+        "provider": { "type": "string" },
+        "coverage_eur": { "type": "number" },
+        "deductible_eur": { "type": "number" }
+      }
+    },
+    "usage_tracking": {
+      "type": "object",
+      "description": "Current usage against caps",
+      "properties": {
+        "hours_used": { "type": "number", "minimum": 0 },
+        "cycles_used": { "type": "integer", "minimum": 0 },
+        "kWh_used": { "type": "number", "minimum": 0 },
+        "last_reading": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "active",
+        "paused",
+        "completed",
+        "terminated",
+        "defaulted"
+      ]
+    },
+    "termination_clause": {
+      "type": "object",
+      "properties": {
+        "notice_days": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "early_termination_fee_eur": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "serial",
+    "asset_uuid",
+    "lessor",
+    "lessee",
+    "start",
+    "end",
+    "usage_caps",
+    "rates",
+    "collateral",
+    "status"
+  ],
+  "additionalProperties": false
+}
