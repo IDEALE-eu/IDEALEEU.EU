@@ -5,15 +5,12 @@
 [![TFA](https://img.shields.io/badge/TFA-Threading%20Functional%20Architecture-purple)](https://idealeeu.github.io/docs/tfa-domains/)
 [![License](https://img.shields.io/badge/license-See%20LICENSE-red)](LICENSE)
 
-Evidence-first platform for aerospace component traceability using **UTCS manifests**, **QS anchoring**, **TFA (Threading Functional Architecture)**, and PLUMA automation.
+This is an AAMMPP Aerospace Assets Management, Maintenance and Procurement Platform for aerospace components traceability using **UTCS headers** **User Experience Threading Context/Content/Cache and Structure/Style/Sheet**, **Quantu Superposition Hunting**, **TFA (Topic Functional Areas)**, and Product Lifecycle UiX Management (PLUMA) automation.
 
 ## 🚀 Features
 
 - **Digital Passport Dashboard**: Interactive web application for browsing and managing aerospace component digital passports [View Demo](https://aerospace-digital-pa--Robbbo-T.github.app)
-- **QS-Anchored Digital Passports**: Immutable component provenance from design to retirement
-- **UTCS Integration**: **UiX Threading Context/Content/Cache and Structure/Style/Sheet** for evidence framework
-- **TFA**: **Threading Functional Architecture** with 15 canonical domains
-- **9-Phase CAx Lifecycle**: Complete capture from CAD through CAS with "to scale" methodology
+- **9-Phase CAx Lifecycle**: Complete capture from CAD through CAS with "to scale" methodology. Computer Accelerated Process
 - **PLUMA Automation**: Product Lifecycle UiX Management Automation
 - **H2 Systems Support**: Specialized tracking for hydrogen propulsion systems
 - **Federated Learning**: Privacy-preserving fleet-wide intelligence
