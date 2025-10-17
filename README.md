@@ -5,7 +5,7 @@
 [![TFA](https://img.shields.io/badge/TFA-Threading%20Functional%20Architecture-purple)](https://idealeeu.github.io/docs/tfa-domains/)
 [![License](https://img.shields.io/badge/license-See%20LICENSE-red)](LICENSE)
 
-This is an AAMMPP Aerospace Assets Management, Maintenance and Procurement Platform for aerospace components quotation, exchanges and tracking using **UTCS headers** **User Experience Threading Context/Content/Cache and Structure/Style/Sheet**, **Quantum Supercomputing Hunting**, **TFA (Topic Functional Areas)**, and Product Lifecycle User Made automation (PLUMA)
+This is an AAMMPP Aerospace Assets Management, Maintenance and Procurement Platform (canonical name) for aerospace components quotation, exchanges and tracking using **UTCS headers** **User Experience Threading Context/Content/Cache and Structure/Style/Sheet**, **Quantum Supercomputing Hunting**, **TFA (Topic Functional Areas)**, and Product Lifecycle User Made automation (PLUMA)
 
 ## 🚀 Features
 
