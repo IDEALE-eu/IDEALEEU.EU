@@ -1,0 +1,13 @@
+schema: 1.0
+program: AMP360-AIR-T
+last_updated: 2025-10-18T00:00:00Z
+ecrs:
+  - id: ECR-AMP360-QPL-001
+    title: Quantum Pipeline Integration – Propulsion Control
+    path: ECR-AMP360-QPL-001
+    status: pending-approval     # pending-approval | approved | rejected | superseded | closed
+    dal: C
+    badge: QPL-PROP-OPT
+    created_at: 2025-10-18T00:00:00Z
+    updated_at: 2025-10-18T00:00:00Z
+    owners: [engineering_lead, quantum_systems_architect, compliance_officer]
