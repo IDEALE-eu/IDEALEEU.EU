@@ -1,0 +1,528 @@
+# Human Approval Rules for AGI-QPLC-CTRL
+# Defines when and how human oversight is required
+# Version: 1.0.0
+# Last Updated: 2025-10-18
+
+# =============================================================================
+# APPROVAL FRAMEWORK
+# =============================================================================
+
+framework:
+  name: "Risk-Based Human Approval Framework"
+  version: "1.0.0"
+  authority: "Ethics Board & CCB"
+  compliance:
+    - EU AI Act Article 14
+    - DO-384 Section 4.3
+    - ISO/IEC 24027
+
+# =============================================================================
+# RISK CLASSIFICATION
+# =============================================================================
+
+risk_classification:
+  
+  # Risk factors that determine approval requirements
+  factors:
+    
+    - id: SAFETY_IMPACT
+      weight: 10
+      levels:
+        - value: 0
+          description: "No safety impact"
+          examples: ["Information display changes"]
+        - value: 5
+          description: "Indirect safety impact"
+          examples: ["Maintenance scheduling"]
+        - value: 10
+          description: "Direct safety impact"
+          examples: ["Flight control modifications", "Emergency procedures"]
+    
+    - id: COST_IMPACT
+      weight: 5
+      levels:
+        - value: 0
+          description: "Minimal cost (<$1K)"
+        - value: 3
+          description: "Moderate cost ($1K-$100K)"
+        - value: 5
+          description: "High cost (>$100K)"
+    
+    - id: REGULATORY_IMPACT
+      weight: 8
+      levels:
+        - value: 0
+          description: "No regulatory impact"
+        - value: 4
+          description: "Requires notification"
+        - value: 8
+          description: "Requires approval"
+    
+    - id: REVERSIBILITY
+      weight: 6
+      levels:
+        - value: 0
+          description: "Fully reversible"
+        - value: 3
+          description: "Partially reversible"
+        - value: 6
+          description: "Irreversible"
+    
+    - id: ETHICAL_SENSITIVITY
+      weight: 9
+      levels:
+        - value: 0
+          description: "No ethical concerns"
+        - value: 5
+          description: "Minor ethical considerations"
+        - value: 9
+          description: "Significant ethical implications"
+          examples: ["Personnel decisions", "Resource allocation affecting humans"]
+    
+    - id: COMPLEXITY
+      weight: 4
+      levels:
+        - value: 0
+          description: "Simple, well-understood"
+        - value: 2
+          description: "Moderate complexity"
+        - value: 4
+          description: "Highly complex, novel situation"
+  
+  # Risk level calculation
+  risk_levels:
+    - name: LOW
+      score_range: [0, 20]
+      color: green
+      
+    - name: MEDIUM
+      score_range: [21, 40]
+      color: yellow
+      
+    - name: HIGH
+      score_range: [41, 70]
+      color: orange
+      
+    - name: CRITICAL
+      score_range: [71, 100]
+      color: red
+
+# =============================================================================
+# APPROVAL REQUIREMENTS BY RISK LEVEL
+# =============================================================================
+
+approval_requirements:
+  
+  LOW:
+    auto_approve: true
+    reviewers_required: 0
+    reviewer_roles: []
+    timeout_seconds: null
+    fallback_action: EXECUTE
+    notification:
+      required: false
+    escalation:
+      enabled: false
+    documentation:
+      level: MINIMAL
+      items:
+        - decision_log_entry
+  
+  MEDIUM:
+    auto_approve: false
+    reviewers_required: 1
+    reviewer_roles:
+      - operations_manager
+      - domain_lead
+      - senior_engineer
+    timeout_seconds: 300  # 5 minutes
+    fallback_action: DEFER
+    notification:
+      required: true
+      recipients:
+        - operations_manager
+    escalation:
+      enabled: true
+      after_seconds: 600  # 10 minutes if no response
+      escalate_to:
+        - senior_operations_manager
+    documentation:
+      level: STANDARD
+      items:
+        - decision_log_entry
+        - approval_record
+        - rationale
+  
+  HIGH:
+    auto_approve: false
+    reviewers_required: 2
+    reviewer_roles:
+      - safety_officer
+      - ethics_board_member
+      - domain_lead
+    require_consensus: true
+    timeout_seconds: 600  # 10 minutes
+    fallback_action: REJECT
+    notification:
+      required: true
+      recipients:
+        - safety_officer
+        - ethics_board_chair
+        - ccb_secretary
+    escalation:
+      enabled: true
+      after_seconds: 900  # 15 minutes
+      escalate_to:
+        - chief_safety_officer
+        - ccb_chair
+    documentation:
+      level: COMPREHENSIVE
+      items:
+        - decision_log_entry
+        - approval_record
+        - detailed_rationale
+        - risk_assessment
+        - alternatives_considered
+        - model_card
+  
+  CRITICAL:
+    auto_approve: false
+    reviewers_required: CCB  # Full Configuration Control Board
+    reviewer_roles:
+      - ccb_chair
+      - safety_officer
+      - ethics_board_chair
+      - legal_counsel
+      - domain_lead
+    require_consensus: true
+    require_unanimity: true
+    timeout_seconds: 3600  # 1 hour
+    fallback_action: EMERGENCY_STOP
+    notification:
+      required: true
+      urgent: true
+      recipients:
+        - ccb_all_members
+        - ceo
+        - chief_safety_officer
+        - chief_ethics_officer
+    escalation:
+      enabled: true
+      after_seconds: 7200  # 2 hours
+      escalate_to:
+        - board_of_directors
+    documentation:
+      level: EXHAUSTIVE
+      items:
+        - decision_log_entry
+        - approval_record
+        - exhaustive_rationale
+        - comprehensive_risk_assessment
+        - all_alternatives_evaluated
+        - safety_case
+        - model_card
+        - shap_analysis
+        - bias_assessment
+        - legal_review
+
+# =============================================================================
+# DECISION TYPE MAPPINGS
+# =============================================================================
+
+decision_type_mappings:
+  # Pre-classified decision types with default risk levels
+  
+  # Low risk decisions
+  - decision_type: INFORMATION_DISPLAY
+    default_risk: LOW
+    examples:
+      - "Update dashboard layout"
+      - "Modify report format"
+  
+  - decision_type: ROUTINE_MAINTENANCE_SCHEDULING
+    default_risk: LOW
+    conditions:
+      - no_fatigue_violations
+      - within_normal_intervals
+      - adequate_resources
+  
+  # Medium risk decisions
+  - decision_type: CREW_SCHEDULING
+    default_risk: MEDIUM
+    conditions:
+      - affects_personnel
+      - workload_considerations
+  
+  - decision_type: ASSET_REALLOCATION
+    default_risk: MEDIUM
+    conditions:
+      - cost_impact_moderate
+      - no_safety_impact
+  
+  # High risk decisions
+  - decision_type: SAFETY_PROCEDURE_MODIFICATION
+    default_risk: HIGH
+    conditions:
+      - affects_safety
+      - regulatory_impact
+  
+  - decision_type: EMERGENCY_RESPONSE
+    default_risk: HIGH
+    conditions:
+      - time_critical
+      - safety_critical
+  
+  - decision_type: PERSONNEL_ASSIGNMENT_CRISIS
+    default_risk: HIGH
+    conditions:
+      - crisis_zone_deployment
+      - ethical_sensitivity
+  
+  # Critical risk decisions
+  - decision_type: FLIGHT_CONTROL_MODIFICATION
+    default_risk: CRITICAL
+    conditions:
+      - direct_safety_impact
+      - irreversible
+      - regulatory_approval_required
+  
+  - decision_type: MAJOR_SYSTEM_RECONFIGURATION
+    default_risk: CRITICAL
+    conditions:
+      - affects_multiple_systems
+      - high_cost
+      - high_complexity
+
+# =============================================================================
+# EPE RULE OVERRIDES
+# =============================================================================
+
+epe_rule_overrides:
+  # Certain EPE rules automatically escalate risk level
+  
+  - rule_id: HUM-SAFE-01
+    triggered_by: "Human safety violation detected"
+    override_risk_to: CRITICAL
+    block_auto_approve: true
+    require_immediate_review: true
+  
+  - rule_id: COST-SAFE-07
+    triggered_by: "Pure cost optimization without safety constraints"
+    override_risk_to: CRITICAL
+    block_auto_approve: true
+  
+  - rule_id: HUM-DIGN-02
+    triggered_by: "Fatigue threshold violation"
+    override_risk_to: HIGH
+    require_safety_officer: true
+  
+  - rule_id: EMPATHY-GUARD-04
+    triggered_by: "Personnel in crisis zone"
+    override_risk_to: HIGH
+    require_ethics_review: true
+  
+  - rule_id: AUTON-09
+    triggered_by: "High-impact autonomous decision"
+    override_risk_to: HIGH
+    require_human_oversight: true
+
+# =============================================================================
+# APPROVAL WORKFLOW
+# =============================================================================
+
+workflow:
+  
+  steps:
+    - id: 1
+      name: "Risk Assessment"
+      description: "Calculate risk score based on factors"
+      automated: true
+      timeout_ms: 50
+      
+    - id: 2
+      name: "EPE Validation"
+      description: "Evaluate against ethical policy rules"
+      automated: true
+      timeout_ms: 50
+      
+    - id: 3
+      name: "Risk Level Assignment"
+      description: "Assign LOW/MEDIUM/HIGH/CRITICAL"
+      automated: true
+      timeout_ms: 10
+      
+    - id: 4
+      name: "Approval Routing"
+      description: "Route to appropriate reviewers"
+      automated: true
+      timeout_ms: 10
+      
+    - id: 5
+      name: "Human Review"
+      description: "Reviewer(s) evaluate and decide"
+      automated: false
+      timeout_seconds: varies_by_risk_level
+      
+    - id: 6
+      name: "Decision Execution"
+      description: "Execute if approved, log if rejected"
+      automated: true
+      timeout_ms: 100
+      
+    - id: 7
+      name: "UTCS Logging"
+      description: "Record complete audit trail"
+      automated: true
+      timeout_ms: 50
+  
+  # Parallel processing
+  parallel_evaluation:
+    enabled: true
+    steps: [1, 2]  # Risk assessment and EPE validation in parallel
+
+# =============================================================================
+# REVIEWER QUALIFICATIONS
+# =============================================================================
+
+reviewer_qualifications:
+  
+  operations_manager:
+    required_certifications:
+      - "Operations Management Certification"
+    required_training:
+      - "QPLC Approval Process"
+      - "EPE Policy Overview"
+    experience_years: 5
+  
+  domain_lead:
+    required_certifications:
+      - "Domain-specific technical certification"
+    required_training:
+      - "QPLC Technical Deep-Dive"
+      - "MAL-EEM Advanced"
+    experience_years: 8
+  
+  safety_officer:
+    required_certifications:
+      - "Aviation Safety Professional"
+      - "DO-178C/DO-254 Training"
+    required_training:
+      - "QPLC Safety Validation"
+      - "Ethical AI Safety"
+    experience_years: 10
+  
+  ethics_board_member:
+    required_certifications:
+      - "Ethics Professional Certification"
+    required_training:
+      - "AI Ethics Governance"
+      - "MAL-EEM Expert"
+    experience_years: 7
+
+# =============================================================================
+# MONITORING & METRICS
+# =============================================================================
+
+monitoring:
+  
+  metrics:
+    - name: approval_latency_avg
+      unit: seconds
+      target: 180  # 3 minutes
+      alert_threshold: 300
+    
+    - name: approval_rate
+      unit: percentage
+      target: 90
+      alert_threshold: 75
+    
+    - name: rejection_rate
+      unit: percentage
+      target: 5
+      alert_threshold: 15
+    
+    - name: timeout_rate
+      unit: percentage
+      target: 1
+      alert_threshold: 5
+    
+    - name: escalation_rate
+      unit: percentage
+      target: 2
+      alert_threshold: 10
+  
+  dashboards:
+    - name: "Approval Dashboard"
+      url: "https://pluma.idealeeu.eu/qplc/approvals"
+      refresh_interval_sec: 30
+    
+    - name: "Ethics Compliance Dashboard"
+      url: "https://pluma.idealeeu.eu/qplc/ethics"
+      refresh_interval_sec: 60
+
+# =============================================================================
+# AUDIT & COMPLIANCE
+# =============================================================================
+
+audit:
+  
+  frequency: EVERY_DECISION
+  
+  logged_fields:
+    - decision_id
+    - timestamp
+    - risk_score
+    - risk_level
+    - epe_rules_triggered
+    - reviewers_assigned
+    - reviewers_responded
+    - approval_decision
+    - approval_rationale
+    - approval_latency
+    - escalations
+  
+  retention:
+    duration_days: 2555  # 7 years
+    storage: UTCS_MANIFEST
+  
+  periodic_review:
+    frequency: QUARTERLY
+    reviewers:
+      - ethics_board
+      - ccb
+      - internal_audit
+
+# =============================================================================
+# EMERGENCY PROCEDURES
+# =============================================================================
+
+emergency_procedures:
+  
+  emergency_stop:
+    trigger: "CRITICAL risk with safety violation"
+    actions:
+      - halt_all_agi_decisions
+      - notify_safety_officer
+      - notify_ccb_chair
+      - log_incident
+      - activate_incident_response_team
+  
+  emergency_override:
+    authorized_roles:
+      - chief_safety_officer
+      - ceo
+    conditions:
+      - imminent_danger
+      - regulatory_emergency
+    logging:
+      required: true
+      level: EXHAUSTIVE
+
+# =============================================================================
+# SCHEMA VERSION
+# =============================================================================
+
+schema_version: "1.0.0"
+last_updated: "2025-10-18"
+owner: "Ethics Board & CCB"
+contact: "qplc-agi@idealeeu.eu"

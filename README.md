@@ -12,6 +12,7 @@ This is an AAMMPP Aerospace Assets Management, Maintenance and Procurement Platf
 - **Digital Passport Dashboard**: Interactive web application for browsing and managing aerospace component digital passports [View Demo](https://aerospace-digital-pa--Robbbo-T.github.app)
 - **9-Phase CAx Lifecycle**: Complete capture from CAD through CAS with "to scale" methodology. Computer Accelerated Process
 - **PLUMA Automation**: Product Lifecycle UiX Management Automation
+- **QPLC Framework**: Quantum Programmable Logic Control for human-governed AI/AGI oversight with ethical policy enforcement
 - **ESG Compliance Framework**: Green Performant Tools (GPT) with key indications for Produced Transformation Value
 - **H2 Systems Support**: Specialized tracking for hydrogen propulsion systems
 - **Federated Learning**: Privacy-preserving fleet-wide intelligence
@@ -129,6 +130,60 @@ See [digital-passport/README.md](./digital-passport/README.md) for more details.
 | MMM | Mechanical-Material-Modules | Materials, mechanical, MRO |
 | OOO | Operations-Optimization-Outcomes | Fleet ops, analytics |
 | PPP | Propulsion-Power-Plants | Engines, thrust, fuel |
+
+## 🤖 QPLC: Human-Governed AI Framework
+
+**QPLC (Quantum Programmable Logic Control)** is IDEALE-EU's framework for ensuring human sovereignty over Artificial General Intelligence (AGI) and Artificial Superintelligence (ASI) systems in aerospace applications.
+
+### Core Principles
+
+- **Human Sovereignty**: AGI/ASI may recommend, but humans approve critical actions
+- **Ethical Policy Engine (EPE)**: 10 declarative rules enforce human-first principles
+- **Safety-Bounded**: All quantum outputs validated against certified classical controllers
+- **Complete Traceability**: Every decision logged to UTCS manifests
+- **Federated Ethics Learning**: Privacy-preserving ethics coordination across fleet
+
+### Key Components
+
+| Component | Description | Location |
+|-----------|-------------|----------|
+| **QPLC Definition** | Framework specification | [00-PROGRAM/GOVERNANCE/QPLC_DEFINITION.md](./00-PROGRAM/GOVERNANCE/QPLC_DEFINITION.md) |
+| **EPE Rules** | Ethical Policy Engine schema | [00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/EPE-v1.0.yaml](./00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/EPE-v1.0.yaml) |
+| **Human-First Policy** | Ethical principles | [00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/HUMAN_FIRST_POLICY.md](./00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/HUMAN_FIRST_POLICY.md) |
+| **Human Review Portal** | Interface specification | [00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/HUMAN_REVIEW_PORTAL.md](./00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/HUMAN_REVIEW_PORTAL.md) |
+| **PLUMA Integration** | Workflow orchestration | [00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/PLUMA_INTEGRATION.md](./00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/PLUMA_INTEGRATION.md) |
+
+### EPE Rules (Human-First Governance)
+
+The Ethical Policy Engine enforces these rules:
+
+- **HUM-SAFE-01**: Human safety always > cost/schedule
+- **HUM-DIGN-02**: No tasking below fatigue thresholds
+- **HUM-FAIR-03**: Equitable workload distribution
+- **ASSET-HUM-03**: Reuse must not exploit human labor
+- **EMPATHY-GUARD-04**: No tasking during crisis events
+- **PRIVACY-05**: Data minimization required
+- **TRANS-06**: Explainability for human-impact decisions
+- **COST-SAFE-07**: Never pure cost optimization
+- **BIAS-08**: Demographic fairness required
+- **AUTON-09**: Human oversight for critical decisions
+
+### Example Implementations
+
+- **AGI-QPLC-CTRL** (IIS): Human oversight for AGI decision-making
+- **PROP-QPLC** (PPP): Quantum-optimized thrust distribution with safety bounds
+- **PWR-QPLC** (EEE): Power management with ethical constraints
+- **H2-QPLC** (CQH): Hydrogen system optimization with human approval gates
+
+### Compliance
+
+- **DO-178C**: Software Level C
+- **DO-384**: AI in civil aviation
+- **EU AI Act**: High-risk AI systems (Annex III)
+- **ISO/IEC 24027**: Bias in AI systems
+- **CS-25.1309**: Equipment, systems, and installations
+
+**Learn More**: [QPLC Governance Documentation](./00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/)
 
 ## 🤝 Contributing
 

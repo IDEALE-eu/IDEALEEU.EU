@@ -1,0 +1,410 @@
+# UTCS Manifest Template for QPLC Components
+# Version: 1.0.0
+# Schema Type: QPLC (Quantum Programmable Logic Control)
+# Purpose: Digital passport for QPLC instances across TFA domains
+# 
+# Usage: Copy this template for each QPLC system instance
+# Example instances: PROP-QPLC, PWR-QPLC, H2-QPLC, AGI-QPLC-CTRL
+
+# =============================================================================
+# UTCS IDENTIFICATION
+# =============================================================================
+
+utcs_ref: UTCS-<PRODUCT>-<DOMAIN>-<SYSTEM>-QPLC@<VERSION>
+# Example: UTCS-AMPEL360-AIR-T-PPP-PROP-QPLC@1.0.0
+
+utcs_type: QPLC_COMPONENT
+
+product: <PRODUCT_NAME>
+# Example: AMPEL360-AIR-T, AMPEL360-SPACE-T
+
+model: <MODEL_NAME>
+# Example: BWB-H2-Hy-E, PLUS
+
+version: <VERSION>
+# Example: Q100, Q101, V1.0
+
+# =============================================================================
+# TFA DOMAIN CLASSIFICATION
+# =============================================================================
+
+tfa_domain: <DOMAIN_CODE>
+# Valid values: PPP, EEE, CQH, IIS, LCC, OOO, MMM, AAA, etc.
+# Example: PPP (Propulsion-Power-Plants)
+
+tfa_domain_name: <DOMAIN_FULL_NAME>
+# Example: "Propulsion-Power-Plants"
+
+system: <SYSTEM_NAME>
+# Example: PROP-QPLC, PWR-QPLC, H2-QPLC, AGI-QPLC-CTRL
+
+subsystem: <SUBSYSTEM_NAME>
+# Optional, if applicable
+
+# =============================================================================
+# LIFECYCLE STATE (QS → FWD → UE → FE → CB → QB)
+# =============================================================================
+
+lifecycle_state: <PHASE>
+# Valid values: QS, FWD, UE, FE, CB, QB
+# - QS: Quantum Superposition (design alternatives)
+# - FWD: Forward/Wave Dynamics (simulation)
+# - UE: Unit Element (development)
+# - FE: Federated Entanglement (integration/testing)
+# - CB: Classical Bit (operational)
+# - QB: Qubit (optimization/evolution)
+
+lifecycle_history:
+  - phase: QS
+    date: <YYYY-MM-DD>
+    anchor: <QS_ANCHOR_REFERENCE>
+  - phase: UE
+    date: <YYYY-MM-DD>
+    anchor: <UE_ANCHOR_REFERENCE>
+  - phase: CB
+    date: <YYYY-MM-DD>
+    anchor: <CB_ANCHOR_REFERENCE>
+
+# =============================================================================
+# QPLC CONFIGURATION
+# =============================================================================
+
+qplc:
+  # Quantum methods employed
+  quantum_methods:
+    - <METHOD_1>  # e.g., QAOA, VQE, QML, QSVM
+    # Example methods:
+    # - QAOA: Quantum Approximate Optimization Algorithm
+    # - VQE: Variational Quantum Eigensolver
+    # - QML: Quantum Machine Learning
+    # - QSVM: Quantum Support Vector Machine
+  
+  # Classical fallback configuration
+  classical_fallback:
+    enabled: true
+    controller_type: <TYPE>  # e.g., PID, STATE_MACHINE, DETERMINISTIC
+    activation_triggers:
+      - quantum_result_violates_safety_bounds
+      - qpu_unavailable
+      - confidence_score_below_threshold
+      - human_override
+  
+  # Safety classification
+  dal: <LEVEL>
+  # Valid values: A, B, C, D, E (Design Assurance Level per DO-178C)
+  # Typical: B or C for QPLC
+  
+  # Safety monitoring
+  safety_monitoring: continuous
+  safety_bounds:
+    min_value: <MIN>
+    max_value: <MAX>
+    confidence_threshold: <THRESHOLD>  # e.g., 0.95
+  
+  # Performance targets
+  energy_savings_target_pct: "<TARGET>"
+  # Example: ">=12" (12% or more energy savings)
+  
+  max_reconfig_latency_ms: <LATENCY>
+  # Example: 50 (maximum 50ms reconfiguration time)
+  
+  # Quantum hardware/simulator
+  qpu_backend: <BACKEND>
+  # Examples: "QPU_VENDOR", "SIMULATOR", "HYBRID"
+  
+  qpu_specifications:
+    qubit_count: <N>
+    gate_fidelity: <FIDELITY>  # e.g., 0.999
+    coherence_time_us: <TIME>  # microseconds
+
+# =============================================================================
+# AI GOVERNANCE (MAL-EEM Integration)
+# =============================================================================
+
+ai_governance:
+  mal_eem_level: <RISK_LEVEL>
+  # Valid values: LOW_RISK, MEDIUM_RISK, HIGH_RISK, CRITICAL
+  
+  human_approval_required: <BOOLEAN>
+  # true for high-risk decisions
+  
+  ethics_policy_ref: "00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/EPE-v1.0.yaml"
+  
+  epe_rules_applied:
+    - HUM-SAFE-01
+    - HUM-DIGN-02
+    - COST-SAFE-07
+    - AUTON-09
+    # Add relevant EPE rule IDs
+  
+  red_team_report: "<PATH_TO_REPORT>"
+  # Example: "02-VALIDATION/RED_TEAM_QPLC_2025.pdf"
+  
+  bias_assessment:
+    fairness_score: <SCORE>  # 0.0 to 1.0
+    demographic_parity: <SCORE>
+    date_assessed: <YYYY-MM-DD>
+  
+  explainability:
+    model_card_available: <BOOLEAN>
+    shap_values_provided: <BOOLEAN>
+    explainability_score: <SCORE>  # 0.0 to 1.0
+
+# =============================================================================
+# DIGITAL PASSPORT
+# =============================================================================
+
+digital_passport:
+  badge: <BADGE_NAME>
+  # Example: QPLC-PROP-1.0, QPLC-AGI-GOVERNED
+  
+  registry: HUELLΔ
+  # Digital passport registry name
+  
+  qr_code: <QR_CODE_URI>
+  # Optional: URI to QR code for physical badge
+  
+  nfc_tag: <NFC_ID>
+  # Optional: NFC tag identifier
+
+# =============================================================================
+# ARTIFACTS & FILES
+# =============================================================================
+
+artifacts:
+  - uri: 01-SOFTWARE/firmware/qplc_rt.bin
+    type: FIRMWARE
+    sha256: "<HASH>"
+    size_bytes: <SIZE>
+    build_date: <YYYY-MM-DD>
+    
+  - uri: 01-SOFTWARE/models/optimization_model.qasm
+    type: QUANTUM_CIRCUIT
+    sha256: "<HASH>"
+    size_bytes: <SIZE>
+    qubit_count: <N>
+    
+  - uri: 01-SOFTWARE/classical_fallback/pid_controller.c
+    type: CLASSICAL_CONTROLLER
+    sha256: "<HASH>"
+    size_bytes: <SIZE>
+    
+  - uri: 00-CONFIG/qplc_params.yaml
+    type: CONFIGURATION
+    sha256: "<HASH>"
+    size_bytes: <SIZE>
+    
+  - uri: 00-CONFIG/QS_STATE.yaml
+    type: QS_ANCHOR
+    sha256: "<HASH>"
+    size_bytes: <SIZE>
+    
+  - uri: 02-VALIDATION/HIL_TEST_REPORT.pdf
+    type: TEST_REPORT
+    sha256: "<HASH>"
+    pages: <N>
+    
+  - uri: 02-VALIDATION/FMEA_QPLC.pdf
+    type: FMEA
+    sha256: "<HASH>"
+    pages: <N>
+    
+  - uri: GOVERNANCE/human_approval_rules.yaml
+    type: GOVERNANCE
+    sha256: "<HASH>"
+    size_bytes: <SIZE>
+
+# =============================================================================
+# COMPLIANCE & CERTIFICATION
+# =============================================================================
+
+compliance:
+  refs:
+    - CS-25.1309  # Equipment, systems, and installations
+    - DO-178C     # Software Considerations in Airborne Systems (Level C)
+    - DO-254      # Hardware (Level C)
+    - DO-384      # AI in civil aviation
+    - EU AI Act   # High-risk AI systems
+    - ISO/IEC 24027  # Bias in AI
+  
+  verification:
+    methods:
+      - HIL_TESTING        # Hardware-in-the-loop
+      - FAULT_INJECTION    # Quantum noise, latency spikes
+      - MC_DC_COVERAGE     # Modified Condition/Decision Coverage (classical path)
+      - FUNCTIONAL_COVERAGE # Quantum path
+      - RED_TEAM_TESTING   # Adversarial testing
+    
+    test_coverage:
+      classical_path: <PERCENTAGE>  # e.g., 100%
+      quantum_path: <PERCENTAGE>    # e.g., 95%
+      integration: <PERCENTAGE>     # e.g., 98%
+  
+  certification_authority: <AUTHORITY>
+  # Example: EASA, FAA, ESA
+  
+  certification_date: <YYYY-MM-DD>
+  certification_number: <CERT_NUMBER>
+
+# =============================================================================
+# INTERFACES & DEPENDENCIES
+# =============================================================================
+
+interfaces:
+  - name: <INTERFACE_NAME>
+    type: <TYPE>  # e.g., SENSOR_INPUT, ACTUATOR_OUTPUT, DATA_BUS
+    protocol: <PROTOCOL>  # e.g., ARINC-429, CAN, ETHERNET
+    icd_reference: <ICD_DOC>
+    
+  # Example sensor input
+  - name: SENSOR_STREAM
+    type: INPUT
+    protocol: ARINC-429
+    data_rate_hz: 100
+    parameters:
+      - temperature
+      - pressure
+      - flow_rate
+    
+  # Example actuator output
+  - name: ACTUATOR_CONTROL
+    type: OUTPUT
+    protocol: CAN
+    data_rate_hz: 50
+    parameters:
+      - valve_position
+      - thrust_level
+
+dependencies:
+  - component: <COMPONENT_NAME>
+    utcs_ref: <UTCS_REF>
+    version: <VERSION>
+    relationship: <TYPE>  # e.g., REQUIRES, PROVIDES, INTEGRATES_WITH
+
+# =============================================================================
+# OPERATIONAL METRICS & KPIs
+# =============================================================================
+
+operational_metrics:
+  energy_savings:
+    baseline_consumption: <VALUE> <UNIT>
+    actual_consumption: <VALUE> <UNIT>
+    savings_percentage: <PERCENTAGE>
+    
+  performance:
+    average_latency_ms: <VALUE>
+    max_latency_ms: <VALUE>
+    quantum_classical_switch_count: <VALUE>
+    
+  reliability:
+    mtbf_hours: <VALUE>  # Mean Time Between Failures
+    availability_percentage: <PERCENTAGE>
+    
+  safety:
+    safety_bound_violations: 0  # Must be zero
+    emergency_stops: <COUNT>
+    fallback_activations: <COUNT>
+
+# =============================================================================
+# PLUMA INTEGRATION
+# =============================================================================
+
+pluma_integration:
+  monitor_events:
+    - quantum_classical_switch
+    - safety_bound_check
+    - human_approval_required
+    - energy_savings_achieved
+    - fault_detected
+    
+  workflow_hooks:
+    - pre_execution_validation
+    - post_execution_logging
+    - periodic_health_check
+    
+  dashboard_uri: <URI>
+  # Example: "https://pluma.idealeeu.eu/qplc/dashboard/<SYSTEM_ID>"
+
+# =============================================================================
+# SECURITY & ACCESS CONTROL
+# =============================================================================
+
+security:
+  access_control:
+    read: <ROLE_LIST>     # e.g., ["engineer", "operator", "auditor"]
+    write: <ROLE_LIST>    # e.g., ["lead_engineer", "ccb"]
+    execute: <ROLE_LIST>  # e.g., ["operator", "ai_system"]
+    
+  encryption:
+    at_rest: <ALGORITHM>   # e.g., AES-256
+    in_transit: <ALGORITHM> # e.g., TLS 1.3
+    
+  audit_logging:
+    enabled: true
+    retention_days: 2555  # 7 years (regulatory)
+    
+  quantum_security:
+    post_quantum_crypto: <BOOLEAN>
+    algorithm: <ALGORITHM>  # e.g., CRYSTALS-Kyber
+
+# =============================================================================
+# METADATA & PROVENANCE
+# =============================================================================
+
+metadata:
+  created_date: <YYYY-MM-DD>
+  created_by: <NAME>
+  last_modified_date: <YYYY-MM-DD>
+  last_modified_by: <NAME>
+  
+  owner: <ORGANIZATION>
+  maintainer: <PERSON_OR_TEAM>
+  contact: <EMAIL>
+  
+  repository: https://github.com/IDEALE-eu/IDEALEEU.EU
+  path: <RELATIVE_PATH>
+  
+  related_documents:
+    - title: "QPLC Definition"
+      uri: "00-PROGRAM/GOVERNANCE/QPLC_DEFINITION.md"
+    - title: "EPE Human-First Policy"
+      uri: "00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/HUMAN_FIRST_POLICY.md"
+    - title: "System Requirements"
+      uri: "<PATH_TO_REQUIREMENTS>"
+
+# =============================================================================
+# CHANGE HISTORY
+# =============================================================================
+
+change_history:
+  - version: 1.0.0
+    date: <YYYY-MM-DD>
+    author: <NAME>
+    ecr_number: <ECR_ID>
+    description: "Initial QPLC implementation"
+    approved_by: <CCB_MEMBER>
+    
+  # Add subsequent versions here
+
+# =============================================================================
+# NOTES
+# =============================================================================
+
+notes: |
+  This UTCS manifest provides complete traceability for QPLC components
+  within the IDEALE-EU platform. It integrates with:
+  
+  - QPLC Framework (Quantum Programmable Logic Control)
+  - MAL-EEM (Model Accountability, Liability, Ethics & Explainability)
+  - EPE (Ethical Policy Engine)
+  - PLUMA (Product Lifecycle User Management Automation)
+  - HUELLΔ (Digital Passport Registry)
+  
+  For questions or updates, contact the system maintainer listed above.
+
+# =============================================================================
+# SCHEMA VERSION
+# =============================================================================
+
+schema_version: "1.0.0"
+schema_uri: "00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/SCHEMAS/QPLC/UTCS_MANIFEST_QPLC_TEMPLATE.yaml"
