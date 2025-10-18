@@ -469,25 +469,48 @@ Repair Quote = parts + labor + logistics − warranty_credit
 
 ## Integration with IDEALE-EU Platform
 
+### AAMMPP Platform (Canonical Foundation)
+**A360Exchanges-TT is built on top of the AAMMPP platform:**
+- **Canonical Platform:** Aerospace Assets Management, Maintenance and Procurement Platform
+- **AAMMPP Location:** `00-PROGRAM/BUSINESS/AAMMPP/`
+- **Relationship:** A360Exchanges-TT is the commercial marketplace layer on AAMMPP
+- **UTCS Integration:** Leverages AAMMPP UTCS registry for component passports
+- **QS→CB Flow:** Inherits evidence-first architecture from AAMMPP
+- **TFA Alignment:** Uses AAMMPP TFA domain classification
+
+**Key Integrations:**
+```
+AAMMPP (Platform) ← A360Exchanges-TT (Commercial Layer)
+   ↓
+   ├── UTCS Registry → Component digital passports
+   ├── Procurement → RFQ/PO management
+   ├── Maintenance → MRO work orders, exchanges
+   ├── Logistics → Tracking, warehouses
+   ├── Finance → Cost models, quotations
+   └── Quantum → QSH optimization jobs
+```
+
 ### UTCS Integration
-- Namespace: `utcs://BUSINESS/A360-EXCHANGES-TT`
-- Component passports linked to UTCS manifests
-- Traceability through QS-CB flow
+- **Namespace:** `utcs://BUSINESS/A360-EXCHANGES-TT`
+- **AAMMPP Registry:** Links to `00-PROGRAM/BUSINESS/AAMMPP/01-ASSETS/UTCS_REGISTRY/`
+- Component passports synchronized between A360Exchanges-TT and AAMMPP
+- Traceability through QS→CB flow architecture
+- A360Exchanges-TT extends AAMMPP UTCS schema with marketplace fields
 
 ### PLM Bridge
 - Integration with `00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER`
-- EBOM/MBOM sync from product structures
-- ECO/ECR linkage
+- EBOM/MBOM sync from product structures via AAMMPP
+- ECO/ECR linkage through AAMMPP procurement workflows
 
 ### Digital Twin
 - Telemetry feeds from `02-AIRCRAFT/DIGITAL_TWIN_MODEL`
-- Health monitoring integration
-- Predictive maintenance triggers
+- Health monitoring integration via AAMMPP maintenance module
+- Predictive maintenance triggers using AAMMPP QSH jobs
 
 ### Finance Integration
 - Links to `10-BUSINESS/FINANCE` EVM tracking
 - Token rewards via existing `finance/teknia_finance_integration.py`
-- Cost performance tracking
+- Cost performance tracking integrated with AAMMPP finance module
 
 ## Directory Structure
 

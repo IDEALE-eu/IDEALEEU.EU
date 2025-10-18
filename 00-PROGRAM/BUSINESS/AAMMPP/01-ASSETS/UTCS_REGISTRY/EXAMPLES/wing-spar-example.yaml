@@ -1,0 +1,142 @@
+# UTCS Manifest Example: Wing Spar Component
+# Boeing 787 Wing Spar - Crystallized (CB) State
+# This example shows a complete UTCS passport for an in-service component
+
+utcs_ref: UTCS-AAMMPP-AAA-WING-SPAR-787-001@2.0.0
+utcs_schema: "1.1.0"
+type: aerospace-component
+anchor: AAMMPP/ASSETS/AAA/WING/SPAR/787-001
+tfa_domain: AAA
+lifecycle_state: CB
+
+# Asset Identity
+asset_identity:
+  part_number: "787-W-SPAR-57-2145"
+  serial_number: "SN-787-SPAR-001234"
+  lot_number: "LOT-2023-W-042"
+  manufacture_date: "2023-08-15"
+  manufacturer: "BOEING-STRUCTURES-DIV"
+  description: "Left Wing Main Spar - Boeing 787 Forward Section"
+
+# Procurement History
+procurement:
+  last_quote_usd: 12450.00
+  quote_valid_until: "2026-06-30"
+  supplier: "ACME_AERO_SPARES"
+  po_ref: "PO-2025-8891"
+  delivery_date: "2025-09-15"
+  receipt_date: "2025-09-12"
+  quotes:
+    - supplier: "ACME_AERO_SPARES"
+      price_usd: 12450.00
+      lead_days: 90
+      quote_date: "2025-06-15"
+    - supplier: "PREMIUM_AVIATION_PARTS"
+      price_usd: 13200.00
+      lead_days: 60
+      quote_date: "2025-06-18"
+    - supplier: "GLOBAL_AEROSPACE_SUPPLY"
+      price_usd: 11800.00
+      lead_days: 120
+      quote_date: "2025-06-20"
+
+# Maintenance Information
+maintenance:
+  next_inspection: "2026-03-15"
+  last_inspection: "2025-09-10"
+  total_cycles: 4210
+  total_hours: 8942.5
+  sb_compliance:
+    - "SB-787-28-0042"
+    - "SB-787-57-0118"
+  ad_compliance:
+    - "AD-2024-787-12"
+  condition: serviceable
+  maintenance_history:
+    - date: "2025-09-10"
+      type: inspection
+      mro_provider: "CERTIFIED_AERO_MRO"
+      work_order: "WO-2025-09-001234"
+      notes: "Visual inspection and NDT completed. No defects found."
+    - date: "2025-03-15"
+      type: inspection
+      mro_provider: "CERTIFIED_AERO_MRO"
+      work_order: "WO-2025-03-000987"
+      notes: "6-month inspection completed. Service bulletin SB-787-57-0118 applied."
+
+# Logistics Tracking
+logistics:
+  current_location: "FRA_WAREHOUSE_A3"
+  last_movement: "2025-10-10T14:23:00Z"
+  condition: serviceable
+  warehouse: "FRANKFURT_MAIN_DEPOT"
+  bin_location: "A3-RACK-15-SHELF-03"
+  custody_chain:
+    - from: "ACME_AERO_SPARES"
+      to: "FRANKFURT_MAIN_DEPOT"
+      date: "2025-09-12T08:30:00Z"
+      carrier: "DHL_AVIATION_LOGISTICS"
+    - from: "FRANKFURT_MAIN_DEPOT"
+      to: "MAINTENANCE_HANGAR_02"
+      date: "2025-09-13T10:15:00Z"
+      carrier: "INTERNAL_TRANSFER"
+    - from: "MAINTENANCE_HANGAR_02"
+      to: "FRANKFURT_MAIN_DEPOT"
+      date: "2025-10-10T14:23:00Z"
+      carrier: "INTERNAL_TRANSFER"
+
+# Digital Passport
+digital_passport:
+  registry: "HUELLΔ"
+  badge: "AAMMPP-AAA-SPAR-787"
+  verification_url: "https://huell.idealeeu.eu/verify/AAMMPP-AAA-SPAR-787-001234"
+  qr_code: "QR:AAMMPP:AAA:787:001234:v2.0.0"
+  nfc_uid: "04:52:87:CA:2A:5B:80"
+
+# Quantum Optimization
+quantum:
+  qsh_job: "QSH-SOURCING-2025-1018"
+  qb_recommendation: "Switch to Supplier X: 18% cost reduction, same DAL. Alternative: extend inspection interval by 200 flight hours based on structural health monitoring."
+  confidence: 0.87
+  optimization_date: "2025-10-15T09:30:00Z"
+
+# A360Exchanges-TT Integration
+exchange:
+  platform: "A360Exchanges-TT"
+  marketplace_status: available
+  last_transaction: "2025-09-12T08:30:00Z"
+  token_reward_earned_tt: 42.5
+  circularity_score: 0.87
+  dpp_id: "DPP-A360EX-787-SPAR-001234"
+
+# Compliance Certificates
+compliance:
+  airworthiness_certificates:
+    - type: FAA_8130-3
+      number: "8130-3-2023-787-W-001234"
+      issue_date: "2023-08-20"
+      expiry_date: "2028-08-20"
+      issuing_authority: "FAA_SEATTLE_ACO"
+    - type: EASA_FORM_1
+      number: "EASA-F1-2023-787-001234"
+      issue_date: "2023-08-22"
+      expiry_date: "2028-08-22"
+      issuing_authority: "EASA_CERTIFICATION_OFFICE"
+  standards_compliance:
+    - AS9120
+    - AS9100
+    - ATA_iSpec_2000
+    - ISO_9001
+  export_control:
+    itar_controlled: false
+    ear_category: "EAR99"
+    export_license_required: false
+
+# Metadata
+metadata:
+  created_date: "2023-08-15T10:00:00Z"
+  updated_date: "2025-10-15T09:30:00Z"
+  created_by: "AAMMPP_ASSET_REGISTRY"
+  updated_by: "QUANTUM_OPTIMIZATION_ENGINE"
+  version: "2.0.0"
+  checksum: "sha256:a8f5f167f44f4964e6c998dee827110c"

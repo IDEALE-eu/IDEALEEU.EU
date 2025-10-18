@@ -1,0 +1,407 @@
+# UTCS Schema v1.1 - AAMMPP Profile
+# Aerospace Assets Management, Maintenance and Procurement Platform
+# Schema for aerospace component digital passports
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://aammpp.idealeeu.eu/schemas/utcs-aammpp-v1.1.yaml"
+
+title: "AAMMPP UTCS Asset Passport Schema"
+version: "1.1.0"
+description: "Digital passport schema for aerospace components in AAMMPP platform"
+
+type: object
+required:
+  - utcs_ref
+  - utcs_schema
+  - type
+  - anchor
+  - tfa_domain
+  - lifecycle_state
+
+properties:
+  # Core Identity
+  utcs_ref:
+    type: string
+    pattern: "^UTCS-AAMMPP-[A-Z]{3}-[A-Z0-9_]+-[A-Z0-9_]+-[0-9]{3,6}@[0-9]+\\.[0-9]+\\.[0-9]+$"
+    description: "Unique UTCS reference identifier"
+    examples:
+      - "UTCS-AAMMPP-AAA-WING-SPAR-787-001@2.0.0"
+      - "UTCS-AAMMPP-MMM-HYDRAULIC-PUMP-A320-042@1.5.2"
+
+  utcs_schema:
+    type: string
+    pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    description: "UTCS schema version"
+    const: "1.1.0"
+
+  type:
+    type: string
+    enum:
+      - aerospace-component
+      - aerospace-assembly
+      - aerospace-consumable
+      - aerospace-tooling
+    description: "Asset type classification"
+
+  anchor:
+    type: string
+    pattern: "^AAMMPP/ASSETS/[A-Z]{3}/.+$"
+    description: "AAMMPP asset anchor path"
+    examples:
+      - "AAMMPP/ASSETS/AAA/WING/SPAR/787-001"
+      - "AAMMPP/ASSETS/MMM/HYDRAULIC/PUMP/A320-042"
+
+  tfa_domain:
+    type: string
+    enum:
+      - AAA  # Airframes-Aerodynamics-Airworthiness
+      - AAP  # Airport-Adaptable-Platforms
+      - CCC  # Cockpit-Cabin-Cargo
+      - CQH  # Cryogenics-Quantum-H2
+      - DDD  # Drainage-Dehumidification-Drying
+      - EDI  # Electronics-Digital-Instruments
+      - EEE  # Electrical-Endocircular-Energization
+      - EER  # Environmental-Emissions-Remediation
+      - IIF  # Industrial-Infrastructure-Facilities
+      - IIS  # Information-Intelligence-Systems
+      - LCC  # Linkages-Control-Communications
+      - LIB  # Logistics-Inventory-Blockchain
+      - MMM  # Mechanical-Material-Modules
+      - OOO  # Operations-Optimization-Outcomes
+      - PPP  # Propulsion-Power-Plants
+    description: "TFA domain classification"
+
+  lifecycle_state:
+    type: string
+    enum:
+      - QS   # Quantum Superposition - pre-event multiple possibilities
+      - FWD  # Forward Wave Dynamics - predictive modeling
+      - UE   # Unit Element - classical fundamental unit
+      - FE   # Federation Entanglement - multi-party coordination
+      - CB   # Classical Bit - actual event crystallization
+      - QB   # Qubit - quantum optimization
+    description: "Current lifecycle state in QS→QB flow"
+
+  # Asset Identity
+  asset_identity:
+    type: object
+    properties:
+      part_number:
+        type: string
+        description: "Manufacturer part number"
+      serial_number:
+        type: string
+        description: "Unique serial number"
+      lot_number:
+        type: string
+        description: "Manufacturing lot number"
+      manufacture_date:
+        type: string
+        format: date
+        description: "Date of manufacture"
+      manufacturer:
+        type: string
+        description: "Original equipment manufacturer"
+      description:
+        type: string
+        description: "Component description"
+
+  # Procurement
+  procurement:
+    type: object
+    properties:
+      last_quote_usd:
+        type: number
+        minimum: 0
+        description: "Most recent quote in USD"
+      quote_valid_until:
+        type: string
+        format: date
+        description: "Quote validity end date"
+      supplier:
+        type: string
+        description: "Supplier or OEM identifier"
+      po_ref:
+        type: string
+        description: "Purchase order reference"
+      delivery_date:
+        type: string
+        format: date
+        description: "Expected or actual delivery date"
+      receipt_date:
+        type: string
+        format: date
+        description: "Actual receipt date"
+      quotes:
+        type: array
+        description: "Quote history (QS/FWD states)"
+        items:
+          type: object
+          properties:
+            supplier:
+              type: string
+            price_usd:
+              type: number
+            lead_days:
+              type: integer
+            quote_date:
+              type: string
+              format: date
+
+  # Maintenance
+  maintenance:
+    type: object
+    properties:
+      next_inspection:
+        type: string
+        format: date
+        description: "Next scheduled inspection date"
+      last_inspection:
+        type: string
+        format: date
+        description: "Last inspection date"
+      total_cycles:
+        type: integer
+        minimum: 0
+        description: "Total operational cycles"
+      total_hours:
+        type: number
+        minimum: 0
+        description: "Total operational hours"
+      sb_compliance:
+        type: array
+        description: "Applicable service bulletins"
+        items:
+          type: string
+          pattern: "^SB-[A-Z0-9]+-[0-9]+-[0-9]+$"
+      ad_compliance:
+        type: array
+        description: "Airworthiness directives"
+        items:
+          type: string
+      condition:
+        type: string
+        enum:
+          - serviceable
+          - repairable
+          - condemned
+          - under_inspection
+          - under_repair
+        description: "Current maintenance condition"
+      maintenance_history:
+        type: array
+        description: "Maintenance event history"
+        items:
+          type: object
+          properties:
+            date:
+              type: string
+              format: date
+            type:
+              type: string
+              enum: [inspection, repair, overhaul, modification]
+            mro_provider:
+              type: string
+            work_order:
+              type: string
+            notes:
+              type: string
+
+  # Logistics
+  logistics:
+    type: object
+    properties:
+      current_location:
+        type: string
+        description: "Current physical location code"
+      last_movement:
+        type: string
+        format: date-time
+        description: "Last movement timestamp"
+      condition:
+        type: string
+        enum:
+          - serviceable
+          - repairable
+          - condemned
+          - in_transit
+          - quarantine
+        description: "Current logistics condition"
+      warehouse:
+        type: string
+        description: "Current warehouse identifier"
+      bin_location:
+        type: string
+        description: "Specific bin/shelf location"
+      custody_chain:
+        type: array
+        description: "Custody chain history"
+        items:
+          type: object
+          properties:
+            from:
+              type: string
+            to:
+              type: string
+            date:
+              type: string
+              format: date-time
+            carrier:
+              type: string
+
+  # Digital Passport
+  digital_passport:
+    type: object
+    required:
+      - registry
+      - badge
+    properties:
+      registry:
+        type: string
+        description: "Digital passport registry identifier"
+        const: "HUELLΔ"
+      badge:
+        type: string
+        description: "AAMMPP badge identifier"
+        pattern: "^AAMMPP-[A-Z]{3}-[A-Z0-9_]+-[A-Z0-9_]+$"
+      verification_url:
+        type: string
+        format: uri
+        description: "URL for passport verification"
+      qr_code:
+        type: string
+        description: "QR code data"
+      nfc_uid:
+        type: string
+        description: "NFC tag unique identifier"
+
+  # Quantum
+  quantum:
+    type: object
+    properties:
+      qsh_job:
+        type: string
+        pattern: "^QSH-[A-Z_]+-[0-9]{4}-[0-9]{4}$"
+        description: "Associated Quantum Supercomputing Hunting job"
+        examples:
+          - "QSH-SOURCING-2025-1018"
+          - "QSH-FAILURE_PRED-2025-1019"
+      qb_recommendation:
+        type: string
+        description: "Quantum optimization recommendation"
+      confidence:
+        type: number
+        minimum: 0
+        maximum: 1
+        description: "Recommendation confidence level"
+      optimization_date:
+        type: string
+        format: date-time
+        description: "Date of quantum optimization run"
+
+  # A360Exchanges-TT Integration
+  exchange:
+    type: object
+    description: "A360Exchanges-TT marketplace integration"
+    properties:
+      platform:
+        type: string
+        const: "A360Exchanges-TT"
+      marketplace_status:
+        type: string
+        enum:
+          - available
+          - listed
+          - sold
+          - leased
+          - in_repair
+          - retired
+        description: "Current marketplace status"
+      last_transaction:
+        type: string
+        format: date-time
+        description: "Last marketplace transaction timestamp"
+      token_reward_earned_tt:
+        type: number
+        minimum: 0
+        description: "Teknia Tokens earned"
+      circularity_score:
+        type: number
+        minimum: 0
+        maximum: 1
+        description: "Circular economy score (0-1)"
+      dpp_id:
+        type: string
+        pattern: "^DPP-A360EX-[A-Z0-9_]+-[A-Z0-9_]+-[0-9]+$"
+        description: "Digital Product Passport ID"
+
+  # Compliance
+  compliance:
+    type: object
+    properties:
+      airworthiness_certificates:
+        type: array
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [FAA_8130-3, EASA_FORM_1, CAAC, TC_CA]
+            number:
+              type: string
+            issue_date:
+              type: string
+              format: date
+            expiry_date:
+              type: string
+              format: date
+            issuing_authority:
+              type: string
+      standards_compliance:
+        type: array
+        items:
+          type: string
+          enum:
+            - AS9120
+            - AS9100
+            - ATA_iSpec_2000
+            - S1000D
+            - ISO_9001
+            - NADCAP
+      export_control:
+        type: object
+        properties:
+          itar_controlled:
+            type: boolean
+          ear_category:
+            type: string
+          export_license_required:
+            type: boolean
+
+  # Metadata
+  metadata:
+    type: object
+    properties:
+      created_date:
+        type: string
+        format: date-time
+        description: "Passport creation timestamp"
+      updated_date:
+        type: string
+        format: date-time
+        description: "Last update timestamp"
+      created_by:
+        type: string
+        description: "Creator identifier"
+      updated_by:
+        type: string
+        description: "Last updater identifier"
+      version:
+        type: string
+        pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        description: "Passport version"
+      checksum:
+        type: string
+        description: "Passport data checksum for integrity"
+
+additionalProperties: false

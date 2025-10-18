@@ -5,7 +5,9 @@
 [![TFA](https://img.shields.io/badge/TFA-Threading%20Functional%20Architecture-purple)](https://idealeeu.github.io/docs/tfa-domains/)
 [![License](https://img.shields.io/badge/license-See%20LICENSE-red)](LICENSE)
 
-This is an AAMMPP Aerospace Assets Management, Maintenance and Procurement Platform (canonical name) for aerospace components quotation, exchanges and tracking using **UTCS headers** **User Experience Threading Context/Content/Cache and Structure/Style/Sheet**, **Quantum Supercomputing Hunting**, **TFA (Topic Functional Areas)**, and Product Lifecycle User Made automation (PLUMA)
+This platform includes **AAMMPP** (Aerospace Assets Management, Maintenance and Procurement Platform) - the canonical foundation for aerospace components quotation, exchanges and tracking using **UTCS headers** (User Experience Threading Context/Content/Cache and Structure/Style/Sheet), **Quantum Supercomputing Hunting (QSH)**, **TFA (Topic Functional Areas)**, and **PLUMA** (Product Lifecycle User Made Automation).
+
+**AAMMPP Platform:** Located at `00-PROGRAM/BUSINESS/AAMMPP/`, AAMMPP provides end-to-end digital thread management from supplier bid to component retirement, with A360Exchanges-TT as its commercial marketplace layer.
 
 ## 🚀 Features
 
@@ -163,6 +165,7 @@ See [LICENSE](LICENSE) file for details.
 ## Primary folders
 
 * **00-PROGRAM/** — Governance, CM, QMS, standards, supply chain
+  * **00-PROGRAM/BUSINESS/AAMMPP/** — Aerospace Assets Management, Maintenance and Procurement Platform (canonical)
 * **01-FLEET/** — Operational data hub, MRO, federated learning
 * **02-AIRCRAFT/** — AIR-T (ATA) baselines, domain integration, twin
 * **03-SPACECRAFT/** — STA baselines, domain integration, AIT/mission
@@ -173,6 +176,7 @@ See [LICENSE](LICENSE) file for details.
 * **08-LAUNCHERS/** — Launch vehicles
 * **09-STM-SPACE-STATION-MODULES/** — Station modules/segments
 * **10-BUSINESS/** — Market, partnerships, finance
+  * **10-BUSINESS/A360-EXCHANGES-TT/** — Aerospace 360 Exchanges with Teknia Token (commercial layer on AAMMPP)
 
 > Note: **02–09 are TFA product stacks** (Top Final Assembly).
 

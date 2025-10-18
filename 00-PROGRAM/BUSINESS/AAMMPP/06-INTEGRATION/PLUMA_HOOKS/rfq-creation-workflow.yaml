@@ -1,0 +1,310 @@
+# PLUMA Workflow: RFQ Creation
+# Automates UTCS passport creation and supplier notification when new RFQ is issued
+
+workflow:
+  name: "RFQ Creation Workflow"
+  version: "1.0.0"
+  description: "Auto-generate UTCS draft + TFA classification when RFQ is created"
+  enabled: true
+  priority: high
+  tags: [procurement, utcs, automation]
+
+# Trigger Configuration
+trigger:
+  event: "rfq.created"
+  source: "/02-PROCUREMENT/RFQ/"
+  event_schema:
+    type: object
+    required: [rfq_id, component_description, quantity, required_date]
+    properties:
+      rfq_id:
+        type: string
+        pattern: "^RFQ-[0-9]{4}-[0-9]{4,6}$"
+      component_description:
+        type: string
+      part_number:
+        type: string
+      quantity:
+        type: integer
+        minimum: 1
+      required_date:
+        type: string
+        format: date
+      requestor:
+        type: string
+
+# Preconditions
+conditions:
+  - field: "procurement_type"
+    operator: "in"
+    value: ["new_buy", "replacement", "exchange"]
+  - field: "component_description"
+    operator: "not_empty"
+  - field: "quantity"
+    operator: ">"
+    value: 0
+
+# Workflow Actions
+actions:
+  # Step 1: Classify component into TFA domain
+  - name: "classify_tfa_domain"
+    action: "ai.classify"
+    description: "Use AI/ML to classify component into appropriate TFA domain"
+    parameters:
+      input: "{{ event.component_description }}"
+      model: "tfa-classifier-v2"
+      confidence_threshold: 0.80
+    output: "tfa_classification"
+    on_error:
+      action: "manual_review"
+      notify: "classification_team@example.com"
+    
+  # Step 2: Generate UTCS reference ID
+  - name: "generate_utcs_ref"
+    action: "utcs.generate_ref"
+    description: "Generate unique UTCS reference identifier"
+    parameters:
+      tfa_domain: "{{ tfa_classification.domain }}"
+      component_type: "{{ extract_type(event.part_number) }}"
+      sequence: "auto"
+    output: "utcs_ref"
+    
+  # Step 3: Create UTCS draft passport
+  - name: "create_utcs_draft"
+    action: "utcs.create"
+    description: "Create UTCS passport in QS (Quantum Superposition) state"
+    parameters:
+      utcs_ref: "{{ utcs_ref }}"
+      utcs_schema: "1.1.0"
+      type: "aerospace-component"
+      anchor: "AAMMPP/ASSETS/{{ tfa_classification.domain }}/{{ event.component_type }}/{{ event.rfq_id }}"
+      tfa_domain: "{{ tfa_classification.domain }}"
+      lifecycle_state: "QS"
+      asset_identity:
+        part_number: "{{ event.part_number }}"
+        description: "{{ event.component_description }}"
+      procurement:
+        rfq_ref: "{{ event.rfq_id }}"
+        quantity: "{{ event.quantity }}"
+        required_date: "{{ event.required_date }}"
+        requestor: "{{ event.requestor }}"
+      digital_passport:
+        registry: "HUELLΔ"
+        badge: "AAMMPP-{{ tfa_classification.domain }}-{{ event.component_type }}-{{ event.rfq_id }}"
+      metadata:
+        created_by: "PLUMA-RFQ-WORKFLOW"
+        version: "1.0.0"
+    output: "utcs_passport"
+    retry:
+      max_attempts: 3
+      backoff: exponential
+      initial_delay: 1s
+    
+  # Step 4: Store UTCS passport in registry
+  - name: "register_utcs"
+    action: "utcs.register"
+    description: "Store UTCS passport in registry with proper indexing"
+    parameters:
+      passport: "{{ utcs_passport }}"
+      index_by:
+        - tfa_domain
+        - lifecycle_state
+        - rfq_ref
+    output: "registry_location"
+    
+  # Step 5: Identify potential suppliers
+  - name: "identify_suppliers"
+    action: "supplier.search"
+    description: "Find qualified suppliers based on TFA domain and component type"
+    parameters:
+      tfa_domain: "{{ tfa_classification.domain }}"
+      component_type: "{{ event.component_type }}"
+      criteria:
+        - rating: ">= 4.0"
+        - certification: ["AS9120", "AS9100"]
+        - delivery_capability: true
+      max_results: 5
+      prioritize:
+        - past_performance
+        - location
+        - lead_time
+    output: "qualified_suppliers"
+    
+  # Step 6: Trigger QSH sourcing optimization
+  - name: "trigger_qsh_optimization"
+    action: "quantum.submit_job"
+    description: "Submit Quantum Supercomputing Hunting job for optimal sourcing"
+    parameters:
+      job_type: "sourcing_optimization"
+      job_id: "QSH-SOURCING-{{ event.rfq_id }}"
+      input:
+        component: "{{ event.part_number }}"
+        quantity: "{{ event.quantity }}"
+        required_date: "{{ event.required_date }}"
+        suppliers: "{{ qualified_suppliers }}"
+        optimize_for:
+          - cost: 0.4
+          - lead_time: 0.3
+          - reliability: 0.2
+          - sustainability: 0.1
+      priority: "normal"
+    output: "qsh_job_id"
+    async: true
+    
+  # Step 7: Notify suppliers
+  - name: "notify_suppliers"
+    action: "notification.send"
+    description: "Send RFQ notifications to qualified suppliers"
+    parameters:
+      recipients: "{{ qualified_suppliers.emails }}"
+      template: "rfq_invitation"
+      variables:
+        rfq_id: "{{ event.rfq_id }}"
+        component_description: "{{ event.component_description }}"
+        quantity: "{{ event.quantity }}"
+        required_date: "{{ event.required_date }}"
+        utcs_ref: "{{ utcs_ref }}"
+        quote_deadline: "{{ add_days(now, 14) }}"
+        portal_link: "https://aammpp.idealeeu.eu/rfq/{{ event.rfq_id }}"
+      attachments:
+        - type: "technical_spec"
+          source: "{{ event.spec_document }}"
+    output: "notification_results"
+    
+  # Step 8: Create procurement tracking record
+  - name: "create_tracking_record"
+    action: "procurement.track"
+    description: "Initialize procurement tracking with milestones"
+    parameters:
+      rfq_id: "{{ event.rfq_id }}"
+      utcs_ref: "{{ utcs_ref }}"
+      milestones:
+        - name: "RFQ_ISSUED"
+          status: "completed"
+          date: "{{ now }}"
+        - name: "QUOTES_RECEIVED"
+          status: "pending"
+          target_date: "{{ add_days(now, 14) }}"
+        - name: "SUPPLIER_SELECTED"
+          status: "pending"
+          target_date: "{{ add_days(now, 21) }}"
+        - name: "PO_ISSUED"
+          status: "pending"
+          target_date: "{{ add_days(now, 28) }}"
+      notifications:
+        - milestone: "QUOTES_RECEIVED"
+          if: "received_count < 3"
+          action: "escalate"
+          recipient: "procurement_manager@example.com"
+    output: "tracking_id"
+    
+  # Step 9: Update dashboard metrics
+  - name: "update_metrics"
+    action: "metrics.increment"
+    description: "Update AAMMPP dashboard metrics"
+    parameters:
+      counters:
+        - "rfq.total_created"
+        - "rfq.by_tfa.{{ tfa_classification.domain }}"
+        - "utcs.passports_created"
+      gauges:
+        - name: "rfq.active_count"
+          operation: "increment"
+      tags:
+        tfa_domain: "{{ tfa_classification.domain }}"
+        workflow: "rfq_creation"
+
+# Success Notifications
+notifications:
+  on_success:
+    - recipient: "{{ event.requestor }}"
+      channel: "email"
+      template: "rfq_created_confirmation"
+      variables:
+        rfq_id: "{{ event.rfq_id }}"
+        utcs_ref: "{{ utcs_ref }}"
+        suppliers_notified: "{{ length(qualified_suppliers) }}"
+        tracking_url: "https://aammpp.idealeeu.eu/track/{{ tracking_id }}"
+        
+    - recipient: "procurement_team@example.com"
+      channel: "slack"
+      template: "rfq_workflow_success"
+      variables:
+        rfq_id: "{{ event.rfq_id }}"
+        tfa_domain: "{{ tfa_classification.domain }}"
+        
+  on_failure:
+    - recipient: "admin@example.com"
+      channel: "email"
+      urgency: "high"
+      template: "workflow_failed"
+      variables:
+        workflow: "RFQ Creation"
+        rfq_id: "{{ event.rfq_id }}"
+        error: "{{ error_message }}"
+        
+    - recipient: "ops_team"
+      channel: "pagerduty"
+      urgency: "high"
+
+# Metrics Collection
+metrics:
+  track:
+    - name: "execution_time"
+      type: "histogram"
+      unit: "seconds"
+    - name: "success_rate"
+      type: "counter"
+    - name: "tfa_classification_confidence"
+      type: "gauge"
+    - name: "suppliers_identified"
+      type: "histogram"
+  
+  sla:
+    execution_time_p95: 30  # seconds
+    success_rate: 0.95
+    
+  alerts:
+    - condition: "execution_time_p95 > 45"
+      severity: "warning"
+      action: "notify_team"
+    - condition: "success_rate < 0.90"
+      severity: "critical"
+      action: "escalate"
+
+# Rollback Configuration
+rollback:
+  on_failure:
+    - action: "utcs.delete"
+      target: "{{ utcs_ref }}"
+      if: "utcs_passport.created"
+    - action: "notification.recall"
+      target: "{{ notification_results }}"
+      if: "notifications_sent"
+    - action: "tracking.delete"
+      target: "{{ tracking_id }}"
+      if: "tracking_created"
+
+# Audit Trail
+audit:
+  log_level: "info"
+  include:
+    - trigger_event
+    - all_actions
+    - outputs
+    - notifications
+  sensitive_fields:
+    - requestor_email
+    - supplier_contacts
+  retention_days: 2555  # 7 years for compliance
+
+# Version History
+version_history:
+  - version: "1.0.0"
+    date: "2025-10-18"
+    author: "AAMMPP Platform Team"
+    changes:
+      - "Initial release"
+      - "TFA classification with AI"
+      - "QSH integration"
+      - "Supplier notification automation"

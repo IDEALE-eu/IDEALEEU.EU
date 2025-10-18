@@ -1,0 +1,92 @@
+# UTCS Component Template - AAMMPP v1.1
+# Use this template to create new aerospace component digital passports
+# Replace placeholder values with actual data
+
+utcs_ref: UTCS-AAMMPP-{TFA}-{CATEGORY}-{TYPE}-{ID}@1.0.0
+utcs_schema: "1.1.0"
+type: aerospace-component  # or aerospace-assembly, aerospace-consumable, aerospace-tooling
+anchor: AAMMPP/ASSETS/{TFA}/{CATEGORY}/{TYPE}/{ID}
+tfa_domain: {TFA}  # One of: AAA, AAP, CCC, CQH, DDD, EDI, EEE, EER, IIF, IIS, LCC, LIB, MMM, OOO, PPP
+lifecycle_state: QS  # Start in QS (Quantum Superposition) state
+
+# Asset Identity
+asset_identity:
+  part_number: "{PART_NUMBER}"
+  serial_number: "{SERIAL_NUMBER}"  # Optional until receipt
+  lot_number: "{LOT_NUMBER}"  # Optional
+  manufacture_date: "{YYYY-MM-DD}"  # Optional
+  manufacturer: "{MANUFACTURER}"
+  description: "{COMPONENT_DESCRIPTION}"
+
+# Procurement (Required)
+procurement:
+  last_quote_usd: 0.00  # Update with actual quote
+  quote_valid_until: "{YYYY-MM-DD}"
+  supplier: "{SUPPLIER_ID}"
+  po_ref: "{PO_NUMBER}"  # Optional until PO issued
+  delivery_date: "{YYYY-MM-DD}"  # Optional
+  receipt_date: "{YYYY-MM-DD}"  # Optional
+  quotes: []  # Add quotes as received
+
+# Maintenance (Optional initially)
+maintenance:
+  next_inspection: null
+  last_inspection: null
+  total_cycles: 0
+  total_hours: 0.0
+  sb_compliance: []
+  ad_compliance: []
+  condition: serviceable
+  maintenance_history: []
+
+# Logistics (Optional initially)
+logistics:
+  current_location: "{LOCATION_CODE}"
+  last_movement: "{YYYY-MM-DDTHH:MM:SSZ}"
+  condition: serviceable
+  warehouse: "{WAREHOUSE_ID}"
+  bin_location: "{BIN_LOCATION}"
+  custody_chain: []
+
+# Digital Passport (Required)
+digital_passport:
+  registry: "HUELLΔ"
+  badge: "AAMMPP-{TFA}-{TYPE}-{ID}"
+  verification_url: "https://huell.idealeeu.eu/verify/AAMMPP-{TFA}-{TYPE}-{ID}"
+  qr_code: null  # Generated upon registration
+  nfc_uid: null  # Optional
+
+# Quantum (Optional)
+quantum:
+  qsh_job: null
+  qb_recommendation: null
+  confidence: null
+  optimization_date: null
+
+# A360Exchanges-TT Integration (Optional)
+exchange:
+  platform: "A360Exchanges-TT"
+  marketplace_status: available
+  last_transaction: null
+  token_reward_earned_tt: 0.0
+  circularity_score: 1.0  # New component
+  dpp_id: null
+
+# Compliance (Required for regulated components)
+compliance:
+  airworthiness_certificates: []
+  standards_compliance:
+    - AS9120  # Minimum for AAMMPP
+  export_control:
+    itar_controlled: false
+    ear_category: "EAR99"
+    export_license_required: false
+
+# Metadata (Auto-generated)
+metadata:
+  created_date: "{YYYY-MM-DDTHH:MM:SSZ}"
+  updated_date: "{YYYY-MM-DDTHH:MM:SSZ}"
+  created_by: "{USER_ID}"
+  updated_by: "{USER_ID}"
+  version: "1.0.0"
+  checksum: null  # Computed on save
