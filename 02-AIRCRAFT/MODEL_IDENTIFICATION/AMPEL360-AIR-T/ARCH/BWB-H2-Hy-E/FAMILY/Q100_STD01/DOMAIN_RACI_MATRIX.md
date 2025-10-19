@@ -193,9 +193,9 @@ graph TD
 %%{init: {'theme':'base', 'themeVariables': { 'fontSize':'12px'}}}%%
 pie title "RACI Distribution Across All Domains"
     "Accountable (A)" : 6
-    "Responsible (R)" : 19
+    "Responsible (R)" : 15
     "Consulted (C)" : 13
-    "Informed (I)" : 17
+    "Informed (I)" : 11
 ```
 
 ---
