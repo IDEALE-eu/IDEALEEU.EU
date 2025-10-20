@@ -1,0 +1,23 @@
+{
+  "name": "ampel360-structure-tools",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Repo utilities: structure scan, README UTC front-matter upkeep.",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "scan": "python3 scripts/structure_scan.py --repo-root . --markers pyproject.toml setup.py requirements.txt package.json CMakeLists.txt Makefile .gitmodules --readme-names README.md README.rst README.txt",
+    "scan:strict": "npm run -s scan && test ! -s structure-scan-report/open_points.txt",
+    "scan:json": "python3 scripts/structure_scan.py --repo-root . --json structure-scan-report/report.json",
+    "utc:touch": "node -e \"const fs=require('fs'),path=require('path');const SKIP=new Set(['.git','node_modules','dist','build','.venv','venv']);function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){if(SKIP.has(e.name)||e.name.startsWith('.'))continue;const p=path.join(d,e.name);if(e.isDirectory())walk(p);else if(e.isFile()&&e.name==='README.md'){let s=fs.readFileSync(p,'utf8');if(!s.startsWith('---'))continue;const end=s.indexOf('\\n---',3);if(end<0)continue;const head=s.slice(3,end).split('\\n');const now=new Date().toISOString().replace(/\\.\\d{3}Z$/,'Z');let seen=false;const head2=head.map(l=>l.startsWith('updated_utc: ')?(seen=true,'updated_utc: '+now):l);if(!seen)head2.push('updated_utc: '+now);const out='---\\n'+head2.join('\\n')+s.slice(end);fs.writeFileSync(p,out)}}}walk(process.cwd());\"",
+    "fmt": "prettier --write \"**/*.{md,json,yml,yaml}\"",
+    "lint:md": "markdownlint \"**/*.md\" --ignore node_modules --ignore .git"
+  },
+  "devDependencies": {
+    "markdownlint-cli": "^0.41.0",
+    "prettier": "^3.3.3"
+  }
+}
