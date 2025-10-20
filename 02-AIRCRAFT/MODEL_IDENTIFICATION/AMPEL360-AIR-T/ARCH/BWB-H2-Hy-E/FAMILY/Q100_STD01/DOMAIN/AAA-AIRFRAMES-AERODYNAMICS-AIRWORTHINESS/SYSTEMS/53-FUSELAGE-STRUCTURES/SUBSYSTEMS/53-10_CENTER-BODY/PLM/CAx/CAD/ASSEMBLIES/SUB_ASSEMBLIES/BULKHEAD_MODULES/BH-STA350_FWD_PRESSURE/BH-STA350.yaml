@@ -1,0 +1,68 @@
+# BH-STA350 Forward Pressure Bulkhead Configuration
+# Configuration file for bulkhead at Fuselage Station 350
+
+metadata:
+  part_number: 53-10-BH-STA350
+  description: Forward Pressure Bulkhead at FS 350
+  revision: 01
+  status: draft
+  assembly_file: 53-10-BH-STA350_MASTER_ASM.asm
+
+parameters:
+  FS_POSITION:
+    value: 350
+    unit: mm
+    description: "Fuselage station for bulkhead placement"
+  
+  MATERIAL_SPEC:
+    value: AL-2024-T3
+    unit: --
+    description: "Structural aluminum alloy"
+    reference: materials_map.csv
+
+geometry:
+  perimeter_curve: FUSELAGE_FS350.curve
+  frame_interface: FRAME_10HOLE.sketch
+  coordinate_system: BH_STA350_CS
+
+datums:
+  FS_350:
+    type: plane
+    position: 350
+    unit: mm
+    description: "Datum plane X-position"
+  
+  BL_0:
+    type: plane
+    position: 0
+    unit: mm
+    description: "Datum plane Y-position"
+  
+  WL_0:
+    type: plane
+    position: 0
+    unit: mm
+    description: "Datum plane Z-position"
+
+components:
+  - name: skeleton
+    file: 53-10-BH-STA350_SKEL.prt
+    type: reference
+  
+  - name: environment
+    file: 53-10-BH-STA350_ENV.prt
+    type: reference
+  
+  - name: panel
+    file: 53-10-BH-STA350_PANEL.prt
+    type: component
+  
+  - name: gussets
+    file: 53-10-BH-STA350_GUSSETS.prt
+    type: component
+
+validation:
+  model_check_config: LINT/modelcheck_rules.txt
+  mc_verified: true
+  mc_errors: 0
+  badge: BH-STA350_SKEL_VALIDATED

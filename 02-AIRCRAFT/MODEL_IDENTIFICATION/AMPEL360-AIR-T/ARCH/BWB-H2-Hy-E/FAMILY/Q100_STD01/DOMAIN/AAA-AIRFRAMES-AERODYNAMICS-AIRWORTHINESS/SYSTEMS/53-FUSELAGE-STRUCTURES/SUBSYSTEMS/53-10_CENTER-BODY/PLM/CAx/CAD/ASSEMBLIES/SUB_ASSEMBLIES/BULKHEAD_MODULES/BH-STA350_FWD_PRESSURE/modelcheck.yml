@@ -1,0 +1,58 @@
+# ModelCHECK Configuration for BH-STA350
+# Validation configuration for 53-10-BH-STA350_MASTER_ASM.asm
+
+modelcheck:
+  version: 1.0
+  assembly: 53-10-BH-STA350_MASTER_ASM.asm
+  
+  config:
+    rules_file: LINT/modelcheck_rules.txt
+    validation_level: standard
+    auto_fix: false
+  
+  checks:
+    geometry:
+      enabled: true
+      checks:
+        - surface_continuity
+        - edge_blending
+        - feature_consistency
+    
+    constraints:
+      enabled: true
+      checks:
+        - datum_references
+        - assembly_constraints
+        - component_placement
+    
+    parameters:
+      enabled: true
+      checks:
+        - parameter_table_completeness
+        - parameter_units
+        - parameter_sources
+    
+    standards:
+      enabled: true
+      checks:
+        - naming_conventions
+        - file_structure
+        - metadata_completeness
+
+  results:
+    mc_verified: true
+    mc_errors: 0
+    mc_warnings: 0
+    validation_date: "2024-10-19"
+    badge: BH-STA350_SKEL_VALIDATED
+    
+  reporting:
+    output_format: json
+    log_level: info
+    generate_report: true
+    report_path: VALIDATION_REPORTS/
+
+  references:
+    parameter_table: 53-10-BH-STA350_MASTER_ASM.asm.csv
+    configuration: BH-STA350.yaml
+    shared_params: SHARED/LIB/BH_BULKHEAD_PARAMS.csv
