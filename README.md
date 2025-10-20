@@ -173,6 +173,10 @@ See [LICENSE](LICENSE) file for details.
 * **08-LAUNCHERS/** — Launch vehicles
 * **09-STM-SPACE-STATION-MODULES/** — Station modules/segments
 * **10-BUSINESS/** — Market, partnerships, finance
+* **11-CONSTALLATIONS/** — Multi-satellite constellation systems
+* **12-SWARM/** — Swarm robotics and distributed autonomous systems
+* **13-TEAMS/** — Team organization and workforce management
+* **14-COLLAB-NETWORKS/** — Collaborative networks and partnerships
 
 > Note: **02–09 are TFA product stacks** (Top Final Assembly).
 
@@ -294,6 +298,10 @@ This index provides comprehensive navigation and quick access to all major direc
 - [08-LAUNCHERS](#08-launchers) — Launch vehicle systems
 - [09-STM-SPACE-STATION-MODULES](#09-stm-space-station-modules) — Space station modules
 - [10-BUSINESS](#10-business) — Market analysis, partnerships, finance
+- [11-CONSTALLATIONS](#11-constallations) — Multi-satellite constellation systems
+- [12-SWARM](#12-swarm) — Swarm robotics and distributed autonomous systems
+- [13-TEAMS](#13-teams) — Team organization and workforce management
+- [14-COLLAB-NETWORKS](#14-collab-networks) — Collaborative networks and partnerships
 
 ### Key Reference Points
 - **Governance & Policy**: [00-PROGRAM/GOVERNANCE](./00-PROGRAM/GOVERNANCE/) | [CONFIG_MGMT](./00-PROGRAM/CONFIG_MGMT/)
@@ -773,6 +781,35 @@ Example:
                       * [46-GROUND_MOC_INTERFACE](./03-SPACECRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-SPACE-T/MODELS/PLUS/VERSION/Q10/DOMAINS/STA-L-GROUND-INTEGRATION-OPS/SYSTEMS/46-GROUND_MOC_INTERFACE)
                       * [92-CALIBRATION_DATA_ARCHIVAL](./03-SPACECRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-SPACE-T/MODELS/PLUS/VERSION/Q10/DOMAINS/STA-L-GROUND-INTEGRATION-OPS/SYSTEMS/92-CALIBRATION_DATA_ARCHIVAL)
                   * [STA-M-PROGRAM-COMPLIANCE-RECORDS](./03-SPACECRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-SPACE-T/MODELS/PLUS/VERSION/Q10/DOMAINS/STA-M-PROGRAM-COMPLIANCE-RECORDS)
+
+
+### 11-CONSTALLATIONS
+- [11-CONSTALLATIONS](./11-CONSTALLATIONS/)
+  - Multi-satellite constellation systems design, coordination, and operations
+  - Constellation architecture and topology management
+  - Inter-satellite communications and networking
+  - Distributed mission planning and execution
+
+### 12-SWARM
+- [12-SWARM](./12-SWARM/)
+  - Swarm robotics and autonomous distributed systems
+  - Emergent collective behaviors and swarm intelligence
+  - Decentralized coordination and control
+  - Multi-agent mission execution
+
+### 13-TEAMS
+- [13-TEAMS](./13-TEAMS/)
+  - Team organization and workforce management
+  - Collaboration frameworks and methodologies
+  - Skills development and resource allocation
+  - Performance management and knowledge sharing
+
+### 14-COLLAB-NETWORKS
+- [14-COLLAB-NETWORKS](./14-COLLAB-NETWORKS/)
+  - Collaborative networks and strategic partnerships
+  - Ecosystem mapping and management
+  - Partnership governance and operations
+  - Value creation through collaboration
 
 
 ### 10-BUSINESS
