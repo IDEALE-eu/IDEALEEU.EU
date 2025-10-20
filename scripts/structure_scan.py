@@ -1,3 +1,4 @@
+"""
 Structure scan: list
 1) Open points = directories that lack a README and any packaging marker.
 2) End path points = leaf files printed as full path + name + extension.
