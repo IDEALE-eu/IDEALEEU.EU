@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Repo utilities: structure scan, README UTC front-matter upkeep.",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "engines": {
     "node": ">=18"
   },
