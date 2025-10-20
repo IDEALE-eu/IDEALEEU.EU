@@ -1,96 +1,96 @@
-# Objetivo
+# Objective
 
-Orquestar flujos S1000D en la CSDB con un núcleo neuromórfico: SNNs dirigidas por eventos, cómputo in-memory y plasticidad sináptica para aprender rutas, prioridades e impactos.
+Orchestrate S1000D workflows in the CSDB with a neuromorphic core: event-driven SNNs, in-memory computing, and synaptic plasticity to learn routes, priorities, and impacts.
 
-# Mapeo CSDB → red
+# CSDB → Network Mapping
 
-* **Nodos**: Data Modules (DMC), ilustraciones, IPD, PM, brex/BRDP, productos/configs.
-* **Aristas**: referencias, dependencias, effectivity, estructura de producto, estado de workflow.
-* **Eventos (spikes)**: creación/edición, fallos de validación, cambio de dependencia, solicitud de publicación, cambio de effectivity, devolución QA.
+* **Nodes**: Data Modules (DMC), illustrations, IPD, PM, BREX/BRDP, products/configs.
+* **Edges**: references, dependencies, effectivity, product structure, workflow state.
+* **Events (spikes)**: creation/editing, validation failures, dependency changes, publication requests, effectivity changes, QA returns.
 
-# Codificación a spikes
+# Spike Encoding
 
-* **AER** (Address-Event Representation): cada evento → dirección de nodo y marca temporal.
-* **Time-to-first-spike**: urgencia/criticidad.
-* **Poblaciones**: tipo de módulo, dominio (airframe, engine, avionics), fase del workflow.
-* **Ventaneo**: Δt cortos para ráfagas de actividad (p. ej., cascadas por cambios de config).
+* **AER** (Address-Event Representation): each event → node address and timestamp.
+* **Time-to-first-spike**: urgency/criticality.
+* **Populations**: module type, domain (airframe, engine, avionics), workflow phase.
+* **Windowing**: short Δt for activity bursts (e.g., cascades from config changes).
 
-# Modelo
+# Model
 
-* **Spiking GNN** sobre el grafo CSDB.
-* Neuronas **LIF**.
-* **Aprendizaje**: STDP + refuerzo modulado por recompensa (tiempo de ciclo ↓, rechazos ↓).
-* Capa de **política** discreta: {ruta, prioridad, asignación, bloqueo, pedido de revisión}.
-* Actualización típica: Δwᵢⱼ = η·(pre∘post − α·wᵢⱼ) con gating por recompensa r(t).
+* **Spiking GNN** over the CSDB graph.
+* **LIF** neurons.
+* **Learning**: STDP + reward-modulated reinforcement (cycle time ↓, rejections ↓).
+* Discrete **policy** layer: {route, priority, assignment, block, review request}.
+* Typical update: Δwᵢⱼ = η·(pre∘post − α·wᵢⱼ) with reward gating r(t).
 
-# Cómputo in-memory
+# In-Memory Computing
 
-* SNN ejecutada en hardware neuromórfico o CIM (SRAM/RRAM) para colas/eventos de alta tasa.
-* Coloque en memoria las matrices de conectividad de la GNN y colas AER para minimizar I/O.
-* Interfaz DMA con el bus de eventos de la CSDB.
+* SNN executed on neuromorphic hardware or CIM (SRAM/RRAM) for high-rate queues/events.
+* Place GNN connectivity matrices and AER queues in memory to minimize I/O.
+* DMA interface with CSDB event bus.
 
-# Salidas del sistema
+# System Outputs
 
-* **Ruteo**: a quién y en qué orden.
-* **Priorización**: escalado temporal y SLA sugerido.
-* **Impacto**: lista de DMC afectados por un cambio.
-* **Guardas**: “stop” si se violan reglas BREX o hay riesgo de inconsistencia.
-* **Explicabilidad**: top-k nodos y aristas que dispararon la decisión + trazas de spikes.
+* **Routing**: to whom and in what order.
+* **Prioritization**: temporal scaling and suggested SLA.
+* **Impact**: list of DMCs affected by a change.
+* **Guards**: "stop" if BREX rules are violated or there is risk of inconsistency.
+* **Explainability**: top-k nodes and edges that triggered the decision + spike traces.
 
-# Integración
+# Integration
 
-* **Ingesta**: stream de la CSDB (CRUD + validaciones) → codificador AER.
-* **Orquestador**: Camunda/Airflow/temporal.io como actuador. La SNN emite recomendaciones; el orquestador aplica políticas.
-* **QA humano en el bucle** en fases 1–2.
+* **Ingestion**: CSDB stream (CRUD + validations) → AER encoder.
+* **Orchestrator**: Camunda/Airflow/temporal.io as actuator. The SNN issues recommendations; the orchestrator applies policies.
+* **Human QA in the loop** in phases 1–2.
 
-# Métricas
+# Metrics
 
-* Lead time por estado, WIP medio, tasa de retrabajo, first-pass yield, toques humanos por DMC, precision/recall de impactos.
+* Lead time per state, average WIP, rework rate, first-pass yield, human touches per DMC, impact precision/recall.
 
-# Seguridad y cumplimiento
+# Security and Compliance
 
-* “Only-suggest” al inicio. Cambios efectivos requieren confirmación.
-* Registro inviolable de entradas/salidas y versión de pesos.
-* Reglas BREX como hard constraints fuera de la SNN.
+* "Only-suggest" at the start. Effective changes require confirmation.
+* Immutable log of inputs/outputs and weight version.
+* BREX rules as hard constraints outside the SNN.
 
-# Plan de piloto (8–12 semanas)
+# Pilot Plan (8–12 weeks)
 
-1. **Datos**: 12–24 meses de logs de workflow, grafo CSDB estático, reglas BREX.
-2. **Extracción**: construir grafo (DMC, refs, effectivity).
-3. **Etiquetas**: rutas reales, tiempos, reworks.
-4. **Base**: heurísticas y reglas actuales como línea base.
-5. **Modelo**: spiking GNN pequeña (≤100k sinapsis), STDP+RL offline.
-6. **Sombra**: ejecutar en paralelo y comparar con la base.
-7. **A/B**: habilitar recomendaciones en bajo riesgo (p. ej., módulos no de seguridad).
-8. **Revisión**: analizar drift y ajustar plasticidad.
+1. **Data**: 12–24 months of workflow logs, static CSDB graph, BREX rules.
+2. **Extraction**: build graph (DMC, refs, effectivity).
+3. **Labels**: actual routes, times, reworks.
+4. **Baseline**: current heuristics and rules as baseline.
+5. **Model**: small spiking GNN (≤100k synapses), offline STDP+RL.
+6. **Shadow**: run in parallel and compare with baseline.
+7. **A/B**: enable recommendations on low-risk (e.g., non-safety modules).
+8. **Review**: analyze drift and adjust plasticity.
 
-# Riesgos y mitigación
+# Risks and Mitigation
 
-* **No determinismo**: fijar seeds y cuantizar pesos.
-* **Drift** por cambios de programa: regularización y ventanas de aprendizaje.
-* **Explosión de actividad**: límites de tasa y reset por capa.
-* **Explicabilidad**: almacenar heatmaps de contribución por subgrafo.
+* **Non-determinism**: fix seeds and quantize weights.
+* **Drift** from program changes: regularization and learning windows.
+* **Activity explosion**: rate limits and per-layer reset.
+* **Explainability**: store contribution heatmaps per subgraph.
 
-# Esqueleto de implementación (pseudocódigo)
+# Implementation Skeleton (pseudocode)
 
 ```python
 event = csdb_stream.read()
 spikes = encode_AER(event)
 graph_state = csdb_graph.view_local_subgraph(event.dmc)
-action = sgnn.step(graph_state, spikes)        # ruteo/prioridad/impacto
+action = sgnn.step(graph_state, spikes)        # routing/priority/impact
 if guardrails.pass(action, brex_rules):
-    orchestrator.apply(action)                 # o solicitar confirmación
+    orchestrator.apply(action)                 # or request confirmation
 logger.log(event, spikes, action, rationale())
 ```
 
-# Requisitos de datos
+# Data Requirements
 
-* Grafo CSDB versionado.
-* Trazas de workflow con timestamps y responsables.
-* Matriz de reglas BREX aplicadas por tipo de DMC.
-* Etiquetas de severidad/urgencia históricas.
+* Versioned CSDB graph.
+* Workflow traces with timestamps and owners.
+* Matrix of BREX rules applied by DMC type.
+* Historical severity/urgency labels.
 
-# Siguiente movimiento de alto apalancamiento
+# Next High-Leverage Move
 
-* Entregar un **grafo de 1 programa** y **100–500 DMC** con logs reales para entrenar un prototipo “shadow”.
-* Definir 3 KPIs y una política de aceptación para pasar de “suggest” a “auto-apply” en casos de bajo riesgo.
+* Deliver a **1-program graph** and **100–500 DMCs** with real logs to train a "shadow" prototype.
+* Define 3 KPIs and an acceptance policy to move from "suggest" to "auto-apply" in low-risk cases.
