@@ -1,4 +1,3 @@
-# .github/workflows/structure-scan-copilot.yml
 name: Structure Scan + Copilot
 
 on:
@@ -114,7 +113,6 @@ EOF
               await github.rest.issues.create({ owner, repo, title, body });
             }
 
-      # Optional: fail CI when open points exist
       - name: Fail on open points
         if: steps.prep.outputs.has_open == 'true'
         run: |
