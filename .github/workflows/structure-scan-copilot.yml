@@ -1,0 +1,95 @@
+name: Structure Scan + Copilot prompt
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run structure scan
+        run: |
+          python3 .github/scripts/structure_scan.py \
+            --repo-root . \
+            --markers pyproject.toml setup.py requirements.txt package.json CMakeLists.txt Makefile .gitmodules \
+            --readme-names README.md README.rst README.txt
+
+      - name: Prepare Copilot prompt
+        id: prep
+        run: |
+          OPEN_POINTS=$(sed 's/^/- /' structure-scan-report/open_points.txt | tr -d '\r' || true)
+          if [ -z "$OPEN_POINTS" ]; then
+            echo "has_open=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          cat > copilot_prompt.md << 'EOF'
+@copilot
+
+Task: For each path below that lacks a README and packaging marker, generate:
+1) A directory tree proposal (only include the subtree for that path). Use a fenced code block with the tree.
+2) A `README.md` draft per path that covers: purpose, architecture, interfaces/APIs, file layout, ownership, testing, and airworthiness/compliance notes (EASA-friendly), plus “Next steps”.
+3) Return changes as a new pull request against this branch. Include commit messages and file diffs in your response.
+
+Paths to process:
+EOF
+          printf "\n%s\n" "$OPEN_POINTS" >> copilot_prompt.md
+
+          echo "has_open=true" >> $GITHUB_OUTPUT
+
+      - name: Comment on PR with @copilot
+        if: steps.prep.outputs.has_open == 'true' && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('copilot_prompt.md', 'utf8');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body
+            });
+
+      - name: Open or update issue with @copilot
+        if: steps.prep.outputs.has_open == 'true' && github.event_name != 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('copilot_prompt.md', 'utf8');
+            const {owner, repo} = context.repo;
+            const title = "Copilot: generate directory trees and READMEs for open points";
+            // Try to find an open issue with same title
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner, repo, state: 'open', per_page: 100
+            });
+            const existing = issues.find(i => i.title === title);
+            if (existing) {
+              await github.rest.issues.createComment({ owner, repo, issue_number: existing.number, body });
+            } else {
+              await github.rest.issues.create({
+                owner, repo, title,
+                body: body + "\n\n_Triggered by push: " + context.sha + "_"
+              });
+            }
+
+      - name: Add job summary
+        if: always()
+        run: |
+          echo "## Structure Scan" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Open points**:" >> $GITHUB_STEP_SUMMARY
+          sed -n '1,200p' structure-scan-report/open_points.txt >> $GITHUB_STEP_SUMMARY || echo "none" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**End path points**:" >> $GITHUB_STEP_SUMMARY
+          sed -n '1,200p' structure-scan-report/end_points.txt >> $GITHUB_STEP_SUMMARY || true
