@@ -1,88 +1,68 @@
-# components/ — UI Components
+# ui — Primitives
 
-## Folders
-- **ui/** – primitives (Button, Card, Input, Badge)
-- **layout/** – AppShell, Navbar, Sidebar, Footer
-- **passport/** – Digital Passport widgets (PassportCard, ManifestViewer, StateStepper)
-- **tfa/** – TFA domain chips, grid, legend
-- **charts/** – lightweight charts (Recharts)
-- **icons/** – lucide-react wrappers
-- **tables/** – data table, filters, pagination
+Stateless building blocks. TypeScript. Tailwind-only. No data fetching.
 
-> Import via aliases (e.g., `@/components/ui/Button`).
+## Index
+- [alert.tsx](./alert.tsx) — inline status message
+- [badge.tsx](./badge.tsx) — small status pill
+- [button.tsx](./button.tsx) — actions with variants/sizes
+- [dialog.tsx](./dialog.tsx) — modal container
+- [input.tsx](./input.tsx) — text input
+- [label.tsx](./label.tsx) — form label
+- [progress.tsx](./progress.tsx) — linear progress
+- [select.tsx](./select.tsx) — single-choice select
+- [stat-card.tsx](./stat-card.tsx) — KPI card
+- [switch.tsx](./switch.tsx) — toggle
+- [tooltip.tsx](./tooltip.tsx) — hover/focus hint
 
-## Rules
-- React 19 + TypeScript. One component per file. Default export.
-- Tailwind only. No inline styles.
-- Accessible by default (roles, aria-*, focus rings).
-- Pure UI. Fetching and business logic live in `hooks/` or `lib/`.
-- Props typed. No `any`. Prefer discriminated unions for variants.
+## Conventions
+- One component per file. Default export.
+- Props typed. No `any`.
+- A11y first: roles, aria-*, focus rings.
+- Variants via props; compose classes with `cn` from `@/lib/utils`.
 
-## Naming
-- Files: `ComponentName.tsx`
-- Tests: `__tests__/ComponentName.test.tsx`
-- Stories (optional): `ComponentName.stories.tsx`
-
-## Variants and theming
-- Use Tailwind tokens (from `index.css`).
-- Expose `variant` and `size` props when useful.
-- Compose with class helpers from `@/lib/utils` (e.g., `cn`).
-
-## Example
+## Quick use
 ```tsx
-// components/ui/Button.tsx
-import { Slot } from "@radix-ui/react-slot";
-import { cn } from "@/lib/utils";
+import Button from "@/components/ui/button";
+import Badge from "@/components/ui/badge";
+import Tooltip from "@/components/ui/tooltip";
 
-type ButtonProps = React.ComponentProps<"button"> & {
-  asChild?: boolean;
-  variant?: "primary" | "ghost" | "outline";
-  size?: "sm" | "md";
-};
-
-export default function Button({
-  asChild,
-  variant = "primary",
-  size = "md",
-  className,
-  ...props
-}: ButtonProps) {
-  const Comp = asChild ? Slot : "button";
+export default function Example() {
   return (
-    <Comp
-      className={cn(
-        "inline-flex items-center justify-center rounded-2xl font-medium transition-colors",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-        size === "sm" ? "px-3 py-1.5 text-sm" : "px-4 py-2 text-sm",
-        variant === "primary" && "bg-primary text-white hover:bg-primary/90",
-        variant === "ghost" && "hover:bg-neutral-100",
-        variant === "outline" && "border border-neutral-300 hover:bg-neutral-50",
-        className
-      )}
-      {...props}
-    />
+    <div className="space-x-2">
+      <Button variant="default">Save</Button>
+      <Badge>Verified</Badge>
+      <Tooltip content="Open settings">
+        <Button aria-label="Settings" variant="ghost">⚙️</Button>
+      </Tooltip>
+    </div>
   );
 }
 ````
 
-## Barrel exports
+## Barrel export (optional)
 
 ```ts
-// components/index.ts
-export { default as Button } from "./ui/Button";
-export { default as PassportCard } from "./passport/PassportCard";
-export { default as ManifestViewer } from "./passport/ManifestViewer";
-export { default as DomainChips } from "./tfa/DomainChips";
+// components/ui/index.ts
+export { default as Alert } from "./alert";
+export { default as Badge } from "./badge";
+export { default as Button } from "./button";
+export { default as Dialog } from "./dialog";
+export { default as Input } from "./input";
+export { default as Label } from "./label";
+export { default as Progress } from "./progress";
+export { default as Select } from "./select";
+export { default as StatCard } from "./stat-card";
+export { default as Switch } from "./switch";
+export { default as Tooltip } from "./tooltip";
 ```
 
-## Lint and tests
+## Testing
 
-```bash
-npm run lint
-npm run test
-```
+Use React Testing Library + Vitest. One test per component in `__tests__/`.
 
 ```
 ::contentReference[oaicite:0]{index=0}
 ```
+
 
