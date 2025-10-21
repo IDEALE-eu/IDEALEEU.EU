@@ -4,7 +4,7 @@
 metadata:
   part_number: 53-10-BH-STA350
   description: Forward Pressure Bulkhead at FS 350
-  revision: 01
+  revision: 03
   status: draft
   assembly_file: 53-10-BH-STA350_MASTER_ASM.asm
 
@@ -13,12 +13,23 @@ parameters:
     value: 350
     unit: mm
     description: "Fuselage station for bulkhead placement"
-  
+
   MATERIAL_SPEC:
     value: AL-2024-T3
     unit: --
     description: "Structural aluminum alloy"
     reference: materials_map.csv
+
+  PRESSURE_LOAD:
+    value: 61.2
+    unit: kPa
+    description: "Differential pressure across bulkhead"
+    reference: BH_BULKHEAD_PARAMS.csv
+
+  THICKNESS:
+    value: 5.5
+    unit: mm
+    description: "Nominal bulkhead thickness"
 
 geometry:
   perimeter_curve: FUSELAGE_FS350.curve
@@ -31,13 +42,13 @@ datums:
     position: 350
     unit: mm
     description: "Datum plane X-position"
-  
+
   BL_0:
     type: plane
     position: 0
     unit: mm
     description: "Datum plane Y-position"
-  
+
   WL_0:
     type: plane
     position: 0
@@ -48,21 +59,57 @@ components:
   - name: skeleton
     file: 53-10-BH-STA350_SKEL.prt
     type: reference
-  
+
   - name: environment
     file: 53-10-BH-STA350_ENV.prt
     type: reference
-  
+
   - name: panel
     file: 53-10-BH-STA350_PANEL.prt
     type: component
-  
+
   - name: gussets
     file: 53-10-BH-STA350_GUSSETS.prt
     type: component
+
+  - name: firewall_layer
+    file: 53-10-BH-STA350_FIREWALL.prt
+    type: component
+
+context:
+  frame_id: C0
+  divides:
+    - fuselage_pressurized
+    - radome_sensor_bay
+  anchor_type: radial
+  interface_profile: FRAME_10HOLE.sketch
+  sensor_payload:
+    type: multi-sensor
+    includes:
+      - radar_aesa
+      - gnss_antenna
+      - satcom_array
+    thermal_dissipation: high
+    emi_risk: elevated
+
+firewall_spec:
+  location: Frame C0
+  coverage: partial
+  materials:
+    - titanium foil
+    - ceramic insulation
+    - EMI shielding mesh
+  compliance:
+    - CS-25.867
+    - DO-160G Section 23
+    - DO-160G Section 20
+  badge: FIREWALL_COMPLIANT
 
 validation:
   model_check_config: LINT/modelcheck_rules.txt
   mc_verified: true
   mc_errors: 0
-  badge: BH-STA350_SKEL_VALIDATED
+  badge:
+    - BH-STA350_SKEL_VALIDATED
+    - FIREWALL_COMPLIANT
+    - COMPARTMENT_BOUNDARY_VERIFIED
