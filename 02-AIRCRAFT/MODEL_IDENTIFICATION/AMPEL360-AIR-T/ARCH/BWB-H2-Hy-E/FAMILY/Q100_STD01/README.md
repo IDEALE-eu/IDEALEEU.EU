@@ -20,6 +20,7 @@ Q100_STD01 represents the standard configuration for the Q100 family variant of 
 ### Configuration Management
 
 - **[CONF - Configuration Management →](./CONF/README.md)** - Family-level configuration and baseline management
+- **[Domain RACI Matrix →](./DOMAIN_RACI_MATRIX.md)** - Domain-level RACI for strategic aerospace imperatives
 
 ## Engineering Domains
 
@@ -69,6 +70,19 @@ All configurations are subject to:
 - Change request process
 - Version control
 - Traceability requirements
+
+## Governance
+
+The **[Domain RACI Matrix](./DOMAIN_RACI_MATRIX.md)** defines the roles and responsibilities of the 15 engineering domains with respect to three strategic imperatives:
+
+1. **Lifecycle Evidence & Certification** (V-Cycle rigor, ARP4754B/ARP4761A, DO-x suite)
+2. **Digital Twin Integration** (SysML v2, trustworthiness, predictive analytics)
+3. **Circularity** (Design for Circularity, AFRA BMP v5.1, IAEG, Digital Product Passports)
+
+The matrix provides clear accountability across domains and includes visualizations for:
+- RACI distribution heatmap
+- Domain accountability flows
+- Imperative coverage analysis
 
 ## References
 

@@ -13,3 +13,7 @@ digital-passport/node_modules/
 digital-passport/dist/
 digital-passport/.env
 digital-passport/.env.local
+
+# Structure tools
+node_modules/
+structure-scan-report/
