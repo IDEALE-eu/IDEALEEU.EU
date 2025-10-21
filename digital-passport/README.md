@@ -104,7 +104,7 @@ digital-passport/
 ### Digital Passport
 
 * ID and UTCS reference
-* Component type *(hardware/software/firmware/model)*
+* Component type *(installation_hardware/information_hardware/antenas_sensors/software/firmware/model/primary_structures/secundary_structures)*
 * **TFA domain** *(AAA…PPP)*
 * **CAx phase** *(9 phases: CAD … CAS)*
 * **State** *(QS → … → QB)*
