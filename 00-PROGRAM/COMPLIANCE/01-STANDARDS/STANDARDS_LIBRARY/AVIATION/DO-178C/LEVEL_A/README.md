@@ -11,20 +11,16 @@ Holds Level A compliance evidence and controls for the item under certification.
 - Partitioning evidence if hosted on IMA
 
 ## Layout
-```
 
-LEVEL_A/
-planning/           # PSAC, SDP, SVP, SQAP, SCMP
-requirements/       # high/low-level, trace IDs
-design/             # HLD/LLD, interfaces, partitioning assumptions
-source/             # tagged code baseline(s)
-verification/       # procedures, results, defects, coverage, mcdc_justification/
-tools/              # DO-330 plans/evidence
-cm/                 # baselines, CCB minutes, PR/CR logs
-qa/                 # audits, reviews, independence records
-certification/      # SAS, CI, SOI minutes, checklists
-
-```
+- [planning/](./planning/) — PSAC, SDP, SVP, SQAP, SCMP
+- [requirements/](./requirements/) — high/low-level, trace IDs
+- [design/](./design/) — HLD/LLD, interfaces, partitioning assumptions
+- [source/](./source/) — tagged code baseline(s)
+- [verification/](./verification/) — procedures, results, defects, coverage, mcdc_justification/
+- [tools/](./tools/) — DO-330 plans/evidence
+- [cm/](./cm/) — baselines, CCB minutes, PR/CR logs
+- [qa/](./qa/) — audits, reviews, independence records
+- [certification/](./certification/) — SAS, CI, SOI minutes, checklists
 
 ## Entry points
 - **Plan set:** [planning/PSAC.md](./planning/PSAC.md)
