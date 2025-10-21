@@ -100,7 +100,7 @@ digital-passport/
 - **LCC**: Linkages-Control-Communications
 - **LIB**: Logistics-Inventory-Blockchain
 - **MMM**: Mechanical-Material-Modules
-- **OOO**: Operations-Optimization-Outcomes
+- **OOO**: Operations-Optimization-Outcomes (OS, Ontologies, Office UIs)
 - **PPP**: Propellers-Propellents-Propulsion
 
 ### State Flow
