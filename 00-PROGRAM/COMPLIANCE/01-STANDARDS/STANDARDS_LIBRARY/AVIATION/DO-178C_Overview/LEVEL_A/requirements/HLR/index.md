@@ -1,53 +1,21 @@
-# High-Level Requirements (HLR) Index
+# High-Level Requirements (HLR) — Index
 
-## Purpose
-Central entry point for all **High-Level Requirements** (system → software).  
-Each item links directly to its individual requirement file for traceability.
-
----
+Central index for Level A HLRs. Each row links to the requirement file.
 
 ## Index
 
 | ID | Title | Status | Verification | Link |
-|----|--------|----------|---------------|------|
+|----|-------|--------|--------------|------|
 | HLR-0001 | System Initialization and Mode Control | Draft | Analysis + Test | [HLR-0001.md](./HLR-0001.md) |
 | HLR-0002 | Fault Detection and Annunciation | Draft | Test | [HLR-0002.md](./HLR-0002.md) |
-| HLR-0003 | Power-Up Built-In Test | Approved | Analysis + Test | [HLR-0003.md](./HLR-0003.md) |
-| HLR-0004 | Data Bus Communication Interface | In Review | Review + Test | [HLR-0004.md](./HLR-0004.md) |
-| HLR-0005 | Safety Monitoring Function | Draft | Analysis | [HLR-0005.md](./HLR-0005.md) |
+| HLR-0003 | Power-Up Built-In Test | In Review | Analysis + Test | [HLR-0003.md](./HLR-0003.md) |
+| HLR-0004 | Data Bus Communication Interface | Draft | Review + Test | [HLR-0004.md](./HLR-0004.md) |
 
----
+> Add rows as new HLR files are created in this folder.
 
-## Folder Layout
-```
+## Maintenance
+1. One HLR per file named `HLR-####.md`.  
+2. Keep this table synchronized with `../../TRACE.md`.  
+3. Update Status only after independent review.
 
-high/
-HLR-0001.md
-HLR-0002.md
-HLR-0003.md
-...
-index.md (this file)
-
-```
-
----
-
-## Update Procedure
-1. Add each new HLR as `HLR-####.md` using the approved template.  
-2. Update this table with ID, title, status, verification type, and hyperlink.  
-3. Maintain alignment with `requirements/TRACE.md`.  
-4. Confirm review signatures before changing any status field.
-
----
-
-## Review Checklist
-- [ ] Requirement is necessary, testable, and unambiguous.  
-- [ ] Constraints (timing, bounds, safety) defined.  
-- [ ] Verification method stated.  
-- [ ] Parent system function identified.  
-- [ ] Trace to LLR(s) and test case(s) recorded.  
-
----
-
-_Last updated: YYYY-MM-DD by [QA or Requirements Lead]_
-```
+_Last updated: YYYY-MM-DD_
