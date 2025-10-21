@@ -4,18 +4,15 @@
 Store Level A software requirements with full trace to design, code, and tests.
 
 ## Layout
-```
 
-requirements/
-high/           # HLRs (system → software)
-low/            # LLRs (implementation-ready)
-derived/        # requirements not directly from system
-interfaces/     # ICDs, data models
-constraints/    # timing, partitioning, HW/SW assumptions
-TRACE.md        # traceability matrix (HLR→LLR→Design→Code→Test)
-schemas/        # req/trace validators
+- [high/](./high/) — HLRs (system → software)
+- [low/](./low/) — LLRs (implementation-ready)
+- [derived/](./derived/) — requirements not directly from system
+- [interfaces/](./interfaces/) — ICDs, data models
+- [constraints/](./constraints/) — timing, partitioning, HW/SW assumptions
+- [TRACE.md](./TRACE.md) — traceability matrix (HLR→LLR→Design→Code→Test)
+- [schemas/](./schemas/) — req/trace validators
 
-```
 
 ## IDs
 - HLR: `HLR-XXXX`  
@@ -24,8 +21,8 @@ schemas/        # req/trace validators
 
 ## File template
 Each requirement is one file named by its ID.
-```
 
+```yaml
 # HLR-0001 — <Title>
 
 Rationale: <why>
