@@ -104,7 +104,7 @@ digital-passport/
 ### Digital Passport
 
 * ID and UTCS reference
-* Component type *(installation_hardware/information_hardware/antenas_sensors/software/firmware/model/primary_structures/secundary_structures)*
+* Component type *(installation_hardware / information_hardware / antennas_sensors / software / firmware / model / primary_structures / secondary_structures)*
 * **TFA domain** *(AAA…PPP)*
 * **CAx phase** *(9 phases: CAD … CAS)*
 * **State** *(QS → … → QB)*
@@ -126,7 +126,7 @@ digital-passport/
 * **LIB** Logistics-Inventory-Blockchain
 * **MMM** Mechanical-Material-Modules
 * **OOO** Operations-Optimization-Outcomes *(OS, Ontologies, Office UIs)*
-* **PPP** Propellers-Propellents-Propulsion
+* **PPP** Propellers-Propellants-Propulsion
 
 ### State Flow
 
@@ -179,3 +179,4 @@ Report vulnerabilities to **[security@ideale-eu.org](mailto:security@ideale-eu.o
 ```
 ::contentReference[oaicite:0]{index=0}
 ```
+
