@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Data Module: General Description – Sensor Bay Environment
+  DMC: DMC-AMP360-AAA-53-10-05-00A-040A-SENSOR-D_en-US_001-00
+  InfoCode: 040A (General Description)
+  Status: Released
+-->
+<dmodule xmlns="http://www.s1000d.org/S1000D_6-0/xml_schema_flat"
+         xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <identAndStatusSection>
+    <dmAddress>
+      <dmIdent>
+        <dmCode modelIdentCode="AMP360"
+                systemDiffCode="AAA"
+                systemCode="53"
+                subSystemCode="10"
+                subSubSystemCode="05"
+                assyCode="00A"
+                disassyCode="00"
+                disassyCodeVariant="0"
+                infoCode="040"
+                infoCodeVariant="A"
+                itemLocationCode="SENSOR-D"/>
+        <language languageIsoCode="en" countryIsoCode="US"/>
+        <issueInfo issueNumber="001" inWork="00"/>
+        <extension>
+          <utcs id="UTCS-AMP360-AAA-53-10-05-SENSOR-DMC-001"/>
+        </extension>
+      </dmIdent>
+      <dmAddressItems>
+        <issueDate year="2025" month="10" day="21"/>
+        <dmTitle>
+          <techName>Sensor Bay Environment</techName>
+          <infoName>General Description</infoName>
+        </dmTitle>
+        <responsiblePartnerCompany enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Technical Publications</enterpriseName>
+        </responsiblePartnerCompany>
+        <originator enterpriseCode="AAA">
+          <enterpriseName>AMPEL360 AIR-T Engineering</enterpriseName>
+        </originator>
+      </dmAddressItems>
+    </dmAddress>
+
+    <dmStatus>
+      <security securityClassification="01" commercialExportControl="false"/>
+      <qualityAssurance qaResponsiblePartnerCompany="AAA" qaReviewed="false"/>
+    </dmStatus>
+  </identAndStatusSection>
+
+  <content>
+    <description>
+      <levelledPara>
+        <title>General Description</title>
+
+        <levelledPara>
+          <title>Purpose</title>
+          <para>The sensor bay environment supports active payloads mounted forward of the BH-STA350 bulkhead. It provides structural housing, thermal management, and electromagnetic shielding for mission-critical sensors.</para>
+        </levelledPara>
+
+        <levelledPara>
+          <title>Sensor Types</title>
+          <para>The bay accommodates radar AESA arrays, GNSS antennas, and SATCOM modules. These sensors require precise alignment, low-vibration mounting, and controlled airflow for thermal dissipation.</para>
+        </levelledPara>
+
+        <levelledPara>
+          <title>Structural Context</title>
+          <para>The sensor bay is enclosed by the radome and interfaces with Frame C0 and the firewall layer. It includes cable routing channels, EMI gaskets, and modular mounting brackets.</para>
+        </levelledPara>
+
+        <levelledPara>
+          <title>Compliance</title>
+          <para>The environment is designed to meet DO-160G standards for electromagnetic compatibility, vibration, and temperature control. It supports the COMPARTMENT_BOUNDARY_VERIFIED and FIREWALL_COMPLIANT badges.</para>
+        </levelledPara>
+
+      </levelledPara>
+    </description>
+  </content>
+</dmodule>
