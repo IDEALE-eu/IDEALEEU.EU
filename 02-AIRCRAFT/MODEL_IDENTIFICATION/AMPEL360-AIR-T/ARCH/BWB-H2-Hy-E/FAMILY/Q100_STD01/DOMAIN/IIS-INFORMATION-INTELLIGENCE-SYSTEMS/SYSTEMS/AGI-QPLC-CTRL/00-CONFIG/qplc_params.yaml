@@ -1,0 +1,353 @@
+# QPLC Runtime Parameters for AGI-QPLC-CTRL
+# Version: 1.0.0
+# Last Updated: 2025-10-18
+
+# =============================================================================
+# QUANTUM CONFIGURATION
+# =============================================================================
+
+quantum:
+  backend: SIMULATOR  # Options: SIMULATOR, QPU, HYBRID
+  backend_provider: QISKIT_RUNTIME  # or IBM_QUANTUM, AWS_BRAKET, etc.
+  
+  # Quantum circuit parameters
+  qubit_count: 20
+  circuit_depth: 50
+  gate_fidelity_required: 0.998
+  
+  # Confidence and validation
+  confidence_threshold: 0.95  # Minimum confidence for quantum decisions
+  confidence_calculation: VARIANCE_BASED  # or ENSEMBLE, BAYESIAN
+  
+  # Optimization
+  optimizer: COBYLA  # for VQE/QAOA
+  max_iterations: 1000
+  convergence_tolerance: 0.001
+  
+  # Noise mitigation
+  error_mitigation:
+    enabled: true
+    method: ZERO_NOISE_EXTRAPOLATION
+  
+  # Execution limits
+  max_execution_time_ms: 100
+  max_shots: 8192
+
+# =============================================================================
+# CLASSICAL FALLBACK
+# =============================================================================
+
+classical_fallback:
+  enabled: true
+  
+  # When to activate fallback
+  activation_triggers:
+    - quantum_unavailable
+    - confidence_below_threshold
+    - safety_violation_detected
+    - timeout_exceeded
+    - human_override
+  
+  # Fallback controller type
+  controller_type: STATE_MACHINE
+  
+  # Fallback parameters
+  decision_rules:
+    use_conservative_bounds: true
+    require_explicit_approval: true
+    default_action: DEFER
+  
+  # Performance
+  max_latency_ms: 10  # Must be faster than quantum path
+
+# =============================================================================
+# EPE INTEGRATION
+# =============================================================================
+
+epe_integration:
+  enabled: true
+  policy_file: "00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/EPE-v1.0.yaml"
+  
+  # Validation mode
+  validation_mode: BLOCKING  # or ADVISORY
+  
+  # Rule priorities
+  critical_rules:  # Auto-reject, no override
+    - HUM-SAFE-01
+    - COST-SAFE-07
+  
+  high_priority_rules:  # Require human review
+    - HUM-DIGN-02
+    - EMPATHY-GUARD-04
+    - AUTON-09
+  
+  medium_priority_rules:  # Flag for review
+    - HUM-FAIR-03
+    - ASSET-HUM-03
+    - BIAS-08
+  
+  # Rule evaluation
+  evaluation_timeout_ms: 50
+  parallel_evaluation: true
+
+# =============================================================================
+# HUMAN APPROVAL GATES
+# =============================================================================
+
+approval_gates:
+  enabled: true
+  
+  # Risk-based approval requirements
+  risk_levels:
+    low:
+      auto_approve: true
+      reviewers_required: 0
+      timeout_sec: null
+    
+    medium:
+      auto_approve: false
+      reviewers_required: 1
+      timeout_sec: 300  # 5 minutes
+      fallback_action: DEFER
+    
+    high:
+      auto_approve: false
+      reviewers_required: 2
+      timeout_sec: 600  # 10 minutes
+      fallback_action: REJECT
+    
+    critical:
+      auto_approve: false
+      reviewers_required: CCB  # Configuration Control Board
+      timeout_sec: 3600  # 1 hour
+      fallback_action: EMERGENCY_STOP
+  
+  # Risk classification
+  risk_classification:
+    # Factors that increase risk level
+    factors:
+      - affects_human_safety
+      - high_cost_impact
+      - regulatory_compliance
+      - ethical_policy_violation
+      - irreversible_action
+    
+    # Thresholds
+    thresholds:
+      low: 0
+      medium: 1
+      high: 2
+      critical: 3
+
+# =============================================================================
+# SAFETY & MONITORING
+# =============================================================================
+
+safety:
+  # Safety bounds
+  bounds_checking:
+    enabled: true
+    enforce_hard_limits: true
+    
+  # Continuous monitoring
+  monitoring:
+    frequency_hz: 10
+    health_check_interval_sec: 60
+    
+  # Emergency procedures
+  emergency:
+    stop_all_on_violation: true
+    notify_safety_officer: true
+    log_to_incident_system: true
+
+monitoring:
+  # Performance metrics
+  metrics_enabled: true
+  metrics_collection_interval_sec: 30
+  
+  # Key metrics to track
+  tracked_metrics:
+    - decision_latency
+    - approval_latency
+    - quantum_classical_switches
+    - epe_violations
+    - safety_bound_violations
+    - fairness_scores
+    - explainability_scores
+  
+  # Alerting
+  alerts:
+    enabled: true
+    channels:
+      - email
+      - slack
+      - pager_duty
+    
+    alert_conditions:
+      - metric: epe_violations
+        threshold: 0
+        operator: GREATER_THAN
+        severity: CRITICAL
+      
+      - metric: approval_latency
+        threshold: 300
+        operator: GREATER_THAN
+        severity: WARNING
+      
+      - metric: fairness_score
+        threshold: 0.85
+        operator: LESS_THAN
+        severity: HIGH
+
+# =============================================================================
+# UTCS LOGGING
+# =============================================================================
+
+utcs_logging:
+  enabled: true
+  
+  # What to log
+  log_events:
+    - decision_proposed
+    - epe_validation_started
+    - epe_validation_completed
+    - risk_level_assigned
+    - human_approval_requested
+    - human_approval_received
+    - decision_executed
+    - decision_rejected
+    - fallback_activated
+    - anomaly_detected
+  
+  # Log detail level
+  detail_level: COMPREHENSIVE  # or MINIMAL, STANDARD
+  
+  # Include sensitive data (anonymized)
+  include_decision_context: true
+  anonymize_personal_data: true
+  
+  # Storage
+  retention_days: 2555  # 7 years (regulatory requirement)
+  
+  # Performance
+  async_logging: true
+  batch_size: 100
+  flush_interval_sec: 10
+
+# =============================================================================
+# EXPLAINABILITY
+# =============================================================================
+
+explainability:
+  enabled: true
+  
+  # Methods to use
+  methods:
+    - model_card
+    - shap_values
+    - feature_importance
+    - decision_tree_surrogate
+  
+  # When to generate explanations
+  generate_on:
+    - human_approval_request
+    - audit_request
+    - epe_violation
+    - periodic_review
+  
+  # Explanation format
+  output_formats:
+    - human_readable_text
+    - json
+    - pdf_report
+  
+  # Target audience
+  audience_levels:
+    - executive_summary  # For non-technical stakeholders
+    - technical_detail   # For engineers
+    - regulatory_compliance  # For auditors
+
+# =============================================================================
+# FEDERATED LEARNING (FE PHASE)
+# =============================================================================
+
+federated_learning:
+  enabled: true
+  
+  # What to share
+  share_decisions:
+    anonymize: true
+    include_context: true
+    include_outcome: true
+  
+  # Sharing frequency
+  sync_interval_hours: 24
+  
+  # Privacy preservation
+  differential_privacy:
+    enabled: true
+    epsilon: 1.0
+    delta: 0.00001
+  
+  # Fleet coordination
+  federation_endpoint: "https://fe.idealeeu.eu/qplc/sync"
+  fleet_id: "AMPEL360-AIR-T-FLEET"
+
+# =============================================================================
+# PERFORMANCE TUNING
+# =============================================================================
+
+performance:
+  # Threading
+  max_threads: 8
+  thread_pool_size: 16
+  
+  # Caching
+  cache_enabled: true
+  cache_size_mb: 512
+  cache_ttl_sec: 3600
+  
+  # Queue management
+  decision_queue_size: 1000
+  priority_queue_enabled: true
+  
+  # Resource limits
+  max_memory_mb: 2048
+  max_cpu_percent: 80
+
+# =============================================================================
+# DEBUGGING & DEVELOPMENT
+# =============================================================================
+
+debug:
+  enabled: false  # Set to true only in development
+  
+  # Logging level
+  log_level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  
+  # Trace collection
+  trace_quantum_execution: false
+  trace_epe_evaluation: false
+  
+  # Simulation
+  simulate_quantum: false  # Use deterministic responses
+  simulate_human_approval: false
+
+# =============================================================================
+# SYSTEM INFORMATION
+# =============================================================================
+
+system:
+  version: "1.0.0"
+  deployment_date: "2025-10-18"
+  deployment_environment: PRODUCTION  # or STAGING, DEVELOPMENT
+  
+  # Contact information
+  maintainer: "IIS Domain Lead"
+  support_email: "qplc-agi@idealeeu.eu"
+  
+  # Configuration management
+  config_version: "1.0.0"
+  last_updated: "2025-10-18"
+  last_updated_by: "QPLC Implementation Team"
+  ecr_number: "ECR-IIS-QPLC-AGI-001"

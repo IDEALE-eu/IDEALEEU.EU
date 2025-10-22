@@ -1,0 +1,38 @@
+# S1000D Workflow Orchestrator - Neuromorphic SNN
+# Python Dependencies
+
+# Core dependencies
+numpy>=1.24.0
+torch>=2.0.0
+networkx>=3.0
+
+# Graph processing
+python-igraph>=0.10.0
+
+# Event processing
+pydantic>=2.0.0
+
+# Logging and monitoring
+structlog>=23.0.0
+
+# Configuration
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# API/Integration
+requests>=2.31.0
+aiohttp>=3.9.0
+
+# Workflow orchestration clients
+camunda-external-task-client-python3>=4.0.0  # Camunda integration
+prefect>=2.0.0  # Alternative orchestrator
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-asyncio>=0.21.0
+
+# Development
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.5.0

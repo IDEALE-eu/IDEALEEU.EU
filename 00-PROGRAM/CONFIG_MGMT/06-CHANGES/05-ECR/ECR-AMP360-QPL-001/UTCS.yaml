@@ -1,0 +1,47 @@
+utcs_ref: UTCS-AMP360-AIR-T-PROP-QPL-001@1.0.0
+type: change-request
+anchor: AMP360-AIR-T/PROP/QPL
+initiator: Amedeo Pelliccia
+mod_id: ECR-AMP360-QPL-001
+date: 2025-10-18
+change_type: functional-enhancement
+affected_subsystems:
+  - propulsion-control-system
+  - energy-management-module
+  - quantum-pipeline-interface
+reason:
+  summary: Integrate quantum optimization algorithms (QAOA, VQE) for real-time thrust modulation, adaptive energy distribution, and predictive maintenance
+objectives:
+  - reduce_energy_consumption: adaptive_control
+  - enhance_fault_tolerance: quantum_error_correction
+  - enable_dynamic_reconfiguration: propulsion_parameters
+impact_analysis:
+  performance: "Estimated 12–18% energy efficiency gain under variable load"
+  compliance: "Validation against CS-25.1309 (Equipment, Systems, and Installations)"
+  safety: "Quantum-classical fallback logic ensures redundancy"
+  documentation:
+    - update_module: PROP-QPL-CTRL
+    - registry_anchor: AMP360-AIR-T/PROP/QPL
+approval_flow:
+  engineering_lead: TBD
+  quantum_systems_architect: TBD
+  compliance_officer: TBD
+  registry_update: 
+    badge: QPL-PROP-OPT
+    anchor: HUELLΔ
+ci_cd:
+  badge_logic_integration: true
+  pipeline_yml: ".github/workflows/ci.yml"
+testbed:
+  environment: GAIA-AIR
+  pilot_status: planned
+notes:
+  - "Pilot implementation to be sandboxed in GAIA AIR"
+  - "Badge logic to be embedded in CI gate YAML"
+sbom:
+  artifact_type: [firmware, container, model]
+  component: QPL-CTRL
+  slsa: true
+  utcs_anchor: true
+signer: {PublicKeyOrSigID}
+timestamp: 2025-10-18T00:00:00Z

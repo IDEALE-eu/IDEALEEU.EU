@@ -1,0 +1,99 @@
+# Vendor Lock-In–Free Baseline Manifest
+baseline_id: BL-VF_BASE-2025-10-21-SOV
+gate: ORR_EIS
+domain: SHARED
+frozen_at: 2025-10-21
+git_tag: baseline/VF_BASE/2025-10-21/vendorfree
+utcs_anchor: utcs://AMP360/SOV/VENDOR_FREE_BASELINE@2025-10-21
+qs_evidence_flow: "QS→FWD→UE→FE→CB→QB"
+alar_cc_profile:
+  principles:
+    - "Self-authored DMCs with CSDB export parity"
+    - "UTCS-governed lifecycle events without vendor registries"
+    - "XAI-auditable decisions for MOD, concession, recycle badges"
+  xai_controls:
+    runtime_ruleset: Predict-Chrone-v3.2
+    justification_blocks: Para-Blocks-11-18
+    traceability: "FMEA, RUL, Shield Life stored in CSDB per UTCS ID"
+  circularity_logic:
+    recycle_badges: ["RECYCLE_APPROVED", "REUSE_ELIGIBLE", "TEARDOWN_VALIDATED"]
+    validation_inputs: ["MaterialIntegrity-QRA-2025-09", "FunctionalResiduals-AMP360-2025-08"]
+items:
+  - pn: IDEALE-SOV-0001
+    rev: A
+    ci_type: DOC
+    effectivity: "All programmes"
+    path: 00-PROGRAM/DIGITAL_THREAD/01-STRATEGY/STRATEGY.md
+    sha256: f282127272d9bc80e2a0550d3eb76b8b4d8d5620fcaffe9e484e109dbe0c676f
+  - pn: IDEALE-SOV-0002
+    rev: A
+    ci_type: DOC
+    effectivity: "UTCS registry consumers"
+    path: 00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/README.md
+    sha256: d5a16b76ce23b5fb0acf2548789628c1d0bbabec8a5565a1a214a7837f1b60aa
+  - pn: IDEALE-SOV-0003
+    rev: B
+    ci_type: DOC
+    effectivity: "Badge automation"
+    path: 00-PROGRAM/CONFIG_MGMT/11-BADGES/README.md
+    sha256: 73f0eb488298ce8b6ac5426b7623b018feaef0e462a371a47d485414b0051429
+  - pn: IDEALE-SOV-0004
+    rev: A
+    ci_type: DOC
+    effectivity: "CI/CD guardrails"
+    path: 00-PROGRAM/CONFIG_MGMT/06-CHANGES/13-AUTOMATION/CI_HOOKS.md
+    sha256: 8545c34bff048113a6b2b1894b1f91d51ce327a2acad818f3450bba54cc37c20
+  - pn: IDEALE-SOV-0005
+    rev: A
+    ci_type: DOC
+    effectivity: "CAx lifecycle evidence"
+    path: docs/cax-lifecycle/index.md
+    sha256: 3bd113b963ac4b2b37082881429a55b899ffc4d1013b428ba7126018b67bc2d8
+  - pn: IDEALE-SOV-0006
+    rev: A
+    ci_type: PKG
+    effectivity: "Autonomous MOD lifecycle proof"
+    path: 00-PROGRAM/CONFIG_MGMT/06-CHANGES/16-CHANGE_PACKAGES/MOD-2025-0442.yaml
+    sha256: ed35012b8f632135602d214492373bb6358ffc6019ac4e44e895f69b2f3d648e
+  - pn: IDEALE-SOV-0007
+    rev: A
+    ci_type: DOC
+    effectivity: "IDEALE.eu publication"
+    path: docs/baselines/vendor-free-baseline.md
+    sha256: 9a692e0ceb40163becf1a54372c667a095c92b5319dc5cc454f70e15e95481be
+interfaces:
+  - ICD-1200@1.0
+  - ICD-1704@0.9
+changes_included:
+  - ECO-2025-0412
+  - ECO-2025-0430
+deviations_waivers: []
+compliance:
+  - "../../STANDARDS/04-CROSS_CUTTING/CONFIG_MGMT/"
+  - "../../STANDARDS/04-CROSS_CUTTING/SAFETY_SECURITY/"
+signoffs:
+  - role: CCB Chair
+    name: Lina Duarte
+    date: 2025-10-21
+  - role: Configuration Manager
+    name: TBD
+    date: 2025-10-21
+  - role: Chief Digital Thread Architect
+    name: Amedeo PELLICCIA
+    date: 2025-10-21
+badges_issued:
+  - badge: MOD_APPROVED
+    utcs: utcs://AMP360/CHANGE/MOD-2025-0442@2025-10-21
+    issued_at: 2025-10-21T03:35:00Z
+    evidence: decision://AMP360/MOD-2025-0442/ue-approval
+  - badge: SPARE_READY
+    utcs: utcs://AMP360/LOG/SPARE-2025-0178@2025-10-21
+    issued_at: 2025-10-21T04:10:00Z
+    evidence: ledger://AMP360/MOD-2025-0442/federated-ack
+  - badge: RECYCLE_APPROVED
+    utcs: utcs://IDEALE/SUSTAIN/RECYCLE-2025-0009@2025-10-21
+    issued_at: 2025-10-21T06:15:00Z
+    evidence: analytics://AMP360/QB/Maint-Optimizer-2025-04-R1
+evidence_packets:
+  mod_simulation: 00-PROGRAM/CONFIG_MGMT/06-CHANGES/16-CHANGE_PACKAGES/MOD-2025-0442.yaml
+  publication_summary: docs/baselines/vendor-free-baseline.md

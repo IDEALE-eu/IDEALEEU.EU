@@ -1,0 +1,37 @@
+! FRAME_10HOLE.sketch
+! Frame interface sketch with 10 holes
+! Imported from shared sketch library
+!
+! Description: Radial pattern for structural connection
+! Hole Count: 10
+! Hole Diameter: 6.35 mm (standard fastener size)
+! Hole Spacing: variable (linked to fuselage curvature)
+!
+! Coordinate System: BH_STA350_CS
+! Reference Datum: FS_350, BL_0, WL_0
+!
+! Pattern Definition:
+! Radial pattern, 10 holes equally spaced around perimeter
+! Base radius: 1385 mm (matches FUSELAGE_FS350.curve)
+! Angular spacing: 36 degrees (360/10)
+!
+! Hole Positions (Angle, X, Y, Z relative to BH_STA350_CS):
+! Hole_ID, Angle(deg), X(mm), Y(mm), Z(mm), Diameter(mm)
+H01,0,0,1385,0,6.35
+H02,36,0,1097,849,6.35
+H03,72,0,428,1318,6.35
+H04,108,0,-428,1318,6.35
+H05,144,0,-1097,849,6.35
+H06,180,0,-1385,0,6.35
+H07,216,0,-1097,-849,6.35
+H08,252,0,-428,-1318,6.35
+H09,288,0,428,-1318,6.35
+H10,324,0,1097,-849,6.35
+!
+! Notes:
+! - All holes are through-holes
+! - Standard fastener type: NAS1149 or equivalent
+! - Fastener pattern ID: FP-01 (see fastener_patterns.csv)
+! - Edge distance maintained at minimum 25mm from perimeter
+!
+! End of sketch definition

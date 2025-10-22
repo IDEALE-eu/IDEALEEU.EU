@@ -1,0 +1,4 @@
+bulkhead_id,fs_position,pressure_load_kpa,thickness_mm,curvature_radius_mm,material_spec,notes
+BH-STA350,350,61.2,5.5,1385,AL-2024-T3,"Forward pressure bulkhead, derived from BH-STA500 * 1.05"
+BH-STA500,500,58.3,5.0,1420,AL-2024-T3,"Reference aft pressure bulkhead"
+BH-STA700,700,35.0,4.5,1500,AL-2024-T3,"Aft bulkhead, lower pressure zone"
