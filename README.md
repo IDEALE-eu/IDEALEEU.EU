@@ -499,7 +499,7 @@ Questions: open a GitHub Discussion or an issue using the template.
 | LCC  | Linkages‑Control‑Communications      | Flight controls, datalinks       |
 | LIB  | Logistics‑Inventory‑Blockchain       | Supply chain, evidence anchoring |
 | MMM  | Mechanical‑Material‑Modules          | Materials, mechanical, MRO       |
-| OOO  | Operations‑Optimization‑Outcomes     | Fleet ops, analytics             |
+| OOO  | Operations‑Optimizations-Orchestration    | Fleet ops, Quantum Opt Material, Designs, Backends, UIs             |
 | PPP  | Propulsion‑Power‑Plants              | Engines, thrust, fuel            |
 
 ---
