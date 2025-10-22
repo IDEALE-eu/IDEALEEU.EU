@@ -1,4 +1,4 @@
-# AAMMPP Program Governance
+# AAMMPP Platform Governance
 
 **Purpose:** Governance framework, configuration management, quality management system, and procurement policies for AAMMPP platform.
 
