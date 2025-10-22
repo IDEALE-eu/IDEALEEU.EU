@@ -1,4 +1,4 @@
-# IDEALEEU
+# IDEALE-EU
 
 > Unified, audit‑ready platform for multi‑vehicle aerospace programs. Modules: **AMSDP** (Aerospace Material & Software Digital Passports) and **AAMMPP** (Aerospace Assets Management, Maintenance & Procurement Platform).
 
@@ -15,11 +15,20 @@
 
 ## TL;DR
 
-IDEALEEU provides a verifiable digital thread from requirements to fleet operations. **AMSDP** issues and verifies digital passports for materials, parts, and software. **AAMMPP** manages the canonical item master, configuration, maintenance, and procurement workflows. Together they deliver trusted, interoperable exchanges across OEMs, suppliers, operators, and regulators.
+IDEALE‑EU provides a verifiable digital thread from requirements to fleet operations. **AMSDP** issues and verifies digital passports for materials, parts, and software. **AAMMPP** manages the canonical item master, configuration, maintenance, and procurement workflows. Together they deliver trusted, interoperable exchanges across OEMs, suppliers, operators, and regulators.
 
 ### Summary
 
 Unified platform connecting manufacturers, operators, network suppliers, and component vendors **not only to exchange data**, but also to **repair, refurbish, requalify, and reintroduce parts** with traceable evidence in digital passports. Includes **governed redistribution of mixed DevOps licenses** (seats + usage) for cross‑company collaboration without IP leakage.
+
+#### Executive Overview
+
+* **Platform scope**: Modular, audit‑ready suite for multi‑vehicle programs with a verifiable digital thread and digital‑twin alignment from requirements to fleet operations.
+* **AMSDP**: Digital passports for materials, parts, and software capturing provenance, conformity, build lineage, and audit records.
+* **AAMMPP**: Centralized configuration, inventory, reliability, maintenance, and procurement workflows.
+* **Traceability & circularity**: Evidence‑backed repair, refurbishment, requalification, and reintroduction of parts; promotes sustainability.
+* **Architecture**: Identity & trust (VCs, RBAC/ABAC), schema‑driven control/data plane, event store and lineage, OLTP/object stores, async integration bus.
+* **Core principles**: Human‑first governance (QPLC), federated ethics learning, and **UTCS** manifests tying governance, QMS, configuration, compliance, and audits into the digital thread.
 
 ---
 
@@ -464,6 +473,26 @@ Questions: open a GitHub Discussion or an issue using the template.
 
 ## Extended materials (full reference)
 
+### TFA Canonical Domains
+
+| Code | Domain                                 | Focus                                                   |
+| ---- | -------------------------------------- | ------------------------------------------------------- |
+| AAA  | Airframes‑Aerodynamics‑Airworthiness   | Structure, aero, certification                          |
+| AAP  | Airport‑Adaptable‑Platforms            | Ground ops, GSE                                         |
+| CCC  | Cockpit‑Cabin‑Cargo                    | Flight deck, passenger, freight                         |
+| CQH  | Cryogenics‑Quantum‑H2                  | H₂ systems, quantum tech                                |
+| DDD  | Drainage‑Dehumidification‑Drying       | Moisture control                                        |
+| EDI  | Electronics‑Digital‑Instruments        | Avionics, sensors                                       |
+| EEE  | Electrical‑Endocircular‑Energization   | Power, energy harvesting                                |
+| EER  | Environmental‑Emissions‑Remediation    | Fire, pollution, sustainability                         |
+| IIF  | Industrial‑Infrastructure‑Facilities   | Manufacturing, tooling                                  |
+| IIS  | Information‑Intelligence‑Systems       | Software, AI, cybersecurity                             |
+| LCC  | Linkages‑Control‑Communications        | Flight controls, datalinks                              |
+| LIB  | Logistics‑Inventory‑Blockchain         | Supply chain, evidence anchoring                        |
+| MMM  | Mechanical‑Material‑Modules            | Materials, mechanical, MRO                              |
+| OOO  | Operations‑Optimizations‑Orchestration | Fleet ops, Quantum Opt Material, Designs, Backends, UIs |
+| PPP  | Propulsion‑Power‑Plants                | Engines, thrust, fuel                                   |
+
 ### Features and demos
 
 * **Digital Passport Dashboard**: Interactive web app for browsing and managing aerospace component digital passports. *Demo URL placeholder; see docs.*
@@ -479,28 +508,6 @@ Questions: open a GitHub Discussion or an issue using the template.
 * TFA Domains Reference → `/docs/tfa/domains.md`
 * CAx Lifecycle Overview → `/docs/cax-lifecycle/`
 * API Reference → `/docs/api/`
-
----
-
-### TFA Canonical Domains
-
-| Code | Domain                               | Focus                            |
-| ---- | ------------------------------------ | -------------------------------- |
-| AAA  | Airframes‑Aerodynamics‑Airworthiness | Structure, aero, certification   |
-| AAP  | Airport‑Adaptable‑Platforms          | Ground ops, GSE                  |
-| CCC  | Cockpit‑Cabin‑Cargo                  | Flight deck, passenger, freight  |
-| CQH  | Cryogenics‑Quantum‑H2                | H₂ systems, quantum tech         |
-| DDD  | Drainage‑Dehumidification‑Drying     | Moisture control                 |
-| EDI  | Electronics‑Digital‑Instruments      | Avionics, sensors                |
-| EEE  | Electrical‑Endocircular‑Energization | Power, energy harvesting         |
-| EER  | Environmental‑Emissions‑Remediation  | Fire, pollution, sustainability  |
-| IIF  | Industrial‑Infrastructure‑Facilities | Manufacturing, tooling           |
-| IIS  | Information‑Intelligence‑Systems     | Software, AI, cybersecurity      |
-| LCC  | Linkages‑Control‑Communications      | Flight controls, datalinks       |
-| LIB  | Logistics‑Inventory‑Blockchain       | Supply chain, evidence anchoring |
-| MMM  | Mechanical‑Material‑Modules          | Materials, mechanical, MRO       |
-| OOO  | Operations‑Optimizations-Orchestration    | Fleet ops, Quantum Opt Material, Designs, Backends, UIs             |
-| PPP  | Propulsion‑Power‑Plants              | Engines, thrust, fuel            |
 
 ---
 
