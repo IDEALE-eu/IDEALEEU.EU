@@ -22,6 +22,10 @@
 
 IDEALE‑EU provides a verifiable digital thread from requirements to fleet operations. AMSDP issues and verifies digital passports for materials, parts, and software. AAMMPP manages the canonical item master, configuration, maintenance, and procurement workflows. Together they deliver trusted, interoperable data exchange across OEMs, suppliers, operators, and regulators.
 
+### Summary
+
+Unified digital platform that connects manufacturers, operators, network suppliers, and component vendors **not only to exchange data**, but also to **repair, refurbish, requalify, and reintroduce parts into service**, with traceable evidence recorded in digital passports. Includes **governed redistribution of mixed DevOps licenses** (seats + usage) for cross‑company collaboration without IP leakage.
+
 ---
 
 ## Table of contents
@@ -69,6 +73,8 @@ IDEALE‑EU provides a verifiable digital thread from requirements to fleet oper
 * **Data Contracts**: Typed schemas with versioning, backward‑compat rules, and conformance tests.
 * **Interoperability**: Opinionated mappings to aerospace and supply‑chain standards.
 * **Audit‑Ready**: Tamper‑evident logs, SBOMs, build provenance, and retention policies.
+* **Circularity & MRO**: Repair, rework, requalification, and return‑to‑service with evidence written back to passports and configuration.
+* **Collaborative DevOps licensing**: Mixed seat+usage entitlements with governed redistribution across partner organizations per project.
 
 ---
 
@@ -120,7 +126,19 @@ IDEALE‑EU provides a verifiable digital thread from requirements to fleet oper
   /eval/             # Golden sets, metrics, dashboards
 /playground-ui/      # React app for tenant sandboxes
 /vector/             # Vector DB adapters (pgvector, Qdrant)
+/service/            # RMA, repair, requalification, reintroduction flows
+/licensing/          # Entitlements, allocations, transfers (DevOps mixed)
 ```
+
+### Nuevos contratos
+
+* `/schemas/service/RMA.v1.json`
+* `/schemas/service/RepairOrder.v1.json`
+* `/schemas/service/RequalificationReport.v1.json`
+* `/schemas/service/Reintroduction.v1.json`
+* `/schemas/licensing/Entitlement.v1.json`
+* `/schemas/licensing/Assignment.v1.json`
+* `/schemas/licensing/Transfer.v1.json`
 
 ---
 
@@ -257,6 +275,25 @@ Canonical classes and required passport claims.
 
 ---
 
+## Circularity and MRO
+
+Service and circularity flow:
+
+1. **Repair order / RMA** → intake and diagnostics.
+2. **Repair / rework** under approved procedures.
+3. **Tests / NDI** and functional verification.
+4. **Requalification / recertification** with e‑signatures and SOF.
+5. **Digital passport update** and configuration state update.
+6. **Release** and **return to service**; order closure.
+
+Minimum evidence: inspection reports, NDI results, calibration certificates, firmware/software baseline, **SBOM + provenance**, hours/cycles, and EBOM/MBOM impact.
+
+Supported operations: rotable pools, controlled cannibalization, redistribution across fleets, CCB approval, and segregation of duties.
+
+EPCIS events: *Commission*, *Observation*, *Transformation*, *Aggregation* for each transition.
+
+---
+
 ## Data Contracts
 
 * Contracts live in `/schemas` with versioned folders.
@@ -291,6 +328,18 @@ Example: minimal material passport (JSON)
   2. `POST /amsdp/v1/passports` to issue.
   3. `POST /amsdp/v1/verify` with credential or reference.
   4. `POST /amsdp/v1/revoke` to revoke.
+
+**Service & Licensing endpoints**
+
+* `POST /service/v1/rma`  create return‑material authorization
+* `POST /service/v1/repairs`  register repair/rework
+* `POST /service/v1/requalifications`  attach test results and approvals
+* `POST /service/v1/reintroductions`  mark return‑to‑service
+* `GET  /service/v1/work-orders/{id}`  status and evidence bundle
+* `POST /licensing/v1/entitlements`  declare entitlements (seat/usage)
+* `POST /licensing/v1/allocations`   allocate to users/orgs/projects
+* `POST /licensing/v1/transfers`     governed redistribution between partners
+* `GET  /licensing/v1/entitlements/{id}`  retrieve entitlement state
 
 ---
 
@@ -389,6 +438,17 @@ VECTOR_BACKEND=pgvector|qdrant
 ```
 
 > Default is retrieval‑first. Fine‑tuning or adapters are optional per tenant via `/llm/gateway` routing.
+
+---
+
+## Collaborative DevOps licensing
+
+* **Mixed model**: seats + usage, with budgets per project and phase.
+* **Governed redistribution**: temporary transfers of rights between companies within the same program, with traceability and expiry.
+* **Isolation**: namespaces by `{tenant}/{project}` and scopes by repo/pipeline/environment.
+* **Compliance**: full audit of assignments and usage; no data sharing, only entitlement metadata.
+* **APIs**: see `/licensing` and the *Licensing* endpoints in the API section.
+* **Governance**: rules in `CODEOWNERS` plus entitlement templates and CCB approvers.
 
 ---
 
@@ -918,6 +978,7 @@ Example:
 * [ ] Obsolete entries removed
 
 ---
+
 
 
 ## Detailed Directory Index
