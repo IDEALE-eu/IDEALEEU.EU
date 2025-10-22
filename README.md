@@ -108,40 +108,39 @@ Unified platform connecting manufacturers, operators, network suppliers, and com
 
 ```
 /                      # Monorepo root
-/platform/             # Executable platform (code & services)
-  amsdp/               # Digital passport services (issue/verify/revoke)
-  aammpp/              # Asset mgmt, maintenance, procurement
-  api/                 # OpenAPI, GraphQL schemas, gateway config
-  schemas/             # JSON/Avro/Proto contracts + tests
-  clients/             # SDKs and examples
-  infra/               # IaC, Docker, Helm, GH Actions
-  tools/               # CLIs, generators, data loaders
-  llm/                 # Provider-agnostic gateway, guardrails, eval
-    gateway/
-    embed/
-    rag/
-    guardrails/
-    eval/
-  playground-ui/       # React app for tenant sandboxes
-  vector/              # Vector DB adapters (pgvector, Qdrant)
-  service/             # RMA, repair, requalification, reintroduction flows
-  licensing/           # Entitlements, allocations, transfers (DevOps mixed)
 /docs/                 # Documentation site and guides
-/program/              # Program governance & product trees (index below)
-  00-PROGRAM/
-  01-FLEET/
-  02-AIRCRAFT/
-  03-SPACECRAFT/
-  04-SATELLITES/
-  05-TELESCOPES/
-  06-PROBES/
-  07-DRONES/
-  08-LAUNCHERS/
-  09-STM-SPACE-STATION-MODULES/
-  10-BUSINESS/
+/00-PROGRAM/           # Governance and engineering core
+  platform/            # Executable platform (code & services)
+    amsdp/             # Digital passports (issue/verify/revoke)
+    aammpp/            # Item master, maintenance, procurement
+    api/               # OpenAPI, GraphQL schemas, gateway config
+    schemas/           # JSON/Avro/Proto contracts + tests
+    clients/           # SDKs and examples
+    infra/             # IaC, Docker, Helm, GH Actions
+    tools/             # CLIs, generators, loaders
+    llm/               # Provider-agnostic gateway, guardrails, eval
+      gateway/
+      embed/
+      rag/
+      guardrails/
+      eval/
+    playground-ui/     # Tenant playground (UI)
+    vector/            # Vector DB adapters (pgvector, Qdrant)
+    service/           # RMA, repair, requalification, RTS flows
+    licensing/         # Entitlements, allocations, transfers
+/01-FLEET/             # Operational data hub, MRO, federated learning
+/02-AIRCRAFT/          # AIR-T baselines, domain integration, twin
+/03-SPACECRAFT/        # STA baselines, domain integration, AIT/mission
+/04-SATELLITES/        # Satellite product structures
+/05-TELESCOPES/        # Observatory payload/domain structures
+/06-PROBES/            # Deep-space probes
+/07-DRONES/            # UAS/UAM product lines
+/08-LAUNCHERS/         # Launch vehicles
+/09-STM-SPACE-STATION-MODULES/ # Station modules/segments
+/10-BUSINESS/          # Market, partnerships, finance
 ```
 
-> Mapping: `/platform` = code & services · `/program` = governance & product trees
+> Platform lives under `/00-PROGRAM/platform`. PLM and MRO are distributed per product under `/0X-*/…/{PLM|MRO}/`.
 
 ---
 
@@ -243,13 +242,21 @@ Assemblies ↔ subassemblies ↔ parts via EBOM/MBOM. Serialized BOM for `asBuil
 
 ### Schemas and location
 
-* `/schemas/components/common/Component.v1.json` (base)
-* `/schemas/components/<class>/Passport.v1.json` (per class)
-* `/schemas/bom/` (EBOM/MBOM/SerializedBOM)
+* `/00-PROGRAM/platform/schemas/components/common/Component.v1.json` (base)
+* `/00-PROGRAM/platform/schemas/components/<class>/Passport.v1.json` (per class)
+* `/00-PROGRAM/platform/schemas/bom/` (EBOM/MBOM/SerializedBOM)
 
 ---
 
 ## Circularity and MRO
+
+**Distributed model**: MRO data and procedures live under each product portfolio path, not centrally.
+
+Portfolio placement per product:
+
+```
+/0X-*/DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT>/MODELS/<MODEL>/VERSION/<Qn>/MRO/
+```
 
 Service and circularity flow:
 
@@ -270,7 +277,7 @@ EPCIS events: *Commission*, *Observation*, *Transformation*, *Aggregation* for e
 
 ## Data Contracts
 
-* Contracts live in `/schemas` with versioned folders.
+* Contracts live in `/00-PROGRAM/platform/schemas` with versioned folders.
 * Compatibility policy: **backward‑compatible minor**, **breaking major**.
 * Contract tests run in CI; producers and consumers must pass.
 
@@ -293,19 +300,19 @@ Example: minimal material passport (JSON)
 
 **New contracts**
 
-* `/schemas/service/RMA.v1.json`
-* `/schemas/service/RepairOrder.v1.json`
-* `/schemas/service/RequalificationReport.v1.json`
-* `/schemas/service/Reintroduction.v1.json`
-* `/schemas/licensing/Entitlement.v1.json`
-* `/schemas/licensing/Assignment.v1.json`
-* `/schemas/licensing/Transfer.v1.json`
+* `/00-PROGRAM/platform/schemas/service/RMA.v1.json`
+* `/00-PROGRAM/platform/schemas/service/RepairOrder.v1.json`
+* `/00-PROGRAM/platform/schemas/service/RequalificationReport.v1.json`
+* `/00-PROGRAM/platform/schemas/service/Reintroduction.v1.json`
+* `/00-PROGRAM/platform/schemas/licensing/Entitlement.v1.json`
+* `/00-PROGRAM/platform/schemas/licensing/Assignment.v1.json`
+* `/00-PROGRAM/platform/schemas/licensing/Transfer.v1.json`
 
 ---
 
 ## APIs
 
-* **REST/GraphQL** via gateway. OpenAPI in `/api/openapi.yaml`. Async events in `/api/asyncapi.yaml`.
+* **REST/GraphQL** via gateway. OpenAPI in `/00-PROGRAM/platform/api/openapi.yaml`. Async events in `/00-PROGRAM/platform/api/asyncapi.yaml`.
 * Example flow:
 
   1. Obtain token via OIDC.
@@ -357,7 +364,7 @@ See `CHANGELOG.md` and GitHub Releases.
 
 Multi‑tenant sandbox for trained, contextualized, embedded AI over IDEALE‑EU data.
 
-* **Components**: `/playground-ui`, `/llm/gateway`, `/llm/embed`, `/llm/rag`, `/llm/guardrails`, `/vector`.
+* **Components**: `/00-PROGRAM/platform/playground-ui`, `/00-PROGRAM/platform/llm/gateway`, `/00-PROGRAM/platform/llm/embed`, `/00-PROGRAM/platform/llm/rag`, `/00-PROGRAM/platform/llm/guardrails`, `/00-PROGRAM/platform/vector`.
 * **APIs**: `POST /llm/chat`, `POST /llm/embed`, `POST /knowledge/sync`, `POST /contexts`.
 * **Security**: tenant/project namespaces; KMS‑backed keys; full prompt/tool/output audit.
 * **Eval**: golden sets, EM/F1, groundedness, latency, cost; shadow runs.
@@ -455,7 +462,7 @@ Questions: open a GitHub Discussion or an issue using the template.
 
 ---
 
-## Extended materials (full reference restored)
+## Extended materials (full reference)
 
 ### Features and demos
 
@@ -507,13 +514,13 @@ Questions: open a GitHub Discussion or an issue using the template.
 
 **Key components**
 
-| Component           | Description                  | Location                                                                        |
-| ------------------- | ---------------------------- | ------------------------------------------------------------------------------- |
-| QPLC Definition     | Framework spec               | `/program/00-PROGRAM/GOVERNANCE/QPLC_DEFINITION.md`                             |
-| EPE Rules           | Ethical Policy Engine schema | `/program/00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/EPE-v1.0.yaml`         |
-| Human‑First Policy  | Ethical principles           | `/program/00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/HUMAN_FIRST_POLICY.md` |
-| Human Review Portal | Interface spec               | `/program/00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/HUMAN_REVIEW_PORTAL.md`         |
-| PLUMA Integration   | Workflow orchestration       | `/program/00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/PLUMA_INTEGRATION.md`           |
+| Component           | Description                  | Location                                                                |
+| ------------------- | ---------------------------- | ----------------------------------------------------------------------- |
+| QPLC Definition     | Framework spec               | `/00-PROGRAM/GOVERNANCE/QPLC_DEFINITION.md`                             |
+| EPE Rules           | Ethical Policy Engine schema | `/00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/EPE-v1.0.yaml`         |
+| Human‑First Policy  | Ethical principles           | `/00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/HUMAN_FIRST_POLICY.md` |
+| Human Review Portal | Interface spec               | `/00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/HUMAN_REVIEW_PORTAL.md`         |
+| PLUMA Integration   | Workflow orchestration       | `/00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/PLUMA_INTEGRATION.md`           |
 
 **EPE rules (excerpt)**
 
@@ -530,21 +537,21 @@ Questions: open a GitHub Discussion or an issue using the template.
 
 ### Program folders
 
-* **/program/00-PROGRAM/** Governance, CM, QMS, standards, supply chain
+* **/00-PROGRAM/** Governance, CM, QMS, standards, supply chain
 
-  * **/program/00-PROGRAM/BUSINESS/AAMMPP/** Aerospace Assets Mgmt, Maintenance & Procurement (canonical)
-* **/program/01-FLEET/** Operational data hub, MRO, federated learning
-* **/program/02‑AIRCRAFT/** AIR‑T baselines, domain integration, twin
-* **/program/03‑SPACECRAFT/** STA baselines, domain integration, AIT/mission
-* **/program/04‑SATELLITES/** Satellite product structures
-* **/program/05‑TELESCOPES/** Observatory payload/domain structures
-* **/program/06‑PROBES/** Deep‑space probes
-* **/program/07‑DRONES/** UAS/UAM product lines
-* **/program/08‑LAUNCHERS/** Launch vehicles
-* **/program/09‑STM‑SPACE‑STATION‑MODULES/** Station modules/segments
-* **/program/10‑BUSINESS/** Market, partnerships, finance
+  * **/00-PROGRAM/BUSINESS/AAMMPP/** Aerospace Assets Mgmt, Maintenance & Procurement (canonical)
+* **/01-FLEET/** Operational data hub, MRO, federated learning
+* **/02‑AIRCRAFT/** AIR‑T baselines, domain integration, twin
+* **/03‑SPACECRAFT/** STA baselines, domain integration, AIT/mission
+* **/04‑SATELLITES/** Satellite product structures
+* **/05‑TELESCOPES/** Observatory payload/domain structures
+* **/06‑PROBES/** Deep‑space probes
+* **/07‑DRONES/** UAS/UAM product lines
+* **/08‑LAUNCHERS/** Launch vehicles
+* **/09‑STM‑SPACE‑STATION‑MODULES/** Station modules/segments
+* **/10‑BUSINESS/** Market, partnerships, finance
 
-  * **/program/10‑BUSINESS/A360‑EXCHANGES‑TT/** Commercial layer on AAMMPP
+  * **/10‑BUSINESS/A360‑EXCHANGES‑TT/** Commercial layer on AAMMPP
 
 **Core patterns**
 
@@ -555,14 +562,14 @@ DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT>/MODELS/<MODEL>/VERSION/<Qn>/SYSTEMS/…
 Example
 
 ```
-/program/02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/
+/02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/
   MODELS/BWB-H2-Hy-E/VERSION/Q100/
 ```
 
 **ESG and Green Performant Tools (GPT)**
 
 ```
-/program/00-PROGRAM/COMPLIANCE/12-ESG_SUSTAINABILITY/
+/00-PROGRAM/COMPLIANCE/12-ESG_SUSTAINABILITY/
   ├── 01-ESG_FRAMEWORK/
   ├── 02-GREEN_PERFORMANT_TOOLS/
   ├── 03-KEY_INDICATORS/
@@ -575,22 +582,20 @@ Example
 
 ### Repository Index and Navigation
 
-**Mapping**: `/platform` = code & services · `/program` = governance & product trees
-
-**Purpose**: Navigate the **/program** tree for governance, product structures, digital threads, and ops data.
+**Purpose**: Navigate top‑level folders for governance, product structures, digital threads, and ops data.
 
 **Top‑Level Directories**
 
-* [/program/00‑PROGRAM](./program/00-PROGRAM/) · [/program/01‑FLEET](./program/01-FLEET/) · [/program/02‑AIRCRAFT](./program/02-AIRCRAFT/) · [/program/03‑SPACECRAFT](./program/03-SPACECRAFT/)
-* [/program/04‑SATELLITES](./program/04-SATELLITES/) · [/program/05‑TELESCOPES](./program/05-TELESCOPES/) · [/program/06‑PROBES](./program/06-PROBES/)
-* [/program/07‑DRONES](./program/07-DRONES/) · [/program/08‑LAUNCHERS](./program/08-LAUNCHERS/) · [/program/09‑STM‑SPACE‑STATION‑MODULES](./program/09-STM-SPACE-STATION-MODULES/) · [/program/10‑BUSINESS](./program/10-BUSINESS/)
+* [/00‑PROGRAM](./00-PROGRAM/) · [/01‑FLEET](./01-FLEET/) · [/02‑AIRCRAFT](./02-AIRCRAFT/) · [/03‑SPACECRAFT](./03-SPACECRAFT/)
+* [/04‑SATELLITES](./04-SATELLITES/) · [/05‑TELESCOPES](./05-TELESCOPES/) · [/06‑PROBES](./06-PROBES/)
+* [/07‑DRONES](./07-DRONES/) · [/08‑LAUNCHERS](./08-LAUNCHERS/) · [/09‑STM‑SPACE‑STATION‑MODULES](./09-STM-SPACE-STATION-MODULES/) · [/10‑BUSINESS](./10-BUSINESS/)
 
 **Key reference points**
 
-* Governance & Policy: [`/program/00-PROGRAM/GOVERNANCE/`](./program/00-PROGRAM/GOVERNANCE/) · Config Mgmt: [`/program/00-PROGRAM/CONFIG_MGMT/`](./program/00-PROGRAM/CONFIG_MGMT/)
+* Governance & Policy: [`/00-PROGRAM/GOVERNANCE/`](./00-PROGRAM/GOVERNANCE/) · Config Mgmt: [`/00-PROGRAM/CONFIG_MGMT/`](./00-PROGRAM/CONFIG_MGMT/)
 * Changes: ECR/ECO/CCB → see `06-CHANGES/` and `05-CCB/`
-* Digital Thread: MBSE → `/program/00-PROGRAM/DIGITAL_THREAD/04-MBSE/` · Digital Twin → `/program/00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/`
-* Traceability: UTCS Registry → `/program/00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/`
+* Digital Thread: MBSE → `/00-PROGRAM/DIGITAL_THREAD/04-MBSE/` · Digital Twin → `/00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/`
+* Traceability: UTCS Registry → `/00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/`
 
 **Index types**
 
@@ -605,7 +610,6 @@ DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT>/MODELS/<MODEL>/VERSION/<Qn>/DOMAINS/<DOMAI
 **Maintenance**
 
 * Automated updates with structure changes; manual review quarterly; baseline snapshots at milestones.
-
 
 
 ## Detailed Directory Index
