@@ -1,0 +1,157 @@
+# S1000D Neuromorphic Orchestrator Configuration
+
+# SNN Model Configuration
+snn:
+  num_layers: 3
+  hidden_dim: 256
+  max_synapses: 100000  # As per pilot plan
+  
+  # LIF Neuron Parameters
+  lif:
+    v_rest: -70.0        # mV
+    v_reset: -75.0       # mV
+    v_thresh: -55.0      # mV
+    tau_mem: 20.0        # ms
+    tau_syn: 5.0         # ms
+    refractory_period: 2.0  # ms
+    dt: 1.0              # ms
+  
+  # STDP Learning
+  stdp:
+    learning_rate: 0.001
+    decay_rate: 0.01
+    tau_plus: 20.0       # ms
+    tau_minus: 20.0      # ms
+
+# AER Encoding
+aer:
+  window_size_ms: 100.0
+  max_spike_rate_hz: 100.0
+  time_resolution_ms: 1.0
+
+# CSDB Configuration
+csdb:
+  root_path: "../DataModules"
+  event_stream_url: "http://csdb.local/api/events"
+  poll_interval_seconds: 1.0
+  
+  # Node types to monitor
+  node_types:
+    - DMC
+    - ICN
+    - PM
+    - BREX
+
+# BREX Guardrails
+brex:
+  rules_path: "../BREX/DMC-AMP360-AAA-00-00-00-00A-000A-A_en-US_001-00.xml"
+  enforce_as_hard_constraints: true
+  allow_override: false
+
+# Workflow Orchestrator Integration
+orchestrator:
+  type: "camunda"  # Options: camunda, airflow, temporal
+  
+  # Camunda settings
+  camunda:
+    rest_api_url: "http://camunda.local:8080/engine-rest"
+    worker_id: "snn-orchestrator"
+    topic: "s1000d-workflow"
+    lock_duration: 60000  # ms
+  
+  # Airflow settings (alternative)
+  airflow:
+    api_url: "http://airflow.local:8080/api/v1"
+    dag_id: "s1000d_orchestration"
+
+# Policy Layer
+policy:
+  # Action space
+  actions:
+    - route
+    - prioritize
+    - analyze_impact
+    - guard
+    - explain
+  
+  # Operating modes
+  mode: "suggest"  # Options: suggest, auto-apply
+  
+  # Auto-apply conditions (when mode=auto-apply)
+  auto_apply:
+    enabled_for_categories:
+      - "non-safety"
+      - "low-risk"
+    max_impact_threshold: 5  # Max DMCs affected
+
+# Training Configuration
+training:
+  # Data
+  workflow_logs_path: "./data/workflow_logs_12mo.jsonl"
+  validation_split: 0.2
+  
+  # Training parameters
+  epochs: 100
+  batch_size: 32
+  
+  # Reward signals
+  rewards:
+    cycle_time_reduction: 1.0
+    rejection_avoidance: 0.8
+    first_pass_approval: 1.2
+    brex_violation: -2.0
+  
+  # Checkpointing
+  checkpoint_dir: "./checkpoints"
+  checkpoint_interval: 10  # epochs
+
+# Metrics & Monitoring
+metrics:
+  enabled: true
+  dashboard_port: 8080
+  
+  # KPIs to track
+  kpis:
+    - lead_time_per_state
+    - average_wip
+    - rework_rate
+    - first_pass_yield
+    - human_touches_per_dmc
+    - impact_precision
+    - impact_recall
+  
+  # Drift detection
+  drift:
+    enabled: true
+    window_size: 1000  # events
+    threshold: 0.15    # Trigger alert if drift > 15%
+
+# Logging & Audit
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "json"
+  
+  # Audit trail
+  audit:
+    enabled: true
+    log_path: "./logs/audit.jsonl"
+    immutable: true
+    include_spike_traces: true
+    include_weight_versions: true
+
+# Security & Compliance
+security:
+  require_confirmation: true  # Phase 1-2
+  log_all_decisions: true
+  enforce_brex_outside_snn: true
+
+# Performance
+performance:
+  # In-memory computing
+  use_gpu: false  # Set true if neuromorphic hardware available
+  batch_inference: true
+  max_parallel_events: 10
+  
+  # Rate limits
+  max_events_per_second: 100
+  max_spikes_per_event: 1000

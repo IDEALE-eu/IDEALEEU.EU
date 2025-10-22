@@ -1,4 +1,4 @@
-# IDEALE-EU: Aerospace Digital Passport Platform
+# IDEALEEU: Aerospace Digital Passport Platform
 
 [![GitHub Pages](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://idealeeu.github.io)
 [![AS9100D](https://img.shields.io/badge/AS9100-Rev%20D-green)](https://www.sae.org/standards/content/as9100d/)

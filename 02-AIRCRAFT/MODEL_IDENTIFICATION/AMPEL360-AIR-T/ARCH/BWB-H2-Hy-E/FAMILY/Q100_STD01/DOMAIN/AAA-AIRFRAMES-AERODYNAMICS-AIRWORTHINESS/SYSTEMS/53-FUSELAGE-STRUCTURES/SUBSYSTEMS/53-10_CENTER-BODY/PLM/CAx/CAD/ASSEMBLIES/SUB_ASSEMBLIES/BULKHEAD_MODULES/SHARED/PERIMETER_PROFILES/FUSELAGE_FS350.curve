@@ -1,0 +1,40 @@
+! FUSELAGE_FS350.curve
+! Perimeter curve for Fuselage Station 350
+! Imported from shared geometry library
+!
+! Description: Defines the perimeter shape at FS 350
+! Curvature Radius: 1385 mm
+! Type: Circular cross-section with minor elliptical adjustment
+!
+! Coordinate System: BH_STA350_CS
+! Reference Datum: FS_350, BL_0, WL_0
+!
+! Curve Definition (points in polar coordinates, relative to center):
+! Angle(deg), Radius(mm), Z-offset(mm)
+0,1385,0
+15,1385,2
+30,1384,5
+45,1383,8
+60,1382,10
+75,1382,12
+90,1382,12
+105,1382,12
+120,1382,10
+135,1383,8
+150,1384,5
+165,1385,2
+180,1385,0
+195,1385,-2
+210,1384,-5
+225,1383,-8
+240,1382,-10
+255,1382,-12
+270,1382,-12
+285,1382,-12
+300,1382,-10
+315,1383,-8
+330,1384,-5
+345,1385,-2
+360,1385,0
+!
+! End of curve definition

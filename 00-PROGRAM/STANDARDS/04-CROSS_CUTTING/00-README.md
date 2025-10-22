@@ -9,6 +9,7 @@ This directory contains standards that apply across both aircraft and spacecraft
 ## Contents
 
 - **00-README.md** - This file
+- **LIFECYCLE_EVIDENCE_DIGITAL_TWINS_CIRCULARITY.md** - Comprehensive best practices for lifecycle evidence, digital twins, and circularity (2023-2025 standards)
 - **MBSE/** - Model-Based Systems Engineering (ISO/IEC/IEEE 15288, 42010, SysML v2)
 - **DATA_EXCHANGE/** - Data exchange standards (ISO 10303 STEP AP242, ReqIF, OSLC, QIF)
 - **CONFIG_MGMT/** - Configuration management (ISO 10007, EIA-649C)
@@ -24,6 +25,37 @@ These standards apply to:
 - **Spacecraft**: Space systems development and operations
 - **Ground Systems**: Support equipment, facilities, tools
 - **Supply Chain**: Suppliers, subcontractors, partners
+
+## Featured Documentation
+
+### [Lifecycle Evidence, Digital Twins, and Circularity Best Practices](./LIFECYCLE_EVIDENCE_DIGITAL_TWINS_CIRCULARITY.md)
+
+A comprehensive, expert-level guide covering the most recent standards and best practices (2023-2025) for:
+
+**Lifecycle Evidence and System Certification**
+- Model-Based Systems Engineering (MBSE) with SysML v2 adoption
+- SAE ARP4754B & ARP4761A (December 2023 releases)
+- RTCA DO-178C, DO-254, DO-326A/356A/355A security standards
+- FAA and EASA AI/ML assurance roadmaps
+- LOTAR EN/NAS 9300 archiving standards (2024-2025 updates)
+
+**Digital Twins**
+- ISO 23247 digital twin framework for manufacturing
+- AIAA/AIA position papers on aerospace digital twins
+- Digital Twin Consortium (DTC) trustworthiness frameworks
+- NIST IR 8356 (2025) security and trust considerations
+- Integration with Digital Thread and SysML v2
+
+**Circularity and Sustainability**
+- EU ESPR Regulation 2024/1781 and Digital Product Passports (DPP)
+- ISO 59004:2024 & ISO 59020:2024 circular economy standards
+- AFRA BMP v5.1 (effective January 1, 2025)
+- ASTM E3461-25 circular product design guide
+- IATA Net-Zero by 2050 roadmap
+
+This document provides strategic imperatives, implementation roadmaps, and platform integration guidance for the IDEALEEU.EU program.
+
+---
 
 ## Key Standards Overview
 
