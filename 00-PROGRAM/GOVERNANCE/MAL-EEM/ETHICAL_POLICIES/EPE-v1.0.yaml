@@ -1,0 +1,352 @@
+# Ethical Policy Engine (EPE) - Human-First Governance
+# Version: 1.0.0
+# Owner: MAL-EEM Review Committee
+# Last Updated: 2025-10-18
+# 
+# This policy engine enforces human-centric ethical rules across both
+# human resources and aerospace asset optimization within the IDEALE-EU platform
+
+policy_id: EPE-HUMAN-FIRST-v1.0
+version: 1.0.0
+scope:
+  - IIS    # Information-Intelligence-Systems
+  - LIB    # Logistics-Inventory-Blockchain
+  - OOO    # Operations-Optimization-Outcomes
+  - MMM    # Mechanical-Material-Modules (MRO)
+  - PPP    # Propulsion (optimization)
+  - EEE    # Electrical (power optimization)
+  - CQH    # Cryogenics-Quantum-H2
+  - ALL_DOMAINS  # Universal application
+
+enforcement_level: MANDATORY  # Blocks PLUMA workflows if violated
+
+# =============================================================================
+# HUMAN SAFETY & DIGNITY RULES
+# =============================================================================
+
+rules:
+  # ---------------------------------------------------------------------------
+  # HUM-SAFE-01: Human Safety Always Overrides Cost/Schedule
+  # ---------------------------------------------------------------------------
+  - id: HUM-SAFE-01
+    category: HUMAN_SAFETY
+    priority: CRITICAL
+    description: "Human safety always overrides cost or schedule optimization"
+    condition: |
+      (proposed_action.risk_to_human > 0) AND 
+      (objective_function.includes("cost_minimization") OR 
+       objective_function.includes("schedule_acceleration"))
+    action: REJECT
+    override_allowed: false
+    rationale: "No cost or schedule pressure justifies compromising human safety"
+    compliance:
+      - CS-25.1309
+      - EU AI Act Article 9
+      - ISO 45001
+
+  # ---------------------------------------------------------------------------
+  # HUM-DIGN-02: No Human Tasking Below Rest/Fatigue Thresholds
+  # ---------------------------------------------------------------------------
+  - id: HUM-DIGN-02
+    category: HUMAN_DIGNITY
+    priority: HIGH
+    description: "No human tasking below rest/fatigue thresholds"
+    condition: |
+      (task.assignee.cumulative_duty_hours > 12) OR
+      (task.cognitive_load_score > 0.85) OR
+      (task.assignee.rest_hours_last_24h < 8)
+    action: DEFER
+    override_allowed: true
+    override_requires:
+      - safety_officer
+      - union_representative
+    mitigation_options:
+      - "Defer task to next shift"
+      - "Assign to alternative qualified personnel"
+      - "Reduce task complexity/duration"
+    rationale: "Fatigue impairs judgment and increases accident risk"
+    compliance:
+      - EASA Part-145
+      - FAA Part 121.471
+      - ISO 45001
+
+  # ---------------------------------------------------------------------------
+  # HUM-FAIR-03: Equitable Workload Distribution
+  # ---------------------------------------------------------------------------
+  - id: HUM-FAIR-03
+    category: FAIRNESS
+    priority: MEDIUM
+    description: "Workload must be distributed equitably across personnel"
+    condition: |
+      (assignee.workload_percentile > 0.90) AND
+      (alternative_assignees_available > 0)
+    action: FLAG_FOR_REVIEW
+    override_allowed: true
+    override_requires:
+      - operations_manager
+    mitigation_options:
+      - "Distribute to underutilized personnel"
+      - "Balance workload across team"
+    rationale: "Prevents burnout and ensures fair treatment"
+    compliance:
+      - ISO 26000 (Social Responsibility)
+      - UN Global Compact
+
+  # ---------------------------------------------------------------------------
+  # ASSET-HUM-03: Component Reuse Must Not Increase Inspection Burden Unreasonably
+  # ---------------------------------------------------------------------------
+  - id: ASSET-HUM-03
+    category: ASSET_HUMAN_BALANCE
+    priority: MEDIUM
+    description: "Component reuse must not increase human inspection burden unreasonably"
+    condition: |
+      (asset.circularity_score > 0.9) AND
+      (required_inspections > baseline_inspections * 2.0)
+    action: FLAG_FOR_REVIEW
+    mitigation_options:
+      - "Provide automated NDT equipment"
+      - "Offer additional training"
+      - "Issue TT token incentive for extra work"
+      - "Reduce reuse frequency"
+    rationale: "Circular economy must not exploit human labor"
+    compliance:
+      - Circular Economy Action Plan
+      - Fair Labor Standards
+
+  # ---------------------------------------------------------------------------
+  # EMPATHY-GUARD-04: No Tasking During Local Crisis Events
+  # ---------------------------------------------------------------------------
+  - id: EMPATHY-GUARD-04
+    category: EMPATHIC_GUARDRAILS
+    priority: HIGH
+    description: "Empathic guardrails: no tasking during local crisis events"
+    condition: |
+      assignee.location IN active_crisis_zones
+    action: PAUSE_SCHEDULING
+    data_sources:
+      - UN_OCHA_API           # UN Office for Coordination of Humanitarian Affairs
+      - internal_wellbeing_feed
+      - local_news_monitoring
+    override_allowed: true
+    override_requires:
+      - chief_people_officer
+      - crisis_response_team
+    rationale: "Personnel affected by crisis need support, not additional workload"
+    compliance:
+      - ILO Conventions
+      - Corporate Social Responsibility
+
+  # ---------------------------------------------------------------------------
+  # PRIVACY-05: Data Minimization in Optimization
+  # ---------------------------------------------------------------------------
+  - id: PRIVACY-05
+    category: PRIVACY
+    priority: HIGH
+    description: "AI optimization must use minimal personal data necessary"
+    condition: |
+      (optimization.uses_personal_data == true) AND
+      (data_fields.count > minimal_required_fields.count)
+    action: FLAG_FOR_REVIEW
+    mitigation_options:
+      - "Remove unnecessary personal data fields"
+      - "Anonymize/pseudonymize data"
+      - "Use aggregate statistics instead"
+    rationale: "Privacy by design and data minimization"
+    compliance:
+      - GDPR Article 5
+      - CCPA
+
+  # ---------------------------------------------------------------------------
+  # TRANS-06: Explainability Required for Human-Impact Decisions
+  # ---------------------------------------------------------------------------
+  - id: TRANS-06
+    category: TRANSPARENCY
+    priority: HIGH
+    description: "AI decisions affecting humans must be explainable"
+    condition: |
+      (decision.affects_human == true) AND
+      (model.explainability_score < 0.7)
+    action: REQUIRE_EXPLANATION
+    requirements:
+      - model_card
+      - SHAP_values
+      - human_readable_rationale
+    rationale: "People have right to understand decisions affecting them"
+    compliance:
+      - EU AI Act Article 13
+      - GDPR Article 22
+
+  # ---------------------------------------------------------------------------
+  # COST-SAFE-07: Never Optimize Pure Cost at Safety Expense
+  # ---------------------------------------------------------------------------
+  - id: COST-SAFE-07
+    category: SAFETY_PRIMACY
+    priority: CRITICAL
+    description: "Never optimize cost alone without safety consideration"
+    condition: |
+      (objective_function == "cost_only") AND
+      (safety_constraints.defined == false)
+    action: REJECT
+    override_allowed: false
+    rationale: "Safety must be explicit constraint in all optimizations"
+    compliance:
+      - AS9100D
+      - CS-25
+
+  # ---------------------------------------------------------------------------
+  # BIAS-08: Demographic Fairness in Resource Allocation
+  # ---------------------------------------------------------------------------
+  - id: BIAS-08
+    category: ANTI_DISCRIMINATION
+    priority: HIGH
+    description: "Resource allocation must be demographically fair"
+    condition: |
+      (decision.affects_personnel == true) AND
+      (fairness_metrics.demographic_parity < 0.8)
+    action: FLAG_FOR_BIAS_REVIEW
+    requirements:
+      - disparate_impact_analysis
+      - mitigation_plan
+    protected_attributes:
+      - gender
+      - age
+      - ethnicity
+      - disability_status
+      - union_membership
+    rationale: "Prevent algorithmic discrimination"
+    compliance:
+      - EU AI Act Article 10
+      - Equal Employment Opportunity
+
+  # ---------------------------------------------------------------------------
+  # AUTON-09: Human Oversight for Autonomous Decisions
+  # ---------------------------------------------------------------------------
+  - id: AUTON-09
+    category: HUMAN_OVERSIGHT
+    priority: HIGH
+    description: "High-impact autonomous decisions require human oversight"
+    condition: |
+      (decision.autonomy_level == "full") AND
+      (decision.impact_level IN ["high", "critical"])
+    action: REQUIRE_HUMAN_APPROVAL
+    approval_timeout: 300  # seconds (5 minutes)
+    fallback_action: DEFER
+    rationale: "Humans must remain in control of critical decisions"
+    compliance:
+      - EU AI Act Article 14
+      - DO-384
+
+# =============================================================================
+# METADATA & COMPLIANCE
+# =============================================================================
+
+metadata:
+  utcs_ref: UTCS-IIS-EPE-HUMAN-FIRST@1.0.0
+  digital_passport:
+    badge: EPE-HUMAN-FIRST
+    registry: HUELLΔ
+  compliance:
+    eu_ai_act: HIGH_RISK_SYSTEM
+    iso_24027: true
+    mal_eem_version: 2.1
+    do_384: true
+    cs_25_1309: true
+
+# =============================================================================
+# MONITORING & ENFORCEMENT
+# =============================================================================
+
+monitoring:
+  log_all_evaluations: true
+  log_retention_days: 2555  # 7 years (regulatory requirement)
+  alert_on_violation: true
+  alert_recipients:
+    - ethics_board@idealeeu.eu
+    - safety_officer@idealeeu.eu
+    - ccb@idealeeu.eu
+  metrics:
+    - violation_count_by_rule
+    - override_frequency
+    - average_approval_latency
+    - fairness_score_distribution
+
+enforcement:
+  integration_points:
+    - PLUMA_workflows
+    - QPLC_runtime
+    - AGI_decision_engine
+  blocking_mode: true  # Violations block execution
+  audit_trail: UTCS_MANIFEST
+
+# =============================================================================
+# DATA SOURCES & CONTEXT
+# =============================================================================
+
+context_providers:
+  # Human context
+  - name: HR_SYSTEM
+    provides:
+      - duty_hours
+      - rest_hours
+      - cognitive_load_assessments
+      - wellbeing_scores
+  
+  # Crisis monitoring
+  - name: UN_OCHA_API
+    provides:
+      - active_crisis_zones
+      - humanitarian_alerts
+  
+  # Safety systems
+  - name: SAFETY_MANAGEMENT_SYSTEM
+    provides:
+      - incident_reports
+      - near_miss_data
+      - risk_assessments
+  
+  # Fairness monitoring
+  - name: DEI_ANALYTICS
+    provides:
+      - demographic_distributions
+      - fairness_metrics
+      - bias_assessments
+
+# =============================================================================
+# UPDATE & GOVERNANCE
+# =============================================================================
+
+governance:
+  review_frequency: QUARTERLY
+  approval_authority: MAL-EEM Review Committee
+  change_process: ECR (Engineering Change Request)
+  stakeholder_consultation:
+    - Ethics Board
+    - Safety Committee
+    - Labor Representatives
+    - Legal/Compliance
+
+version_history:
+  - version: 1.0.0
+    date: 2025-10-18
+    author: MAL-EEM Committee
+    changes: Initial EPE human-first policy definition
+    approved_by: Ethics Board
+
+# =============================================================================
+# NOTES
+# =============================================================================
+
+notes: |
+  This Ethical Policy Engine (EPE) implements the human-first principles
+  outlined in the QPLC (Quantum Programmable Logic Control) framework.
+  
+  All rules are declarative and machine-readable, enabling automated
+  enforcement while maintaining human oversight for critical decisions.
+  
+  The EPE is integrated with:
+  - PLUMA (Product Lifecycle User Management Automation)
+  - QPLC (Quantum Programmable Logic Control)
+  - UTCS (UiX Threading Context/Content/Cache and Structure/Style/Sheet)
+  - MAL-EEM (Model Accountability, Liability, Ethics & Explainability)
+  
+  For questions or policy updates, contact: ethics@idealeeu.eu
