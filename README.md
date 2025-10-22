@@ -1,4 +1,4 @@
-# IDEALE-EU
+# IDEALEEU
 
 > Unified, audit‑ready platform for multi‑vehicle aerospace programs. Modules: **AMSDP** (Aerospace Material & Software Digital Passports) and **AAMMPP** (Aerospace Assets Management, Maintenance & Procurement Platform).
 
