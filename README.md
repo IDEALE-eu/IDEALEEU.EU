@@ -1,42 +1,526 @@
-# IDEALEEU: Aerospace Digital Passport Platform
+# IDEALEEU.EU
 
-[![GitHub Pages](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://idealeeu.github.io)
-[![AS9100D](https://img.shields.io/badge/AS9100-Rev%20D-green)](https://www.sae.org/standards/content/as9100d/)
-[![TFA](https://img.shields.io/badge/TFA-Threading%20Functional%20Architecture-purple)](https://idealeeu.github.io/docs/tfa-domains/)
-[![License](https://img.shields.io/badge/license-See%20LICENSE-red)](LICENSE)
+> Unified, audit‑ready platform for multi‑vehicle aerospace programs. Modules:
+> **AMSDP** (Aerospace Material & Software Digital Passports) and **AAMMPP** (Aerospace Assets Management, Maintenance & Procurement Platform).
 
-This platform includes **AAMMPP** (Aerospace Assets Management, Maintenance and Procurement Platform) - the canonical foundation for aerospace components quotation, exchanges and tracking using **UTCS headers** (User Experience Threading Context/Content/Cache and Structure/Style/Sheet), **Quantum Supercomputing Hunting (QSH)**, **TFA (Topic Functional Areas)**, and **PLUMA** (Product Lifecycle User Made Automation).
+---
+
+## Badges
+
+<!-- Replace with live badges once CI is wired -->
+
+[![Status](https://img.shields.io/badge/status-alpha-yellow)](#)
+[![Build](https://img.shields.io/badge/build-passing-inactive)](#)
+[![CodeQL](https://img.shields.io/badge/codeql-enabled-inactive)](#)
+[![Coverage](https://img.shields.io/badge/coverage-TBD-inactive)](#)
+[![SBOM](https://img.shields.io/badge/SBOM-CycloneDX-inactive)](#)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+
+---
+
+## TL;DR
+
+IDEALE‑EU provides a verifiable digital thread from requirements to fleet operations. AMSDP issues and verifies digital passports for materials, parts, and software. AAMMPP manages the canonical item master, configuration, maintenance, and procurement workflows. Together they deliver trusted, interoperable data exchange across OEMs, suppliers, operators, and regulators.
+
+---
+
+## Table of contents
+
+* [TL;DR](#tldr)
+* [Mission & Scope](#mission--scope)
+* [Core Capabilities](#core-capabilities)
+* [Architecture Overview](#architecture-overview)
+* [Standards & Interop Targets](#standards--interop-targets)
+* [Repository Layout](#repository-layout)
+* [Quickstart (Developer)](#quickstart-developer)
+* [Configuration](#configuration)
+* [Component taxonomy](#component-taxonomy)
+* [Data Contracts](#data-contracts)
+* [APIs](#apis)
+* [Security Model](#security-model)
+* [CI/CD](#cicd)
+* [Releases & Changelog](#releases--changelog)
+* [LLM Playground](#llm-playground)
+* [Deployment](#deployment)
+* [Operations](#operations)
+* [Governance](#governance)
+* [Contributing](#contributing)
+* [Roadmap (High‑Level)](#roadmap-highlevel)
+* [License](#license)
+* [Support](#support)
+* [Glossary](#glossary)
+* [Primary folders](#primary-folders)
+* [Repository Index and Navigation](#repository-index-and-navigation)
+
+## Mission & Scope
+
+**Mission**: Deliver certified, serial‑ready aerospace systems with a closed‑loop digital thread from concept to fleet operations.
+
+**Scope**: End‑to‑end lifecycle: requirements → design → verification & certification → industrialization & production → operations → continuous improvement.
+
+---
+
+## Core Capabilities
+
+* **Traceability & Provenance**: Part pedigree, software build lineage, conformity statements, and audit trails.
+* **Configuration Control**: Baselines, EOs/ECNs, effectivity, serialization, and configuration state.
+* **Digital Passports (AMSDP)**: Issuance, verification, revocation, and transfer of material/part/software credentials.
+* **Lifecycle Ops (AAMMPP)**: Asset registry, maintenance plans, work orders, reliability, inventory, and procurement.
+* **Data Contracts**: Typed schemas with versioning, backward‑compat rules, and conformance tests.
+* **Interoperability**: Opinionated mappings to aerospace and supply‑chain standards.
+* **Audit‑Ready**: Tamper‑evident logs, SBOMs, build provenance, and retention policies.
+
+---
+
+## Architecture Overview
+
+* **Identity & Trust**: Issuer registry, key management, verifiable attestations, role‑based and attribute‑based access control.
+* **Control Layer (MAL)**: Master Application Layer/Logic acting as the PLC of each domain. Orchestrates workflows, policies, and domain invariants.
+* **Data Plane**: Schema registry, contract testing, lineage catalog, and event store.
+* **Services**:
+
+  * **AMSDP**: Credential service, passport vault, verifier, revocation registry.
+  * **AAMMPP**: Item master, configuration service, MRO, procurement, inventory.
+  * **API Gateway**: REST/GraphQL ingress, OAuth2/OIDC.
+  * **Events**: Async bus for integration and workflows.
+* **Storage**: OLTP store, object storage for artifacts, and append‑only audit log.
+* **Integrations**: PLM/ERP/MES, certification authorities, supplier portals, and operator systems.
+
+> See `/docs/architecture/` for diagrams and sequence flows.
+
+---
+
+## Standards & Interop Targets
+
+* **Identity & Credentials**: W3C Verifiable Credentials/Presentations.
+* **Supply Chain Events**: GS1 EPCIS 2.0 + CBV.
+* **Tech Pubs & Procurement**: ASD S‑Series references (S1000D, S2000M).
+* **Software Assurance**: SBOM (CycloneDX), SLSA provenance attestations.
+* **Lifecycle & Systems**: ISO/IEC/IEEE 15288, INCOSE guidance.
+* **Aero Certification References**: DO‑178C/DO‑330, DO‑254, ARP4754A/ARP4761 (alignment targets, not declarations of compliance).
+
+---
+
+## Repository Layout
+
+```
+/amsdp/              # Digital passport services (issue/verify/revoke)
+/aamMPP/             # Asset mgmt, maintenance, procurement
+/api/                # OpenAPI, GraphQL schemas, gateway config
+/schemas/            # JSON/Avro/Proto contracts + tests
+/clients/            # SDKs and examples
+/infra/              # IaC, Docker, Helm, GH Actions
+/docs/               # MkDocs site (architecture, ADRs, runbooks)
+/tools/              # CLIs, generators, data loaders
+/llm/                # Provider-agnostic gateway, guardrails, eval
+  /gateway/          # Chat/completions proxy, model routing
+  /embed/            # Embedding service and batch pipelines
+  /rag/              # Chunkers, indexers, retrievers, re-rankers
+  /guardrails/       # Prompt policies, redaction, output filters
+  /eval/             # Golden sets, metrics, dashboards
+/playground-ui/      # React app for tenant sandboxes
+/vector/             # Vector DB adapters (pgvector, Qdrant)
+```
+
+---
+
+## Quickstart (Developer)
+
+### Prerequisites
+
+* Git, Docker, Docker Compose, Make
+* Node 20+ and Python 3.11+ (for tooling and SDKs)
+
+### Bootstrap
+
+```bash
+git clone https://github.com/IDEALE-eu/IDEALEEU
+cd IDEALEEU
+make bootstrap        # install tooling, pre-commit hooks
+make build            # docker compose build
+make up               # docker compose up -d
+make test             # run unit and contract tests
+```
+
+### Useful Targets
+
+```bash
+make up down logs lint fmt test test-contracts sbom provenance release
+```
+
+---
+
+## Configuration
+
+Set via environment or `.env`.
+
+```ini
+IDEALE_ENV=dev
+IDEALE_LOG_LEVEL=info
+IDEALE_DB_URL=postgresql://user:pass@db:5432/ideale
+IDEALE_OBJECT_STORE=s3://bucket/prefix
+OIDC_ISSUER_URL=https://auth.example.com/
+OIDC_AUDIENCE=ideale-api
+JWT_SIGNING_KEY=change-me
+EVENT_BUS_URL=nats://nats:4222
+```
+
+Secrets should be injected via the orchestrator secret store, not committed.
+
+---
+
+## Component taxonomy
+
+Canonical classes and required passport claims.
+
+### Classes (enum)
+
+* `primary_structure`
+* `secondary_structure`
+* `installation_hardware`
+* `information_hardware`
+* `software`
+* `model`
+* `firmware`
+* `sensor_antenna`
+
+### Common identifiers
+
+* `componentClass` (enum above)
+* `componentType` (controlled vocab, e.g., `wing_spar`, `fastener_rivet`, `lru_fms`, `uC_firmware`, `fem_model`, `gnss_antenna`)
+* `ciId` (configuration item ID)
+* `partNumber` (canonical PN)
+* `serialNumber` (where applicable)
+* `effectivity` (tail numbers, lots, ranges)
+* `asDesignedId` • `asPlannedId` • `asBuiltId`
+
+### Minimum passport claims by class
+
+**primary_structure**
+
+* Material spec + process spec, ply/stack or forging route
+* Heat/lot, NDI results, dimensional report
+* CoC/CoA refs, stress justification ref, surface treatment
+
+**secondary_structure**
+
+* Material + finish, lot, inspection record
+* CoC, torque/installation spec if relevant
+
+**installation_hardware**
+
+* Standard ref (NAS/MS/EN/AS), grip/size/finish
+* Lot/heat, torque/bakeout spec, CoC
+
+**information_hardware**
+
+* LRU model/P/N, CPU/FPGA ID, interfaces, PSU range
+* Firmware baseline, calibration certs where applicable
+* Environmental quals (DO‑160/EN 2282) refs
+
+**software**
+
+* Version, build hash, target LRU(s)
+* SBOM (CycloneDX) and SLSA provenance
+* Safety level target (e.g., DO‑178C A–E) and approval trail
+
+**model**
+
+* Model type (CAD/FEM/CFD/MBSE), toolchain and version
+* Source data set, validation/verification evidence
+* Export control tag if applicable
+
+**firmware**
+
+* Target device, bootloader reqs, image digest
+* SBOM/provenance, signing cert chain, rollback policy
+
+**sensor_antenna**
+
+* Sensor/Antenna type, frequency/band, pattern/ref
+* Calibration certificate, serial, environmental quals
+
+### Lifecycle states (all classes)
+
+`draft` → `released` → `fabricated_or_loaded` → `inspected` → `installed` → `in_service` → `retired_or_scrapped`
+
+### Relationships
+
+* Assemblies ↔ subassemblies ↔ parts via EBOM/MBOM.
+* Serialized BOM for `asBuilt` with trace to passports and work orders.
+
+### Schemas and location
+
+* `/schemas/components/common/Component.v1.json` (base)
+* `/schemas/components/<class>/Passport.v1.json` (per class)
+* `/schemas/bom/` (EBOM/MBOM/SerializedBOM)
+
+---
+
+## Data Contracts
+
+* Contracts live in `/schemas` with versioned folders.
+* Compatibility policy: **backward‑compatible minor**, **breaking major**.
+* Contract tests run in CI; producers and consumers must pass.
+
+Example: minimal material passport (JSON)
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MaterialPassport.v1",
+  "type": "object",
+  "required": ["materialId", "lot", "issuer", "claims"],
+  "properties": {
+    "materialId": {"type": "string"},
+    "lot": {"type": "string"},
+    "issuer": {"type": "string", "format": "uri"},
+    "claims": {"type": "object"}
+  }
+}
+```
+
+---
+
+## APIs
+
+* **REST/GraphQL** via gateway. OpenAPI in `/api/openapi.yaml`. Async events described in `/api/asyncapi.yaml`.
+* Example REST flow:
+
+  1. Obtain token via OIDC.
+  2. `POST /amsdp/v1/passports` to issue.
+  3. `POST /amsdp/v1/verify` with credential or reference.
+  4. `POST /amsdp/v1/revoke` to revoke.
+
+---
+
+## Security Model
+
+* Zero‑trust defaults. Least‑privilege roles and attributes.
+* Keys managed via KMS/HSM. Key rotation enforced.
+* Tamper‑evident audit log with append‑only semantics.
+* Supply‑chain hardening: SBOM generation, vulnerability scanning, provenance attestations on release artifacts.
+* Threat modeling using STRIDE. Findings tracked in `SECURITY.md`.
+
+> This repository **does not** assert regulatory compliance. Alignment targets and evidence collection are provided to support audits.
+
+---
+
+## CI/CD
+
+* GitHub Actions workflows: build, lint, tests, contract tests, CodeQL, container scan.
+* Release pipeline: semantic versioning, changelog, signed containers and artifacts, SBOM attach, provenance (SLSA compliant).
+
+---
+
+## Releases & Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) and [Releases](https://github.com/IDEALE-eu/IDEALEEU/releases).
+
+---
+
+## LLM Playground
+
+A multi-tenant sandbox for trained, contextualized, embedded AI over IDEALE‑EU data.
+
+### Goals
+
+* Per‑tenant assistants with controlled context from AMSDP/AAMMPP and docs.
+* Mode: chat, Q&A, form‑fill, and tool use into platform APIs.
+* No data sharing across tenants by design.
+
+### Components
+
+* **Playground UI (`/playground-ui`)**: projects, datasets, prompts, evaluations.
+* **LLM Gateway (`/llm/gateway`)**: provider‑agnostic routes for chat/completions; rate limits, budgets, audit.
+* **Embeddings (`/llm/embed`)**: batch and streaming embeddings; cosine/IP indexing.
+* **RAG (`/llm/rag`)**: schema‑aware chunking, hybrid search, re‑ranking, context assembly.
+* **Guardrails (`/llm/guardrails`)**: prompt hardening, PII/ECCN redaction, policy classifier, hallucination checks.
+* **Vector store (`/vector`)**: pgvector or Qdrant with namespace per tenant and project.
+* **Tooling bridges**: typed tools for AMSDP and AAMMPP (read‑only by default).
+
+### APIs
+
+* `POST /llm/chat` {model, messages, tools, contextRef}
+* `POST /llm/embed` {model, items[]}
+* `POST /knowledge/sync` {source, filters} → index job id
+* `POST /contexts` create/update context from schemas, BOMs, passports, runbooks
+
+### Multi‑tenancy & Security
+
+* Namespaces: `{tenant}/{project}` for indices and logs.
+* Row‑level security for metadata. KMS‑backed key sets per tenant.
+* OIDC auth; ABAC combining tenant, role, and data‑class tags.
+* Full audit of prompts, tool calls, and outputs with retention policy.
+
+### Data Sources
+
+* AMSDP passports, AAMMPP item master and work orders, `/docs/` site, ADRs.
+* External sources via connectors; all ingestions tagged and versioned.
+
+### Evaluation
+
+* Golden Q&A sets per tenant; metrics: EM/F1, groundedness, latency, cost.
+* Shadow runs to compare models and prompts before rollout.
+
+### Cost Controls
+
+* Per‑tenant budgets and rate limits. Token usage headers.
+* Adaptive context window and caching for frequent queries.
+
+### Quickstart (Playground)
+
+```bash
+make compose.playground   # starts gateway, embed, rag, vector, ui
+open http://localhost:5173 # default UI port
+```
+
+### Config
+
+```ini
+LLM_PROVIDER=openai|azure|vllm
+OPENAI_API_KEY=...
+AZURE_OPENAI_ENDPOINT=...
+AZURE_OPENAI_KEY=...
+VLLM_BASE_URL=http://vllm:8000
+EMBEDDING_MODEL=text-embedding-3-large
+CHAT_MODEL=gpt-4o-mini
+VECTOR_BACKEND=pgvector|qdrant
+```
+
+> Default is retrieval‑first. Fine‑tuning or adapters are optional per tenant via `/llm/gateway` routing.
+
+---
+
+## Deployment
+
+### Local (docker compose)
+
+```bash
+docker compose up -d
+```
+
+### Images
+
+* ghcr.io/ideale-eu/idealeeu-api:latest
+* ghcr.io/ideale-eu/idealeeu-gateway:latest
+* ghcr.io/ideale-eu/idealeeu-playground:latest
+
+> Replace with your registry if different.
+
+### Kubernetes (Helm)
+
+```bash
+helm repo add ideale https://ideale-eu.github.io/charts
+helm upgrade --install ideale ideale/ideale-eu \
+  --namespace ideale --create-namespace \
+  -f infra/helm/values.dev.yaml
+```
+
+* Readiness/liveness probes, horizontal autoscaling, and resource limits defined in Helm chart.
+
+---
+
+## Operations
+
+* **Observability**: Structured logs, metrics, traces. Default exporters for Prometheus and OTLP.
+* **Backups & DR**: PITR for databases, object store lifecycle rules.
+* **Retention**: Configurable by data class; defaults in `/docs/governance/retention.md`.
+* **Runbooks**: `/docs/runbooks/` for common incidents.
+
+---
+
+## Governance
+
+* **CODEOWNERS** for critical paths.
+* **ADRs** in `/docs/adr/` with status and decision context.
+* **Change Control**: RFC issue template, review gates, and affected‑system checklist.
+* **Commit Convention**: Conventional Commits.
+
+---
+
+## Contributing
+
+See `CONTRIBUTING.md` for setup, coding standards, commit rules, and DCO/CLA if applicable.
+
+---
+
+## Roadmap (High‑Level)
+
+* v0.1: Public repo, schemas, bootstrap, compose, basic AMSDP issue/verify.
+* v0.2: AAMMPP item master, inventory, basic work orders, GraphQL façade.
+* v0.3: EPCIS event ingest, supplier onboarding flows.
+* v1.0: Hardening for pilot programs, signed releases, docs and runbooks.
+
+> Detailed milestones tracked in GitHub Projects.
+
+---
+
+## License
+
+Apache-2.0. See [LICENSE](LICENSE).
+
+---
+
+## Security Policy
+
+Report security issues to **[security@idealeeu.eu](mailto:security@idealeeu.eu)**. Do not file public issues. See [SECURITY.md](SECURITY.md).
+
+---
+
+## Support
+
+* Security: see `SECURITY.md` for reporting process.
+* Questions: open a GitHub Discussion or an issue using the template.
+
+---
+
+## Glossary
+
+* **AMSDP**: Aerospace Material & Software Digital Passports.
+* **AAMMPP**: Aerospace Assets Management, Maintenance & Procurement Platform.
+* **MAL**: Master Application Layer/Logic. Domain control plane, akin to a PLC for workflows and invariants.
+* **SBOM**: Software Bill of Materials.
+* **SLSA**: Supply‑chain Levels for Software Artifacts.
+* **EPCIS**: Electronic Product Code Information Services.
+
+---
+
+## Legal
+
+This software is provided "as is" without warranties. No regulatory compliance is claimed by this repository. Evidence artifacts and references are provided to assist audits and certification programs managed by the operator.
 
 **AAMMPP Platform:** Located at `00-PROGRAM/BUSINESS/AAMMPP/`, AAMMPP provides end-to-end digital thread management from supplier bid to component retirement, with A360Exchanges-TT as its commercial marketplace layer.
 
 ## 🚀 Features
 
-- **Digital Passport Dashboard**: Interactive web application for browsing and managing aerospace component digital passports [View Demo](https://aerospace-digital-pa--Robbbo-T.github.app)
-- **9-Phase CAx Lifecycle**: Complete capture from CAD through CAS with "to scale" methodology. Computer Accelerated Process
-- **PLUMA Automation**: Product Lifecycle UiX Management Automation
-- **QPLC Framework**: Quantum Programmable Logic Control for human-governed AI/AGI oversight with ethical policy enforcement
-- **ESG Compliance Framework**: Green Performant Tools (GPT) with key indications for Produced Transformation Value
-- **H2 Systems Support**: Specialized tracking for hydrogen propulsion systems
-- **Federated Learning**: Privacy-preserving fleet-wide intelligence
-- **Energy Harvesting Integration**: Self-powered sensor networks for 30+ year lifecycles
-- **Sustainability Metrics**: Environmental, Social, and Governance (ESG) KPIs and transformation value tracking
-- **Flow**: **QS→FWD→UE→FE→CB→QB** for:
-  - Pre-event superposition capture (QS - all possible outcomes)
-  - Predictive wave dynamics (FWD)
-  - Classical unit elements (UE)
-  - Federated coordination (FE)
-  - Post-event reality anchoring (CB)
-  - Quantum optimization (QB)
+* **Digital Passport Dashboard**: Interactive web application for browsing and managing aerospace component digital passports [View Demo](https://aerospace-digital-pa--Robbbo-T.github.app)
+* **9-Phase CAx Lifecycle**: Complete capture from CAD through CAS with "to scale" methodology. Computer Accelerated Process
+* **PLUMA Automation**: Product Lifecycle UiX Management Automation
+* **QPLC Framework**: Quantum Programmable Logic Control for human-governed AI/AGI oversight with ethical policy enforcement
+* **ESG Compliance Framework**: Green Performant Tools (GPT) with key indications for Produced Transformation Value
+* **H2 Systems Support**: Specialized tracking for hydrogen propulsion systems
+* **Federated Learning**: Privacy-preserving fleet-wide intelligence
+* **Energy Harvesting Integration**: Self-powered sensor networks for 30+ year lifecycles
+* **Sustainability Metrics**: Environmental, Social, and Governance (ESG) KPIs and transformation value tracking
+* **Flow**: **QS→FWD→UE→FE→CB→QB** for:
+
+  * Pre-event superposition capture (QS - all possible outcomes)
+  * Predictive wave dynamics (FWD)
+  * Classical unit elements (UE)
+  * Federated coordination (FE)
+  * Post-event reality anchoring (CB)
+  * Quantum optimization (QB)
 
 ## 📚 Documentation
 
 Visit our [documentation site](https://idealeeu.github.io/docs/) for comprehensive guides:
 
-- [Digital Passport Dashboard](https://idealeeu.github.io/digital-passport/) - Interactive demo application
-- [Quick Start Guide](https://idealeeu.github.io/docs/quick-start/)
-- [TFA Domains Reference](https://idealeeu.github.io/docs/tfa-domains/)
-- [CAx Lifecycle Overview](https://idealeeu.github.io/docs/cax-lifecycle/)
-- [API Reference](https://idealeeu.github.io/api/)
+* [Digital Passport Dashboard](https://idealeeu.github.io/digital-passport/) - Interactive demo application
+* [Quick Start Guide](https://idealeeu.github.io/docs/quick-start/)
+* [TFA Domains Reference](https://idealeeu.github.io/docs/tfa-domains/)
+* [CAx Lifecycle Overview](https://idealeeu.github.io/docs/cax-lifecycle/)
+* [API Reference](https://idealeeu.github.io/api/)
 
 ## 🏗️ Architecture
 
@@ -51,21 +535,21 @@ IDEALE-EU Platform
 
 ## 🎯 Use Cases
 
-- **OEMs**: Complete product lifecycle management with QS-anchored provenance and ESG compliance tracking
-- **Suppliers**: Streamlined component registration, certification, and ESG verification
-- **MRO Providers**: Instant access to complete maintenance history and sustainability metrics
-- **Certification Authorities**: Automated compliance verification, audit trails, and ESG reporting
-- **Airlines**: Fleet-wide insights through federated learning and transformation value optimization
-- **Investors**: ESG performance data and Produced Transformation Value metrics for decision-making
+* **OEMs**: Complete product lifecycle management with QS-anchored provenance and ESG compliance tracking
+* **Suppliers**: Streamlined component registration, certification, and ESG verification
+* **MRO Providers**: Instant access to complete maintenance history and sustainability metrics
+* **Certification Authorities**: Automated compliance verification, audit trails, and ESG reporting
+* **Airlines**: Fleet-wide insights through federated learning and transformation value optimization
+* **Investors**: ESG performance data and Produced Transformation Value metrics for decision-making
 
 ## 🔧 Technology Stack
 
-- **Evidence Framework**: UTCS (UiX Threading Context/Content/Cache and Structure/Style/Sheet)
-- **Anchoring**: QS (Quantum State) with optional blockchain bridges
-- **Policy Automation**: Smart contracts for compliance and workflow orchestration
-- **Integration**: REST APIs, GraphQL, EDI
-- **Standards**: AS9100, ATA iSpec 2200, S1000D (**Centralized Source Database, CSDB**), ISO 9001
-- **Security**: Quantum-resistant cryptography, multi-signature validation
+* **Evidence Framework**: UTCS (UiX Threading Context/Content/Cache and Structure/Style/Sheet)
+* **Anchoring**: QS (Quantum State) with optional blockchain bridges
+* **Policy Automation**: Smart contracts for compliance and workflow orchestration
+* **Integration**: REST APIs, GraphQL, EDI
+* **Standards**: AS9100, ATA iSpec 2200, S1000D (**Centralized Source Database, CSDB**), ISO 9001
+* **Security**: Quantum-resistant cryptography, multi-signature validation
 
 ## 📖 Quick Start
 
@@ -102,12 +586,13 @@ npm run dev
 ```
 
 **Features:**
-- Browse aerospace component digital passports
-- Multi-faceted filtering (domain, phase, status)
-- Real-time statistics dashboard
-- UTCS manifest viewer
-- QS/CB anchoring indicators
-- Templates library (coming soon)
+
+* Browse aerospace component digital passports
+* Multi-faceted filtering (domain, phase, status)
+* Real-time statistics dashboard
+* UTCS manifest viewer
+* QS/CB anchoring indicators
+* Templates library (coming soon)
 
 See [digital-passport/README.md](./digital-passport/README.md) for more details.
 
@@ -115,23 +600,23 @@ See [digital-passport/README.md](./digital-passport/README.md) for more details.
 
 **Threading Functional Architecture** organizes aerospace lifecycle across 15 domains:
 
-| Code | Domain | Focus |
-|------|--------|-------|
-| AAA | Airframes-Aerodynamics-Airworthiness | Structure, aero, certification |
-| AAP | Airport-Adaptable-Platforms | Ground ops, GSE |
-| CCC | Cockpit-Cabin-Cargo | Flight deck, passenger, freight |
-| CQH | Cryogenics-Quantum-H2 | H2 systems, quantum tech |
-| DDD | Drainage-Dehumidification-Drying | Moisture control |
-| EDI | Electronics-Digital-Instruments | Avionics, sensors |
-| EEE | Electrical-Endocircular-Energization | Power, energy harvesting |
-| EER | Environmental-Emissions-Remediation | Fire, pollution, sustainability |
-| IIF | Industrial-Infrastructure-Facilities | Manufacturing, tooling |
-| IIS | Information-Intelligence-Systems | Software, AI, cybersecurity |
-| LCC | Linkages-Control-Communications | Flight controls, datalinks |
-| LIB | Logistics-Inventory-Blockchain | Supply chain, QS anchoring |
-| MMM | Mechanical-Material-Modules | Materials, mechanical, MRO |
-| OOO | Operations-Optimization-Outcomes | Fleet ops, analytics |
-| PPP | Propulsion-Power-Plants | Engines, thrust, fuel |
+| Code | Domain                               | Focus                           |
+| ---- | ------------------------------------ | ------------------------------- |
+| AAA  | Airframes-Aerodynamics-Airworthiness | Structure, aero, certification  |
+| AAP  | Airport-Adaptable-Platforms          | Ground ops, GSE                 |
+| CCC  | Cockpit-Cabin-Cargo                  | Flight deck, passenger, freight |
+| CQH  | Cryogenics-Quantum-H2                | H2 systems, quantum tech        |
+| DDD  | Drainage-Dehumidification-Drying     | Moisture control                |
+| EDI  | Electronics-Digital-Instruments      | Avionics, sensors               |
+| EEE  | Electrical-Endocircular-Energization | Power, energy harvesting        |
+| EER  | Environmental-Emissions-Remediation  | Fire, pollution, sustainability |
+| IIF  | Industrial-Infrastructure-Facilities | Manufacturing, tooling          |
+| IIS  | Information-Intelligence-Systems     | Software, AI, cybersecurity     |
+| LCC  | Linkages-Control-Communications      | Flight controls, datalinks      |
+| LIB  | Logistics-Inventory-Blockchain       | Supply chain, QS anchoring      |
+| MMM  | Mechanical-Material-Modules          | Materials, mechanical, MRO      |
+| OOO  | Operations-Optimization-Outcomes     | Fleet ops, analytics            |
+| PPP  | Propulsion-Power-Plants              | Engines, thrust, fuel           |
 
 ## 🤖 QPLC: Human-Governed AI Framework
 
@@ -139,51 +624,51 @@ See [digital-passport/README.md](./digital-passport/README.md) for more details.
 
 ### Core Principles
 
-- **Human Sovereignty**: AGI/ASI may recommend, but humans approve critical actions
-- **Ethical Policy Engine (EPE)**: 10 declarative rules enforce human-first principles
-- **Safety-Bounded**: All quantum outputs validated against certified classical controllers
-- **Complete Traceability**: Every decision logged to UTCS manifests
-- **Federated Ethics Learning**: Privacy-preserving ethics coordination across fleet
+* **Human Sovereignty**: AGI/ASI may recommend, but humans approve critical actions
+* **Ethical Policy Engine (EPE)**: 10 declarative rules enforce human-first principles
+* **Safety-Bounded**: All quantum outputs validated against certified classical controllers
+* **Complete Traceability**: Every decision logged to UTCS manifests
+* **Federated Ethics Learning**: Privacy-preserving ethics coordination across fleet
 
 ### Key Components
 
-| Component | Description | Location |
-|-----------|-------------|----------|
-| **QPLC Definition** | Framework specification | [00-PROGRAM/GOVERNANCE/QPLC_DEFINITION.md](./00-PROGRAM/GOVERNANCE/QPLC_DEFINITION.md) |
-| **EPE Rules** | Ethical Policy Engine schema | [00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/EPE-v1.0.yaml](./00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/EPE-v1.0.yaml) |
-| **Human-First Policy** | Ethical principles | [00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/HUMAN_FIRST_POLICY.md](./00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/HUMAN_FIRST_POLICY.md) |
-| **Human Review Portal** | Interface specification | [00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/HUMAN_REVIEW_PORTAL.md](./00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/HUMAN_REVIEW_PORTAL.md) |
-| **PLUMA Integration** | Workflow orchestration | [00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/PLUMA_INTEGRATION.md](./00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/PLUMA_INTEGRATION.md) |
+| Component               | Description                  | Location                                                                                                                                       |
+| ----------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **QPLC Definition**     | Framework specification      | [00-PROGRAM/GOVERNANCE/QPLC_DEFINITION.md](./00-PROGRAM/GOVERNANCE/QPLC_DEFINITION.md)                                                         |
+| **EPE Rules**           | Ethical Policy Engine schema | [00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/EPE-v1.0.yaml](./00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/EPE-v1.0.yaml)                 |
+| **Human-First Policy**  | Ethical principles           | [00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/HUMAN_FIRST_POLICY.md](./00-PROGRAM/GOVERNANCE/MAL-EEM/ETHICAL_POLICIES/HUMAN_FIRST_POLICY.md) |
+| **Human Review Portal** | Interface specification      | [00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/HUMAN_REVIEW_PORTAL.md](./00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/HUMAN_REVIEW_PORTAL.md)                 |
+| **PLUMA Integration**   | Workflow orchestration       | [00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/PLUMA_INTEGRATION.md](./00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/PLUMA_INTEGRATION.md)                     |
 
 ### EPE Rules (Human-First Governance)
 
 The Ethical Policy Engine enforces these rules:
 
-- **HUM-SAFE-01**: Human safety always > cost/schedule
-- **HUM-DIGN-02**: No tasking below fatigue thresholds
-- **HUM-FAIR-03**: Equitable workload distribution
-- **ASSET-HUM-03**: Reuse must not exploit human labor
-- **EMPATHY-GUARD-04**: No tasking during crisis events
-- **PRIVACY-05**: Data minimization required
-- **TRANS-06**: Explainability for human-impact decisions
-- **COST-SAFE-07**: Never pure cost optimization
-- **BIAS-08**: Demographic fairness required
-- **AUTON-09**: Human oversight for critical decisions
+* **HUM-SAFE-01**: Human safety always > cost/schedule
+* **HUM-DIGN-02**: No tasking below fatigue thresholds
+* **HUM-FAIR-03**: Equitable workload distribution
+* **ASSET-HUM-03**: Reuse must not exploit human labor
+* **EMPATHY-GUARD-04**: No tasking during crisis events
+* **PRIVACY-05**: Data minimization required
+* **TRANS-06**: Explainability for human-impact decisions
+* **COST-SAFE-07**: Never pure cost optimization
+* **BIAS-08**: Demographic fairness required
+* **AUTON-09**: Human oversight for critical decisions
 
 ### Example Implementations
 
-- **AGI-QPLC-CTRL** (IIS): Human oversight for AGI decision-making
-- **PROP-QPLC** (PPP): Quantum-optimized thrust distribution with safety bounds
-- **PWR-QPLC** (EEE): Power management with ethical constraints
-- **H2-QPLC** (CQH): Hydrogen system optimization with human approval gates
+* **AGI-QPLC-CTRL** (IIS): Human oversight for AGI decision-making
+* **PROP-QPLC** (PPP): Quantum-optimized thrust distribution with safety bounds
+* **PWR-QPLC** (EEE): Power management with ethical constraints
+* **H2-QPLC** (CQH): Hydrogen system optimization with human approval gates
 
 ### Compliance
 
-- **DO-178C**: Software Level C
-- **DO-384**: AI in civil aviation
-- **EU AI Act**: High-risk AI systems (Annex III)
-- **ISO/IEC 24027**: Bias in AI systems
-- **CS-25.1309**: Equipment, systems, and installations
+* **DO-178C**: Software Level C
+* **DO-384**: AI in civil aviation
+* **EU AI Act**: High-risk AI systems (Annex III)
+* **ISO/IEC 24027**: Bias in AI systems
+* **CS-25.1309**: Equipment, systems, and installations
 
 **Learn More**: [QPLC Governance Documentation](./00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/)
 
@@ -192,25 +677,23 @@ The Ethical Policy Engine enforces these rules:
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 Key principles:
-- Follow **QS→FWD→UE→FE→CB→QB** flow architecture
-- Respect TFA domain boundaries
-- Use proper UTCS terminology
-- Maintain CSDB compatibility for S1000D
+
+* Follow **QS→FWD→UE→FE→CB→QB** flow architecture
+* Respect TFA domain boundaries
+* Use proper UTCS terminology
+* Maintain CSDB compatibility for S1000D
 
 ## 📧 Contact
 
-- **Enterprise**: contact@idealeeu.eu
-- **Support**: support@idealeeu.eu
-- **Partnerships**: partners@idealeeu.eu
-- **Regulatory**: regulatory@idealeeu.eu
+* **Enterprise**: [contact@idealeeu.eu](mailto:contact@idealeeu.eu)
+* **Support**: [support@idealeeu.eu](mailto:support@idealeeu.eu)
+* **Partnerships**: [partners@idealeeu.eu](mailto:partners@idealeeu.eu)
+* **Regulatory**: [regulatory@idealeeu.eu](mailto:regulatory@idealeeu.eu)
 
 ## 📄 License
 
 See [LICENSE](LICENSE) file for details.
 
----
-
-**Built on UTCS Manifests | Powered by PLUMA Automation | QS Evidence Anchoring | Trusted by Aerospace Innovators**
 ---
 
 **Built on UTCS Manifests | Powered by PLUMA Automation | QS Evidence Anchoring | Trusted by Aerospace Innovators**
@@ -220,6 +703,7 @@ See [LICENSE](LICENSE) file for details.
 ## Primary folders
 
 * **00-PROGRAM/** — Governance, CM, QMS, standards, supply chain
+
   * **00-PROGRAM/BUSINESS/AAMMPP/** — Aerospace Assets Management, Maintenance and Procurement Platform (canonical)
 * **01-FLEET/** — Operational data hub, MRO, federated learning
 * **02-AIRCRAFT/** — AIR-T (ATA) baselines, domain integration, twin
@@ -231,6 +715,7 @@ See [LICENSE](LICENSE) file for details.
 * **08-LAUNCHERS/** — Launch vehicles
 * **09-STM-SPACE-STATION-MODULES/** — Station modules/segments
 * **10-BUSINESS/** — Market, partnerships, finance
+
   * **10-BUSINESS/A360-EXCHANGES-TT/** — Aerospace 360 Exchanges with Teknia Token (commercial layer on AAMMPP)
 
 > Note: **02–09 are TFA product stacks** (Top Final Assembly).
@@ -286,6 +771,7 @@ Dashboards live under `00-PROGRAM/DIGITAL_THREAD/10-METRICS/` and `01-FLEET/ANAL
 **New Users**: See the **[Quick Start Guide](QUICK_START.md)** for step-by-step onboarding and platform orientation.
 
 **Existing Users**:
+
 1. Read **Governance** → `00-PROGRAM/GOVERNANCE.md`
 2. Review **Formal Foundations** → `00-PROGRAM/GOVERNANCE/FORMAL_FOUNDATIONS.md` (mathematical basis)
 3. Review **CM Plan** → `00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md`
@@ -299,11 +785,7 @@ Token uses a **maximum divisor** to cap issuance and reduce dilution.
 
 ## License
 
-Apache-2.0 (proposed).
-
-## Contact
-
-GitHub: **Robbbo-T** · Site: **[https://www.idealeeu.eu](https://www.idealeeu.eu)**
+Apache-2.0. See [LICENSE](LICENSE).
 
 ---
 
@@ -330,7 +812,7 @@ GitHub: **Robbbo-T** · Site: **[https://www.idealeeu.eu](https://www.idealeeu.e
 
 ---
 
-**Program site:** https://www.idealeeu.eu  
+**Program site:** [https://www.idealeeu.eu](https://www.idealeeu.eu)
 **Ownership:** Program & Configuration Management (see [CCB](./00-PROGRAM/CONFIG_MGMT/05-CCB/))
 
 # Repository Index and Navigation
@@ -342,67 +824,79 @@ This index provides comprehensive navigation and quick access to all major direc
 ## Quick Navigation
 
 ### Top-Level Directories
-- [00-PROGRAM](#00-program) — Program governance, configuration management, quality
-- [01-FLEET](#01-fleet) — Operational data hub, federated learning, MRO strategy
-- [02-AIRCRAFT](#02-aircraft) — Aircraft product structures (AIR-T architecture)
-- [03-SPACECRAFT](#03-spacecraft) — Spacecraft product structures (STA architecture)
-- [04-SATELLITES](#04-satellites) — Satellite systems and subsystems
-- [05-TELESCOPES](#05-telescopes) — Observatory and telescope systems
-- [06-PROBES](#06-probes) — Deep-space probe architectures
-- [07-DRONES](#07-drones) — UAS/UAM systems
-- [08-LAUNCHERS](#08-launchers) — Launch vehicle systems
-- [09-STM-SPACE-STATION-MODULES](#09-stm-space-station-modules) — Space station modules
-- [10-BUSINESS](#10-business) — Market analysis, partnerships, finance
+
+* [00-PROGRAM](#00-program) — Program governance, configuration management, quality
+* [01-FLEET](#01-fleet) — Operational data hub, federated learning, MRO strategy
+* [02-AIRCRAFT](#02-aircraft) — Aircraft product structures (AIR-T architecture)
+* [03-SPACECRAFT](#03-spacecraft) — Spacecraft product structures (STA architecture)
+* [04-SATELLITES](#04-satellites) — Satellite systems and subsystems
+* [05-TELESCOPES](#05-telescopes) — Observatory and telescope systems
+* [06-PROBES](#06-probes) — Deep-space probe architectures
+* [07-DRONES](#07-drones) — UAS/UAM systems
+* [08-LAUNCHERS](#08-launchers) — Launch vehicle systems
+* [09-STM-SPACE-STATION-MODULES](#09-stm-space-station-modules) — Space station modules
+* [10-BUSINESS](#10-business) — Market analysis, partnerships, finance
 
 ### Key Reference Points
-- **Governance & Policy**: [00-PROGRAM/GOVERNANCE](./00-PROGRAM/GOVERNANCE/) | [CONFIG_MGMT](./00-PROGRAM/CONFIG_MGMT/)
-- **Change Management**: [ECR](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/05-ECR/) | [ECO](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/06-ECO/) | [CCB](./00-PROGRAM/CONFIG_MGMT/05-CCB/)
-- **Standards & Compliance**: [STANDARDS](./00-PROGRAM/STANDARDS/) | [COMPLIANCE](./00-PROGRAM/COMPLIANCE/)
-- **Digital Thread**: [MBSE Models](./00-PROGRAM/DIGITAL_THREAD/04-MBSE/) | [Digital Twin](./00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/)
-- **Traceability**: [UTCS Registry](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/) | [Interfaces](./00-PROGRAM/CONFIG_MGMT/09-INTERFACES/)
+
+* **Governance & Policy**: [00-PROGRAM/GOVERNANCE](./00-PROGRAM/GOVERNANCE/) | [CONFIG_MGMT](./00-PROGRAM/CONFIG_MGMT/)
+* **Change Management**: [ECR](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/05-ECR/) | [ECO](./00-PROGRAM/CONFIG_MGMT/06-CHANGES/06-ECO/) | [CCB](./00-PROGRAM/CONFIG_MGMT/05-CCB/)
+* **Standards & Compliance**: [STANDARDS](./00-PROGRAM/STANDARDS/) | [COMPLIANCE](./00-PROGRAM/COMPLIANCE/)
+* **Digital Thread**: [MBSE Models](./00-PROGRAM/DIGITAL_THREAD/04-MBSE/) | [Digital Twin](./00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/)
+* **Traceability**: [UTCS Registry](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/) | [Interfaces](./00-PROGRAM/CONFIG_MGMT/09-INTERFACES/)
 
 ## Index Types
 
 This repository uses multiple index types for different purposes:
 
 ### Master Repository Index (This Document)
+
 Complete catalog of all top-level directories and major subsystems with:
-- Directory paths and links
-- Organizational hierarchy
-- Quick access navigation
-- Cross-references between domains
+
+* Directory paths and links
+* Organizational hierarchy
+* Quick access navigation
+* Cross-references between domains
 
 ### Domain-Specific Indices
+
 Each major system may contain its own INDEX/ directory with:
-- Detailed component catalogs
-- File inventories and metadata
-- Version tracking and revision history
-- BOM and assembly cross-references
+
+* Detailed component catalogs
+* File inventories and metadata
+* Version tracking and revision history
+* BOM and assembly cross-references
 
 Examples:
-- [UTCS Index](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/INDEX/) — UTCS passport tracking
-- Assembly indices in PLM/CAx structures — Component and file catalogs
+
+* [UTCS Index](./00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/INDEX/) — UTCS passport tracking
+* Assembly indices in PLM/CAx structures — Component and file catalogs
 
 ## How to Use This Index
 
 ### Finding Information
+
 1. **By Domain**: Use the Quick Navigation section above
 2. **By System**: Navigate to product folders (02-AIRCRAFT, 03-SPACECRAFT, etc.)
 3. **By Function**: Use the Key Reference Points for governance, changes, standards
 
 ### Quick Lookup
-- **Configuration items**: Start at [ITEM_MASTER](./00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/)
-- **Baselines**: Check [BASELINES](./00-PROGRAM/CONFIG_MGMT/04-BASELINES/)
-- **Interfaces**: See [INTERFACES](./00-PROGRAM/CONFIG_MGMT/09-INTERFACES/) and [ICDs](./02-AIRCRAFT/CROSS_SYSTEM_INTEGRATION/10-ICD_LINKS/)
-- **Templates**: Find at [TEMPLATES](./00-PROGRAM/TEMPLATES/) or [CONFIG_MGMT/13-TEMPLATES](./00-PROGRAM/CONFIG_MGMT/13-TEMPLATES/)
+
+* **Configuration items**: Start at [ITEM_MASTER](./00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/)
+* **Baselines**: Check [BASELINES](./00-PROGRAM/CONFIG_MGMT/04-BASELINES/)
+* **Interfaces**: See [INTERFACES](./00-PROGRAM/CONFIG_MGMT/09-INTERFACES/) and [ICDs](./02-AIRCRAFT/CROSS_SYSTEM_INTEGRATION/10-ICD_LINKS/)
+* **Templates**: Find at [TEMPLATES](./00-PROGRAM/TEMPLATES/) or [CONFIG_MGMT/13-TEMPLATES](./00-PROGRAM/CONFIG_MGMT/13-TEMPLATES/)
 
 ### Navigation Patterns
+
 Common navigation paths follow this structure:
+
 ```
 DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT>/MODELS/<MODEL>/VERSION/<Qn>/DOMAINS/<DOMAIN>/SYSTEMS/<SYSTEM>/SUBSYSTEMS/<SUBSYSTEM>/PLM/CAx/
 ```
 
 Example:
+
 ```
 02-AIRCRAFT/DOMAIN_INTEGRATION/PRODUCTS/AMPEL360-AIR-T/MODELS/BWB-H2-Hy-E/VERSION/Q100/
 ```
@@ -410,18 +904,21 @@ Example:
 ## Index Maintenance
 
 ### Update Frequency
-- **Automated**: Index maintained alongside directory structure
-- **Manual review**: Verify quarterly or before major releases
-- **Baseline snapshots**: Captured at each program milestone
+
+* **Automated**: Index maintained alongside directory structure
+* **Manual review**: Verify quarterly or before major releases
+* **Baseline snapshots**: Captured at each program milestone
 
 ### Validation
-- [ ] All top-level directories listed
-- [ ] Links verified and functional
-- [ ] Cross-references accurate
-- [ ] New systems documented
-- [ ] Obsolete entries removed
+
+* [ ] All top-level directories listed
+* [ ] Links verified and functional
+* [ ] Cross-references accurate
+* [ ] New systems documented
+* [ ] Obsolete entries removed
 
 ---
+
 
 ## Detailed Directory Index
 
