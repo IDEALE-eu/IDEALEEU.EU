@@ -12,16 +12,16 @@ Level A software requirements with full, bidirectional trace to design, code, te
 
 ## Layout
 
-* `high/` — HLRs (system → software)
-* `low/` — LLRs (implementation-ready)
-* `derived/` — requirements not directly from system
-* `interfaces/` — ICDs, data models
-* `constraints/` — timing, partitioning, HW/SW assumptions
-* `schemas/` — JSON/YAML schemas for reqs and trace
-* `coverage/` — MC/DC and unit coverage artifacts keyed by ReqID
-* `reviews/` — signed review records per ID
-* `changes/CR-*/` — change packages and CCB minutes
-* `TRACE.md` — traceability matrix (HLR→LLR→Design→Code→Test)
+* [high/](./high/) — HLRs (system → software)
+* [low/](./low/) — LLRs (implementation-ready)
+* [derived/](./derived/) — requirements not directly from system
+* [interfaces/](./interfaces/) — ICDs, data models
+* [constraints/](./constraints/) — timing, partitioning, HW/SW assumptions
+* [schemas/](./schemas/) — JSON/YAML schemas for reqs and trace
+* [coverage/](./coverage/) — MC/DC and unit coverage artifacts keyed by ReqID
+* [reviews/](./reviews/) — signed review records per ID
+* [changes/](./changes/) — CCB change packages `CR-*`
+* [TRACE.md](./TRACE.md) — traceability matrix (HLR→LLR→Design→Code→Test)
 
 ## IDs
 
@@ -32,14 +32,14 @@ Level A software requirements with full, bidirectional trace to design, code, te
 
 ## Authoring rules
 
-* Use a single “shall” sentence per requirement. No “should/may.”
+* One SHALL sentence per requirement. No “should/may.”
 * Necessary, unambiguous, measurable, and verifiable.
-* Numeric ranges include units and tolerances. Timing includes jitter and modes.
+* Numeric ranges have units and tolerances. Timing includes jitter and modes.
 * No TBD/TBC at release.
 * No orphans: every HLR links to ≥1 test; every LLR links to design and code.
 * Derived reqs include system impact, safety assessment, and CR/CCB link.
 * MC/DC coverage required for all LLR-tested decisions.
-* Bidirectional trace is mandatory and kept current.
+* Bidirectional trace is mandatory and current.
 
 ## File template
 
@@ -94,7 +94,7 @@ Columns:
 
 Rules:
 
-* Update `TRACE.md` in the same commit as any req change.
+* Update [TRACE.md](./TRACE.md) in the same commit as any req change.
 * 100% HLR→Test and LLR→Code closure before baseline.
 
 ## Reviews
@@ -123,15 +123,15 @@ Independent review required for every HLR and LLR.
 
 * Validate IDs by regex.
 * Enforce “shall” in `Statement`; reject TBD/TBC.
-* Schema-validate every req file (`schemas/req.schema.json`).
+* Schema-validate every req file ([schemas/](./schemas/) `req.schema.json`).
 * Fail if any HLR lacks ≥1 test or any LLR lacks ≥1 code ref.
 * Parse coverage reports; assert MC/DC = 100% for DAL A items under test.
-* Fail if `TRACE.md` not updated with req changes.
+* Fail if [TRACE.md](./TRACE.md) not updated with req changes.
 
 ## Entry / Exit
 
 **Entry:** PSAC, SDP, SVP, SQAP, SCMP approved; tool qualification applied as needed.
-**Exit:** HLR/LLR baselined; 100% HLR→Test and LLR→Code closed; MC/DC 100% or justified; reviews logged; TRACE.md current.
+**Exit:** HLR/LLR baselined; 100% HLR→Test and LLR→Code closed; MC/DC 100% or justified; reviews logged; [TRACE.md](./TRACE.md) current.
 
 ## Notes
 
