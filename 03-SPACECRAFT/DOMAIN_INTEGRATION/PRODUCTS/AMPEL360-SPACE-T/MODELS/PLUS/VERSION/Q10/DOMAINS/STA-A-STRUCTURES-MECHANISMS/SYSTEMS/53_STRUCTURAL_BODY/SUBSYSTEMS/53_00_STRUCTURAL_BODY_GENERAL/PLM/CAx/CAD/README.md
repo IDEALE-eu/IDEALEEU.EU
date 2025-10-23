@@ -1,155 +1,99 @@
-# CAD for 53_00_STRUCTURAL_BODY_GENERAL
+# CAD
 
-## Purpose
+**Purpose**  
+Repository of CAD deliverables for this subsystem. Holds assemblies, parts, neutral exports, manufacturing drawings, models and templates required for PLM/CAx traceability and release.
 
-This directory contains Computer-Aided Design (CAD) engineering artifacts for the 53_00 Structural Body General subsystem, including 3D models, assemblies, drawings, and neutral format exports.
+## Top-level layout
+- `ASSEMBLIES/`  
+  Complete assembly models and subassembly folders. Each assembly must include a native assembly file, exploded view, and a `metadata.yaml`.  
+- `PARTS/`  
+  Individual part files and single-part assemblies. Include native part, 2D drawing (if applicable), and `metadata.yaml`.  
+- `MODELS/`  
+  Supporting models used for simulation, kinematic assemblies, fixtures, and reference geometry. Document model purpose in an accompanying README per model.  
+- `DRAWINGS/`  
+  Released 2D drawings in PDF and native CAD-drawing formats. Drawings must carry GD&T per ASME Y14.5 and reference the associated part/assembly.  
+- `EXPORTS/`  
+  Neutral exchange files intended for downstream consumers: `STEP AP242` (with PMI), `Parasolid`, `IGES`. Put one export per part/assembly and include an `export_recipe.txt` describing software and export settings.  
+- `TEMPLATES/`  
+  Metadata, titleblock, release checklist and template files:  
+  - `TEMPLATE_METADATA.yaml` (required fields below)  
+  - `TEMPLATE_TITLEBLOCK.<slddrw|drw|pdf>`  
+  - `RELEASE_CHECKLIST.md`  
+- `README.md`  
+  This file.
 
-## Directory Structure
-
-```
-CAD/
-├── ASSEMBLIES/          # Assembly models and configurations
-│   ├── CONFIGURATIONS/  # Simplified and lightweight variants
-│   ├── DOCS/           # BOMs, ICDs, and assembly sequences
-│   ├── FIXTURES/       # Assembly and inspection tooling
-│   ├── INSTALLATION/   # Installation assemblies
-│   ├── REFERENCES/     # Coordinate systems and reference planes
-│   ├── SUB_ASSEMBLIES/ # Sub-assembly models
-│   ├── TEST/           # Test article assemblies
-│   └── TOP_LEVEL/      # Complete system assemblies
-├── DRAWINGS/           # 2D engineering drawings
-├── EXPORTS/            # Neutral format exports (STEP, IGES, JT, DXF)
-├── MODELS/             # Native CAD model files
-├── PARTS/              # Individual part files
-└── TEMPLATES/          # CAD templates and standards
-```
-
-## Main Directories
-
-### [ASSEMBLIES/](./ASSEMBLIES/)
-Assembly models combining multiple components into integrated structures:
-- Top-level and sub-assemblies
-- Configuration variants (simplified, lightweight)
-- Installation and test assemblies
-- Assembly fixtures and tooling
-- Reference geometry and coordinate systems
-- Documentation (BOMs, ICDs, assembly sequences)
-
-### [DRAWINGS/](./DRAWINGS/)
-2D engineering drawings with dimensions, tolerances, and specifications:
-- Part drawings
-- Assembly drawings
-- Installation drawings
-- Interface control drawings
-
-### [EXPORTS/](./EXPORTS/)
-Neutral format exports for data exchange and archival:
-- **STEP/**: Primary 3D exchange format (ISO 10303-242)
-- **IGES/**: Legacy 3D format for compatibility
-- **JT/**: Lightweight visualization format (ISO 14306)
-- **DXF/**: 2D drawings and profiles
-
-### [MODELS/](./MODELS/)
-Native CAD model files:
-- Part files in native CAD formats
-- Parametric models with design history
-- Reference geometry
-
-### [PARTS/](./PARTS/)
-Individual component CAD files organized by type:
-- Structural components (frames, stringers, skins)
-- Interface fittings and mounts
-- Detail parts (brackets, clips, doublers)
-- Standard parts and fasteners
-
-### [TEMPLATES/](./TEMPLATES/)
-Reusable CAD templates and standards:
-- Part and assembly templates
-- Drawing templates with title blocks
-- Material libraries
-- Standard parts library
-- Design standards and conventions
-
-## Naming Conventions
-
-### Parts
-```
-53_00_<component-type>_<part-number>_<description>_<version>.<ext>
+## Required metadata (`metadata.yaml` / `.json`)
+Every part/assembly must include a metadata file adjacent to the CAD file containing:
+```yaml
+part_id: string
+description: string
+revision: string   # R001
+author: string
+cad_system: string # e.g., SolidWorks 2023
+mass_kg: number
+material: string
+ebom_id: string
+approval_status: string
+last_updated: YYYY-MM-DD
 ```
 
-### Assemblies
-```
-53_00_ASM_<assembly-name>_<version>.<ext>
-```
+## Naming convention
 
-### Drawings
-```
-53_00_DWG_<component>_<drawing-number>_<sheet>.<ext>
-```
+`{PART_ID}-{DESCRIPTION}_R{REV:03d}.{ext}`
+Example: `24-80-001-Battery_Assembly_R001.step`
 
-### Exports
-```
-53_00_<component>_<part-number>_<revision>_<date>.<ext>
-```
+## File format rules
 
-## File Formats
+* Native CAD: keep editable native files. Include mass properties.
+* STEP AP242: mandatory for released items. Must include PMI for tolerances and annotations.
+* PDF: release copies of drawings.
+* STL: only for prototyping, with resolution stated in `metadata.yaml`.
+* Use Git LFS for native and large binaries.
 
-### Native CAD Formats
-- CATIA V5/V6: `.CATPart`, `.CATProduct`, `.CATDrawing`
-- NX (Siemens): `.prt`
-- SolidWorks: `.sldprt`, `.sldasm`, `.slddrw`
-- Creo (PTC): `.prt`, `.asm`
+## Release checklist (minimum)
 
-### Neutral Formats
-- STEP AP242: `.step` (primary 3D exchange)
-- IGES 5.3: `.igs` (legacy 3D)
-- JT: `.jt` (lightweight visualization)
-- DXF: `.dxf` (2D geometry)
-- PDF: `.pdf` (drawings)
+* Native CAD saved and checked in.
+* STEP AP242 export with PMI.
+* 2D PDF drawing with GD&T (if applicable).
+* `metadata.yaml` present and complete.
+* Thumbnail: `thumbnail_512x512.png` next to assembly.
+* EBOM mapping updated (`EBOM_MAPPING.csv` in parent PLM/CAx folder).
+* Approvals recorded in metadata.
 
-## Best Practices
+## Export recipes
 
-### Design Work
-- Start from templates in [`TEMPLATES/`](./TEMPLATES/)
-- Use consistent naming conventions
-- Document design intent and parameters
-- Include material specifications
-- Export to neutral formats regularly
+Include `EXPORTS/export_recipe.txt` describing:
 
-### Configuration Management
-- Track revisions in file names and properties
-- Link to EBOM in [`../../EBOM_LINKS.md`](../../EBOM_LINKS.md)
-- Tag major milestones in Git
-- Use Git LFS for files > 10 MB
+* CAD system and version used.
+* Exact export steps and settings (STEP AP242 options).
+* Any post-processing used (heal, repair).
 
-### Quality Assurance
-- Verify models rebuild without errors
-- Calculate and document mass properties
-- Export and validate neutral formats
-- Create engineering drawings
-- Perform design reviews
+## Sizes and limits
 
-## Standards Compliance
+* Native CAD files: prefer < 100 MB. If larger, store in PLM or LFS.
+* STEP files: prefer < 50 MB.
 
-Follow:
-- **ECSS-E-ST-10C**: Space engineering standards
-- **ECSS-E-ST-32C**: Structural design and verification
-- **ISO 10303-242** (STEP AP242): CAD data exchange
-- **ISO 14306** (JT): Visualization format
-- **ASME Y14.5**: GD&T standards
-- **AS9100**: Quality management for aerospace
+## Quality & standards
 
-## Related Documentation
+* ASME Y14.5 for GD&T.
+* STEP AP242 / ISO 10303-242 for neutral exchange.
+* AS9100 traceability and release control for aerospace deliverables.
 
-- **Subsystem README**: [`../../README.md`](../../README.md)
-- **EBOM Links**: [`../../EBOM_LINKS.md`](../../EBOM_LINKS.md)
-- **Other CAx disciplines**: [`../`](../) (CAE, CAM, CAO, etc.)
-- **Interface Matrix**: System-level interface definitions
+## Traceability & EBOM
 
-## Support
+* Ensure `ebom_id` in every `metadata.yaml`.
+* Maintain `EBOM_MAPPING.csv` at `PLM/CAx/` level with fields `part_id,plm_id,revision,comment`.
 
-For assistance with:
-- **CAD tools and templates**: Contact CAD Administrator
-- **Design standards**: Reference ECSS-E-ST-32C
-- **Configuration management**: Contact CCB (Configuration Control Board)
-- **Data exchange**: See [`EXPORTS/README.md`](./EXPORTS/README.md)
+## Ownership & contacts
+
+* CAD Owner: *Name* — *email*
+* PLM Owner: *Name* — *email*
+* CAE Owner (for models): *Name* — *email*
+
+## Notes
+
+* Document any deviation from these rules in `TEMPLATES/DEVIATIONS.md` and obtain approver sign-off.
+* Update this `README.md` whenever conventions change.
+
+*Last updated: 2025-10-23*
+

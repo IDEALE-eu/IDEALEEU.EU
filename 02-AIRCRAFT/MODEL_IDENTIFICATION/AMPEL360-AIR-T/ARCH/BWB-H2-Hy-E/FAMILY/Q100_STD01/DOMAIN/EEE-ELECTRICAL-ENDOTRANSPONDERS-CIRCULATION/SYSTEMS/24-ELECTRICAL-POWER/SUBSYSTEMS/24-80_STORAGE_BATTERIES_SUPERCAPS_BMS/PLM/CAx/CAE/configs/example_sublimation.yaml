@@ -1,0 +1,31 @@
+# CO₂ Endocircular Battery System - Sublimation Cycle Configuration
+# Simple sublimation + expander cycle for UAV applications
+
+system:
+  name: "UAV_Power_Augmentation"
+  description: "Small UAV requiring 2 kW for 30 minutes (1 kWh)"
+  
+design:
+  co2_mass_kg: 50.0
+  storage_temp_c: -80.0
+  storage_pressure_bar: 10.0
+  expansion_pressure_bar: 1.0
+  expander_efficiency: 0.75
+  recuperator_effectiveness: 0.80
+  liquefaction_cop: 1.5
+  cycle_type: "sublimation_expander"
+
+operating_conditions:
+  ambient_temp_c: 25.0
+  heat_source_temp_c: 80.0
+  
+outputs:
+  format: "json"
+  path: "../results/sublimation_cycle_results.json"
+  include_plots: false
+
+units:
+  temperature: "celsius"
+  pressure: "bar"
+  energy: "kWh"
+  mass: "kg"

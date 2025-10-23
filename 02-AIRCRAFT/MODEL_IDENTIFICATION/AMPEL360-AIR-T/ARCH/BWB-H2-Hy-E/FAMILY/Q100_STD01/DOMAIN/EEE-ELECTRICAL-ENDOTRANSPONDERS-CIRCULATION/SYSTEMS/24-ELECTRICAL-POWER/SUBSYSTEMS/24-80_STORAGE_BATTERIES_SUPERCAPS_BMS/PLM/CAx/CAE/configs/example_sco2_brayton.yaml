@@ -1,0 +1,31 @@
+# CO₂ Endocircular Battery System - sCO₂ Brayton Cycle Configuration
+# High-efficiency supercritical cycle for grid-scale storage
+
+system:
+  name: "Grid_Scale_Storage"
+  description: "100 kWh storage for renewable energy smoothing"
+  
+design:
+  co2_mass_kg: 1600.0
+  storage_temp_c: 35.0
+  storage_pressure_bar: 80.0
+  expansion_pressure_bar: 10.0
+  expander_efficiency: 0.85
+  recuperator_effectiveness: 0.90
+  liquefaction_cop: 2.0
+  cycle_type: "sco2_brayton"
+
+operating_conditions:
+  ambient_temp_c: 25.0
+  heat_source_temp_c: 450.0
+  
+outputs:
+  format: "json"
+  path: "../results/sco2_brayton_results.json"
+  include_plots: true
+
+units:
+  temperature: "celsius"
+  pressure: "bar"
+  energy: "kWh"
+  mass: "kg"
