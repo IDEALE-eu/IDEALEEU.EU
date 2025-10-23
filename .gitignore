@@ -22,3 +22,5 @@ digital-passport/.env.local
 # Structure tools
 node_modules/
 structure-scan-report/
+.coverage
+htmlcov/
