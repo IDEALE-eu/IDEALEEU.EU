@@ -21,7 +21,7 @@ assembly_sequence:
     safety_notes:
       - "Ensure ESD protection is in place"
       - "Verify work area cleanliness"
-    
+
   - step: 2
     operation: "mount_base_assembly"
     description: "Mount base assembly onto fixture with proper alignment"
@@ -36,7 +36,7 @@ assembly_sequence:
     tolerances:
       - type: "position"
         value: "±0.1mm"
-    
+
   - step: 3
     operation: "install_interface_components"
     description: "Install interface mounting brackets and fasteners"
@@ -50,7 +50,7 @@ assembly_sequence:
       - fastener: "M6x16_SS316"
         torque_nm: 12
         sequence: "cross_pattern"
-    
+
   - step: 4
     operation: "route_harnesses"
     description: "Route electrical harnesses per routing diagram"
@@ -62,7 +62,7 @@ assembly_sequence:
       - step: 3
     reference_documents:
       - "EWIS_ROUTING_DIAGRAM_001.pdf"
-    
+
   - step: 5
     operation: "install_covers"
     description: "Install protective covers and access panels"
@@ -72,7 +72,7 @@ assembly_sequence:
       - "torque_wrench_set"
     prerequisites:
       - step: 4
-    
+
   - step: 6
     operation: "final_inspection"
     description: "Perform visual inspection and dimensional verification"
@@ -93,11 +93,11 @@ quality_checkpoints:
   - after_step: 2
     checkpoint: "alignment_verification"
     inspector_required: true
-    
+
   - after_step: 4
     checkpoint: "electrical_continuity"
     inspector_required: true
-    
+
   - after_step: 6
     checkpoint: "final_acceptance"
     inspector_required: true

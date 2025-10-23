@@ -41,16 +41,16 @@ def main():
         default="smoke",
         help="Type of tests to run"
     )
-    
+
     args = parser.parse_args()
-    
+
     success = True
     if args.test_type in ["smoke", "all"]:
         success = success and run_smoke_tests()
-    
+
     if args.test_type in ["regression", "all"]:
         success = success and run_regression_tests()
-    
+
     if success:
         print("\n✓ All tests passed!")
         return 0
