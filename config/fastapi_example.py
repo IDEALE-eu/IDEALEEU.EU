@@ -20,7 +20,14 @@ try:
     
     @app.get("/")
     async def root() -> Dict[str, str]:
-        """Root endpoint."""
+        """Root endpoint.
+        
+        Returns basic API information and operational status.
+        This endpoint can be used for basic connectivity checks.
+        
+        Returns:
+            Dict containing API name and operational status
+        """
         return {
             "message": "IDEALEEU API",
             "status": "operational"
@@ -38,12 +45,23 @@ try:
     @app.get("/config")
     async def config_info(settings: Settings = Depends(get_settings)) -> Dict[str, str]:
         """Configuration information endpoint (non-sensitive data only)."""
+        # Safely extract protocol from URLs
+        try:
+            object_store_type = settings.object_store.split("://")[0] if "://" in settings.object_store else "unknown"
+        except Exception:
+            object_store_type = "unknown"
+            
+        try:
+            event_bus_type = settings.event_bus_url.split("://")[0] if "://" in settings.event_bus_url else "unknown"
+        except Exception:
+            event_bus_type = "unknown"
+        
         return {
             "environment": settings.env.value,
             "log_level": settings.log_level.value,
-            "object_store_type": settings.object_store.split("://")[0],
+            "object_store_type": object_store_type,
             "oidc_issuer": settings.oidc_issuer_url,
-            "event_bus_type": settings.event_bus_url.split("://")[0],
+            "event_bus_type": event_bus_type,
             "is_production": settings.is_production,
         }
     
