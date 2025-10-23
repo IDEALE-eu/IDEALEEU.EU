@@ -355,7 +355,6 @@ async def create_context(
             detail="Access denied to requested tenant/project"
         )
     
-    from datetime import datetime
     context_id = str(uuid.uuid4())
     
     # In a real implementation, this would create the context in the database
