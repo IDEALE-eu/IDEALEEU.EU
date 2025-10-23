@@ -2,7 +2,7 @@
 
 > Unified, audit‑ready platform for multi‑vehicle aerospace programs. Modules: **AMSDP** (Aerospace Material & Software Digital Passports) and **AAMMPP** (Aerospace Assets Management, Maintenance & Procurement Platform).
 
-### What IDEALE‑EU is
+### What IDEALEEU is
 
 An ESG‑first framework to design next‑generation aerospace systems and models. It uses common LLMs via a provider‑agnostic gateway, with retrieval and guardrails, and includes AMSDP and AAMMPP as reference applications implementing the framework.
 
