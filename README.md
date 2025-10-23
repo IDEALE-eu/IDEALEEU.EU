@@ -615,7 +615,7 @@ Programs **AMBER**, **LEIA**, and **CRYOSTAR** indicate maturity (TRL 5–6) of 
 | CQA      | Certification, V&V and Quality Assurance  | Compliance, verification, validation, QA.                                                           |
 | MRO      | Maintenance, Repair, Overhaul             | Service operations with evidence capture.                                                           |
 | ALAR‑CC  | As Low As Reasonable Chain Complexity     | Supply services, chain traceability, ESG.                                                           |
-| OB / OFF | Onboard / Outboard                        | Orientation tags used in PAx and tech pubs.                                                         |
+                                                    |
 
 ---
 
