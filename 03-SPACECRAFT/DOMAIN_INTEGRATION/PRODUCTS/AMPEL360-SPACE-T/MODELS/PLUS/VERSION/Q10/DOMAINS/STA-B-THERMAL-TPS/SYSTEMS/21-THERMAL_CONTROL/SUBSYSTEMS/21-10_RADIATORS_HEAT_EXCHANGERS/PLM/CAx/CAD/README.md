@@ -1,47 +1,99 @@
-# CAD · 21-10_RADIATORS_HEAT_EXCHANGERS
+# CAD
 
-Purpose: authoritative 3D geometry and drawings for 21-10 radiators, embedded HP radiators, LPHX, coldplates, mounts, TIMs, and coating masks. No source code.
+**Purpose**  
+Repository of CAD deliverables for this subsystem. Holds assemblies, parts, neutral exports, manufacturing drawings, models and templates required for PLM/CAx traceability and release.
 
-## Deliverables
-- Parametric CAD models (assemblies/parts)
-- Fully dimensioned drawings with GD&T
-- PMI and mass properties
-- Neutral exports (STEP AP242, IGES if needed, DXF for flat)
-- Assembly BOM tables (for EBOM trace)
+## Top-level layout
+- `ASSEMBLIES/`  
+  Complete assembly models and subassembly folders. Each assembly must include a native assembly file, exploded view, and a `metadata.yaml`.  
+- `PARTS/`  
+  Individual part files and single-part assemblies. Include native part, 2D drawing (if applicable), and `metadata.yaml`.  
+- `MODELS/`  
+  Supporting models used for simulation, kinematic assemblies, fixtures, and reference geometry. Document model purpose in an accompanying README per model.  
+- `DRAWINGS/`  
+  Released 2D drawings in PDF and native CAD-drawing formats. Drawings must carry GD&T per ASME Y14.5 and reference the associated part/assembly.  
+- `EXPORTS/`  
+  Neutral exchange files intended for downstream consumers: `STEP AP242` (with PMI), `Parasolid`, `IGES`. Put one export per part/assembly and include an `export_recipe.txt` describing software and export settings.  
+- `TEMPLATES/`  
+  Metadata, titleblock, release checklist and template files:  
+  - `TEMPLATE_METADATA.yaml` (required fields below)  
+  - `TEMPLATE_TITLEBLOCK.<slddrw|drw|pdf>`  
+  - `RELEASE_CHECKLIST.md`  
+- `README.md`  
+  This file.
 
-## Layout
+## Required metadata (`metadata.yaml` / `.json`)
+Every part/assembly must include a metadata file adjacent to the CAD file containing:
+```yaml
+part_id: string
+description: string
+revision: string   # R001
+author: string
+cad_system: string # e.g., SolidWorks 2023
+mass_kg: number
+material: string
+ebom_id: string
+approval_status: string
+last_updated: YYYY-MM-DD
 ```
-CAD/
-├─ assemblies/           # top-level assy models (RAD-PANEL, LPHX, COLDPLATE)
-├─ parts/                # facesheets, cores, tubes, manifolds, fins, shims, TIMs
-├─ drawings/             # *.pdf, *.dwg; release PDFs mandatory
-├─ fixtures_tooling/     # drill templates, bonding nests
-├─ coating_masks/        # paint/SSM masks, keep-out geometry
-├─ exports_step/         # *.step AP242 (REL)
-├─ exports_dxf/          # flat patterns
-└─ templates/            # title block, GD&T, note packs
-```
 
-## Naming & revisions
-`21-10_<object>__rNN__{WIP|RVW|REL}.<ext>`  
-Examples: `21-10-ASSY-RAD-PANEL-L1__r03__RVW.step`, `21-10-PART-HONEYCOMB-CORE__r02__REL.prt`
+## Naming convention
 
-## Modeling standards
-- Units: mm, mass kg, angles deg.  
-- Datums: A/B/C per 06 datums; mounting to 51 patterns.  
-- Materials: from CAP material tables; apply properties for mass/CG.  
-- Tolerances: ISO 2768-mK unless stated; GD&T per ISO 1101.  
-- Surface finish: Ra per drawing notes; coating stack per CAP/coating spec.  
-- Color code: structure gray, fluid blue, TIM orange, coating pink (PMI only).
+`{PART_ID}-{DESCRIPTION}_R{REV:03d}.{ext}`
+Example: `24-80-001-Battery_Assembly_R001.step`
 
-## Interfaces to verify (checklist)
-- Coldplate flatness ≤ 0.05 mm; TIM thickness call-out.
-- Port threads/sizes match ICD (LPHX inlet/outlet).
-- Keep-outs for harness/heaters (97/21-30).
-- Ground/bond points per 51; hole classes and torque notes.
-- Lifts/handling features if >15 kg (STA-L MGSE).
+## File format rules
 
-## Exports (DoD for REL)
-- STEP AP242 for each REL assembly/part in `exports_step/`
-- PDF drawings in `drawings/` with sign-offs visible
-- BOM tables match EBOM structure
+* Native CAD: keep editable native files. Include mass properties.
+* STEP AP242: mandatory for released items. Must include PMI for tolerances and annotations.
+* PDF: release copies of drawings.
+* STL: only for prototyping, with resolution stated in `metadata.yaml`.
+* Use Git LFS for native and large binaries.
+
+## Release checklist (minimum)
+
+* Native CAD saved and checked in.
+* STEP AP242 export with PMI.
+* 2D PDF drawing with GD&T (if applicable).
+* `metadata.yaml` present and complete.
+* Thumbnail: `thumbnail_512x512.png` next to assembly.
+* EBOM mapping updated (`EBOM_MAPPING.csv` in parent PLM/CAx folder).
+* Approvals recorded in metadata.
+
+## Export recipes
+
+Include `EXPORTS/export_recipe.txt` describing:
+
+* CAD system and version used.
+* Exact export steps and settings (STEP AP242 options).
+* Any post-processing used (heal, repair).
+
+## Sizes and limits
+
+* Native CAD files: prefer < 100 MB. If larger, store in PLM or LFS.
+* STEP files: prefer < 50 MB.
+
+## Quality & standards
+
+* ASME Y14.5 for GD&T.
+* STEP AP242 / ISO 10303-242 for neutral exchange.
+* AS9100 traceability and release control for aerospace deliverables.
+
+## Traceability & EBOM
+
+* Ensure `ebom_id` in every `metadata.yaml`.
+* Maintain `EBOM_MAPPING.csv` at `PLM/CAx/` level with fields `part_id,plm_id,revision,comment`.
+
+## Ownership & contacts
+
+* CAD Owner: *Name* — *email*
+* PLM Owner: *Name* — *email*
+* CAE Owner (for models): *Name* — *email*
+
+## Notes
+
+* Document any deviation from these rules in `TEMPLATES/DEVIATIONS.md` and obtain approver sign-off.
+* Update this `README.md` whenever conventions change.
+
+*Last updated: 2025-10-23*
+

@@ -1,87 +1,99 @@
-# CAD - Computer-Aided Design
+# CAD
 
-[↑ Up to 10-02_STAND_GEOMETRY_MARKINGS](../../../README.md)
+**Purpose**  
+Repository of CAD deliverables for this subsystem. Holds assemblies, parts, neutral exports, manufacturing drawings, models and templates required for PLM/CAx traceability and release.
 
-Computer-Aided Design artifacts for airport stand geometry and ground marking standards.
+## Top-level layout
+- `ASSEMBLIES/`  
+  Complete assembly models and subassembly folders. Each assembly must include a native assembly file, exploded view, and a `metadata.yaml`.  
+- `PARTS/`  
+  Individual part files and single-part assemblies. Include native part, 2D drawing (if applicable), and `metadata.yaml`.  
+- `MODELS/`  
+  Supporting models used for simulation, kinematic assemblies, fixtures, and reference geometry. Document model purpose in an accompanying README per model.  
+- `DRAWINGS/`  
+  Released 2D drawings in PDF and native CAD-drawing formats. Drawings must carry GD&T per ASME Y14.5 and reference the associated part/assembly.  
+- `EXPORTS/`  
+  Neutral exchange files intended for downstream consumers: `STEP AP242` (with PMI), `Parasolid`, `IGES`. Put one export per part/assembly and include an `export_recipe.txt` describing software and export settings.  
+- `TEMPLATES/`  
+  Metadata, titleblock, release checklist and template files:  
+  - `TEMPLATE_METADATA.yaml` (required fields below)  
+  - `TEMPLATE_TITLEBLOCK.<slddrw|drw|pdf>`  
+  - `RELEASE_CHECKLIST.md`  
+- `README.md`  
+  This file.
 
-## Purpose
-
-Stores 3D models, drawings, and design documentation supporting airport stand geometry and ground marking standards development, visualization, and implementation.
-
-## Structure
-
-- **MODELS/** - 3D CAD models of standard components and assemblies
-- **DRAWINGS/** - Technical drawings and schematics
-- **EXPORTS/** - Neutral format exports (STEP, JT, IGES, DXF)
-  - **STEP/** - STEP AP242 files for interoperability
-  - **JT/** - JT format for visualization
-  - **DXF/** - 2D drawings in DXF format
-- **TEMPLATES/** - Standard templates and symbols
-- **LIBRARIES/** - Reusable component libraries
-
-## Key Artifacts
-
-- Airport stand layout drawings
-- Ground marking pattern models
-- Coordinate reference system definitions
-- Clearance zone visualizations
-- Lighting position models
-
-## Naming Convention
-
+## Required metadata (`metadata.yaml` / `.json`)
+Every part/assembly must include a metadata file adjacent to the CAD file containing:
+```yaml
+part_id: string
+description: string
+revision: string   # R001
+author: string
+cad_system: string # e.g., SolidWorks 2023
+mass_kg: number
+material: string
+ebom_id: string
+approval_status: string
+last_updated: YYYY-MM-DD
 ```
-10-02_{ITEM_TYPE}_{DESCRIPTION}_v{VER}.{ext}
-```
 
-Examples:
-- `10-02_MODEL_StandLayout_v001.step`
-- `10-02_DRAWING_MarkingPattern_v002.dwg`
+## Naming convention
 
-## Standards
+`{PART_ID}-{DESCRIPTION}_R{REV:03d}.{ext}`
+Example: `24-80-001-Battery_Assembly_R001.step`
 
-- **Units:** Millimeters (mm) for mechanical, degrees for angular
-- **Coordinate System:** Airport datum reference (FS/WL/BL)
-- **Export Format:** STEP AP242 mandatory for release
-- **Neutral Formats:** STEP, JT, glTF alongside native
-- **Drawing Standards:** ISO/ATA standards for technical drawings
+## File format rules
 
-## File Formats
+* Native CAD: keep editable native files. Include mass properties.
+* STEP AP242: mandatory for released items. Must include PMI for tolerances and annotations.
+* PDF: release copies of drawings.
+* STL: only for prototyping, with resolution stated in `metadata.yaml`.
+* Use Git LFS for native and large binaries.
 
-- **Native:** CATIA V5, NX, SolidWorks, AutoCAD (as applicable)
-- **Neutral:** STEP AP242 (primary), JT (visualization), IGES (legacy)
-- **2D:** DXF, PDF/A (controlled documents)
+## Release checklist (minimum)
 
-## Traceability
+* Native CAD saved and checked in.
+* STEP AP242 export with PMI.
+* 2D PDF drawing with GD&T (if applicable).
+* `metadata.yaml` present and complete.
+* Thumbnail: `thumbnail_512x512.png` next to assembly.
+* EBOM mapping updated (`EBOM_MAPPING.csv` in parent PLM/CAx folder).
+* Approvals recorded in metadata.
 
-All CAD artifacts must:
-- Link to EBOM items in [PLM/EBOM_LINKS.md](../EBOM_LINKS.md)
-- Reference applicable standards and specifications
-- Include revision history and approval status
-- Maintain configuration control per CM plan
+## Export recipes
 
-## References
+Include `EXPORTS/export_recipe.txt` describing:
 
-- [Parent Subsystem README](../../../README.md)
-- [EBOM Links](../EBOM_LINKS.md)
-- [Configuration Management](../../../../../../../../../../../../../00-PROGRAM/CONFIG_MGMT/)
-- [CAD Standards](../../../../../../../../../../../../../00-PROGRAM/STANDARDS/CAD/)
+* CAD system and version used.
+* Exact export steps and settings (STEP AP242 options).
+* Any post-processing used (heal, repair).
 
-## Related CAx Areas
+## Sizes and limits
 
-- [CAE](../CAE/) - Analysis geometry derived from CAD
-- [CAM](../CAM/) - Manufacturing from CAD models
-- [CAI](../CAI/) - Installation drawings and procedures
-- [CAV](../CAV/) - Validation test fixtures
+* Native CAD files: prefer < 100 MB. If larger, store in PLM or LFS.
+* STEP files: prefer < 50 MB.
 
-## Version Control
+## Quality & standards
 
-- Use Git LFS for large binary files
-- Include README.md per model describing inputs/outputs
-- Tag releases with version numbers
-- Maintain change logs for major revisions
+* ASME Y14.5 for GD&T.
+* STEP AP242 / ISO 10303-242 for neutral exchange.
+* AS9100 traceability and release control for aerospace deliverables.
 
----
+## Traceability & EBOM
 
-**Status**: Ready for artifact population  
-**Owner**: TBD - Assign CAD lead  
-**Last Updated**: 2025-10-11
+* Ensure `ebom_id` in every `metadata.yaml`.
+* Maintain `EBOM_MAPPING.csv` at `PLM/CAx/` level with fields `part_id,plm_id,revision,comment`.
+
+## Ownership & contacts
+
+* CAD Owner: *Name* — *email*
+* PLM Owner: *Name* — *email*
+* CAE Owner (for models): *Name* — *email*
+
+## Notes
+
+* Document any deviation from these rules in `TEMPLATES/DEVIATIONS.md` and obtain approver sign-off.
+* Update this `README.md` whenever conventions change.
+
+*Last updated: 2025-10-23*
+
