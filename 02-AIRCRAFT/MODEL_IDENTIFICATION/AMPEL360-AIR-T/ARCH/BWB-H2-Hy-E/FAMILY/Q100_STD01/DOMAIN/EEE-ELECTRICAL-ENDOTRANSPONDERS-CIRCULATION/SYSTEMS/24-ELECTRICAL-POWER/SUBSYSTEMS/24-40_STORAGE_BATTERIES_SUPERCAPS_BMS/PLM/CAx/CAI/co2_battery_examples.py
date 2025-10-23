@@ -11,8 +11,9 @@ Run with: python3 co2_battery_examples.py
 import sys
 from pathlib import Path
 
-# Add current directory to path
-sys.path.insert(0, str(Path(__file__).parent))
+# Add CAE directory to path (where the core simulation module is located)
+cae_dir = Path(__file__).parent.parent / "CAE"
+sys.path.insert(0, str(cae_dir))
 
 from co2_battery_endocircular import (
     CO2Phase,

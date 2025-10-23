@@ -4,46 +4,34 @@
 
 This directory contains CAS artifacts for the 24-40_STORAGE_BATTERIES_SUPERCAPS_BMS subsystem.
 
-Computer-Aided Simulation (system simulations)
+Computer-Aided Simulation (system simulations, technical documentation)
 
 ## Contents
 
-### CO₂ Endocircular Battery System
+### CO₂ Endocircular Battery System - Technical Documentation
 
-A closed-loop CO₂-based energy storage system that stores energy as solid/liquid CO₂ and recovers it through controlled phase transitions and expansion cycles.
+Complete technical documentation for the closed-loop CO₂-based energy storage system.
 
 **Files**:
-- `co2_battery_endocircular.py` - Core simulation module
-- `test_co2_battery.py` - Comprehensive test suite (28 tests)
-- `co2_battery_examples.py` - Usage examples and applications
-- `CO2_BATTERY_TECHNICAL_DOCS.md` - Complete technical documentation
+- `CO2_BATTERY_TECHNICAL_DOCS.md` - Complete technical reference documentation (13KB)
 
-**Key Features**:
-- Thermodynamic property calculations for CO₂ phases
-- Multiple cycle types (sublimation, sCO₂ Brayton, CAES-like)
-- Energy storage and recovery efficiency modeling
-- Safety and operational boundary monitoring
-- Mass balance tracking (closed system)
+**Documentation Includes**:
+- System architecture and component specifications
+- Operating cycles with detailed performance analysis (sublimation, sCO₂ Brayton, CAES-like)
+- Thermodynamic background and phase diagrams
+- Safety considerations and materials selection
+- Integration guidelines for aircraft systems
+- Comparison with other storage technologies
 
-**Quick Start**:
-```bash
-# Run example calculations (demonstrates basic usage)
-python3 co2_battery_endocircular.py
-
-# Run all usage examples (6 detailed scenarios)
-python3 co2_battery_examples.py
-
-# Run tests (requires pytest: pip install pytest)
-pytest test_co2_battery.py -v
-```
+**Related Files**:
+- Simulation models: `../CAE/co2_battery_endocircular.py` and `test_co2_battery.py`
+- Application examples: `../CAI/co2_battery_examples.py`
 
 **Performance Summary**:
 - Energy density: ~247 kWh/m³ (thermal)
 - Specific energy: 20-70 Wh/kg (electrical, cycle-dependent)
 - Discharge efficiency: 15-55% (cycle-dependent)
 - Round-trip efficiency: 20-70% (with heat recovery)
-
-See `CO2_BATTERY_TECHNICAL_DOCS.md` for complete documentation.
 
 ## File Organization
 
