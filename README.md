@@ -1,8 +1,9 @@
-# IDEALE-EU
+# IDEALEEU
+**Intelligence and Information, Defense, Energy, Aerospace, Logistics, ESG, Europe**.
 
 > Unified, audit‑ready platform for multi‑vehicle aerospace programs. Modules: **AMSDP** (Aerospace Material & Software Digital Passports) and **AAMMPP** (Aerospace Assets Management, Maintenance & Procurement Platform).
 
-### What IDEALE‑EU is
+### What IDEALEEU is
 
 An ESG‑first framework to design next‑generation aerospace systems and models. It uses common LLMs via a provider‑agnostic gateway, with retrieval and guardrails, and includes AMSDP and AAMMPP as reference applications implementing the framework.
 
@@ -456,6 +457,33 @@ Readiness/liveness probes, HPA, and resource limits are defined in the Helm char
 
 ---
 
+## Packs & Engineering Constructs
+
+Canonical packs used across design, analysis, production, integration, and service. Packs act as reusable building blocks in TFA domains and appear as tags in schemas and repository paths.
+
+| Code    | Name                                      | Description / Notes                                                                                 |
+| ------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| CAx     | Computer‑Aided X                          | Umbrella for CAD/CAE/CAM/CFD; shared data patterns and exchange.                                    |
+| QOx     | Quantum Optimizations                     | Variational, annealing, and quantum‑inspired optimization for design, routing, scheduling, packing. |
+| PAx     | Packaging & Assemblies                    | **ONB** = Onboard, **OUT** = Offboard, **BDG** = Bridge.                                            |
+| CAD     | Computer‑Aided Design                     | Geometry, parametrics, drawings.                                                                    |
+| CAE     | Computer‑Aided Engineering                | Analysis and simulation.                                                                            |
+| CAM     | Computer‑Aided Manufacturing              | NC/toolpaths and manufacturing plans.                                                               |
+| CAI     | Computer‑Aided Integration & Installation | Integration, installation, testing, tooling.                                                        |
+| CFD     | Computational Fluid Dynamics              | Flow and thermal simulation.                                                                        |
+| CMP     | Configuration Management Program          | Plans, baselines, effectivity, change control.                                                      |
+| CQA     | Certification, V&V and Quality Assurance  | Compliance, verification, validation, QA.                                                           |
+| MRO     | Maintenance, Repair, Overhaul             | Service operations with evidence capture.                                                           |
+| ALAR‑CC | As Low As Reasonable Chain Complexity     | Supply services, chain traceability, ESG.                                                           |
+
+**Usage**
+
+* **Schemas**: `component.packs[]` and `workflow.packs[]` support the codes above.
+* **Paths**: `.../PACKS/<Code>/...` optional folder to co‑locate artifacts.
+* **Interoperability**: CAx aligns with STEP/ JT/ glTF; CMP and CQA map to governance docs.
+
+---
+
 ## Operations
 
 * **Observability**: Structured logs, metrics, traces. Prometheus and OTLP exporters by default.
@@ -615,7 +643,7 @@ Programs **AMBER**, **LEIA**, and **CRYOSTAR** indicate maturity (TRL 5–6) of 
 | CQA      | Certification, V&V and Quality Assurance  | Compliance, verification, validation, QA.                                                           |
 | MRO      | Maintenance, Repair, Overhaul             | Service operations with evidence capture.                                                           |
 | ALAR‑CC  | As Low As Reasonable Chain Complexity     | Supply services, chain traceability, ESG.                                                           |
-                                                    |
+| OB / OFF | Onboard / Outboard                        | Orientation tags used in PAx and tech pubs.                                                         |
 
 ---
 
