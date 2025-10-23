@@ -27,13 +27,13 @@ A closed-loop CO₂-based energy storage system that stores energy as solid/liqu
 
 **Quick Start**:
 ```bash
-# Run example calculations
+# Run example calculations (demonstrates basic usage)
 python3 co2_battery_endocircular.py
 
-# Run all usage examples
+# Run all usage examples (6 detailed scenarios)
 python3 co2_battery_examples.py
 
-# Run tests
+# Run tests (requires pytest: pip install pytest)
 pytest test_co2_battery.py -v
 ```
 
