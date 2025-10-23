@@ -1,71 +1,70 @@
 # IDEALEEU
 
-> Unified, audit‑ready platform for multi‑vehicle aerospace programs. Modules: **AMSDP** (Aerospace Material & Software Digital Passports) and **AAMMPP** (Aerospace Assets Management, Maintenance & Procurement Platform).
-
-### What IDEALEEU is
-
-An ESG‑first framework to design next‑generation aerospace systems and models. It uses common LLMs via a provider‑agnostic gateway, with retrieval and guardrails, and includes AMSDP and AAMMPP as reference applications implementing the framework.
-
----
-
-## Badges
+> Unified, audit‑ready platform for multi‑vehicle aerospace programs.
+>
+> Reference apps: **AMSDP** (Aerospace Material & Software Digital Passports) and **AAMMPP** (Aerospace Assets Management, Maintenance & Procurement Platform).
 
 [![Status](https://img.shields.io/badge/status-alpha-yellow)](#)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
-
-<!-- Add real CI badges once pipelines are enabled -->
 
 ---
 
 ## TL;DR
 
-IDEALE‑EU is a design and governance framework that turns ESG principles into executable data contracts, workflows, and models. It composes reference services (AMSDP, AAMMPP) and an LLM layer that runs on commodity models through RAG and policy guardrails. Result: auditable architectures, artifacts, and APIs reusable across programs.
+**IDEALEEU** is a design and governance framework that turns ESG principles into **executable data contracts**, **workflows**, and **models**. It composes:
 
-### Principles
+* **Reference services**: AMSDP and AAMMPP.
+* **LLM layer**: provider‑agnostic gateway, RAG, guardrails.
 
-* ESG‑first: evidence and metrics embedded in every artifact.
-* LLM‑enabled, model‑agnostic: common models via a provider‑neutral gateway.
-* Standards‑anchored: W3C VC, EPCIS, S‑Series, ISO 15288.
-* Replaceable components: stores, queues, and models are swappable.
+**Outcomes**: auditable architectures, artifacts, and APIs that are reusable across programs.
+
+**Tagline**: *Design responsibly. Prove it.*
 
 ---
 
-## Positioning — what IDEALE‑EU is
+## What IDEALE‑EU is
 
-**What it is**
+An ESG‑first, standards‑anchored framework to design next‑generation aerospace systems. It runs common LLMs via a provider‑neutral gateway with retrieval and guardrails. AMSDP and AAMMPP implement the framework as reference applications.
 
-* An open, modular framework to **design responsibly**: architectures, models, and processes with ESG principles embedded by default.
+### Principles
+
+* **ESG‑first**: evidence and metrics embedded in every artifact.
+* **LLM‑enabled, model‑agnostic**: common models through a neutral gateway.
+* **Standards‑anchored**: W3C VC, EPCIS, ASD S‑Series, ISO 15288.
+* **Replaceable components**: stores, queues, and models are swappable.
+
+---
+
+## Positioning
+
+### What it is
+
+* A modular framework to **design responsibly**: architectures, models, and processes with ESG baked in.
 * A set of **methods and data contracts** that make traceability, auditability, and lifecycle stewardship measurable.
-* A **governance layer** (MAL) that encodes policy, risk controls, and evidence collection.
+* A **governance layer (MAL)** that encodes policy, risk controls, and evidence collection. *MAL = Master Application Layer/Logic; the PLC of each domain.*
 
-**What it is not**
+### What it is not
 
 * Not an aircraft or engine program; no product claims.
 * Not a certification declaration; it **collects evidence** to support audits.
-* Not a token or marketplace; commercial exchanges (A360Exchanges‑TT) are adjunct, not core.
+* Not a token or marketplace; commercial exchanges (A360Exchanges‑TT) are adjunct.
 
-**ESG‑first principles**
+### ESG‑first pillars
 
 1. **Environment**: decarbonization, energy efficiency, circularity, end‑of‑life.
 2. **Social**: safety, human‑in‑the‑loop oversight, fair labor, accessibility.
 3. **Governance**: transparency, explainability, anti‑tamper audit, supply‑chain trust.
 
-**Value**
+### Value
 
 * Unified digital thread from requirements to operations.
 * Interoperability with industry standards; vendor‑neutral interfaces.
 * **Responsible AI**: QPLC human‑governed automation with guardrails and evidence.
 * Lower cost‑of‑change via versioned contracts and contract tests.
 
-**Primary users**
+**Primary users**: OEMs, Tier‑n suppliers, MROs, regulators, research programs.
 
-* OEMs, Tier‑n suppliers, MROs, regulators, and research programs.
-
-**Success metrics**
-
-* Verified emissions impact, safety outcomes, interop conformance, audit completeness, time‑to‑evidence, and total cost of quality.
-
-**Tagline**: *Design responsibly. Prove it.*
+**Success metrics**: emissions impact, safety outcomes, interop conformance, audit completeness, time‑to‑evidence, total cost of quality.
 
 ---
 
@@ -78,7 +77,7 @@ IDEALE‑EU is a design and governance framework that turns ESG principles into 
 * [Repository Layout](#repository-layout)
 * [Quickstart (Developer)](#quickstart-developer)
 * [Configuration](#configuration)
-* [Component taxonomy](#component-taxonomy)
+* [Component Taxonomy](#component-taxonomy)
 * [Circularity and MRO](#circularity-and-mro)
 * [Data Contracts](#data-contracts)
 * [APIs](#apis)
@@ -86,8 +85,9 @@ IDEALE‑EU is a design and governance framework that turns ESG principles into 
 * [CI/CD](#cicd)
 * [Releases & Changelog](#releases--changelog)
 * [LLM Playground](#llm-playground)
-* [Collaborative DevOps licensing](#collaborative-devops-licensing)
+* [Collaborative DevOps Licensing](#collaborative-devops-licensing)
 * [Deployment](#deployment)
+* [Packs & Engineering Constructs](#packs--engineering-constructs)
 * [Operations](#operations)
 * [Governance](#governance)
 * [Contributing](#contributing)
@@ -110,33 +110,33 @@ IDEALE‑EU is a design and governance framework that turns ESG principles into 
 
 ## Core Capabilities
 
-* **Traceability & Provenance**: Part pedigree, software build lineage, conformity statements, audit trails.
-* **Configuration Control**: Baselines, EOs/ECNs, effectivity, serialization, configuration state.
-* **Digital Passports (AMSDP)**: Issue, verify, revoke, and transfer credentials for material/part/software.
-* **Lifecycle Ops (AAMMPP)**: Item master, maintenance plans, work orders, reliability, inventory, procurement.
-* **Data Contracts**: Typed schemas with versioning, backward‑compat rules, conformance tests.
-* **Interoperability**: Opinionated mappings to aerospace and supply‑chain standards.
-* **Audit‑Ready**: Tamper‑evident logs, SBOMs, build provenance, retention policies.
-* **Circularity & MRO**: Repair, rework, requalification, return‑to‑service with evidence written to passports and configuration.
-* **Collaborative DevOps licensing**: Mixed seat+usage entitlements with governed redistribution across partner orgs.
+* **Traceability & provenance**: part pedigree, software build lineage, conformity statements, audit trails.
+* **Configuration control**: baselines, EOs/ECNs, effectivity, serialization, configuration state.
+* **Digital Passports (AMSDP)**: issue, verify, revoke, and transfer credentials for material/part/software.
+* **Lifecycle Ops (AAMMPP)**: item master, maintenance plans, work orders, reliability, inventory, procurement.
+* **Data contracts**: typed schemas with versioning, backward‑compat rules, conformance tests.
+* **Interoperability**: opinionated mappings to aerospace and supply‑chain standards.
+* **Audit‑ready**: tamper‑evident logs, SBOMs, build provenance, retention policies.
+* **Circularity & MRO**: repair, rework, requalification, return‑to‑service with evidence written to passports and configuration.
+* **Collaborative DevOps licensing**: mixed seat+usage entitlements with governed redistribution across partner orgs.
 
 ---
 
 ## Architecture Overview
 
-* **Identity & Trust**: Issuer registry, key management, verifiable attestations, RBAC/ABAC.
-* **Control Layer (MAL)**: Master Application Layer/Logic acting as the PLC of each domain; orchestrates workflows and policies.
-* **Data Plane**: Schema registry, contract testing, lineage catalog, event store.
+* **Identity & Trust**: issuer registry, key management, verifiable attestations, RBAC/ABAC.
+* **Control Layer (MAL)**: the PLC of each domain; orchestrates workflows and policies.
+* **Data Plane**: schema registry, contract testing, lineage catalog, event store.
 * **Services**:
 
-  * **AMSDP**: Credential service, passport vault, verifier, revocation registry.
-  * **AAMMPP**: Item master, configuration, MRO, procurement, inventory.
+  * **AMSDP**: credential service, passport vault, verifier, revocation registry.
+  * **AAMMPP**: item master, configuration, MRO, procurement, inventory.
   * **API Gateway**: REST/GraphQL ingress, OAuth2/OIDC.
-  * **Events**: Async bus for integrations and workflows.
+  * **Events**: async bus for integrations and workflows.
 * **Storage**: OLTP store, object storage for artifacts, append‑only audit log.
 * **Integrations**: PLM/ERP/MES, certification authorities, supplier portals, operator systems.
 
-> See `/docs/architecture/` for diagrams and sequence flows.
+> Diagrams and sequences: `/docs/architecture/`.
 
 ---
 
@@ -145,7 +145,7 @@ IDEALE‑EU is a design and governance framework that turns ESG principles into 
 * **Identity & Credentials**: W3C Verifiable Credentials/Presentations.
 * **Supply Chain Events**: GS1 EPCIS 2.0 + CBV.
 * **Tech Pubs & Procurement**: ASD S‑Series (S1000D, S2000M).
-* **Software Assurance**: SBOM (CycloneDX), SLSA provenance attestations.
+* **Software Assurance**: SBOM (CycloneDX), SLSA provenance.
 * **Lifecycle & Systems**: ISO/IEC/IEEE 15288, INCOSE guidance.
 * **Aero Certification References**: DO‑178C/DO‑330, DO‑254, ARP4754A/ARP4761 (alignment targets, not declarations of compliance).
 
@@ -201,8 +201,8 @@ IDEALE‑EU is a design and governance framework that turns ESG principles into 
 ### Bootstrap
 
 ```bash
-git clone https://github.com/IDEALE-eu/IDEALEEU
-cd IDEALEEU
+git clone https://github.com/robbbo-t/idealeeu
+cd idealeeu
 make bootstrap        # install tooling, pre-commit hooks
 make build            # docker compose build
 make up               # docker compose up -d
@@ -232,11 +232,11 @@ JWT_SIGNING_KEY=change-me
 EVENT_BUS_URL=nats://nats:4222
 ```
 
-Secrets must be injected via the orchestrator secret store; do not commit secrets.
+Secrets must be injected via the orchestrator secret store. Do not commit secrets.
 
 ---
 
-## Component taxonomy
+## Component Taxonomy
 
 Canonical classes and required passport claims.
 
@@ -263,21 +263,21 @@ Canonical classes and required passport claims.
 
 ### Minimum passport claims by class
 
-**primary_structure**: Material spec/process, ply/stack or forging route; heat/lot; NDI results; dimensional report; CoC/CoA; stress justification ref; surface treatment.
+**primary_structure**: material spec/process; ply/stack or forging route; heat/lot; NDI results; dimensional report; CoC/CoA; stress justification ref; surface treatment.
 
-**secondary_structure**: Material/finish, lot, inspection record; CoC; torque/installation spec if relevant.
+**secondary_structure**: material/finish; lot; inspection record; CoC; torque/installation spec if relevant.
 
-**installation_hardware**: Standard ref (NAS/MS/EN/AS), grip/size/finish; lot/heat; torque/bakeout spec; CoC.
+**installation_hardware**: standard ref (NAS/MS/EN/AS); grip/size/finish; lot/heat; torque/bakeout spec; CoC.
 
-**information_hardware**: LRU model/P/N, CPU/FPGA ID, interfaces, PSU range; firmware baseline; calibration certs; environmental quals (DO‑160/EN 2282) refs.
+**information_hardware**: LRU model/P/N; CPU/FPGA ID; interfaces; PSU range; firmware baseline; calibration certs; environmental quals (DO‑160/EN 2282) refs.
 
-**software**: Version, build hash, target LRU(s); SBOM (CycloneDX) and SLSA provenance; safety level target (e.g., DO‑178C A–E) and approval trail.
+**software**: version; build hash; target LRU(s); SBOM (CycloneDX) and SLSA provenance; safety level target (e.g., DO‑178C A–E) and approval trail.
 
-**model**: Model type (CAD/FEM/CFD/MBSE), toolchain/version; source dataset; V&V evidence; export‑control tag.
+**model**: model type (CAD/FEM/CFD/MBSE); toolchain/version; source dataset; V&V evidence; export‑control tag.
 
-**firmware**: Target device, bootloader reqs, image digest; SBOM/provenance; signing chain; rollback policy.
+**firmware**: target device; bootloader reqs; image digest; SBOM/provenance; signing chain; rollback policy.
 
-**sensor_antenna**: Type, band, pattern/ref; calibration certificate; serial; environmental quals.
+**sensor_antenna**: type; band; pattern/ref; calibration certificate; serial; environmental quals.
 
 ### Lifecycle states (all classes)
 
@@ -305,7 +305,7 @@ Portfolio placement per product:
 /0X-*/DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT>/MODELS/<MODEL>/VERSION/<Qn>/MRO/
 ```
 
-Service and circularity flow:
+Service flow:
 
 1. **Repair order / RMA** → intake and diagnostics.
 2. **Repair / rework** under approved procedures.
@@ -314,9 +314,9 @@ Service and circularity flow:
 5. **Digital passport update** and configuration state update.
 6. **Release** and **return to service**; order closure.
 
-Minimum evidence: inspection reports, NDI results, calibration certificates, firmware/software baseline, **SBOM + provenance**, hours/cycles, and EBOM/MBOM impact.
+Minimum evidence: inspection reports; NDI results; calibration certificates; firmware/software baseline; **SBOM + provenance**; hours/cycles; EBOM/MBOM impact.
 
-Supported operations: rotable pools, controlled cannibalization, redistribution across fleets, CCB approval, segregation of duties.
+Supported operations: rotable pools; controlled cannibalization; redistribution across fleets; CCB approval; segregation of duties.
 
 EPCIS events: *Commission*, *Observation*, *Transformation*, *Aggregation* for each transition.
 
@@ -360,12 +360,13 @@ Example: minimal material passport (JSON)
 ## APIs
 
 * **REST/GraphQL** via gateway. OpenAPI in `/00-PROGRAM/platform/api/openapi.yaml`. Async events in `/00-PROGRAM/platform/api/asyncapi.yaml`.
-* Example flow:
 
-  1. Obtain token via OIDC.
-  2. `POST /amsdp/v1/passports` to issue.
-  3. `POST /amsdp/v1/verify` with credential or reference.
-  4. `POST /amsdp/v1/revoke` to revoke.
+Example flow:
+
+1. Obtain token via OIDC.
+2. `POST /amsdp/v1/passports` to issue.
+3. `POST /amsdp/v1/verify` with credential or reference.
+4. `POST /amsdp/v1/revoke` to revoke.
 
 **Service & Licensing endpoints**
 
@@ -388,7 +389,7 @@ Example: minimal material passport (JSON)
 * Tamper‑evident append‑only audit log.
 * Supply‑chain hardening: SBOM, vuln scanning, provenance attestations on releases.
 * Threat modeling with STRIDE; findings tracked in `SECURITY.md`.
-* **Crypto**: PQC‑ready design; see `SECURITY.md` for concrete algorithms and status.
+* **Crypto**: PQC‑ready design; see `SECURITY.md` for algorithms and status.
 
 > This repository does **not** assert regulatory compliance. Evidence and alignment targets support audits.
 
@@ -409,16 +410,16 @@ See `CHANGELOG.md` and GitHub Releases.
 
 ## LLM Playground
 
-Multi‑tenant sandbox for trained, contextualized, embedded AI over IDEALE‑EU data.
+Multi‑tenant sandbox for trained, contextualized AI over IDEALE‑EU data.
 
 * **Components**: `/00-PROGRAM/platform/playground-ui`, `/00-PROGRAM/platform/llm/gateway`, `/00-PROGRAM/platform/llm/embed`, `/00-PROGRAM/platform/llm/rag`, `/00-PROGRAM/platform/llm/guardrails`, `/00-PROGRAM/platform/vector`.
 * **APIs**: `POST /llm/chat`, `POST /llm/embed`, `POST /knowledge/sync`, `POST /contexts`.
 * **Security**: tenant/project namespaces; KMS‑backed keys; full prompt/tool/output audit.
-* **Eval**: golden sets, EM/F1, groundedness, latency, cost; shadow runs.
+* **Eval**: golden sets; EM/F1; groundedness; latency; cost; shadow runs.
 
 ---
 
-## Collaborative DevOps licensing
+## Collaborative DevOps Licensing
 
 * Mixed seats+usage with budgets per project and phase.
 * Governed redistribution of rights across program partners; traceable and expiring.
@@ -429,7 +430,7 @@ Multi‑tenant sandbox for trained, contextualized, embedded AI over IDEALE‑EU
 
 ## Deployment
 
-### Local (docker compose)
+### Local (Docker Compose)
 
 ```bash
 docker compose up -d
@@ -437,74 +438,31 @@ docker compose up -d
 
 ### Images
 
-* ghcr.io/ideale-eu/idealeeu-api:latest
-* ghcr.io/ideale-eu/idealeeu-gateway:latest
-* ghcr.io/ideale-eu/idealeeu-playground:latest
+* ghcr.io/robbbo-t/idealeeu-api:latest
+* ghcr.io/robbbo-t/idealeeu-gateway:latest
+* ghcr.io/robbbo-t/idealeeu-playground:latest
 
 > Replace with your registry if different.
 
 ### Kubernetes (Helm)
 
 ```bash
-helm repo add ideale https://ideale-eu.github.io/charts
-helm upgrade --install ideale ideale/ideale-eu \
-  --namespace ideale --create-namespace \
-  -f infra/helm/values.dev.yaml
+# If you publish charts under your GitHub user, adjust accordingly, e.g.:
+# helm repo add ideale https://robbbo-t.github.io/charts
+# helm upgrade --install ideale ideale/idealeeu \
+#   --namespace ideale --create-namespace \
+#   -f infra/helm/values.dev.yaml
 ```
 
 Readiness/liveness probes, HPA, and resource limits are defined in the Helm chart.
 
 ---
 
-## Packs & Engineering Constructs
-
-Canonical packs used across design, analysis, production, integration, and service. Packs act as reusable building blocks in TFA domains and appear as tags in schemas and repository paths.
-
-| Code    | Name                                      | Description / Notes                                                                                 |
-| ------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| CAx     | Computer‑Aided X                          | Umbrella for CAD/CAE/CAM/CFD; shared data patterns and exchange.                                    |
-| QOx     | Quantum Optimizations                     | Variational, annealing, and quantum‑inspired optimization for design, routing, scheduling, packing. |
-| PAx     | Packaging & Assemblies                    | **ONB** = Onboard, **OUT** = Offboard, **BDG** = Bridge.                                            |
-| CAD     | Computer‑Aided Design                     | Geometry, parametrics, drawings.                                                                    |
-| CAE     | Computer‑Aided Engineering                | Analysis and simulation.                                                                            |
-| CAM     | Computer‑Aided Manufacturing              | NC/toolpaths and manufacturing plans.                                                               |
-| CAI     | Computer‑Aided Integration & Installation | Integration, installation, testing, tooling.                                                        |
-| CFD     | Computational Fluid Dynamics              | Flow and thermal simulation.                                                                        |
-| CMP     | Configuration Management Program          | Plans, baselines, effectivity, change control.                                                      |
-| CQA     | Certification, V&V and Quality Assurance  | Compliance, verification, validation, QA.                                                           |
-| MRO     | Maintenance, Repair, Overhaul             | Service operations with evidence capture.                                                           |
-| ALAR‑CC | As Low As Reasonable Chain Complexity     | Supply services, chain traceability, ESG.                                                           |
-
-**Usage**
-
-* **Schemas**: `component.packs[]` and `workflow.packs[]` support the codes above.
-* **Paths**: `.../PACKS/<Code>/...` optional folder to co‑locate artifacts.
-* **Interoperability**: CAx aligns with STEP/ JT/ glTF; CMP and CQA map to governance docs.
-
----
-
-### ALAR‑CC — As Low As Reasonable Chain Complexity
-
-| Code | Name                                     | Description / Notes                                                                                 |
-| ---- | ---------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| CAx  | Computer‑Aided Data Exchange             | Umbrella for shared data patterns and exchange.                                                     |
-| QOx  | Quantum Optimizations                    | Variational, annealing, and quantum‑inspired optimization for design, routing, scheduling, packing. |
-| PAx  | Packaging & Assemblies                   | Orientation markers: **ONB** = Onboard, **OUT** = Outboard.                                         |
-| CAD  | Computer‑Aided Design                    | Geometry, parametrics, drawings.                                                                    |
-| CAE  | Computer‑Aided Engineering               | Analysis and simulation, including FEM, CFD, FMEA, etc.                                             |
-| CAM  | Computer‑Aided Manufacturing             | NC/toolpaths and manufacturing plans. Integration, installation, testing, tooling.                  |
-| CAI  | Computer‑Aided Industrialization         | Entry‑into‑service (EIS), production plan, marketing.                                               |
-| CMP  | Configuration Management Program         | Baselines, effectivity, change control. Continuous Airworthiness.                                   |
-| CAV  | Certification, V&V and Quality Assurance | Compliance, verification, validation, QA.                                                           |
-| CAS  | Computer‑Aided Services                  | Maintenance, Repair, Overhaul. Service operations, supply services, chain traceability, ESG.        |
-
----
-
 ## Operations
 
-* **Observability**: Structured logs, metrics, traces. Prometheus and OTLP exporters by default.
+* **Observability**: structured logs, metrics, traces. Prometheus and OTLP exporters by default.
 * **Backups & DR**: PITR for databases; object store lifecycle rules.
-* **Retention**: Defaults in `/docs/governance/retention.md`.
+* **Retention**: defaults in `/docs/governance/retention.md`.
 * **Runbooks**: `/docs/runbooks/` for common incidents.
 
 ---
@@ -513,7 +471,7 @@ Canonical packs used across design, analysis, production, integration, and servi
 
 * **CODEOWNERS** for critical paths.
 * **ADRs** in `/docs/adr/` with status and decision context.
-* **Change Control**: RFC issue template, review gates, affected‑system checklist.
+* **Change Control**: RFC issue template; review gates; affected‑system checklist.
 * **Commit Convention**: Conventional Commits.
 
 ---
@@ -526,10 +484,10 @@ See `CONTRIBUTING.md` for setup, coding standards, commit rules, and DCO/CLA if 
 
 ## Roadmap
 
-* v0.1: Public repo, schemas, bootstrap, compose, basic AMSDP issue/verify.
-* v0.2: AAMMPP item master, inventory, basic work orders, GraphQL façade.
-* v0.3: EPCIS event ingest, supplier onboarding flows.
-* v1.0: Pilot hardening, signed releases, docs and runbooks.
+* **v0.1**: Public repo, schemas, bootstrap, compose, basic AMSDP issue/verify.
+* **v0.2**: AAMMPP item master, inventory, basic work orders, GraphQL façade.
+* **v0.3**: EPCIS event ingest, supplier onboarding flows.
+* **v1.0**: Pilot hardening, signed releases, docs and runbooks.
 
 > Detailed milestones tracked in GitHub Projects.
 
@@ -555,141 +513,67 @@ Questions: open a GitHub Discussion or an issue using the template.
 
 ## Sustainable energy systems for passenger aircraft
 
-The platform tracks energy architectures across hydrogen, battery‑electric, SAF, and advanced propulsion. This section summarizes the state and references a multi‑energy architecture proposal for integration into product roadmaps and certification planning.
+The platform tracks energy architectures across hydrogen, battery‑electric, SAF, and advanced propulsion. Summary below. A multi‑energy architecture proposal supports product roadmaps and certification planning.
 
-| **Energy Technology**               | **Description**                                                                           | **Target Aircraft / Routes**                    | **Key Developments & Challenges**                                                                                                        |
-| :---------------------------------- | :---------------------------------------------------------------------------------------- | :---------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
-| **Hydrogen Power**                  | Powers aircraft via hydrogen combustion engines or fuel cells, emitting only water vapor. | Short‑ to medium‑haul regional aircraft.        | High development and infrastructure costs; challenges with lightweight hydrogen storage. Airbus ZEROe program faces delays.              |
-| **Battery‑Electric**                | Uses lithium‑ion or advanced batteries to power electric motors for propulsion.           | Short‑haul routes under ~500 km (~310 miles).   | Limited by low energy density; batteries are ~50x heavier than jet fuel for same energy. New fuel cell research aims for higher density. |
-| **Sustainable Aviation Fuel (SAF)** | Drop‑in biofuel from renewable sources; works with existing jet engines.                  | All aircraft types, especially long‑haul.       | Scalable but limited sustainable feedstock supply. Current focus for near‑term emissions reduction.                                      |
-| **Advanced Propulsion**             | New engine core designs like **Open Fan**.                                                | Next‑generation aircraft across various ranges. | Targets >20% fuel‑burn and CO₂ reduction vs. current efficient engines. Compatible with SAF and future hydrogen use.                     |
+| Energy Technology       | Description                                               | Target Aircraft / Routes        | Notes                                                                                           |
+| :---------------------- | :-------------------------------------------------------- | :------------------------------ | :---------------------------------------------------------------------------------------------- |
+| **Hydrogen**            | Hydrogen combustion or fuel cells. Water vapor emissions. | Short‑ to medium‑haul regional. | High infra and storage cost; lightweight tanks are the challenge. ZEROe timelines under review. |
+| **Battery‑Electric**    | Batteries power electric motors.                          | Short‑haul ≤ ~500 km.           | Energy density limits; mass is the constraint. Fuel‑cell hybrids improve range.                 |
+| **SAF**                 | Drop‑in bio/e‑fuels for current engines.                  | All types.                      | Scalable but feedstock‑limited. Best near‑term lever.                                           |
+| **Advanced Propulsion** | Open Fan and new cores.                                   | Next‑gen fleets.                | >20% fuel‑burn/CO₂ reduction vs. current efficient engines. Compatible with SAF and future H₂.  |
 
-### Supporting ecosystem and challenges
+**Ecosystem**
 
-* **Airports as energy hubs**: high‑power charging can require **≥ 1 MW per charger**; on‑site generation and storage improve resilience and economics.
-* **Innovation landscape**: OEMs iterate existing platforms; startups drive radical concepts but face capital and certification risk.
-* **Policy drivers**: tighter CO₂ standards, fossil jet‑fuel taxation, and R&D funding accelerate adoption.
+* Airports as energy hubs: ≥ 1 MW per charger; on‑site generation/storage recommended.
+* Innovation: OEMs iterate platforms; startups drive radical concepts with certification risk.
+* Policy: tighter CO₂ standards, jet‑fuel taxation, and R&D funding drive adoption.
 
-**TFA mapping**: CQH (Cryogenics–Quantum–H₂), EEE (Electrical–Energization), PPP (Propulsion–Power–Plants), IIF (Infrastructure).
+**TFA mapping**: CQH, EEE, PPP, IIF.
 
-### Technical Note: Multi‑Energy‑Agnostic Architecture for Sustainable Aeronautical Propulsion (AMPAS)
+### Technical Note: AMPAS (Multi‑Energy‑Agnostic Propulsion)
 
-#### 1. Introduction
+**Purpose**: integrate solid‑state batteries, liquid hydrogen (LH₂), SAF/e‑SAF, and high‑efficiency **Open Fan**.
 
-This document presents a conceptual model for a **multi‑energy‑agnostic propulsion architecture (AMPAS)** aimed at full decarbonization of commercial and regional aircraft by jointly integrating **solid‑state batteries, liquid hydrogen (LH₂), sustainable aviation fuels (SAF/e‑SAF)**, and high‑efficiency **Open Fan** systems.
-The framework draws on recent work and programs from *Clean Aviation JU*, *Avio Aero–GE Aerospace*, *Airbus ZEROe*, *Safran–ONERA*, and *Capgemini Engineering*.[1][2][6][7][10]
+**Functional sketch**
 
-#### 2. System overview
+* **Takeoff**: batteries + H₂ fuel cells for peak power.
+* **Climb/initial cruise**: transition to Open Fan on H₂ or SAF; electric assistance.
+* **Cruise**: thermal mode (H₂ or SAF).
+* **Descent/taxi**: partial regeneration and recharge.
 
-AMPAS combines four complementary energy subsystems:
+**Controller**: **EDPICS** manages power flows, cryogenics, and G‑H₂ recirculation.
 
-* **Electric energy module**: **solid‑state battery** packs with > 600 Wh/kg, high peak power, and long life. Primary role: assist power peaks at takeoff, auxiliary thrust, and emergency reserves.[1]
-* **Cryogenic liquid‑hydrogen module (LH₂)**: integrated CRYOSTAR‑type tanks with low‑permeability composites feeding fuel cells or direct‑burners in modified turbines. Enables long‑range autonomy with zero CO₂.[10][1]
-* **SAF/e‑SAF subsystem**: energy backup and thermal support, stabilizing the hybrid thermodynamic cycle and assisting prolonged cruise. Compatible with **Open Fan** cores such as CFM RISE and upgraded CATALYST turbines.[2][11]
-* **Open Fan propulsive module**: contra‑rotating, unshrouded fans with > 20% efficiency gains versus conventional Brayton‑cycle engines. Accepts mixed SAF/H₂/electric supply.[7][12]
+**Benefits**: up to **85%** CO₂/NOₓ reduction with SAF; **>95%** with green H₂. **20–25%** lower consumption vs. LEAP‑1A.
 
-#### 3. Functional architecture
+**Challenges**: thermal management (−253 °C to hot‑fuel circuits), certification baselines for hybrid‑cryogenic systems, acoustic/structural complexity of Open Fan, dual infrastructure at airports.
 
-A **parallel‑hybrid** system with centralized digital management:
+**Outlook**: viable for **100–200‑seat** aircraft with **transcontinental** range by **2040–2045** (subject to program risk and infra build‑out).
 
-1. **Takeoff**: solid‑state batteries + H₂ (fuel cells) → maximum thrust with reduced thermal spikes.
-2. **Climb and initial cruise**: transition to Open Fan on H₂ or SAF; electric support for stability.
-3. **Optimized cruise**: high‑efficiency thermal mode (H₂ or SAF) with kinetic‑energy recovery (MECS).
-4. **Descent and taxi**: partial regeneration and recharge via reverse thrust and auxiliary turbines.
-
-The **EDPICS** (distributed energy control system) coordinates power flows, regulates cryogenics, and manages gaseous‑H₂ recirculation, achieving system efficiencies > 70%.
-
-#### 4. Structural integration
-
-Tri‑axial placement: cryogenic tanks (central fuselage), battery packs (wing‑root), and Open Fan modules (tail or mixed nacelles). Multilayer thermal isolation and ultra‑light ceramic composites. Lower specific mass than all‑electric setups with energy density comparable to kerosene.[6][9]
-
-#### 5. Benefits and technological challenges
-
-**Benefits**
-
-* Up to **85% CO₂ and NOₓ** reduction with SAF, and **> 95%** with green H₂.
-* **20–25%** lower overall consumption versus LEAP‑1A turbines.
-* Multimodal flexibility by energy availability.
-* Aligned with circular‑energy strategies.
-
-**Challenges**
-
-* Thermal management across cryogenic zones (−253 °C) and hot‑fuel circuits (SAF ≈ 200 °C).
-* Certification baselines not yet consolidated for hybrid‑cryogenic systems.
-* Mechanical and acoustic complexity of Open Fan modules.
-* Dual airport infrastructure (SAF liquids + hydrogen, optional LOHC).
-
-#### 6. Conclusion and outlook
-
-Agnostic integration of **solid‑state batteries, liquid hydrogen, SAF, and Open Fan** defines a viable path for **100–200‑seat** aircraft with **transcontinental** range by **2040–2045**.
-Programs **AMBER**, **LEIA**, and **CRYOSTAR** indicate maturity (TRL 5–6) of individual blocks and support **zero‑emission aviation** based on energy modularity, interoperability, and intelligent thermal management.[2][6][7][10][1]
-
-**References**
-
-1. [https://fly-news.es/sostenibilidad/borrador-automaticoclean-aviation-nuevos-programas-descarbonizacion-aviacion-comercial/](https://fly-news.es/sostenibilidad/borrador-automaticoclean-aviation-nuevos-programas-descarbonizacion-aviacion-comercial/)
-2. [https://www.airline92.com/noticias/industria-aeronautica/avio-aero-lidera-programa-amber-propulsion-hibrido-electrica/](https://www.airline92.com/noticias/industria-aeronautica/avio-aero-lidera-programa-amber-propulsion-hibrido-electrica/)
-3. [https://www.pressreleasefinder.com/Avio_Aero/GEAAPR001/es/](https://www.pressreleasefinder.com/Avio_Aero/GEAAPR001/es/)
-4. [https://elperiodicodelaenergia.com/la-implementacion-de-la-tecnologia-saf-principal-obstaculo-para-la-descarbonizacion-en-aviacion/](https://elperiodicodelaenergia.com/la-implementacion-de-la-tecnologia-saf-principal-obstaculo-para-la-descarbonizacion-en-aviacion/)
-5. [https://hidrogeno-verde.es/arquitectura-propulsion-aeronaves-hidrogeno/](https://hidrogeno-verde.es/arquitectura-propulsion-aeronaves-hidrogeno/)
-6. [https://www.aviacionnews.com/2025/03/airbus-summit-2025-saf-hidrogeno-y-la-proxima-generacion-de-aeronaves/](https://www.aviacionnews.com/2025/03/airbus-summit-2025-saf-hidrogeno-y-la-proxima-generacion-de-aeronaves/)
-7. [https://www.avionrevue.com/industria/safran-y-onera-inician-las-pruebas-en-tunel-aerodinamico-del-futuro-open-fan/](https://www.avionrevue.com/industria/safran-y-onera-inician-las-pruebas-en-tunel-aerodinamico-del-futuro-open-fan/)
-8. [https://www.bbva.com/es/sostenibilidad/estas-son-las-tecnologias-mas-comunes-para-producir-combustibles-saf/](https://www.bbva.com/es/sostenibilidad/estas-son-las-tecnologias-mas-comunes-para-producir-combustibles-saf/)
-9. [https://www.investigacion.us.es/noticias/una-innovadora-arquitectura-de-propulsion-de-aeronaves-mediante-hidrogeno-nacida-en-la-etsi](https://www.investigacion.us.es/noticias/una-innovadora-arquitectura-de-propulsion-de-aeronaves-mediante-hidrogeno-nacida-en-la-etsi)
-10. [https://www.capgemini.com/es-es/investigacion/perspectivas-de-expertos/sistemas-de-energia-en-las-aeronaves-del-futuro-basados-en-hidrogeno/](https://www.capgemini.com/es-es/investigacion/perspectivas-de-expertos/sistemas-de-energia-en-las-aeronaves-del-futuro-basados-en-hidrogeno/)
-11. [https://fuelnature.es/saf-sintetico-y-e-saf-el-papel-del-hidrogeno-verde-en-la-aviacion-del-futuro/](https://fuelnature.es/saf-sintetico-y-e-saf-el-papel-del-hidrogeno-verde-en-la-aviacion-del-futuro/)
-12. [https://www.aviacionline.com/airbus-prueba-el-motor-open-fan-de-cfm-en-un-a380-para-avanzar-hacia-una-aviacion-mas-eficiente](https://www.aviacionline.com/airbus-prueba-el-motor-open-fan-de-cfm-en-un-a380-para-avanzar-hacia-una-aviacion-mas-eficiente)
+**References**: see numbered links in the original README for background sources.
 
 ---
 
-## Extended materials (full reference)
-
-### Packs & Engineering Constructs
-
-| Code     | Name                                      | Description / Notes                                                                                 |
-| -------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| CAx      | Computer‑Aided X                          | Umbrella for CAD/CAE/CAM/CFD; shared data patterns and exchange.                                    |
-| QOx      | Quantum Optimizations                     | Variational, annealing, and quantum‑inspired optimization for design, routing, scheduling, packing. |
-| PAx      | Packaging & Assemblies                    | Orientation markers: **ONB** = Onboard, **OUT** = Outboard.                                         |
-| CAD      | Computer‑Aided Design                     | Geometry, parametrics, drawings.                                                                    |
-| CAE      | Computer‑Aided Engineering                | Analysis and simulation.                                                                            |
-| CAM      | Computer‑Aided Manufacturing              | NC/toolpaths and manufacturing plans.                                                               |
-| CAI      | Computer‑Aided Integration & Installation | Integration, installation, testing, tooling.                                                        |
-| CFD      | Computational Fluid Dynamics              | Flow and thermal simulation.                                                                        |
-| CMP      | Configuration Management Program          | Plans, baselines, effectivity, change control.                                                      |
-| CQA      | Certification, V&V and Quality Assurance  | Compliance, verification, validation, QA.                                                           |
-| MRO      | Maintenance, Repair, Overhaul             | Service operations with evidence capture.                                                           |
-| ALAR‑CC  | As Low As Reasonable Chain Complexity     | Supply services, chain traceability, ESG.                                                           |
-| OB / OFF | Onboard / Outboard                        | Orientation tags used in PAx and tech pubs.                                                         |
-
----
+## Extended materials
 
 ### TFA Canonical Domains
 
-| Code | Domain                                 | Focus                                                   |
-| ---- | -------------------------------------- | ------------------------------------------------------- |
-| AAA  | Airframes‑Aerodynamics‑Airworthiness   | Structure, aero, certification                          |
-| AAP  | Airport‑Adaptable‑Platforms            | Ground ops, GSE                                         |
-| CCC  | Cockpit‑Cabin‑Cargo                    | Flight deck, passenger, freight                         |
-| CQH  | Cryogenics‑Quantum‑H2                  | H₂ systems, quantum tech                                |
-| DDD  | Drainage‑Dehumidification‑Drying       | Moisture control                                        |
-| EDI  | Electronics‑Digital‑Instruments        | Avionics, sensors                                       |
-| EEE  | Electrical‑Endocircular‑Energization   | Power, energy harvesting                                |
-| EER  | Environmental‑Emissions‑Remediation    | Fire, pollution, sustainability                         |
-| IIF  | Industrial‑Infrastructure‑Facilities   | Manufacturing, tooling                                  |
-| IIS  | Information‑Intelligence‑Systems       | Software, AI, cybersecurity                             |
-| LCC  | Linkages‑Control‑Communications        | Flight controls, datalinks                              |
-| LIB  | Logistics‑Inventory‑Blockchain         | Supply chain, evidence anchoring                        |
-| MMM  | Mechanical‑Material‑Modules            | Materials, mechanical, MRO                              |
-| OOO  | Operations‑Optimizations‑Orchestration | Fleet ops, Quantum Opt Material, Designs, Backends, UIs |
-| PPP  | Propulsion‑Power‑Plants                | Engines, thrust, fuel                                   |
-
-### Features and demos
-
-* **Digital Passport Dashboard**: Interactive web app for browsing and managing aerospace component digital passports. *Demo URL placeholder; see docs.*
-* **9‑Phase CAx Lifecycle**: CAD→CAE→CAM→CAI→CAV→CAP→CAS→CMP with “to‑scale” methodology.
-* **PLUMA Automation**: Product Lifecycle UiX Management Automation.
-* **Federated Learning**: Privacy‑preserving fleet‑wide intelligence.
-* **H₂ Systems Support** and energy‑harvesting for long‑life sensors.
+| Code | Domain                                 | Focus                                  |
+| ---- | -------------------------------------- | -------------------------------------- |
+| AAA  | Airframes‑Aerodynamics‑Airworthiness   | Structure, aero, certification         |
+| AAP  | Airport‑Adaptable‑Platforms            | Ground ops, GSE                        |
+| CCC  | Cockpit‑Cabin‑Cargo                    | Flight deck, passenger, freight        |
+| CQH  | Cryogenics‑Quantum‑H2                  | H₂ systems, quantum tech               |
+| DDD  | Drainage‑Dehumidification‑Drying       | Moisture control                       |
+| EDI  | Electronics‑Digital‑Instruments        | Avionics, sensors                      |
+| EEE  | Electrical‑Endocircular‑Energization   | Power, energy harvesting               |
+| EER  | Environmental‑Emissions‑Remediation    | Fire, pollution, sustainability        |
+| IIF  | Industrial‑Infrastructure‑Facilities   | Manufacturing, tooling                 |
+| IIS  | Information‑Intelligence‑Systems       | Software, AI, cybersecurity            |
+| LCC  | Linkages‑Control‑Communications        | Flight controls, datalinks             |
+| LIB  | Logistics‑Inventory‑Blockchain         | Supply chain, evidence anchoring       |
+| MMM  | Mechanical‑Material‑Modules            | Materials, mechanical, MRO             |
+| OOO  | Operations‑Optimizations‑Orchestration | Fleet ops, optimization, backends, UIs |
+| PPP  | Propulsion‑Power‑Plants                | Engines, thrust, fuel                  |
 
 ### Documentation links
 
@@ -699,15 +583,9 @@ Programs **AMBER**, **LEIA**, and **CRYOSTAR** indicate maturity (TRL 5–6) of 
 * CAx Lifecycle Overview → `/docs/cax-lifecycle/`
 * API Reference → `/docs/api/`
 
----
-
 ### QPLC: Human‑Governed AI Framework
 
-**Core principles**
-
-* Human sovereignty. Ethics engine enforces human‑first rules.
-* Safety‑bounded: quantum outputs validated against certified classical controllers.
-* Full traceability to UTCS manifests. Federated ethics learning.
+**Principles**: human sovereignty; safety‑bounded; full traceability; federated ethics learning.
 
 **Key components**
 
@@ -719,38 +597,29 @@ Programs **AMBER**, **LEIA**, and **CRYOSTAR** indicate maturity (TRL 5–6) of 
 | Human Review Portal | Interface spec               | `/00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/HUMAN_REVIEW_PORTAL.md`         |
 | PLUMA Integration   | Workflow orchestration       | `/00-PROGRAM/GOVERNANCE/QPLC_GOVERNANCE/PLUMA_INTEGRATION.md`           |
 
-**EPE rules (excerpt)**
-
-* HUM‑SAFE‑01 Safety > cost/schedule
-* PRIVACY‑05 Data minimization
-* TRANS‑06 Explainability for human‑impact decisions
-* AUTON‑09 Human oversight for critical decisions
-
-**Example implementations**: AGI‑QPLC‑CTRL (IIS), PROP‑QPLC (PPP), PWR‑QPLC (EEE), H2‑QPLC (CQH).
+**EPE rules (excerpt)**: HUM‑SAFE‑01 Safety > cost/schedule; PRIVACY‑05 Data minimization; TRANS‑06 Explainability; AUTON‑09 Human oversight.
 
 **Compliance refs**: DO‑178C, EU AI Act (high‑risk), ISO/IEC 24027, CS‑25.1309.
 
----
-
 ### Program folders
 
-* **/00-PROGRAM/** Governance, CM, QMS, standards, supply chain
+* **/00-PROGRAM/** governance, CM, QMS, standards, supply chain
 
-  * **/00-PROGRAM/BUSINESS/AAMMPP/** Aerospace Assets Mgmt, Maintenance & Procurement (canonical)
-* **/01-FLEET/** Operational data hub, MRO, federated learning
+  * **/00-PROGRAM/BUSINESS/AAMMPP/** canonical AAMMPP
+* **/01-FLEET/** ops data hub, MRO, federated learning
 * **/02‑AIRCRAFT/** AIR‑T baselines, domain integration, twin
 * **/03‑SPACECRAFT/** STA baselines, domain integration, AIT/mission
-* **/04‑SATELLITES/** Satellite product structures
-* **/05‑TELESCOPES/** Observatory payload/domain structures
-* **/06‑PROBES/** Deep‑space probes
+* **/04‑SATELLITES/** product structures
+* **/05‑TELESCOPES/** payload/domain structures
+* **/06‑PROBES/** deep‑space probes
 * **/07‑DRONES/** UAS/UAM product lines
-* **/08‑LAUNCHERS/** Launch vehicles
-* **/09‑STM‑SPACE‑STATION‑MODULES/** Station modules/segments
-* **/10‑BUSINESS/** Market, partnerships, finance
+* **/08‑LAUNCHERS/** launch vehicles
+* **/09‑STM‑SPACE‑STATION‑MODULES/** station modules/segments
+* **/10‑BUSINESS/** market, partnerships, finance
 
-  * **/10‑BUSINESS/A360‑EXCHANGES‑TT/** Commercial layer on AAMMPP
+  * **/10‑BUSINESS/A360‑EXCHANGES‑TT/** commercial layer on AAMMPP
 
-**Core patterns**
+**Core path pattern**
 
 ```
 DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT>/MODELS/<MODEL>/VERSION/<Qn>/SYSTEMS/…
@@ -775,38 +644,11 @@ Example
   └── 06-CERTIFICATIONS/
 ```
 
----
-
 ### Repository Index and Navigation
 
-**Purpose**: Navigate top‑level folders for governance, product structures, digital threads, and ops data.
+**Top‑Level**: [/00‑PROGRAM](./00-PROGRAM/) · [/01‑FLEET](./01-FLEET/) · [/02‑AIRCRAFT](./02-AIRCRAFT/) · [/03‑SPACECRAFT](./03-SPACECRAFT/) · [/04‑SATELLITES](./04-SATELLITES/) · [/05‑TELESCOPES](./05-TELESCOPES/) · [/06‑PROBES](./06-PROBES/) · [/07‑DRONES](./07-DRONES/) · [/08‑LAUNCHERS](./08-LAUNCHERS/) · [/09‑STM‑SPACE‑STATION‑MODULES](./09-STM-SPACE-STATION-MODULES/) · [/10‑BUSINESS](./10-BUSINESS/)
 
-**Top‑Level Directories**
+**Reference points**: Governance → [`/00-PROGRAM/GOVERNANCE/`](./00-PROGRAM/GOVERNANCE/); Config Mgmt → [`/00-PROGRAM/CONFIG_MGMT/`](./00-PROGRAM/CONFIG_MGMT/); ECR/ECO/CCB → `06-CHANGES/` and `05-CCB/`; Digital Thread (MBSE) → `/00-PROGRAM/DIGITAL_THREAD/04-MBSE/`; Digital Twin → `/00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/`; UTCS Registry → `/00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/`.
 
-* [/00‑PROGRAM](./00-PROGRAM/) · [/01‑FLEET](./01-FLEET/) · [/02‑AIRCRAFT](./02-AIRCRAFT/) · [/03‑SPACECRAFT](./03-SPACECRAFT/)
-* [/04‑SATELLITES](./04-SATELLITES/) · [/05‑TELESCOPES](./05-TELESCOPES/) · [/06‑PROBES](./06-PROBES/)
-* [/07‑DRONES](./07-DRONES/) · [/08‑LAUNCHERS](./08-LAUNCHERS/) · [/09‑STM‑SPACE‑STATION‑MODULES](./09-STM-SPACE-STATION-MODULES/) · [/10‑BUSINESS](./10-BUSINESS/)
-
-**Key reference points**
-
-* Governance & Policy: [`/00-PROGRAM/GOVERNANCE/`](./00-PROGRAM/GOVERNANCE/) · Config Mgmt: [`/00-PROGRAM/CONFIG_MGMT/`](./00-PROGRAM/CONFIG_MGMT/)
-* Changes: ECR/ECO/CCB → see `06-CHANGES/` and `05-CCB/`
-* Digital Thread: MBSE → `/00-PROGRAM/DIGITAL_THREAD/04-MBSE/` · Digital Twin → `/00-PROGRAM/DIGITAL_THREAD/05-DIGITAL_TWIN/`
-* Traceability: UTCS Registry → `/00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/`
-
-**Index types**
-
-* Master repo index (this block), domain indices under each subsystem, UTCS index under `.../UTCS/INDEX/`.
-
-**Navigation pattern**
-
-```
-DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT>/MODELS/<MODEL>/VERSION/<Qn>/DOMAINS/<DOMAIN>/SYSTEMS/<SYSTEM>/SUBSYSTEMS/<SUBSYSTEM>/PLM/CAx/
-```
-
-**Maintenance**
-
-* Automated updates with structure changes; manual review quarterly; baseline snapshots at milestones.
-
-
+**Index maintenance**: automated updates with structure changes; manual review quarterly; baseline snapshots at milestones.
 
