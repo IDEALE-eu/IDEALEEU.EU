@@ -1,0 +1,545 @@
+# BWB-H2-Hy-E Thermal Management Schema
+# Schema for integrated thermal management data models
+# Version: 1.0.0
+# Date: 2025-10-23
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://idealeeu.eu/schemas/bwb-h2-hy-e/thermal-management-v1.0.yaml"
+
+title: "BWB-H2-Hy-E Thermal Management Schema"
+version: "1.0.0"
+description: "Schema for thermal management systems including cryogenic cooling, fuel cell cooling, battery thermal management, and avionics cooling"
+
+type: object
+required:
+  - thermal_system_id
+  - utcs_ref
+  - tfa_domain
+  - lifecycle_state
+  - cryogenic_cooling
+  - electronics_cooling
+
+properties:
+  # Core Identity
+  thermal_system_id:
+    type: string
+    pattern: "^BWB-H2-HY-E-THERMAL-[A-Z0-9_]+-[0-9]{3,6}$"
+    description: "Unique thermal management system identifier"
+    examples:
+      - "BWB-H2-HY-E-THERMAL-CRYO-001"
+      - "BWB-H2-HY-E-THERMAL-ELEC-042"
+
+  utcs_ref:
+    type: string
+    pattern: "^UTCS-BWB-H2-HY-E-[A-Z]{3}-[A-Z0-9_]+-[0-9]{3,6}@[0-9]+\\.[0-9]+\\.[0-9]+$"
+    description: "UTCS reference for thermal management system"
+    examples:
+      - "UTCS-BWB-H2-HY-E-CQH-THERMAL-001@1.0.0"
+      - "UTCS-BWB-H2-HY-E-EEE-THERMAL-002@1.0.0"
+
+  tfa_domain:
+    type: string
+    enum: ["CQH", "EEE", "PPP"]
+    description: "TFA domain: CQH (Cryogenics), EEE (Electrical), or PPP (Propulsion)"
+
+  lifecycle_state:
+    type: string
+    enum: ["QS", "FWD", "UE", "FE", "CB", "QB"]
+    description: "Current lifecycle state in QS→QB flow"
+
+  # Cryogenic Cooling System
+  cryogenic_cooling:
+    type: object
+    required:
+      - system_type
+      - cooling_capacity_watts
+    properties:
+      system_type:
+        type: string
+        enum:
+          - "cryocooler"
+          - "liquid_nitrogen"
+          - "joule_thomson"
+          - "stirling_cycle"
+          - "pulse_tube"
+        description: "Type of cryogenic cooling system"
+      
+      cooling_capacity_watts:
+        type: number
+        minimum: 0
+        description: "Total cryogenic cooling capacity in watts"
+      
+      operating_temperature_k:
+        type: object
+        properties:
+          target:
+            type: number
+            minimum: 0
+            description: "Target operating temperature in Kelvin"
+          current:
+            type: number
+            minimum: 0
+            description: "Current operating temperature in Kelvin"
+          tolerance_k:
+            type: number
+            minimum: 0
+            description: "Temperature tolerance in Kelvin"
+      
+      hydrogen_tank_cooling:
+        type: object
+        properties:
+          tank_count:
+            type: integer
+            minimum: 1
+          heat_load_per_tank_watts:
+            type: number
+            minimum: 0
+          insulation_effectiveness_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+          boil_off_rate_kg_per_day:
+            type: number
+            minimum: 0
+      
+      cryocooler_specs:
+        type: object
+        properties:
+          model:
+            type: string
+          stages:
+            type: integer
+            minimum: 1
+          power_consumption_watts:
+            type: number
+            minimum: 0
+          cop:
+            type: number
+            minimum: 0
+            description: "Coefficient of Performance"
+          operating_hours:
+            type: number
+            minimum: 0
+          maintenance_interval_hours:
+            type: number
+            minimum: 0
+
+  # Fuel Cell Cooling System
+  fuel_cell_cooling:
+    type: object
+    properties:
+      coolant_type:
+        type: string
+        enum:
+          - "water_glycol"
+          - "dielectric_fluid"
+          - "air"
+          - "phase_change_material"
+        description: "Type of coolant used"
+      
+      heat_rejection_kw:
+        type: number
+        minimum: 0
+        description: "Heat rejection capacity in kilowatts"
+      
+      coolant_flow_rate_lpm:
+        type: number
+        minimum: 0
+        description: "Coolant flow rate in liters per minute"
+      
+      coolant_temp_c:
+        type: object
+        properties:
+          inlet:
+            type: number
+            description: "Coolant inlet temperature in Celsius"
+          outlet:
+            type: number
+            description: "Coolant outlet temperature in Celsius"
+          delta_t:
+            type: number
+            minimum: 0
+            description: "Temperature difference inlet to outlet"
+      
+      heat_exchanger:
+        type: object
+        properties:
+          type:
+            type: string
+            enum: ["plate", "shell_tube", "microchannel", "air_cooled"]
+          effectiveness_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+          pressure_drop_kpa:
+            type: number
+            minimum: 0
+      
+      pump_system:
+        type: object
+        properties:
+          pump_count:
+            type: integer
+            minimum: 1
+          flow_rate_lpm:
+            type: number
+            minimum: 0
+          pressure_head_kpa:
+            type: number
+            minimum: 0
+          power_consumption_watts:
+            type: number
+            minimum: 0
+
+  # Battery Thermal Management
+  battery_thermal_management:
+    type: object
+    properties:
+      cooling_strategy:
+        type: string
+        enum:
+          - "liquid_cooling"
+          - "air_cooling"
+          - "phase_change_material"
+          - "heat_pipe"
+          - "thermoelectric"
+        description: "Battery cooling strategy"
+      
+      target_temp_range_c:
+        type: object
+        properties:
+          min:
+            type: number
+            description: "Minimum target temperature"
+          max:
+            type: number
+            description: "Maximum target temperature"
+          optimal:
+            type: number
+            description: "Optimal operating temperature"
+      
+      current_temp_c:
+        type: object
+        properties:
+          min_cell:
+            type: number
+            description: "Minimum cell temperature"
+          max_cell:
+            type: number
+            description: "Maximum cell temperature"
+          average:
+            type: number
+            description: "Average pack temperature"
+          delta_max:
+            type: number
+            minimum: 0
+            description: "Maximum temperature difference between cells"
+      
+      heating_system:
+        type: object
+        properties:
+          enabled:
+            type: boolean
+          type:
+            type: string
+            enum: ["resistive", "pcm", "coolant"]
+          heating_capacity_watts:
+            type: number
+            minimum: 0
+      
+      cooling_capacity_kw:
+        type: number
+        minimum: 0
+        description: "Battery cooling capacity in kilowatts"
+      
+      thermal_management_power_watts:
+        type: number
+        minimum: 0
+        description: "Power consumed by thermal management system"
+
+  # Electronics Cooling
+  electronics_cooling:
+    type: object
+    required:
+      - avionics_cooling
+      - power_electronics_cooling
+    properties:
+      avionics_cooling:
+        type: object
+        properties:
+          cooling_type:
+            type: string
+            enum: ["forced_air", "liquid", "conduction", "natural_convection"]
+          heat_load_watts:
+            type: number
+            minimum: 0
+          max_component_temp_c:
+            type: number
+          ambient_temp_c:
+            type: number
+          cooling_efficiency_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+      
+      power_electronics_cooling:
+        type: object
+        properties:
+          inverter_cooling:
+            type: object
+            properties:
+              cooling_type:
+                type: string
+                enum: ["liquid", "air", "direct_substrate"]
+              heat_dissipation_kw:
+                type: number
+                minimum: 0
+              junction_temp_c:
+                type: number
+              coolant_flow_lpm:
+                type: number
+                minimum: 0
+          
+          converter_cooling:
+            type: object
+            properties:
+              cooling_type:
+                type: string
+              heat_dissipation_kw:
+                type: number
+                minimum: 0
+              efficiency_percent:
+                type: number
+                minimum: 0
+                maximum: 100
+
+  # Integrated Thermal Management
+  integrated_system:
+    type: object
+    properties:
+      total_heat_rejection_kw:
+        type: number
+        minimum: 0
+        description: "Total system heat rejection in kilowatts"
+      
+      heat_sources:
+        type: array
+        items:
+          type: object
+          properties:
+            source_name:
+              type: string
+            heat_load_kw:
+              type: number
+              minimum: 0
+            temperature_c:
+              type: number
+      
+      heat_sinks:
+        type: array
+        items:
+          type: object
+          properties:
+            sink_name:
+              type: string
+            sink_type:
+              type: string
+              enum: ["ram_air", "ambient", "fuel_tank", "radiator", "evaporator"]
+            heat_rejection_kw:
+              type: number
+              minimum: 0
+      
+      thermal_bus_architecture:
+        type: string
+        enum:
+          - "centralized"
+          - "distributed"
+          - "hierarchical"
+        description: "Thermal bus architecture configuration"
+      
+      thermal_management_weight_kg:
+        type: number
+        minimum: 0
+        description: "Total weight of thermal management system"
+      
+      thermal_management_power_consumption_kw:
+        type: number
+        minimum: 0
+        description: "Power consumed by thermal management"
+
+  # Performance Monitoring
+  performance:
+    type: object
+    properties:
+      system_cop:
+        type: number
+        minimum: 0
+        description: "Overall system Coefficient of Performance"
+      
+      thermal_efficiency_percent:
+        type: number
+        minimum: 0
+        maximum: 100
+        description: "Thermal management system efficiency"
+      
+      operating_hours:
+        type: number
+        minimum: 0
+        description: "Total operating hours"
+      
+      fault_events:
+        type: array
+        items:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            fault_type:
+              type: string
+              enum:
+                - "over_temperature"
+                - "under_temperature"
+                - "coolant_leak"
+                - "pump_failure"
+                - "sensor_fault"
+            severity:
+              type: string
+              enum: ["minor", "major", "critical"]
+            resolution:
+              type: string
+      
+      temperature_excursions:
+        type: integer
+        minimum: 0
+        description: "Number of temperature excursion events"
+
+  # Safety Systems
+  safety:
+    type: object
+    properties:
+      over_temperature_protection:
+        type: object
+        properties:
+          enabled:
+            type: boolean
+          trip_temp_c:
+            type: number
+          auto_shutdown:
+            type: boolean
+      
+      leak_detection:
+        type: object
+        properties:
+          enabled:
+            type: boolean
+          sensor_count:
+            type: integer
+            minimum: 0
+          last_test:
+            type: string
+            format: date-time
+      
+      redundancy:
+        type: object
+        properties:
+          cooling_loops:
+            type: integer
+            minimum: 1
+          pumps:
+            type: integer
+            minimum: 1
+          sensors:
+            type: integer
+            minimum: 1
+      
+      emergency_cooling:
+        type: object
+        properties:
+          available:
+            type: boolean
+          type:
+            type: string
+            enum: ["backup_loop", "passive_cooling", "emergency_radiator"]
+          capacity_kw:
+            type: number
+            minimum: 0
+
+  # Maintenance
+  maintenance:
+    type: object
+    properties:
+      next_service:
+        type: string
+        format: date
+      
+      coolant_service:
+        type: object
+        properties:
+          last_change:
+            type: string
+            format: date
+          change_interval_hours:
+            type: number
+            minimum: 0
+          coolant_condition:
+            type: string
+            enum: ["excellent", "good", "marginal", "replace"]
+      
+      filter_replacement:
+        type: object
+        properties:
+          last_replacement:
+            type: string
+            format: date
+          replacement_interval_hours:
+            type: number
+            minimum: 0
+      
+      sensor_calibration:
+        type: object
+        properties:
+          last_calibration:
+            type: string
+            format: date
+          calibration_interval_months:
+            type: integer
+            minimum: 1
+          sensors_due_calibration:
+            type: integer
+            minimum: 0
+
+  # Compliance
+  compliance:
+    type: object
+    properties:
+      standards:
+        type: array
+        items:
+          type: string
+        examples:
+          - "SAE AS6171 - Thermal Management Systems"
+          - "MIL-STD-810 - Environmental Engineering"
+          - "DO-160 - Environmental Conditions"
+      
+      thermal_analysis_report:
+        type: string
+        description: "Reference to thermal analysis report"
+
+  # Metadata
+  metadata:
+    type: object
+    properties:
+      created_date:
+        type: string
+        format: date-time
+      updated_date:
+        type: string
+        format: date-time
+      created_by:
+        type: string
+      schema_version:
+        type: string
+        pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+
+additionalProperties: false

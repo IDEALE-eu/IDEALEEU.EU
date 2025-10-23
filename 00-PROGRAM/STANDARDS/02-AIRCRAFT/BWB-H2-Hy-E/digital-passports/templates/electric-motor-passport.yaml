@@ -1,0 +1,67 @@
+# Electric Motor Digital Passport Template
+# BWB-H2-Hy-E Architecture - Version: 1.0.0
+
+utcs_ref: "UTCS-BWB-H2-HY-E-PPP-MOTOR-{TYPE}-{SERIAL}@1.0.0"
+utcs_schema: "1.1.0"
+type: "aerospace-component"
+anchor: "AAMMPP/ASSETS/PPP/MOTOR/{MOTOR_ID}"
+tfa_domain: "PPP"
+lifecycle_state: "UE"
+architecture: "BWB-H2-Hy-E"
+
+asset_identity:
+  part_number: "{MANUFACTURER_PN}"
+  serial_number: "{SERIAL_NUMBER}"
+  manufacture_date: "{YYYY-MM-DD}"
+  manufacturer: "{OEM_NAME}"
+  description: "Electric Motor for BWB-H2-Hy-E Distributed Electric Propulsion"
+
+bwb_h2_hy_e_specific:
+  component_category: "electric_motor"
+  electric_motor:
+    motor_designation: "MOTOR-{TYPE}-{NNN}"
+    motor_type: "permanent_magnet_synchronous"
+    rated_power_kw: 100.0
+    max_torque_nm: 500.0
+    rated_speed_rpm: 1900.0
+    location: "wing_distributed"
+    propeller_diameter_m: 2.5
+    cooling_type: "liquid_cooled"
+
+electric_motors:
+  motor_count: 1
+  motor_type: "permanent_magnet_synchronous"
+  rated_power_kw_per_motor: 100.0
+  max_torque_nm: 500.0
+  rated_speed_rpm: 1900.0
+  max_speed_rpm: 2200.0
+  efficiency_percent:
+    rated: 96.0
+    peak: 97.0
+  cooling_system:
+    cooling_type: "liquid_cooled"
+    operating_temp_c:
+      nominal: 80.0
+      max: 120.0
+      current: 85.0
+  motor_configuration: "wing_distributed"
+  propeller_interface:
+    propeller_type: "variable_pitch"
+    diameter_m: 2.5
+    blade_count: 4
+
+maintenance:
+  next_inspection: "{YYYY-MM-DD}"
+  motor_inspection:
+    last_inspection: "{YYYY-MM-DD}"
+    inspection_interval_flight_hours: 500.0
+    bearing_condition: "excellent"
+
+digital_passport:
+  registry: "HUELLΔ"
+  badge: "AAMMPP-PPP-MOTOR-{MOTOR_ID}"
+
+metadata:
+  created_date: "{YYYY-MM-DDTHH:MM:SSZ}"
+  version: "1.0.0"
+  architecture_version: "Q100_STD01"

@@ -1,0 +1,244 @@
+# Hydrogen Storage Tank Digital Passport Template
+# BWB-H2-Hy-E Architecture
+# Version: 1.0.0
+# Date: 2025-10-23
+
+# Core UTCS Identity
+utcs_ref: "UTCS-BWB-H2-HY-E-CQH-H2_TANK-{TANK_ID}-{SERIAL}@1.0.0"
+utcs_schema: "1.1.0"
+type: "aerospace-component"
+anchor: "AAMMPP/ASSETS/CQH/H2_STORAGE/TANK/{TANK_ID}"
+tfa_domain: "CQH"
+lifecycle_state: "UE"  # Unit Element - fundamental component
+
+# Architecture
+architecture: "BWB-H2-Hy-E"
+
+# Asset Identity
+asset_identity:
+  part_number: "{MANUFACTURER_PN}"
+  serial_number: "{SERIAL_NUMBER}"
+  lot_number: "{LOT_NUMBER}"
+  manufacture_date: "{YYYY-MM-DD}"
+  manufacturer: "{OEM_NAME}"
+  description: "Cryogenic Hydrogen Storage Tank for BWB-H2-Hy-E Aircraft"
+
+# BWB-H2-Hy-E Specific
+bwb_h2_hy_e_specific:
+  component_category: "hydrogen_storage"
+  
+  hydrogen_storage_tank:
+    tank_designation: "TANK-{NN}-{L|R}-{NNN}"  # e.g., TANK-01-L-001
+    storage_capacity_kg: 150.0  # Example: 150 kg hydrogen
+    pressure_rating_bar: 350.0  # Example: 350 bar for compressed gas
+    cryogenic_capable: true
+    location: "wing_root"  # wing_root | center_body | aft_fuselage | distributed
+    certification:
+      pressure_vessel_cert: "PV-{CERT_NUMBER}"
+      cert_authority: "ASME/DOT/UN"
+      expiry_date: "{YYYY-MM-DD}"
+
+# Hydrogen Storage Subsystem Data
+subsystem_id: "BWB-H2-HY-E-H2-TANK-{TANK_ID}"
+
+hydrogen_storage:
+  tank_type: "cryogenic_liquid"  # cryogenic_liquid | compressed_gas_350bar | compressed_gas_700bar
+  
+  storage_pressure:
+    nominal_bar: 5.0  # For liquid hydrogen
+    max_working_bar: 10.0
+    current_bar: 5.2
+  
+  storage_temperature:
+    nominal_k: 20.0  # -253°C for liquid H2
+    min_k: 18.0
+    max_k: 22.0
+    current_k: 20.1
+  
+  capacity_kg: 150.0
+  current_level_kg: 142.5  # 95% full
+  
+  tank_material: "carbon_fiber_composite"  # aluminum_lined_composite | carbon_fiber_composite | stainless_steel | titanium
+  insulation_type: "vacuum_insulated"  # vacuum_insulated | multi_layer_insulation | aerogel_composite
+
+# Distribution (if tank includes distribution connections)
+distribution:
+  pipeline_material: "stainless_steel_316L"
+  valve_count: 4
+  pressure_regulator_stages: 2
+  leak_detection_zones: 3
+
+# Safety Systems
+safety_systems:
+  safety_interlocks:
+    interlock_count: 6
+    interlock_status:
+      - interlock_id: "IL-TANK-01-PRESS"
+        name: "Over-pressure protection"
+        status: "armed"
+        last_test: "{YYYY-MM-DDTHH:MM:SSZ}"
+      - interlock_id: "IL-TANK-01-TEMP"
+        name: "Over-temperature protection"
+        status: "armed"
+        last_test: "{YYYY-MM-DDTHH:MM:SSZ}"
+      - interlock_id: "IL-TANK-01-LEAK"
+        name: "Leak detection interlock"
+        status: "armed"
+        last_test: "{YYYY-MM-DDTHH:MM:SSZ}"
+  
+  emergency_venting:
+    vent_valve_count: 2
+    auto_vent_enabled: true
+    vent_trigger_pressure_bar: 12.0
+    vent_trigger_temperature_k: 25.0
+    last_vent_test: "{YYYY-MM-DDTHH:MM:SSZ}"
+  
+  leak_detection:
+    sensor_type:
+      - "electrochemical"
+      - "thermal_conductivity"
+    sensor_locations:
+      - location_id: "SENSOR-TANK-01-TOP"
+        zone: "upper_dome"
+        sensor_type: "electrochemical"
+        status: "operational"
+        last_calibration: "{YYYY-MM-DD}"
+      - location_id: "SENSOR-TANK-01-MID"
+        zone: "cylinder"
+        sensor_type: "thermal_conductivity"
+        status: "operational"
+        last_calibration: "{YYYY-MM-DD}"
+      - location_id: "SENSOR-TANK-01-BTM"
+        zone: "lower_dome"
+        sensor_type: "electrochemical"
+        status: "operational"
+        last_calibration: "{YYYY-MM-DD}"
+    alarm_threshold_ppm: 1000  # 1000 ppm H2
+  
+  fire_suppression:
+    system_type: "inert_gas"
+    zones_protected: 1
+    last_inspection: "{YYYY-MM-DD}"
+
+# Thermal Management
+thermal_management:
+  cooling_method: "active_refrigeration"
+  boil_off_rate_kg_per_hour: 0.5  # 0.5 kg/hour
+  heat_load_watts: 50.0
+  cooling_power_watts: 100.0
+
+# Maintenance
+maintenance:
+  next_inspection: "{YYYY-MM-DD}"
+  
+  cryogenic_seal_inspection:
+    last_inspection: "{YYYY-MM-DD}"
+    inspection_interval_days: 90
+    seal_condition: "excellent"  # excellent | good | fair | replace_required
+  
+  pressure_vessel_certification:
+    cert_number: "PV-{CERT_NUMBER}"
+    issue_date: "{YYYY-MM-DD}"
+    expiry_date: "{YYYY-MM-DD}"
+    certifying_authority: "ASME Section X / DOT / UN"
+  
+  maintenance_history: []
+    # Example entry:
+    # - date: "2025-10-15T14:30:00Z"
+    #   type: "inspection"
+    #   technician: "TECH-001"
+    #   notes: "Annual inspection completed. All systems nominal."
+
+# Compliance
+compliance:
+  standards:
+    - "SAE J2579 - Fuel Systems in Fuel Cell Vehicles"
+    - "ISO 19881 - Gaseous hydrogen - Land vehicle fuel containers"
+    - "ISO 19882 - Thermally activated pressure relief devices"
+    - "EASA SC-H2 - Hydrogen Propulsion"
+    - "FAA Special Conditions - Hydrogen Fuel Systems"
+  
+  certification_basis:
+    - "EASA CS-25"
+    - "FAA 14 CFR Part 25"
+  
+  hazard_analysis: "HAZARD-BWB-H2-TANK-{TANK_ID}-v1.0"
+
+# Performance Monitoring
+performance:
+  total_hydrogen_consumed_kg: 0.0  # Initialize at 0 for new tank
+  refueling_cycles: 0
+  average_consumption_rate_kg_per_hour: 0.0
+  system_efficiency_percent: 98.5
+
+# Safety & Certification
+bwb_h2_hy_e_safety:
+  hydrogen_safety:
+    hazard_classification: "catastrophic"  # Hydrogen leak or rupture
+    safety_interlocks:
+      - interlock_id: "IL-TANK-01-PRESS"
+        function: "Over-pressure shutdown"
+        status: "armed"
+      - interlock_id: "IL-TANK-01-TEMP"
+        function: "Over-temperature shutdown"
+        status: "armed"
+      - interlock_id: "IL-TANK-01-LEAK"
+        function: "Leak detection shutdown"
+        status: "armed"
+    leak_detection_zones: 3
+    emergency_venting: true
+    hydrogen_sensors: 3
+
+# Performance & Operational Data
+bwb_h2_hy_e_performance:
+  operational_hours: 0.0
+  mission_cycles: 0
+  efficiency_metrics:
+    current_efficiency_percent: 98.5
+    baseline_efficiency_percent: 99.0
+    degradation_trend: "stable"
+  environmental_exposure:
+    temperature_cycles: 0
+    pressure_cycles: 0
+    vibration_hours: 0.0
+
+# Digital Passport
+digital_passport:
+  registry: "HUELLΔ"
+  badge: "AAMMPP-CQH-H2_TANK-{TANK_ID}"
+  verification_url: "https://aammpp.idealeeu.eu/verify/{UTCS_REF}"
+  qr_code: "{QR_CODE_DATA}"
+  nfc_uid: "{NFC_TAG_UID}"
+
+# Metadata
+metadata:
+  created_date: "{YYYY-MM-DDTHH:MM:SSZ}"
+  updated_date: "{YYYY-MM-DDTHH:MM:SSZ}"
+  created_by: "{USER_ID}"
+  updated_by: "{USER_ID}"
+  version: "1.0.0"
+  checksum: "{SHA256_CHECKSUM}"
+  architecture_version: "Q100_STD01"
+  certification_date: "{YYYY-MM-DD}"
+  manufacturer_specific:
+    oem: "{OEM_NAME}"
+    part_number: "{MANUFACTURER_PN}"
+    manufacturing_date: "{YYYY-MM-DD}"
+    manufacturing_location: "{LOCATION}"
+
+# Template Instructions
+# Replace all {PLACEHOLDER} values with actual data:
+# - {TANK_ID}: Tank identifier (e.g., "001", "002")
+# - {SERIAL}: Serial number
+# - {MANUFACTURER_PN}: Manufacturer part number
+# - {SERIAL_NUMBER}: Full serial number
+# - {LOT_NUMBER}: Manufacturing lot number
+# - {YYYY-MM-DD}: Dates in ISO 8601 format
+# - {YYYY-MM-DDTHH:MM:SSZ}: Date-times in ISO 8601 format with timezone
+# - {OEM_NAME}: Original Equipment Manufacturer name
+# - {CERT_NUMBER}: Certification number
+# - {QR_CODE_DATA}: QR code data string
+# - {NFC_TAG_UID}: NFC tag unique identifier
+# - {SHA256_CHECKSUM}: SHA-256 checksum of passport data
+# - {USER_ID}: User creating/updating the passport
+# - {LOCATION}: Manufacturing location

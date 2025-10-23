@@ -1,0 +1,249 @@
+# Fuel Cell Stack Digital Passport Template
+# BWB-H2-Hy-E Architecture
+# Version: 1.0.0
+# Date: 2025-10-23
+
+# Core UTCS Identity
+utcs_ref: "UTCS-BWB-H2-HY-E-PPP-FUELCELL-{FC_TYPE}-{SERIAL}@1.0.0"
+utcs_schema: "1.1.0"
+type: "aerospace-component"
+anchor: "AAMMPP/ASSETS/PPP/FUEL_CELL/STACK/{FC_ID}"
+tfa_domain: "PPP"
+lifecycle_state: "UE"
+
+# Architecture
+architecture: "BWB-H2-Hy-E"
+
+# Asset Identity
+asset_identity:
+  part_number: "{MANUFACTURER_PN}"
+  serial_number: "{SERIAL_NUMBER}"
+  lot_number: "{LOT_NUMBER}"
+  manufacture_date: "{YYYY-MM-DD}"
+  manufacturer: "{OEM_NAME}"
+  description: "Fuel Cell Stack for BWB-H2-Hy-E Hybrid Electric Propulsion"
+
+# BWB-H2-Hy-E Specific
+bwb_h2_hy_e_specific:
+  component_category: "fuel_cell"
+  
+  fuel_cell_stack:
+    stack_designation: "FC-{TYPE}-{NNN}"  # e.g., FC-PEM-001
+    cell_type: "PEM"  # PEM | SOFC | AFC | PAFC
+    rated_power_kw: 250.0  # Example: 250 kW per stack
+    stack_voltage_v: 400.0
+    cell_count: 400
+    location: "center_body"  # center_body | wing_pod | aft_compartment
+    operating_temp_range_c:
+      min: 60.0
+      max: 80.0
+    performance_degradation:
+      initial_power_kw: 250.0
+      current_power_kw: 248.5  # Slight degradation
+      operating_hours: 500.0
+      degradation_rate_percent_per_1000h: 0.6
+
+# Propulsion System Data
+propulsion_id: "BWB-H2-HY-E-PROP-FC-{FC_ID}"
+
+fuel_cell_system:
+  fuel_cell_type: "PEM"  # PEM | SOFC | AFC | PAFC
+  stack_count: 1
+  rated_power_kw: 250.0
+  
+  operating_voltage_v:
+    nominal: 400.0
+    min: 320.0
+    max: 480.0
+    current: 405.0
+  
+  operating_current_a:
+    nominal: 625.0
+    max_continuous: 750.0
+    peak: 875.0
+    current: 615.0
+  
+  efficiency_percent:
+    rated: 55.0
+    current: 54.2
+  
+  operating_temperature_c:
+    nominal: 70.0
+    min: 60.0
+    max: 80.0
+    current: 72.5
+  
+  stack_degradation:
+    initial_performance_kw: 250.0
+    current_performance_kw: 248.5
+    degradation_rate_percent_per_1000h: 0.6
+    total_operating_hours: 500.0
+    estimated_remaining_life_hours: 9500.0
+  
+  coolant_system:
+    coolant_type: "water_glycol_50_50"
+    flow_rate_lpm: 45.0
+    inlet_temp_c: 65.0
+    outlet_temp_c: 75.0
+
+# Performance Monitoring
+performance:
+  total_energy_produced_kwh: 125000.0
+  total_energy_consumed_kwh: 0.0  # N/A for fuel cell (producer)
+  flight_hours: 500.0
+  power_cycles: 250
+  average_power_output_kw: 220.0
+  peak_power_recorded_kw: 260.0
+
+# Safety & Control
+safety:
+  emergency_shutdown_systems: 2
+  redundancy_level: "dual"
+  fault_detection:
+    enabled: true
+    diagnostic_coverage_percent: 95.0
+  fail_safe_modes:
+    - "reduced_power_mode"
+    - "emergency_shutdown"
+    - "cell_bypass_mode"
+
+# Maintenance
+maintenance:
+  next_inspection: "{YYYY-MM-DD}"
+  
+  fuel_cell_performance_check:
+    last_check: "{YYYY-MM-DD}"
+    check_interval_flight_hours: 100.0
+    performance_trend: "stable"  # stable | degrading | critical
+  
+  maintenance_history: []
+    # Example entry:
+    # - date: "2025-10-10T10:00:00Z"
+    #   type: "inspection"
+    #   technician: "TECH-FC-001"
+    #   notes: "Performance check completed. Stack operating normally."
+
+# Compliance
+compliance:
+  standards:
+    - "SAE ARP5150 - Safety Assessment for Civil Airborne Systems"
+    - "DO-160 - Environmental Conditions for Airborne Equipment"
+    - "DO-254 - Hardware Design Assurance"
+    - "EASA SC-H2 - Hydrogen Propulsion Special Conditions"
+    - "SAE J2615 - Performance Test for Fuel Cell Systems"
+  
+  certification_basis:
+    - "EASA CS-25"
+    - "FAA 14 CFR Part 25"
+  
+  dal_level: "B"  # Design Assurance Level B (hazardous failure)
+
+# Safety & Certification
+bwb_h2_hy_e_safety:
+  hydrogen_safety:
+    hazard_classification: "hazardous"
+    safety_interlocks:
+      - interlock_id: "IL-FC-01-TEMP"
+        function: "Over-temperature shutdown"
+        status: "armed"
+      - interlock_id: "IL-FC-01-H2LEAK"
+        function: "Hydrogen leak detection"
+        status: "armed"
+    leak_detection_zones: 2
+    emergency_venting: true
+    hydrogen_sensors: 2
+  
+  electrical_safety:
+    high_voltage_isolation: true
+    ground_fault_detection: true
+    arc_fault_protection: true
+    emergency_disconnect: true
+
+# Performance & Operational Data
+bwb_h2_hy_e_performance:
+  operational_hours: 500.0
+  mission_cycles: 250
+  efficiency_metrics:
+    current_efficiency_percent: 54.2
+    baseline_efficiency_percent: 55.0
+    degradation_trend: "stable"
+  environmental_exposure:
+    temperature_cycles: 500
+    pressure_cycles: 0
+    vibration_hours: 500.0
+
+# System Interfaces
+system_interfaces:
+  electrical_interfaces:
+    - interface_id: "ELEC-FC-OUT-MAIN"
+      voltage_v: 400.0
+      current_rating_a: 750.0
+      connector_type: "High-power DC connector"
+  
+  mechanical_interfaces:
+    - interface_id: "MECH-FC-MOUNT-01"
+      mount_type: "vibration_isolated"
+      load_rating_kg: 500.0
+  
+  fluid_interfaces:
+    - interface_id: "FLUID-FC-H2-IN"
+      fluid_type: "hydrogen"
+      pressure_rating_bar: 10.0
+      flow_rate_lpm: 25.0
+    - interface_id: "FLUID-FC-COOL-IN"
+      fluid_type: "coolant"
+      pressure_rating_bar: 3.0
+      flow_rate_lpm: 45.0
+    - interface_id: "FLUID-FC-COOL-OUT"
+      fluid_type: "coolant"
+      pressure_rating_bar: 2.5
+      flow_rate_lpm: 45.0
+  
+  data_interfaces:
+    - interface_id: "DATA-FC-CAN-01"
+      protocol: "CAN"
+      data_rate_mbps: 1.0
+    - interface_id: "DATA-FC-ETH-01"
+      protocol: "Ethernet"
+      data_rate_mbps: 100.0
+
+# Digital Passport
+digital_passport:
+  registry: "HUELLΔ"
+  badge: "AAMMPP-PPP-FUELCELL-{FC_TYPE}-{FC_ID}"
+  verification_url: "https://aammpp.idealeeu.eu/verify/{UTCS_REF}"
+  qr_code: "{QR_CODE_DATA}"
+  nfc_uid: "{NFC_TAG_UID}"
+
+# Metadata
+metadata:
+  created_date: "{YYYY-MM-DDTHH:MM:SSZ}"
+  updated_date: "{YYYY-MM-DDTHH:MM:SSZ}"
+  created_by: "{USER_ID}"
+  updated_by: "{USER_ID}"
+  version: "1.0.0"
+  checksum: "{SHA256_CHECKSUM}"
+  architecture_version: "Q100_STD01"
+  certification_date: "{YYYY-MM-DD}"
+  manufacturer_specific:
+    oem: "{OEM_NAME}"
+    part_number: "{MANUFACTURER_PN}"
+    manufacturing_date: "{YYYY-MM-DD}"
+    manufacturing_location: "{LOCATION}"
+
+# Template Instructions
+# Replace all {PLACEHOLDER} values with actual data:
+# - {FC_ID}: Fuel cell stack identifier
+# - {FC_TYPE}: Fuel cell type (PEM, SOFC, etc.)
+# - {SERIAL}: Serial number
+# - {MANUFACTURER_PN}: Manufacturer part number
+# - {SERIAL_NUMBER}: Full serial number
+# - {LOT_NUMBER}: Manufacturing lot number
+# - {YYYY-MM-DD}: Dates in ISO 8601 format
+# - {YYYY-MM-DDTHH:MM:SSZ}: Date-times in ISO 8601 format
+# - {OEM_NAME}: Original Equipment Manufacturer name
+# - {QR_CODE_DATA}: QR code data string
+# - {NFC_TAG_UID}: NFC tag unique identifier
+# - {SHA256_CHECKSUM}: SHA-256 checksum of passport data
+# - {USER_ID}: User creating/updating the passport
+# - {LOCATION}: Manufacturing location
