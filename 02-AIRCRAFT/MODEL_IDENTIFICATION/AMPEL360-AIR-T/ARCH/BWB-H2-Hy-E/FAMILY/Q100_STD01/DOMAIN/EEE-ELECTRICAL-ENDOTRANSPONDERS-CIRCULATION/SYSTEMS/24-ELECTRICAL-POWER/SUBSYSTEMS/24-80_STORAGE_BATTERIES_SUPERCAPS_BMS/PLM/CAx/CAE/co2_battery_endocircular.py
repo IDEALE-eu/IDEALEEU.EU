@@ -107,6 +107,9 @@ class CO2Properties:
         """
         Determine CO₂ phase based on temperature and pressure.
         
+        Note: This is a simplified model. For production use, employ CoolProp
+        or REFPROP for accurate phase determination along saturation curves.
+        
         Args:
             temp_c: Temperature in Celsius
             pressure_bar: Pressure in bar
@@ -114,27 +117,35 @@ class CO2Properties:
         Returns:
             CO2Phase enum value
         """
-        # Supercritical
+        # Supercritical: both T and P above critical point
         if temp_c > cls.T_CRITICAL_C and pressure_bar > cls.P_CRITICAL_BAR:
             return CO2Phase.SUPERCRITICAL
         
-        # Below triple point pressure → solid or gas
+        # Below triple point pressure → solid (sublimation region) or gas
         if pressure_bar < cls.P_TRIPLE_BAR:
             if temp_c < cls.T_SUBLIMATION_1ATM_C:
                 return CO2Phase.SOLID
             else:
                 return CO2Phase.GAS
         
-        # Above triple point
+        # Below triple point temperature → solid
         if temp_c < cls.T_TRIPLE_C:
             return CO2Phase.SOLID
-        elif temp_c < cls.T_CRITICAL_C and pressure_bar < cls.P_CRITICAL_BAR:
-            # Simplified: assume liquid between triple and critical
-            if pressure_bar > 10:  # rough boundary
+        
+        # Between triple and critical point
+        # Simplified: liquid exists in pressure range between saturation curves
+        # For accurate determination, use CoolProp:
+        #   import CoolProp.CoolProp as CP
+        #   phase = CP.PropsSI('Phase','T',T_K,'P',P_Pa,'CO2')
+        if temp_c < cls.T_CRITICAL_C:
+            # Rough approximation: liquid exists above ~10 bar in this region
+            # This is oversimplified - actual saturation pressure varies with T
+            if pressure_bar > 10:
                 return CO2Phase.LIQUID
             else:
                 return CO2Phase.GAS
         else:
+            # Above critical temperature but below critical pressure
             return CO2Phase.GAS
 
 

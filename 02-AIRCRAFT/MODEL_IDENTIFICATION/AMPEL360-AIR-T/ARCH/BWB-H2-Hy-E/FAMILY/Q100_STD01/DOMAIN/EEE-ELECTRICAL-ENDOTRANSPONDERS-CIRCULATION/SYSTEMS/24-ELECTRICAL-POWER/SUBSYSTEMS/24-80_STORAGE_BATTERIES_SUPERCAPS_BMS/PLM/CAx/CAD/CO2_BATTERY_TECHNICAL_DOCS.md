@@ -9,7 +9,7 @@ The **CO₂ Endocircular Battery System** is a closed-loop energy storage soluti
 - **Closed System**: No CO₂ venting - mass is conserved throughout operation
 - **Phase-Change Storage**: Exploits latent heat of sublimation (571 kJ/kg)
 - **Multiple Cycle Options**: Sublimation, supercritical Brayton, or CAES-like pneumatic
-- **Cryogenic Operation**: Storage temperatures from -80°C to +35°C
+- **Cryogenic Operation**: Storage temperatures from -80°C to +31°C (liquid/solid), or supercritical above 31.04°C
 - **High Energy Density**: ~247 kWh/m³ thermal, 20-70 Wh/kg electrical (system-dependent)
 
 ## Thermodynamic Background
@@ -64,10 +64,12 @@ The system exploits three main phase transitions:
 ### Component Specifications
 
 #### 1. Storage Tank
-- **Function**: Hold CO₂ in solid or liquid phase
+- **Function**: Hold CO₂ in solid, liquid, or supercritical phase
 - **Materials**: Cryogenic stainless steel (316L) or aluminum alloys
 - **Insulation**: Multi-layer vacuum insulation (MLI) or foam
-- **Pressure rating**: 10-100 bar typical
+- **Pressure rating**: 
+  - Solid/liquid storage: 1-60 bar (typical 35 bar at 0°C for liquid)
+  - sCO₂ loop hardware: 80-200 bar (MAWP per component)
 - **Temperature range**: -90°C to +40°C
 
 #### 2. Evaporator/Heater
@@ -92,8 +94,8 @@ The system exploits three main phase transitions:
 #### 5. Recharge System (Compressor + Liquefaction)
 - **Function**: Return CO₂ to solid/liquid state
 - **Components**: Multi-stage compressor, aftercooler, expansion valve
-- **COP**: 1.0-2.5 (Coefficient of Performance)
-- **Energy input**: 60-100% of electrical output (system dependent)
+- **COP**: 0.8-2.0 (lower for deep cryogenic solidification, higher for liquid-only cycles)
+- **Energy input**: 50-125% of electrical output (system and temperature dependent)
 
 #### 6. Controls & Instrumentation
 - **Pressure sensors**: Cryogenic-rated, ±0.5% accuracy
@@ -136,7 +138,7 @@ The system exploits three main phase transitions:
 **Best for**: High efficiency, stationary applications, heat availability
 
 **Process**:
-1. CO₂ stored above critical point (>31°C, >74 bar)
+1. CO₂ stored above critical point (>31.04°C, >73.8 bar)
 2. Heated to 350-550°C (heat source dependent)
 3. Expanded through high-efficiency turbine
 4. Recuperator preheats incoming fluid
@@ -392,7 +394,13 @@ Example:
 - ATA Chapter 24: Electrical Power Systems
 - SAE ARP1476: Cryogenic Fluid Storage
 - ASME BPVC Section VIII: Pressure Vessels
-- ISO 14687: Gaseous Storage Safety
+- ISO 9809: Gas cylinders - Design, construction and testing
+- ISO 21013: Cryogenic vessels - Pressure-relief accessories for cryogenic service
+- ISO 4126: Safety devices for protection against excessive pressure
+- IEC 61508: Functional safety of electrical/electronic/programmable electronic safety-related systems
+- DO-160: Environmental Conditions and Test Procedures for Airborne Equipment (aircraft applications)
+- DO-178C: Software Considerations in Airborne Systems and Equipment Certification
+- ARP4754A: Guidelines for Development of Civil Aircraft and Systems
 
 ### Literature
 - Dostal, V. (2004). "A Supercritical Carbon Dioxide Cycle for Next Generation Nuclear Reactors"
