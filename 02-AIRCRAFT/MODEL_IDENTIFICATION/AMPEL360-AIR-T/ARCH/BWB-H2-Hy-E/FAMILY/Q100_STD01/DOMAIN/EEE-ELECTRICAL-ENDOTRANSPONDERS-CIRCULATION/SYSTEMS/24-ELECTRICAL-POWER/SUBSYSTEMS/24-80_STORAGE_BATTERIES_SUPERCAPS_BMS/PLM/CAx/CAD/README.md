@@ -1,131 +1,99 @@
-# CAD - 24-80_STORAGE_BATTERIES_SUPERCAPS_BMS
+# CAD
 
-## Purpose
+**Purpose**  
+Repository of CAD deliverables for this subsystem. Holds assemblies, parts, neutral exports, manufacturing drawings, models and templates required for PLM/CAx traceability and release.
 
-This directory contains CAD artifacts for the 24-80_STORAGE_BATTERIES_SUPERCAPS_BMS subsystem.
+## Top-level layout
+- `ASSEMBLIES/`  
+  Complete assembly models and subassembly folders. Each assembly must include a native assembly file, exploded view, and a `metadata.yaml`.  
+- `PARTS/`  
+  Individual part files and single-part assemblies. Include native part, 2D drawing (if applicable), and `metadata.yaml`.  
+- `MODELS/`  
+  Supporting models used for simulation, kinematic assemblies, fixtures, and reference geometry. Document model purpose in an accompanying README per model.  
+- `DRAWINGS/`  
+  Released 2D drawings in PDF and native CAD-drawing formats. Drawings must carry GD&T per ASME Y14.5 and reference the associated part/assembly.  
+- `EXPORTS/`  
+  Neutral exchange files intended for downstream consumers: `STEP AP242` (with PMI), `Parasolid`, `IGES`. Put one export per part/assembly and include an `export_recipe.txt` describing software and export settings.  
+- `TEMPLATES/`  
+  Metadata, titleblock, release checklist and template files:  
+  - `TEMPLATE_METADATA.yaml` (required fields below)  
+  - `TEMPLATE_TITLEBLOCK.<slddrw|drw|pdf>`  
+  - `RELEASE_CHECKLIST.md`  
+- `README.md`  
+  This file.
 
-Computer-Aided Design (3D models, drawings, design specifications)
+## Required metadata (`metadata.yaml` / `.json`)
+Every part/assembly must include a metadata file adjacent to the CAD file containing:
+```yaml
+part_id: string
+description: string
+revision: string   # R001
+author: string
+cad_system: string # e.g., SolidWorks 2023
+mass_kg: number
+material: string
+ebom_id: string
+approval_status: string
+last_updated: YYYY-MM-DD
+```
 
-## Scope
+## Naming convention
 
-CAD deliverables for this subsystem include:
-- Native CAD files (SolidWorks, Creo, Siemens NX)
-- Neutral formats with PMI (STEP AP242, IGES)
-- 2D manufacturing drawings (PDF/DWG)
-- Assembly and subassembly models
-- Design specifications and technical documentation
+`{PART_ID}-{DESCRIPTION}_R{REV:03d}.{ext}`
+Example: `24-80-001-Battery_Assembly_R001.step`
 
-## Contents
+## File format rules
 
-### CO₂ Endocircular Battery System - Design Specifications
+* Native CAD: keep editable native files. Include mass properties.
+* STEP AP242: mandatory for released items. Must include PMI for tolerances and annotations.
+* PDF: release copies of drawings.
+* STL: only for prototyping, with resolution stated in `metadata.yaml`.
+* Use Git LFS for native and large binaries.
 
-Complete technical design documentation for the closed-loop CO₂-based energy storage system.
+## Release checklist (minimum)
 
-**Files**:
-- `CO2_BATTERY_TECHNICAL_DOCS.md` - Complete technical reference documentation (13KB)
+* Native CAD saved and checked in.
+* STEP AP242 export with PMI.
+* 2D PDF drawing with GD&T (if applicable).
+* `metadata.yaml` present and complete.
+* Thumbnail: `thumbnail_512x512.png` next to assembly.
+* EBOM mapping updated (`EBOM_MAPPING.csv` in parent PLM/CAx folder).
+* Approvals recorded in metadata.
 
-**Documentation Includes**:
-- System architecture and component specifications
-- Operating cycles with detailed performance analysis (sublimation, sCO₂ Brayton, CAES-like)
-- Thermodynamic background and phase diagrams
-- Safety considerations and materials selection
-- Integration guidelines for aircraft systems
-- Comparison with other storage technologies
+## Export recipes
 
-**Related Files**:
-- Simulation models: `../CAE/co2_battery_endocircular.py` and `test_co2_battery.py`
-- Application examples: `../CAI/co2_battery_examples.py`
+Include `EXPORTS/export_recipe.txt` describing:
 
-**Performance Summary**:
-- Energy density: ~247 kWh/m³ (thermal)
-- Specific energy: 20-70 Wh/kg (electrical, cycle-dependent)
-- Discharge efficiency: 15-55% (cycle-dependent)
-- Round-trip efficiency: 20-70% (with heat recovery)
+* CAD system and version used.
+* Exact export steps and settings (STEP AP242 options).
+* Any post-processing used (heal, repair).
 
-## File Organization
+## Sizes and limits
 
-- Use clear, descriptive filenames with canonical spelling
-- Include revision/version in filename
-- Maintain neutral formats alongside native files
-- Document file relationships in parent README
-- Include preview images (JPEG/PNG thumbnails, exploded views for assemblies)
+* Native CAD files: prefer < 100 MB. If larger, store in PLM or LFS.
+* STEP files: prefer < 50 MB.
 
-## Naming Convention
+## Quality & standards
 
-**Pattern**: `{PART_ID}-{DESCRIPTION}_R{REV:03d}.{ext}`
+* ASME Y14.5 for GD&T.
+* STEP AP242 / ISO 10303-242 for neutral exchange.
+* AS9100 traceability and release control for aerospace deliverables.
 
-Where:
-- `PART_ID`: ATA chapter + subsystem (e.g., `24-80-001`)
-- `DESCRIPTION`: Component name with underscores (e.g., `Battery_Assembly`)
-- `REV`: 3-digit revision number (e.g., `001`, `002`)
-- `ext`: File extension
+## Traceability & EBOM
 
-**Examples**:
-- `24-80-001-Battery_Assembly_R001.step`
-- `24-80-002-Storage_Tank_R001.sldprt`
-- `24-80-003-Pressure_Vessel_Drawing_R001.pdf`
+* Ensure `ebom_id` in every `metadata.yaml`.
+* Maintain `EBOM_MAPPING.csv` at `PLM/CAx/` level with fields `part_id,plm_id,revision,comment`.
 
-## Required File Formats
+## Ownership & contacts
 
-| Format | Purpose | Requirements |
-|--------|---------|--------------|
-| Native CAD | Design intent, editability | SolidWorks/Creo/NX with mass properties |
-| STEP AP242 | Neutral exchange with PMI | Include geometric and product manufacturing information |
-| IGES | Legacy compatibility | Surfaces and wireframe |
-| Parasolid | Kernel-level exchange | Binary format (.x_t) |
-| PDF (2D) | Manufacturing drawings | ISO 128/129 compliant, readable at A3 |
-| STL | Rapid prototyping | Mesh resolution ≤ 0.1 mm |
+* CAD Owner: *Name* — *email*
+* PLM Owner: *Name* — *email*
+* CAE Owner (for models): *Name* — *email*
 
-## Technical Conventions
+## Notes
 
-- **Units**: SI (mm for length, kg for mass)
-- **Coordinate System**: Right-handed, Z-axis vertical
-- **Datum Reference**: As per ASME Y14.5-2018
-- **Mass Properties**: Required in native file metadata (mass, center of gravity, moments of inertia)
-- **Bounding Box**: Document max dimensions (X × Y × Z)
+* Document any deviation from these rules in `TEMPLATES/DEVIATIONS.md` and obtain approver sign-off.
+* Update this `README.md` whenever conventions change.
 
-## EBOM Linkage
+*Last updated: 2025-10-23*
 
-Each CAD file must reference:
-- **EBOM ID**: Unique identifier in Engineering BOM
-- **Part Number**: Matches PLM system
-- **Assembly Level**: Top, subassembly, or component
-- **Configuration**: If part has multiple variants
-
-Field mapping documented in `../../../EBOM_LINKS.md`
-
-## Revision Control
-
-- **Branch Policy**: Feature branches for design iterations
-- **Tag Pattern**: `CAD-{PART_ID}-R{REV}` (e.g., `CAD-24-80-001-R001`)
-- **Sign-off**: Design engineer + lead engineer approval required
-- **Change Management**: ECN required for released parts (see `../CMP/`)
-
-## Standards
-
-**Mandatory Compliance**:
-- ASME Y14.5-2018: Geometric Dimensioning and Tolerancing
-- ISO 128: Technical drawings - General principles
-- ISO 129: Technical drawings - Dimensioning
-- ISO 1101: Geometrical Product Specifications (GPS)
-- ISO 10303 (STEP): Industrial automation systems and integration
-- ASME BPVC Section VIII: Pressure vessel design
-- SAE ARP1476: Cryogenic fluid storage systems
-
-**Aircraft-Specific**:
-- ATA iSpec 2200: Information Standards for Aviation Maintenance
-- SAE AS9100: Quality Management Systems for Aviation
-- DO-160: Environmental conditions for airborne equipment
-
-## CAD Data Management
-
-- **Check-in Procedure**: All files via PLM system
-- **Metadata Required**: Part number, revision, author, approval status
-- **Preview Required**: 
-  - One thumbnail image (512×512 px JPEG)
-  - One exploded view for assemblies
-- **File Size Limits**: Native CAD < 100 MB, STEP < 50 MB
-
----
-
-**Last Updated**: 2025-10-23
