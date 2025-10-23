@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - IDEALE-EU</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .content { padding: 40px; }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .feature-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 LLM Playground</h1>
+            <p>Multi-tenant AI sandbox for IDEALE-EU data</p>
+        </div>
+        <div class="content">
+            <div class="features">
+                <div class="feature-card">
+                    <h3>🔒 Secure & Isolated</h3>
+                    <p>Tenant/project namespaces ensure data isolation. All interactions are audited.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎯 Context-Aware</h3>
+                    <p>RAG integration provides grounded responses based on IDEALE-EU data.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🛡️ Safety First</h3>
+                    <p>Guardrails validate inputs/outputs for security and compliance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Vector Database Adapters Requirements
+
+# PostgreSQL with pgvector
+psycopg2-binary>=2.9.9
+sqlalchemy>=2.0.0
+
+# Qdrant
+qdrant-client>=1.7.0
+
+# Core
+pydantic>=2.4.0
+numpy>=1.24.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
