@@ -1,0 +1,75 @@
+# Battery Pack Digital Passport Template
+# BWB-H2-Hy-E Architecture - Version: 1.0.0
+
+utcs_ref: "UTCS-BWB-H2-HY-E-EEE-BATTERY-{CHEM}-{SERIAL}@1.0.0"
+utcs_schema: "1.1.0"
+type: "aerospace-component"
+anchor: "AAMMPP/ASSETS/EEE/BATTERY/PACK/{BAT_ID}"
+tfa_domain: "EEE"
+lifecycle_state: "UE"
+architecture: "BWB-H2-Hy-E"
+
+asset_identity:
+  part_number: "{MANUFACTURER_PN}"
+  serial_number: "{SERIAL_NUMBER}"
+  manufacture_date: "{YYYY-MM-DD}"
+  manufacturer: "{OEM_NAME}"
+  description: "Battery Pack for BWB-H2-Hy-E Hybrid Electric Propulsion"
+
+bwb_h2_hy_e_specific:
+  component_category: "battery_pack"
+  battery_pack:
+    pack_designation: "BAT-{CHEM}-{NNN}"
+    chemistry: "lithium_ion"
+    capacity_kwh: 100.0
+    nominal_voltage_v: 800.0
+    location: "center_body"
+    state_of_health_percent: 100.0
+    cycle_count: 0
+    thermal_management_type: "liquid_cooled"
+
+battery_system:
+  battery_chemistry: "lithium_ion"
+  pack_count: 1
+  total_capacity_kwh: 100.0
+  usable_capacity_kwh: 90.0
+  state_of_charge_percent: 85.0
+  state_of_health_percent: 100.0
+  voltage_v:
+    nominal: 800.0
+    min: 640.0
+    max: 920.0
+    current: 820.0
+  max_discharge_rate_c: 3.0
+  max_charge_rate_c: 1.0
+  thermal_management:
+    cooling_type: "liquid_cooled"
+    operating_temp_range_c:
+      min: 15.0
+      max: 45.0
+    current_temp_c: 25.0
+  cycle_count: 0
+  expected_cycle_life: 3000
+
+maintenance:
+  next_inspection: "{YYYY-MM-DD}"
+  battery_health_check:
+    last_check: "{YYYY-MM-DD}"
+    check_interval_cycles: 100
+    health_status: "excellent"
+
+bwb_h2_hy_e_safety:
+  electrical_safety:
+    high_voltage_isolation: true
+    ground_fault_detection: true
+    arc_fault_protection: true
+    emergency_disconnect: true
+
+digital_passport:
+  registry: "HUELLΔ"
+  badge: "AAMMPP-EEE-BATTERY-{BAT_ID}"
+
+metadata:
+  created_date: "{YYYY-MM-DDTHH:MM:SSZ}"
+  version: "1.0.0"
+  architecture_version: "Q100_STD01"
