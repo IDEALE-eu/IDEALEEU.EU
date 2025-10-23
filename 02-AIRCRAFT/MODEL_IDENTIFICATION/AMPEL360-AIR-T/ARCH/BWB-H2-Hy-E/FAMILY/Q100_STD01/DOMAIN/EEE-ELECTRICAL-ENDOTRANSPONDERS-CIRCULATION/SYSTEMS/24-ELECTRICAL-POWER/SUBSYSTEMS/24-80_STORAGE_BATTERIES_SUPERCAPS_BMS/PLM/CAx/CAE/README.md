@@ -30,7 +30,7 @@ Thermodynamic simulation models for closed-loop CO₂-based energy storage syste
 
 ```
 CAE/
-├── co2_battery_endocircular.py    # Core simulation module
+├── co2_battery_endocircular.py    # Core 0-D/1-D thermodynamic simulation
 ├── test_co2_battery.py            # Test suite (28 tests)
 ├── requirements.txt               # Python dependencies
 ├── Dockerfile                     # Container definition
@@ -38,7 +38,22 @@ CAE/
 ├── configs/                       # Configuration examples
 │   ├── example_sublimation.yaml
 │   └── example_sco2_brayton.yaml
-└── .gitignore                     # Exclude __pycache__, .venv, etc.
+├── .gitignore                     # Exclude __pycache__, .venv, etc.
+└── cfd/                           # CFD simulation framework ⭐ NEW
+    ├── README.md                  # CFD framework documentation
+    ├── cases/                     # OpenFOAM case templates
+    │   ├── storage_tank/         # Tank CHT simulation
+    │   ├── evaporator/           # Evaporator simulation
+    │   ├── expander/             # Turbomachinery simulation
+    │   ├── condenser/            # Condenser simulation
+    │   └── full_system/          # Co-simulation with preCICE
+    ├── mesh/                      # Mesh generation
+    ├── properties/                # Thermophysical properties
+    ├── scripts/                   # Python orchestration
+    ├── validation/                # Validation cases
+    ├── results/                   # Results (gitignored)
+    ├── docker/                    # Docker configurations
+    └── requirements.txt           # CFD-specific dependencies
 ```
 
 ## Getting Started
@@ -295,14 +310,58 @@ Field mapping documented in `../../../EBOM_LINKS.md`
 **Issue**: Docker build fails  
 **Solution**: Ensure Docker daemon is running and you have sufficient permissions
 
+## CFD Simulation Framework ⭐ NEW
+
+For high-fidelity physics-based simulations, see the **CFD framework** in `cfd/`:
+
+### Overview
+
+OpenFOAM-based CFD simulations replacing simplified 0-D/1-D models with:
+- **Storage Tank**: CHT with phase change (solidification/melting)
+- **Evaporator**: Sublimation/evaporation heat transfer
+- **Expander**: Turbomachinery with real-gas effects (MRF)
+- **Condenser**: Vapor-liquid condensation
+- **Full System**: Co-simulation via preCICE
+
+### Quick Start (CFD)
+
+```bash
+# Install OpenFOAM v10 (see cfd/README.md)
+
+# Run storage tank simulation
+cd cfd/scripts
+python run_simulation.py --case storage_tank --mesh-size medium --parallel 8
+
+# Generate CoolProp property tables
+python generate_coolprop_tables.py --fluid CO2 --temp-range -100:100
+
+# Docker alternative
+cd cfd/docker
+docker build -t co2-battery-cfd -f Dockerfile.openfoam .
+docker run --rm co2-battery-cfd
+```
+
+### Key Features
+
+- **Real-gas properties**: CoolProp/REFPROP integration
+- **Phase change**: Enthalpy-porosity method
+- **Turbomachinery**: MRF for rotating machinery
+- **Co-simulation**: preCICE coupling
+- **Validation**: Benchmark cases
+
+### Documentation
+
+Complete CFD documentation: **`cfd/README.md`**
+
 ## Related Documentation
 
 - Technical specs: `../CAD/CO2_BATTERY_TECHNICAL_DOCS.md`
 - Application examples: `../CAI/co2_battery_examples.py`
 - Configuration management: `../CMP/`
 - S1000D workflows: `../CAS/`
+- **CFD simulations**: `cfd/` (NEW - high-fidelity physics-based)
 
 ---
 
 **Last Updated**: 2025-10-23  
-**README Version**: 2.0.0
+**README Version**: 2.1.0 (Added CFD framework)

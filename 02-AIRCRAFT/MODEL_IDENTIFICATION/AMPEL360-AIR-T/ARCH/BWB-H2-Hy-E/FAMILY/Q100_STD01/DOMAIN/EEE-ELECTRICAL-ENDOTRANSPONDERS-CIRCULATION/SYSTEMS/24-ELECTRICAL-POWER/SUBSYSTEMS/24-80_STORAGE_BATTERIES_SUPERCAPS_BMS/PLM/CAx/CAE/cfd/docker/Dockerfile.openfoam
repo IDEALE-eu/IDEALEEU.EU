@@ -1,0 +1,39 @@
+FROM openfoam/openfoam10-graphical-apps:latest
+
+# Maintainer
+LABEL maintainer="IDEALE-EU CAE Team"
+LABEL description="OpenFOAM + CoolProp for CO₂ battery CFD simulations"
+
+# Install Python and dependencies
+USER root
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    python3-dev \
+    build-essential \
+    wget \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python packages
+COPY requirements.txt /tmp/
+RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
+
+# Install CoolProp
+RUN pip3 install --no-cache-dir CoolProp
+
+# Install preCICE (for co-simulation)
+RUN wget -q -O - https://github.com/precice/precice/releases/download/v2.5.0/libprecice2_2.5.0_focal.deb \
+    && dpkg -i libprecice2_2.5.0_focal.deb \
+    && rm libprecice2_2.5.0_focal.deb
+
+# Create working directory
+WORKDIR /cfd
+
+# Copy CFD framework
+COPY . /cfd/
+
+# Source OpenFOAM environment
+RUN echo "source /opt/openfoam10/etc/bashrc" >> /root/.bashrc
+
+# Default command: run test simulation
+CMD ["python3", "scripts/run_simulation.py", "--case", "storage_tank", "--mesh-size", "coarse"]
