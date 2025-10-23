@@ -1,0 +1,33 @@
+{
+  "case_id": "FEA-STRESS-001",
+  "description": "Static stress analysis baseline",
+  "revision": "R001",
+  "solver": "Abaqus",
+  "solver_version": "2023",
+  "mesh_elements": 85000,
+  "element_type": "C3D10",
+  "date": "2025-10-23",
+  "mass": 15.8,
+  "mass_units": "kg",
+  "energy_kwh": 0.0,
+  "energy_units": "kWh",
+  "peak_temp_C": 20.0,
+  "temp_units": "C",
+  "mass_flow_kg_s": 0.0,
+  "flow_units": "kg/s",
+  "runtime_s": 450,
+  "runtime_units": "s",
+  "structural_metrics": {
+    "max_stress_MPa": 185.5,
+    "max_von_mises_MPa": 175.2,
+    "max_displacement_mm": 2.35,
+    "safety_factor": 1.89,
+    "yield_strength_MPa": 350.0
+  },
+  "convergence": {
+    "iterations": 12,
+    "residual": 1.5e-6,
+    "converged": true
+  },
+  "notes": "Baseline for static stress analysis. Linear elastic material model. All BCs properly constrained."
+}
