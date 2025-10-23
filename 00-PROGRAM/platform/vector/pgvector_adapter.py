@@ -63,8 +63,8 @@ class PgVectorAdapter(VectorStoreAdapter):
             conn.execute(text(f"""
                 CREATE INDEX IF NOT EXISTS {safe_name}_embedding_idx 
                 ON {safe_name} 
-                USING ivfflat (embedding vector_cosine_ops)
-                WITH (lists = 100)
+                USING hnsw (embedding vector_cosine_ops)
+                WITH (m = 16, ef_construction = 200)
             """))
             
             conn.commit()
