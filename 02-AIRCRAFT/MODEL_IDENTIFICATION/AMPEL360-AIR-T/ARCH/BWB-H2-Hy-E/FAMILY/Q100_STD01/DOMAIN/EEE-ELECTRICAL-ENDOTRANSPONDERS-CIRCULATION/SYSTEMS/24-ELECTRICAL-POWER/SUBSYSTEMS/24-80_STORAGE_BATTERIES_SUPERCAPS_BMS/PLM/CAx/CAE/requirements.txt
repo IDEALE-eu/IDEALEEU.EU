@@ -1,0 +1,23 @@
+# CO₂ Endocircular Battery System - Python Dependencies
+# Simulation and analysis requirements for CAE artifacts
+
+# Python version requirement
+# python>=3.9,<3.12
+
+# Core scientific computing
+numpy>=1.24.0,<2.0.0
+scipy>=1.10.0,<2.0.0
+
+# Thermodynamic properties (optional but recommended for production)
+# CoolProp>=6.4.1,<7.0.0  # Uncomment for accurate phase determination
+
+# Testing and quality
+pytest>=7.4.0,<8.0.0
+pytest-cov>=4.1.0,<5.0.0
+
+# Data handling
+pyyaml>=6.0.0,<7.0.0
+
+# Optional: For advanced plotting and analysis
+# matplotlib>=3.7.0,<4.0.0
+# pandas>=2.0.0,<3.0.0

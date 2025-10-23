@@ -1,0 +1,105 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  10
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      thermophysicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// CO₂ Real Gas Properties using Span-Wagner EOS
+// Temperature range: -80°C to +100°C
+// Pressure range: 1 bar to 200 bar
+
+thermoType
+{
+    type            heRhoThermo;
+    mixture         pureMixture;
+    transport       sutherland;
+    thermo          hTabular;  // Use tabulated properties from CoolProp
+    equationOfState  rhoTabular;
+    specie          specie;
+    energy          sensibleEnthalpy;
+}
+
+mixture
+{
+    specie
+    {
+        molWeight   44.01;  // CO₂ molecular weight [g/mol]
+    }
+
+    equationOfState
+    {
+        // Tabulated density from CoolProp
+        // Format: (T[K], P[Pa], rho[kg/m³])
+        table
+        (
+            // Load from external file
+            #include "$FOAM_CASE/constant/thermophysicalProperties/CO2_rho_table.dat"
+        );
+    }
+
+    thermodynamics
+    {
+        // Tabulated specific heat from CoolProp
+        // Format: (T[K], P[Pa], Cp[J/kg/K])
+        table
+        (
+            #include "$FOAM_CASE/constant/thermophysicalProperties/CO2_cp_table.dat"
+        );
+
+        Hf      0;  // Heat of formation [J/kg]
+        Sf      0;  // Entropy of formation [J/kg/K]
+    }
+
+    transport
+    {
+        // Sutherland's law for dynamic viscosity
+        // Valid for gas phase, use tabulated for liquid
+        As      1.48e-6;   // Sutherland coefficient [kg/m/s/K^0.5]
+        Ts      240.0;     // Sutherland temperature [K]
+
+        // Thermal conductivity (tabulated)
+        table
+        (
+            #include "$FOAM_CASE/constant/thermophysicalProperties/CO2_kappa_table.dat"
+        );
+    }
+}
+
+// Phase change properties (for enthalpy-porosity method)
+phaseChange
+{
+    latentHeat      571000;      // Latent heat of sublimation [J/kg]
+    Tsolidus        216.55;      // Solidus temperature [K] (triple point)
+    Tliquidus       216.55;      // Liquidus temperature [K]
+    Tsublimation    194.65;      // Sublimation temp at 1 atm [K]
+
+    // Mushy zone parameters
+    Cu              1e5;         // Mushy zone constant [1/s]
+    q               0.001;       // Solid fraction smoothing parameter
+}
+
+// Critical point
+critical
+{
+    Tc              304.19;      // Critical temperature [K]
+    Pc              7.377e6;     // Critical pressure [Pa]
+    rhoc            467.6;       // Critical density [kg/m³]
+}
+
+// Triple point
+triple
+{
+    Tt              216.55;      // Triple point temperature [K]
+    Pt              5.185e5;     // Triple point pressure [Pa]
+}
+
+// ************************************************************************* //
