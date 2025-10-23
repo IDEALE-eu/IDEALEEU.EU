@@ -1,9 +1,8 @@
 # IDEALEEU
-**Intelligence and Information, Defense, Energy, Aerospace, Logistics, ESG, Europe**.
 
 > Unified, audit‑ready platform for multi‑vehicle aerospace programs. Modules: **AMSDP** (Aerospace Material & Software Digital Passports) and **AAMMPP** (Aerospace Assets Management, Maintenance & Procurement Platform).
 
-### What IDEALEEU is
+### What IDEALE‑EU is
 
 An ESG‑first framework to design next‑generation aerospace systems and models. It uses common LLMs via a provider‑agnostic gateway, with retrieval and guardrails, and includes AMSDP and AAMMPP as reference applications implementing the framework.
 
@@ -484,6 +483,23 @@ Canonical packs used across design, analysis, production, integration, and servi
 
 ---
 
+### ALAR‑CC — As Low As Reasonable Chain Complexity
+
+| Code | Name                                     | Description / Notes                                                                                 |
+| ---- | ---------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| CAx  | Computer‑Aided Data Exchange             | Umbrella for shared data patterns and exchange.                                                     |
+| QOx  | Quantum Optimizations                    | Variational, annealing, and quantum‑inspired optimization for design, routing, scheduling, packing. |
+| PAx  | Packaging & Assemblies                   | Orientation markers: **ONB** = Onboard, **OUT** = Outboard.                                         |
+| CAD  | Computer‑Aided Design                    | Geometry, parametrics, drawings.                                                                    |
+| CAE  | Computer‑Aided Engineering               | Analysis and simulation, including FEM, CFD, FMEA, etc.                                             |
+| CAM  | Computer‑Aided Manufacturing             | NC/toolpaths and manufacturing plans. Integration, installation, testing, tooling.                  |
+| CAI  | Computer‑Aided Industrialization         | Entry‑into‑service (EIS), production plan, marketing.                                               |
+| CMP  | Configuration Management Program         | Baselines, effectivity, change control. Continuous Airworthiness.                                   |
+| CAV  | Certification, V&V and Quality Assurance | Compliance, verification, validation, QA.                                                           |
+| CAS  | Computer‑Aided Services                  | Maintenance, Repair, Overhaul. Service operations, supply services, chain traceability, ESG.        |
+
+---
+
 ## Operations
 
 * **Observability**: Structured logs, metrics, traces. Prometheus and OTLP exporters by default.
@@ -791,7 +807,6 @@ DOMAIN_INTEGRATION/PRODUCTS/<PRODUCT>/MODELS/<MODEL>/VERSION/<Qn>/DOMAINS/<DOMAI
 **Maintenance**
 
 * Automated updates with structure changes; manual review quarterly; baseline snapshots at milestones.
-
 
 
 
