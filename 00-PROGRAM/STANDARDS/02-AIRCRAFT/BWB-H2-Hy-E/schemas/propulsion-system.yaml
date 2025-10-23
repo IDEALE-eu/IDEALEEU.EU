@@ -7,8 +7,8 @@ $schema: "http://json-schema.org/draft-07/schema#"
 $id: "https://idealeeu.eu/schemas/bwb-h2-hy-e/propulsion-system-v1.0.yaml"
 
 title: "BWB-H2-Hy-E Propulsion System Interface Schema"
-version: "1.0.0"
-description: "Schema for hybrid electric propulsion system including fuel cells, batteries, and electric motors"
+version: "1.1.0"
+description: "Schema for multi-energy agnostic propulsion system including fuel cells, batteries, electric motors, SAF/e-SAF fuels, and Open Fan architecture"
 
 type: object
 required:
@@ -54,7 +54,156 @@ properties:
       - "parallel_hybrid"
       - "series_parallel_hybrid"
       - "distributed_electric"
+      - "open_fan_hybrid"
+      - "multi_energy_agnostic"
     description: "Propulsion system architecture type"
+  
+  # SAF/e-SAF Fuel System (Sustainable Aviation Fuels)
+  saf_fuel_system:
+    type: object
+    description: "SAF/e-SAF fuel system for thermal support and backup energy"
+    properties:
+      fuel_type:
+        type: string
+        enum:
+          - "SAF"  # Sustainable Aviation Fuel
+          - "e-SAF"  # electro-SAF (synthetic)
+          - "SAF_e-SAF_blend"  # Blended fuels
+          - "bio-SAF"  # Biofuel-based SAF
+        description: "Type of sustainable aviation fuel"
+      
+      tank_capacity_liters:
+        type: number
+        minimum: 0
+        description: "SAF fuel tank capacity in liters"
+      
+      current_level_liters:
+        type: number
+        minimum: 0
+        description: "Current fuel level in liters"
+      
+      fuel_flow_rate_kg_per_hour:
+        type: number
+        minimum: 0
+        description: "Fuel consumption rate in kg/hour"
+      
+      thermal_support:
+        type: boolean
+        description: "Whether SAF is used for thermal cycle stabilization"
+      
+      backup_mode:
+        type: boolean
+        description: "Whether SAF serves as backup energy source"
+      
+      compatibility:
+        type: object
+        properties:
+          open_fan_compatible:
+            type: boolean
+            description: "Compatible with Open Fan combustion"
+          hybrid_combustion:
+            type: boolean
+            description: "Can be used with H2 co-combustion"
+          turbine_type:
+            type: array
+            items:
+              type: string
+            description: "Compatible turbine types"
+            examples:
+              - ["CFM_RISE", "CATALYST", "Open_Fan_Generic"]
+      
+      emissions:
+        type: object
+        properties:
+          co2_reduction_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+            description: "CO2 reduction vs conventional Jet-A"
+          nox_reduction_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+            description: "NOx reduction vs conventional fuel"
+          lifecycle_assessment:
+            type: string
+            description: "Reference to lifecycle emissions assessment"
+  
+  # Open Fan Propulsion Module
+  open_fan_system:
+    type: object
+    description: "Open Fan (unducted fan) propulsion system configuration"
+    properties:
+      fan_configuration:
+        type: string
+        enum:
+          - "counter_rotating"
+          - "single_rotor"
+          - "distributed_fans"
+        description: "Open Fan rotor configuration"
+      
+      fan_diameter_m:
+        type: number
+        minimum: 0
+        description: "Fan diameter in meters"
+      
+      blade_count_front:
+        type: integer
+        minimum: 2
+        description: "Number of blades on front rotor"
+      
+      blade_count_rear:
+        type: integer
+        minimum: 0
+        description: "Number of blades on rear rotor (0 if single rotor)"
+      
+      bypass_ratio:
+        type: number
+        minimum: 0
+        description: "Bypass ratio of Open Fan system"
+      
+      efficiency_improvement_percent:
+        type: number
+        minimum: 0
+        description: "Efficiency improvement vs conventional turbofan (%)"
+      
+      energy_source:
+        type: array
+        items:
+          type: string
+          enum: ["H2", "SAF", "e-SAF", "electric", "hybrid"]
+        description: "Compatible energy sources for Open Fan"
+      
+      noise_reduction:
+        type: object
+        properties:
+          acoustic_treatment:
+            type: boolean
+          noise_level_db:
+            type: number
+          certification_standard:
+            type: string
+            examples:
+              - "ICAO Annex 16 Chapter 14"
+      
+      location:
+        type: string
+        enum:
+          - "aft_fuselage"
+          - "wing_mounted"
+          - "tail_mounted"
+          - "distributed"
+        description: "Physical location of Open Fan system"
+      
+      integration:
+        type: string
+        enum:
+          - "CFM_RISE"
+          - "CATALYST"
+          - "GE_Open_Fan"
+          - "Safran_ONERA"
+          - "custom"
+        description: "Open Fan technology provider/program"
 
   # Fuel Cell System
   fuel_cell_system:
@@ -185,9 +334,9 @@ properties:
           - "lithium_ion"
           - "lithium_polymer"
           - "lithium_sulfur"
-          - "solid_state"
+          - "solid_state"  # Recommended: >600 Wh/kg density, high discharge rate
           - "nickel_metal_hydride"
-        description: "Battery chemistry type"
+        description: "Battery chemistry type. Solid-state batteries recommended for >600 Wh/kg energy density, high instantaneous discharge rates, and long cycle life for peak power assist during takeoff and emergency reserves."
       
       pack_count:
         type: integer
@@ -389,7 +538,10 @@ properties:
           - "battery_primary"
           - "load_following"
           - "predictive_optimal"
-        description: "Energy management control strategy"
+          - "multi_energy_agnostic"  # AMPAS: H2 + SAF + Battery + Open Fan
+          - "hybrid_parallel"  # Simultaneous energy sources
+          - "phase_optimized"  # Different sources per flight phase
+        description: "Energy management control strategy. Multi-energy agnostic mode enables flexible operation across H2, SAF/e-SAF, solid-state batteries, and Open Fan propulsion depending on availability and flight phase."
       
       regenerative_braking:
         type: boolean

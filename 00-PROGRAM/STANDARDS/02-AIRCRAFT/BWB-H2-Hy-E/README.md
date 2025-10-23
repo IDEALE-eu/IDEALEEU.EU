@@ -1,19 +1,23 @@
 # BWB-H2-Hy-E Architecture Standards
 
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Date:** 2025-10-23  
 **Status:** Active  
-**Architecture:** Blended Wing Body with Hydrogen Hybrid Electric Propulsion
+**Architecture:** Multi-Energy Agnostic Blended Wing Body with Hydrogen, SAF/e-SAF, Solid-State Batteries, and Open Fan Propulsion
 
 ---
 
 ## Overview
 
-This directory contains the complete standards, schemas, and maintenance procedures for the BWB-H2-Hy-E aircraft architecture - a revolutionary design combining:
+This directory contains the complete standards, schemas, and maintenance procedures for the BWB-H2-Hy-E aircraft architecture - a revolutionary **multi-energy agnostic design** combining:
 
-- **BWB** (Blended Wing Body): Integrated wing-body configuration with superior aerodynamics
-- **H2** (Hydrogen): Zero-emission cryogenic hydrogen fuel system
-- **Hy-E** (Hybrid Electric): Distributed electric propulsion with fuel cells and batteries
+- **BWB** (Blended Wing Body): Integrated wing-body configuration with superior aerodynamics and reduced wetted area
+- **H2** (Hydrogen): Zero-emission cryogenic hydrogen fuel system with liquid H2 storage and fuel cells
+- **Hy-E** (Hybrid Electric): Distributed electric propulsion with fuel cells, **solid-state batteries** (>600 Wh/kg), and electric motors
+- **SAF/e-SAF** (Sustainable Aviation Fuels): Bio-based and synthetic fuels for thermal support, backup energy, and cruise optimization
+- **Open Fan**: Unducted counter-rotating fan propulsion (CFM RISE, CATALYST) with 20%+ efficiency improvement over conventional turbofans
+
+This **AMPAS (Multi-Energy Agnostic Architecture for Sustainable Aeronautical Propulsion)** approach enables flexible operation across multiple energy sources depending on availability, flight phase, and operational requirements, targeting 85-95% CO₂ reduction and transcontinental range for 100-200 passenger aircraft by 2040-2045.
 
 ---
 
@@ -23,7 +27,7 @@ This directory contains the complete standards, schemas, and maintenance procedu
 BWB-H2-Hy-E/
 ├── schemas/                          # Data model schemas (JSON Schema Draft 07)
 │   ├── hydrogen-subsystem.yaml       # Hydrogen storage & safety systems
-│   ├── propulsion-system.yaml        # Fuel cells, batteries, electric motors
+│   ├── propulsion-system.yaml        # Fuel cells, batteries, motors, SAF, Open Fan
 │   ├── thermal-management.yaml       # Integrated thermal management
 │   ├── bwb-h2-hy-e-utcs-extension.yaml  # UTCS digital passport extension
 │   └── README.md                     # Schema documentation
@@ -55,12 +59,12 @@ BWB-H2-Hy-E/
 
 ### 1. Schema Definitions (Foundation)
 
-Four comprehensive schemas define the data models for BWB-H2-Hy-E systems:
+Four comprehensive schemas define the data models for BWB-H2-Hy-E multi-energy systems:
 
 - **Hydrogen Subsystem Schema**: Cryogenic storage, distribution, safety interlocks, leak detection
-- **Propulsion System Schema**: Fuel cells (PEM/SOFC), batteries (Li-ion/solid-state), electric motors
+- **Propulsion System Schema**: Fuel cells (PEM/SOFC), **solid-state batteries** (>600 Wh/kg), electric motors, **SAF/e-SAF fuel systems**, **Open Fan propulsion** (CFM RISE, CATALYST)
 - **Thermal Management Schema**: Cryogenic cooling, fuel cell cooling, battery thermal management
-- **UTCS Extension Schema**: BWB-H2-Hy-E specific digital passport attributes
+- **UTCS Extension Schema**: BWB-H2-Hy-E specific digital passport attributes including SAF and Open Fan components
 
 All schemas are JSON Schema Draft 07 compliant and integrate with the IDEALE-EU UTCS framework.
 
@@ -141,10 +145,10 @@ Examples:
 
 | Domain | Description | BWB-H2-Hy-E Components |
 |--------|-------------|------------------------|
-| **AAA** | Airframes-Aerodynamics-Airworthiness | BWB structure, wing box |
+| **AAA** | Airframes-Aerodynamics-Airworthiness | BWB structure, wing box, Open Fan integration |
 | **CQH** | Cryogenics-Quantum-H2 | H2 tanks, cryocoolers, thermal insulation |
-| **EEE** | Electrical-Endocircular-Energization | Battery packs, power distribution |
-| **PPP** | Propulsion-Power-Plants | Fuel cells, electric motors, inverters |
+| **EEE** | Electrical-Endocircular-Energization | Solid-state battery packs, power distribution |
+| **PPP** | Propulsion-Power-Plants | Fuel cells, electric motors, SAF/e-SAF systems, Open Fan propulsion |
 
 ### Lifecycle States
 
@@ -159,6 +163,55 @@ Components follow the QS→QB evidence flow:
 
 ---
 
+## Multi-Energy Agnostic Architecture (AMPAS)
+
+The BWB-H2-Hy-E implements a **Multi-Energy Agnostic Architecture for Sustainable Aeronautical Propulsion (AMPAS)** enabling flexible operation across multiple energy sources:
+
+### Energy Sources
+
+1. **Hydrogen (H2)**: Primary zero-emission fuel
+   - Cryogenic liquid H2 storage @ 20K (-253°C)
+   - Fuel cell power generation (PEM/SOFC)
+   - Direct combustion capability
+
+2. **Solid-State Batteries**: Peak power and emergency reserves
+   - Energy density >600 Wh/kg
+   - High instantaneous discharge rates
+   - Extended cycle life (3000+ cycles)
+   - Takeoff power assist and regenerative braking
+
+3. **SAF/e-SAF Fuels**: Thermal support and backup
+   - Bio-based SAF (HEFA, FT, ATJ)
+   - Synthetic e-SAF (Power-to-Liquid)
+   - 85-95% CO₂ reduction vs Jet-A
+   - Cruise optimization and thermal stabilization
+
+4. **Open Fan Propulsion**: 20%+ efficiency improvement
+   - Counter-rotating unducted fans
+   - Compatible with H2, SAF, or hybrid operation
+   - Technologies: CFM RISE, CATALYST, Safran-ONERA
+   - Reduced fuel consumption and emissions
+
+### Flight Phase Energy Management
+
+| Phase | Primary Energy | Secondary Energy | Strategy |
+|-------|---------------|------------------|----------|
+| **Takeoff** | H2 fuel cells + Solid-state batteries | SAF backup | Maximum thrust with minimal thermal peaks |
+| **Climb** | H2 + Open Fan | Battery assist | Transition to efficient cruise mode |
+| **Cruise** | Open Fan (H2 or SAF) | Battery smoothing | Optimal thermal efficiency |
+| **Descent** | Regenerative + SAF | H2 standby | Energy recovery and battery recharge |
+| **Landing** | Battery + H2 | SAF backup | Reliability and safety margins |
+
+### System Advantages
+
+- **85-95% CO₂ reduction** with H2 and SAF
+- **20-25% fuel consumption reduction** vs LEAP 1-A
+- **Operational flexibility**: Adapt to fuel availability
+- **System efficiency >70%**: Integrated power management
+- **Transcontinental range**: 100-200 passengers by 2040-2045
+
+---
+
 ## Compliance & Standards
 
 ### Hydrogen Systems
@@ -168,11 +221,22 @@ Components follow the QS→QB evidence flow:
 - **EASA SC-H2** - Special Conditions for Hydrogen Propulsion
 - **FAA Special Conditions** - Hydrogen Fuel Systems
 
+### SAF/e-SAF Fuels
+- **ASTM D7566** - Aviation Turbine Fuel Containing Synthesized Hydrocarbons
+- **ASTM D1655** - Standard Specification for Aviation Turbine Fuels
+- **ICAO CORSIA** - Carbon Offsetting and Reduction Scheme
+- **EU RED II** - Renewable Energy Directive
+
 ### Electrical & Propulsion
 - **DO-160** - Environmental Conditions for Airborne Equipment
 - **DO-254** - Hardware Design Assurance
 - **SAE ARP5150** - Safety Assessment for Civil Airborne Systems
-- **SAE ARP5150** - Fuel Cell Performance Testing
+- **SAE J2615** - Fuel Cell Performance Testing
+
+### Open Fan Systems
+- **ICAO Annex 16 Chapter 14** - Aircraft Engine Emissions
+- **FAA AC 36-4** - Noise Standards for Aircraft Type Certification
+- **EASA CS-E** - Engines Certification Specifications
 
 ### Airworthiness
 - **EASA CS-25** - Large Aeroplanes

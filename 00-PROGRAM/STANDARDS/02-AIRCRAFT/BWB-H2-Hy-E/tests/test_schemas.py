@@ -192,7 +192,7 @@ class TestPropulsionSystemSchema:
 
     def test_schema_version(self, schema):
         """Test schema version is correct."""
-        assert schema["version"] == "1.0.0"
+        assert schema["version"] == "1.1.0"
 
     def test_tfa_domain_is_ppp(self, schema):
         """Test TFA domain is constrained to PPP."""

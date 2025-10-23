@@ -1,6 +1,6 @@
 # BWB-H2-Hy-E Schema Definitions
 
-**Version:** 1.0.0  
+**Version:** 1.1.0  
 **Date:** 2025-10-23  
 **Status:** Active  
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-This directory contains schema definitions for the BWB-H2-Hy-E (Blended Wing Body with Hydrogen Hybrid Electric propulsion) architecture. These schemas define the data models and contracts for all BWB-H2-Hy-E specific subsystems and components.
+This directory contains schema definitions for the BWB-H2-Hy-E (Blended Wing Body with Hydrogen Hybrid Electric propulsion) architecture. These schemas define the data models and contracts for a **multi-energy agnostic propulsion system** including hydrogen, SAF/e-SAF fuels, solid-state batteries, and Open Fan technology.
 
 ---
 
@@ -36,24 +36,28 @@ Defines schema for:
 - Emergency venting systems
 
 ### 2. `propulsion-system.yaml`
-**Purpose:** Hybrid electric propulsion system interfaces  
+**Purpose:** Multi-energy agnostic propulsion system interfaces  
 **TFA Domain:** PPP (Propulsion-Power-Plants)  
-**Version:** 1.0.0
+**Version:** 1.1.0
 
 Defines schema for:
 - Fuel cell systems (PEM, SOFC, AFC, PAFC)
-- Battery systems (lithium-ion, solid-state)
+- Battery systems (lithium-ion, **solid-state** >600 Wh/kg)
 - Electric motors (PM synchronous, induction)
+- **SAF/e-SAF fuel systems** (bio-SAF, e-SAF, blends)
+- **Open Fan propulsion** (CFM RISE, CATALYST, counter-rotating)
 - Power management and distribution
-- Energy management strategies
+- Multi-energy agnostic management strategies
 - Performance degradation tracking
 
 **Key Components:**
 - Fuel cell stacks
-- Battery packs
+- Solid-state battery packs
 - Electric motors
+- SAF/e-SAF fuel tanks and distribution
+- Open Fan systems (unducted fans)
 - Power inverters
-- Energy management controllers
+- Multi-energy management controllers
 
 ### 3. `thermal-management.yaml`
 **Purpose:** Integrated thermal management data models  

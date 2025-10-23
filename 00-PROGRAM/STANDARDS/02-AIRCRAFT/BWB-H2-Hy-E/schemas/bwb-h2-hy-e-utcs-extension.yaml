@@ -58,6 +58,8 @@ properties:
           - "bwb_structure"
           - "hydrogen_distribution"
           - "safety_system"
+          - "saf_fuel_system"  # SAF/e-SAF fuel system
+          - "open_fan_propulsion"  # Open Fan system
         description: "BWB-H2-Hy-E specific component category"
       
       # Hydrogen Storage Tank Specific
@@ -196,6 +198,84 @@ properties:
           cooling_type:
             type: string
             enum: ["air_cooled", "liquid_cooled", "oil_cooled"]
+      
+      # SAF/e-SAF Fuel System Specific
+      saf_fuel_system:
+        type: object
+        properties:
+          fuel_designation:
+            type: string
+            pattern: "^SAF-[A-Z]+-[0-9]{3}$"
+            examples: ["SAF-BIO-001", "SAF-ESAF-042"]
+          fuel_type:
+            type: string
+            enum: ["SAF", "e-SAF", "SAF_e-SAF_blend", "bio-SAF"]
+          tank_capacity_liters:
+            type: number
+            minimum: 0
+          location:
+            type: string
+            enum: ["wing_box", "center_fuselage", "distributed"]
+          open_fan_compatible:
+            type: boolean
+            description: "Compatible with Open Fan combustion systems"
+          co2_reduction_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+            description: "CO2 reduction vs conventional Jet-A"
+          certification:
+            type: object
+            properties:
+              astm_d7566:
+                type: boolean
+                description: "ASTM D7566 certification for SAF"
+              fuel_batch:
+                type: string
+              production_method:
+                type: string
+                enum: ["HEFA", "FT", "ATJ", "SIP", "Power-to-Liquid"]
+      
+      # Open Fan Propulsion Specific
+      open_fan_propulsion:
+        type: object
+        properties:
+          fan_designation:
+            type: string
+            pattern: "^OPENFAN-[A-Z]+-[0-9]{3}$"
+            examples: ["OPENFAN-CFM-001", "OPENFAN-GE-042"]
+          fan_configuration:
+            type: string
+            enum: ["counter_rotating", "single_rotor", "distributed_fans"]
+          fan_diameter_m:
+            type: number
+            minimum: 0
+          blade_count_front:
+            type: integer
+            minimum: 2
+          blade_count_rear:
+            type: integer
+            minimum: 0
+          location:
+            type: string
+            enum: ["aft_fuselage", "wing_mounted", "tail_mounted", "distributed"]
+          integration_program:
+            type: string
+            enum: ["CFM_RISE", "CATALYST", "GE_Open_Fan", "Safran_ONERA", "custom"]
+            description: "Open Fan technology provider/program"
+          energy_sources:
+            type: array
+            items:
+              type: string
+              enum: ["H2", "SAF", "e-SAF", "electric", "hybrid"]
+            description: "Compatible energy sources"
+          bypass_ratio:
+            type: number
+            minimum: 0
+          efficiency_improvement_percent:
+            type: number
+            minimum: 0
+            description: "Efficiency improvement vs conventional turbofan"
       
       # BWB Structure Specific
       bwb_structure:
