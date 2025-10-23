@@ -19,6 +19,9 @@ This guide shows how to integrate BWB-H2-Hy-E architecture components with the I
 # Python 3.11+
 python --version  # Should show 3.11 or higher
 
+# Navigate to BWB-H2-Hy-E directory
+cd 00-PROGRAM/STANDARDS/02-AIRCRAFT/BWB-H2-Hy-E
+
 # Install testing dependencies
 pip install -r requirements-test.txt
 
@@ -180,15 +183,22 @@ initial_power = 250.0  # kW
 current_power = 248.5  # kW
 operating_hours = 500.0
 
-degradation_percent = ((initial_power - current_power) / initial_power) * 100
-degradation_rate_per_1000h = (degradation_percent / operating_hours) * 1000
-
-print(f"Degradation rate: {degradation_rate_per_1000h:.2f}%/1000h")
-
-# Predict remaining life
-if degradation_rate_per_1000h > 0:
-    remaining_life_hours = ((initial_power * 0.85) - current_power) / (degradation_rate_per_1000h / 1000 * initial_power)
-    print(f"Estimated remaining life: {remaining_life_hours:.0f} hours")
+# Guard against division by zero
+if operating_hours > 0:
+    degradation_percent = ((initial_power - current_power) / initial_power) * 100
+    degradation_rate_per_1000h = (degradation_percent / operating_hours) * 1000
+    
+    print(f"Degradation rate: {degradation_rate_per_1000h:.2f}%/1000h")
+    
+    # Predict remaining life
+    if degradation_rate_per_1000h > 0 and current_power < initial_power * 0.85:
+        remaining_life_hours = ((initial_power * 0.85) - current_power) / (degradation_rate_per_1000h / 1000 * initial_power)
+        if remaining_life_hours > 0:
+            print(f"Estimated remaining life: {remaining_life_hours:.0f} hours")
+    elif current_power >= initial_power * 0.85:
+        print("Component above minimum threshold - no replacement needed yet")
+else:
+    print("⚠ No operating hours recorded yet - cannot calculate degradation")
 ```
 
 3. **Make maintenance decision**
@@ -301,7 +311,12 @@ Content-Type: application/json
 def ingest_tank_sensor_data(tank_id, sensor_data):
     """Update tank status with sensor readings."""
     
-    # Validate sensor data
+    # Validate sensor data structure
+    required_fields = ['pressure_bar', 'temperature_k']
+    if not all(field in sensor_data for field in required_fields):
+        raise ValueError(f"Missing required sensor data fields: {required_fields}")
+    
+    # Validate sensor data ranges
     if sensor_data['pressure_bar'] > get_tank_max_pressure(tank_id):
         trigger_over_pressure_alarm(tank_id)
     
@@ -359,19 +374,30 @@ def check_fuel_cell_dependencies(fc_utcs_ref):
     
     dependencies = get_component_dependencies(fc_utcs_ref)
     
+    # Validate dependencies structure
+    required_deps = ['h2_tank', 'cooling_system']
+    if not all(dep in dependencies for dep in required_deps):
+        return False, f"Missing required dependencies: {required_deps}"
+    
     # Check hydrogen supply
-    h2_tank_status = get_component_status(dependencies['h2_tank'])
-    if h2_tank_status['current_level_kg'] < 10.0:
-        return False, "Insufficient hydrogen supply"
+    try:
+        h2_tank_status = get_component_status(dependencies['h2_tank'])
+        if h2_tank_status['current_level_kg'] < 10.0:
+            return False, "Insufficient hydrogen supply"
+    except KeyError as e:
+        return False, f"Invalid H2 tank status data: {e}"
     
     # Check cooling system
-    cooling_status = get_component_status(dependencies['cooling_system'])
-    if cooling_status['coolant_flow_lpm'] < 40.0:
-        return False, "Insufficient coolant flow"
+    try:
+        cooling_status = get_component_status(dependencies['cooling_system'])
+        if cooling_status['coolant_flow_lpm'] < 40.0:
+            return False, "Insufficient coolant flow"
+    except KeyError as e:
+        return False, f"Invalid cooling system status data: {e}"
     
     # Check safety interlocks
     interlock_status = check_safety_interlocks(fc_utcs_ref)
-    if not interlock_status['all_armed']:
+    if not interlock_status.get('all_armed', False):
         return False, "Safety interlocks not armed"
     
     return True, "All dependencies operational"
