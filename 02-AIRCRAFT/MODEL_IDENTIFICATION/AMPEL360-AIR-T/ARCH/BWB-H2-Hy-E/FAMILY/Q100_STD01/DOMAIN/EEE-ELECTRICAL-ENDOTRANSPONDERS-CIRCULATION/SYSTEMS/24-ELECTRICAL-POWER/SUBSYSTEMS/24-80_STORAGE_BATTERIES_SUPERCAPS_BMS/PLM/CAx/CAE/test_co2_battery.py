@@ -15,8 +15,8 @@ import sys
 from pathlib import Path
 import pytest
 
-# Add the CAS directory to path
-sys.path.insert(0, str(Path(__file__).parent))
+# Add the CAE directory to path
+sys.path.insert(0, str(Path(__file__).parent.resolve()))
 
 from co2_battery_endocircular import (
     CO2Phase,
@@ -36,24 +36,24 @@ class TestCO2Properties:
         props = CO2Properties()
         
         # Freezing point of water
-        assert props.celsius_to_kelvin(0.0) == 273.15
-        assert props.kelvin_to_celsius(273.15) == 0.0
+        assert props.celsius_to_kelvin(0.0) == pytest.approx(273.15)
+        assert props.kelvin_to_celsius(273.15) == pytest.approx(0.0)
         
         # Triple point
         t_triple_k = props.celsius_to_kelvin(props.T_TRIPLE_C)
-        assert abs(t_triple_k - 216.55) < 0.1
+        assert t_triple_k == pytest.approx(216.55, abs=0.1)
     
     def test_pressure_conversion(self):
         """Test pressure conversions."""
         props = CO2Properties()
         
         # 1 bar = 100000 Pa
-        assert props.bar_to_pa(1.0) == 1e5
-        assert props.pa_to_bar(1e5) == 1.0
+        assert props.bar_to_pa(1.0) == pytest.approx(1e5)
+        assert props.pa_to_bar(1e5) == pytest.approx(1.0)
         
         # Triple point
         p_triple_pa = props.bar_to_pa(props.P_TRIPLE_BAR)
-        assert abs(p_triple_pa - 518500) < 100
+        assert p_triple_pa == pytest.approx(518500, abs=100)
     
     def test_phase_determination_solid(self):
         """Test phase determination for solid CO₂."""
@@ -163,7 +163,7 @@ class TestCO2BatterySystem:
         
         # 100 kg * 571 kJ/kg / 3600 = 15.86 kWh
         thermal_energy = system.calculate_stored_energy_thermal()
-        assert abs(thermal_energy - 15.86) < 0.1
+        assert thermal_energy == pytest.approx(15.86, abs=0.1)
     
     def test_energy_density(self):
         """Test volumetric energy density calculation."""
@@ -173,7 +173,7 @@ class TestCO2BatterySystem:
         # Energy: 15.86 kWh
         # Density: 247.4 kWh/m³
         density = system.calculate_stored_energy_density()
-        assert abs(density - 247.4) < 1.0
+        assert density == pytest.approx(247.4, abs=1.0)
     
     def test_expansion_work(self):
         """Test expansion work calculation."""
