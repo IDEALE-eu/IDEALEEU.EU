@@ -122,7 +122,7 @@ Each application documented in its functional ATA chapter with:
 
 ## Configuration Rules
 
-Per [Configuration Rules](../00-COMMON/RULES.md):
+Per [Configuration Rules](../ATA-00_GENERAL/RULES.md):
 
 1. **IMA modules and chassis** → ATA-42/HW_CONFIG/
 2. **Partition definitions** → ATA-42/PARAMS/
@@ -152,10 +152,10 @@ Per [Configuration Rules](../00-COMMON/RULES.md):
 
 ## Related Documents
 
-- [Configuration Rules](../00-COMMON/RULES.md)
-- [IMA Config Template](../00-COMMON/TEMPLATES/IMA_CONFIG.xml)
-- [Partition Map Template](../00-COMMON/TEMPLATES/PARTITION_MAP.csv)
-- [Global Change Log](../00-COMMON/GLOBAL_CHANGE_LOG.csv)
+- [Configuration Rules](../ATA-00_GENERAL/RULES.md)
+- [IMA Config Template](../ATA-00_GENERAL/TEMPLATES/IMA_CONFIG.xml)
+- [Partition Map Template](../ATA-00_GENERAL/TEMPLATES/PARTITION_MAP.csv)
+- [Global Change Log](../ATA-00_GENERAL/GLOBAL_CHANGE_LOG.csv)
 
 ## Standards References
 

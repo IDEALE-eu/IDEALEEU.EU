@@ -33,7 +33,7 @@ graph TB
     end
     
     subgraph "CONFIGURATION_BASE: ATA Chapter Organization"
-        CB --> COMMON[00-COMMON]
+        CB --> COMMON[ATA-00_GENERAL]
         CB --> ATA05[ATA-05 Time Limits & Maint Checks]
         CB --> ATA06[ATA-06 Dimensions & Areas]
         CB --> ATA08[ATA-08 Leveling & Weighing]

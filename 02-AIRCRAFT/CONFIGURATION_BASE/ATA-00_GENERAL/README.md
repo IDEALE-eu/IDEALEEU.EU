@@ -1,4 +1,4 @@
-# 00-COMMON
+# ATA-00_GENERAL
 
 Shared resources and standards for all ATA chapters in CONFIGURATION_BASE.
 
@@ -77,7 +77,7 @@ xmllint --schema SCHEMAS/ima-config.xsd ATA-42_INTEGRATED_MODULAR_AVIONICS/BASEL
 ### Using Templates
 ```bash
 # Copy parameter template
-cp 00-COMMON/TEMPLATES/PARAMS.csv ATA-XX_SYSTEM/PARAMS/MY_PARAMS.csv
+cp ATA-00_GENERAL/TEMPLATES/PARAMS.csv ATA-XX_SYSTEM/PARAMS/MY_PARAMS.csv
 
 # Edit the file with your parameter values
 # ...

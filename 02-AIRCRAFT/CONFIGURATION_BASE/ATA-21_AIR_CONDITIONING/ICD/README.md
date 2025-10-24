@@ -113,7 +113,7 @@ Interfaces typically involve:
 
 ## References
 
-- [Configuration Rules](../../00-COMMON/RULES.md)
+- [Configuration Rules](../../ATA-00_GENERAL/RULES.md)
 - [Interface Management](../../../../00-PROGRAM/CONFIG_MGMT/09-INTERFACES/)
 - [ATA-92 EWIS](../ATA-92_EWIS/) (for wiring)
 

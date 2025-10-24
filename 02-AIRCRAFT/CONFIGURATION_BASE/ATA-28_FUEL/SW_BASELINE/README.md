@@ -50,7 +50,7 @@ SW_BASELINE/
 
 ## Software Placement Rules
 
-Per [Configuration Rules](../../00-COMMON/RULES.md):
+Per [Configuration Rules](../../ATA-00_GENERAL/RULES.md):
 - Software resides with its **host LRU** in the functional chapter
 - IMA partition definitions in ATA-42
 - Application software in functional chapters (ATA-27, etc.)
@@ -121,7 +121,7 @@ For ARINC 653 IMA systems:
 
 ## References
 
-- [Configuration Rules](../../00-COMMON/RULES.md)
+- [Configuration Rules](../../ATA-00_GENERAL/RULES.md)
 - [Part Numbering](../../../../00-PROGRAM/CONFIG_MGMT/02-PART_NUMBERING.md)
 - [ATA-42 IMA](../ATA-42_INTEGRATED_MODULAR_AVIONICS/) (for partition info)
 - [Software Development Plan](../../../../00-PROGRAM/ENGINEERING/SOFTWARE/)

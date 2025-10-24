@@ -228,8 +228,8 @@ Every configuration item must be traceable to requirements, ICDs, and change rec
 **Statement**: All structured data files must validate against their defined schemas.
 
 **Implementation**:
-- JSON files: Validate against JSON Schema in 00-COMMON/SCHEMAS/
-- XML files: Validate against XSD in 00-COMMON/SCHEMAS/
+- JSON files: Validate against JSON Schema in ATA-00_GENERAL/SCHEMAS/
+- XML files: Validate against XSD in ATA-00_GENERAL/SCHEMAS/
 - CSV files: Validate headers and required columns
 - YAML files: Validate against YAML schema where applicable
 
@@ -327,7 +327,7 @@ Every configuration item must be traceable to requirements, ICDs, and change rec
 
 **Format**:
 - CSV format: CHANGE_LOG/CHANGE_LOG_[YYYY].csv
-- Aggregated in 00-COMMON/GLOBAL_CHANGE_LOG.csv
+- Aggregated in ATA-00_GENERAL/GLOBAL_CHANGE_LOG.csv
 
 ---
 
