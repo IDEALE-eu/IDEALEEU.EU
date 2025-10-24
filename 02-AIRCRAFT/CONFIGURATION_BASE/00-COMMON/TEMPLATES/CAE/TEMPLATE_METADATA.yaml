@@ -1,0 +1,29 @@
+# TEMPLATE_METADATA.yaml - Copy to each case directory and fill out
+# This metadata ensures consistency and traceability across all CAE cases
+
+case_id: string                # Unique identifier, e.g., CFD-TANK-001 or FEA-STRESS-042
+description: string            # Brief description of the analysis case
+revision: R001                 # Revision number following format RXXX
+solver: string                 # Solver name, e.g., OpenFOAM, Abaqus, ANSYS
+solver_version: string         # Version, e.g., v10, 2023, 2024R1
+mesh_cells: int                # Number of mesh cells/elements
+mesh_type: string              # Mesh generator or type, e.g., snappyHexMesh, tetrahedral
+expected_runtime: string       # Expected runtime, e.g., "2h on 32 cores", "30min on 8 cores"
+baseline_id: string            # Link to baseline in DATA/ or external reference
+author: string                 # Person who created the case
+owner: string                  # Current responsible person
+approver: string               # Person who approved this revision
+units:
+  temperature: "C"             # Temperature unit (C, K, F)
+  pressure: "bar"              # Pressure unit (Pa, bar, psi)
+  length: "mm"                 # Length unit (m, mm, in)
+  mass: "kg"                   # Mass unit (kg, g, lb)
+  time: "s"                    # Time unit (s, min, h)
+  energy: "J"                  # Energy unit (J, kWh, BTU)
+last_updated: YYYY-MM-DD       # Date of last update
+utcs_reference: string         # Optional UTCS URI for traceability
+notes: string                  # Additional notes or special considerations
+tags:                          # Optional tags for categorization
+  - simulation_type            # e.g., transient, steady-state, modal
+  - physics                    # e.g., thermal, structural, fluid
+  - validation_status          # e.g., preliminary, validated, production

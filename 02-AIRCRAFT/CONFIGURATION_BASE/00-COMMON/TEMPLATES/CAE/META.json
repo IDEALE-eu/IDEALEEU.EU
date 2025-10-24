@@ -1,0 +1,9 @@
+{
+  "owner": "Engineering Lead EEE",
+  "cae_owner": "CAE Lead Name",
+  "approver": "Lead Engineer",
+  "contact_email": "cae-owner@example.com",
+  "last_updated": "2025-10-23",
+  "template_version": "1.0",
+  "description": "CAE template for CFD, FEA, and multi-physics coupling analyses"
+}

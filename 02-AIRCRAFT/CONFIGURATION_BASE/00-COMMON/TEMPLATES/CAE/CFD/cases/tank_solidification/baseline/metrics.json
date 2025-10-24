@@ -1,0 +1,26 @@
+{
+  "case_id": "CFD-TANK-001",
+  "description": "Hydrogen tank solidification baseline",
+  "revision": "R001",
+  "solver": "OpenFOAM",
+  "solver_version": "v10",
+  "mesh_cells": 150000,
+  "date": "2025-10-23",
+  "mass": 125.5,
+  "mass_units": "kg",
+  "energy_kwh": 2.45,
+  "energy_units": "kWh",
+  "peak_temp_C": 85.3,
+  "temp_units": "C",
+  "mass_flow_kg_s": 0.125,
+  "flow_units": "kg/s",
+  "runtime_s": 7200,
+  "runtime_units": "s",
+  "additional_metrics": {
+    "avg_temp_C": 45.2,
+    "min_temp_C": 20.1,
+    "pressure_drop_Pa": 1250.0,
+    "convergence_iterations": 850
+  },
+  "notes": "Baseline for tank solidification case. Uses k-epsilon turbulence model with wall functions."
+}
