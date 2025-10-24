@@ -6,7 +6,7 @@ Master geometry files and coordinate-frame definitions used by design, PLM, CAE 
 ---
 
 ## Required contents
-- `reference_datum.md` — authoritative coordinate system, datum, stationing, BL/WL conventions and examples (this file).  
+- `reference_datum.md` — authoritative coordinate system, datum, stationing, BL/WL conventions and examples.  
 - `native/` — native CAD files organized by part/assembly. Each entry must include `metadata.yaml` adjacent to the native file. Use Git LFS for large binaries.  
 - `step_ap242/` — STEP AP242 exports with PMI for each released item (one STEP per part/assembly). Include `export_recipe.txt` describing CAD system and exact STEP settings.  
 - `neutral/` — other neutral exports as required (Parasolid, IGES).  

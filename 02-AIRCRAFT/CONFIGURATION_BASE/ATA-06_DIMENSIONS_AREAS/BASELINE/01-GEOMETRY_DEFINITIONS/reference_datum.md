@@ -7,7 +7,7 @@ This document is the authoritative reference for coordinate frames, stationing (
 ## Coordinate system (canonical)
 - **Type:** Right-handed Cartesian aircraft coordinate system.  
 - **Axes (positive directions):**
-  - **X**: forward along fuselage centerline (positive toward nose → tail direction is positive aft).  
+  - **X**: along fuselage centerline, **positive aft** (toward tail).  
   - **Y**: lateral to the right side of aircraft when looking forward (positive to right).  
   - **Z**: vertical, **positive upward** (Z-up).  
 - **Handedness:** X × Y = Z (right-hand rule). This matches project CAD convention: *Right-handed, Z-axis vertical*.
