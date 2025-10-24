@@ -1,92 +1,70 @@
-# BASELINE - Configuration Baseline
+# ATA-06 — Dimensions & Areas  
+**Configuration Baseline**
 
-This directory contains baseline configuration data including component lists, system architecture definitions, and baseline snapshots at major program gates.
-
-## Purpose
-
-Configuration baselines establish the approved, controlled configuration of the system at specific points in time. Baselines serve as:
-- Reference points for change management
-- Foundation for impact analysis
-- Basis for configuration audits
-- Snapshots at program milestones
-
-## Contents
-
-This directory should contain:
-
-### Baseline Snapshots
-- **Gate baselines** - Configuration frozen at program gates (PDR, CDR, etc.)
-- **Release baselines** - Approved configurations for specific releases
-- **As-built baselines** - Actual configuration of delivered systems
-
-### Configuration Data
-- **Component lists** - Bill of materials and component inventories
-- **System architecture** - High-level system design and interfaces
-- **Configuration identifiers** - Part numbers, version numbers, serial numbers
-- **Baseline manifests** - Complete inventory of configuration items
-
-## File Organization
-
-```
-BASELINE/
-├── GATE_[X]/              # Gate-specific baselines (PDR, CDR, etc.)
-│   ├── MANIFEST.json      # Complete baseline inventory
-│   ├── COMPONENTS.csv     # Component list
-│   └── ARCHITECTURE.pdf   # System architecture
-├── RELEASE_[X.Y]/         # Release baselines
-└── CURRENT/               # Current approved baseline
-```
-
-## Baseline Establishment Process
-
-1. Freeze configuration at milestone
-2. Generate complete manifest with checksums
-3. Document all configuration items
-4. Obtain CCB approval
-5. Tag in version control
-6. Archive baseline package
-
-## Change Control
-
-Baselines are **immutable**:
-- No modifications to established baselines
-- Changes create new baseline versions
-- All changes tracked in CHANGE_LOG
-- Full traceability maintained
-
-## Baseline Types
-
-### Functional Baseline
-- Requirements and specifications
-- System functional description
-- Interface definitions
-
-### Allocated Baseline
-- Hardware/software allocations
-- Component specifications
-- Interface control documents
-
-### Product Baseline
-- As-designed configuration
-- Manufacturing specifications
-- Acceptance criteria
-
-## References
-
-- [Baseline Process](../../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/00-README.md)
-- [Configuration Rules](../../ATA-00_GENERAL/RULES.md)
-- [Item Master](../../../../00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/)
-
-## Compliance
-
-Baselines must comply with:
-- Configuration Management Plan
-- Program milestone requirements
-- Certification requirements
-- Customer specifications
+This baseline defines the reference configuration for all **aircraft dimensional data, stationing, areas, zones and access/clearance definitions** under ATA Chapter 06.
 
 ---
 
-**Status**: Active  
-**Owner**: Configuration Management  
-**Last Updated**: 2024-01-15
+## Scope
+Covers all items required to define the aircraft external and internal geometry used for design, certification, manufacture, production, maintenance and ground handling:
+- Stationing, buttock/wing/fuselage stations and waterlines  
+- Reference datum definitions and coordinate system conventions  
+- External dimensions (length, span, height) and area envelopes (doors, cargo bays, service zones)  
+- Access and service areas, clearances and maintenance panels  
+- Zones for systems routing, safety zones and fire/ventilation envelopes  
+- Integration with PLM geometry references (CAD part IDs, CAD revision pointers)  
+
+---
+
+## Directory Overview
+
+| Folder | Purpose |
+|--------|---------|
+| `01-GEOMETRY_DEFINITIONS/` | Master geometry files and coordinate frame definitions (CAD exports, STEP AP242, neutral geometry). |
+| `02-STATIONING/` | Station tables, buttock/wing/fuselage waterlines, reference datums and offsets (CSV/JSON). |
+| `03-AREAS_ZONES/` | Defined areas: doors, cargo bays, service areas, equipment zones, safety exclusion zones. |
+| `04-ACCESS_CLEARANCES/` | Door apertures, escape routes, maintenance access clearances and tooling interfaces. |
+| `05-IDENTIFICATION/` | Baseline identification, CMP references and ESG notes. |
+| `06-REVISIONS/` | Revision history and linked ECNs (CMP-controlled). |
+
+---
+
+## Configuration Items
+| CI ID | Description | Owner | Source |
+|-------|-------------|-------|--------|
+| `ATA-06/BL-2025.10` | Dimensions & Areas baseline | CMP / Geometry Lead | `05-IDENTIFICATION/IDENTIFICATION_CARD.json` |
+| `ECN-2025-06-001` | Initial ATA-06 baseline creation | CMP | `06-REVISIONS/ECN-2025-06-001.json` |
+
+---
+
+## Conventions & Notes
+- **Coordinate system**: Right-handed aircraft coordinate system. Origin defined at datum plane. Documented in `01-GEOMETRY_DEFINITIONS/reference_datum.md`.  
+- **Units**: SI units (mm for lengths). Any non-SI must be explicitly called out.  
+- **Stationing**: Use fuselage station (FS), buttock line (BL) and waterline (WL) conventions documented in `02-STATIONING/`.  
+- **CAD linkage**: All geometry items must reference CAD part IDs and STEP AP242 exports, with EBOM mappings where applicable.  
+- **Access definitions**: Define minimum clearances for maintenance tasks and ground handling. Link these to ATA-05 maintenance tasks where relevant.  
+- **Change control**: Any change to dimensional baselines must follow CMP change process. Coordinate with PLM and Production Engineering for downstream impact.
+
+---
+
+## Compliance References
+- **ATA iSpec 2200 / iSpec 42** — Data exchange and electronic tech data standards  
+- **S1000D** — Structured data modules (where used for maintenance or dimensional data)  
+- **ASME Y14.5** — GD&T conventions (where applicable for manufacturing-critical features)  
+- **EASA CS-25 / FAA 14 CFR Part 25** — Certification implications for dimensions and envelope definitions  
+- **IDEALE-EU CMP-STD-1001** — Configuration and baseline management
+
+---
+
+## Version Control
+All modifications follow CMP governance. Each revision must update:
+- `REVISION_HISTORY.yaml` in `06-REVISIONS/`  
+- Linked ECN JSON record  
+- `baselineId` and `date` in `05-IDENTIFICATION/IDENTIFICATION_CARD.json`
+
+---
+
+**Baseline Owner:** `CMP Lead — ATA-06`  
+**Date:** 2025-10-24  
+**Status:** Active (Baseline 1.0)
+
