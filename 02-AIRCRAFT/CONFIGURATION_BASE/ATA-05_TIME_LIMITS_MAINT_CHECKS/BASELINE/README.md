@@ -1,92 +1,60 @@
-# BASELINE - Configuration Baseline
+# ATA-05 — Time Limits and Maintenance Checks  
+**Configuration Baseline**
 
-This directory contains baseline configuration data including component lists, system architecture definitions, and baseline snapshots at major program gates.
+This baseline defines the reference configuration for all **time-limited tasks, periodic maintenance checks, and service intervals** under ATA Chapter 05.
 
-## Purpose
+---
 
-Configuration baselines establish the approved, controlled configuration of the system at specific points in time. Baselines serve as:
-- Reference points for change management
-- Foundation for impact analysis
-- Basis for configuration audits
-- Snapshots at program milestones
+## Scope
+Covers all airframe, propulsion, electrical, and systems items requiring:
+- Calendar- or flight-time-based maintenance actions  
+- A/B/C/D-check scheduling logic  
+- Integration with S1000D data modules for maintenance procedures  
+- ESG (environmental, social, governance) impact reporting per task
 
-## Contents
+---
 
-This directory should contain:
+## Directory Overview
 
-### Baseline Snapshots
-- **Gate baselines** - Configuration frozen at program gates (PDR, CDR, etc.)
-- **Release baselines** - Approved configurations for specific releases
-- **As-built baselines** - Actual configuration of delivered systems
+| Folder | Purpose |
+|---------|----------|
+| `01-MAINTENANCE_TASKS/` | Executable S1000D XML work packages (CAS-owned). |
+| `02-DATA_MODULES/` | Source Data Modules (DMCs) defining individual requirements. |
+| `03-IDENTIFICATION/` | Baseline identification, ESG declaration, CMP references. |
+| `04-REVISIONS/` | Controlled change history and Engineering Change Notices. |
 
-### Configuration Data
-- **Component lists** - Bill of materials and component inventories
-- **System architecture** - High-level system design and interfaces
-- **Configuration identifiers** - Part numbers, version numbers, serial numbers
-- **Baseline manifests** - Complete inventory of configuration items
+---
 
-## File Organization
+## Configuration Items
+| CI ID | Description | Owner | Source |
+|-------|--------------|--------|---------|
+| `ATA-05/BL-2025.10` | Time Limits and Maintenance Checks baseline | CMP | `03-IDENTIFICATION/IDENTIFICATION_CARD.json` |
+| `ECN-2025-05123` | Initial baseline creation | CMP | `04-REVISIONS/ECN-2025-05123.json` |
 
-```
-BASELINE/
-├── GATE_[X]/              # Gate-specific baselines (PDR, CDR, etc.)
-│   ├── MANIFEST.json      # Complete baseline inventory
-│   ├── COMPONENTS.csv     # Component list
-│   └── ARCHITECTURE.pdf   # System architecture
-├── RELEASE_[X.Y]/         # Release baselines
-└── CURRENT/               # Current approved baseline
-```
-
-## Baseline Establishment Process
-
-1. Freeze configuration at milestone
-2. Generate complete manifest with checksums
-3. Document all configuration items
-4. Obtain CCB approval
-5. Tag in version control
-6. Archive baseline package
-
-## Change Control
-
-Baselines are **immutable**:
-- No modifications to established baselines
-- Changes create new baseline versions
-- All changes tracked in CHANGE_LOG
-- Full traceability maintained
-
-## Baseline Types
-
-### Functional Baseline
-- Requirements and specifications
-- System functional description
-- Interface definitions
-
-### Allocated Baseline
-- Hardware/software allocations
-- Component specifications
-- Interface control documents
-
-### Product Baseline
-- As-designed configuration
-- Manufacturing specifications
-- Acceptance criteria
-
-## References
+---
 
 - [Baseline Process](../../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/00-README.md)
 - [Configuration Rules](../../ATA-00_GENERAL/RULES.md)
 - [Item Master](../../../../00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/)
 
-## Compliance
-
-Baselines must comply with:
-- Configuration Management Plan
-- Program milestone requirements
-- Certification requirements
-- Customer specifications
+## Compliance References
+- **S1000D Issue 6.0** — Data Module coding and publication structure  
+- **EASA CS-25 / FAA Part 25.1529** — Instructions for Continued Airworthiness  
+- **IDEALE-EU CMP-STD-1001** — Configuration and Maintenance Planning Standard  
+- **ISO 14001:2015** — Environmental management reference for ESG declaration
 
 ---
 
-**Status**: Active  
-**Owner**: Configuration Management  
-**Last Updated**: 2024-01-15
+## Version Control
+All modifications follow CMP change governance.  
+Each revision must update:
+- `REVISION_HISTORY.yaml`
+- Linked ECN record
+- Updated `baselineId` in `IDENTIFICATION_CARD.json`
+
+---
+
+**Baseline Owner:** `CMP Lead — ATA-05`  
+**Date:** 2025-10-24  
+**Status:** Active (Baseline 1.0)
+
