@@ -1,0 +1,11 @@
+{
+  "artifact": "ATA-06 Geometry Definitions",
+  "program": "AMPEL360-AIR-T",
+  "architecture": "BWB-H2-HY-E",
+  "owner": "Geometry Lead — ATA-06",
+  "contact": "geometry@idealeeu.eu",
+  "version": "BL-2025.10",
+  "date": "2025-10-24",
+  "status": "ACTIVE",
+  "notes": "Contains master geometry, STEP AP242 exports, reference datum and stationing tables."
+}

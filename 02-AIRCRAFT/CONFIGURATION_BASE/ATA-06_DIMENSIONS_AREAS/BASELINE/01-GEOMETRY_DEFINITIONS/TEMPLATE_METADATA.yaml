@@ -1,0 +1,26 @@
+# TEMPLATE_METADATA.yaml - copy next to each geometry file
+part_id: 24-06-001
+description: "Fuselage reference datum and master geometry"
+revision: R001
+author: "Geometry Lead"
+cad_system: "Siemens NX"
+cad_version: "NX 2024"
+file_name: "24-06-001-Fuselage_ReferenceDatum_R001.step"
+coordinate_system: "Right-handed X-forward, Y-right, Z-up"
+datum_reference:
+  name: "FS0_Aft_NoseBulkhead"
+  origin_mm: [0.0, 0.0, 0.0]
+  notes: "Datum origin at aft face of nose equipment bay bulkhead"
+units:
+  length: "mm"
+  angle: "deg"
+export:
+  step_ap242: "24-06-001-Fuselage_ReferenceDatum_R001.step"
+  native: "24-06-001-Fuselage_ReferenceDatum_R001.x_t"
+  export_recipe: "export_recipe.txt"
+bounding_box_mm: [length_mm, width_mm, height_mm]
+mass_kg: 0.0
+ebom_id: "EBOM-24-06-001"
+approval_status: "DRAFT"
+last_updated: "2025-10-24"
+notes: "Include GD&T datum references in STEP PMI."
