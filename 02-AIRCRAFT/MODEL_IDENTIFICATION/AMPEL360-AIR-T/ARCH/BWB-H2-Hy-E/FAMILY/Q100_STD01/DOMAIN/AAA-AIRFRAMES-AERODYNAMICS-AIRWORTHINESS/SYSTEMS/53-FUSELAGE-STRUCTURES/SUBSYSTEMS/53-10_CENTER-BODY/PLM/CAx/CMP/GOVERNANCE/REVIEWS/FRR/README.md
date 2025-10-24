@@ -28,5 +28,5 @@ Authorizes release for flight operations after successful verification.
 
 ## Related
 
-- [Verification](../../../../../../../../../../../../../../02-AIRCRAFT/CONFIGURATION_BASE/00-COMMON/RULES.md)
+- [Verification](../../../../../../../../../../../../../../02-AIRCRAFT/CONFIGURATION_BASE/ATA-00_GENERAL/RULES.md)
 - [Compliance](../../../COMPLIANCE/)

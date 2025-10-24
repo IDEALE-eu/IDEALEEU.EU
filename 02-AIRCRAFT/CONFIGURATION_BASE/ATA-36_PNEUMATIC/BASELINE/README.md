@@ -74,7 +74,7 @@ Baselines are **immutable**:
 ## References
 
 - [Baseline Process](../../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/00-README.md)
-- [Configuration Rules](../../00-COMMON/RULES.md)
+- [Configuration Rules](../../ATA-00_GENERAL/RULES.md)
 - [Item Master](../../../../00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/)
 
 ## Compliance

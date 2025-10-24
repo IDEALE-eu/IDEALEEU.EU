@@ -1,0 +1,14 @@
+# BWB-H2-Hy-E Testing Requirements
+# Python dependencies for schema validation and testing
+
+# Core testing framework
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Schema validation
+jsonschema>=4.19.0
+pyyaml>=6.0
+
+# Optional: Additional testing utilities
+pytest-xdist>=3.3.1  # Parallel test execution
+pytest-timeout>=2.1.0  # Test timeout enforcement

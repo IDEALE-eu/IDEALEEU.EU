@@ -1,0 +1,421 @@
+# BWB-H2-Hy-E Hydrogen Subsystem Schema
+# Schema for hydrogen fuel system components and safety monitoring
+# Version: 1.0.0
+# Date: 2025-10-23
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://idealeeu.eu/schemas/bwb-h2-hy-e/hydrogen-subsystem-v1.0.yaml"
+
+title: "BWB-H2-Hy-E Hydrogen Subsystem Schema"
+version: "1.0.0"
+description: "Schema for hydrogen fuel system components including cryogenic storage, distribution, and safety systems"
+
+type: object
+required:
+  - subsystem_id
+  - utcs_ref
+  - tfa_domain
+  - lifecycle_state
+  - hydrogen_storage
+  - safety_systems
+
+properties:
+  # Core Identity
+  subsystem_id:
+    type: string
+    pattern: "^BWB-H2-HY-E-H2-[A-Z0-9_]+-[0-9]{3,6}$"
+    description: "Unique hydrogen subsystem identifier"
+    examples:
+      - "BWB-H2-HY-E-H2-TANK-001"
+      - "BWB-H2-HY-E-H2-DIST-042"
+
+  utcs_ref:
+    type: string
+    pattern: "^UTCS-BWB-H2-HY-E-CQH-[A-Z0-9_]+-[0-9]{3,6}@[0-9]+\\.[0-9]+\\.[0-9]+$"
+    description: "UTCS reference for hydrogen subsystem"
+    examples:
+      - "UTCS-BWB-H2-HY-E-CQH-H2_TANK-001@1.0.0"
+
+  tfa_domain:
+    type: string
+    const: "CQH"
+    description: "TFA domain: Cryogenics-Quantum-H2"
+
+  lifecycle_state:
+    type: string
+    enum: ["QS", "FWD", "UE", "FE", "CB", "QB"]
+    description: "Current lifecycle state in QS→QB flow"
+
+  # Hydrogen Storage
+  hydrogen_storage:
+    type: object
+    required:
+      - tank_type
+      - storage_pressure
+      - storage_temperature
+      - capacity_kg
+      - current_level_kg
+    properties:
+      tank_type:
+        type: string
+        enum:
+          - "cryogenic_liquid"
+          - "compressed_gas_350bar"
+          - "compressed_gas_700bar"
+          - "metal_hydride"
+          - "chemical_hydride"
+        description: "Type of hydrogen storage system"
+      
+      storage_pressure:
+        type: object
+        properties:
+          nominal_bar:
+            type: number
+            minimum: 0
+            description: "Nominal storage pressure in bar"
+          max_working_bar:
+            type: number
+            minimum: 0
+            description: "Maximum working pressure in bar"
+          current_bar:
+            type: number
+            minimum: 0
+            description: "Current pressure in bar"
+      
+      storage_temperature:
+        type: object
+        properties:
+          nominal_k:
+            type: number
+            minimum: 0
+            description: "Nominal storage temperature in Kelvin"
+          min_k:
+            type: number
+            minimum: 0
+            description: "Minimum operating temperature in Kelvin"
+          max_k:
+            type: number
+            minimum: 0
+            description: "Maximum operating temperature in Kelvin"
+          current_k:
+            type: number
+            minimum: 0
+            description: "Current temperature in Kelvin"
+      
+      capacity_kg:
+        type: number
+        minimum: 0
+        description: "Total hydrogen storage capacity in kg"
+      
+      current_level_kg:
+        type: number
+        minimum: 0
+        description: "Current hydrogen level in kg"
+      
+      tank_material:
+        type: string
+        enum:
+          - "aluminum_lined_composite"
+          - "carbon_fiber_composite"
+          - "stainless_steel"
+          - "titanium"
+        description: "Tank construction material"
+      
+      insulation_type:
+        type: string
+        description: "Thermal insulation system type"
+        examples:
+          - "vacuum_insulated"
+          - "multi_layer_insulation"
+          - "aerogel_composite"
+
+  # Distribution System
+  distribution:
+    type: object
+    properties:
+      pipeline_material:
+        type: string
+        enum:
+          - "stainless_steel_316L"
+          - "aluminum_alloy"
+          - "composite_lined"
+        description: "Distribution pipeline material"
+      
+      valve_count:
+        type: integer
+        minimum: 0
+        description: "Number of control valves"
+      
+      pressure_regulator_stages:
+        type: integer
+        minimum: 1
+        description: "Number of pressure regulation stages"
+      
+      leak_detection_zones:
+        type: integer
+        minimum: 1
+        description: "Number of leak detection zones"
+
+  # Safety Systems
+  safety_systems:
+    type: object
+    required:
+      - safety_interlocks
+      - emergency_venting
+      - leak_detection
+    properties:
+      safety_interlocks:
+        type: object
+        properties:
+          interlock_count:
+            type: integer
+            minimum: 1
+            description: "Number of safety interlocks"
+          
+          interlock_status:
+            type: array
+            items:
+              type: object
+              properties:
+                interlock_id:
+                  type: string
+                name:
+                  type: string
+                status:
+                  type: string
+                  enum: ["armed", "triggered", "bypassed", "fault"]
+                last_test:
+                  type: string
+                  format: date-time
+      
+      emergency_venting:
+        type: object
+        properties:
+          vent_valve_count:
+            type: integer
+            minimum: 1
+          
+          auto_vent_enabled:
+            type: boolean
+          
+          vent_trigger_pressure_bar:
+            type: number
+            minimum: 0
+          
+          vent_trigger_temperature_k:
+            type: number
+            minimum: 0
+          
+          last_vent_test:
+            type: string
+            format: date-time
+      
+      leak_detection:
+        type: object
+        properties:
+          sensor_type:
+            type: array
+            items:
+              type: string
+              enum:
+                - "electrochemical"
+                - "catalytic"
+                - "thermal_conductivity"
+                - "optical"
+          
+          sensor_locations:
+            type: array
+            items:
+              type: object
+              properties:
+                location_id:
+                  type: string
+                zone:
+                  type: string
+                sensor_type:
+                  type: string
+                status:
+                  type: string
+                  enum: ["operational", "degraded", "fault", "calibration_due"]
+                last_calibration:
+                  type: string
+                  format: date-time
+          
+          alarm_threshold_ppm:
+            type: number
+            minimum: 0
+            description: "Leak alarm threshold in parts per million"
+      
+      fire_suppression:
+        type: object
+        properties:
+          system_type:
+            type: string
+            enum:
+              - "halon"
+              - "inert_gas"
+              - "water_mist"
+              - "dry_chemical"
+          
+          zones_protected:
+            type: integer
+            minimum: 1
+          
+          last_inspection:
+            type: string
+            format: date-time
+
+  # Thermal Management
+  thermal_management:
+    type: object
+    properties:
+      cooling_method:
+        type: string
+        enum:
+          - "active_refrigeration"
+          - "passive_insulation"
+          - "cryocooler"
+          - "boil_off_recovery"
+        description: "Primary thermal management method"
+      
+      boil_off_rate_kg_per_hour:
+        type: number
+        minimum: 0
+        description: "Hydrogen boil-off rate in kg/hour"
+      
+      heat_load_watts:
+        type: number
+        minimum: 0
+        description: "Total heat load on cryogenic system in watts"
+      
+      cooling_power_watts:
+        type: number
+        minimum: 0
+        description: "Available cooling power in watts"
+
+  # Maintenance
+  maintenance:
+    type: object
+    properties:
+      next_inspection:
+        type: string
+        format: date
+        description: "Next scheduled inspection date"
+      
+      cryogenic_seal_inspection:
+        type: object
+        properties:
+          last_inspection:
+            type: string
+            format: date
+          inspection_interval_days:
+            type: integer
+            minimum: 1
+          seal_condition:
+            type: string
+            enum: ["excellent", "good", "fair", "replace_required"]
+      
+      pressure_vessel_certification:
+        type: object
+        properties:
+          cert_number:
+            type: string
+          issue_date:
+            type: string
+            format: date
+          expiry_date:
+            type: string
+            format: date
+          certifying_authority:
+            type: string
+      
+      maintenance_history:
+        type: array
+        items:
+          type: object
+          properties:
+            date:
+              type: string
+              format: date-time
+            type:
+              type: string
+              enum:
+                - "inspection"
+                - "seal_replacement"
+                - "valve_service"
+                - "sensor_calibration"
+                - "pressure_test"
+                - "leak_test"
+            technician:
+              type: string
+            notes:
+              type: string
+
+  # Compliance
+  compliance:
+    type: object
+    properties:
+      standards:
+        type: array
+        items:
+          type: string
+        examples:
+          - "SAE J2579 - Fuel Systems in Fuel Cell Vehicles"
+          - "ISO 19881 - Gaseous hydrogen - Land vehicle fuel containers"
+          - "EASA SC-H2 - Hydrogen Propulsion"
+          - "FAA Special Conditions - Hydrogen Fuel Systems"
+      
+      certification_basis:
+        type: array
+        items:
+          type: string
+        examples:
+          - "EASA CS-25"
+          - "FAA 14 CFR Part 25"
+      
+      hazard_analysis:
+        type: string
+        description: "Reference to system safety hazard analysis document"
+
+  # Performance Monitoring
+  performance:
+    type: object
+    properties:
+      total_hydrogen_consumed_kg:
+        type: number
+        minimum: 0
+        description: "Total hydrogen consumed since installation"
+      
+      refueling_cycles:
+        type: integer
+        minimum: 0
+        description: "Number of refueling cycles completed"
+      
+      average_consumption_rate_kg_per_hour:
+        type: number
+        minimum: 0
+        description: "Average hydrogen consumption rate"
+      
+      system_efficiency_percent:
+        type: number
+        minimum: 0
+        maximum: 100
+        description: "Overall system efficiency percentage"
+
+  # Metadata
+  metadata:
+    type: object
+    properties:
+      created_date:
+        type: string
+        format: date-time
+      updated_date:
+        type: string
+        format: date-time
+      created_by:
+        type: string
+      schema_version:
+        type: string
+        pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+
+additionalProperties: false

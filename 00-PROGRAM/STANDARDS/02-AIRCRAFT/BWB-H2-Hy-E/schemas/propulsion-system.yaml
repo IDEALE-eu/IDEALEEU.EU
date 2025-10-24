@@ -1,0 +1,706 @@
+# BWB-H2-Hy-E Propulsion System Schema
+# Schema for hybrid electric propulsion system interfaces
+# Version: 1.0.0
+# Date: 2025-10-23
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://idealeeu.eu/schemas/bwb-h2-hy-e/propulsion-system-v1.0.yaml"
+
+title: "BWB-H2-Hy-E Propulsion System Interface Schema"
+version: "1.1.0"
+description: "Schema for multi-energy agnostic propulsion system including fuel cells, batteries, electric motors, SAF/e-SAF fuels, and Open Fan architecture"
+
+type: object
+required:
+  - propulsion_id
+  - utcs_ref
+  - tfa_domain
+  - lifecycle_state
+  - fuel_cell_system
+  - battery_system
+  - electric_motors
+
+properties:
+  # Core Identity
+  propulsion_id:
+    type: string
+    pattern: "^BWB-H2-HY-E-PROP-[A-Z0-9_]+-[0-9]{3,6}$"
+    description: "Unique propulsion system identifier"
+    examples:
+      - "BWB-H2-HY-E-PROP-SYS-001"
+      - "BWB-H2-HY-E-PROP-FC-042"
+
+  utcs_ref:
+    type: string
+    pattern: "^UTCS-BWB-H2-HY-E-PPP-[A-Z0-9_]+-[0-9]{3,6}@[0-9]+\\.[0-9]+\\.[0-9]+$"
+    description: "UTCS reference for propulsion system"
+    examples:
+      - "UTCS-BWB-H2-HY-E-PPP-FUELCELL-001@1.0.0"
+
+  tfa_domain:
+    type: string
+    const: "PPP"
+    description: "TFA domain: Propulsion-Power-Plants"
+
+  lifecycle_state:
+    type: string
+    enum: ["QS", "FWD", "UE", "FE", "CB", "QB"]
+    description: "Current lifecycle state in QS→QB flow"
+
+  architecture:
+    type: string
+    enum:
+      - "series_hybrid"
+      - "parallel_hybrid"
+      - "series_parallel_hybrid"
+      - "distributed_electric"
+      - "open_fan_hybrid"
+      - "multi_energy_agnostic"
+    description: "Propulsion system architecture type"
+  
+  # SAF/e-SAF Fuel System (Sustainable Aviation Fuels)
+  saf_fuel_system:
+    type: object
+    description: "SAF/e-SAF fuel system for thermal support and backup energy"
+    properties:
+      fuel_type:
+        type: string
+        enum:
+          - "SAF"  # Sustainable Aviation Fuel
+          - "e-SAF"  # electro-SAF (synthetic)
+          - "SAF_e-SAF_blend"  # Blended fuels
+          - "bio-SAF"  # Biofuel-based SAF
+        description: "Type of sustainable aviation fuel"
+      
+      tank_capacity_liters:
+        type: number
+        minimum: 0
+        description: "SAF fuel tank capacity in liters"
+      
+      current_level_liters:
+        type: number
+        minimum: 0
+        description: "Current fuel level in liters"
+      
+      fuel_flow_rate_kg_per_hour:
+        type: number
+        minimum: 0
+        description: "Fuel consumption rate in kg/hour"
+      
+      thermal_support:
+        type: boolean
+        description: "Whether SAF is used for thermal cycle stabilization"
+      
+      backup_mode:
+        type: boolean
+        description: "Whether SAF serves as backup energy source"
+      
+      compatibility:
+        type: object
+        properties:
+          open_fan_compatible:
+            type: boolean
+            description: "Compatible with Open Fan combustion"
+          hybrid_combustion:
+            type: boolean
+            description: "Can be used with H2 co-combustion"
+          turbine_type:
+            type: array
+            items:
+              type: string
+            description: "Compatible turbine types"
+            examples:
+              - ["CFM_RISE", "CATALYST", "Open_Fan_Generic"]
+      
+      emissions:
+        type: object
+        properties:
+          co2_reduction_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+            description: "CO2 reduction vs conventional Jet-A"
+          nox_reduction_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+            description: "NOx reduction vs conventional fuel"
+          lifecycle_assessment:
+            type: string
+            description: "Reference to lifecycle emissions assessment"
+  
+  # Open Fan Propulsion Module
+  open_fan_system:
+    type: object
+    description: "Open Fan (unducted fan) propulsion system configuration"
+    properties:
+      fan_configuration:
+        type: string
+        enum:
+          - "counter_rotating"
+          - "single_rotor"
+          - "distributed_fans"
+        description: "Open Fan rotor configuration"
+      
+      fan_diameter_m:
+        type: number
+        minimum: 0
+        description: "Fan diameter in meters"
+      
+      blade_count_front:
+        type: integer
+        minimum: 2
+        description: "Number of blades on front rotor"
+      
+      blade_count_rear:
+        type: integer
+        minimum: 0
+        description: "Number of blades on rear rotor (0 if single rotor)"
+      
+      bypass_ratio:
+        type: number
+        minimum: 0
+        description: "Bypass ratio of Open Fan system"
+      
+      efficiency_improvement_percent:
+        type: number
+        minimum: 0
+        description: "Efficiency improvement vs conventional turbofan (%)"
+      
+      energy_source:
+        type: array
+        items:
+          type: string
+          enum: ["H2", "SAF", "e-SAF", "electric", "hybrid"]
+        description: "Compatible energy sources for Open Fan"
+      
+      noise_reduction:
+        type: object
+        properties:
+          acoustic_treatment:
+            type: boolean
+          noise_level_db:
+            type: number
+          certification_standard:
+            type: string
+            examples:
+              - "ICAO Annex 16 Chapter 14"
+      
+      location:
+        type: string
+        enum:
+          - "aft_fuselage"
+          - "wing_mounted"
+          - "tail_mounted"
+          - "distributed"
+        description: "Physical location of Open Fan system"
+      
+      integration:
+        type: string
+        enum:
+          - "CFM_RISE"
+          - "CATALYST"
+          - "GE_Open_Fan"
+          - "Safran_ONERA"
+          - "custom"
+        description: "Open Fan technology provider/program"
+
+  # Fuel Cell System
+  fuel_cell_system:
+    type: object
+    required:
+      - fuel_cell_type
+      - stack_count
+      - rated_power_kw
+    properties:
+      fuel_cell_type:
+        type: string
+        enum:
+          - "PEM"  # Proton Exchange Membrane
+          - "SOFC"  # Solid Oxide Fuel Cell
+          - "AFC"  # Alkaline Fuel Cell
+          - "PAFC"  # Phosphoric Acid Fuel Cell
+        description: "Type of fuel cell technology"
+      
+      stack_count:
+        type: integer
+        minimum: 1
+        description: "Number of fuel cell stacks"
+      
+      rated_power_kw:
+        type: number
+        minimum: 0
+        description: "Total rated power output in kilowatts"
+      
+      operating_voltage_v:
+        type: object
+        properties:
+          nominal:
+            type: number
+            minimum: 0
+          min:
+            type: number
+            minimum: 0
+          max:
+            type: number
+            minimum: 0
+          current:
+            type: number
+            minimum: 0
+      
+      operating_current_a:
+        type: object
+        properties:
+          nominal:
+            type: number
+            minimum: 0
+          max_continuous:
+            type: number
+            minimum: 0
+          peak:
+            type: number
+            minimum: 0
+          current:
+            type: number
+            minimum: 0
+      
+      efficiency_percent:
+        type: object
+        properties:
+          rated:
+            type: number
+            minimum: 0
+            maximum: 100
+          current:
+            type: number
+            minimum: 0
+            maximum: 100
+      
+      operating_temperature_c:
+        type: object
+        properties:
+          nominal:
+            type: number
+          min:
+            type: number
+          max:
+            type: number
+          current:
+            type: number
+      
+      stack_degradation:
+        type: object
+        properties:
+          initial_performance_kw:
+            type: number
+            minimum: 0
+          current_performance_kw:
+            type: number
+            minimum: 0
+          degradation_rate_percent_per_1000h:
+            type: number
+            minimum: 0
+          total_operating_hours:
+            type: number
+            minimum: 0
+          estimated_remaining_life_hours:
+            type: number
+            minimum: 0
+      
+      coolant_system:
+        type: object
+        properties:
+          coolant_type:
+            type: string
+          flow_rate_lpm:
+            type: number
+            minimum: 0
+          inlet_temp_c:
+            type: number
+          outlet_temp_c:
+            type: number
+
+  # Battery System
+  battery_system:
+    type: object
+    required:
+      - battery_chemistry
+      - pack_count
+      - total_capacity_kwh
+    properties:
+      battery_chemistry:
+        type: string
+        enum:
+          - "lithium_ion"
+          - "lithium_polymer"
+          - "lithium_sulfur"
+          - "solid_state"  # Recommended: >600 Wh/kg density, high discharge rate
+          - "nickel_metal_hydride"
+        description: "Battery chemistry type. Solid-state batteries recommended for >600 Wh/kg energy density, high instantaneous discharge rates, and long cycle life for peak power assist during takeoff and emergency reserves."
+      
+      pack_count:
+        type: integer
+        minimum: 1
+        description: "Number of battery packs"
+      
+      total_capacity_kwh:
+        type: number
+        minimum: 0
+        description: "Total battery capacity in kilowatt-hours"
+      
+      usable_capacity_kwh:
+        type: number
+        minimum: 0
+        description: "Usable battery capacity in kilowatt-hours"
+      
+      state_of_charge_percent:
+        type: number
+        minimum: 0
+        maximum: 100
+        description: "Current state of charge percentage"
+      
+      state_of_health_percent:
+        type: number
+        minimum: 0
+        maximum: 100
+        description: "Battery state of health percentage"
+      
+      voltage_v:
+        type: object
+        properties:
+          nominal:
+            type: number
+            minimum: 0
+          min:
+            type: number
+            minimum: 0
+          max:
+            type: number
+            minimum: 0
+          current:
+            type: number
+            minimum: 0
+      
+      max_discharge_rate_c:
+        type: number
+        minimum: 0
+        description: "Maximum discharge C-rate"
+      
+      max_charge_rate_c:
+        type: number
+        minimum: 0
+        description: "Maximum charge C-rate"
+      
+      thermal_management:
+        type: object
+        properties:
+          cooling_type:
+            type: string
+            enum: ["air_cooled", "liquid_cooled", "phase_change_material"]
+          operating_temp_range_c:
+            type: object
+            properties:
+              min:
+                type: number
+              max:
+                type: number
+          current_temp_c:
+            type: number
+      
+      cycle_count:
+        type: integer
+        minimum: 0
+        description: "Number of charge-discharge cycles completed"
+      
+      expected_cycle_life:
+        type: integer
+        minimum: 0
+        description: "Expected total cycle life"
+
+  # Electric Motors
+  electric_motors:
+    type: object
+    required:
+      - motor_count
+      - motor_type
+      - rated_power_kw_per_motor
+    properties:
+      motor_count:
+        type: integer
+        minimum: 1
+        description: "Number of electric motors"
+      
+      motor_type:
+        type: string
+        enum:
+          - "permanent_magnet_synchronous"
+          - "induction"
+          - "switched_reluctance"
+          - "brushless_dc"
+        description: "Type of electric motor"
+      
+      rated_power_kw_per_motor:
+        type: number
+        minimum: 0
+        description: "Rated power per motor in kilowatts"
+      
+      max_torque_nm:
+        type: number
+        minimum: 0
+        description: "Maximum torque per motor in Newton-meters"
+      
+      rated_speed_rpm:
+        type: number
+        minimum: 0
+        description: "Rated rotational speed in RPM"
+      
+      max_speed_rpm:
+        type: number
+        minimum: 0
+        description: "Maximum rotational speed in RPM"
+      
+      efficiency_percent:
+        type: object
+        properties:
+          rated:
+            type: number
+            minimum: 0
+            maximum: 100
+          peak:
+            type: number
+            minimum: 0
+            maximum: 100
+      
+      cooling_system:
+        type: object
+        properties:
+          cooling_type:
+            type: string
+            enum: ["air_cooled", "liquid_cooled", "oil_cooled"]
+          operating_temp_c:
+            type: object
+            properties:
+              nominal:
+                type: number
+              max:
+                type: number
+              current:
+                type: number
+      
+      motor_configuration:
+        type: string
+        enum:
+          - "wing_distributed"
+          - "fuselage_mounted"
+          - "aft_mounted"
+          - "boundary_layer_ingestion"
+        description: "Physical motor mounting configuration"
+      
+      propeller_interface:
+        type: object
+        properties:
+          propeller_type:
+            type: string
+            enum: ["fixed_pitch", "variable_pitch", "ducted_fan"]
+          diameter_m:
+            type: number
+            minimum: 0
+          blade_count:
+            type: integer
+            minimum: 2
+
+  # Power Management
+  power_management:
+    type: object
+    properties:
+      power_distribution_architecture:
+        type: string
+        enum:
+          - "centralized"
+          - "distributed"
+          - "federated"
+        description: "Power distribution architecture"
+      
+      inverter_count:
+        type: integer
+        minimum: 1
+        description: "Number of power inverters"
+      
+      dc_link_voltage_v:
+        type: number
+        minimum: 0
+        description: "DC link voltage in volts"
+      
+      energy_management_strategy:
+        type: string
+        enum:
+          - "fuel_cell_primary"
+          - "battery_primary"
+          - "load_following"
+          - "predictive_optimal"
+          - "multi_energy_agnostic"  # AMPAS: H2 + SAF + Battery + Open Fan
+          - "hybrid_parallel"  # Simultaneous energy sources
+          - "phase_optimized"  # Different sources per flight phase
+        description: "Energy management control strategy. Multi-energy agnostic mode enables flexible operation across H2, SAF/e-SAF, solid-state batteries, and Open Fan propulsion depending on availability and flight phase."
+      
+      regenerative_braking:
+        type: boolean
+        description: "Regenerative braking capability"
+      
+      total_system_efficiency_percent:
+        type: number
+        minimum: 0
+        maximum: 100
+        description: "Overall propulsion system efficiency"
+
+  # Performance Monitoring
+  performance:
+    type: object
+    properties:
+      total_energy_produced_kwh:
+        type: number
+        minimum: 0
+        description: "Total energy produced by fuel cells"
+      
+      total_energy_consumed_kwh:
+        type: number
+        minimum: 0
+        description: "Total energy consumed by motors"
+      
+      flight_hours:
+        type: number
+        minimum: 0
+        description: "Total flight hours on propulsion system"
+      
+      power_cycles:
+        type: integer
+        minimum: 0
+        description: "Number of power-on/power-off cycles"
+      
+      average_power_output_kw:
+        type: number
+        minimum: 0
+        description: "Average power output during operation"
+      
+      peak_power_recorded_kw:
+        type: number
+        minimum: 0
+        description: "Peak power output recorded"
+
+  # Safety & Control
+  safety:
+    type: object
+    properties:
+      emergency_shutdown_systems:
+        type: integer
+        minimum: 1
+        description: "Number of independent emergency shutdown systems"
+      
+      redundancy_level:
+        type: string
+        enum: ["single", "dual", "triple", "quad"]
+        description: "System redundancy level"
+      
+      fault_detection:
+        type: object
+        properties:
+          enabled:
+            type: boolean
+          diagnostic_coverage_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+      
+      fail_safe_modes:
+        type: array
+        items:
+          type: string
+        examples:
+          - "battery_only_mode"
+          - "reduced_power_mode"
+          - "single_motor_failure"
+          - "fuel_cell_shutdown"
+
+  # Maintenance
+  maintenance:
+    type: object
+    properties:
+      next_inspection:
+        type: string
+        format: date
+      
+      fuel_cell_performance_check:
+        type: object
+        properties:
+          last_check:
+            type: string
+            format: date
+          check_interval_flight_hours:
+            type: number
+            minimum: 0
+          performance_trend:
+            type: string
+            enum: ["stable", "degrading", "critical"]
+      
+      battery_health_check:
+        type: object
+        properties:
+          last_check:
+            type: string
+            format: date
+          check_interval_cycles:
+            type: integer
+            minimum: 1
+          health_status:
+            type: string
+            enum: ["excellent", "good", "fair", "replace_soon", "replace_now"]
+      
+      motor_inspection:
+        type: object
+        properties:
+          last_inspection:
+            type: string
+            format: date
+          inspection_interval_flight_hours:
+            type: number
+            minimum: 0
+          bearing_condition:
+            type: string
+            enum: ["excellent", "good", "fair", "replace_required"]
+
+  # Compliance
+  compliance:
+    type: object
+    properties:
+      standards:
+        type: array
+        items:
+          type: string
+        examples:
+          - "SAE ARP5150 - Safety Assessment for Civil Airborne Systems"
+          - "DO-160 - Environmental Conditions for Airborne Equipment"
+          - "DO-254 - Hardware Design Assurance"
+          - "EASA SC-H2 - Hydrogen Propulsion Special Conditions"
+      
+      dal_level:
+        type: string
+        enum: ["A", "B", "C", "D", "E"]
+        description: "Design Assurance Level"
+
+  # Metadata
+  metadata:
+    type: object
+    properties:
+      created_date:
+        type: string
+        format: date-time
+      updated_date:
+        type: string
+        format: date-time
+      created_by:
+        type: string
+      schema_version:
+        type: string
+        pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+
+additionalProperties: false

@@ -1,0 +1,547 @@
+# BWB-H2-Hy-E UTCS Extension Schema
+# Extension to AAMMPP UTCS schema for BWB-H2-Hy-E specific components
+# Version: 1.0.0
+# Date: 2025-10-23
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://idealeeu.eu/schemas/bwb-h2-hy-e/utcs-extension-v1.0.yaml"
+
+title: "BWB-H2-Hy-E UTCS Extension Schema"
+version: "1.0.0"
+description: "UTCS schema extension for BWB-H2-Hy-E architecture specific components including hydrogen, hybrid electric, and BWB structural elements"
+
+type: object
+required:
+  - utcs_ref
+  - utcs_schema
+  - type
+  - anchor
+  - tfa_domain
+  - lifecycle_state
+  - bwb_h2_hy_e_specific
+
+allOf:
+  - $ref: "https://aammpp.idealeeu.eu/schemas/utcs-aammpp-v1.1.yaml"
+
+properties:
+  # Extend UTCS reference pattern for BWB-H2-Hy-E
+  utcs_ref:
+    type: string
+    pattern: "^UTCS-BWB-H2-HY-E-[A-Z]{3}-[A-Z0-9_]+-[A-Z0-9_]+-[0-9]{3,6}@[0-9]+\\.[0-9]+\\.[0-9]+$"
+    description: "UTCS reference identifier for BWB-H2-Hy-E components"
+    examples:
+      - "UTCS-BWB-H2-HY-E-CQH-H2_TANK-LH2-001@1.0.0"
+      - "UTCS-BWB-H2-HY-E-PPP-FUELCELL-PEM-042@2.1.0"
+      - "UTCS-BWB-H2-HY-E-EEE-BATTERY-PACK-007@1.5.0"
+      - "UTCS-BWB-H2-HY-E-AAA-BWB-STRUCTURE-001@1.0.0"
+
+  # Architecture identifier
+  architecture:
+    type: string
+    const: "BWB-H2-Hy-E"
+    description: "Aircraft architecture identifier"
+
+  # BWB-H2-Hy-E Specific Extensions
+  bwb_h2_hy_e_specific:
+    type: object
+    properties:
+      # Component Category
+      component_category:
+        type: string
+        enum:
+          - "hydrogen_storage"
+          - "fuel_cell"
+          - "battery_pack"
+          - "electric_motor"
+          - "power_electronics"
+          - "thermal_management"
+          - "bwb_structure"
+          - "hydrogen_distribution"
+          - "safety_system"
+          - "saf_fuel_system"  # SAF/e-SAF fuel system
+          - "open_fan_propulsion"  # Open Fan system
+        description: "BWB-H2-Hy-E specific component category"
+      
+      # Hydrogen Storage Tank Specific
+      hydrogen_storage_tank:
+        type: object
+        properties:
+          tank_designation:
+            type: string
+            pattern: "^TANK-[0-9]{2}-[LR]-[0-9]{3}$"
+            examples: ["TANK-01-L-001", "TANK-02-R-005"]
+          storage_capacity_kg:
+            type: number
+            minimum: 0
+          pressure_rating_bar:
+            type: number
+            minimum: 0
+          cryogenic_capable:
+            type: boolean
+          location:
+            type: string
+            enum: ["wing_root", "center_body", "aft_fuselage", "distributed"]
+          certification:
+            type: object
+            properties:
+              pressure_vessel_cert:
+                type: string
+              cert_authority:
+                type: string
+              expiry_date:
+                type: string
+                format: date
+      
+      # Fuel Cell Stack Specific
+      fuel_cell_stack:
+        type: object
+        properties:
+          stack_designation:
+            type: string
+            pattern: "^FC-[A-Z]+-[0-9]{3}$"
+            examples: ["FC-PEM-001", "FC-SOFC-042"]
+          cell_type:
+            type: string
+            enum: ["PEM", "SOFC", "AFC", "PAFC"]
+          rated_power_kw:
+            type: number
+            minimum: 0
+          stack_voltage_v:
+            type: number
+            minimum: 0
+          cell_count:
+            type: integer
+            minimum: 1
+          location:
+            type: string
+            enum: ["center_body", "wing_pod", "aft_compartment"]
+          operating_temp_range_c:
+            type: object
+            properties:
+              min:
+                type: number
+              max:
+                type: number
+          performance_degradation:
+            type: object
+            properties:
+              initial_power_kw:
+                type: number
+                minimum: 0
+              current_power_kw:
+                type: number
+                minimum: 0
+              operating_hours:
+                type: number
+                minimum: 0
+              degradation_rate_percent_per_1000h:
+                type: number
+                minimum: 0
+      
+      # Battery Pack Specific
+      battery_pack:
+        type: object
+        properties:
+          pack_designation:
+            type: string
+            pattern: "^BAT-[A-Z]+-[0-9]{3}$"
+            examples: ["BAT-LI-001", "BAT-SS-042"]
+          chemistry:
+            type: string
+            enum: ["lithium_ion", "lithium_polymer", "lithium_sulfur", "solid_state"]
+          capacity_kwh:
+            type: number
+            minimum: 0
+          nominal_voltage_v:
+            type: number
+            minimum: 0
+          location:
+            type: string
+            enum: ["center_body", "wing_box", "distributed"]
+          state_of_health_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+          cycle_count:
+            type: integer
+            minimum: 0
+          thermal_management_type:
+            type: string
+            enum: ["air_cooled", "liquid_cooled", "phase_change_material"]
+      
+      # Electric Motor Specific
+      electric_motor:
+        type: object
+        properties:
+          motor_designation:
+            type: string
+            pattern: "^MOTOR-[A-Z]+-[0-9]{3}$"
+            examples: ["MOTOR-PM-001", "MOTOR-IND-042"]
+          motor_type:
+            type: string
+            enum: ["permanent_magnet_synchronous", "induction", "switched_reluctance"]
+          rated_power_kw:
+            type: number
+            minimum: 0
+          max_torque_nm:
+            type: number
+            minimum: 0
+          rated_speed_rpm:
+            type: number
+            minimum: 0
+          location:
+            type: string
+            enum: ["wing_leading_edge", "wing_trailing_edge", "aft_fuselage", "distributed"]
+          propeller_diameter_m:
+            type: number
+            minimum: 0
+          cooling_type:
+            type: string
+            enum: ["air_cooled", "liquid_cooled", "oil_cooled"]
+      
+      # SAF/e-SAF Fuel System Specific
+      saf_fuel_system:
+        type: object
+        properties:
+          fuel_designation:
+            type: string
+            pattern: "^SAF-[A-Z]+-[0-9]{3}$"
+            examples: ["SAF-BIO-001", "SAF-ESAF-042"]
+          fuel_type:
+            type: string
+            enum: ["SAF", "e-SAF", "SAF_e-SAF_blend", "bio-SAF"]
+          tank_capacity_liters:
+            type: number
+            minimum: 0
+          location:
+            type: string
+            enum: ["wing_box", "center_fuselage", "distributed"]
+          open_fan_compatible:
+            type: boolean
+            description: "Compatible with Open Fan combustion systems"
+          co2_reduction_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+            description: "CO2 reduction vs conventional Jet-A"
+          certification:
+            type: object
+            properties:
+              astm_d7566:
+                type: boolean
+                description: "ASTM D7566 certification for SAF"
+              fuel_batch:
+                type: string
+              production_method:
+                type: string
+                enum: ["HEFA", "FT", "ATJ", "SIP", "Power-to-Liquid"]
+      
+      # Open Fan Propulsion Specific
+      open_fan_propulsion:
+        type: object
+        properties:
+          fan_designation:
+            type: string
+            pattern: "^OPENFAN-[A-Z]+-[0-9]{3}$"
+            examples: ["OPENFAN-CFM-001", "OPENFAN-GE-042"]
+          fan_configuration:
+            type: string
+            enum: ["counter_rotating", "single_rotor", "distributed_fans"]
+          fan_diameter_m:
+            type: number
+            minimum: 0
+          blade_count_front:
+            type: integer
+            minimum: 2
+          blade_count_rear:
+            type: integer
+            minimum: 0
+          location:
+            type: string
+            enum: ["aft_fuselage", "wing_mounted", "tail_mounted", "distributed"]
+          integration_program:
+            type: string
+            enum: ["CFM_RISE", "CATALYST", "GE_Open_Fan", "Safran_ONERA", "custom"]
+            description: "Open Fan technology provider/program"
+          energy_sources:
+            type: array
+            items:
+              type: string
+              enum: ["H2", "SAF", "e-SAF", "electric", "hybrid"]
+            description: "Compatible energy sources"
+          bypass_ratio:
+            type: number
+            minimum: 0
+          efficiency_improvement_percent:
+            type: number
+            minimum: 0
+            description: "Efficiency improvement vs conventional turbofan"
+      
+      # BWB Structure Specific
+      bwb_structure:
+        type: object
+        properties:
+          structure_type:
+            type: string
+            enum:
+              - "center_body"
+              - "wing_box"
+              - "outer_wing"
+              - "leading_edge"
+              - "trailing_edge"
+              - "pressure_bulkhead"
+          material:
+            type: string
+            enum:
+              - "carbon_fiber_composite"
+              - "aluminum_lithium_alloy"
+              - "titanium_alloy"
+              - "hybrid_composite"
+          load_bearing:
+            type: boolean
+          pressure_vessel:
+            type: boolean
+          hydrogen_compatible:
+            type: boolean
+            description: "Material compatible with hydrogen exposure"
+          structural_health_monitoring:
+            type: object
+            properties:
+              enabled:
+                type: boolean
+              sensor_count:
+                type: integer
+                minimum: 0
+              last_inspection:
+                type: string
+                format: date
+      
+      # Thermal Management Specific
+      thermal_management_component:
+        type: object
+        properties:
+          component_type:
+            type: string
+            enum:
+              - "cryocooler"
+              - "heat_exchanger"
+              - "coolant_pump"
+              - "radiator"
+              - "thermal_bus"
+          cooling_capacity_kw:
+            type: number
+            minimum: 0
+          operating_temperature_range_k:
+            type: object
+            properties:
+              min:
+                type: number
+                minimum: 0
+              max:
+                type: number
+                minimum: 0
+          serves_systems:
+            type: array
+            items:
+              type: string
+              enum:
+                - "hydrogen_storage"
+                - "fuel_cells"
+                - "batteries"
+                - "power_electronics"
+                - "avionics"
+                - "cabin"
+      
+      # Integration & Interfaces
+      system_interfaces:
+        type: object
+        properties:
+          electrical_interfaces:
+            type: array
+            items:
+              type: object
+              properties:
+                interface_id:
+                  type: string
+                voltage_v:
+                  type: number
+                current_rating_a:
+                  type: number
+                connector_type:
+                  type: string
+          
+          mechanical_interfaces:
+            type: array
+            items:
+              type: object
+              properties:
+                interface_id:
+                  type: string
+                mount_type:
+                  type: string
+                  enum: ["hard_mount", "vibration_isolated", "floating"]
+                load_rating_kg:
+                  type: number
+          
+          fluid_interfaces:
+            type: array
+            items:
+              type: object
+              properties:
+                interface_id:
+                  type: string
+                fluid_type:
+                  type: string
+                  enum: ["hydrogen", "coolant", "air", "inert_gas"]
+                pressure_rating_bar:
+                  type: number
+                flow_rate_lpm:
+                  type: number
+          
+          data_interfaces:
+            type: array
+            items:
+              type: object
+              properties:
+                interface_id:
+                  type: string
+                protocol:
+                  type: string
+                  enum: ["CAN", "ARINC429", "ARINC664", "Ethernet", "MIL-STD-1553"]
+                data_rate_mbps:
+                  type: number
+
+  # Safety & Certification Extensions
+  bwb_h2_hy_e_safety:
+    type: object
+    properties:
+      hydrogen_safety:
+        type: object
+        properties:
+          hazard_classification:
+            type: string
+            enum: ["catastrophic", "hazardous", "major", "minor", "no_safety_effect"]
+          
+          safety_interlocks:
+            type: array
+            items:
+              type: object
+              properties:
+                interlock_id:
+                  type: string
+                function:
+                  type: string
+                status:
+                  type: string
+                  enum: ["armed", "triggered", "bypassed", "fault"]
+          
+          leak_detection_zones:
+            type: integer
+            minimum: 0
+          
+          emergency_venting:
+            type: boolean
+          
+          hydrogen_sensors:
+            type: integer
+            minimum: 0
+      
+      electrical_safety:
+        type: object
+        properties:
+          high_voltage_isolation:
+            type: boolean
+          
+          ground_fault_detection:
+            type: boolean
+          
+          arc_fault_protection:
+            type: boolean
+          
+          emergency_disconnect:
+            type: boolean
+      
+      certification_basis:
+        type: array
+        items:
+          type: string
+        examples:
+          - "EASA CS-25"
+          - "FAA 14 CFR Part 25"
+          - "EASA SC-H2 - Hydrogen Propulsion Special Conditions"
+          - "SAE J2579 - Fuel Systems in Fuel Cell Vehicles"
+
+  # Performance & Operational Data
+  bwb_h2_hy_e_performance:
+    type: object
+    properties:
+      operational_hours:
+        type: number
+        minimum: 0
+        description: "Total operational hours for component"
+      
+      mission_cycles:
+        type: integer
+        minimum: 0
+        description: "Number of mission cycles completed"
+      
+      efficiency_metrics:
+        type: object
+        properties:
+          current_efficiency_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+          
+          baseline_efficiency_percent:
+            type: number
+            minimum: 0
+            maximum: 100
+          
+          degradation_trend:
+            type: string
+            enum: ["stable", "degrading_slowly", "degrading_rapidly", "improving"]
+      
+      environmental_exposure:
+        type: object
+        properties:
+          temperature_cycles:
+            type: integer
+            minimum: 0
+          
+          pressure_cycles:
+            type: integer
+            minimum: 0
+          
+          vibration_hours:
+            type: number
+            minimum: 0
+
+  # Metadata Extension
+  metadata:
+    type: object
+    properties:
+      architecture_version:
+        type: string
+        description: "BWB-H2-Hy-E architecture version"
+        examples: ["Q100_STD01"]
+      
+      certification_date:
+        type: string
+        format: date
+        description: "Component certification date"
+      
+      manufacturer_specific:
+        type: object
+        properties:
+          oem:
+            type: string
+          part_number:
+            type: string
+          manufacturing_date:
+            type: string
+            format: date
+          manufacturing_location:
+            type: string
+
+additionalProperties: false

@@ -219,8 +219,8 @@ Example: `27-1234-A-20` (ATA-27, wire 1234, segment A, 20 AWG)
 
 ## Related Documents
 
-- [Configuration Rules](../00-COMMON/RULES.md) - Rule 3: EWIS Centralization
-- [Global Change Log](../00-COMMON/GLOBAL_CHANGE_LOG.csv)
+- [Configuration Rules](../ATA-00_GENERAL/RULES.md) - Rule 3: EWIS Centralization
+- [Global Change Log](../ATA-00_GENERAL/GLOBAL_CHANGE_LOG.csv)
 - System ICD directories in respective ATA chapters (for signal definitions)
 
 ## Standards References
