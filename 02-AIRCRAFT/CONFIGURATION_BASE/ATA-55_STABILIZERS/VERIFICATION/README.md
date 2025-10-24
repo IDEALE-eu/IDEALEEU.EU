@@ -158,7 +158,7 @@ For safety-critical systems:
 
 ## References
 
-- [Configuration Rules](../../00-COMMON/RULES.md)
+- [Configuration Rules](../../ATA-00_GENERAL/RULES.md)
 - [Verification Plan](../../../../00-PROGRAM/ENGINEERING/VERIFICATION/)
 - [Certification Basis](../../../../00-PROGRAM/CERTIFICATION/)
 

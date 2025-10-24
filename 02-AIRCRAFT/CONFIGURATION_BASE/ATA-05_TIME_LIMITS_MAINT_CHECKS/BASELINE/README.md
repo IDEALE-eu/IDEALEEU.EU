@@ -33,8 +33,12 @@ Covers all airframe, propulsion, electrical, and systems items requiring:
 
 ---
 
+- [Baseline Process](../../../../00-PROGRAM/CONFIG_MGMT/04-BASELINES/00-README.md)
+- [Configuration Rules](../../ATA-00_GENERAL/RULES.md)
+- [Item Master](../../../../00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/)
+
 ## Compliance References
-- **S1000D Issue 5.0** — Data Module coding and publication structure  
+- **S1000D Issue 6.0** — Data Module coding and publication structure  
 - **EASA CS-25 / FAA Part 25.1529** — Instructions for Continued Airworthiness  
 - **IDEALE-EU CMP-STD-1001** — Configuration and Maintenance Planning Standard  
 - **ISO 14001:2015** — Environmental management reference for ESG declaration
@@ -53,3 +57,4 @@ Each revision must update:
 **Baseline Owner:** `CMP Lead — ATA-05`  
 **Date:** 2025-10-24  
 **Status:** Active (Baseline 1.0)
+

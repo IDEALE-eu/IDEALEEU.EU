@@ -96,9 +96,9 @@ Chapter-specific change history
 
 ## Related Documents
 
-- [Configuration Rules](../00-COMMON/RULES.md)
-- [Global Change Log](../00-COMMON/GLOBAL_CHANGE_LOG.csv)
-- [Parameter Template](../00-COMMON/TEMPLATES/PARAMS.csv)
+- [Configuration Rules](../ATA-00_GENERAL/RULES.md)
+- [Global Change Log](../ATA-00_GENERAL/GLOBAL_CHANGE_LOG.csv)
+- [Parameter Template](../ATA-00_GENERAL/TEMPLATES/PARAMS.csv)
 
 ## Contacts
 

@@ -73,12 +73,8 @@ Each revision must update:
 
 ## Related Documents
 
-- [Configuration Rules](../00-COMMON/RULES.md)
-- [Global Change Log](../00-COMMON/GLOBAL_CHANGE_LOG.csv)
-- [CMP Standard](../../../../00-PROGRAM/CONFIG_MGMT/01-CM_PLAN.md)
-- [UTCS Traceability](../../../../00-PROGRAM/CONFIG_MGMT/10-TRACEABILITY/UTCS/)
-
----
+- [Configuration Rules](../ATA-00_GENERAL/RULES.md)
+- [Global Change Log](../ATA-00_GENERAL/GLOBAL_CHANGE_LOG.csv)
 
 ## Contacts
 

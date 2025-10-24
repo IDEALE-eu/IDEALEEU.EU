@@ -105,7 +105,7 @@ Changes affecting multiple chapters:
 - Document in **all affected chapters**
 - Cross-reference in change logs
 - Coordinate through CCB
-- Update Global Change Log in 00-COMMON
+- Update Global Change Log in ATA-00_GENERAL
 
 ## Emergency Changes
 
@@ -125,9 +125,9 @@ Change log must be:
 
 ## References
 
-- [Global Change Log](../../00-COMMON/GLOBAL_CHANGE_LOG.csv)
+- [Global Change Log](../../ATA-00_GENERAL/GLOBAL_CHANGE_LOG.csv)
 - [Change Process](../../../../00-PROGRAM/CONFIG_MGMT/06-CHANGES/)
-- [Configuration Rules](../../00-COMMON/RULES.md)
+- [Configuration Rules](../../ATA-00_GENERAL/RULES.md)
 - [CCB Charter](../../../../00-PROGRAM/CONFIG_MGMT/05-CCB/)
 
 ## Integration with CM Process

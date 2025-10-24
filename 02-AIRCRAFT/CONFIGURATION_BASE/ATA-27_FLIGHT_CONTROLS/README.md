@@ -81,8 +81,8 @@ Flight controls are **safety-critical** (DAL-A):
 
 ## Related Documents
 
-- [Configuration Rules](../00-COMMON/RULES.md)
-- [Global Change Log](../00-COMMON/GLOBAL_CHANGE_LOG.csv)
+- [Configuration Rules](../ATA-00_GENERAL/RULES.md)
+- [Global Change Log](../ATA-00_GENERAL/GLOBAL_CHANGE_LOG.csv)
 
 ## Standards References
 

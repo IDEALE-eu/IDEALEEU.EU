@@ -38,4 +38,4 @@ Authorize:
 
 - [RFC](../RFC/)
 - [Baselines](../../BASELINES/)
-- [Verification](../../../../../../../../../../../../../../02-AIRCRAFT/CONFIGURATION_BASE/00-COMMON/RULES.md)
+- [Verification](../../../../../../../../../../../../../../02-AIRCRAFT/CONFIGURATION_BASE/ATA-00_GENERAL/RULES.md)

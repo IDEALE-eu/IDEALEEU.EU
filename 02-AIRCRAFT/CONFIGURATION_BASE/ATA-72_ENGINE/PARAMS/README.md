@@ -55,9 +55,9 @@ All parameter changes must:
 
 ## References
 
-- [Configuration Rules](../../00-COMMON/RULES.md)
-- [Parameter Templates](../../00-COMMON/TEMPLATES/)
-- [Global Change Log](../../00-COMMON/GLOBAL_CHANGE_LOG.csv)
+- [Configuration Rules](../../ATA-00_GENERAL/RULES.md)
+- [Parameter Templates](../../ATA-00_GENERAL/TEMPLATES/)
+- [Global Change Log](../../ATA-00_GENERAL/GLOBAL_CHANGE_LOG.csv)
 
 ## Validation
 
