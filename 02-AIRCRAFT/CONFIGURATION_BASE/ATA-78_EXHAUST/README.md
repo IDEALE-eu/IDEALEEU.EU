@@ -26,7 +26,7 @@ Exhaust system configuration.
 - **ATA-92** EWIS (wiring)
 
 ## Related
-- `../00-COMMON/RULES.md`
-- `../00-COMMON/GLOBAL_CHANGE_LOG.csv`
+- `../ATA-00_GENERAL/RULES.md`
+- `../ATA-00_GENERAL/GLOBAL_CHANGE_LOG.csv`
 
 _Last reviewed: YYYY-MM-DD_

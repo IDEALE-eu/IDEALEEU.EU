@@ -49,7 +49,7 @@ HW_CONFIG/
 
 ## LRU Placement Rules
 
-Per [Configuration Rules](../../00-COMMON/RULES.md):
+Per [Configuration Rules](../../ATA-00_GENERAL/RULES.md):
 - LRUs reside in their **primary functional ATA chapter**
 - Related hardware stays together with host system
 - Cross-reference other chapters when interfaces exist
@@ -99,7 +99,7 @@ Hardware configuration changes require:
 
 ## References
 
-- [Configuration Rules](../../00-COMMON/RULES.md)
+- [Configuration Rules](../../ATA-00_GENERAL/RULES.md)
 - [Part Numbering](../../../../00-PROGRAM/CONFIG_MGMT/02-PART_NUMBERING.md)
 - [Item Master](../../../../00-PROGRAM/CONFIG_MGMT/08-ITEM_MASTER/)
 - [ATA-92 EWIS](../ATA-92_EWIS/) (for wiring)

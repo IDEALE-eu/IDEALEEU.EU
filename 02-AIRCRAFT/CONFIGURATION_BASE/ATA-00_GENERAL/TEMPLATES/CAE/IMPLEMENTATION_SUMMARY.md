@@ -3,7 +3,7 @@
 ## Implementation Complete ✅
 
 Date: 2025-10-23  
-Location: `/02-AIRCRAFT/CONFIGURATION_BASE/00-COMMON/TEMPLATES/CAE/`
+Location: `/02-AIRCRAFT/CONFIGURATION_BASE/ATA-00_GENERAL/TEMPLATES/CAE/`
 
 ## What Was Implemented
 
@@ -236,7 +236,7 @@ Template is version-controlled and can be updated. Users should:
 ## References
 
 - Problem Statement: Fully implemented as specified
-- Location: `/02-AIRCRAFT/CONFIGURATION_BASE/00-COMMON/TEMPLATES/CAE/`
+- Location: `/02-AIRCRAFT/CONFIGURATION_BASE/ATA-00_GENERAL/TEMPLATES/CAE/`
 - Version: 1.0
 - Date: 2025-10-23
 

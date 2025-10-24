@@ -21,7 +21,7 @@ This structure serves as the single source of truth for:
 ```
 CONFIGURATION_BASE/
 ├─ 00-README.md                            # This file
-├─ 00-COMMON/                              # Shared resources across all ATA chapters
+├─ ATA-00_GENERAL/                              # Shared resources across all ATA chapters
 │  ├─ RULES.md                             # Configuration rules and guidelines
 │  ├─ SCHEMAS/                             # JSON/XML schemas for BASELINE, PARAMS, etc.
 │  ├─ UTCS_INDEX/                          # Unified Type Certificate Specs index
@@ -171,7 +171,7 @@ Chapter-specific change history:
 
 ## Configuration Rules
 
-Key rules governing this structure (see 00-COMMON/RULES.md for details):
+Key rules governing this structure (see ATA-00_GENERAL/RULES.md for details):
 
 1. **LRU Placement**: Line Replaceable Units (LRUs) reside in their primary ATA chapter
 2. **Software Placement**: Software resides with its host LRU
