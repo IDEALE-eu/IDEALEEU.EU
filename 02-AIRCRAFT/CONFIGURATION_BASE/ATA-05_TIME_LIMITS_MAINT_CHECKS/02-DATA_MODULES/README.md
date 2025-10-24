@@ -83,10 +83,10 @@ The Data Module Codes follow S1000D standard naming:
 - **System Diff**: 01 (Standard configuration)
 - **System Code**: 10, 20, 30 (Maintenance interval types)
 - **Sub-system/Assy/Disassy**: 00-00-00 (General)
-- **Variant**: A (Standard variant)
+- **Disassy Code Variant**: A (Standard variant)
 - **Info Code**: 001, 002, 010 (Information type)
-- **Info Code Variant**: A (Standard)
-- **Item Location**: Standard location code
+- **Info Code Variant**: 01 (Standard issue)
+- **Item Location**: A (Standard location)
 
 ### Usage
 
