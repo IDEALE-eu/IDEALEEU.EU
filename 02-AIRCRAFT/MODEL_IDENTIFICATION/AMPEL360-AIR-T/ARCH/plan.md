@@ -417,6 +417,26 @@
 
 ---
 
+## CDR Deliverables Package
+
+The complete **Conceptual Design Review (CDR)** deliverables package for Month 12 has been structured and is available at:
+
+**[BWB-H2-Hy-E/PROGRAM_MANAGEMENT/REVIEWS/CONCEPTUAL_DESIGN_REVIEW](BWB-H2-Hy-E/PROGRAM_MANAGEMENT/REVIEWS/CONCEPTUAL_DESIGN_REVIEW/)**
+
+This package includes:
+- 60+ formal deliverable templates organized across 18 categories
+- Executive summaries and CONOPS
+- Requirements, aerodynamic, and propulsion documentation
+- Hydrogen storage and thermal management deliverables
+- Structural, systems, and safety documentation
+- Manufacturing, testing, and risk management materials
+- Market, operations, and infrastructure analysis
+- Integration planning and review materials
+
+See the **[CDR Deliverables Index](BWB-H2-Hy-E/PROGRAM_MANAGEMENT/REVIEWS/CONCEPTUAL_DESIGN_REVIEW/DELIVERABLES_INDEX.md)** for a complete list of all deliverables.
+
+---
+
 **Document Version**: 1.0  
 **Date**: October 24, 2025  
 **Status**: Initial Development Requirements
