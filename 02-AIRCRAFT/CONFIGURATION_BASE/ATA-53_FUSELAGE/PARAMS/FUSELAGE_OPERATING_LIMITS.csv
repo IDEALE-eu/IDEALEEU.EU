@@ -1,0 +1,11 @@
+Parameter_Name,Unit,Nominal_Value,Min_Limit,Max_Limit,Tolerance,Safety_Critical,Description,Source_Requirement,Last_Updated,Status
+CABIN_PRESSURE_DIFF,psi,8.6,0.0,9.4,±0.3,Yes,Maximum cabin-to-ambient pressure differential,REQ-FUS-001,2024-01-15,Active
+CABIN_ALTITUDE,ft,6000,0,8000,±200,Yes,Equivalent cabin altitude during cruise,REQ-FUS-002,2024-01-15,Active
+SKIN_TEMP_UPPER,degC,70.0,N/A,70.0,±0.0,Yes,Maximum allowable fuselage skin temperature,REQ-FUS-003,2024-01-15,Active
+SKIN_TEMP_LOWER,degC,-55.0,-55.0,N/A,±0.0,Yes,Minimum allowable fuselage skin temperature,REQ-FUS-004,2024-01-15,Active
+SKIN_TEMP_OPERATING,degC,15.0,-55.0,70.0,±5.0,No,Normal fuselage skin temperature range,REQ-FUS-005,2024-01-15,Active
+MAX_POSITIVE_LOAD_FACTOR,g,2.5,N/A,2.5,±0.0,Yes,Maximum positive limit load factor,REQ-FUS-006,2024-01-15,Active
+MAX_NEGATIVE_LOAD_FACTOR,g,-1.0,-1.0,N/A,±0.0,Yes,Maximum negative limit load factor,REQ-FUS-007,2024-01-15,Active
+FATIGUE_CYCLE_LIMIT,cycles,60000,N/A,60000,±0,Yes,Design service goal in pressurization cycles,REQ-FUS-008,2024-01-15,Active
+DESIGN_SERVICE_GOAL,flight_hours,90000,N/A,90000,±0,Yes,Airframe design service goal,REQ-FUS-009,2024-01-15,Active
+FUSELAGE_DIAMETER_OUTER,m,4.00,3.98,4.02,±0.02,No,Outer fuselage diameter tolerance,REQ-FUS-010,2024-01-15,Active

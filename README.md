@@ -521,6 +521,13 @@ Example
 └── ATA_05-01-30_Daily_Check.xml
 ```
 
+**ATA-53 Fuselage Operating Ranges and Limits**
+
+```
+02-AIRCRAFT/CONFIGURATION_BASE/ATA-53_FUSELAGE/PARAMS/
+└── FUSELAGE_OPERATING_LIMITS.csv   # Min/max values for normal operation
+```
+
 ### Repository Index and Navigation
 
 **Top‑Level**: [/00‑PROGRAM](./00-PROGRAM/) · [/01‑FLEET](./01-FLEET/) · [/02‑AIRCRAFT](./02-AIRCRAFT/) · [/03‑SPACECRAFT](./03-SPACECRAFT/) · [/04‑SATELLITES](./04-SATELLITES/) · [/05‑TELESCOPES](./05-TELESCOPES/) · [/06‑PROBES](./06-PROBES/) · [/07‑DRONES](./07-DRONES/) · [/08‑LAUNCHERS](./08-LAUNCHERS/) · [/09‑STM‑SPACE‑STATION‑MODULES](./09-STM-SPACE-STATION-MODULES/) · [/10‑BUSINESS](./10-BUSINESS/)
