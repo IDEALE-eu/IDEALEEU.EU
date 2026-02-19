@@ -15,7 +15,7 @@ Program-level governance, standards, and management systems across all media-env
 - **[INDUSTRIALISATION/](./INDUSTRIALISATION/)** — Manufacturing readiness and DFM/DFA  
 - **[DIGITAL_THREAD/](./DIGITAL_THREAD/)** — PLM/PDM, MBSE, MES/ERP/QMS integration  
 
-## PLUMA — Product Lifecycle UiX Management Automation
+## PLUMA 🏳️‍🌈 — Product Lifecycle UiX Management Automation
 
 **PLUMA** is an industrial-scale automation engine that transforms aerospace product lifecycle management from artisanal processes into replicable, parallelizable, federated operations.
 
