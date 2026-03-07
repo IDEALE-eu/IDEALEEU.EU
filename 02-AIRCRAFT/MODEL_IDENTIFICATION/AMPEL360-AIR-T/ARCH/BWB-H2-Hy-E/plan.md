@@ -1,5 +1,7 @@
 # BWB-H2-HY-E-THERMAL-CRYO-001
-## Blended Wing Body Hydrogen Hybrid-Electric Aircraft Development Plan
+## Blended Wing Body Aircraft Development Plan with Hydrogen as Onboard Energy Carrier and Electric Propulsion
+
+> **Hydrogen shall be treated as an onboard energy carrier and thermal resource within the aircraft energy architecture, rather than solely as a direct propulsive fuel.**
 
 ---
 
@@ -20,9 +22,13 @@
 - Landing gear integration options
 - Emergency systems accessibility
 
-### 1.3 Propulsion Architecture Selection
-- Hydrogen-electric hybrid topology definition
-- Power split strategy (H2 vs battery)
+### 1.3 Energy Architecture Selection
+- Carrier-electric hybrid topology definition
+- Primary energy source vs onboard carrier split
+- Energy conversion chain definition
+- Mission-phase carrier utilization strategy
+- Carrier buffering vs direct power delivery
+- Hydrogen role classification: storage / cooling / reserve / feedstock
 - Number and placement of propulsion units
 - Distributed propulsion vs podded engines
 - Boundary layer ingestion feasibility
@@ -49,26 +55,35 @@
 - Takeoff and landing performance
 - Climb and cruise optimization
 - Range-payload diagrams
-- Fuel efficiency calculations
+- Mission energy efficiency calculations
+- Carrier-to-thrust efficiency
+- Source-to-propulsor chain efficiency
+- Mass penalty of carrier storage
 - Environmental impact assessment
 
 ---
 
-## 3. Hydrogen Propulsion System
+## 3. Hydrogen Energy Carrier and Conversion System
 
 ### 3.1 Fuel Cell System Design
 - Fuel cell stack selection and sizing
 - Power output requirements per operating phase
-- Hydrogen consumption rate calculations
+- Hydrogen carrier draw rate calculations
+- Conversion efficiency by mission phase
+- Carrier depletion and reserve policy
+- Purge, recirculation and transient response modelling
 - Cooling requirements for fuel cells
 - Stack durability and lifecycle analysis
 - Redundancy and safety architecture
 
-### 3.2 Hydrogen Combustion Engines (if applicable)
-- Engine type selection (turbofan, turboprop)
-- Hydrogen combustion chamber design
+### 3.2 Energy Conversion Pathways (if applicable)
+- Fuel cells (primary conversion)
+- Reformers/crackers
+- Turbine-generators
+- Combustion-based emergency conversion
+- Auxiliary power conversion modes
 - NOx emission control strategies
-- Engine performance mapping
+- Conversion pathway performance mapping
 - Integration with electric system
 
 ### 3.3 Electric Propulsion Components
@@ -78,37 +93,54 @@
 - High-voltage system design (voltage levels, protection)
 - Battery system for hybrid operation
 - Regenerative capabilities
+- Carrier-to-bus power conditioning
+- Conversion transients
+- Energy management supervisory control
+- Load prioritization under carrier depletion
 
 ---
 
-## 4. Cryogenic Hydrogen Storage System
+## 4. Cryogenic Hydrogen Carrier Storage System
 
 ### 4.1 Tank Design
 - Tank geometry and structural design
 - Material selection (composites, metals, liners)
 - Pressure vessel certification requirements
 - Tank placement within BWB structure
-- Center of gravity management as fuel depletes
+- Center of gravity management as carrier inventory changes
+- Structural implications of carrier reserve segregation
+- Tank partitioning for mission-critical reserve logic
 - Crashworthiness and impact protection
 
 ### 4.2 Insulation System
 - Multi-layer insulation (MLI) design
 - Vacuum jacket requirements
-- Boil-off rate minimization targets
+- Boil-off rate minimization targets (carrier loss minimization)
 - Thermal performance validation testing
 - Long-term thermal degradation analysis
 
-### 4.3 Fuel Management
-- Fill and defuel procedures
-- Boil-off gas management system
+### 4.3 Carrier Management
+- Fill and offload procedures
+- Boil-off gas management system (carrier loss recovery)
 - Pressure control and relief systems
-- Fuel quantity measurement systems
+- Carrier quantity measurement systems
 - Transfer pumps and flow control
 - Inerting and purging systems
+- Usable carrier fraction tracking
+- Conversion-ready vs non-conversion-ready inventory
+- Carrier quality/state conditioning
+- Storage-to-converter interface management
+
+### 4.4 Carrier Availability and Dispatch
+- Carrier availability margin
+- Conversion lag modelling
+- Strategic reserve policy
+- Non-propulsive consumption accounting
+- Mission dispatch constraints driven by usable carrier state
 
 ---
 
-## 5. Thermal Management System
+## 5. Thermal and Carrier Conditioning System
 
 ### 5.1 Cryogenic Thermal Management
 - Heat leak minimization strategies
@@ -117,14 +149,21 @@
 - Emergency venting system design
 - Ground support equipment interface
 
-### 5.2 Propulsion System Cooling
+### 5.2 Carrier Conditioning
+- Carrier temperature conditioning before conversion
+- Carrier state control for efficiency preservation
+- Boil-off reuse prioritization
+- Cold-energy recovery accounting
+- Thermal-credit assignment in mission energy balance
+
+### 5.3 Propulsion System Cooling
 - Fuel cell cooling system (liquid/air)
 - Electric motor and power electronics cooling
 - Heat exchanger design and sizing
 - Coolant selection and circulation systems
 - Waste heat recovery opportunities
 
-### 5.3 Aircraft-Level Thermal Integration
+### 5.4 Aircraft-Level Thermal Integration
 - Environmental control system (ECS) integration
 - Avionics bay cooling requirements
 - Passenger cabin thermal management
@@ -145,6 +184,9 @@
 ### 6.2 Hydrogen Tank Integration
 - Structural interfaces and mounting systems
 - Load path analysis with heavy tanks
+- Center of gravity management as carrier inventory changes
+- Structural implications of carrier reserve segregation
+- Tank partitioning for mission-critical reserve logic
 - Structural reinforcement requirements
 - Crash protection structure
 
@@ -181,8 +223,12 @@
 - Primary flight displays
 - Navigation systems
 - Communication systems
-- Hydrogen system monitoring interface
-- Health monitoring systems
+- Carrier state estimation and monitoring interface
+- Conversion chain monitoring
+- Energy dispatch logic display
+- Prognostics of usable carrier margin
+- Failure accommodation in conversion units
+- Supervisory energy management
 
 ### 8.2 Electrical Power Distribution
 - Main electrical busses architecture
@@ -208,15 +254,25 @@
 - Emergency procedures development
 - Ground handling safety protocols
 
-### 9.2 Regulatory Compliance
-- Airworthiness standards adaptation for H2
+### 9.2 Carrier Integrity and Conversion Safety
+- Conversion instability hazard analysis
+- Cold-state mismanagement hazards
+- Unusable carrier trapped in tanks
+- Purge/vent sequencing failure modes
+- False state-of-carrier estimation hazards
+- Mission abort caused by conversion-chain degradation
+- Degraded conversion mode procedures
+
+### 9.3 Regulatory Compliance
+- Airworthiness basis for hydrogen carrier storage and conversion architecture
+- Special conditions for carrier-mediated propulsion
+- Dispatch and reserve rules for carrier-based energy systems
 - Certification basis development with authorities
 - Type certification planning
-- Special conditions for novel technologies
 - Flight test certification requirements
 
-### 9.3 Failure Modes and Effects Analysis
-- FMEA for all critical systems
+### 9.4 Failure Modes and Effects Analysis
+- FMEA for all critical systems including conversion chain
 - Fault tree analysis
 - Reliability, maintainability analysis
 - Safety assessment process
@@ -234,9 +290,13 @@
 - Non-destructive testing methods
 
 ### 10.2 Supply Chain Development
-- Hydrogen fuel cell supplier qualification
+- Carrier conversion subsystem suppliers
+- Fuel cell supplier qualification
+- Storage-conditioning subsystem suppliers
 - Cryogenic component suppliers
 - Electric propulsion component sourcing
+- Energy management software/toolchain suppliers
+- Carrier handling and validation equipment suppliers
 - Special tooling and equipment
 - Testing infrastructure
 
@@ -250,10 +310,20 @@
 
 ## 11. Ground Support Infrastructure
 
-### 11.1 Hydrogen Fueling Infrastructure
+### 11.1 Hydrogen Carrier Handling Infrastructure
 - Airport hydrogen production/storage
-- Fueling truck/cart specifications
+- Carrier loading equipment specifications
+- Carrier conditioning at point of loading
 - Coupling and connection systems
+- Carrier state verification at loading
+- Boil-off recovery systems
+- Turnaround readiness procedures
+- Compatibility with upstream energy chain
+- Green electricity to H2 traceability
+- Carrier quality assurance
+- Ground-side liquefaction or conditioning requirements
+- Airport energy hub integration
+- Carrier-loss accounting during turnaround
 - Safety protocols and procedures
 - Spill/leak response equipment
 
@@ -275,14 +345,22 @@
 - Thermal management system validation
 - Control surface and actuator testing
 
-### 12.2 System Integration Testing
+### 12.2 Carrier and Conversion Validation
+- Carrier state estimation validation
+- Conversion efficiency mapping
+- Carrier-loss characterization
+- Degraded conversion mode testing
+- Reserve release logic testing
+- Thermal-credit validation
+
+### 12.3 System Integration Testing
 - Iron bird test rig development
 - Ground-based integration testing
-- Propulsion system full-scale testing
+- Conversion chain full-scale testing
 - Thermal cycle testing
 - EMI/EMC testing
 
-### 12.3 Flight Testing
+### 12.4 Flight Testing
 - Ground taxi testing
 - First flight preparation
 - Envelope expansion program
@@ -296,13 +374,17 @@
 
 ### 13.1 Life Cycle Assessment
 - Manufacturing environmental impact
-- Operational emissions (full well-to-wake)
+- Source-to-thrust analysis (full well-to-wake)
+- Electricity-to-hydrogen-to-propulsion efficiency
+- Carrier production, liquefaction, transport and storage losses
+- Carrier wastage and boil-off accounting
+- Marginal GEI of carrier chain vs direct electrification vs SAF/PtL alternatives
 - End-of-life recycling and disposal
 - Comparative analysis with conventional aircraft
 
 ### 13.2 Economic Viability
 - Development cost estimation
-- Operating cost analysis (fuel, maintenance)
+- Operating cost analysis (carrier, maintenance)
 - Market analysis and demand forecasting
 - Business case development
 - Financing strategy
@@ -310,8 +392,9 @@
 ### 13.3 Sustainability Metrics
 - Carbon footprint reduction quantification
 - Noise footprint analysis
-- Hydrogen supply chain sustainability
-- Total energy efficiency calculations
+- Hydrogen carrier supply chain sustainability
+- GEI intensity of carrier supply chain (gCO₂e/MJ usable onboard energy)
+- Total carrier chain efficiency calculations
 
 ---
 
@@ -320,13 +403,18 @@
 ### 14.1 Flight Operations
 - Operating manual development
 - Pilot training curriculum
-- Dispatch reliability targets
+- Dispatch by usable carrier state
+- Carrier reserve policy
+- Turnaround conditioning time
+- Minimum acceptable carrier quality/state
+- Conversion degradation effects on mission release
+- Non-propulsive carrier usage accounting
 - Weather limitations (cryogenic considerations)
 - Route planning and optimization
 
 ### 14.2 Maintenance Program
 - Scheduled maintenance intervals
-- Condition-based monitoring systems
+- Condition-based monitoring systems (including conversion chain)
 - Spare parts provisioning
 - Maintenance cost modeling
 - Reliability improvement programs
@@ -337,6 +425,8 @@
 
 ### 15.1 Technical Risks
 - Technology readiness level assessment
+- Carrier chain efficiency risk
+- Conversion system maturity risk
 - Mitigation strategies for key risks
 - Alternative technology pathways
 - Decision gates and go/no-go criteria
@@ -373,7 +463,7 @@
 ### 17.1 Regulatory Authorities
 - FAA/EASA engagement strategy
 - Pre-certification meetings
-- Compliance demonstration plans
+- Compliance demonstration plans for carrier-mediated propulsion
 
 ### 17.2 Industry Partnerships
 - Technology partners identification
@@ -392,15 +482,21 @@
 ## Project Milestones
 
 1. **Conceptual Design Review** - Month 12
-2. **Preliminary Design Review** - Month 24
-3. **Critical Design Review** - Month 36
-4. **First Component Tests** - Month 30
-5. **Manufacturing Readiness Review** - Month 40
-6. **Systems Integration Complete** - Month 48
-7. **Ground Testing Complete** - Month 54
-8. **First Flight** - Month 60
-9. **Certification** - Month 72
-10. **Entry Into Service** - Month 78
+2. **Energy Architecture Review** - Month 15
+3. **Preliminary Design Review** - Month 24
+4. **Carrier Storage and Conditioning Review** - Month 27
+5. **Conversion Chain Credibility Review** - Month 30
+6. **First Component Tests** - Month 30
+7. **Critical Design Review** - Month 36
+8. **Carrier Safety Review** - Month 38
+9. **Manufacturing Readiness Review** - Month 40
+10. **Systems Integration Complete** - Month 48
+11. **Carrier Infrastructure Compatibility Review** - Month 50
+12. **Ground Testing Complete** - Month 54
+13. **Operational Carrier Readiness Review** - Month 57
+14. **First Flight** - Month 60
+15. **Certification** - Month 72
+16. **Entry Into Service** - Month 78
 
 ---
 
@@ -408,12 +504,18 @@
 
 - **Range**: [Target] km with [X] passengers
 - **Cruise Speed**: [Target] Mach
-- **Fuel Efficiency**: [X]% improvement over conventional
+- **Carrier Draw Rate**: [X] kg-H2 equivalent / mission segment
+- **Usable Carrier Fraction**: [%] of loaded hydrogen available for certified propulsion demand
+- **Carrier Chain Efficiency**: electricity-to-bus / electricity-to-thrust / source-to-thrust [%]
+- **Conversion Efficiency by Phase**: taxi / takeoff / climb / cruise / descent [%]
 - **Emissions**: Zero CO₂, [X] NOx reduction
 - **Operating Cost**: Target [X]% of conventional aircraft
-- **Hydrogen Consumption**: [X] kg/100 passenger-km
-- **Tank Boil-off Rate**: < [X]% per day
-- **System Efficiency**: Overall well-to-thrust [X]%
+- **Boil-off Recovery Ratio**: [%]
+- **Carrier Reserve Margin at Dispatch**: [%]
+- **Thermal Credit Recovery**: [kW or % equivalent]
+- **Carrier Loss per Turnaround**: [%]
+- **GEI Intensity of Carrier Supply Chain**: [gCO₂e/MJ usable onboard energy]
+- **System Efficiency**: Overall source-to-thrust [X]%
 
 ---
 
@@ -427,7 +529,7 @@ This package includes:
 - 60+ formal deliverable templates organized across 18 categories
 - Executive summaries and CONOPS
 - Requirements, aerodynamic, and propulsion documentation
-- Hydrogen storage and thermal management deliverables
+- Hydrogen carrier storage and thermal management deliverables
 - Structural, systems, and safety documentation
 - Manufacturing, testing, and risk management materials
 - Market, operations, and infrastructure analysis
@@ -437,6 +539,6 @@ See the **[CDR Deliverables Index](PROGRAM_MANAGEMENT/REVIEWS/CONCEPTUAL_DESIGN_
 
 ---
 
-**Document Version**: 1.0  
-**Date**: October 24, 2025  
-**Status**: Initial Development Requirements
+**Document Version**: 2.0  
+**Date**: March 7, 2026  
+**Status**: Carrier-Centric Energy Architecture
