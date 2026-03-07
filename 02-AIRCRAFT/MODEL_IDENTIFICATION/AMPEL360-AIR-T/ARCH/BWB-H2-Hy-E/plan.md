@@ -184,9 +184,9 @@
 ### 6.2 Hydrogen Tank Integration
 - Structural interfaces and mounting systems
 - Load path analysis with heavy tanks
-- Center of gravity management as carrier inventory changes
-- Structural implications of carrier reserve segregation
-- Tank partitioning for mission-critical reserve logic
+- Structural load redistribution as carrier inventory changes
+- Reinforcement design for carrier reserve segregation loads
+- Structural accommodation of tank partitioning
 - Structural reinforcement requirements
 - Crash protection structure
 
