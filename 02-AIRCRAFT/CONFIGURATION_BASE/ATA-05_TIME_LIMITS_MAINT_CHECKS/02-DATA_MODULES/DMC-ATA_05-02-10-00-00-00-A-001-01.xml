@@ -6,7 +6,7 @@
   <identAndStatusSection>
     <dmAddress>
       <dmIdent>
-        <dmCode modelIdentCode="ATA_05" systemDiffCode="01" systemCode="10"
+        <dmCode modelIdentCode="ATA_05" systemDiffCode="02" systemCode="10"
                 subSystemCode="0" subSubSystemCode="0" assyCode="00"
                 disassyCode="00" disassyCodeVariant="A" infoCode="001"
                 infoCodeVariant="A" itemLocationCode="A"/>
